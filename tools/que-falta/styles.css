@@ -1,0 +1,67 @@
+/* ¿Qué falta? — estilos específicos. Lo común está en assets/css/. */
+
+.tool-header h1 { color: var(--mod-memoria); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-memoria);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.etiqueta {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  color: var(--mod-memoria);
+}
+
+.rejilla-objetos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espacio);
+  background: var(--mod-memoria-suave);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: var(--espacio-grande);
+}
+
+.objeto {
+  min-width: 72px;
+  min-height: 72px;
+  font-size: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-superficie);
+  border-radius: var(--radio);
+}
+
+.objeto.vacio {
+  border: 3px dashed var(--color-borde);
+  background: transparent;
+}
+
+.pregunta { color: var(--color-texto-suave); }
+
+.opcion-picto {
+  text-align: center;
+  font-size: 40px;
+}
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }

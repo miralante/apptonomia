@@ -1,0 +1,97 @@
+/* Diferencias — estilos específicos. Lo común está en assets/css/. */
+
+.tool-header h1 { color: var(--mod-memoria); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-memoria);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.escena-titulo {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  color: var(--mod-memoria);
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.escenas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espacio-grande);
+}
+
+.panel-escena { text-align: center; }
+
+.panel-etiqueta {
+  font-weight: 700;
+  color: var(--color-texto-suave);
+  margin-bottom: 8px;
+}
+
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(4, 72px);
+  grid-template-rows: repeat(4, 72px);
+  gap: var(--espacio);
+  background: var(--mod-memoria-suave);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: var(--espacio);
+}
+
+.celda {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.objeto-btn {
+  width: 100%;
+  height: 100%;
+  min-width: 64px;
+  min-height: 64px;
+  font-size: 40px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radio);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.objeto-btn:hover { background: var(--color-superficie); transform: scale(1.05); }
+
+.objeto-btn.encontrada {
+  background: var(--color-acierto-suave);
+  border: 3px solid var(--color-acierto);
+  cursor: default;
+}
+
+.objeto-btn.ayuda {
+  animation: parpadeo 0.8s ease-in-out infinite;
+}
+
+@keyframes parpadeo {
+  0%, 100% { background: var(--color-superficie); }
+  50% { background: var(--color-animo-suave); }
+}
+
+.contador {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  color: var(--mod-memoria);
+}
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
+
+@media (max-width: 480px) {
+  .rejilla { grid-template-columns: repeat(4, 64px); grid-template-rows: repeat(4, 64px); }
+  .objeto-btn { font-size: 32px; }
+}

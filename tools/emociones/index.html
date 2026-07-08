@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="title">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Cómo me siento? | Apptonomia</title>
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="tool-header">
+      <a href="../../site/index.html" class="back-link" data-i18n="core.volver">← Volver</a>
+      <h1>💜 <span data-i18n="title">¿Cómo me siento?</span></h1>
+    </header>
+
+    <!-- Selección de emoción -->
+    <section id="pantallaSeleccion" class="pila centrado">
+      <div class="fila centrado-fila">
+        <h2 id="pregunta" data-i18n="pregunta">¿Cómo te sientes hoy?</h2>
+        <button type="button" class="btn btn-audio" id="btnPregunta" data-i18n-aria="ariaPregunta" aria-label="Escuchar la pregunta">🔊</button>
+      </div>
+      <div id="emociones" class="rejilla-emociones"></div>
+      <button type="button" class="btn btn-secundario" id="btnSemana" data-i18n="verSemana">📅 Ver mi semana</button>
+    </section>
+
+    <!-- Respuesta adaptada -->
+    <section id="pantallaRespuesta" class="oculto centrado pila" aria-live="polite">
+      <div class="picto-grande" id="respuestaPicto" aria-hidden="true"></div>
+      <h2 id="respuestaMensaje"></h2>
+      <p id="respuestaSugerencia"></p>
+      <button type="button" class="btn btn-audio" id="btnOirRespuesta" data-i18n-aria="ariaOirRespuesta" aria-label="Escuchar el mensaje"><span data-i18n="core.escuchar">🔊 Escuchar</span></button>
+      <button type="button" class="btn oculto" id="btnRespirar" data-i18n="respirarDespacio">🫁 Respirar despacio</button>
+      <button type="button" class="btn btn-secundario" id="btnVolverSeleccion" data-i18n="volver">Volver</button>
+    </section>
+
+    <!-- Ejercicio de respiración -->
+    <section id="pantallaRespiracion" class="oculto centrado pila">
+      <div id="circuloRespiracion" aria-hidden="true"></div>
+      <h2 id="textoRespiracion" aria-live="polite" data-i18n="cogeAire">Coge aire…</h2>
+      <p id="ciclosRespiracion"></p>
+      <button type="button" class="btn btn-secundario" id="btnSalirRespiracion" data-i18n="terminar">Terminar</button>
+    </section>
+
+    <!-- Mi semana -->
+    <section id="pantallaSemana" class="oculto centrado pila">
+      <h2 data-i18n="miSemana">Mi semana</h2>
+      <p data-i18n="semanaIntro">Así te has sentido estos días.</p>
+      <div id="listaSemana" class="pila"></div>
+      <button type="button" class="btn btn-secundario" id="btnVolverDeSemana" data-i18n="volver">Volver</button>
+    </section>
+  </div>
+
+  <script src="../../assets/js/utils.js"></script>
+  <script src="../../assets/js/i18n.js"></script>
+  <script src="../../assets/js/tts.js"></script>
+  <script src="../../assets/js/storage.js"></script>
+  <script src="../../assets/js/feedback.js"></script>
+  <script src="strings.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../../sw.js').catch(function () {});
+    }
+  </script>
+</body>
+</html>

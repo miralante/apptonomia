@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Ajustes — Estilos específicos
+   Página de gestión para adultos (familia/profesorado), mismos tokens
+   que el resto de la app. Reutiliza el patrón visual de equipo/styles.css.
+   ========================================================================== */
+
+.ajustes { max-width: 720px; }
+
+.cabecera-ajustes { padding: var(--espacio) 0; }
+.cabecera-ajustes h1 { margin: 8px 0; }
+
+.aviso-ruta {
+  display: inline-block; padding: 8px 16px;
+  background: var(--mod-memoria-suave); color: var(--color-texto);
+  border: 2px solid var(--mod-memoria); border-radius: var(--radio);
+  font-size: var(--texto-pequeno); font-weight: 700;
+}
+
+.entradilla { color: var(--color-texto-suave); }
+
+#listaEstado { padding-left: 24px; }
+#listaEstado li { margin-bottom: 6px; }
+
+#copia-progreso .btn { margin-top: 8px; width: 100%; }
+#copia-progreso hr { border: none; border-top: 2px solid var(--color-borde); margin: var(--espacio) 0; }
+#copia-progreso .etiqueta-archivo { display: block; font-weight: 700; margin-bottom: 8px; }
+#copia-progreso input[type="file"] {
+  width: 100%; padding: 12px; margin-bottom: 8px;
+  font-size: var(--texto-base); font-family: inherit;
+  border: 2px solid var(--color-borde); border-radius: var(--radio);
+  background: var(--color-superficie); color: var(--color-texto);
+}
+#copia-progreso .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.tarjeta-reset h2 { margin-bottom: 8px; }
+.tarjeta-reset .nota-reset { color: var(--color-texto-suave); font-size: var(--texto-pequeno); }
+.tarjeta-reset .btn { margin-top: var(--espacio); width: 100%; }
+
+/* El restablecimiento completo no es "error" (no usa --color-animo, que
+   ya significa "ánimo tras fallo" en toda la app) pero sí es la acción
+   más seria de esta página: acento naranja de aviso, nunca rojo agresivo. */
+.tarjeta-peligro { border-left: 8px solid var(--mod-memoria); }
+.tarjeta-peligro h2 { color: var(--mod-memoria); }
+
+.pie-ajustes {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: var(--espacio);
+  padding: var(--espacio) 0 40px;
+}

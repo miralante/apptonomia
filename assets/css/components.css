@@ -1,0 +1,238 @@
+/* ==========================================================================
+   Apptonomia — Componentes reutilizables
+   Requiere tokens.css y base.css.
+   Botones >= 64px, separación >= 16px (reglas 2 y 10 de CLAUDE.md).
+   ========================================================================== */
+
+/* ---- Contenedor de página ---- */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--espacio-grande) var(--espacio);
+}
+
+/* ---- Botones ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: var(--boton-min);
+  min-width: var(--boton-min);
+  padding: 12px 28px;
+  border: 3px solid transparent;
+  border-radius: var(--radio);
+  background: var(--mod-coordinacion);
+  color: #FFFFFF;
+  font-size: var(--texto-base);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover { transform: scale(1.03); box-shadow: var(--sombra); }
+.btn:active { transform: scale(0.98); }
+
+.btn-secundario {
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  border-color: var(--color-borde);
+}
+
+.btn-acierto { background: var(--color-acierto); }
+
+/* Botón de audio (regla 4 de CLAUDE.md) */
+.btn-audio {
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  border: 3px solid var(--color-borde);
+}
+
+.btn-audio[aria-pressed="true"],
+.btn-audio.hablando {
+  border-color: var(--mod-coordinacion);
+  background: var(--mod-coordinacion-suave);
+}
+
+/* Opciones de respuesta (multiple choice) */
+.btn-opcion {
+  width: 100%;
+  min-height: var(--boton-min);
+  padding: 16px 24px;
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  font-size: var(--texto-base);
+  font-weight: 600;
+  text-align: left;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.btn-opcion:hover { border-color: var(--mod-coordinacion); }
+
+.btn-opcion.correcta {
+  border-color: var(--color-acierto);
+  background: var(--color-acierto-suave);
+}
+
+.btn-opcion.animo {
+  border-color: var(--color-animo);
+  background: var(--color-animo-suave);
+}
+
+/* ---- Enlace de volver (siempre arriba a la izquierda) ---- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--boton-min);
+  padding: 12px 20px;
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  color: var(--color-texto);
+  font-size: var(--texto-base);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.back-link:hover { border-color: var(--mod-coordinacion); }
+
+/* ---- Tarjetas ---- */
+.card {
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: var(--espacio-grande);
+  box-shadow: var(--sombra);
+}
+
+/* ---- Barra de progreso (sin presión: solo informativa) ---- */
+.progress-bar {
+  position: relative;
+  height: 28px;
+  background: var(--color-superficie);
+  border: 2px solid var(--color-borde);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color-acierto);
+  border-radius: 14px;
+  transition: width 0.4s ease;
+}
+
+.progress-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--texto-pequeno);
+  font-weight: 700;
+  color: var(--color-texto);
+}
+
+/* ---- Estrellas ---- */
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  color: var(--color-estrella);
+}
+
+/* ---- Zona de feedback (aria-live) ---- */
+.feedback {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  text-align: center;
+}
+
+.feedback.acierto { color: var(--color-acierto); }
+.feedback.animo { color: var(--color-animo); }
+
+/* ---- Explicación de por qué una respuesta es correcta/incorrecta (quiz) ---- */
+.explicacion {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--espacio);
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  font-size: var(--texto-base);
+  align-items: center;
+  gap: 8px;
+}
+.explicacion p { margin: 0; flex: 1; }
+
+/* ---- Celebración (breve, <= 2 s) ---- */
+.celebration {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacio);
+  background: rgba(250, 247, 242, 0.95);
+  z-index: 100;
+  text-align: center;
+  padding: var(--espacio);
+}
+
+.celebration.hidden { display: none; }
+
+.celebration .emoji {
+  font-size: 96px;
+  animation: celebrar 0.6s ease;
+}
+
+.celebration .mensaje {
+  font-size: var(--texto-titulo);
+  font-weight: 700;
+  color: var(--color-acierto);
+}
+
+@keyframes celebrar {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ---- Cabecera estándar de herramienta ---- */
+.tool-header {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio);
+  flex-wrap: wrap;
+  margin-bottom: var(--espacio-grande);
+}
+
+.tool-header h1 {
+  flex: 1;
+  font-size: var(--texto-grande);
+}
+
+/* ---- Rejilla de tarjetas grandes (menú) ---- */
+.grid-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--espacio-grande);
+}
+
+/* Utilidades */
+.centrado { text-align: center; }
+.oculto { display: none !important; }
+.pila { display: flex; flex-direction: column; gap: var(--espacio); }
+.fila { display: flex; align-items: center; gap: var(--espacio); flex-wrap: wrap; }

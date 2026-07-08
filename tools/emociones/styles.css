@@ -1,0 +1,82 @@
+/* ¿Cómo me siento? — estilos específicos. Lo común está en assets/css/. */
+
+.tool-header h1 { color: var(--mod-emocional); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-emocional);
+}
+
+.centrado-fila { justify-content: center; }
+
+body { transition: background 0.5s ease; }
+
+/* Rejilla de 6 emociones (botones muy grandes, mín. 120 px) */
+.rejilla-emociones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--espacio-grande);
+  max-width: 620px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.btn-emocion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 150px;
+  min-width: 120px;
+  border-width: 4px;
+  border-style: solid;
+  border-radius: var(--radio);
+  font-family: inherit;
+  transition: transform 0.15s ease;
+}
+
+.btn-emocion:hover { transform: scale(1.05); }
+
+.btn-emocion .picto { font-size: 64px; }
+.btn-emocion .nombre { font-size: var(--texto-base); font-weight: 700; }
+
+#btnSemana { align-self: center; margin-top: var(--espacio-grande); }
+
+/* Respuesta */
+.picto-grande { font-size: 110px; }
+
+#pantallaRespuesta .btn { align-self: center; min-width: 280px; }
+
+/* Respiración: círculo que crece y decrece (4 s por fase) */
+#circuloRespiracion {
+  width: 120px;
+  height: 120px;
+  margin: 24px auto;
+  border-radius: 50%;
+  background: var(--mod-emocional-suave);
+  border: 4px solid var(--mod-emocional);
+  transition: transform 4s ease-in-out;
+}
+
+#circuloRespiracion.crecer { transform: scale(1.8); }
+#circuloRespiracion.encoger { transform: scale(1); }
+
+#pantallaRespiracion { padding-top: 48px; }
+#pantallaRespiracion .btn { align-self: center; min-width: 280px; margin-top: 48px; }
+
+/* Mi semana */
+.dia-semana {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio);
+  padding: 12px var(--espacio);
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.dia-semana .dia { min-width: 120px; font-weight: 700; text-align: left; }
+.dia-semana .picto { font-size: 40px; }
+.dia-semana .nombre { color: var(--color-texto-suave); }
+
+#pantallaSemana .btn { align-self: center; min-width: 280px; }

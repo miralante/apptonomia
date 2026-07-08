@@ -1,0 +1,29 @@
+/* Dichos de España — estilos específicos. Lo común está en assets/css/. */
+
+.tool-header h1 { color: var(--mod-lenguaje); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-lenguaje);
+}
+
+.instruccion { flex: 1; min-width: 200px; }
+
+.progress-bar { margin-top: var(--espacio); }
+
+main { margin-top: var(--espacio-grande); }
+
+.texto-principal {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  margin: 0 auto;
+}
+
+.card { border-color: var(--mod-lenguaje-suave); }
+
+.pregunta { color: var(--color-texto-suave); }
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }

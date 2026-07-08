@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajustes | Apptonomia</title>
+  <!-- Ruta oculta: no está enlazada desde el menú principal y no debe indexarse.
+       Dirigida a familias, terapeutas o profesorado que gestionan el dispositivo. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container ajustes">
+    <header class="cabecera-ajustes">
+      <p class="aviso-ruta">Página de ajustes. No aparece en el menú de la aplicación:
+        solo se llega escribiendo esta dirección.</p>
+      <h1>⚙️ Apptonomia — Ajustes</h1>
+      <p class="entradilla">Aquí se puede borrar lo guardado en este navegador. Pensada para
+        quien gestiona el dispositivo (familia, profesorado), no para la persona usuaria.</p>
+    </header>
+
+    <main class="pila">
+
+      <section id="estado" class="card">
+        <h2>Estado actual de este navegador</h2>
+        <ul id="listaEstado">
+          <li>Cargando…</li>
+        </ul>
+      </section>
+
+      <section id="copia-progreso" class="card">
+        <h2>Copia de mi progreso</h2>
+        <p>El progreso solo se guarda en este navegador. Si se borra por error (limpieza del
+          navegador, cambio de dispositivo…) se pierde para siempre. Aquí se puede guardar una
+          copia en un archivo y recuperarla más tarde.</p>
+        <button type="button" class="btn btn-secundario" id="btnExportar">💾 Guardar copia</button>
+        <p class="feedback" id="feedbackExportar" aria-live="polite"></p>
+        <hr>
+        <label class="etiqueta-archivo" for="inputImportar">Recuperar copia desde un archivo:</label>
+        <input type="file" accept=".json,application/json" id="inputImportar">
+        <button type="button" class="btn btn-secundario" id="btnImportar" disabled>📂 Recuperar copia</button>
+        <p class="nota-reset">Recuperar una copia <strong>sustituye</strong> el progreso actual de
+          las actividades que aparezcan en el archivo.</p>
+        <p class="feedback" id="feedbackImportar" aria-live="polite"></p>
+      </section>
+
+      <section id="reset-persona" class="card tarjeta-reset">
+        <h2>Restablecer los datos de la persona</h2>
+        <p>Borra el <strong>idioma elegido</strong> (la próxima vez se detecta de nuevo o se
+          vuelve a español) y el <strong>nombre</strong> escrito en Teclado y en Piano.</p>
+        <p class="nota-reset">El progreso (estrellas, niveles y canciones guardadas) de todas
+          las actividades <strong>NO se borra</strong>.</p>
+        <button type="button" class="btn btn-secundario" id="btnResetPersona">🧑 Restablecer datos de la persona</button>
+        <p class="feedback" id="feedbackPersona" aria-live="polite"></p>
+      </section>
+
+      <section id="reset-app" class="card tarjeta-reset tarjeta-peligro">
+        <h2>Restablecer toda la aplicación</h2>
+        <p>Borra <strong>todo</strong> lo guardado en este navegador: idioma, nombres, estrellas,
+          niveles completados y canciones guardadas de todas las actividades.</p>
+        <p class="nota-reset"><strong>No se puede deshacer.</strong> Es como si la aplicación
+          se abriera por primera vez.</p>
+        <button type="button" class="btn btn-secundario" id="btnResetApp">🗑️ Restablecer toda la aplicación</button>
+        <p class="feedback" id="feedbackApp" aria-live="polite"></p>
+      </section>
+
+      <footer class="pie-ajustes">
+        <a class="btn btn-secundario" href="../site/index.html">Ir a las actividades</a>
+        <a class="btn btn-secundario" href="../equipo/index.html">Guía para el equipo de apoyo</a>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/storage.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

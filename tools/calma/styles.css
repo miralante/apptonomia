@@ -1,0 +1,41 @@
+/* Calma — estilos específicos. Lo común está en assets/css/. */
+
+.tool-header h1 { color: var(--mod-emocional); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-emocional);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+/* Respiración: círculo que crece y decrece (4 s por fase) */
+#circuloRespiracion {
+  width: 120px;
+  height: 120px;
+  margin: 48px auto 24px;
+  border-radius: 50%;
+  background: var(--mod-emocional-suave);
+  border: 4px solid var(--mod-emocional);
+  transition: transform 4s ease-in-out;
+}
+
+#circuloRespiracion.crecer { transform: scale(1.8); }
+#circuloRespiracion.encoger { transform: scale(1); }
+
+#pantallaSesion .btn { align-self: center; min-width: 280px; margin-top: 48px; }
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }

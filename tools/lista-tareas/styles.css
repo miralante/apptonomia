@@ -1,0 +1,99 @@
+/* Lista de Tareas — estilos específicos. Lo común está en assets/css/.
+   Acento del módulo Autonomía y hogar (verde --mod-secuencia). */
+
+.tool-header h1 { color: var(--mod-secuencia); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-secuencia);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.lista-titulo {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  color: var(--mod-secuencia);
+}
+
+.etiqueta {
+  font-weight: 700;
+  color: var(--color-texto-suave);
+  margin-top: var(--espacio);
+}
+
+.pila-secuencia, .pila-disponibles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espacio);
+}
+
+.slot {
+  min-width: 150px;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px;
+  font-size: var(--texto-pequeno);
+  font-weight: 700;
+  text-align: center;
+  border: 3px dashed var(--color-borde);
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+  color: var(--color-texto-suave);
+}
+
+.slot.lleno {
+  border-style: solid;
+  border-color: var(--color-acierto);
+  background: var(--color-acierto-suave);
+  color: var(--color-texto);
+}
+
+.tarea-btn {
+  min-width: 150px;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px;
+  background: var(--mod-secuencia-suave);
+  color: var(--color-texto);
+  border: 3px solid var(--mod-secuencia);
+}
+
+.tarea-picto { font-size: 32px; }
+
+.tarea-texto {
+  font-size: var(--texto-pequeno);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.tarea-btn.colocada {
+  opacity: 0.35;
+}
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }

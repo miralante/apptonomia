@@ -1,0 +1,37 @@
+/* La Frase — estilos específicos. Lo común está en assets/css/. */
+
+.tool-header h1 { color: var(--mod-lenguaje); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-lenguaje);
+}
+
+.instruccion { flex: 1; min-width: 200px; }
+
+.progress-bar { margin-top: var(--espacio); }
+
+.card { border-color: var(--mod-lenguaje-suave); margin-top: var(--espacio-grande); }
+
+.texto-principal {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  margin: 0 auto;
+}
+
+.pregunta { color: var(--color-texto-suave); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }

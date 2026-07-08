@@ -1,0 +1,58 @@
+/* El Monedero — estilos específicos. Lo común está en assets/css/. */
+
+.tool-header h1 { color: var(--mod-razonamiento); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-razonamiento);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.card { border-color: var(--mod-razonamiento-suave); margin-top: var(--espacio-grande); }
+
+.producto { font-size: 72px; }
+
+.precio {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+}
+
+.total {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  color: var(--mod-razonamiento);
+}
+
+.pila-monedas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espacio);
+}
+
+.moneda {
+  background: var(--color-estrella);
+  min-width: 88px;
+}
+
+.moneda:hover { background: var(--color-estrella); }
+
+.acciones { margin-top: var(--espacio); }
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }

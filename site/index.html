@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="title">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apptonomia</title>
+  <meta name="description" content="Actividades para entrenar tu mente y tus habilidades, a tu ritmo.">
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../assets/img/icono.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="cabecera centrado">
+      <div class="idioma-selector" role="group" aria-label="Elegir idioma">
+        <button type="button" class="btn-idioma" id="btnIdiomaEs" data-locale="es" aria-pressed="false">🇪🇸 Español</button>
+        <button type="button" class="btn-idioma" id="btnIdiomaEn" data-locale="en" aria-pressed="false">🇬🇧 English</button>
+      </div>
+      <img src="../assets/img/icono.svg" alt="" width="72" height="72" class="logo">
+      <h1>Apptonomia</h1>
+      <div class="fila centrado-fila">
+        <p class="saludo" id="saludo" data-i18n="saludo">Hola. ¿Qué quieres hacer hoy?</p>
+        <button type="button" class="btn btn-audio" id="btnSaludo" data-i18n-aria="escucharSaludo" aria-label="Escuchar el saludo">🔊</button>
+      </div>
+      <p class="stars" id="estrellasTotales">⭐ 0</p>
+    </header>
+
+    <div id="avisoActualizacion" class="aviso-actualizacion oculto centrado" role="status" aria-live="polite">
+      <div class="fila centrado-fila">
+        <p data-i18n="avisoActualizacionTexto">🎉 Hay una versión nueva de la app.</p>
+        <button type="button" class="btn btn-audio" id="btnLeerActualizacion" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+      </div>
+      <button type="button" class="btn btn-secundario" id="btnActualizar" data-i18n="btnActualizar">🔄 Actualizar ahora</button>
+    </div>
+
+    <main class="pila modulos">
+
+      <!-- Módulo 1: Coordinación -->
+      <section class="modulo" style="--acento: var(--mod-coordinacion); --acento-suave: var(--mod-coordinacion-suave);">
+        <h2><span aria-hidden="true" data-i18n="mod1">🎯 Puntería y manos</span></h2>
+        <div class="grid-tarjetas">
+          <a href="../tools/atrapa/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">⚽</span>
+            <span class="nombre" data-i18n="atrapa_nombre">Atrapa</span>
+            <span class="detalle" data-i18n="atrapa_detalle">Toca el dibujo que se mueve.</span>
+          </a>
+          <a href="../tools/keyboard-typing/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">⌨️</span>
+            <span class="nombre" data-i18n="teclado_nombre">Teclado</span>
+            <span class="detalle" data-i18n="teclado_detalle">Aprende a escribir.</span>
+          </a>
+          <a href="../tools/piano-teclas/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🎹</span>
+            <span class="nombre" data-i18n="piano_nombre">Piano</span>
+            <span class="detalle" data-i18n="piano_detalle">Toca música con el teclado.</span>
+          </a>
+          <a href="../tools/trazos/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">✏️</span>
+            <span class="nombre" data-i18n="trazos_nombre">Trazos</span>
+            <span class="detalle" data-i18n="trazos_detalle">Repasa la línea de puntos.</span>
+          </a>
+          <a href="../tools/colorear/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🎨</span>
+            <span class="nombre" data-i18n="colorear_nombre">Colorear</span>
+            <span class="detalle" data-i18n="colorear_detalle">Pinta el dibujo a tu gusto.</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Módulo 2: Secuenciación -->
+      <section class="modulo" style="--acento: var(--mod-secuencia); --acento-suave: var(--mod-secuencia-suave);">
+        <h2><span aria-hidden="true" data-i18n="mod2">📋 Mi día a día</span></h2>
+        <div class="grid-tarjetas">
+          <a href="../tools/rutinas/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🌅</span>
+            <span class="nombre" data-i18n="rutinas_nombre">Mis Rutinas</span>
+            <span class="detalle" data-i18n="rutinas_detalle">Paso a paso, cada día.</span>
+          </a>
+          <a href="../tools/la-casa/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🏠</span>
+            <span class="nombre" data-i18n="lacasa_nombre">La Casa</span>
+            <span class="detalle" data-i18n="lacasa_detalle">Ordena los pasos de la tarea.</span>
+          </a>
+          <a href="../tools/situaciones/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🤔</span>
+            <span class="nombre" data-i18n="situaciones_nombre">Situaciones</span>
+            <span class="detalle" data-i18n="situaciones_detalle">¿Qué harías tú?</span>
+          </a>
+          <a href="../tools/chat-seguro/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🛡️</span>
+            <span class="nombre" data-i18n="chatseguro_nombre">Chat Seguro</span>
+            <span class="detalle" data-i18n="chatseguro_detalle">Aprende a chatear con cuidado.</span>
+          </a>
+          <a href="../tools/chat-acoso/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🧭</span>
+            <span class="nombre" data-i18n="chatacoso_nombre">Chat Acoso</span>
+            <span class="detalle" data-i18n="chatacoso_detalle">Reconoce el acoso y aprende qué hacer.</span>
+          </a>
+          <a href="../tools/partes-del-dia/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🌗</span>
+            <span class="nombre" data-i18n="partesdeldia_nombre">Partes del Día</span>
+            <span class="detalle" data-i18n="partesdeldia_detalle">¿Mañana, tarde o noche?</span>
+          </a>
+          <a href="../tools/que-primero/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">📝</span>
+            <span class="nombre" data-i18n="queprimero_nombre">¿Qué hago primero?</span>
+            <span class="detalle" data-i18n="queprimero_detalle">Elige qué es más urgente.</span>
+          </a>
+          <a href="../tools/que-necesito/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🎒</span>
+            <span class="nombre" data-i18n="quenecesito_nombre">¿Qué necesito?</span>
+            <span class="detalle" data-i18n="quenecesito_detalle">Prepara lo que hace falta.</span>
+          </a>
+          <a href="../tools/donde-lo-guardo/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🗄️</span>
+            <span class="nombre" data-i18n="dondeloguardo_nombre">¿Dónde lo guardo?</span>
+            <span class="detalle" data-i18n="dondeloguardo_detalle">Cada cosa en su sitio.</span>
+          </a>
+          <a href="../tools/lista-tareas/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🗒️</span>
+            <span class="nombre" data-i18n="listatareas_nombre">Lista de Tareas</span>
+            <span class="detalle" data-i18n="listatareas_detalle">Ordena tareas de casa y trabajo.</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Módulo 3: Memoria y atención -->
+      <section class="modulo" style="--acento: var(--mod-memoria); --acento-suave: var(--mod-memoria-suave);">
+        <h2><span aria-hidden="true" data-i18n="mod3">🧠 Memoria y atención</span></h2>
+        <div class="grid-tarjetas">
+          <a href="../tools/parejas/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🃏</span>
+            <span class="nombre" data-i18n="parejas_nombre">Parejas</span>
+            <span class="detalle" data-i18n="parejas_detalle">Busca las cartas iguales.</span>
+          </a>
+          <a href="../tools/diferencias/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🔍</span>
+            <span class="nombre" data-i18n="diferencias_nombre">Diferencias</span>
+            <span class="detalle" data-i18n="diferencias_detalle">Busca lo que es distinto.</span>
+          </a>
+          <a href="../tools/que-falta/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">❔</span>
+            <span class="nombre" data-i18n="quefalta_nombre">¿Qué falta?</span>
+            <span class="detalle" data-i18n="quefalta_detalle">Recuerda qué desapareció.</span>
+          </a>
+          <a href="../tools/ecos/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🔔</span>
+            <span class="nombre" data-i18n="ecos_nombre">Ecos</span>
+            <span class="detalle" data-i18n="ecos_detalle">Repite lo que oigas y veas.</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Módulo 4: Razonamiento y matemáticas -->
+      <section class="modulo" style="--acento: var(--mod-razonamiento); --acento-suave: var(--mod-razonamiento-suave);">
+        <h2><span aria-hidden="true" data-i18n="mod4">🔢 Pensar y contar</span></h2>
+        <div class="grid-tarjetas">
+          <a href="../tools/adivinanzas/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🧩</span>
+            <span class="nombre" data-i18n="adivinanzas_nombre">Adivinanzas</span>
+            <span class="detalle" data-i18n="adivinanzas_detalle">¿Qué es? Piensa y elige.</span>
+          </a>
+          <a href="../tools/patrones/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🔵</span>
+            <span class="nombre" data-i18n="patrones_nombre">Patrones</span>
+            <span class="detalle" data-i18n="patrones_detalle">¿Qué sigue ahora?</span>
+          </a>
+          <a href="../tools/numeros/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🧮</span>
+            <span class="nombre" data-i18n="numeros_nombre">Los Números</span>
+            <span class="detalle" data-i18n="numeros_detalle">Cuenta, suma y mide.</span>
+          </a>
+          <a href="../tools/monedero/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">💶</span>
+            <span class="nombre" data-i18n="monedero_nombre">El Monedero</span>
+            <span class="detalle" data-i18n="monedero_detalle">Paga el precio justo.</span>
+          </a>
+          <a href="../tools/reloj/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🕐</span>
+            <span class="nombre" data-i18n="reloj_nombre">El Reloj</span>
+            <span class="detalle" data-i18n="reloj_detalle">¿Qué hora es?</span>
+          </a>
+          <a href="../tools/historias/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">📖</span>
+            <span class="nombre" data-i18n="historias_nombre">Historias</span>
+            <span class="detalle" data-i18n="historias_detalle">Ordena lo que pasó primero.</span>
+          </a>
+          <a href="../tools/que-no-encaja/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🔎</span>
+            <span class="nombre" data-i18n="quenoencaja_nombre">¿Qué no encaja?</span>
+            <span class="detalle" data-i18n="quenoencaja_detalle">Encuentra el que sobra.</span>
+          </a>
+          <a href="../tools/puzzle/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🧩</span>
+            <span class="nombre" data-i18n="puzzle_nombre">Puzzle</span>
+            <span class="detalle" data-i18n="puzzle_detalle">Coloca cada pieza en su sitio.</span>
+          </a>
+          <a href="../tools/oca/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🦢</span>
+            <span class="nombre" data-i18n="oca_nombre">La Oca</span>
+            <span class="detalle" data-i18n="oca_detalle">Tira el dado y avanza.</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Módulo 5: Lenguaje y comunicación -->
+      <section class="modulo" style="--acento: var(--mod-lenguaje); --acento-suave: var(--mod-lenguaje-suave);">
+        <h2><span aria-hidden="true" data-i18n="mod5">💬 Lenguaje y palabras</span></h2>
+        <div class="grid-tarjetas">
+          <a href="../tools/comedy-club/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🎭</span>
+            <span class="nombre" data-i18n="chistes_nombre">Chistes</span>
+            <span class="detalle" data-i18n="chistes_detalle">¿Por qué es gracioso?</span>
+          </a>
+          <a href="../tools/dichos/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🗣️</span>
+            <span class="nombre" data-i18n="dichos_nombre">Dichos</span>
+            <span class="detalle" data-i18n="dichos_detalle">¿Qué significa?</span>
+          </a>
+          <a href="../tools/categorias/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🗂️</span>
+            <span class="nombre" data-i18n="categorias_nombre">Categorías</span>
+            <span class="detalle" data-i18n="categorias_detalle">¿En qué grupo va?</span>
+          </a>
+          <a href="../tools/la-frase/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">📝</span>
+            <span class="nombre" data-i18n="lafrase_nombre">La Frase</span>
+            <span class="detalle" data-i18n="lafrase_detalle">Lee y responde.</span>
+          </a>
+          <a href="../tools/palabras/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🔤</span>
+            <span class="nombre" data-i18n="palabras_nombre">Palabras</span>
+            <span class="detalle" data-i18n="palabras_detalle">¿Cómo se llama esto?</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Módulo 6: Emociones y relaciones -->
+      <section class="modulo" style="--acento: var(--mod-emocional); --acento-suave: var(--mod-emocional-suave);">
+        <h2><span aria-hidden="true" data-i18n="mod6">💜 Emociones</span></h2>
+        <div class="grid-tarjetas">
+          <a href="../tools/emociones/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">😊</span>
+            <span class="nombre" data-i18n="emociones_nombre">¿Cómo me siento?</span>
+            <span class="detalle" data-i18n="emociones_detalle">Elige tu emoción de hoy.</span>
+          </a>
+          <a href="../tools/calma/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🧘</span>
+            <span class="nombre" data-i18n="calma_nombre">Calma</span>
+            <span class="detalle" data-i18n="calma_detalle">Respira despacio.</span>
+          </a>
+          <a href="../tools/entre-amigos/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🧑‍🤝‍🧑</span>
+            <span class="nombre" data-i18n="entreamigos_nombre">Entre Amigos</span>
+            <span class="detalle" data-i18n="entreamigos_detalle">Emociones y conflictos.</span>
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/tts.js"></script>
+  <script src="../assets/js/storage.js"></script>
+  <script src="strings.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      function pintarSelectorIdioma() {
+        var activo = App.i18n.locale();
+        document.getElementById('btnIdiomaEs').setAttribute('aria-pressed', String(activo === 'es'));
+        document.getElementById('btnIdiomaEn').setAttribute('aria-pressed', String(activo === 'en'));
+      }
+
+      document.getElementById('estrellasTotales').textContent =
+        '⭐ ' + App.storage.estrellasTotales();
+      document.getElementById('estrellasTotales').title = App.i18n.t('tusEstrellas');
+
+      document.getElementById('btnSaludo').addEventListener('click', function () {
+        App.tts.speak(App.i18n.t('saludo'));
+      });
+
+      document.getElementById('btnIdiomaEs').addEventListener('click', function () {
+        App.i18n.setLocale('es');
+      });
+      document.getElementById('btnIdiomaEn').addEventListener('click', function () {
+        App.i18n.setLocale('en');
+      });
+      pintarSelectorIdioma();
+
+      /* Aviso de actualización: cuando el Service Worker de una visita
+         anterior es sustituido por uno nuevo (versión distinta de sw.js),
+         se ofrece recargar. 'controladorInicial' distingue la primera
+         instalación (sin controlador todavía: no es una actualización real)
+         de un cambio de versión posterior (si ya había uno, sí lo es). */
+      if ('serviceWorker' in navigator) {
+        var controladorInicial = navigator.serviceWorker.controller;
+        navigator.serviceWorker.addEventListener('controllerchange', function () {
+          if (controladorInicial) {
+            document.getElementById('avisoActualizacion').classList.remove('oculto');
+          }
+          controladorInicial = navigator.serviceWorker.controller;
+        });
+
+        navigator.serviceWorker.register('../sw.js').then(function (reg) {
+          if (reg.update) reg.update();
+        }).catch(function () {});
+
+        document.getElementById('btnActualizar').addEventListener('click', function () {
+          window.location.reload();
+        });
+        document.getElementById('btnLeerActualizacion').addEventListener('click', function () {
+          App.tts.speak(App.i18n.t('avisoActualizacionTexto'));
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+/* Mis Rutinas — estilos específicos. Lo común está en assets/css/. */
+
+.tool-header h1 { color: var(--mod-secuencia); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-secuencia);
+}
+
+.instruccion { flex: 1; min-width: 200px; }
+
+/* Tarjetas del menú de rutinas */
+.tarjeta-rutina {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-height: 160px;
+  cursor: pointer;
+  text-align: center;
+  font-family: inherit;
+}
+
+.tarjeta-rutina:hover { border-color: var(--mod-secuencia); }
+
+.tarjeta-rutina .picto { font-size: 56px; }
+.tarjeta-rutina .nombre { font-size: var(--texto-base); font-weight: 700; }
+.tarjeta-rutina .estado { font-size: var(--texto-pequeno); color: var(--color-texto-suave); }
+
+/* Lista de pasos */
+#listaPasos { list-style: none; }
+
+.paso {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio);
+  padding: var(--espacio);
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  opacity: 0.55;
+}
+
+.paso.actual {
+  opacity: 1;
+  border-color: var(--mod-secuencia);
+  background: var(--mod-secuencia-suave);
+}
+
+.paso.hecho { opacity: 0.8; }
+
+.paso .picto { font-size: 44px; }
+.paso .texto { flex: 1; font-weight: 600; }
+
+.paso .check {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-acierto);
+  min-width: 64px;
+  text-align: center;
+}
+
+.btn-hecho { white-space: nowrap; }
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }

@@ -1,0 +1,257 @@
+/* ============================================================
+   Apptonomia — Service Worker
+   Estrategia cache-first del app shell (funciona offline).
+   Al añadir archivos nuevos: añadirlos a ARCHIVOS y subir VERSION.
+   ============================================================ */
+var VERSION = 'apptonomia-v40';
+
+var ARCHIVOS = [
+  './',
+  './index.html',
+  './manifest.json',
+  './site/index.html',
+  './site/styles.css',
+  './site/strings.js',
+  './equipo/index.html',
+  './equipo/styles.css',
+  './ajustes/index.html',
+  './ajustes/app.js',
+  './ajustes/styles.css',
+  './assets/css/tokens.css',
+  './assets/css/base.css',
+  './assets/css/components.css',
+  './assets/js/utils.js',
+  './assets/js/i18n.js',
+  './assets/js/tts.js',
+  './assets/js/storage.js',
+  './assets/js/feedback.js',
+  './assets/img/icono.svg',
+  './assets/img/icono-192.png',
+  './assets/img/icono-512.png',
+  './tools/atrapa/index.html',
+  './tools/atrapa/app.js',
+  './tools/atrapa/data.js',
+  './tools/atrapa/strings.js',
+  './tools/atrapa/styles.css',
+  './tools/rutinas/index.html',
+  './tools/rutinas/app.js',
+  './tools/rutinas/data.js',
+  './tools/rutinas/strings.js',
+  './tools/rutinas/styles.css',
+  './tools/parejas/index.html',
+  './tools/parejas/app.js',
+  './tools/parejas/data.js',
+  './tools/parejas/strings.js',
+  './tools/parejas/styles.css',
+  './tools/emociones/index.html',
+  './tools/emociones/app.js',
+  './tools/emociones/data.js',
+  './tools/emociones/strings.js',
+  './tools/emociones/styles.css',
+  './tools/adivinanzas/index.html',
+  './tools/adivinanzas/app.js',
+  './tools/adivinanzas/data.js',
+  './tools/adivinanzas/strings.js',
+  './tools/adivinanzas/styles.css',
+  './tools/comedy-club/index.html',
+  './tools/comedy-club/app.js',
+  './tools/comedy-club/data.js',
+  './tools/comedy-club/strings.js',
+  './tools/comedy-club/styles.css',
+  './tools/dichos/index.html',
+  './tools/dichos/app.js',
+  './tools/dichos/data.js',
+  './tools/dichos/strings.js',
+  './tools/dichos/styles.css',
+  './tools/keyboard-typing/index.html',
+  './tools/keyboard-typing/app.js',
+  './tools/keyboard-typing/data.js',
+  './tools/keyboard-typing/strings.js',
+  './tools/keyboard-typing/styles.css',
+  './tools/patrones/index.html',
+  './tools/patrones/app.js',
+  './tools/patrones/data.js',
+  './tools/patrones/strings.js',
+  './tools/patrones/styles.css',
+  './tools/diferencias/index.html',
+  './tools/diferencias/app.js',
+  './tools/diferencias/data.js',
+  './tools/diferencias/strings.js',
+  './tools/diferencias/styles.css',
+  './tools/monedero/index.html',
+  './tools/monedero/app.js',
+  './tools/monedero/data.js',
+  './tools/monedero/strings.js',
+  './tools/monedero/styles.css',
+  './tools/reloj/index.html',
+  './tools/reloj/app.js',
+  './tools/reloj/data.js',
+  './tools/reloj/strings.js',
+  './tools/reloj/styles.css',
+  './tools/categorias/index.html',
+  './tools/categorias/app.js',
+  './tools/categorias/data.js',
+  './tools/categorias/strings.js',
+  './tools/categorias/styles.css',
+  './tools/historias/index.html',
+  './tools/historias/app.js',
+  './tools/historias/data.js',
+  './tools/historias/strings.js',
+  './tools/historias/styles.css',
+  './tools/que-no-encaja/index.html',
+  './tools/que-no-encaja/app.js',
+  './tools/que-no-encaja/data.js',
+  './tools/que-no-encaja/strings.js',
+  './tools/que-no-encaja/styles.css',
+  './tools/la-frase/index.html',
+  './tools/la-frase/app.js',
+  './tools/la-frase/data.js',
+  './tools/la-frase/strings.js',
+  './tools/la-frase/styles.css',
+  './tools/que-falta/index.html',
+  './tools/que-falta/app.js',
+  './tools/que-falta/data.js',
+  './tools/que-falta/strings.js',
+  './tools/que-falta/styles.css',
+  './tools/ecos/index.html',
+  './tools/ecos/app.js',
+  './tools/ecos/data.js',
+  './tools/ecos/strings.js',
+  './tools/ecos/styles.css',
+  './tools/la-casa/index.html',
+  './tools/la-casa/app.js',
+  './tools/la-casa/data.js',
+  './tools/la-casa/strings.js',
+  './tools/la-casa/styles.css',
+  './tools/situaciones/index.html',
+  './tools/situaciones/app.js',
+  './tools/situaciones/data.js',
+  './tools/situaciones/strings.js',
+  './tools/situaciones/styles.css',
+  './tools/trazos/index.html',
+  './tools/trazos/app.js',
+  './tools/trazos/data.js',
+  './tools/trazos/strings.js',
+  './tools/trazos/styles.css',
+  './tools/colorear/index.html',
+  './tools/colorear/app.js',
+  './tools/colorear/data.js',
+  './tools/colorear/strings.js',
+  './tools/colorear/styles.css',
+  './tools/puzzle/index.html',
+  './tools/puzzle/app.js',
+  './tools/puzzle/data.js',
+  './tools/puzzle/strings.js',
+  './tools/puzzle/styles.css',
+  './tools/oca/index.html',
+  './tools/oca/app.js',
+  './tools/oca/data.js',
+  './tools/oca/strings.js',
+  './tools/oca/styles.css',
+  './tools/palabras/index.html',
+  './tools/palabras/app.js',
+  './tools/palabras/data.js',
+  './tools/palabras/strings.js',
+  './tools/palabras/styles.css',
+  './tools/calma/index.html',
+  './tools/calma/app.js',
+  './tools/calma/data.js',
+  './tools/calma/strings.js',
+  './tools/calma/styles.css',
+  './tools/entre-amigos/index.html',
+  './tools/entre-amigos/app.js',
+  './tools/entre-amigos/data.js',
+  './tools/entre-amigos/strings.js',
+  './tools/entre-amigos/styles.css',
+  './tools/numeros/index.html',
+  './tools/numeros/app.js',
+  './tools/numeros/data.js',
+  './tools/numeros/strings.js',
+  './tools/numeros/styles.css',
+  './tools/chat-seguro/index.html',
+  './tools/chat-seguro/app.js',
+  './tools/chat-seguro/data.js',
+  './tools/chat-seguro/strings.js',
+  './tools/chat-seguro/styles.css',
+  './tools/chat-acoso/index.html',
+  './tools/chat-acoso/app.js',
+  './tools/chat-acoso/data.js',
+  './tools/chat-acoso/strings.js',
+  './tools/chat-acoso/styles.css',
+  './tools/partes-del-dia/index.html',
+  './tools/partes-del-dia/app.js',
+  './tools/partes-del-dia/data.js',
+  './tools/partes-del-dia/strings.js',
+  './tools/partes-del-dia/styles.css',
+  './tools/que-primero/index.html',
+  './tools/que-primero/app.js',
+  './tools/que-primero/data.js',
+  './tools/que-primero/strings.js',
+  './tools/que-primero/styles.css',
+  './tools/que-necesito/index.html',
+  './tools/que-necesito/app.js',
+  './tools/que-necesito/data.js',
+  './tools/que-necesito/strings.js',
+  './tools/que-necesito/styles.css',
+  './tools/donde-lo-guardo/index.html',
+  './tools/donde-lo-guardo/app.js',
+  './tools/donde-lo-guardo/data.js',
+  './tools/donde-lo-guardo/strings.js',
+  './tools/donde-lo-guardo/styles.css',
+  './tools/lista-tareas/index.html',
+  './tools/lista-tareas/app.js',
+  './tools/lista-tareas/data.js',
+  './tools/lista-tareas/strings.js',
+  './tools/lista-tareas/styles.css',
+  './tools/piano-teclas/index.html',
+  './tools/piano-teclas/app.js',
+  './tools/piano-teclas/data.js',
+  './tools/piano-teclas/strings.js',
+  './tools/piano-teclas/styles.css'
+];
+
+self.addEventListener('install', function (event) {
+  event.waitUntil(
+    caches.open(VERSION).then(function (cache) {
+      /* cache: 'reload' evita guardar copias viejas desde la caché HTTP del navegador */
+      var peticiones = ARCHIVOS.map(function (a) {
+        return new Request(a, { cache: 'reload' });
+      });
+      return cache.addAll(peticiones);
+    }).then(function () {
+      return self.skipWaiting();
+    })
+  );
+});
+
+self.addEventListener('activate', function (event) {
+  event.waitUntil(
+    caches.keys().then(function (claves) {
+      return Promise.all(
+        claves.filter(function (c) { return c !== VERSION; })
+          .map(function (c) { return caches.delete(c); })
+      );
+    }).then(function () {
+      return self.clients.claim();
+    })
+  );
+});
+
+self.addEventListener('fetch', function (event) {
+  if (event.request.method !== 'GET') return;
+  event.respondWith(
+    caches.match(event.request).then(function (respuesta) {
+      if (respuesta) return respuesta;
+      return fetch(event.request).then(function (r) {
+        /* Cachear también recursos nuevos del mismo origen y fuentes */
+        var copia = r.clone();
+        caches.open(VERSION).then(function (cache) {
+          cache.put(event.request, copia);
+        });
+        return r;
+      }).catch(function () {
+        return caches.match('./site/index.html');
+      });
+    })
+  );
+});
