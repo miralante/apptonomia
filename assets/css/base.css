@@ -3,6 +3,32 @@
    Reset simple + estilos base accesibles. Requiere tokens.css.
    ========================================================================== */
 
+/* Fuentes autoalojadas (licencia SIL OFL, subset latin, woff2).
+   Antes se cargaban desde fonts.googleapis.com: era la única petición
+   externa de la app y no funcionaba offline (PWA). Ahora viven en
+   assets/fonts/ y están cacheadas por sw.js como el resto del app shell. */
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/atkinson-hyperlegible-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/atkinson-hyperlegible-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('../fonts/nunito-variable.woff2') format('woff2-variations');
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

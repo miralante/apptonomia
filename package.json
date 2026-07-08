@@ -1,0 +1,23 @@
+{
+  "name": "apptonomia",
+  "version": "1.0.0",
+  "description": "Training platform for occupational therapy",
+  "scripts": {
+    "dev": "echo 'Use site/index.html directly or a local server'",
+    "start": "python -m http.server 8080",
+    "firebase:login": "firebase-tools login",
+    "firebase:init": "firebase-tools init",
+    "firebase:deploy": "firebase-tools deploy",
+    "firebase:hosting": "firebase-tools hosting:channel:deploy preview"
+  },
+  "keywords": [
+    "therapy",
+    "training",
+    "accessibility"
+  ],
+  "author": "The Naked Frame",
+  "license": "MIT",
+  "devDependencies": {
+    "firebase-tools": "^15.22.4"
+  }
+}
