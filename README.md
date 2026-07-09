@@ -60,14 +60,14 @@ apptonomia/
 └── sw.js              # Service worker (cache offline)
 ```
 
-## Actividades (36)
+## Actividades (39)
 
 | Módulo | Actividades |
 |---|---|
 | 🎯 Puntería y manos (coordinación) | Atrapa, Teclado, Trazos, Colorear, Piano |
-| 📋 Mi día a día (autonomía y hogar) | Mis Rutinas, La Casa, Situaciones, Chat Seguro, Chat Acoso, Partes del Día, ¿Qué hago primero?, ¿Qué necesito?, ¿Dónde lo guardo?, Lista de Tareas |
+| 📋 Mi día a día (autonomía y hogar) | Mis Rutinas, La Casa, Situaciones, Chat Seguro, Chat Acoso, ¿Lo publico?, Partes del Día, ¿Qué hago primero?, ¿Qué necesito?, ¿Dónde lo guardo?, Lista de Tareas |
 | 🧠 Memoria y atención | Parejas, Diferencias, ¿Qué falta?, Ecos |
-| 🔢 Pensar y contar (razonamiento y matemáticas) | Adivinanzas, Patrones, Los Números, El Monedero, El Reloj, Historias, ¿Qué no encaja?, Puzzle, La Oca |
+| 🔢 Pensar y contar (razonamiento y matemáticas) | Adivinanzas, Patrones, Los Números, El Monedero, El Reloj, Historias, ¿Qué no encaja?, Puzzle, La Oca, Tres en Raya, Sudoku Visual |
 | 💬 Lenguaje y palabras | Chistes, Dichos, Categorías, La Frase, Palabras |
 | 💜 Emociones | ¿Cómo me siento?, Calma, Entre Amigos |
 

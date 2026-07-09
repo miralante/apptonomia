@@ -144,6 +144,7 @@ Cubre: AVD, aseo, tareas del hogar, organización, situaciones cotidianas, gesti
 | Situaciones — ¿qué haces si…? (situaciones cotidianas con opciones) | `tools/situaciones/` | ✔ Hecha |
 | Chat Seguro — chats simulados para practicar respuestas ante manipulación en línea | `tools/chat-seguro/` | ✔ Hecha |
 | Chat Acoso — chats simulados para reconocer el acoso entre iguales (insultos, exclusión, rumores, fotos, amenazas, presión de grupo) y saber cómo actuar | `tools/chat-acoso/` | ✔ Hecha |
+| ¿Lo publico? — decidir qué es más seguro en situaciones de redes sociales (fotos con datos personales, perfiles falsos, retos virales, bulos, estafas, privacidad) | `tools/lo-publico/` | ✔ Hecha |
 | Partes del Día — clasificar tareas diarias en Mañana/Tarde/Noche, listas se van construyendo por caja | `tools/partes-del-dia/` | ✔ Hecha |
 | ¿Qué hago primero? — priorización: elegir la tarea más urgente entre varias posibles | `tools/que-primero/` | ✔ Hecha |
 | ¿Qué necesito? — planificación: elegir qué preparar antes de una tarea u objetivo | `tools/que-necesito/` | ✔ Hecha |
@@ -174,6 +175,8 @@ cotidianas, dinero, horas y fechas, medidas, representaciones gráficas.
 | Historias — ordenar viñetas de una historia en secuencia temporal | `tools/historias/` | ✔ Hecha |
 | Puzzle — recomponer una imagen tocando piezas y su sitio | `tools/puzzle/` | ✔ Hecha |
 | La Oca — juego de la oca en solitario (dado y casillas) | `tools/oca/` | ✔ Hecha |
+| Tres en Raya — lógica y anticipación contra un rival amable (niveles: azar → remata → bloquea) | `tools/tres-en-raya/` | ✔ Hecha |
+| Sudoku Visual — sudoku 4×4 con pictos, sin repetir en fila/columna/caja (niveles: 4/6/8 huecos) | `tools/sudoku-visual/` | ✔ Hecha |
 
 ### Módulo 5 — Lenguaje y comunicación (frambuesa `--mod-lenguaje`, color NUEVO)
 Cubre: vocabulario, categorías, comprensión, quién/qué/cómo/dónde/porqué, frases hechas,
@@ -219,7 +222,7 @@ Estado de cada área de la taxonomía de objetivos:
 | Lenguaje: frases hechas, refranes, chistes | ✔ | `dichos`, `comedy-club` |
 | Lenguaje: ortografía, escritura y copia | ✔ | `keyboard-typing`, `trazos` |
 | Interacción social: sentimientos, conflictos | ✔ | `emociones`, `situaciones`, `entre-amigos` |
-| Seguridad en internet: manipulación, datos, fotos | ✔ | `chat-seguro` |
+| Seguridad en internet: manipulación, datos, fotos | ✔ | `chat-seguro`, `chat-acoso`, `lo-publico` |
 | Matemáticas: operaciones, dinero, medidas | ✔ | `monedero`, `patrones` (series numéricas) |
 | Tiempo, fechas y horas | ✔ | `reloj` |
 | Musicalidad y ritmo | ✔ | `ecos` (secuencias rítmicas), `piano-teclas` (tocar melodías) |

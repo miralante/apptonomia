@@ -3,7 +3,7 @@
    Estrategia cache-first del app shell (funciona offline).
    Al añadir archivos nuevos: añadirlos a ARCHIVOS y subir VERSION.
    ============================================================ */
-var VERSION = 'apptonomia-v41';
+var VERSION = 'apptonomia-v43';
 
 var ARCHIVOS = [
   './',
@@ -151,6 +151,16 @@ var ARCHIVOS = [
   './tools/oca/data.js',
   './tools/oca/strings.js',
   './tools/oca/styles.css',
+  './tools/tres-en-raya/index.html',
+  './tools/tres-en-raya/app.js',
+  './tools/tres-en-raya/data.js',
+  './tools/tres-en-raya/strings.js',
+  './tools/tres-en-raya/styles.css',
+  './tools/sudoku-visual/index.html',
+  './tools/sudoku-visual/app.js',
+  './tools/sudoku-visual/data.js',
+  './tools/sudoku-visual/strings.js',
+  './tools/sudoku-visual/styles.css',
   './tools/palabras/index.html',
   './tools/palabras/app.js',
   './tools/palabras/data.js',
@@ -181,6 +191,11 @@ var ARCHIVOS = [
   './tools/chat-acoso/data.js',
   './tools/chat-acoso/strings.js',
   './tools/chat-acoso/styles.css',
+  './tools/lo-publico/index.html',
+  './tools/lo-publico/app.js',
+  './tools/lo-publico/data.js',
+  './tools/lo-publico/strings.js',
+  './tools/lo-publico/styles.css',
   './tools/partes-del-dia/index.html',
   './tools/partes-del-dia/app.js',
   './tools/partes-del-dia/data.js',

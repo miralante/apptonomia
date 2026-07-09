@@ -1,6 +1,5 @@
 # SPEC.md — Especificación técnica de Apptonomia
 
-> Especificación vigente para **agentes de codificación de IA** y desarrolladores.
 > Última revisión: 2026-07. Sustituye a la especificación original (el rediseño
 > "tema oscuro neón" quedó obsoleto en la Fase 2; el tema actual es claro y accesible).
 
@@ -59,7 +58,7 @@ apptonomia/
 │   ├── js/storage.js      #   window.App.storage
 │   ├── js/feedback.js     #   window.App.feedback
 │   └── img/               #   pictogramas SVG e iconos PWA
-├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (36 actuales)
+├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (39 actuales)
 │   ├── index.html         #   estructura y carga de assets
 │   ├── app.js             #   solo lógica
 │   ├── data.js            #   solo datos (const DATA = … o { es: […], en: […] })

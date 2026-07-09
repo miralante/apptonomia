@@ -33,6 +33,7 @@
       situaciones_nombre: 'Situaciones', situaciones_detalle: '¿Qué harías tú?',
       chatseguro_nombre: 'Chat Seguro', chatseguro_detalle: 'Aprende a chatear con cuidado.',
       chatacoso_nombre: 'Chat Acoso', chatacoso_detalle: 'Reconoce el acoso y aprende qué hacer.',
+      lopublico_nombre: '¿Lo publico?', lopublico_detalle: 'Peligros de las redes sociales.',
       partesdeldia_nombre: 'Partes del Día', partesdeldia_detalle: '¿Mañana, tarde o noche?',
       queprimero_nombre: '¿Qué hago primero?', queprimero_detalle: 'Elige qué es más urgente.',
       quenecesito_nombre: '¿Qué necesito?', quenecesito_detalle: 'Prepara lo que hace falta.',
@@ -53,6 +54,8 @@
       quenoencaja_nombre: '¿Qué no encaja?', quenoencaja_detalle: 'Encuentra el que sobra.',
       puzzle_nombre: 'Puzzle', puzzle_detalle: 'Coloca cada pieza en su sitio.',
       oca_nombre: 'La Oca', oca_detalle: 'Tira el dado y avanza.',
+      tresenraya_nombre: 'Tres en Raya', tresenraya_detalle: 'Haz tu línea de tres.',
+      sudokuvisual_nombre: 'Sudoku Visual', sudokuvisual_detalle: 'Sin repetir en fila ni columna.',
 
       chistes_nombre: 'Chistes', chistes_detalle: '¿Por qué es gracioso?',
       dichos_nombre: 'Dichos', dichos_detalle: '¿Qué significa?',
@@ -91,6 +94,7 @@
       situaciones_nombre: 'Situations', situaciones_detalle: 'What would you do?',
       chatseguro_nombre: 'Safe Chat', chatseguro_detalle: 'Learn to chat safely.',
       chatacoso_nombre: 'Bullying Chat', chatacoso_detalle: 'Recognize bullying and learn what to do.',
+      lopublico_nombre: 'Should I Post It?', lopublico_detalle: 'Social media dangers.',
       partesdeldia_nombre: 'Times of Day', partesdeldia_detalle: 'Morning, afternoon or night?',
       queprimero_nombre: 'What Do I Do First?', queprimero_detalle: 'Choose what is most urgent.',
       quenecesito_nombre: 'What Do I Need?', quenecesito_detalle: 'Prepare what is needed.',
@@ -111,6 +115,8 @@
       quenoencaja_nombre: "What doesn't belong?", quenoencaja_detalle: 'Find the odd one out.',
       puzzle_nombre: 'Puzzle', puzzle_detalle: 'Put each piece in its place.',
       oca_nombre: 'Goose Game', oca_detalle: 'Roll the dice and move on.',
+      tresenraya_nombre: 'Tic-Tac-Toe', tresenraya_detalle: 'Make your line of three.',
+      sudokuvisual_nombre: 'Visual Sudoku', sudokuvisual_detalle: 'No repeats in rows or columns.',
 
       chistes_nombre: 'Jokes', chistes_detalle: 'Why is it funny?',
       dichos_nombre: 'Idioms', dichos_detalle: 'What does it mean?',

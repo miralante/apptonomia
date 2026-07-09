@@ -245,4 +245,27 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       porque las tareas de ámbitos abstractos (trabajo) no se identifican
       solo con un emoji. 2 niveles (regla 13: 3 tareas → 4 tareas por lista,
       mismo patrón que ya usaba La Casa).
+- [x] ¿Lo publico? (`tools/lo-publico/`, módulo Autonomía/hogar) — nueva
+      actividad: peligros de las redes sociales no cubiertos aún por Chat
+      Seguro (manipulación en chat privado) ni Chat Acoso (acoso entre
+      iguales) — decidir qué es más seguro ante situaciones de publicación
+      pública y contenido viral: fotos con datos personales visibles
+      (dirección, colegio), perfiles falsos, retos virales peligrosos,
+      bulos/cadenas, estafas (premios, tarjetas regalo) y ajustes de
+      privacidad de la cuenta. Reutiliza el motor de Situaciones/¿Qué hago
+      primero? (situación + picto + 3 opciones, pista socrática en el primer
+      fallo). 2 niveles (regla 13: nivel 1 son casos claros de datos
+      personales, nivel 2 mantiene el mismo formato y pasa a casos más
+      sutiles — perfiles falsos, retos, bulos — sin añadir más variables).
+- [x] Juegos de lógica (módulo Razonamiento) — 2 actividades nuevas adaptadas:
+      `tools/tres-en-raya/` (la persona es ❌ y siempre empieza; el rival ⭕
+      juega según el nivel — regla 13, única variable es cuánto se fija el
+      rival: azar → remata su línea → también bloquea la tuya; perder no se
+      castiga [regla 5]: mensaje de ánimo con consejo concreto y otra
+      partida, el empate también se celebra) y `tools/sudoku-visual/`
+      (4×4 con pictos en vez de números, bloques 2×2 sombreados; se valida
+      contra una solución precalculada para que nunca haya callejones sin
+      salida; primer fallo → pista socrática [regla 12], segundo fallo → se
+      explica y se coloca solo [regla 11], nadie se queda atascado; regla 13:
+      única variable es el nº de huecos, 4 → 6 → 8).
 - [ ] Backlog transversal — ver PLAN.md §7 (modo cuidador, multi-perfil, etc.)
