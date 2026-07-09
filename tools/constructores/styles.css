@@ -1,0 +1,289 @@
+/* ============================================================
+   Apptonomia — Constructores (estilos)
+   Minecraft simplificado para visión-espacial y discapacidad intelectual
+   ============================================================ */
+
+/* --- Pantalla inicio --- */
+.modos {
+  margin-top: var(--espacio);
+}
+
+.botones-modo {
+  gap: var(--espacio);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-modo {
+  min-width: 200px;
+  min-height: var(--boton-min);
+  font-size: var(--texto-grande);
+  padding: var(--espacio) calc(var(--espacio) * 2);
+}
+
+.grid-plantillas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--espacio);
+  margin-top: var(--espacio);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tarjeta-plantilla {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--espacio) / 2);
+  padding: var(--espacio);
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  min-height: 120px;
+}
+
+.tarjeta-plantilla:hover,
+.tarjeta-plantilla:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra);
+  border-color: var(--mod-coordinacion, var(--color-acento));
+}
+
+.tarjeta-plantilla:focus {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+.preview-plantilla {
+  width: 80px;
+  height: 60px;
+  display: grid;
+  gap: 2px;
+}
+
+.preview-plantilla .celda {
+  border-radius: 2px;
+}
+
+.nombre-plantilla {
+  font-weight: bold;
+  text-align: center;
+}
+
+/* --- Pantalla de juego --- */
+#pantallaJuego {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espacio);
+}
+
+.construccion-header {
+  text-align: center;
+  width: 100%;
+}
+
+.construccion-titulo {
+  font-size: var(--texto-grande);
+  font-weight: bold;
+  margin: 0;
+}
+
+.contador-bloques {
+  font-size: var(--texto-pequeno);
+  color: var(--color-texto-suave);
+}
+
+/* --- Cuadrícula de construcción --- */
+#cuadricula {
+  display: grid;
+  gap: 3px;
+  background: var(--color-borde);
+  padding: 3px;
+  border-radius: var(--radio);
+  border: 4px solid var(--color-texto);
+  touch-action: manipulation;
+}
+
+.celda {
+  width: 56px;
+  height: 56px;
+  background: var(--color-superficie);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.1s, background-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.celda:hover {
+  transform: scale(1.05);
+}
+
+.celda:focus {
+  outline: 3px solid var(--color-acento);
+  outline-offset: -3px;
+}
+
+.celda.con-bloque {
+  cursor: pointer;
+}
+
+.celda.bloque-tierra { background: #8B4513; }
+.celda.bloque-piedra { background: #808080; }
+.celda.bloque-madera { background: #DEB887; }
+.celda.bloque-agua { background: #4169E1; }
+.celda.bloque-césped { background: #228B22; }
+.celda.bloque-techo { background: #B22222; }
+.celda.bloque-ladrillo { background: #CD5C5C; }
+.celda.bloque-arena { background: #F4A460; }
+.celda.bloque-nieve { background: #FFFAFA; border: 1px solid #ccc; }
+.celda.bloque-hojas { background: #32CD32; }
+
+/* Pictogramas en los bloques */
+.celda .picto-bloque {
+  font-size: 28px;
+  pointer-events: none;
+}
+
+/* Modo plantilla: mostrar la plantilla como guía */
+#cuadricula.modo-plantilla .celda.sin-bloque-plantilla {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-superficie),
+    var(--color-superficie) 5px,
+    #e8e8e8 5px,
+    #e8e8e8 10px
+  );
+}
+
+/* --- Paleta de bloques --- */
+.paleta-bloques {
+  width: 100%;
+  text-align: center;
+}
+
+.etiqueta-paleta {
+  font-size: var(--texto-pequeno);
+  margin-bottom: calc(var(--espacio) / 2);
+}
+
+.bloques {
+  justify-content: center;
+  gap: calc(var(--espacio) / 2);
+  flex-wrap: wrap;
+}
+
+.bloque-btn {
+  width: 64px;
+  height: 64px;
+  border: 4px solid var(--color-borde);
+  border-radius: var(--radio);
+  cursor: pointer;
+  transition: transform 0.1s, border-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: var(--color-superficie);
+}
+
+.bloque-btn:hover {
+  transform: scale(1.1);
+}
+
+.bloque-btn.seleccionado {
+  border-color: var(--color-acento);
+  box-shadow: 0 0 0 3px var(--color-acento);
+  transform: scale(1.1);
+}
+
+.bloque-btn:focus {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+/* Colores de los bloques en la paleta */
+.bloque-btn.bloque-tierra { background: #8B4513; }
+.bloque-btn.bloque-piedra { background: #808080; }
+.bloque-btn.bloque-madera { background: #DEB887; }
+.bloque-btn.bloque-agua { background: #4169E1; }
+.bloque-btn.bloque-césped { background: #228B22; }
+.bloque-btn.bloque-techo { background: #B22222; }
+.bloque-btn.bloque-ladrillo { background: #CD5C5C; }
+.bloque-btn.bloque-arena { background: #F4A460; }
+.bloque-btn.bloque-nieve { background: #FFFAFA; border-color: #ccc; }
+.bloque-btn.bloque-hojas { background: #32CD32; }
+
+/* --- Herramientas --- */
+.herramientas {
+  display: flex;
+  gap: var(--espacio);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-herramienta {
+  min-height: var(--boton-min);
+  padding: calc(var(--espacio) / 2) var(--espacio);
+}
+
+.btn-herramienta.modo-borrar-activo {
+  background: var(--color-animo);
+  border-color: var(--color-animo);
+  color: white;
+}
+
+/* --- Pantalla final --- */
+.vista-miniatura {
+  width: 160px;
+  height: 120px;
+  display: grid;
+  gap: 1px;
+  background: var(--color-borde);
+  padding: 2px;
+  border-radius: var(--radio);
+  margin: var(--espacio) auto;
+}
+
+.vista-miniatura .celda {
+  width: auto;
+  height: auto;
+  border-radius: 1px;
+}
+
+.vista-miniatura .celda.sin-bloque {
+  background: var(--color-superficie);
+}
+
+/* --- Responsive --- */
+@media (max-width: 500px) {
+  .celda {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .bloque-btn {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
+  
+  .btn-modo {
+    min-width: 160px;
+    font-size: var(--texto-base);
+  }
+}
+
+/* --- Reducir movimiento --- */
+@media (prefers-reduced-motion: reduce) {
+  .celda,
+  .bloque-btn,
+  .tarjeta-plantilla {
+    transition: none;
+  }
+}

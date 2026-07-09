@@ -1,0 +1,65 @@
+/* Señales — estilos específicos. Lo común está en assets/css/. */
+
+.tool-header h1 { color: var(--mod-secuencia); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-secuencia);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.senal-card { 
+  border-color: var(--mod-secuencia-suave); 
+  margin-top: var(--espacio-grande);
+  padding: var(--espacio-grande);
+}
+
+.senal-visual {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radio-grande);
+  font-size: 80px;
+  margin: 0 auto var(--espacio);
+}
+
+.senal-nombre {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pregunta { color: var(--color-texto-suave); }
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
+
+/* Colores de señales */
+.senal-peligro { background: #FFEBEE; }
+.senal-prohibicion { background: #FFF3E0; }
+.senal-obligacion { background: #FFF8E1; }
+.senal-informacion { background: #E3F2FD; }
+.senal-salida { background: #E8F5E9; }
+.senal-peligro-picto { background: #D32F2F; color: white; }
+.senal-prohibicion-picto { background: #E53935; color: white; }
+.senal-obligacion-picto { background: #FDD835; color: #333; }
+.senal-informacion-picto { background: #1976D2; color: white; }
+.senal-salida-picto { background: #388E3C; color: white; }

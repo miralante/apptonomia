@@ -1,0 +1,96 @@
+/* El Teatro — estilos específicos. Lo común está en assets/css/.
+   Acento del módulo Memoria y atención (naranja --mod-memoria).
+   La profundidad se transmite con dos bandas: FONDO arriba (cielo,
+   contenido más pequeño) y DELANTE abajo (suelo, más grande).
+   Los sitios siguen siendo ≥64px en ambas filas (regla 2). */
+
+.tool-header h1 { color: var(--mod-memoria); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-memoria);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.personaje-actual { font-size: 48px; }
+
+.consigna {
+  font-size: var(--texto-base);
+  font-weight: 700;
+}
+
+.escenario {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  max-width: 420px;
+}
+
+.banda {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 12px;
+}
+
+/* Fondo: banda de cielo, contenido más pequeño (lejos) */
+.banda.fondo { background: #DCEBF5; }
+.banda.fondo .sitio { font-size: 34px; }
+
+/* Delante: banda de suelo, contenido más grande (cerca) */
+.banda.delante { background: #E8E3D5; }
+.banda.delante .sitio { font-size: 52px; }
+
+.sitio {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.65);
+  border: 3px dashed var(--color-borde);
+  border-radius: var(--radio);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.sitio:not(:disabled):hover { border-color: var(--mod-memoria); }
+
+.sitio.ocupado {
+  border-style: solid;
+  cursor: default;
+}
+
+/* Sitio correcto marcado tras el segundo fallo */
+.sitio.sugerida {
+  border-color: var(--mod-memoria);
+  border-style: solid;
+  box-shadow: 0 0 0 4px var(--mod-memoria-suave);
+}
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
+
+@media (max-width: 480px) {
+  .sitio { width: 64px; height: 64px; }
+  .banda.fondo .sitio { font-size: 28px; }
+  .banda.delante .sitio { font-size: 40px; }
+}

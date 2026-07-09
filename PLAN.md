@@ -133,6 +133,7 @@ Cubre: coordinación ojo-mano, motricidad fina, escritura y copia, dibujo.
 | Trazos — repasar formas y letras con el dedo/ratón | `tools/trazos/` | ✔ Hecha |
 | Colorear — pintar dibujos por zonas | `tools/colorear/` | ✔ Hecha |
 | Piano — tocar el teclado del ordenador como un piano (libre, seguir melodía, Simón dice, canciones, compositor) | `tools/piano-teclas/` | ✔ Hecha |
+| Constructores — construcción libre con bloques de colores, sin modelo ni acierto/fallo | `tools/constructores/` | ✔ Hecha |
 
 ### Módulo 2 — Autonomía y hogar (verde `--mod-secuencia`)
 Cubre: AVD, aseo, tareas del hogar, organización, situaciones cotidianas, gestión del tiempo.
@@ -145,6 +146,7 @@ Cubre: AVD, aseo, tareas del hogar, organización, situaciones cotidianas, gesti
 | Chat Seguro — chats simulados para practicar respuestas ante manipulación en línea | `tools/chat-seguro/` | ✔ Hecha |
 | Chat Acoso — chats simulados para reconocer el acoso entre iguales (insultos, exclusión, rumores, fotos, amenazas, presión de grupo) y saber cómo actuar | `tools/chat-acoso/` | ✔ Hecha |
 | ¿Lo publico? — decidir qué es más seguro en situaciones de redes sociales (fotos con datos personales, perfiles falsos, retos virales, bulos, estafas, privacidad) | `tools/lo-publico/` | ✔ Hecha |
+| Señales — reconocer señalética cotidiana (peligro, baño, prohibición, salidas, emergencias, transporte), 6 niveles por tipo | `tools/senales/` | ✔ Hecha |
 | Partes del Día — clasificar tareas diarias en Mañana/Tarde/Noche, listas se van construyendo por caja | `tools/partes-del-dia/` | ✔ Hecha |
 | ¿Qué hago primero? — priorización: elegir la tarea más urgente entre varias posibles | `tools/que-primero/` | ✔ Hecha |
 | ¿Qué necesito? — planificación: elegir qué preparar antes de una tarea u objetivo | `tools/que-necesito/` | ✔ Hecha |
@@ -163,6 +165,9 @@ Cubre: memoria visual/auditiva/verbal, corto plazo, atención sostenida, percepc
 | Giros y Espejos — rotación mental, reflejos e inversiones de grafías b/d/p/q (niveles: girado → espejo → letras) | `tools/giros-espejos/` | ✔ Hecha |
 | Los Bloques — copiar un modelo de bloques de colores en cuadrícula 4×4 (niveles: 4/6/8 bloques) | `tools/los-bloques/` | ✔ Hecha |
 | ¿Dónde está? — vocabulario espacial: tocar el objeto a la izquierda/derecha/encima/debajo (niveles: eje horizontal → vertical → mixto) | `tools/donde-esta/` | ✔ Hecha |
+| El Camino — orientación y rutas estilo robot de suelo: llevar la tortuga a la estrella con flechas (niveles: 0/3/5 árboles, BFS garantiza solución) | `tools/el-camino/` | ✔ Hecha |
+| Encaja la Pieza — tetris adaptado sin caída ni tiempo: mover/girar/bajar la pieza a su hueco (niveles: piezas de 2/3/4 celdas) | `tools/encajar/` | ✔ Hecha |
+| El Teatro — escenas con profundidad: colocar personajes delante/detrás del decorado (niveles: 2/3/4 órdenes por escena) | `tools/el-teatro/` | ✔ Hecha |
 
 ### Módulo 4 — Razonamiento y matemáticas (teal `--mod-razonamiento`, color NUEVO)
 Cubre: patrones, deducción, inferencia, ordenación, priorización, números, operaciones
@@ -180,6 +185,7 @@ cotidianas, dinero, horas y fechas, medidas, representaciones gráficas.
 | La Oca — juego de la oca en solitario (dado y casillas) | `tools/oca/` | ✔ Hecha |
 | Tres en Raya — lógica y anticipación contra un rival amable (niveles: azar → remata → bloquea) | `tools/tres-en-raya/` | ✔ Hecha |
 | Sudoku Visual — sudoku 4×4 con pictos, sin repetir en fila/columna/caja (niveles: 4/6/8 huecos) | `tools/sudoku-visual/` | ✔ Hecha |
+| Dominó Espacial — encadenar fichas de dominó girándolas para que coincidan los números (niveles: fichas 0-3 / 0-5 / 0-6) | `tools/domino/` | ✔ Hecha |
 
 ### Módulo 5 — Lenguaje y comunicación (frambuesa `--mod-lenguaje`, color NUEVO)
 Cubre: vocabulario, categorías, comprensión, quién/qué/cómo/dónde/porqué, frases hechas,

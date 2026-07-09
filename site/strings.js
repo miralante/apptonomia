@@ -27,6 +27,7 @@
       piano_nombre: 'Piano', piano_detalle: 'Toca música con el teclado.',
       trazos_nombre: 'Trazos', trazos_detalle: 'Repasa la línea de puntos.',
       colorear_nombre: 'Colorear', colorear_detalle: 'Pinta el dibujo a tu gusto.',
+      constructores_nombre: 'Constructores', constructores_detalle: 'Pon bloques de colores. ¡Construye lo que quieras!',
 
       rutinas_nombre: 'Mis Rutinas', rutinas_detalle: 'Paso a paso, cada día.',
       lacasa_nombre: 'La Casa', lacasa_detalle: 'Ordena los pasos de la tarea.',
@@ -34,6 +35,7 @@
       chatseguro_nombre: 'Chat Seguro', chatseguro_detalle: 'Aprende a chatear con cuidado.',
       chatacoso_nombre: 'Chat Acoso', chatacoso_detalle: 'Reconoce el acoso y aprende qué hacer.',
       lopublico_nombre: '¿Lo publico?', lopublico_detalle: 'Peligros de las redes sociales.',
+      senales_nombre: 'Señales', senales_detalle: '¿Qué significa cada señal?',
       partesdeldia_nombre: 'Partes del Día', partesdeldia_detalle: '¿Mañana, tarde o noche?',
       queprimero_nombre: '¿Qué hago primero?', queprimero_detalle: 'Elige qué es más urgente.',
       quenecesito_nombre: '¿Qué necesito?', quenecesito_detalle: 'Prepara lo que hace falta.',
@@ -47,6 +49,9 @@
       girosespejos_nombre: 'Giros y Espejos', girosespejos_detalle: 'Figuras giradas y reflejadas.',
       losbloques_nombre: 'Los Bloques', losbloques_detalle: 'Copia la construcción.',
       dondeesta_nombre: '¿Dónde está?', dondeesta_detalle: 'Izquierda, derecha, encima, debajo.',
+      elcamino_nombre: 'El Camino', elcamino_detalle: 'Guía a la tortuga con flechas.',
+      encajar_nombre: 'Encaja la Pieza', encajar_detalle: 'Mueve, gira y baja la pieza.',
+      elteatro_nombre: 'El Teatro', elteatro_detalle: 'Monta la escena: delante y detrás.',
 
       adivinanzas_nombre: 'Adivinanzas', adivinanzas_detalle: '¿Qué es? Piensa y elige.',
       patrones_nombre: 'Patrones', patrones_detalle: '¿Qué sigue ahora?',
@@ -59,6 +64,7 @@
       oca_nombre: 'La Oca', oca_detalle: 'Tira el dado y avanza.',
       tresenraya_nombre: 'Tres en Raya', tresenraya_detalle: 'Haz tu línea de tres.',
       sudokuvisual_nombre: 'Sudoku Visual', sudokuvisual_detalle: 'Sin repetir en fila ni columna.',
+      domino_nombre: 'Dominó Espacial', domino_detalle: 'Encadena las fichas que coinciden.',
 
       chistes_nombre: 'Chistes', chistes_detalle: '¿Por qué es gracioso?',
       dichos_nombre: 'Dichos', dichos_detalle: '¿Qué significa?',
@@ -91,6 +97,7 @@
       piano_nombre: 'Piano', piano_detalle: 'Play music with the keyboard.',
       trazos_nombre: 'Tracing', trazos_detalle: 'Trace the dotted line.',
       colorear_nombre: 'Coloring', colorear_detalle: 'Paint the picture your way.',
+      constructores_nombre: 'Builders', constructores_detalle: 'Place colored blocks. Build whatever you want!',
 
       rutinas_nombre: 'My Routines', rutinas_detalle: 'Step by step, every day.',
       lacasa_nombre: 'The House', lacasa_detalle: 'Put the steps in order.',
@@ -98,6 +105,7 @@
       chatseguro_nombre: 'Safe Chat', chatseguro_detalle: 'Learn to chat safely.',
       chatacoso_nombre: 'Bullying Chat', chatacoso_detalle: 'Recognize bullying and learn what to do.',
       lopublico_nombre: 'Should I Post It?', lopublico_detalle: 'Social media dangers.',
+      senales_nombre: 'Signs', senales_detalle: 'What does each sign mean?',
       partesdeldia_nombre: 'Times of Day', partesdeldia_detalle: 'Morning, afternoon or night?',
       queprimero_nombre: 'What Do I Do First?', queprimero_detalle: 'Choose what is most urgent.',
       quenecesito_nombre: 'What Do I Need?', quenecesito_detalle: 'Prepare what is needed.',
@@ -111,6 +119,9 @@
       girosespejos_nombre: 'Turns and Mirrors', girosespejos_detalle: 'Rotated and mirrored shapes.',
       losbloques_nombre: 'The Blocks', losbloques_detalle: 'Copy the build.',
       dondeesta_nombre: 'Where Is It?', dondeesta_detalle: 'Left, right, above, below.',
+      elcamino_nombre: 'The Path', elcamino_detalle: 'Guide the turtle with arrows.',
+      encajar_nombre: 'Fit the Piece', encajar_detalle: 'Move, turn and drop the piece.',
+      elteatro_nombre: 'The Theatre', elteatro_detalle: 'Build the scene: in front and behind.',
 
       adivinanzas_nombre: 'Riddles', adivinanzas_detalle: 'What is it? Think and choose.',
       patrones_nombre: 'Patterns', patrones_detalle: 'What comes next?',
@@ -123,6 +134,7 @@
       oca_nombre: 'Goose Game', oca_detalle: 'Roll the dice and move on.',
       tresenraya_nombre: 'Tic-Tac-Toe', tresenraya_detalle: 'Make your line of three.',
       sudokuvisual_nombre: 'Visual Sudoku', sudokuvisual_detalle: 'No repeats in rows or columns.',
+      domino_nombre: 'Spatial Domino', domino_detalle: 'Chain the matching tiles.',
 
       chistes_nombre: 'Jokes', chistes_detalle: 'Why is it funny?',
       dichos_nombre: 'Idioms', dichos_detalle: 'What does it mean?',

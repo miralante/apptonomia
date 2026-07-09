@@ -1,0 +1,83 @@
+/* El Camino — estilos específicos. Lo común está en assets/css/.
+   Acento del módulo Memoria y atención (naranja --mod-memoria). */
+
+.tool-header h1 { color: var(--mod-memoria); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-memoria);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.estado {
+  font-size: var(--texto-base);
+  font-weight: 700;
+  min-height: 1.4em;
+}
+
+.tablero-camino {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  margin: 0 auto;
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  max-width: 360px;
+}
+
+.casilla {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  background: var(--color-fondo);
+  border-radius: 10px;
+}
+
+.casilla.tortuga { background: var(--mod-memoria-suave); }
+
+/* Mando de flechas en cruz */
+.mando {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.fila-flechas {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-flecha {
+  min-width: 72px;
+  min-height: 72px;
+  font-size: 32px;
+  padding: 0;
+}
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
+
+@media (max-width: 480px) {
+  .casilla { width: 64px; height: 64px; font-size: 34px; }
+  .btn-flecha { min-width: 64px; min-height: 64px; }
+}

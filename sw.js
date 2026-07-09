@@ -3,7 +3,7 @@
    Estrategia cache-first del app shell (funciona offline).
    Al añadir archivos nuevos: añadirlos a ARCHIVOS y subir VERSION.
    ============================================================ */
-var VERSION = 'apptonomia-v45';
+var VERSION = 'apptonomia-v48';
 
 var ARCHIVOS = [
   './',
@@ -136,6 +136,21 @@ var ARCHIVOS = [
   './tools/donde-esta/data.js',
   './tools/donde-esta/strings.js',
   './tools/donde-esta/styles.css',
+  './tools/el-camino/index.html',
+  './tools/el-camino/app.js',
+  './tools/el-camino/data.js',
+  './tools/el-camino/strings.js',
+  './tools/el-camino/styles.css',
+  './tools/encajar/index.html',
+  './tools/encajar/app.js',
+  './tools/encajar/data.js',
+  './tools/encajar/strings.js',
+  './tools/encajar/styles.css',
+  './tools/el-teatro/index.html',
+  './tools/el-teatro/app.js',
+  './tools/el-teatro/data.js',
+  './tools/el-teatro/strings.js',
+  './tools/el-teatro/styles.css',
   './tools/la-casa/index.html',
   './tools/la-casa/app.js',
   './tools/la-casa/data.js',
@@ -211,6 +226,16 @@ var ARCHIVOS = [
   './tools/lo-publico/data.js',
   './tools/lo-publico/strings.js',
   './tools/lo-publico/styles.css',
+  './tools/senales/index.html',
+  './tools/senales/app.js',
+  './tools/senales/data.js',
+  './tools/senales/strings.js',
+  './tools/senales/styles.css',
+  './tools/domino/index.html',
+  './tools/domino/app.js',
+  './tools/domino/data.js',
+  './tools/domino/strings.js',
+  './tools/domino/styles.css',
   './tools/partes-del-dia/index.html',
   './tools/partes-del-dia/app.js',
   './tools/partes-del-dia/data.js',
@@ -240,7 +265,12 @@ var ARCHIVOS = [
   './tools/piano-teclas/app.js',
   './tools/piano-teclas/data.js',
   './tools/piano-teclas/strings.js',
-  './tools/piano-teclas/styles.css'
+  './tools/piano-teclas/styles.css',
+  './tools/constructores/index.html',
+  './tools/constructores/app.js',
+  './tools/constructores/data.js',
+  './tools/constructores/strings.js',
+  './tools/constructores/styles.css'
 ];
 
 self.addEventListener('install', function (event) {

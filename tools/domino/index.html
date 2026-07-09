@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="title">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dominó | Apptonomia</title>
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="tool-header">
+      <a href="../../site/index.html" class="back-link" data-i18n="core.volver">← Volver</a>
+      <h1 data-i18n="title">🎯 Dominó Espacial</h1>
+      <span class="stars" id="stars">⭐ 0</span>
+    </header>
+
+    <!-- Pantalla inicial -->
+    <section id="pantallaInicio" class="pila centrado">
+      <div class="fila centrado-fila">
+        <p class="instruccion" id="instruccion" data-i18n="instruccion">
+          Encadena las fichas de dominó. Elige una ficha, gírala si es necesario y colócala junto a la anterior. ¡Los números deben coincidir!
+        </p>
+        <button type="button" class="btn btn-audio" id="btnInstruccion" aria-label="Escuchar las instrucciones">🔊</button>
+      </div>
+      
+      <div class="pila modos">
+        <h2 data-i18n="elegirDificultad">¿Qué dificultad prefieres?</h2>
+        <div class="fila botones-modo">
+          <button type="button" class="btn btn-modo" id="btnNivelFacil" data-i18n="nivelFacil">😊 Fácil</button>
+          <button type="button" class="btn btn-modo" id="btnNivelMedio" data-i18n="nivelMedio">🤔 Medio</button>
+          <button type="button" class="btn btn-modo" id="btnNivelDificil" data-i18n="nivelDificil">🧠 Difícil</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pantalla de juego -->
+    <section id="pantallaJuego" class="oculto">
+      <div class="juego-header">
+        <p class="progreso" id="progresoTexto"></p>
+        <div class="contador-fichas">
+          <span data-i18n="fichasColocadas">Fichas colocadas</span>: 
+          <span id="contadorFichas">0</span>
+        </div>
+      </div>
+
+      <!-- Cadena de dominó -->
+      <div class="cadena-dominó" id="cadenaDominó" role="list" aria-label="Cadena de dominó">
+        <!-- Primera ficha de inicio -->
+        <div class="ficha inicio" id="fichaInicio">
+          <div class="mitad-ficha" data-valor="inicio">
+            <div class="punto punto-centro"></div>
+          </div>
+          <div class="mitad-ficha" data-valor="inicio">
+            <div class="punto punto-centro"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicador de próximo valor -->
+      <div class="indicador-valor" id="indicadorValor">
+        <span data-i18n="encajanCon">Encajan con:</span>
+        <span class="valor-necesario" id="valorNecesario">?</span>
+      </div>
+
+      <!-- Paleta de fichas disponibles -->
+      <div class="paleta-fichas">
+        <p class="etiqueta-paleta" data-i18n="eligeFicha">Elige una ficha</p>
+        <div class="fichas-disponibles" id="fichasDisponibles" role="listbox" aria-label="Fichas disponibles"></div>
+      </div>
+
+      <!-- Ficha seleccionada para rotar -->
+      <div class="zona-rotar oculto" id="zonaRotar">
+        <p data-i18n="fichaSeleccionada">Ficha seleccionada</p>
+        <div class="ficha ficha-seleccionada" id="fichaParaRotar"></div>
+        <div class="controles-rotar">
+          <button type="button" class="btn btn-rotar" id="btnRotarIzq" aria-label="Rotar izquierda">↺</button>
+          <button type="button" class="btn btn-rotar" id="btnRotarDer" aria-label="Rotar derecha">↻</button>
+        </div>
+        <button type="button" class="btn" id="btnColocar" data-i18n="colocarFicha">Colocar ficha</button>
+        <button type="button" class="btn btn-secundario" id="btnCancelar" data-i18n="cancelar">Cancelar</button>
+      </div>
+
+      <!-- Herramientas -->
+      <div class="herramientas">
+        <button type="button" class="btn btn-herramienta" id="btnAyuda" data-i18n="btnAyuda">💡 Ayuda</button>
+        <button type="button" class="btn btn-herramienta" id="btnNuevaCadena" data-i18n="btnNuevaCadena">🔄 Nueva cadena</button>
+      </div>
+
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+
+      <div class="fila acciones">
+        <button type="button" class="btn" id="btnTerminado" data-i18n="btnTerminado">✔ ¡Listo!</button>
+      </div>
+    </section>
+
+    <!-- Modal de ayuda socrática -->
+    <div class="modal-ayuda oculto" id="modalAyuda" role="dialog" aria-labelledby="tituloAyuda">
+      <div class="contenido-ayuda">
+        <h2 id="tituloAyuda" data-i18n="tituloAyuda">💡 Pista</h2>
+        <div class="consejo-socratico" id="consejoSocratico"></div>
+        <div class="opciones-ayuda" id="opcionesAyuda"></div>
+        <button type="button" class="btn" id="btnCerrarAyuda" data-i18n="cerrarAyuda">Entendido</button>
+      </div>
+    </div>
+
+    <!-- Pantalla final -->
+    <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
+      <div class="emoji-grande" aria-hidden="true">🎉</div>
+      <h2 data-i18n="finalTitulo">¡Cadena completada!</h2>
+      <p id="resumenFinal"></p>
+      <div class="vista-miniatura-cadena" id="vistaMiniatura"></div>
+      <button type="button" class="btn" id="btnSeguirEncadenando" data-i18n="btnSeguirEncadenando">Seguir encadenando</button>
+      <button type="button" class="btn btn-secundario" id="btnCambiarDificultad" data-i18n="btnCambiarDificultad">Cambiar dificultad</button>
+      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.volverAlMenu">Volver al menú</a>
+    </section>
+  </div>
+
+  <script src="../../assets/js/utils.js"></script>
+  <script src="../../assets/js/i18n.js"></script>
+  <script src="../../assets/js/tts.js"></script>
+  <script src="../../assets/js/storage.js"></script>
+  <script src="../../assets/js/feedback.js"></script>
+  <script src="strings.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../../sw.js').catch(function () {});
+    }
+  </script>
+</body>
+</html>

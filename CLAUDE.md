@@ -287,4 +287,29 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       eje — horizontal → vertical → mixto; la pista socrática enseña la
       estrategia: "busca primero la referencia, después mira hacia el
       lado"). Las secuencias visuales ya estaban cubiertas por Patrones.
+- [x] Viso-espacial, segunda tanda (módulo Memoria/atención) — 3 actividades
+      más, sin solaparse con las anteriores: `tools/el-camino/` (orientación
+      y rutas estilo robot de suelo: llevar la tortuga a la estrella con 4
+      flechas —y flechas del teclado físico—; los tableros se generan al
+      vuelo y una BFS garantiza que siempre hay camino; regla 13: única
+      variable es el nº de árboles 0/3/5; chocar solo avisa, regla 5),
+      `tools/encajar/` (tetris adaptado: la pieza se mueve/gira/baja con
+      botones, SIN caída automática ni cronómetro; el hueco es la huella
+      exacta de la pieza, generado por pieza; regla 13: única variable es
+      el tamaño de pieza 2/3/4 celdas; fallos: pista → hueco marcado → se
+      encaja sola), y `tools/el-teatro/` (escenas con profundidad: escenario
+      de 2 filas ×4 columnas —fondo arriba pequeño, delante abajo grande—
+      y órdenes "Pon el perro delante del árbol"; regla 13: única variable
+      es el nº de órdenes por escena 2/3/4; la pista enseña qué fila es
+      delante/detrás; nombres con artículo es/en para el TTS).
+- [x] Tanda del usuario (2026-07-09): `tools/constructores/` (Coordinación —
+      construcción libre con bloques, sin modelo ni acierto/fallo),
+      `tools/senales/` (Autonomía — señalética cotidiana: peligro, baño,
+      prohibición, salidas, emergencias, transporte; 6 niveles, 3 opciones
+      por pregunta) y `tools/domino/` (Razonamiento — encadenar fichas de
+      dominó girándolas para que coincidan los números). Las tres venían
+      completas (5 archivos, i18n conectado); el registro que faltaba
+      (tarjetas, strings de portada, sw.js, equipo/, PLAN.md, conteos) lo
+      detectó `scripts/check.js` y se completó junto a la 2ª tanda
+      viso-espacial.
 - [ ] Backlog transversal — ver PLAN.md §7 (modo cuidador, multi-perfil, etc.)
