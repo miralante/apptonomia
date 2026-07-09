@@ -44,6 +44,9 @@
       diferencias_nombre: 'Diferencias', diferencias_detalle: 'Busca lo que es distinto.',
       quefalta_nombre: '¿Qué falta?', quefalta_detalle: 'Recuerda qué desapareció.',
       ecos_nombre: 'Ecos', ecos_detalle: 'Repite lo que oigas y veas.',
+      girosespejos_nombre: 'Giros y Espejos', girosespejos_detalle: 'Figuras giradas y reflejadas.',
+      losbloques_nombre: 'Los Bloques', losbloques_detalle: 'Copia la construcción.',
+      dondeesta_nombre: '¿Dónde está?', dondeesta_detalle: 'Izquierda, derecha, encima, debajo.',
 
       adivinanzas_nombre: 'Adivinanzas', adivinanzas_detalle: '¿Qué es? Piensa y elige.',
       patrones_nombre: 'Patrones', patrones_detalle: '¿Qué sigue ahora?',
@@ -105,6 +108,9 @@
       diferencias_nombre: 'Differences', diferencias_detalle: 'Find what is different.',
       quefalta_nombre: "What's missing?", quefalta_detalle: 'Remember what disappeared.',
       ecos_nombre: 'Echoes', ecos_detalle: 'Repeat what you hear and see.',
+      girosespejos_nombre: 'Turns and Mirrors', girosespejos_detalle: 'Rotated and mirrored shapes.',
+      losbloques_nombre: 'The Blocks', losbloques_detalle: 'Copy the build.',
+      dondeesta_nombre: 'Where Is It?', dondeesta_detalle: 'Left, right, above, below.',
 
       adivinanzas_nombre: 'Riddles', adivinanzas_detalle: 'What is it? Think and choose.',
       patrones_nombre: 'Patterns', patrones_detalle: 'What comes next?',

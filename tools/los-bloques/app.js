@@ -1,0 +1,261 @@
+/* ============================================================
+   Apptonomia — Los Bloques (construcción viso-espacial)
+   Datos en data.js (DATA.niveles con modelos de 16 casillas).
+   Mecánica: se muestra un modelo 4×4 con bloques de color; al lado,
+   una cuadrícula vacía y una paleta de 3 colores. Se elige color y
+   se tocan casillas para copiarlo. Validación amable e inmediata:
+   pintar bien → acierto; primer fallo en una casilla → pista
+   socrática (regla 12); segundo fallo → se explica y se corrige
+   sola (regla 11), nadie se queda atascado. Ronda de 3 modelos;
+   1 estrella por construcción completada.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var TOOL_ID = 'los-bloques';
+  var $ = App.utils.$;
+  var CLAVES = ['R', 'B', 'Y'];
+
+  var pantallaInicio = $('#pantallaInicio');
+  var pantallaJuego = $('#pantallaJuego');
+  var pantallaFinal = $('#pantallaFinal');
+  var modeloEl = $('#gridModelo');
+  var tableroEl = $('#gridTuyo');
+  var paletaEl = $('#paleta');
+  var feedbackEl = $('#feedback');
+  var explicacionWrap = $('#explicacionWrap');
+  var explicacionEl = $('#explicacion');
+  var btnSiguiente = $('#btnSiguiente');
+  var progressFill = $('#progressFill');
+  var progressText = $('#progressText');
+  var starsEl = $('#stars');
+
+  /* Progreso persistente */
+  var progreso = App.storage.get(TOOL_ID);
+  if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
+  if (!progreso.completados) progreso.completados = {};
+
+  /* Estado de la ronda */
+  var nivel = null;
+  var idxModelo = 0;
+  var aciertosRonda = 0;
+  var modelo = [];          /* 'R'|'B'|'Y'|null ×16 */
+  var pintado = [];         /* idem, lo que lleva la persona */
+  var botonesCelda = [];
+  var colorSel = 'R';
+  var intentosCelda = {};   /* idx -> nº de fallos (regla 12) */
+  var completado = false;
+
+  function guardar() { App.storage.set(TOOL_ID, progreso); }
+  function pintarEstrellas() { starsEl.textContent = '⭐ ' + progreso.estrellas; }
+  function banco() { return DATA[App.i18n.locale()] || DATA.es; }
+  function nombreColor(c) { return banco().colores[c]; }
+
+  function pintarNiveles() {
+    var cont = $('#niveles');
+    cont.innerHTML = '';
+    banco().niveles.forEach(function (n) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn btn-nivel';
+      var veces = progreso.completados[n.id] || 0;
+      btn.innerHTML = n.nombre + ' — ' + n.descripcion +
+        ' <span class="nivel-info">(' + veces + ' ' + App.i18n.t('veces') + ')</span>';
+      btn.addEventListener('click', function () { iniciarRonda(n); });
+      cont.appendChild(btn);
+    });
+  }
+
+  function iniciarRonda(n) {
+    nivel = n;
+    idxModelo = 0;
+    aciertosRonda = 0;
+    pantallaInicio.classList.add('oculto');
+    pantallaFinal.classList.add('oculto');
+    pantallaJuego.classList.remove('oculto');
+    nuevoModelo();
+  }
+
+  function pintarProgreso() {
+    var porRonda = banco().porRonda;
+    progressFill.style.width = ((idxModelo / porRonda) * 100) + '%';
+    progressText.textContent = idxModelo + ' / ' + porRonda;
+  }
+
+  function nuevoModelo() {
+    var str = App.utils.shuffle(nivel.modelos)[0];
+    modelo = str.split('').map(function (ch) { return ch === '.' ? null : ch; });
+    pintado = new Array(16).fill(null);
+    intentosCelda = {};
+    completado = false;
+    feedbackEl.textContent = '';
+    feedbackEl.className = 'feedback';
+    explicacionWrap.classList.add('oculto');
+    explicacionEl.textContent = '';
+    btnSiguiente.classList.add('oculto');
+
+    pintarModelo();
+    pintarTablero();
+    pintarPaleta();
+    pintarProgreso();
+    pintarEstrellas();
+  }
+
+  function pintarModelo() {
+    modeloEl.innerHTML = '';
+    modelo.forEach(function (c) {
+      var div = document.createElement('div');
+      div.className = 'celda-modelo' + (c ? ' c-' + c : '');
+      modeloEl.appendChild(div);
+    });
+  }
+
+  function ariaCelda(i) {
+    var f = Math.floor(i / 4) + 1;
+    var c = (i % 4) + 1;
+    var clave = pintado[i] ? 'ariaCeldaPintada' : 'ariaCeldaVacia';
+    return App.i18n.t(clave)
+      .replace('{color}', pintado[i] ? nombreColor(pintado[i]) : '')
+      .replace('{f}', f).replace('{c}', c);
+  }
+
+  function pintarTablero() {
+    tableroEl.innerHTML = '';
+    botonesCelda = [];
+    for (var i = 0; i < 16; i++) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'celda-tuya' + (pintado[i] ? ' c-' + pintado[i] : '');
+      btn.disabled = pintado[i] !== null || completado;
+      btn.setAttribute('aria-label', ariaCelda(i));
+      (function (idx, b) {
+        b.addEventListener('click', function () { tocarCelda(idx); });
+      })(i, btn);
+      tableroEl.appendChild(btn);
+      botonesCelda.push(btn);
+    }
+  }
+
+  function pintarPaleta() {
+    paletaEl.innerHTML = '';
+    CLAVES.forEach(function (c) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn-color c-' + c;
+      btn.setAttribute('aria-label', App.i18n.t('ariaColor').replace('{color}', nombreColor(c)));
+      btn.setAttribute('aria-pressed', c === colorSel ? 'true' : 'false');
+      btn.addEventListener('click', function () {
+        colorSel = c;
+        App.utils.$$('.btn-color', paletaEl).forEach(function (b) {
+          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        });
+        App.tts.speak(App.i18n.t('eligeColor').replace('{color}', nombreColor(c)));
+      });
+      paletaEl.appendChild(btn);
+    });
+  }
+
+  function limpiarAviso() {
+    feedbackEl.textContent = '';
+    feedbackEl.className = 'feedback';
+    explicacionWrap.classList.add('oculto');
+    explicacionEl.textContent = '';
+  }
+
+  function mostrarAviso(texto) {
+    explicacionEl.textContent = texto;
+    explicacionWrap.classList.remove('oculto');
+  }
+
+  function pintarCelda(i, color) {
+    pintado[i] = color;
+    var btn = botonesCelda[i];
+    btn.classList.add('c-' + color, 'recien');
+    btn.disabled = true;
+    btn.setAttribute('aria-label', ariaCelda(i));
+  }
+
+  function tocarCelda(i) {
+    if (completado || pintado[i] !== null) return;
+    limpiarAviso();
+    if (modelo[i] === colorSel) {
+      pintarCelda(i, colorSel);
+      App.feedback.acierto(feedbackEl);
+      comprobarCompletado();
+    } else {
+      intentosCelda[i] = (intentosCelda[i] || 0) + 1;
+      App.feedback.animo(feedbackEl);
+      if (intentosCelda[i] === 1) {
+        /* Regla 12: primer fallo → pista, nunca la respuesta */
+        mostrarAviso(App.i18n.t(modelo[i] === null ? 'pistaVacia' : 'pistaColor'));
+      } else if (modelo[i] === null) {
+        /* Casilla vacía en el modelo: se explica, no hay nada que corregir */
+        mostrarAviso(App.i18n.t('malVacia'));
+      } else {
+        /* Segundo fallo con color: se explica y se corrige sola */
+        mostrarAviso(App.i18n.t('malColor').replace('{color}', nombreColor(modelo[i])));
+        pintarCelda(i, modelo[i]);
+        comprobarCompletado();
+      }
+    }
+  }
+
+  function quedanBloques() {
+    for (var i = 0; i < 16; i++) {
+      if (modelo[i] !== null && pintado[i] === null) return true;
+    }
+    return false;
+  }
+
+  function comprobarCompletado() {
+    if (quedanBloques()) return;
+    completado = true;
+    idxModelo += 1;
+    aciertosRonda += 1;
+    progreso.estrellas += 1;
+    guardar();
+    pintarEstrellas();
+    pintarProgreso();
+    botonesCelda.forEach(function (b) { b.disabled = true; });
+    App.feedback.celebrar(App.i18n.t('construccionCompletada'));
+    btnSiguiente.classList.remove('oculto');
+    btnSiguiente.focus();
+  }
+
+  function siguiente() {
+    App.tts.stop();
+    if (idxModelo >= banco().porRonda) {
+      terminarRonda();
+    } else {
+      nuevoModelo();
+    }
+  }
+
+  function terminarRonda() {
+    progreso.completados[nivel.id] = (progreso.completados[nivel.id] || 0) + 1;
+    guardar();
+    pantallaJuego.classList.add('oculto');
+    pantallaFinal.classList.remove('oculto');
+    $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
+      .replace('{n}', aciertosRonda).replace('{total}', progreso.estrellas);
+    App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
+  }
+
+  /* Eventos */
+  btnSiguiente.addEventListener('click', siguiente);
+  $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
+  $('#btnOtroNivel').addEventListener('click', function () {
+    pantallaFinal.classList.add('oculto');
+    pintarNiveles();
+    pantallaInicio.classList.remove('oculto');
+  });
+  $('#btnInstruccion').addEventListener('click', function () {
+    App.tts.speak($('#instruccion').textContent + App.i18n.t('instruccionNivel'));
+  });
+  $('#btnEscucharExplicacion').addEventListener('click', function () {
+    App.tts.speak(explicacionEl.textContent);
+  });
+
+  pintarNiveles();
+  pintarEstrellas();
+})();

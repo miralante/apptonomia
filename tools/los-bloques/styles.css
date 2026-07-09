@@ -1,0 +1,114 @@
+/* Los Bloques — estilos específicos. Lo común está en assets/css/.
+   Acento del módulo Memoria y atención (naranja --mod-memoria).
+   Colores de bloque (c-R/c-B/c-Y) con contraste alto sobre fondo claro. */
+
+.tool-header h1 { color: var(--mod-memoria); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-memoria);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.zona-grids {
+  display: flex;
+  gap: var(--espacio-grande);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pila-grid { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+
+.etiqueta {
+  font-weight: 700;
+  color: var(--color-texto-suave);
+}
+
+.grid-modelo, .grid-tuyo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  padding: 8px;
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+.grid-modelo { border-color: var(--mod-memoria); }
+
+/* El modelo es solo visual (no interactivo): celdas más pequeñas */
+.celda-modelo {
+  width: 34px;
+  height: 34px;
+  background: var(--color-fondo);
+  border-radius: 6px;
+}
+
+.celda-tuya {
+  width: 64px;
+  height: 64px;
+  background: var(--color-fondo);
+  border: 2px dashed var(--color-borde);
+  border-radius: 8px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.celda-tuya:not(:disabled):hover { border-color: var(--mod-memoria); }
+
+.celda-tuya:disabled { cursor: default; }
+
+/* Colores de bloque */
+.c-R { background: #C53030 !important; }
+.c-B { background: #2B6CB0 !important; }
+.c-Y { background: #D69E2E !important; }
+
+.celda-tuya.c-R, .celda-tuya.c-B, .celda-tuya.c-Y {
+  border-style: solid;
+  border-color: var(--color-borde);
+}
+
+.celda-tuya.recien { box-shadow: 0 0 0 3px var(--color-acierto-suave); }
+
+.paleta {
+  display: flex;
+  gap: var(--espacio);
+  justify-content: center;
+}
+
+.btn-color {
+  width: 72px;
+  height: 72px;
+  border: 4px solid var(--color-borde);
+  border-radius: var(--radio);
+  cursor: pointer;
+}
+
+.btn-color[aria-pressed="true"] {
+  border-color: var(--color-texto);
+  box-shadow: 0 0 0 4px var(--mod-memoria-suave);
+}
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
+
+@media (max-width: 640px) {
+  .zona-grids { gap: var(--espacio); }
+  .celda-modelo { width: 26px; height: 26px; }
+  .celda-tuya { width: 64px; height: 64px; }
+}

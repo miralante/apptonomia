@@ -1,0 +1,115 @@
+/* Giros y Espejos — estilos específicos. Lo común está en assets/css/.
+   Acento del módulo Memoria y atención (naranja --mod-memoria).
+   Las transformaciones (giro/espejo) se aplican al span .figura
+   interior, nunca al botón (bordes y foco quedan derechos). */
+
+.tool-header h1 { color: var(--mod-memoria); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-memoria);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.etiqueta-modelo {
+  font-weight: 700;
+  color: var(--color-texto-suave);
+}
+
+.modelo-marco {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-superficie);
+  border: 3px solid var(--mod-memoria);
+  border-radius: var(--radio);
+}
+
+.figura {
+  display: inline-block;
+  font-size: 64px;
+  line-height: 1;
+}
+
+.figura.letra {
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  font-weight: 700;
+  font-size: 72px;
+}
+
+/* Transformaciones */
+.t-rot90 { transform: rotate(90deg); }
+.t-rot180 { transform: rotate(180deg); }
+.t-rot270 { transform: rotate(270deg); }
+.t-espejoH { transform: scaleX(-1); }
+.t-espejoV { transform: scaleY(-1); }
+
+.pregunta {
+  font-size: var(--texto-base);
+  color: var(--color-texto);
+}
+
+.opciones-figuras {
+  display: flex;
+  gap: var(--espacio);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.opcion-figura {
+  min-width: 110px;
+  min-height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.opcion-figura:not(:disabled):hover { border-color: var(--mod-memoria); }
+
+.opcion-figura.correcta {
+  border-color: var(--color-acierto);
+  background: var(--color-acierto-suave);
+}
+
+.opcion-figura.animo {
+  border-color: var(--color-animo);
+  background: var(--color-animo-suave);
+}
+
+/* Opción correcta marcada tras el segundo fallo */
+.opcion-figura.sugerida {
+  border-color: var(--mod-memoria);
+  box-shadow: 0 0 0 4px var(--mod-memoria-suave);
+}
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
+
+@media (max-width: 480px) {
+  .opcion-figura { min-width: 88px; min-height: 88px; }
+  .figura { font-size: 48px; }
+  .figura.letra { font-size: 56px; }
+}

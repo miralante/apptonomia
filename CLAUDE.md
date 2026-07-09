@@ -272,4 +272,19 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       la 1ª pulsación hace una pregunta que dirige la atención al dato clave
       (sin dar la jugada); la 2ª marca la casilla concreta y explica el
       porqué. En el sudoku, colocar el picto sigue siendo cosa de la persona.
+- [x] Percepción viso-espacial (módulo Memoria/atención) — 3 actividades
+      nuevas: `tools/giros-espejos/` (rotación mental, reflejos e
+      inversiones de grafías; regla 13: única variable es el tipo de
+      transformación — girado → espejo → letras b/d/p/q; transformaciones
+      con CSS en un span interior, nunca en el botón), `tools/los-bloques/`
+      (construcción tipo bloques: copiar un modelo 4×4 de bloques de
+      colores con paleta de 3; regla 13: única variable es el nº de bloques
+      4 → 6 → 8; validación amable por casilla — pista al primer fallo, al
+      segundo se corrige sola), y `tools/donde-esta/` (vocabulario espacial:
+      tocar el objeto a la izquierda/derecha/encima/debajo de la
+      referencia; ítems generados al vuelo con nombres es/en para el TTS
+      [los emojis no se leen en voz alta]; regla 13: única variable es el
+      eje — horizontal → vertical → mixto; la pista socrática enseña la
+      estrategia: "busca primero la referencia, después mira hacia el
+      lado"). Las secuencias visuales ya estaban cubiertas por Patrones.
 - [ ] Backlog transversal — ver PLAN.md §7 (modo cuidador, multi-perfil, etc.)

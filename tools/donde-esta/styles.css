@@ -1,0 +1,84 @@
+/* ¿Dónde está? — estilos específicos. Lo común está en assets/css/.
+   Acento del módulo Memoria y atención (naranja --mod-memoria). */
+
+.tool-header h1 { color: var(--mod-memoria); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-memoria);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.consigna {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+}
+
+.escena {
+  display: flex;
+  gap: var(--espacio);
+  justify-content: center;
+  align-items: center;
+  padding: var(--espacio);
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  margin: 0 auto;
+}
+
+.escena.en-fila { flex-direction: row; }
+.escena.en-columna { flex-direction: column; }
+
+.objeto {
+  min-width: 100px;
+  min-height: 100px;
+  font-size: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-fondo);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.objeto:not(:disabled):hover { border-color: var(--mod-memoria); }
+
+.objeto.correcta {
+  border-color: var(--color-acierto);
+  background: var(--color-acierto-suave);
+}
+
+.objeto.animo {
+  border-color: var(--color-animo);
+  background: var(--color-animo-suave);
+}
+
+/* Objetivo marcado tras el segundo fallo */
+.objeto.sugerida {
+  border-color: var(--mod-memoria);
+  box-shadow: 0 0 0 4px var(--mod-memoria-suave);
+}
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
+
+@media (max-width: 480px) {
+  .objeto { min-width: 80px; min-height: 80px; font-size: 44px; }
+}

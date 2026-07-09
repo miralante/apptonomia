@@ -160,6 +160,9 @@ Cubre: memoria visual/auditiva/verbal, corto plazo, atención sostenida, percepc
 | Diferencias — encontrar las diferencias entre dos escenas | `tools/diferencias/` | ✔ Hecha |
 | ¿Qué falta? — memorizar objetos y detectar cuál desaparece | `tools/que-falta/` | ✔ Hecha |
 | Ecos — repetir secuencias de sonidos/colores (memoria auditiva y ritmo) | `tools/ecos/` | ✔ Hecha |
+| Giros y Espejos — rotación mental, reflejos e inversiones de grafías b/d/p/q (niveles: girado → espejo → letras) | `tools/giros-espejos/` | ✔ Hecha |
+| Los Bloques — copiar un modelo de bloques de colores en cuadrícula 4×4 (niveles: 4/6/8 bloques) | `tools/los-bloques/` | ✔ Hecha |
+| ¿Dónde está? — vocabulario espacial: tocar el objeto a la izquierda/derecha/encima/debajo (niveles: eje horizontal → vertical → mixto) | `tools/donde-esta/` | ✔ Hecha |
 
 ### Módulo 4 — Razonamiento y matemáticas (teal `--mod-razonamiento`, color NUEVO)
 Cubre: patrones, deducción, inferencia, ordenación, priorización, números, operaciones
