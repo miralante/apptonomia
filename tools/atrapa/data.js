@@ -1,21 +1,16 @@
 /* ============================================================
    Datos: Atrapa — configuración de niveles.
-   Formato: niveles[] = { id, nombreKey, tamano (px, nunca < 64) }
-   nombreKey apunta a un texto registrado en strings.js (App.i18n.t).
+   Formato: niveles[] = { id, nombre, tamano (px, nunca < 64) }
    toquesPorRonda: toques necesarios para completar una ronda.
-   objetivos: emojis que va mostrando el objetivo (iguales en es/en).
-   Para ampliar: añadir niveles nuevos al array. app.js usa
-   DATA[App.i18n.locale()].
+   Para ampliar: añadir niveles nuevos al array.
    ============================================================ */
-const NIVELES = [
-  { id: 'grande', nombreKey: 'nivelGrande', tamano: 120, estrellas: 1 },
-  { id: 'mediano', nombreKey: 'nivelMediano', tamano: 90, estrellas: 2 },
-  { id: 'pequeno', nombreKey: 'nivelPequeno', tamano: 64, estrellas: 3 }
-];
-
-const OBJETIVOS = ['⚽', '🎈', '⭐', '🍎', '🐥', '🌸', '🚗', '🐟', '🎁', '🦋'];
-
 const DATA = {
-  es: { toquesPorRonda: 10, niveles: NIVELES, objetivos: OBJETIVOS },
-  en: { toquesPorRonda: 10, niveles: NIVELES, objetivos: OBJETIVOS }
+  toquesPorRonda: 10,
+  niveles: [
+    { id: 'grande', nombre: 'Grande', tamano: 120, estrellas: 1 },
+    { id: 'mediano', nombre: 'Mediano', tamano: 90, estrellas: 2 },
+    { id: 'pequeno', nombre: 'Pequeño', tamano: 64, estrellas: 3 }
+  ],
+  /* Emojis que va mostrando el objetivo (variedad = motivación) */
+  objetivos: ['⚽', '🎈', '⭐', '🍎', '🐥', '🌸', '🚗', '🐟', '🎁', '🦋']
 };

@@ -152,6 +152,7 @@ Cubre: AVD, aseo, tareas del hogar, organización, situaciones cotidianas, gesti
 | ¿Qué necesito? — planificación: elegir qué preparar antes de una tarea u objetivo | `tools/que-necesito/` | ✔ Hecha |
 | ¿Dónde lo guardo? — organización: clasificar objetos por su sitio de almacenaje (armario/nevera/mochila) | `tools/donde-lo-guardo/` | ✔ Hecha |
 | Lista de Tareas — ordenar tareas mixtas de casa, trabajo y cuidado personal en su orden lógico del día | `tools/lista-tareas/` | ✔ Hecha |
+| ¿Qué me pongo? — elegir ropa adecuada según el tiempo (calor/frío/lluvia) para torso, piernas, pies y extra | `tools/que-me-pongo/` | ✔ Hecha |
 
 ### Módulo 3 — Memoria y atención (naranja `--mod-memoria`)
 Cubre: memoria visual/auditiva/verbal, corto plazo, atención sostenida, percepción global y de detalles.

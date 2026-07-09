@@ -41,6 +41,7 @@
       quenecesito_nombre: '¿Qué necesito?', quenecesito_detalle: 'Prepara lo que hace falta.',
       dondeloguardo_nombre: '¿Dónde lo guardo?', dondeloguardo_detalle: 'Cada cosa en su sitio.',
       listatareas_nombre: 'Lista de Tareas', listatareas_detalle: 'Ordena tareas de casa y trabajo.',
+      quemepongo_nombre: '¿Qué me pongo?', quemepongo_detalle: 'Viste según el tiempo que hace.',
 
       parejas_nombre: 'Parejas', parejas_detalle: 'Busca las cartas iguales.',
       diferencias_nombre: 'Diferencias', diferencias_detalle: 'Busca lo que es distinto.',
@@ -111,6 +112,7 @@
       quenecesito_nombre: 'What Do I Need?', quenecesito_detalle: 'Prepare what is needed.',
       dondeloguardo_nombre: 'Where Do I Keep It?', dondeloguardo_detalle: 'Everything in its place.',
       listatareas_nombre: 'Task List', listatareas_detalle: 'Organize home and work tasks.',
+      quemepongo_nombre: 'What Do I Wear?', quemepongo_detalle: 'Dress for the weather.',
 
       parejas_nombre: 'Pairs', parejas_detalle: 'Find the matching cards.',
       diferencias_nombre: 'Differences', diferencias_detalle: 'Find what is different.',

@@ -312,4 +312,12 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       (tarjetas, strings de portada, sw.js, equipo/, PLAN.md, conteos) lo
       detectó `scripts/check.js` y se completó junto a la 2ª tanda
       viso-espacial.
+- [x] ¿Qué me pongo? (`tools/que-me-pongo/`, módulo Autonomía/hogar) — nueva
+      actividad: elegir la ropa adecuada (torso, piernas, pies, un extra
+      como gorra/paraguas) según el tiempo que hace. Clon exacto del motor
+      de ¿Qué hago primero? (situación + picto + 3 opciones, explicación y
+      pista socrática ya incluidas). 2 niveles (regla 13: nivel 1 solo los
+      dos contrastes extremos —mucho calor / mucho frío—, nivel 2 mantiene
+      el mismo formato y añade un tercer tiempo menos evidente —lluvia—,
+      que depende de ir seco en vez de temperatura).
 - [ ] Backlog transversal — ver PLAN.md §7 (modo cuidador, multi-perfil, etc.)

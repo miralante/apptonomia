@@ -9,7 +9,6 @@
 
   var TOOL_ID = 'atrapa';
   var $ = App.utils.$;
-  var banco = DATA[App.i18n.locale()] || DATA.es;
 
   var areaEl = $('#areaJuego');
   var objetivoEl = $('#objetivo');
