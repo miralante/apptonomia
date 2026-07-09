@@ -43,6 +43,7 @@
   var botonesCelda = [];
   var huecoActivo = -1;
   var intentosHueco = {};   /* idx celda -> nº de fallos (regla 12) */
+  var ayudaPaso = 0;        /* ayuda a demanda: 1ª pulsación pregunta, 2ª dice el picto */
 
   function guardar() { App.storage.set(TOOL_ID, progreso); }
   function pintarEstrellas() { starsEl.textContent = '⭐ ' + progreso.estrellas; }
@@ -138,9 +139,7 @@
 
   /* Bloques 2×2 alternos sombreados para que "la caja" se vea. */
   function esBloqueSombreado(i) {
-    var f = Math.floor(i / 4);
-    var c = i % 4;
-    var bloque = Math.floor(f / 2) * 2 + Math.floor(c / 2);
+    var bloque = esBloque(i);
     return bloque === 1 || bloque === 2;
   }
 
@@ -161,11 +160,65 @@
   function elegirHueco(i) {
     if (celdas[i] !== null) return;
     huecoActivo = i;
+    ayudaPaso = 0; /* elegir hueco a mano reinicia la ayuda */
     botonesCelda.forEach(function (b, j) {
       b.classList.toggle('activa', j === i);
     });
     estadoEl.textContent = App.i18n.t('eligeDibujo');
     limpiarAviso();
+  }
+
+  /* ---- Ayuda a demanda (método socrático en dos pasos) ----
+     1ª pulsación: marca el hueco más fácil de razonar y pregunta qué
+     dibujo falta en su fila/columna/caja, sin decirlo. 2ª pulsación:
+     dice el picto y el porqué; colocarlo sigue siendo cosa de la
+     persona (toca la paleta). Se reinicia al colocar o al elegir
+     otro hueco a mano. */
+  function huecoMasFacil() {
+    var mejor = -1;
+    var mejorCandidatos = 5;
+    for (var i = 0; i < 16; i++) {
+      if (celdas[i] !== null) continue;
+      var f = Math.floor(i / 4);
+      var c = i % 4;
+      var bl = esBloque(i);
+      var usados = {};
+      for (var j = 0; j < 16; j++) {
+        if (celdas[j] === null) continue;
+        if (Math.floor(j / 4) === f || j % 4 === c || esBloque(j) === bl) usados[celdas[j]] = true;
+      }
+      var candidatos = 0;
+      for (var v = 0; v < 4; v++) { if (!usados[v]) candidatos += 1; }
+      if (candidatos < mejorCandidatos) { mejorCandidatos = candidatos; mejor = i; }
+    }
+    return mejor;
+  }
+
+  function esBloque(i) {
+    var f = Math.floor(i / 4);
+    var c = i % 4;
+    return Math.floor(f / 2) * 2 + Math.floor(c / 2);
+  }
+
+  function pedirAyuda() {
+    if (!quedanHuecos() || !btnSiguiente.classList.contains('oculto')) return;
+    if (ayudaPaso === 0 || huecoActivo === -1 || celdas[huecoActivo] !== null) {
+      var i = huecoMasFacil();
+      if (i === -1) return;
+      elegirHueco(i);          /* marca el hueco (clase .activa) y reinicia ayudaPaso */
+      ayudaPaso = 1;
+      var texto1 = App.i18n.t('ayudaPaso1');
+      explicacionEl.textContent = texto1;
+      explicacionWrap.classList.remove('oculto');
+      App.tts.speak(texto1);
+    } else {
+      ayudaPaso = 2;
+      var picto = tema[solucion[huecoActivo]];
+      var texto2 = App.i18n.t('ayudaPaso2').replace('{picto}', picto);
+      explicacionEl.textContent = texto2;
+      explicacionWrap.classList.remove('oculto');
+      App.tts.speak(texto2);
+    }
   }
 
   function limpiarAviso() {
@@ -256,6 +309,7 @@
   }
 
   /* ---- Eventos ---- */
+  $('#btnAyuda').addEventListener('click', pedirAyuda);
   btnSiguiente.addEventListener('click', siguiente);
   $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {

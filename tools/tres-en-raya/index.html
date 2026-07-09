@@ -33,9 +33,15 @@
       <div class="fila centrado-fila">
         <p class="estado" id="estado" aria-live="polite"></p>
         <button type="button" class="btn btn-audio" id="btnEstado" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+        <button type="button" class="btn btn-secundario" id="btnAyuda" data-i18n="btnAyuda">💡 Ayuda</button>
       </div>
 
       <div class="tablero" id="tablero" role="grid" aria-label="Tablero de tres en raya"></div>
+
+      <div class="fila explicacion oculto" id="ayudaWrap">
+        <p id="ayudaTexto" aria-live="polite"></p>
+        <button type="button" class="btn btn-audio" id="btnEscucharAyuda" data-i18n-aria="ariaEscucharAyuda" aria-label="Escuchar la ayuda">🔊</button>
+      </div>
 
       <div class="feedback" id="feedback" aria-live="polite"></div>
       <div class="fila centrado-fila">

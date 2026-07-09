@@ -22,7 +22,10 @@
       btnOtroNivel: 'Elegir otro nivel',
       ariaHueco: 'Hueco vacío, fila {f}, columna {c}',
       ariaFija: '{picto}, fila {f}, columna {c}',
-      ariaPaleta: 'Poner {picto}'
+      ariaPaleta: 'Poner {picto}',
+      btnAyuda: '💡 Ayuda',
+      ayudaPaso1: 'Mira el hueco marcado. Fíjate en su fila, su columna y su caja: ¿qué dibujo no está todavía?',
+      ayudaPaso2: 'Ahí va {picto}. Es el que falta: no está en su fila, ni en su columna, ni en su caja. Tócalo en la paleta.'
     },
     en: {
       title: '🧩 Visual Sudoku',
@@ -40,7 +43,10 @@
       btnOtroNivel: 'Choose another level',
       ariaHueco: 'Empty gap, row {f}, column {c}',
       ariaFija: '{picto}, row {f}, column {c}',
-      ariaPaleta: 'Place {picto}'
+      ariaPaleta: 'Place {picto}',
+      btnAyuda: '💡 Help',
+      ayudaPaso1: 'Look at the marked gap. Check its row, its column and its box: which picture is not there yet?',
+      ayudaPaso2: 'That gap needs {picto}. It is the missing one: it is not in its row, its column or its box. Touch it on the palette.'
     }
   });
 })();

@@ -29,6 +29,9 @@
   var feedbackEl = $('#feedback');
   var btnOtraPartida = $('#btnOtraPartida');
   var btnSalir = $('#btnSalir');
+  var btnAyuda = $('#btnAyuda');
+  var ayudaWrap = $('#ayudaWrap');
+  var ayudaTextoEl = $('#ayudaTexto');
   var starsEl = $('#stars');
 
   /* Progreso persistente */
@@ -42,6 +45,7 @@
   var botones = [];
   var turnoJugador = true;
   var partidaTerminada = false;
+  var ayudaPaso = 0;      /* método socrático: 1ª pulsación pregunta, 2ª marca la casilla */
 
   function guardar() { App.storage.set(TOOL_ID, progreso); }
   function pintarEstrellas() { starsEl.textContent = '⭐ ' + progreso.estrellas; }
@@ -111,6 +115,7 @@
     pantallaInicio.classList.add('oculto');
     pantallaJuego.classList.remove('oculto');
     crearTablero();
+    limpiarAyuda();
     pintarTablero();
     pintarEstrellas();
   }
@@ -166,8 +171,44 @@
     linea.forEach(function (i) { botones[i].classList.add('ganadora'); });
   }
 
+  /* ---- Ayuda a demanda (método socrático en dos pasos) ----
+     1ª pulsación: pregunta que dirige la atención al dato clave,
+     sin decir la casilla. 2ª pulsación: marca la casilla concreta
+     y explica el porqué. Se reinicia al mover ficha. */
+  function limpiarAyuda() {
+    ayudaPaso = 0;
+    ayudaWrap.classList.add('oculto');
+    ayudaTextoEl.textContent = '';
+    botones.forEach(function (b) { b.classList.remove('sugerida'); });
+  }
+
+  /* Recomienda la mejor jugada del jugador: ganar > tapar > centro >
+     esquina > cualquier casilla libre. */
+  function recomendar() {
+    var ganar = casillaQueCompleta(JUGADOR);
+    if (ganar !== -1) return { idx: ganar, tipo: 'Ganas' };
+    var tapar = casillaQueCompleta(RIVAL);
+    if (tapar !== -1) return { idx: tapar, tipo: 'Tapa' };
+    if (!celdas[4]) return { idx: 4, tipo: 'Centro' };
+    var esquinas = [0, 2, 6, 8].filter(function (i) { return !celdas[i]; });
+    if (esquinas.length) return { idx: App.utils.shuffle(esquinas)[0], tipo: 'Esquina' };
+    return { idx: casillasLibres()[0], tipo: 'Libre' };
+  }
+
+  function pedirAyuda() {
+    if (partidaTerminada || !turnoJugador) return;
+    var rec = recomendar();
+    ayudaPaso = ayudaPaso >= 2 ? 2 : ayudaPaso + 1;
+    var texto = App.i18n.t('ayuda' + rec.tipo + ayudaPaso);
+    ayudaTextoEl.textContent = texto;
+    ayudaWrap.classList.remove('oculto');
+    if (ayudaPaso === 2) botones[rec.idx].classList.add('sugerida');
+    App.tts.speak(texto);
+  }
+
   function jugarTurno(idx) {
     if (partidaTerminada || !turnoJugador || celdas[idx]) return;
+    limpiarAyuda();
     celdas[idx] = JUGADOR;
     turnoJugador = false;
     pintarTablero();
@@ -218,6 +259,10 @@
   }
 
   /* ---- Eventos ---- */
+  btnAyuda.addEventListener('click', pedirAyuda);
+  $('#btnEscucharAyuda').addEventListener('click', function () {
+    App.tts.speak(ayudaTextoEl.textContent);
+  });
   btnOtraPartida.addEventListener('click', function () { iniciarPartida(nivel); });
   btnSalir.addEventListener('click', function () {
     App.tts.stop();

@@ -61,6 +61,19 @@
   border-color: var(--color-acierto);
 }
 
+/* Casilla sugerida por la ayuda (2ª pulsación de 💡) */
+.celda.sugerida {
+  border-color: var(--mod-razonamiento);
+  box-shadow: 0 0 0 4px var(--mod-razonamiento-suave);
+  animation: latido-ayuda 1s ease-in-out infinite;
+}
+
+@keyframes latido-ayuda { 50% { transform: scale(1.06); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .celda.sugerida { animation: none; }
+}
+
 @media (max-width: 480px) {
   .tablero { grid-template-columns: repeat(3, minmax(72px, 1fr)); gap: 8px; }
   .celda { min-height: 72px; font-size: 36px; }

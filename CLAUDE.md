@@ -267,5 +267,9 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       contra una solución precalculada para que nunca haya callejones sin
       salida; primer fallo → pista socrática [regla 12], segundo fallo → se
       explica y se coloca solo [regla 11], nadie se queda atascado; regla 13:
-      única variable es el nº de huecos, 4 → 6 → 8).
+      única variable es el nº de huecos, 4 → 6 → 8). Ambos juegos llevan
+      además un botón 💡 Ayuda a demanda con método socrático en dos pasos:
+      la 1ª pulsación hace una pregunta que dirige la atención al dato clave
+      (sin dar la jugada); la 2ª marca la casilla concreta y explica el
+      porqué. En el sudoku, colocar el picto sigue siendo cosa de la persona.
 - [ ] Backlog transversal — ver PLAN.md §7 (modo cuidador, multi-perfil, etc.)
