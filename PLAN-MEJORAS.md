@@ -1,13 +1,18 @@
 # PLAN-MEJORAS.md — Plan de mejoras auditadas (2026-07-07)
 
-> **ESTADO (2026-07-10): las Partes A, B, C, E1, E2, F1-F4 y toda la G
-> (G1-G5) YA ESTÁN EJECUTADAS** (verificado en el repo: fuentes en
-> `assets/fonts/`, `scripts/check.js` con 8 comprobaciones,
+> **ESTADO (2026-07-10): TODO EL PLAN ESTÁ EJECUTADO** — Partes A, B, C,
+> E1-E6, F1-F4, toda la G (G1-G5), D2-ítem1 y D3 (verificado en el repo:
+> fuentes en `assets/fonts/`, `scripts/check.js` con 8 comprobaciones,
 > `scripts/smoke.js` con Playwright, wake lock en `utils.js`,
 > `core.descanso`, export/import en `/ajustes/`, 4ª columna en `equipo/`,
-> anclas de módulo en la portada, `temp_original_data.js` borrado). NO
-> volver a ejecutarlas. Pendiente solo: Parte D y E3-E6 (requieren
-> aprobación del usuario).
+> anclas de módulo en la portada, `temp_original_data.js` borrado,
+> `tools/la-calle/`, `tools/mi-cuerpo-avisa/`, `tools/emergencias/`,
+> `tools/la-compra/`, `patrones` nivel 4, preferencias de tamaño de letra
+> y sonidos). NO volver a ejecutar nada de esto. Solo quedan D1 (resuelto
+> de facto por E4/mi-cuerpo-avisa, sin acción propia) y D2-ítems 2-4
+> (pictogramas ARASAAC, modo cuidador, multi-perfil — el propio plan dice
+> "no empezar en frío", requieren diseño previo con el usuario si algún
+> día se retoman).
 
 Plan ejecutable escrito para que lo siga **cualquier modelo/agente, incluso uno
 poco capaz**. Cada tarea tiene: archivo exacto, cambio exacto (texto viejo →
@@ -238,39 +243,47 @@ debajo del encabezado de FASE 5:
 Hallazgos de producto, en orden de valor. Son propuestas, no tareas: presenta
 esta lista al usuario y que él elija.
 
-### D1. El módulo Emociones es el más pequeño (3 herramientas)
+### D1. ✔ Resuelto de facto (sin acción propia) — El módulo Emociones es el más pequeño
 
-Recuento actual por módulo: Coordinación 5, Autonomía/hogar 10, Memoria 4,
+Recuento en 2026-07-07: Coordinación 5, Autonomía/hogar 10, Memoria 4,
 Razonamiento 9, Lenguaje 5, **Emociones 3** (emociones, calma, entre-amigos).
-Propuesta de menor riesgo: una herramienta nueva de emociones clonando un
-motor existente (p. ej. "¿Cómo me siento hoy?" — registro diario simple de
-emoción con el patrón visual de tarjetas de `emociones`, guardado en
-localStorage, sin análisis clínico). Si el usuario aprueba, seguir la receta
-de `SPEC.md` §4 y el patrón de commits de las últimas herramientas (ver
-`git log --oneline -8`).
+No se ejecutó la propuesta genérica de D1 tal cual porque **E4
+(`tools/mi-cuerpo-avisa/`)** le da a Emociones su 4ª herramienta con una base
+clínica más sólida (interocepción, no solo un registro de emoción) — ver E4
+más abajo. Emociones ya no es el módulo más pequeño.
 
 ### D2. Backlog transversal ya priorizado en `PLAN.md` §7
 
-Ítems que el propio proyecto tiene apuntados y sin hacer, de más a menos
-encajable para un agente:
+Ítems que el propio proyecto tiene apuntados, de más a menos encajable para
+un agente:
 
-1. **Ajustes de usuario** (tamaño de letra, sonidos on/off): página nueva o
-   ampliación de `/ajustes/`; todo local, bajo riesgo.
-2. **Pictogramas ARASAAC locales** (licencia CC BY-NC-SA, citar autoría) para
-   sustituir emojis donde la precisión importa (rutinas, categorías,
-   emociones): trabajo mecánico pero voluminoso; requiere descargar assets.
-3. **Modo cuidador**: historial de progreso por actividad (los datos ya están
-   en localStorage por herramienta; sería una vista de solo lectura en
-   `/equipo/` o `/ajustes/`).
-4. **Multi-perfil local** y **dificultad adaptativa**: los más grandes;
-   requieren diseño previo con el usuario, no empezar en frío.
+1. **✔ Hecho — Ajustes de usuario** (tamaño de letra, sonidos on/off):
+   sección nueva "Preferencias de la persona usuaria" en `/ajustes/`,
+   aplicada una sola vez en el núcleo compartido (`--escala-texto` en
+   `tokens.css`, leída y aplicada por `storage.js` en toda página, sonidos
+   respetados por `feedback.js`). Commit `b12d85f`.
+2. **Pendiente** — Pictogramas ARASAAC locales (licencia CC BY-NC-SA, citar
+   autoría) para sustituir emojis donde la precisión importa (rutinas,
+   categorías, emociones): trabajo mecánico pero voluminoso; requiere
+   descargar assets. No ejecutado.
+3. **Pendiente** — Modo cuidador: historial de progreso por actividad (los
+   datos ya están en localStorage por herramienta; sería una vista de solo
+   lectura en `/equipo/` o `/ajustes/`). No ejecutado.
+4. **Pendiente** — Multi-perfil local y dificultad adaptativa: los más
+   grandes; requieren diseño previo con el usuario, no empezar en frío. No
+   ejecutado.
 
-### D3. Hueco de la taxonomía: "codificación/decodificación"
+### D3. ✔ Hecho — Hueco de la taxonomía: "codificación/decodificación"
 
-`PLAN.md` §4.1 marca `Razonamiento: codificación/decodificación` como `⏳`
-(patrones nivel avanzado símbolo→letra) y nunca se completó pese a que la Ola
-3 se dio por cerrada. Opción barata: un nivel nuevo en `tools/patrones/`
-(cuidado con la regla 13: que el nivel nuevo cambie UNA sola variable).
+`PLAN.md` §4.1 marcaba `Razonamiento: codificación/decodificación` como `⏳`
+(patrones nivel avanzado símbolo→letra) sin completar pese a que la Ola 3 se
+dio por cerrada. Ejecutado: `tools/patrones/` nivel 4 "Descifra el código" —
+mismo motor de completar secuencia (sin tocar `app.js`), 12 series donde cada
+patrón repite un par [símbolo, letra] dos veces completas y pide la letra que
+falta (p. ej. ★ A ● B ★ A ● ❓ → B). Regla 13: única variable respecto al
+nivel 3 es el tipo de contenido a decodificar. Commit `b12d85f`, verificado
+con Playwright (nivel 4 selecciona bien, opciones correctas, explicación
+correcta).
 
 ---
 
@@ -349,7 +362,7 @@ la celebración incluye la frase de descanso; en la 6ª ya no (contador
 reiniciado o umbral solo en múltiplos de 5 — elegir múltiplos de 5). Recargar
 la página reinicia la cuenta. `node --check` en los 2 archivos tocados.
 
-### E3. [Con aprobación] Herramienta nueva: "La Calle" (movilidad comunitaria)
+### E3. ✔ Hecho — Herramienta nueva: "La Calle" (movilidad comunitaria)
 
 Situaciones de calle y transporte con el motor de `situaciones` (clon, como
 se hizo con `que-primero`): cruzar con semáforo y sin él, esperar el autobús,
@@ -359,7 +372,7 @@ dependiente, enseñar tu tarjeta de identificación), a quién sí/no seguir.
 mismas 3 opciones). Módulo Autonomía/hogar. Es la extensión natural del
 catálogo actual hacia fuera de casa.
 
-### E4. [Con aprobación] Herramienta nueva: "Mi cuerpo me avisa" (interocepción)
+### E4. ✔ Hecho — Herramienta nueva: "Mi cuerpo me avisa" (interocepción)
 
 El cuerpo manda una señal (con picto): tripa que suena, boca seca, ojos que se
 cierran, dolor de cabeza, corazón acelerado… y la persona elige entre 3 qué
@@ -367,7 +380,7 @@ hacer (comer algo / beber agua / descansar / avisar a alguien si duele).
 Motor de `que-necesito` (clon). Módulo Emociones (le da una 4ª herramienta al
 módulo más pequeño y conecta `emociones` con `calma`: notar → actuar).
 
-### E5. [Con aprobación] Herramienta nueva: "Emergencias" (pedir ayuda)
+### E5. ✔ Hecho — Herramienta nueva: "Emergencias" (pedir ayuda)
 
 Dos partes con motores ya existentes: (a) quiz con motor de `situaciones`
 para distinguir emergencia de no-emergencia ("se quema la sartén" vs "no
@@ -378,7 +391,7 @@ Módulo Autonomía/hogar. Nota de seguridad: dejar clarísimo en Lectura Fácil
 que 112 solo se llama en emergencias de verdad — incluir esa distinción como
 contenido del quiz, no solo como aviso.
 
-### E6. [Con aprobación] Herramienta nueva: "La Compra" (AVD instrumental)
+### E6. ✔ Hecho — Herramienta nueva: "La Compra" (AVD instrumental)
 
 Clasificar productos por sección del supermercado (frutería, carnicería,
 limpieza…) con el motor de `donde-lo-guardo`/`categorias`, y un nivel 2 que
