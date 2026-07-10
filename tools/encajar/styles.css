@@ -1,9 +1,21 @@
 /* Encaja la Pieza — estilos específicos. Lo común está en assets/css/.
-   Acento del módulo Memoria y atención (naranja --mod-memoria). */
+   Acento del módulo Memoria y atención (naranja --mod-memoria) para la
+   cabecera y los botones normales, igual que el resto de la app.
+
+   El TABLERO es la excepción a propósito: pantalla oscura tipo recreativa
+   con piezas de color fijo por tipo (paleta clásica de tetrominós) y
+   bloques con relieve, para que se parezca más al Tetris original y
+   tenga aspecto "gaming" aunque la mecánica siga siendo la fácil de
+   siempre (sin caída automática, sin cronómetro, fallos sin castigo).
+   El resto de la pantalla (cabecera, instrucciones, botones) se queda
+   en el tema claro habitual — es solo la "pantalla" del juego la que
+   cambia, como el cristal oscuro de una recreativa dentro de una sala
+   normal. La info crítica (dónde está el hueco) se sigue viendo por
+   forma y contorno, no solo por color. */
 
 .tool-header h1 { color: var(--mod-memoria); }
 
-.btn:not(.btn-secundario):not(.btn-audio) {
+.btn:not(.btn-secundario):not(.btn-audio):not(.btn-control) {
   background: var(--mod-memoria);
 }
 
@@ -27,42 +39,93 @@
   min-height: 1.4em;
 }
 
+/* ---- Paleta de piezas, estilo tetrominó clásico ---- */
+.tablero-piezas {
+  --pz-domino: #F2545B;
+  --pz-triI: #2FBF71;
+  --pz-triL: #3E92CC;
+  --pz-cuadrado: #F7D94C;
+  --pz-barra: #34D6D6;
+  --pz-te: #B27BF0;
+  --pz-ele: #FF9F45;
+}
+
+/* ---- La "pantalla" del juego: recreativa oscura con marco ---- */
 .tablero-piezas {
   display: grid;
-  gap: 4px;
-  padding: 10px;
+  gap: 5px;
+  padding: 12px;
   margin: 0 auto;
-  background: var(--color-superficie);
-  border: 3px solid var(--color-borde);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(160deg, #171532, #0B0A1C);
+  background-size: 14px 14px, 14px 14px, 100% 100%;
+  border: 5px solid #2C2854;
   border-radius: var(--radio);
+  box-shadow:
+    0 0 0 3px #0B0A1C,
+    inset 0 0 0 2px rgba(255, 255, 255, 0.04),
+    0 10px 22px rgba(11, 10, 28, 0.35);
   max-width: 420px;
 }
 
 .celda {
   width: 56px;
   height: 56px;
-  background: var(--color-fondo);
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
 }
 
-/* Relleno fijo del tablero */
-.celda.llena { background: #A8A29E; }
+/* Relleno fijo del tablero: bloques "de obstáculo", metal apagado */
+.celda.llena {
+  background: linear-gradient(135deg, #5B6478, #333A4C);
+  border-color: transparent;
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.18),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.35);
+}
 
-/* La pieza que se mueve */
-.celda.pieza { background: var(--mod-memoria); }
+/* La pieza que se mueve: color fijo por tipo + relieve de bloque */
+.celda.pieza,
+.celda.encajada {
+  border-color: transparent;
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.45),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+    0 0 10px currentColor;
+}
 
-/* Hueco marcado tras el segundo fallo */
+.celda.t-domino { background: var(--pz-domino); color: var(--pz-domino); }
+.celda.t-triI { background: var(--pz-triI); color: var(--pz-triI); }
+.celda.t-triL { background: var(--pz-triL); color: var(--pz-triL); }
+.celda.t-cuadrado { background: var(--pz-cuadrado); color: var(--pz-cuadrado); }
+.celda.t-barra { background: var(--pz-barra); color: var(--pz-barra); }
+.celda.t-te { background: var(--pz-te); color: var(--pz-te); }
+.celda.t-ele { background: var(--pz-ele); color: var(--pz-ele); }
+
+/* Pieza ya encajada: mismo color + aro verde de acierto, no se pierde
+   la señal de "esto es correcto" solo por dar más protagonismo al color. */
+.celda.encajada {
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.45),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.3),
+    inset 0 0 0 3px var(--color-acierto),
+    0 0 14px currentColor;
+}
+
+/* Hueco marcado tras el segundo fallo: dorado bien visible sobre fondo oscuro */
 .celda.sugerida {
-  box-shadow: inset 0 0 0 4px var(--mod-memoria);
-  background: var(--mod-memoria-suave);
+  background: rgba(255, 209, 102, 0.15);
+  border-color: transparent;
+  box-shadow: inset 0 0 0 4px #FFD166, 0 0 12px rgba(255, 209, 102, 0.55);
 }
 
-/* Pieza encajada */
-.celda.encajada { background: var(--color-acierto); }
-
+/* ---- Mando tipo gamepad ---- */
 .mando {
   display: flex;
-  gap: var(--espacio);
+  gap: 12px;
   justify-content: center;
 }
 
@@ -71,6 +134,32 @@
   min-height: 72px;
   font-size: 30px;
   padding: 0;
+  color: #FFFFFF;
+  background: linear-gradient(180deg, #40465F, #262B40);
+  border: none;
+  border-radius: 16px;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.3),
+    0 4px 0 #14172A,
+    0 7px 12px rgba(11, 10, 28, 0.3);
+}
+
+.btn-control:hover {
+  filter: brightness(1.12);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.3),
+    0 4px 0 #14172A,
+    0 9px 16px rgba(11, 10, 28, 0.35);
+}
+
+.btn-control:active {
+  transform: translateY(3px);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.3),
+    0 1px 0 #14172A;
 }
 
 .emoji-grande { font-size: 96px; }

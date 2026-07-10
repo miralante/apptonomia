@@ -9,6 +9,10 @@
    1º fallo → pista socrática; 2º → se marca el hueco; 3º → se
    encaja sola con explicación (nadie se queda atascado).
    Ronda de 4 piezas; 1 estrella por pieza encajada.
+   Cada tipo de pieza (clavePieza: domino/triI/triL/cuadrado/barra/te/
+   ele) recibe una clase 't-<clave>' en las celdas .pieza/.encajada
+   para pintarla de un color fijo tipo tetrominó clásico (ver
+   styles.css) — mecánica intacta, solo aspecto más "gaming".
    ============================================================ */
 (function () {
   'use strict';
@@ -154,9 +158,9 @@
       var div = document.createElement('div');
       div.className = 'celda';
       if (llenas.indexOf(i) !== -1) div.classList.add('llena');
-      if (arriba.indexOf(i) !== -1) div.classList.add('pieza');
+      if (arriba.indexOf(i) !== -1) { div.classList.add('pieza'); div.classList.add('t-' + clavePieza); }
       if (extra.marcarHueco && hueco.indexOf(i) !== -1) div.classList.add('sugerida');
-      if (extra.encajada && hueco.indexOf(i) !== -1) div.classList.add('encajada');
+      if (extra.encajada && hueco.indexOf(i) !== -1) { div.classList.add('encajada'); div.classList.add('t-' + clavePieza); }
       tableroEl.appendChild(div);
     }
   }
