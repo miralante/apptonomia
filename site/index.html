@@ -37,10 +37,19 @@
       <button type="button" class="btn btn-secundario" id="btnActualizar" data-i18n="btnActualizar">🔄 Actualizar ahora</button>
     </div>
 
+    <nav class="anclas-modulo" aria-label="Ir a un módulo">
+      <a href="#mod-1" class="ancla-modulo" style="--acento: var(--mod-coordinacion);"><span data-i18n="mod1">🎯 Puntería y manos</span></a>
+      <a href="#mod-2" class="ancla-modulo" style="--acento: var(--mod-secuencia);"><span data-i18n="mod2">📋 Mi día a día</span></a>
+      <a href="#mod-3" class="ancla-modulo" style="--acento: var(--mod-memoria);"><span data-i18n="mod3">🧠 Memoria y atención</span></a>
+      <a href="#mod-4" class="ancla-modulo" style="--acento: var(--mod-razonamiento);"><span data-i18n="mod4">🔢 Pensar y contar</span></a>
+      <a href="#mod-5" class="ancla-modulo" style="--acento: var(--mod-lenguaje);"><span data-i18n="mod5">💬 Lenguaje y palabras</span></a>
+      <a href="#mod-6" class="ancla-modulo" style="--acento: var(--mod-emocional);"><span data-i18n="mod6">💜 Emociones</span></a>
+    </nav>
+
     <main class="pila modulos">
 
       <!-- Módulo 1: Coordinación -->
-      <section class="modulo" style="--acento: var(--mod-coordinacion); --acento-suave: var(--mod-coordinacion-suave);">
+      <section class="modulo" id="mod-1" style="--acento: var(--mod-coordinacion); --acento-suave: var(--mod-coordinacion-suave);">
         <h2><span aria-hidden="true" data-i18n="mod1">🎯 Puntería y manos</span></h2>
         <div class="grid-tarjetas">
           <a href="../tools/atrapa/index.html" class="tarjeta">
@@ -77,7 +86,7 @@
       </section>
 
       <!-- Módulo 2: Secuenciación -->
-      <section class="modulo" style="--acento: var(--mod-secuencia); --acento-suave: var(--mod-secuencia-suave);">
+      <section class="modulo" id="mod-2" style="--acento: var(--mod-secuencia); --acento-suave: var(--mod-secuencia-suave);">
         <h2><span aria-hidden="true" data-i18n="mod2">📋 Mi día a día</span></h2>
         <div class="grid-tarjetas">
           <a href="../tools/rutinas/index.html" class="tarjeta">
@@ -149,7 +158,7 @@
       </section>
 
       <!-- Módulo 3: Memoria y atención -->
-      <section class="modulo" style="--acento: var(--mod-memoria); --acento-suave: var(--mod-memoria-suave);">
+      <section class="modulo" id="mod-3" style="--acento: var(--mod-memoria); --acento-suave: var(--mod-memoria-suave);">
         <h2><span aria-hidden="true" data-i18n="mod3">🧠 Memoria y atención</span></h2>
         <div class="grid-tarjetas">
           <a href="../tools/parejas/index.html" class="tarjeta">
@@ -206,7 +215,7 @@
       </section>
 
       <!-- Módulo 4: Razonamiento y matemáticas -->
-      <section class="modulo" style="--acento: var(--mod-razonamiento); --acento-suave: var(--mod-razonamiento-suave);">
+      <section class="modulo" id="mod-4" style="--acento: var(--mod-razonamiento); --acento-suave: var(--mod-razonamiento-suave);">
         <h2><span aria-hidden="true" data-i18n="mod4">🔢 Pensar y contar</span></h2>
         <div class="grid-tarjetas">
           <a href="../tools/adivinanzas/index.html" class="tarjeta">
@@ -273,7 +282,7 @@
       </section>
 
       <!-- Módulo 5: Lenguaje y comunicación -->
-      <section class="modulo" style="--acento: var(--mod-lenguaje); --acento-suave: var(--mod-lenguaje-suave);">
+      <section class="modulo" id="mod-5" style="--acento: var(--mod-lenguaje); --acento-suave: var(--mod-lenguaje-suave);">
         <h2><span aria-hidden="true" data-i18n="mod5">💬 Lenguaje y palabras</span></h2>
         <div class="grid-tarjetas">
           <a href="../tools/comedy-club/index.html" class="tarjeta">
@@ -305,7 +314,7 @@
       </section>
 
       <!-- Módulo 6: Emociones y relaciones -->
-      <section class="modulo" style="--acento: var(--mod-emocional); --acento-suave: var(--mod-emocional-suave);">
+      <section class="modulo" id="mod-6" style="--acento: var(--mod-emocional); --acento-suave: var(--mod-emocional-suave);">
         <h2><span aria-hidden="true" data-i18n="mod6">💜 Emociones</span></h2>
         <div class="grid-tarjetas">
           <a href="../tools/emociones/index.html" class="tarjeta">

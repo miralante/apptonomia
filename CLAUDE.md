@@ -25,9 +25,28 @@ debe poder entenderse y usarse de forma autónoma.
 # Servidor local (desde la raíz del repo)
 python -m http.server 8080
 # Abrir: http://localhost:8080/site/index.html
+
+# Comprobación estructural (sin dependencias, antes de cualquier commit)
+node scripts/check.js
 ```
 
-No hay tests automatizados ni linter. La verificación es manual (ver checklist en PLAN.md §5, Fase 5).
+No hay tests de comportamiento ni linter de estilo. `scripts/check.js` sí
+cubre lo estructural (sintaxis, anatomía de `tools/<slug>/`, caché de
+`sw.js`, paridad es/en, paridad de catálogo con `site/` y `equipo/`,
+conteos de actividades, y el patrón `DATA.porRonda` que ya rompió dos
+herramientas — ver su cabecera para el detalle). El resto de la
+verificación es manual (ver checklist en PLAN.md §5, Fase 5).
+
+**Coordinación entre sesiones**: este repo se trabaja con varias sesiones
+de agente en paralelo (y el usuario también commitea directamente). Al
+EMPEZAR cualquier sesión, antes de construir nada:
+```bash
+git status && git log --oneline -3 && node scripts/check.js
+```
+Si hay cambios sin commitear que no son tuyos, o `check.js` falla, es
+trabajo de otra sesión — reconciliar primero (leer qué cambió, decidir si
+hace falta terminarlo) en vez de asumir que el estado del repo coincide
+con la última conversación.
 
 Es una PWA: una vez desplegada (HTTPS real), es instalable como aplicación de
 escritorio o de móvil.
@@ -331,4 +350,14 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       las jugables (regla 12). Finales sin castigo: ganar da estrella,
       perder da ánimo, el cierre por bloqueo compara fichas restantes y el
       empate se celebra. Regla 13: única variable es maxPips (3/5/6).
+- [x] Parte G de PLAN-MEJORAS.md (2026-07-10, G1/G3/G4): `scripts/check.js`
+      amplía sus 5 comprobaciones a 8 (paridad con `equipo/`, conteos
+      README/SPEC sincronizados, lint del patrón `DATA.porRonda` que rompió
+      la-frase/palabras — las tres verificadas rompiendo el caso real y
+      comprobando que el checker lo detecta); anclas de módulo en la
+      portada (`site/index.html`, 6 enlaces `#mod-N` con teclado y sin JS,
+      scroll suave ya respetado por `prefers-reduced-motion` de
+      `base.css`); nota de coordinación entre sesiones en este archivo.
+      G2 (borrar `temp_original_data.js`) y G5 (smoke-test con Playwright
+      como devDependency) siguen pendientes de aprobación del usuario.
 - [ ] Backlog transversal — ver PLAN.md §7 (modo cuidador, multi-perfil, etc.)

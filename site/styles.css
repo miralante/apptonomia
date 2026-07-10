@@ -29,6 +29,39 @@
   background: var(--mod-coordinacion-suave);
 }
 
+/* Anclas de módulo: acceso directo a cada sección sin hacer scroll
+   por las ~49 tarjetas. Enlaces normales (funcionan con teclado y
+   sin JS); el scroll suave global de assets/css/base.css ya respeta
+   prefers-reduced-motion. */
+.anclas-modulo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio);
+  justify-content: center;
+  padding: var(--espacio) 0;
+}
+
+.ancla-modulo {
+  display: flex;
+  align-items: center;
+  min-height: var(--boton-min);
+  padding: 8px var(--espacio);
+  font-family: var(--fuente);
+  font-size: var(--texto-pequeno);
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--color-texto);
+  background: var(--color-superficie);
+  border: 3px solid var(--acento);
+  border-radius: var(--radio);
+}
+
+.ancla-modulo:hover,
+.ancla-modulo:focus-visible {
+  background: var(--acento);
+  color: #FFFFFF;
+}
+
 .cabecera {
   display: flex;
   flex-direction: column;
