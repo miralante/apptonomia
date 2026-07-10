@@ -1,19 +1,18 @@
 # PLAN-MEJORAS.md — Plan de mejoras auditadas (2026-07-07)
 
-> **ESTADO (2026-07-10): TODO EL PLAN ESTÁ EJECUTADO** — Partes A, B, C,
-> E1-E6, F1-F4, toda la G (G1-G5), D2-ítems 1 y 3, y D3 (verificado en el
-> repo: fuentes en `assets/fonts/`, `scripts/check.js` con 8
-> comprobaciones, `scripts/smoke.js` con Playwright, wake lock en
-> `utils.js`, `core.descanso`, export/import en `/ajustes/`, 4ª columna en
-> `equipo/`, anclas de módulo en la portada, `temp_original_data.js`
-> borrado, `tools/la-calle/`, `tools/mi-cuerpo-avisa/`,
-> `tools/emergencias/`, `tools/la-compra/`, `patrones` nivel 4,
-> preferencias de tamaño de letra y sonidos, "Progreso por actividad" en
-> `/ajustes/`). NO volver a ejecutar nada de esto. Solo quedan D1
-> (resuelto de facto por E4/mi-cuerpo-avisa, sin acción propia) y
-> D2-ítems 2 y 4 (pictogramas ARASAAC, multi-perfil — el propio plan dice
-> "no empezar en frío", requieren diseño previo con el usuario si algún
-> día se retoman).
+> **ESTADO (2026-07-10): PLAN CERRADO POR COMPLETO** — Partes A, B, C,
+> E1-E6, F1-F4, toda la G (G1-G5), D2 (ítems 1 y 3; los ítems 2 y 4 —
+> pictogramas ARASAAC y multi-perfil— se retiraron del plan a petición del
+> usuario, no se van a ejecutar) y D3 (verificado en el repo: fuentes en
+> `assets/fonts/`, `scripts/check.js` con 8 comprobaciones, `scripts/
+> smoke.js` con Playwright, wake lock en `utils.js`, `core.descanso`,
+> export/import en `/ajustes/`, 4ª columna en `equipo/`, anclas de módulo
+> en la portada, `temp_original_data.js` borrado, `tools/la-calle/`,
+> `tools/mi-cuerpo-avisa/`, `tools/emergencias/`, `tools/la-compra/`,
+> `patrones` nivel 4, preferencias de tamaño de letra y sonidos, "Progreso
+> por actividad" en `/ajustes/`). NO volver a ejecutar nada de esto. Solo
+> queda D1 (resuelto de facto por E4/mi-cuerpo-avisa, sin acción propia).
+> No hay ítems pendientes de aprobación.
 
 Plan ejecutable escrito para que lo siga **cualquier modelo/agente, incluso uno
 poco capaz**. Cada tarea tiene: archivo exacto, cambio exacto (texto viejo →
@@ -263,11 +262,7 @@ un agente:
    aplicada una sola vez en el núcleo compartido (`--escala-texto` en
    `tokens.css`, leída y aplicada por `storage.js` en toda página, sonidos
    respetados por `feedback.js`). Commit `b12d85f`.
-2. **Pendiente** — Pictogramas ARASAAC locales (licencia CC BY-NC-SA, citar
-   autoría) para sustituir emojis donde la precisión importa (rutinas,
-   categorías, emociones): trabajo mecánico pero voluminoso; requiere
-   descargar assets. No ejecutado.
-3. **✔ Hecho** — Modo cuidador: nueva sección "Progreso por actividad" en
+2. **✔ Hecho** — Modo cuidador: nueva sección "Progreso por actividad" en
    `/ajustes/`, vista de solo lectura con las estrellas guardadas de las 53
    actividades agrupadas por módulo (igual que las tablas de `/equipo/`,
    filas estáticas en el HTML con `data-tool="<slug>"`; JS solo rellena el
@@ -277,9 +272,6 @@ un agente:
    sembradas en localStorage se reflejan correctamente tras recargar, sin
    errores de consola. `sw.js` v52→v53 (solo contenido, ningún archivo
    nuevo).
-4. **Pendiente** — Multi-perfil local y dificultad adaptativa: los más
-   grandes; requieren diseño previo con el usuario, no empezar en frío. No
-   ejecutado.
 
 ### D3. ✔ Hecho — Hueco de la taxonomía: "codificación/decodificación"
 

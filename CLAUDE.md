@@ -402,4 +402,13 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       la aplica al cargar cualquier página, `feedback.js` respeta la
       preferencia de sonidos — así las 53 actividades la heredan sin tocar
       ni una). Herramientas ahora 53, sw v51→v52.
-- [ ] Backlog transversal — ver PLAN.md §7 (modo cuidador, multi-perfil, etc.)
+- [x] D2-ítem3 de PLAN-MEJORAS.md "modo cuidador" (2026-07-10, el usuario
+      eligió este ítem entre los 3 pendientes de D2): nueva sección
+      "Progreso por actividad" en `/ajustes/`, vista de solo lectura con
+      las estrellas de las 53 actividades agrupadas por módulo, mismo
+      patrón visual que las tablas de `/equipo/` (filas estáticas con
+      `data-tool="<slug>"`, JS solo rellena "⭐ N" o "Sin empezar").
+      `equipo/` enlaza a la vista. sw v52→v53. A petición del usuario, los
+      otros dos ítems del backlog transversal (pictogramas ARASAAC,
+      multi-perfil/dificultad adaptativa) se han retirado del plan — ver
+      `PLAN.md` §7, ya no son trabajo pendiente.

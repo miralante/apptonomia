@@ -590,14 +590,13 @@ y checklist §5-Fase 5 pasado.
 | `numeros` — 8 actividades con cifras coloreadas por posición (azul unidades, verde decenas, morado centenas; coma y signos en naranja): contar de 1/2/5/10 en 10, unidades-decenas-centenas con bloques y lectura de números hasta el billón, fracciones con figuras, decimales con precios, tablas de sumar con puntos, tablas de multiplicar con filas, cálculo mental (dobles, +10/+100/+1.000) y conversión de medidas (metro, kilo, litro) | Razonamiento/Matemáticas | Numeración, valor posicional, operaciones, fracciones, decimales, dinero, medidas |
 
 ### Transversales (cuando haya masa crítica de actividades)
-- Modo cuidador/profesional: pantalla opcional con historial de progreso por actividad.
+- Modo cuidador/profesional: historial de progreso por actividad. ✔ Hecho — sección
+  "Progreso por actividad" en `/ajustes/` (PLAN-MEJORAS.md D2-ítem3).
 - Rutinas personalizables desde la interfaz (editor simple para familiares).
-- Pictogramas ARASAAC descargados localmente (licencia CC BY-NC-SA, citar autoría) para
-  sustituir emojis donde la precisión del picto importe (rutinas, categorías, emociones).
-- Ajustes de usuario: tamaño de letra, activar/desactivar sonidos, modo oscuro.
-  (No confundir con `/ajustes/`, la ruta oculta ya implementada para ver/borrar
-  `localStorage` — ver `CLAUDE.md` y `SPEC.md` §8.2. Si se construye esta lista de
-  ajustes visibles para la persona usuaria, sería una pantalla nueva y distinta.)
-- Multi-perfil local (varios usuarios en el mismo dispositivo).
-- Dificultad adaptativa suave: si hay muchos fallos seguidos, bajar de nivel sin avisar
-  como castigo; si hay muchos aciertos, ofrecer subir ("¿Quieres probar uno más difícil?").
+- Ajustes de usuario: tamaño de letra, activar/desactivar sonidos. ✔ Hecho — sección
+  "Preferencias de la persona usuaria" en `/ajustes/` (PLAN-MEJORAS.md D2-ítem1). Modo
+  oscuro sigue sin implementar.
+
+Retirados del plan a petición del usuario (2026-07-10): pictogramas ARASAAC locales
+para sustituir emojis, multi-perfil local y dificultad adaptativa. No son trabajo
+pendiente.
