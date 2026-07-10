@@ -79,7 +79,7 @@
     }
 
     mostrar(pantallaRespuesta);
-    App.tts.speak(emo.mensaje + ' ' + emo.sugerencia.texto);
+    /* El audio solo se reproduce si el usuario pulsa el botón "Escuchar" (btnOirRespuesta) */
   }
 
   /* ---- Ejercicio de respiración (3 ciclos) ---- */

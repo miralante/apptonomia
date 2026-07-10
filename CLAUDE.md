@@ -375,4 +375,31 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       (devDependency, como `firebase-tools`) que abre las 49 actividades en
       es/en, pulsa el primer nivel si lo hay, y falla con cualquier error
       de consola. Las 49 pasan limpio (98 pruebas) en la primera pasada.
+- [x] Parte D + E3-E6 de PLAN-MEJORAS.md (2026-07-10, con aprobación del
+      usuario): 4 actividades nuevas de terapia ocupacional —
+      `tools/la-calle/` (movilidad comunitaria: cruzar, transporte,
+      perderse; clon de ¿Qué hago primero?), `tools/mi-cuerpo-avisa/`
+      (interocepción, módulo Emociones — resuelve D1 dándole una 4ª
+      herramienta al módulo más pequeño; clon de ¿Qué necesito?),
+      `tools/emergencias/` (menú de 2 actividades: reconocer una emergencia
+      real —quiz que mezcla emergencias con "falsas alarmas"— y practicar
+      la llamada —ordenar nombre→qué pasa→dónde estás, motor de Lista de
+      Tareas—; deja clarísimo que el 112 es solo para emergencias de
+      verdad), `tools/la-compra/` (menú de 2 actividades: secciones del
+      súper —clon de ¿Dónde lo guardo?— y lista de la compra por comida
+      del día —clon de Partes del Día—; cierra la cadena de AVD
+      instrumental con El Monedero y La Casa). Un bug real de las
+      herramientas con menú de 2 actividades: en `la-compra` los `momentos`
+      de la lista acumulativa se pusieron por error dentro de cada NIVEL en
+      vez de al nivel superior (como en Partes del Día) — `banco().lista.
+      momentos` salía `undefined` y crasheaba al elegir nivel; lo encontró
+      Playwright jugando la actividad de verdad, no una lectura del código.
+      También D3 (`tools/patrones/` nivel 4 "Descifra el código",
+      símbolo→letra, mismo motor de secuencia — cierra el hueco de la
+      taxonomía en PLAN.md §4.1) y D2 ítem 1 (preferencias de tamaño de
+      letra y sonidos en `/ajustes/`, aplicadas UNA VEZ en el núcleo
+      compartido — `--escala-texto` en `tokens.css` + `storage.js` la lee y
+      la aplica al cargar cualquier página, `feedback.js` respeta la
+      preferencia de sonidos — así las 53 actividades la heredan sin tocar
+      ni una). Herramientas ahora 53, sw v51→v52.
 - [ ] Backlog transversal — ver PLAN.md §7 (modo cuidador, multi-perfil, etc.)

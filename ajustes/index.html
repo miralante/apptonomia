@@ -48,6 +48,27 @@
         <p class="feedback" id="feedbackImportar" aria-live="polite"></p>
       </section>
 
+      <section id="preferencias" class="card">
+        <h2>Preferencias de la persona usuaria</h2>
+        <p>Estos ajustes se aplican en todas las actividades. Los cambia quien gestiona el
+          dispositivo; la persona usuaria no necesita venir a esta página.</p>
+
+        <p class="etiqueta-pref">Tamaño de letra</p>
+        <div class="selector-pref" id="selectorTamano" role="group" aria-label="Tamaño de letra">
+          <button type="button" class="btn-pref" data-valor="normal" aria-pressed="false">Normal</button>
+          <button type="button" class="btn-pref" data-valor="grande" aria-pressed="false">Grande</button>
+          <button type="button" class="btn-pref" data-valor="muygrande" aria-pressed="false">Muy grande</button>
+        </div>
+
+        <p class="etiqueta-pref">Sonidos de acierto y ánimo</p>
+        <div class="selector-pref" id="selectorSonidos" role="group" aria-label="Sonidos">
+          <button type="button" class="btn-pref" data-valor="on" aria-pressed="false">🔊 Activados</button>
+          <button type="button" class="btn-pref" data-valor="off" aria-pressed="false">🔇 Desactivados</button>
+        </div>
+        <p class="nota-reset">Esto no afecta a la voz que lee los textos (🔊 de cada pantalla),
+          solo a los pitidos cortos de acierto y ánimo.</p>
+      </section>
+
       <section id="reset-persona" class="card tarjeta-reset">
         <h2>Restablecer los datos de la persona</h2>
         <p>Borra el <strong>idioma elegido</strong> (la próxima vez se detecta de nuevo o se

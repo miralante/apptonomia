@@ -105,6 +105,41 @@
     });
   }
 
+  /* --- Preferencias (D2 de PLAN-MEJORAS.md): tamaño de letra y sonidos.
+     Se guardan juntas en 'apptonomia:prefs' (un único objeto JSON, no una
+     clave por preferencia) para no ensuciar listaToolIds()/estrellasTotales()
+     con más claves que excluir — storage.js ya excluye 'prefs' entera. */
+  function pintarPreferencias() {
+    var prefs = App.storage.get('prefs');
+    var tamano = prefs.tamanoLetra || 'normal';
+    var sonidos = prefs.sonidos !== false ? 'on' : 'off';
+    App.utils.$$('#selectorTamano .btn-pref').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.dataset.valor === tamano ? 'true' : 'false');
+    });
+    App.utils.$$('#selectorSonidos .btn-pref').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.dataset.valor === sonidos ? 'true' : 'false');
+    });
+  }
+
+  function guardarPreferencia(clave, valor) {
+    var prefs = App.storage.get('prefs');
+    prefs[clave] = valor;
+    App.storage.set('prefs', prefs);
+    if (clave === 'tamanoLetra') {
+      var ESCALA = { normal: 1, grande: 1.15, muygrande: 1.3 };
+      document.documentElement.style.setProperty('--escala-texto', ESCALA[valor] || 1);
+    }
+    pintarPreferencias();
+  }
+
+  App.utils.$$('#selectorTamano .btn-pref').forEach(function (b) {
+    b.addEventListener('click', function () { guardarPreferencia('tamanoLetra', b.dataset.valor); });
+  });
+  App.utils.$$('#selectorSonidos .btn-pref').forEach(function (b) {
+    b.addEventListener('click', function () { guardarPreferencia('sonidos', b.dataset.valor === 'on'); });
+  });
+  pintarPreferencias();
+
   /* Confirmación en dos pasos sobre un mismo botón. */
   function confirmarDoble(btn, textoNormal, textoConfirmar, alConfirmar) {
     var confirmando = false;
@@ -144,6 +179,7 @@
 
   function resetApp() {
     App.storage.remove('locale');
+    App.storage.remove('prefs');
     App.storage.listaToolIds().forEach(function (id) {
       App.storage.remove(id);
     });

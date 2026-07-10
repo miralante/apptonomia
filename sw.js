@@ -3,7 +3,7 @@
    Estrategia cache-first del app shell (funciona offline).
    Al añadir archivos nuevos: añadirlos a ARCHIVOS y subir VERSION.
    ============================================================ */
-var VERSION = 'apptonomia-v51';
+var VERSION = 'apptonomia-v52';
 
 var ARCHIVOS = [
   './',
@@ -266,6 +266,26 @@ var ARCHIVOS = [
   './tools/que-me-pongo/data.js',
   './tools/que-me-pongo/strings.js',
   './tools/que-me-pongo/styles.css',
+  './tools/la-calle/index.html',
+  './tools/la-calle/app.js',
+  './tools/la-calle/data.js',
+  './tools/la-calle/strings.js',
+  './tools/la-calle/styles.css',
+  './tools/mi-cuerpo-avisa/index.html',
+  './tools/mi-cuerpo-avisa/app.js',
+  './tools/mi-cuerpo-avisa/data.js',
+  './tools/mi-cuerpo-avisa/strings.js',
+  './tools/mi-cuerpo-avisa/styles.css',
+  './tools/emergencias/index.html',
+  './tools/emergencias/app.js',
+  './tools/emergencias/data.js',
+  './tools/emergencias/strings.js',
+  './tools/emergencias/styles.css',
+  './tools/la-compra/index.html',
+  './tools/la-compra/app.js',
+  './tools/la-compra/data.js',
+  './tools/la-compra/strings.js',
+  './tools/la-compra/styles.css',
   './tools/piano-teclas/index.html',
   './tools/piano-teclas/app.js',
   './tools/piano-teclas/data.js',

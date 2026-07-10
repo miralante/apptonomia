@@ -1,10 +1,17 @@
 /* ============================================================
-   Datos: series de patrones para completar (3 niveles).
+   Datos: series de patrones para completar (4 niveles).
    Formato: DATA[locale].niveles = [{ id, nombre, descripcion, estrellas, series }]
    Cada serie: { patron: string[] (termina en '❓'), opciones: string[3], correcta: indice }
    Nivel 1: parejas de color/forma alternas (AB).
    Nivel 2: series de tres elementos (ABC) y progresiones de tamano (circulos).
    Nivel 3: series numericas (+1, +2, +5, +10, dobles).
+   Nivel 4: codificación/decodificación símbolo→letra (cierra el hueco de la
+   taxonomía en PLAN.md §4.1). Cada patrón repite un par [símbolo, letra]
+   dos veces completas (p. ej. ★ A ● B ★ A ● ❓) para enseñar la
+   correspondencia dentro del propio ítem, y termina pidiendo la letra
+   que falta — sigue siendo "continuar la secuencia, 3 opciones", el
+   mismo motor sin cambios; solo cambia el tipo de contenido a decodificar
+   (regla 13: una sola variable respecto al nivel 3).
    Las series (patron/opciones/correcta) son símbolos y números: no cambian
    entre idiomas. Solo el nombre y la descripción de cada nivel se traducen
    (ver NOMBRES_NIVEL). Para ampliar: añadir series al array del nivel
@@ -988,6 +995,24 @@ const NIVELES_BASE = [
           "correcta": 0
         }
       ]
+    },
+    {
+      "id": 4,
+      "estrellas": 4,
+      "series": [
+        { "patron": ["★", "A", "●", "B", "★", "A", "●", "❓"], "opciones": ["B", "A", "C"], "correcta": 0 },
+        { "patron": ["●", "B", "★", "A", "●", "B", "★", "❓"], "opciones": ["A", "B", "C"], "correcta": 0 },
+        { "patron": ["▲", "C", "■", "D", "▲", "C", "■", "❓"], "opciones": ["D", "C", "A"], "correcta": 0 },
+        { "patron": ["■", "D", "▲", "C", "■", "D", "▲", "❓"], "opciones": ["C", "D", "B"], "correcta": 0 },
+        { "patron": ["♦", "E", "♥", "F", "♦", "E", "♥", "❓"], "opciones": ["F", "E", "A"], "correcta": 0 },
+        { "patron": ["♥", "F", "♦", "E", "♥", "F", "♦", "❓"], "opciones": ["E", "F", "C"], "correcta": 0 },
+        { "patron": ["☀", "G", "☾", "H", "☀", "G", "☾", "❓"], "opciones": ["H", "G", "D"], "correcta": 0 },
+        { "patron": ["☾", "H", "☀", "G", "☾", "H", "☀", "❓"], "opciones": ["G", "H", "E"], "correcta": 0 },
+        { "patron": ["★", "A", "▲", "C", "★", "A", "▲", "❓"], "opciones": ["C", "A", "B"], "correcta": 0 },
+        { "patron": ["●", "B", "■", "D", "●", "B", "■", "❓"], "opciones": ["D", "B", "A"], "correcta": 0 },
+        { "patron": ["♦", "E", "☀", "G", "♦", "E", "☀", "❓"], "opciones": ["G", "E", "H"], "correcta": 0 },
+        { "patron": ["♥", "F", "☾", "H", "♥", "F", "☾", "❓"], "opciones": ["H", "F", "G"], "correcta": 0 }
+      ]
     }
 ];
 
@@ -996,12 +1021,14 @@ const NOMBRES_NIVEL = {
   es: {
     1: { nombre: 'Nivel 1', descripcion: 'Colores y formas' },
     2: { nombre: 'Nivel 2', descripcion: 'Series de 3 y tamaños' },
-    3: { nombre: 'Nivel 3', descripcion: 'Números' }
+    3: { nombre: 'Nivel 3', descripcion: 'Números' },
+    4: { nombre: 'Nivel 4', descripcion: 'Descifra el código' }
   },
   en: {
     1: { nombre: 'Level 1', descripcion: 'Colours and shapes' },
     2: { nombre: 'Level 2', descripcion: 'Sets of 3 and sizes' },
-    3: { nombre: 'Level 3', descripcion: 'Numbers' }
+    3: { nombre: 'Level 3', descripcion: 'Numbers' },
+    4: { nombre: 'Level 4', descripcion: 'Crack the code' }
   }
 };
 

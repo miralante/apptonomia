@@ -42,6 +42,10 @@
       dondeloguardo_nombre: '¿Dónde lo guardo?', dondeloguardo_detalle: 'Cada cosa en su sitio.',
       listatareas_nombre: 'Lista de Tareas', listatareas_detalle: 'Ordena tareas de casa y trabajo.',
       quemepongo_nombre: '¿Qué me pongo?', quemepongo_detalle: 'Viste según el tiempo que hace.',
+      lacalle_nombre: 'La Calle', lacalle_detalle: 'Cruza y muévete con seguridad.',
+      emergencias_nombre: 'Emergencias', emergencias_detalle: 'Reconoce y practica pedir ayuda.',
+      lacompra_nombre: 'La Compra', lacompra_detalle: 'Secciones del súper y tu lista.',
+      micuerpoavisa_nombre: 'Mi Cuerpo Me Avisa', micuerpoavisa_detalle: 'Nota lo que sientes y cuida de ti.',
 
       parejas_nombre: 'Parejas', parejas_detalle: 'Busca las cartas iguales.',
       diferencias_nombre: 'Diferencias', diferencias_detalle: 'Busca lo que es distinto.',
@@ -113,6 +117,10 @@
       dondeloguardo_nombre: 'Where Do I Keep It?', dondeloguardo_detalle: 'Everything in its place.',
       listatareas_nombre: 'Task List', listatareas_detalle: 'Organize home and work tasks.',
       quemepongo_nombre: 'What Do I Wear?', quemepongo_detalle: 'Dress for the weather.',
+      lacalle_nombre: 'The Street', lacalle_detalle: 'Cross and move around safely.',
+      emergencias_nombre: 'Emergencies', emergencias_detalle: 'Recognize and practice asking for help.',
+      lacompra_nombre: 'The Shopping', lacompra_detalle: 'Shop sections and your list.',
+      micuerpoavisa_nombre: 'My Body Tells Me', micuerpoavisa_detalle: 'Notice how you feel and take care of yourself.',
 
       parejas_nombre: 'Pairs', parejas_detalle: 'Find the matching cards.',
       diferencias_nombre: 'Differences', diferencias_detalle: 'Find what is different.',

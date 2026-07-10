@@ -11,6 +11,27 @@
 
   var PREFIJO = 'apptonomia:';
 
+  /* Claves de 'apptonomia:*' que NO son progreso de una actividad:
+     'locale' (idioma) y 'prefs' (tamaño de letra, sonidos — ver
+     /ajustes/). Se excluyen de estrellasTotales() y listaToolIds(). */
+  var CLAVES_NO_HERRAMIENTA = ['locale', 'prefs'];
+
+  /* Aplica ya mismo la preferencia de tamaño de letra guardada en
+     /ajustes/ (regla: una sola vez en el núcleo compartido, nunca por
+     herramienta — storage.js se carga en site/ y en todas las
+     actividades antes de pintar nada). Por defecto --escala-texto
+     queda en 1 (tokens.css), así que quien no haya tocado la
+     preferencia no ve ningún cambio. */
+  (function aplicarTamanoLetra() {
+    try {
+      var raw = localStorage.getItem(PREFIJO + 'prefs');
+      var prefs = raw ? JSON.parse(raw) : {};
+      var ESCALA = { normal: 1, grande: 1.15, muygrande: 1.3 };
+      var escala = ESCALA[prefs.tamanoLetra] || 1;
+      document.documentElement.style.setProperty('--escala-texto', escala);
+    } catch (e) { /* silencio: se queda el tamaño por defecto */ }
+  })();
+
   /**
    * Lee el progreso de una herramienta.
    * @param {string} toolId - slug de la herramienta, p. ej. 'parejas'
@@ -62,7 +83,8 @@
     for (var i = 0; i < localStorage.length; i++) {
       try {
         var clave = localStorage.key(i);
-        if (!clave || clave.indexOf(PREFIJO) !== 0 || clave === PREFIJO + 'locale') continue;
+        if (!clave || clave.indexOf(PREFIJO) !== 0) continue;
+        if (CLAVES_NO_HERRAMIENTA.indexOf(clave.slice(PREFIJO.length)) !== -1) continue;
         var datos = JSON.parse(localStorage.getItem(clave) || '{}');
         if (datos && typeof datos.estrellas === 'number') {
           total += datos.estrellas;
@@ -74,7 +96,7 @@
 
   /**
    * Ids de todas las herramientas con algo guardado (sin el prefijo,
-   * y sin 'locale', que no es una herramienta). Usado por ajustes/
+   * y sin las claves de CLAVES_NO_HERRAMIENTA). Usado por ajustes/
    * para mostrar el estado y para el restablecimiento completo.
    * @returns {string[]}
    */
@@ -83,9 +105,9 @@
     try {
       for (var i = 0; i < localStorage.length; i++) {
         var clave = localStorage.key(i);
-        if (clave && clave.indexOf(PREFIJO) === 0 && clave !== PREFIJO + 'locale') {
-          out.push(clave.slice(PREFIJO.length));
-        }
+        if (!clave || clave.indexOf(PREFIJO) !== 0) continue;
+        var id = clave.slice(PREFIJO.length);
+        if (CLAVES_NO_HERRAMIENTA.indexOf(id) === -1) out.push(id);
       }
     } catch (e) { /* ignorar */ }
     return out;

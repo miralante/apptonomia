@@ -60,16 +60,16 @@ apptonomia/
 └── sw.js              # Service worker (cache offline)
 ```
 
-## Actividades (49)
+## Actividades (53)
 
 | Módulo | Actividades |
 |---|---|
 | 🎯 Puntería y manos (coordinación) | Atrapa, Teclado, Trazos, Colorear, Piano, Constructores |
-| 📋 Mi día a día (autonomía y hogar) | Mis Rutinas, La Casa, Situaciones, Chat Seguro, Chat Acoso, ¿Lo publico?, Señales, Partes del Día, ¿Qué hago primero?, ¿Qué necesito?, ¿Dónde lo guardo?, Lista de Tareas, ¿Qué me pongo? |
+| 📋 Mi día a día (autonomía y hogar) | Mis Rutinas, La Casa, Situaciones, Chat Seguro, Chat Acoso, ¿Lo publico?, Señales, Partes del Día, ¿Qué hago primero?, ¿Qué necesito?, ¿Dónde lo guardo?, Lista de Tareas, ¿Qué me pongo?, La Calle, Emergencias, La Compra |
 | 🧠 Memoria y atención | Parejas, Diferencias, ¿Qué falta?, Ecos, Giros y Espejos, Los Bloques, ¿Dónde está?, El Camino, Encaja la Pieza, El Teatro |
 | 🔢 Pensar y contar (razonamiento y matemáticas) | Adivinanzas, Patrones, Los Números, El Monedero, El Reloj, Historias, ¿Qué no encaja?, Puzzle, La Oca, Tres en Raya, Sudoku Visual, Dominó |
 | 💬 Lenguaje y palabras | Chistes, Dichos, Categorías, La Frase, Palabras |
-| 💜 Emociones | ¿Cómo me siento?, Calma, Entre Amigos |
+| 💜 Emociones | ¿Cómo me siento?, Calma, Entre Amigos, Mi Cuerpo Me Avisa |
 
 Para añadir una actividad nueva: receta en `SPEC.md` §4 y reglas en `CLAUDE.md`.
 Para añadir un idioma nuevo: receta en `I18N.md` §5.

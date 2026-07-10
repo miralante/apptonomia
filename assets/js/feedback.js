@@ -14,10 +14,18 @@
     return '';
   }
 
-  /* Sonido suave con Web Audio (sin archivos). Falla en silencio. */
+  /* Sonido suave con Web Audio (sin archivos). Falla en silencio.
+     Respeta la preferencia "Sonidos" de /ajustes/ (por defecto
+     activados: solo se silencia si alguien la ha puesto a false). */
   var audioCtx = null;
 
+  function sonidosActivados() {
+    if (!window.App.storage) return true;
+    return App.storage.get('prefs').sonidos !== false;
+  }
+
   function tono(frecuencia, duracion, tipo) {
+    if (!sonidosActivados()) return;
     try {
       if (!audioCtx) {
         var AC = window.AudioContext || window.webkitAudioContext;

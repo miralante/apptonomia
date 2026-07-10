@@ -153,6 +153,9 @@ Cubre: AVD, aseo, tareas del hogar, organización, situaciones cotidianas, gesti
 | ¿Dónde lo guardo? — organización: clasificar objetos por su sitio de almacenaje (armario/nevera/mochila) | `tools/donde-lo-guardo/` | ✔ Hecha |
 | Lista de Tareas — ordenar tareas mixtas de casa, trabajo y cuidado personal en su orden lógico del día | `tools/lista-tareas/` | ✔ Hecha |
 | ¿Qué me pongo? — elegir ropa adecuada según el tiempo (calor/frío/lluvia) para torso, piernas, pies y extra | `tools/que-me-pongo/` | ✔ Hecha |
+| La Calle — movilidad comunitaria: cruzar, transporte, perderse, a quién seguir | `tools/la-calle/` | ✔ Hecha |
+| Emergencias — reconocer una emergencia real y practicar la estructura de pedir ayuda (112) | `tools/emergencias/` | ✔ Hecha |
+| La Compra — secciones del súper y planificar la lista de la compra por comida del día | `tools/la-compra/` | ✔ Hecha |
 
 ### Módulo 3 — Memoria y atención (naranja `--mod-memoria`)
 Cubre: memoria visual/auditiva/verbal, corto plazo, atención sostenida, percepción global y de detalles.
@@ -209,6 +212,7 @@ gestión de conflictos, respiración, conciencia interior.
 | ¿Cómo me siento? — identificador de emociones + registro semanal | `tools/emociones/` | ✔ Hecha |
 | Calma — sesiones guiadas de respiración y relajación | `tools/calma/` | ✔ Hecha |
 | Entre Amigos — reconocer emociones en otros y resolver conflictos sencillos | `tools/entre-amigos/` | ✔ Hecha |
+| Mi Cuerpo Me Avisa — interocepción: notar señales del cuerpo y elegir qué hacer | `tools/mi-cuerpo-avisa/` | ✔ Hecha |
 
 ### 4.1 Mapa de cobertura de la taxonomía terapéutica
 
@@ -222,7 +226,7 @@ Estado de cada área de la taxonomía de objetivos:
 | Razonamiento: deducción, inferencia, adivinación | ✔ | `adivinanzas` |
 | Razonamiento: ordenación de ideas, priorización | ✔ | `historias`, `la-casa` |
 | Razonamiento: coherencia temática | ✔ | `que-no-encaja` |
-| Razonamiento: codificación/decodificación | ⏳ Ola 3 | `patrones` nivel avanzado (símbolo→letra) |
+| Razonamiento: codificación/decodificación | ✔ Hecho | `patrones` nivel 4 "Descifra el código" (símbolo→letra, mismo motor de secuencia) |
 | Atención | ✔ | `diferencias`, `que-falta` |
 | Espacio / tiempo, orientación espacial | ✔ | `reloj`, `historias`, `puzzle` |
 | Memoria visual / corto plazo | ✔ | `parejas`, `que-falta` |

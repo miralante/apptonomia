@@ -32,6 +32,20 @@
 }
 #copia-progreso .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
+.etiqueta-pref { font-weight: 700; margin-top: var(--espacio); margin-bottom: 8px; }
+.selector-pref { display: flex; flex-wrap: wrap; gap: var(--espacio); }
+.btn-pref {
+  min-height: var(--boton-min); padding: 0 var(--espacio);
+  font-family: inherit; font-size: var(--texto-base); font-weight: 700;
+  color: var(--color-texto); background: var(--color-superficie);
+  border: 3px solid var(--color-borde); border-radius: var(--radio);
+  cursor: pointer;
+}
+.btn-pref:hover { border-color: var(--color-foco); }
+.btn-pref[aria-pressed="true"] {
+  border-color: var(--color-foco); background: var(--mod-coordinacion-suave);
+}
+
 .tarjeta-reset h2 { margin-bottom: 8px; }
 .tarjeta-reset .nota-reset { color: var(--color-texto-suave); font-size: var(--texto-pequeno); }
 .tarjeta-reset .btn { margin-top: var(--espacio); width: 100%; }

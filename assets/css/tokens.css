@@ -32,12 +32,16 @@
   --color-animo-suave: #F9EBE2;
   --color-estrella: #B8860B;
 
-  /* Tipografía */
+  /* Tipografía. --escala-texto la aplica assets/js/storage.js a partir
+     de la preferencia guardada en /ajustes/ (Normal=1/Grande/Muy grande);
+     por defecto 1, así que nadie que no haya tocado esa preferencia ve
+     ningún cambio. */
   --fuente: 'Atkinson Hyperlegible', 'Nunito', system-ui, -apple-system, sans-serif;
-  --texto-base: 20px;
-  --texto-pequeno: 17px;
-  --texto-grande: 28px;
-  --texto-titulo: 36px;
+  --escala-texto: 1;
+  --texto-base: calc(20px * var(--escala-texto));
+  --texto-pequeno: calc(17px * var(--escala-texto));
+  --texto-grande: calc(28px * var(--escala-texto));
+  --texto-titulo: calc(36px * var(--escala-texto));
 
   /* Táctil y espaciado */
   --boton-min: 64px;
