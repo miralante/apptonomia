@@ -133,7 +133,7 @@ Cubre: coordinación ojo-mano, motricidad fina, escritura y copia, dibujo.
 | Trazos — repasar formas y letras con el dedo/ratón | `tools/trazos/` | ✔ Hecha |
 | Colorear — pintar dibujos por zonas | `tools/colorear/` | ✔ Hecha |
 | Piano — tocar el teclado del ordenador como un piano (libre, seguir melodía, Simón dice, canciones, compositor) | `tools/piano-teclas/` | ✔ Hecha |
-| Constructores — construcción libre con bloques de colores, sin modelo ni acierto/fallo | `tools/constructores/` | ✔ Hecha |
+| Constructores — mundo de bloques estilo Minecraft: construcción libre (3 tamaños de mundo) o seguir un modelo con guía fantasma por casilla; equivocarse nunca penaliza | `tools/constructores/` | ✔ Hecha |
 
 ### Módulo 2 — Autonomía y hogar (verde `--mod-secuencia`)
 Cubre: AVD, aseo, tareas del hogar, organización, situaciones cotidianas, gestión del tiempo.

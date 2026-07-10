@@ -1,6 +1,16 @@
 /* ============================================================
    Apptonomia — Constructores (estilos)
-   Minecraft simplificado para visión-espacial y discapacidad intelectual
+   Minecraft simplificado. La zona de construcción es "el mundo":
+   cielo azul degradado con marco de tierra, y cada bloque lleva
+   una textura pixel-art hecha solo con gradientes CSS (sin
+   imágenes) + bisel 3D de luz/sombra, el look icónico de bloque
+   de Minecraft. El resto de la página (cabecera, instrucciones,
+   botones) sigue el tema claro normal de la app.
+   El fantasma del modo modelo se atenúa con una capa blanca por
+   box-shadow inset (así la textura de debajo sigue siendo la del
+   bloque objetivo) + borde de puntos; la casilla pendiente tras
+   la 2ª pista se marca en amarillo. Ambas señales usan forma y
+   borde, no solo color.
    ============================================================ */
 
 /* --- Pantalla inicio --- */
@@ -43,34 +53,46 @@
   cursor: pointer;
   transition: transform 0.15s, box-shadow 0.15s;
   min-height: 120px;
+  font-family: inherit;
 }
 
 .tarjeta-plantilla:hover,
 .tarjeta-plantilla:focus {
   transform: translateY(-2px);
   box-shadow: var(--sombra);
-  border-color: var(--mod-coordinacion, var(--color-acento));
+  border-color: var(--color-foco);
 }
 
 .tarjeta-plantilla:focus {
-  outline: 3px solid var(--color-acento);
+  outline: 3px solid var(--color-foco);
   outline-offset: 2px;
 }
 
 .preview-plantilla {
-  width: 80px;
-  height: 60px;
   display: grid;
-  gap: 2px;
+  gap: 1px;
+  background: linear-gradient(#BFE3F5, #E4F3FB);
+  padding: 3px;
+  border-radius: 6px;
 }
 
 .preview-plantilla .celda {
-  border-radius: 2px;
+  width: auto;
+  height: auto;
+  border-radius: 1px;
+  cursor: default;
+}
+
+.preview-plantilla .celda.sin-bloque {
+  background: transparent;
+  box-shadow: none;
 }
 
 .nombre-plantilla {
   font-weight: bold;
   text-align: center;
+  font-size: var(--texto-base);
+  color: var(--color-texto);
 }
 
 /* --- Pantalla de juego --- */
@@ -97,22 +119,26 @@
   color: var(--color-texto-suave);
 }
 
-/* --- Cuadrícula de construcción --- */
+/* --- El mundo: cielo azul con marco de tierra --- */
 #cuadricula {
   display: grid;
-  gap: 3px;
-  background: var(--color-borde);
-  padding: 3px;
-  border-radius: var(--radio);
-  border: 4px solid var(--color-texto);
+  gap: 2px;
+  padding: 8px;
+  background: linear-gradient(#8ECFF0 0%, #C9E9F8 70%, #DDF1FB 100%);
+  border: 8px solid #6B4226;
+  border-radius: 12px;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.25),
+    0 6px 0 #4A2D18,
+    0 10px 18px rgba(74, 45, 24, 0.35);
   touch-action: manipulation;
 }
 
 .celda {
   width: 56px;
   height: 56px;
-  background: var(--color-superficie);
-  border-radius: 4px;
+  background: transparent;
+  border-radius: 3px;
   cursor: pointer;
   transition: transform 0.1s, background-color 0.15s;
   display: flex;
@@ -120,45 +146,111 @@
   justify-content: center;
 }
 
+.celda.sin-bloque {
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(27, 108, 168, 0.18);
+}
+
 .celda:hover {
   transform: scale(1.05);
 }
 
 .celda:focus {
-  outline: 3px solid var(--color-acento);
+  outline: 3px solid var(--color-foco);
   outline-offset: -3px;
 }
 
-.celda.con-bloque {
-  cursor: pointer;
+/* --- Texturas de bloque (solo gradientes CSS, sin imágenes) ---
+   Todas llevan el mismo bisel: luz arriba-izquierda, sombra
+   abajo-derecha — el "relieve" clásico de bloque de Minecraft. */
+.bloque-tierra, .bloque-cesped, .bloque-piedra, .bloque-madera,
+.bloque-agua, .bloque-techo, .bloque-ladrillo, .bloque-arena {
+  box-shadow:
+    inset 3px 3px 0 rgba(255, 255, 255, 0.28),
+    inset -3px -3px 0 rgba(0, 0, 0, 0.28);
 }
 
-.celda.bloque-tierra { background: #8B4513; }
-.celda.bloque-piedra { background: #808080; }
-.celda.bloque-madera { background: #DEB887; }
-.celda.bloque-agua { background: #4169E1; }
-.celda.bloque-césped { background: #228B22; }
-.celda.bloque-techo { background: #B22222; }
-.celda.bloque-ladrillo { background: #CD5C5C; }
-.celda.bloque-arena { background: #F4A460; }
-.celda.bloque-nieve { background: #FFFAFA; border: 1px solid #ccc; }
-.celda.bloque-hojas { background: #32CD32; }
-
-/* Pictogramas en los bloques */
-.celda .picto-bloque {
-  font-size: 28px;
-  pointer-events: none;
+.bloque-tierra {
+  background-color: #8B5A2B;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.22) 2px, transparent 2px),
+    radial-gradient(rgba(255, 255, 255, 0.14) 2px, transparent 2px);
+  background-size: 14px 14px, 18px 18px;
+  background-position: 0 0, 7px 9px;
 }
 
-/* Modo plantilla: mostrar la plantilla como guía */
-#cuadricula.modo-plantilla .celda.sin-bloque-plantilla {
-  background: repeating-linear-gradient(
-    45deg,
-    var(--color-superficie),
-    var(--color-superficie) 5px,
-    #e8e8e8 5px,
-    #e8e8e8 10px
-  );
+/* Césped: franja verde arriba sobre tierra — el bloque icónico */
+.bloque-cesped {
+  background-color: #8B5A2B;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.18) 2px, transparent 2px),
+    linear-gradient(#43A047 0 34%, rgba(67, 160, 71, 0) 34%);
+  background-size: 14px 14px, 100% 100%;
+  background-position: 0 8px, 0 0;
+}
+
+.bloque-piedra {
+  background-color: #8E9196;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.2) 3px, transparent 3px),
+    radial-gradient(rgba(255, 255, 255, 0.18) 3px, transparent 3px);
+  background-size: 20px 20px, 24px 24px;
+  background-position: 2px 4px, 12px 14px;
+}
+
+/* Madera: tablones verticales */
+.bloque-madera {
+  background-color: #C89557;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(90, 55, 20, 0.28) 0 2px, transparent 2px 14px);
+}
+
+/* Agua: ondas horizontales claras */
+.bloque-agua {
+  background-color: #3D7BD9;
+  background-image:
+    repeating-linear-gradient(0deg,
+      rgba(255, 255, 255, 0.22) 0 3px,
+      transparent 3px 12px);
+}
+
+/* Techo: tejas en diagonal */
+.bloque-techo {
+  background-color: #B03A2E;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.18) 0 3px, transparent 3px 14px);
+}
+
+/* Ladrillo: hiladas con juntas claras */
+.bloque-ladrillo {
+  background-color: #A8443C;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(245, 235, 220, 0.5) 0 2px, transparent 2px 14px),
+    repeating-linear-gradient(90deg, rgba(245, 235, 220, 0.35) 0 2px, transparent 2px 18px);
+}
+
+.bloque-arena {
+  background-color: #E8C87A;
+  background-image:
+    radial-gradient(rgba(160, 120, 40, 0.28) 1.5px, transparent 1.5px),
+    radial-gradient(rgba(255, 255, 255, 0.35) 1.5px, transparent 1.5px);
+  background-size: 12px 12px, 16px 16px;
+  background-position: 0 0, 6px 7px;
+}
+
+/* --- Fantasma del modelo: bloque objetivo atenuado + borde de puntos.
+   La capa blanca va por box-shadow inset para no tapar el borde. --- */
+.celda.fantasma {
+  border: 3px dashed rgba(26, 26, 46, 0.55);
+  box-shadow: inset 0 0 0 999px rgba(255, 255, 255, 0.62);
+}
+
+/* Casilla pendiente marcada tras la 2ª pista de ¡Listo! */
+.celda.atencion {
+  border-color: #8a6d00;
+  box-shadow:
+    inset 0 0 0 999px rgba(255, 255, 255, 0.55),
+    0 0 0 4px #FFD166;
 }
 
 /* --- Paleta de bloques --- */
@@ -182,14 +274,10 @@
   width: 64px;
   height: 64px;
   border: 4px solid var(--color-borde);
-  border-radius: var(--radio);
+  border-radius: 10px;
   cursor: pointer;
   transition: transform 0.1s, border-color 0.15s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  background: var(--color-superficie);
+  padding: 0;
 }
 
 .bloque-btn:hover {
@@ -197,27 +285,17 @@
 }
 
 .bloque-btn.seleccionado {
-  border-color: var(--color-acento);
-  box-shadow: 0 0 0 3px var(--color-acento);
+  border-color: var(--color-texto);
+  box-shadow: 0 0 0 4px var(--color-foco),
+    inset 3px 3px 0 rgba(255, 255, 255, 0.28),
+    inset -3px -3px 0 rgba(0, 0, 0, 0.28);
   transform: scale(1.1);
 }
 
 .bloque-btn:focus {
-  outline: 3px solid var(--color-acento);
+  outline: 3px solid var(--color-foco);
   outline-offset: 2px;
 }
-
-/* Colores de los bloques en la paleta */
-.bloque-btn.bloque-tierra { background: #8B4513; }
-.bloque-btn.bloque-piedra { background: #808080; }
-.bloque-btn.bloque-madera { background: #DEB887; }
-.bloque-btn.bloque-agua { background: #4169E1; }
-.bloque-btn.bloque-césped { background: #228B22; }
-.bloque-btn.bloque-techo { background: #B22222; }
-.bloque-btn.bloque-ladrillo { background: #CD5C5C; }
-.bloque-btn.bloque-arena { background: #F4A460; }
-.bloque-btn.bloque-nieve { background: #FFFAFA; border-color: #ccc; }
-.bloque-btn.bloque-hojas { background: #32CD32; }
 
 /* --- Herramientas --- */
 .herramientas {
@@ -240,13 +318,12 @@
 
 /* --- Pantalla final --- */
 .vista-miniatura {
-  width: 160px;
-  height: 120px;
   display: grid;
   gap: 1px;
-  background: var(--color-borde);
-  padding: 2px;
-  border-radius: var(--radio);
+  background: linear-gradient(#BFE3F5, #E4F3FB);
+  padding: 3px;
+  border: 4px solid #6B4226;
+  border-radius: 8px;
   margin: var(--espacio) auto;
 }
 
@@ -254,10 +331,19 @@
   width: auto;
   height: auto;
   border-radius: 1px;
+  cursor: default;
 }
 
 .vista-miniatura .celda.sin-bloque {
-  background: var(--color-superficie);
+  background: transparent;
+  box-shadow: none;
+}
+
+/* En vistas pequeñas (previa y miniatura) el bisel de 3px taparía la
+   textura entera: fuera bisel, solo el color/textura base. */
+.preview-plantilla .celda,
+.vista-miniatura .celda {
+  box-shadow: none;
 }
 
 /* --- Responsive --- */
@@ -266,13 +352,12 @@
     width: 44px;
     height: 44px;
   }
-  
+
   .bloque-btn {
     width: 56px;
     height: 56px;
-    font-size: 24px;
   }
-  
+
   .btn-modo {
     min-width: 160px;
     font-size: var(--texto-base);
