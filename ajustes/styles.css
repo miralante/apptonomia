@@ -21,6 +21,21 @@
 #listaEstado { padding-left: 24px; }
 #listaEstado li { margin-bottom: 6px; }
 
+/* Progreso por actividad (D2-ítem3): mismo patrón visual que equipo/styles.css. */
+.modulo-guia { border-left: 8px solid var(--acento); margin-top: var(--espacio); }
+.modulo-guia h3 { color: var(--acento); margin-bottom: 4px; }
+.guia table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: var(--texto-pequeno); }
+.guia th, .guia td {
+  padding: 10px 12px; text-align: left; vertical-align: top;
+  border-bottom: 1px solid var(--color-borde);
+}
+.guia th { background: var(--color-fondo); }
+.guia td:first-child { font-weight: 700; white-space: nowrap; }
+@media (max-width: 640px) {
+  .guia td:first-child { white-space: normal; }
+  .guia th, .guia td { padding: 8px; }
+}
+
 #copia-progreso .btn { margin-top: 8px; width: 100%; }
 #copia-progreso hr { border: none; border-top: 2px solid var(--color-borde); margin: var(--espacio) 0; }
 #copia-progreso .etiqueta-archivo { display: block; font-weight: 700; margin-bottom: 8px; }

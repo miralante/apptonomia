@@ -696,7 +696,7 @@
     var v = $('#inputNombre').value.trim().slice(0, 15);
     state.nombre = v;
     guardar();
-    if (v) App.tts.speak(App.i18n.t('bienvenidoConNombre').replace('{nombre}', bonito(v)));
+    /* El audio solo se reproduce si el usuario pulsa el botón "Escuchar" (btnLeerNombre) */
     irMenu();
   }
 

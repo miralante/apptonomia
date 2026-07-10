@@ -737,7 +737,7 @@
     progressText.textContent = idx + ' / ' + DATA.porRonda;
     pintarEstrellas();
 
-    if (pregunta.autoHablar) App.tts.speak(pregunta.hablar);
+    /* El audio solo se reproduce si el usuario pulsa el botón "Escuchar" (btnEscuchar) */
   }
 
   /* Extrae el texto visible de un option.html (puede llevar <span> internos) */

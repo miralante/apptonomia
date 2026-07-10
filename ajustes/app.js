@@ -84,6 +84,7 @@
     f.textContent = 'Hecho. Se ha recuperado el progreso guardado en el archivo.';
     f.className = 'feedback acierto';
     pintarEstado();
+    pintarProgresoActividades();
   }
 
   function pintarEstado() {
@@ -102,6 +103,19 @@
       var li = document.createElement('li');
       li.textContent = texto;
       lista.appendChild(li);
+    });
+  }
+
+  /* --- Modo cuidador (D2-ítem3 de PLAN-MEJORAS.md): progreso de solo
+     lectura por actividad. Cada celda de progreso ya está en el HTML con
+     data-tool="<slug>"; aquí solo se rellena el texto, sin generar el
+     catálogo por JS (mismo criterio que equipo/index.html: filas
+     estáticas, fuente de verdad legible sin ejecutar nada). --- */
+  function pintarProgresoActividades() {
+    App.utils.$$('#progreso-actividades [data-tool]').forEach(function (celda) {
+      var datos = App.storage.get(celda.dataset.tool);
+      var estrellas = typeof datos.estrellas === 'number' ? datos.estrellas : 0;
+      celda.textContent = estrellas > 0 ? '⭐ ' + estrellas : 'Sin empezar';
     });
   }
 
@@ -175,6 +189,7 @@
     f.textContent = 'Hecho. Idioma y nombres borrados. El progreso se ha conservado.';
     f.className = 'feedback acierto';
     pintarEstado();
+    pintarProgresoActividades();
   }
 
   function resetApp() {
@@ -187,6 +202,7 @@
     f.textContent = 'Hecho. Se ha borrado todo. La aplicación queda como recién instalada.';
     f.className = 'feedback acierto';
     pintarEstado();
+    pintarProgresoActividades();
   }
 
   confirmarDoble($('#btnResetPersona'),
@@ -228,4 +244,5 @@
     importarProgreso);
 
   pintarEstado();
+  pintarProgresoActividades();
 })();
