@@ -1,11 +1,11 @@
 # PLAN-MEJORAS.md — Plan de mejoras auditadas (2026-07-07)
 
-> **ESTADO (2026-07-10): las Partes A, B, C, E1, E2 y F1-F4 YA ESTÁN
-> EJECUTADAS** (verificado en el repo: fuentes en `assets/fonts/`,
-> `scripts/check.js`, wake lock en `utils.js`, `core.descanso`,
-> export/import en `/ajustes/`, 4ª columna en `equipo/`). NO volver a
-> ejecutarlas. Pendientes solo: D, E3-E6, F5 (requieren aprobación del
-> usuario) y la Parte G (nueva, 2026-07-10).
+> **ESTADO (2026-07-10): las Partes A, B, C, E1, E2, F1-F4 y G1/G3/G4 YA
+> ESTÁN EJECUTADAS** (verificado en el repo: fuentes en `assets/fonts/`,
+> `scripts/check.js` con 8 comprobaciones, wake lock en `utils.js`,
+> `core.descanso`, export/import en `/ajustes/`, 4ª columna en `equipo/`,
+> anclas de módulo en la portada). NO volver a ejecutarlas. Pendientes
+> solo: D, E3-E6, F5, G2 y G5 (todas requieren aprobación del usuario).
 
 Plan ejecutable escrito para que lo siga **cualquier modelo/agente, incluso uno
 poco capaz**. Cada tarea tiene: archivo exacto, cambio exacto (texto viejo →
@@ -639,8 +639,12 @@ Parte G (pendiente, 2026-07-10):
 
 | # | Tarea | Riesgo | Archivos |
 |---|-------|--------|----------|
-| G1 | check.js: paridad equipo + conteos + lint porRonda | Nulo (tooling dev) | scripts/check.js |
+| G1 | ✔ Hecho — check.js: paridad equipo + conteos + lint porRonda | Nulo (tooling dev) | scripts/check.js |
 | G2 | Borrar temp_original_data.js | Nulo (confirmar antes con el usuario) | raíz + .gitignore |
-| G3 | Anclas de módulo en la portada | Bajo (solo HTML/CSS) | site/index.html, site/styles.css |
-| G4 | Nota de coordinación entre sesiones | Nulo (solo docs) | CLAUDE.md |
+| G3 | ✔ Hecho — Anclas de módulo en la portada | Bajo (solo HTML/CSS) | site/index.html, site/styles.css |
+| G4 | ✔ Hecho — Nota de coordinación entre sesiones | Nulo (solo docs) | CLAUDE.md |
 | G5 | Smoke-test de las 49 con Playwright | — | Solo con aprobación (devDependency) |
+
+Commit: `39a1eba` (2026-07-10). Verificado: `node scripts/check.js` → OK
+(304 checks), y cada uno de los 3 checks nuevos probado rompiendo el caso
+real primero. Anclas verificadas con Playwright en ES/EN.
