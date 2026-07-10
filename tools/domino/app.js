@@ -1,508 +1,397 @@
 /* ============================================================
-   Apptonomia — Dominó Espacial (lógica)
-   Actividad de visión-espacial tipo dominó con ayuda socrática.
+   Apptonomia — Dominó (razonamiento: juego de mesa real adaptado)
+   Datos en data.js (DATA.niveles con maxPips). Reescritura completa:
+   la versión anterior era un solitario donde había que GIRAR la
+   ficha a mano antes de colocarla (mucha fricción). Ahora es el
+   juego de mesa de verdad, simplificado:
+   - Mano de 4 fichas, rival tranquilo y montón para robar.
+   - Tocas una ficha que encaja y SE ORIENTA SOLA al colocarse;
+     solo se pregunta el lado si encaja en los dos extremos.
+   - Ficha que no encaja: pista socrática (regla 12) y, al segundo
+     fallo, se marcan las fichas jugables. Sin castigos (regla 5).
+   - Si no puedes poner, robas del montón; si está vacío, pasas.
+     Dos pases seguidos cierran la partida (gana quien tiene menos).
+   Ganar da 1 estrella; perder solo da ánimo y otra partida.
    ============================================================ */
 (function () {
   'use strict';
 
   var TOOL_ID = 'domino';
   var $ = App.utils.$;
+  var DELAY = App.utils.reducedMotion() ? 0 : 800;
 
-  /* Estado de la aplicación */
+  /* Posiciones de los puntos (0-8 en una rejilla 3×3) por valor */
+  var PIPS = {
+    0: [], 1: [4], 2: [0, 8], 3: [0, 4, 8],
+    4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8]
+  };
+
   var pantallaInicio = $('#pantallaInicio');
   var pantallaJuego = $('#pantallaJuego');
-  var pantallaFinal = $('#pantallaFinal');
-  var cadenaDominó = $('#cadenaDominó');
-  var fichasDisponiblesEl = $('#fichasDisponibles');
-  var zonaRotar = $('#zonaRotar');
-  var fichaParaRotar = $('#fichaParaRotar');
-  var valorNecesarioEl = $('#valorNecesario');
-  var indicadorValor = $('#indicadorValor');
+  var estadoEl = $('#estado');
+  var cadenaEl = $('#cadena');
+  var manoEl = $('#mano');
+  var montonBtn = $('#monton');
+  var rivalInfoEl = $('#rivalInfo');
+  var ladosEl = $('#lados');
   var feedbackEl = $('#feedback');
+  var btnOtraPartida = $('#btnOtraPartida');
+  var btnSalir = $('#btnSalir');
   var starsEl = $('#stars');
-  var contadorFichas = $('#contadorFichas');
-  var progresoTexto = $('#progresoTexto');
-  var modalAyuda = $('#modalAyuda');
-  var consejoSocraticoEl = $('#consejoSocratico');
-  var opcionesAyudaEl = $('#opcionesAyuda');
 
   /* Progreso persistente */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
-  if (typeof progreso.cadenasCompletadas !== 'number') progreso.cadenasCompletadas = 0;
+  if (!progreso.victorias) progreso.victorias = {};
 
-  /* Estado del juego */
-  var nivelActual = 'facil';
-  var fichasDisponibles = [];
-  var fichasColocadas = [];
-  var fichaSeleccionada = null;
-  var fichaParaColocar = null; // Ficha con rotación aplicada
-  var extremoCadena = 0; // Valor del extremo derecho de la cadena
+  /* Estado de la partida */
+  var nivel = null;
+  var manoJugador = [];
+  var manoRival = [];
+  var monton = [];
+  var cadena = [];          /* fichas colocadas, ya orientadas: [izq, der] */
+  var turnoJugador = true;
+  var partidaTerminada = false;
+  var fichaPendiente = -1;  /* índice de mano esperando elegir lado */
+  var fallosSeguidos = 0;
+  var pasesSeguidos = 0;
 
   function guardar() { App.storage.set(TOOL_ID, progreso); }
-
   function pintarEstrellas() { starsEl.textContent = '⭐ ' + progreso.estrellas; }
+  function banco() { return DATA[App.i18n.locale()] || DATA.es; }
+  function t(clave) { return App.i18n.t(clave); }
 
-  /* ------------------------------------------------------------
-     RENDERIZADO DE FICHAS
-     ------------------------------------------------------------ */
-  function crearElementoFicha(ficha, esInicio) {
-    var el = document.createElement('div');
-    el.className = 'ficha' + (esInicio ? ' inicio' : '');
-    el.dataset.id = ficha.id;
-    el.setAttribute('role', 'listitem');
-    el.setAttribute('tabindex', '0');
-    
-    if (esInicio) {
-      el.setAttribute('aria-label', App.i18n.t('cadenaVacia'));
-    } else {
-      el.setAttribute('aria-label', App.i18n.t('ficha').replace('{n1}', ficha.izquierda).replace('{n2}', ficha.derecha));
-    }
-    
-    // Mitad izquierda
-    var mitadIzq = document.createElement('div');
-    mitadIzq.className = 'mitad-ficha';
-    mitadIzq.dataset.valor = ficha.izquierda;
-    mitadIzq.innerHTML = DATA.renderizarPuntos(ficha.izquierda);
-    el.appendChild(mitadIzq);
-    
-    // Mitad derecha
-    var mitadDer = document.createElement('div');
-    mitadDer.className = 'mitad-ficha';
-    mitadDer.dataset.valor = ficha.derecha;
-    mitadDer.innerHTML = DATA.renderizarPuntos(ficha.derecha);
-    el.appendChild(mitadDer);
-    
-    return el;
-  }
-
-  function renderizarFichasDisponibles() {
-    fichasDisponiblesEl.innerHTML = '';
-    
-    fichasDisponibles.forEach(function(ficha, index) {
-      var el = crearElementoFicha(ficha, false);
-      el.classList.add('disponible');
-      el.dataset.index = index;
-      
-      if (!ficha.colocada) {
-        el.addEventListener('click', function() { seleccionarFicha(index); });
-        el.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            seleccionarFicha(index);
-          }
-        });
-      } else {
-        el.classList.add('colocada');
-      }
-      
-      fichasDisponiblesEl.appendChild(el);
-    });
-  }
-
-  function renderizarCadena() {
-    // Mantener la ficha de inicio
-    var inicioEl = $('#fichaInicio');
-    cadenaDominó.innerHTML = '';
-    cadenaDominó.appendChild(inicioEl);
-    
-    // Añadir fichas colocadas
-    fichasColocadas.forEach(function(ficha) {
-      var el = crearElementoFicha(ficha, false);
-      el.classList.add('colocada');
-      cadenaDominó.appendChild(el);
-    });
-    
-    actualizarIndicadorValor();
-  }
-
-  function actualizarIndicadorValor() {
-    if (fichasColocadas.length === 0) {
-      valorNecesarioEl.textContent = extremoCadena;
-      indicadorValor.style.background = 'var(--mod-coordinacion-suave)';
-    } else {
-      valorNecesarioEl.textContent = extremoCadena;
-      indicadorValor.style.background = extremoCadena === 0 ? 'var(--color-superficie)' : 'var(--mod-coordinacion-suave)';
-    }
-  }
-
-  /* ------------------------------------------------------------
-     SELECCIÓN Y ROTACIÓN DE FICHAS
-     ------------------------------------------------------------ */
-  function seleccionarFicha(index) {
-    fichaSeleccionada = fichasDisponibles[index];
-    fichaParaColocar = {
-      id: fichaSeleccionada.id,
-      izquierda: fichaSeleccionada.izquierda,
-      derecha: fichaSeleccionada.derecha
-    };
-    
-    // Mostrar zona de rotación
-    mostrarZonaRotacion();
-    
-    // Resaltar ficha seleccionada
-    var fichas = fichasDisponiblesEl.querySelectorAll('.ficha');
-    fichas.forEach(function(f) { f.classList.remove('seleccionada'); });
-    fichas[index].classList.add('seleccionada');
-  }
-
-  function mostrarZonaRotacion() {
-    zonaRotar.classList.remove('oculto');
-    renderizarFichaParaRotar();
-  }
-
-  function ocultarZonaRotacion() {
-    zonaRotar.classList.add('oculto');
-    fichaSeleccionada = null;
-    fichaParaColocar = null;
-    
-    // Quitar selección visual
-    var fichas = fichasDisponiblesEl.querySelectorAll('.ficha');
-    fichas.forEach(function(f) { f.classList.remove('seleccionada'); });
-  }
-
-  function renderizarFichaParaRotar() {
-    fichaParaRotar.innerHTML = '';
-    
-    var mitadIzq = document.createElement('div');
-    mitadIzq.className = 'mitad-ficha';
-    mitadIzq.dataset.valor = fichaParaColocar.izquierda;
-    mitadIzq.innerHTML = DATA.renderizarPuntos(fichaParaColocar.izquierda);
-    fichaParaRotar.appendChild(mitadIzq);
-    
-    var mitadDer = document.createElement('div');
-    mitadDer.className = 'mitad-ficha';
-    mitadDer.dataset.valor = fichaParaColocar.derecha;
-    mitadDer.innerHTML = DATA.renderizarPuntos(fichaParaColocar.derecha);
-    fichaParaRotar.appendChild(mitadDer);
-    
-    fichaParaRotar.setAttribute('aria-label', 
-      App.i18n.t('ficha').replace('{n1}', fichaParaColocar.izquierda).replace('{n2}', fichaParaColocar.derecha));
-  }
-
-  function rotarIzquierda() {
-    // Intercambiar izquierda y derecha
-    var temp = fichaParaColocar.izquierda;
-    fichaParaColocar.izquierda = fichaParaColocar.derecha;
-    fichaParaColocar.derecha = temp;
-    renderizarFichaParaRotar();
-    App.tts.speak(fichaParaColocar.izquierda + ' - ' + fichaParaColocar.derecha);
-  }
-
-  function rotarDerecha() {
-    rotarIzquierda(); // En dominó, izquierda y derecha son simétricos
-  }
-
-  /* ------------------------------------------------------------
-     COLOCAR FICHAS EN LA CADENA
-     ------------------------------------------------------------ */
-  function intentarColocar() {
-    if (!fichaParaColocar) return;
-    
-    // Verificar si la ficha encaja
-    var valorIzq = fichaParaColocar.izquierda;
-    var valorDer = fichaParaColocar.derecha;
-    
-    // La ficha encaja si alguno de sus valores coincide con el extremo
-    var encajaIzquierda = valorIzq === extremoCadena;
-    var encajaDerecha = valorDer === extremoCadena;
-    
-    if (encajaIzquierda || encajaDerecha) {
-      colocarFicha(encajaIzquierda);
-    } else {
-      // La ficha no encaja
-      mostrarError();
-    }
-  }
-
-  function colocarFicha(encajaPorIzquierda) {
-    // Ajustar la ficha según cómo encaja
-    var fichaColocada = {
-      id: fichaParaColocar.id,
-      izquierda: encajaPorIzquierda ? fichaParaColocar.izquierda : fichaParaColocar.derecha,
-      derecha: encajaPorIzquierda ? fichaParaColocar.derecha : fichaParaColocar.izquierda
-    };
-    
-    // Marcar como colocada
-    fichasDisponibles.forEach(function(f) {
-      if (f.id === fichaColocada.id) f.colocada = true;
-    });
-    
-    // Añadir a la cadena
-    fichasColocadas.push(fichaColocada);
-    
-    // Actualizar extremo
-    extremoCadena = encajaPorIzquierda ? fichaColocada.derecha : fichaColocada.izquierda;
-    
-    // Actualizar UI
-    renderizarCadena();
-    renderizarFichasDisponibles();
-    actualizarContador();
-    
-    // Feedback positivo
-    feedbackEl.textContent = App.i18n.t('aciertoColocar');
-    feedbackEl.className = 'feedback exito';
-    App.feedback.celebrar('');
-    App.tts.speak(App.i18n.t('aciertoColocar'));
-    
-    // Ocultar zona de rotación
-    zonaRotar.classList.add('oculto');
-    fichaSeleccionada = null;
-    fichaParaColocar = null;
-    
-    // Verificar si quedan fichas que encajen
-    verificarFinDeJuego();
-  }
-
-  function mostrarError() {
-    var fichaEl = fichaParaRotar;
-    fichaEl.classList.add('incorrecta');
-    setTimeout(function() { fichaEl.classList.remove('incorrecta'); }, 400);
-    
-    // Mostrar consejo socrático
-    var consejo = DATA.getConsejoSocratico('error', { valor: extremoCadena });
-    feedbackEl.textContent = consejo;
-    feedbackEl.className = 'feedback animo';
-    App.tts.speak(consejo);
-  }
-
-  function verificarFinDeJuego() {
-    var fichasValidas = fichasDisponibles.filter(function(f) {
-      return !f.colocada && (f.izquierda === extremoCadena || f.derecha === extremoCadena);
-    });
-    
-    if (fichasValidas.length === 0 && fichasDisponibles.some(function(f) { return !f.colocada; })) {
-      // Quedan fichas pero ninguna encaja
-      feedbackEl.textContent = App.i18n.t('sinFichasEncajan');
-      feedbackEl.className = 'feedback';
-    }
-  }
-
-  function actualizarContador() {
-    contadorFichas.textContent = fichasColocadas.length;
-    progresoTexto.textContent = App.i18n.t('fichaColocada').replace('{n}', fichasColocadas.length);
-  }
-
-  /* ------------------------------------------------------------
-     AYUDA SOCRÁTICA
-     ------------------------------------------------------------ */
-  function abrirAyuda() {
-    modalAyuda.classList.remove('oculto');
-    modalAyuda.setAttribute('aria-hidden', 'false');
-    
-    // Generar consejos según el estado actual
-    var consejos = generarConsejosAyuda();
-    consejoSocraticoEl.textContent = DATA.getConsejoSocratico('ayuda', { valor: extremoCadena });
-    
-    // Mostrar opciones de ayuda
-    opcionesAyudaEl.innerHTML = '';
-    DATA.opcionesAyuda.forEach(function(opcion) {
+  /* ---- Pantalla inicial ---- */
+  function pintarNiveles() {
+    var cont = $('#niveles');
+    cont.innerHTML = '';
+    banco().niveles.forEach(function (n) {
       var btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'opcion-ayuda';
-      btn.textContent = opcion.texto;
-      btn.dataset.accion = opcion.accion;
-      btn.addEventListener('click', function() { ejecutarAccionAyuda(opcion.accion); });
-      opcionesAyudaEl.appendChild(btn);
+      btn.className = 'btn btn-nivel';
+      var veces = progreso.victorias[n.id] || 0;
+      btn.innerHTML = n.nombre + ' — ' + n.descripcion +
+        ' <span class="nivel-info">(' + veces + ' ' + t('veces') + ')</span>';
+      btn.addEventListener('click', function () { iniciarPartida(n); });
+      cont.appendChild(btn);
     });
-    
-    App.tts.speak(consejoSocraticoEl.textContent);
   }
 
-  function cerrarAyuda() {
-    modalAyuda.classList.add('oculto');
-    modalAyuda.setAttribute('aria-hidden', 'true');
+  /* ---- Reparto ---- */
+  function generarFichas(maxPips) {
+    var fichas = [];
+    for (var a = 0; a <= maxPips; a++) {
+      for (var b = a; b <= maxPips; b++) fichas.push([a, b]);
+    }
+    return App.utils.shuffle(fichas);
   }
 
-  function generarConsejosAyuda() {
-    var consejos = [];
-    
-    // Consejo básico sobre qué número buscar
-    consejos.push(DATA.getConsejoSocratico('inicio', { valor: extremoCadena }));
-    
-    // Si hay fichas seleccionadas pero no se ha colocado
-    if (fichaSeleccionada) {
-      consejos.push(DATA.getConsejoSocratico('rotacion', { 
-        valor1: fichaSeleccionada.izquierda, 
-        valor2: fichaSeleccionada.derecha 
-      }));
-    }
-    
-    return consejos;
-  }
-
-  function ejecutarAccionAyuda(accion) {
-    var valorBuscado = extremoCadena;
-    var fichasConValor = [];
-    
-    fichasDisponibles.forEach(function(f) {
-      if (!f.colocada && (f.izquierda === valorBuscado || f.derecha === valorBuscado)) {
-        fichasConValor.push(f);
-      }
-    });
-    
-    switch (accion) {
-      case 'mostrarNumero':
-        App.tts.speak(App.i18n.t('ayudaNumero') + ' ' + valorBuscado);
-        valorNecesarioEl.style.transform = 'scale(1.3)';
-        setTimeout(function() { valorNecesarioEl.style.transform = ''; }, 500);
-        break;
-        
-      case 'resaltarFichas':
-        if (fichasConValor.length > 0) {
-          App.tts.speak(App.i18n.t('ayudaResaltar').replace('{valor}', valorBuscado));
-          fichasConValor.forEach(function(ficha) {
-            var fichaEl = fichasDisponiblesEl.querySelector('[data-id="' + ficha.id + '"]');
-            if (fichaEl) {
-              fichaEl.classList.add('sugerida');
-              setTimeout(function() { fichaEl.classList.remove('sugerida'); }, 2000);
-            }
-          });
-        } else {
-          App.tts.speak('No hay fichas con el número ' + valorBuscado);
-        }
-        break;
-        
-      case 'explicarRotacion':
-        App.tts.speak(App.i18n.t('ayudaRotacion'));
-        break;
-        
-      case 'cerrar':
-      default:
-        cerrarAyuda();
-        return;
-    }
-    
-    cerrarAyuda();
-  }
-
-  /* ------------------------------------------------------------
-     NAVEGACIÓN Y EVENTOS
-     ------------------------------------------------------------ */
-  $('#btnInstruccion').addEventListener('click', function() {
-    App.tts.speak($('#instruccion').textContent);
-  });
-
-  // Botones de dificultad
-  $('#btnNivelFacil').addEventListener('click', function() { empezarJuego('facil'); });
-  $('#btnNivelMedio').addEventListener('click', function() { empezarJuego('medio'); });
-  $('#btnNivelDificil').addEventListener('click', function() { empezarJuego('dificil'); });
-
-  // Controles de rotación
-  $('#btnRotarIzq').addEventListener('click', rotarIzquierda);
-  $('#btnRotarDer').addEventListener('click', rotarDerecha);
-  $('#btnColocar').addEventListener('click', intentarColocar);
-  $('#btnCancelar').addEventListener('click', ocultarZonaRotacion);
-
-  // Herramientas
-  $('#btnAyuda').addEventListener('click', abrirAyuda);
-  $('#btnCerrarAyuda').addEventListener('click', cerrarAyuda);
-  
-  $('#btnNuevaCadena').addEventListener('click', function() {
-    if (confirm(App.i18n.t('confirmNuevaCadena') || '¿Empezar una nueva cadena?')) {
-      empezarJuego(nivelActual);
-    }
-  });
-
-  $('#btnTerminado').addEventListener('click', terminarJuego);
-
-  // Pantalla final
-  $('#btnSeguirEncadenando').addEventListener('click', function() { empezarJuego(nivelActual); });
-  $('#btnCambiarDificultad').addEventListener('click', function() {
-    pantallaFinal.classList.add('oculto');
-    pantallaInicio.classList.remove('oculto');
-  });
-
-  /* ------------------------------------------------------------
-     INICIO Y FINAL DEL JUEGO
-     ------------------------------------------------------------ */
-  function empezarJuego(nivel) {
-    nivelActual = nivel;
-    fichaSeleccionada = null;
-    fichaParaColocar = null;
-    fichasColocadas = [];
-    extremoCadena = Math.floor(Math.random() * (DATA.niveles[nivel].maxValor + 1));
-    
-    // Generar fichas para este nivel
-    fichasDisponibles = DATA.getFichasParaNivel(nivel);
-    
-    // Asegurar que al menos una ficha encaje con el extremo inicial
-    var fichasQueEncajan = fichasDisponibles.filter(function(f) {
-      return f.izquierda === extremoCadena || f.derecha === extremoCadena;
-    });
-    
-    if (fichasQueEncajan.length === 0) {
-      // Añadir una ficha que encaje
-      var fichaExtra = {
-        id: 999,
-        izquierda: extremoCadena,
-        derecha: Math.floor(Math.random() * (DATA.niveles[nivel].maxValor + 1))
-      };
-      fichasDisponibles.push(fichaExtra);
-    }
-    
-    // Actualizar UI
+  function iniciarPartida(n) {
+    nivel = n;
+    var mazo = generarFichas(n.maxPips);
+    var mano = banco().manoInicial;
+    manoJugador = mazo.slice(0, mano);
+    manoRival = mazo.slice(mano, mano * 2);
+    monton = mazo.slice(mano * 2);
+    cadena = [];
+    turnoJugador = true;
+    partidaTerminada = false;
+    fichaPendiente = -1;
+    fallosSeguidos = 0;
+    pasesSeguidos = 0;
     feedbackEl.textContent = '';
     feedbackEl.className = 'feedback';
+    btnOtraPartida.classList.add('oculto');
+    ladosEl.classList.add('oculto');
     pantallaInicio.classList.add('oculto');
-    pantallaFinal.classList.add('oculto');
     pantallaJuego.classList.remove('oculto');
-    
-    // Configurar ficha de inicio
-    var inicioEl = $('#fichaInicio');
-    var mitades = inicioEl.querySelectorAll('.mitad-ficha');
-    mitades.forEach(function(m) {
-      m.dataset.valor = extremoCadena;
-      m.innerHTML = DATA.renderizarPuntos(extremoCadena);
-    });
-    
-    renderizarCadena();
-    renderizarFichasDisponibles();
-    actualizarContador();
-    
-    // Hablar el valor inicial
-    App.tts.speak(App.i18n.t('consejoInicio').replace('{valor}', extremoCadena));
+    anunciarTurno();
+    pintarTodo();
   }
 
-  function terminarJuego() {
-    if (fichasColocadas.length === 0) {
+  /* ---- Utilidades del juego ---- */
+  function extremoIzq() { return cadena.length ? cadena[0][0] : null; }
+  function extremoDer() { return cadena.length ? cadena[cadena.length - 1][1] : null; }
+
+  /* Devuelve dónde encaja una ficha: 'izq' | 'der' | 'ambos' | null.
+     Con la cadena vacía toda ficha vale ('der'). */
+  function dondeEncaja(ficha) {
+    if (!cadena.length) return 'der';
+    var izq = ficha[0] === extremoIzq() || ficha[1] === extremoIzq();
+    var der = ficha[0] === extremoDer() || ficha[1] === extremoDer();
+    if (izq && der) return 'ambos';
+    if (izq) return 'izq';
+    if (der) return 'der';
+    return null;
+  }
+
+  function jugables(mano) {
+    var res = [];
+    mano.forEach(function (f, i) { if (dondeEncaja(f)) res.push(i); });
+    return res;
+  }
+
+  /* ---- Render ---- */
+  function pintarFicha(contenedor, ficha) {
+    [0, 1].forEach(function (lado) {
+      var mitad = document.createElement('span');
+      mitad.className = 'mitad';
+      PIPS[ficha[lado]].forEach(function (pos) {
+        var pip = document.createElement('span');
+        pip.className = 'pip pos' + pos;
+        mitad.appendChild(pip);
+      });
+      contenedor.appendChild(mitad);
+    });
+  }
+
+  function pintarCadena() {
+    cadenaEl.innerHTML = '';
+    cadena.forEach(function (f) {
+      var el = document.createElement('div');
+      el.className = 'ficha colocada';
+      el.setAttribute('aria-label', t('fichaAria').replace('{a}', f[0]).replace('{b}', f[1]));
+      pintarFicha(el, f);
+      cadenaEl.appendChild(el);
+    });
+  }
+
+  function pintarMano(marcarJugables) {
+    manoEl.innerHTML = '';
+    manoJugador.forEach(function (f, i) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'ficha jugable';
+      if (marcarJugables && dondeEncaja(f)) btn.classList.add('sugerida');
+      if (i === fichaPendiente) btn.classList.add('pendiente');
+      btn.setAttribute('aria-label', t('fichaAria').replace('{a}', f[0]).replace('{b}', f[1]));
+      btn.disabled = !turnoJugador || partidaTerminada;
+      pintarFicha(btn, f);
+      btn.addEventListener('click', function () { tocarFicha(i); });
+      manoEl.appendChild(btn);
+    });
+  }
+
+  function pintarMonton() {
+    var n = monton.length;
+    montonBtn.textContent = '🂠 ' + n;
+    montonBtn.disabled = !turnoJugador || partidaTerminada || n === 0;
+    montonBtn.setAttribute('aria-label',
+      n === 0 ? t('montonVacio') : t('montonAria').replace('{n}', n));
+  }
+
+  function pintarTodo(marcarJugables) {
+    pintarCadena();
+    pintarMano(marcarJugables);
+    pintarMonton();
+    rivalInfoEl.textContent = t('fichasRival').replace('{n}', manoRival.length);
+    pintarEstrellas();
+    /* La última ficha colocada queda a la vista */
+    if (cadenaEl.lastChild) {
+      cadenaEl.lastChild.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
+  }
+
+  function anunciarTurno() {
+    if (!cadena.length) {
+      estadoEl.textContent = t('primeraFicha');
+    } else {
+      estadoEl.textContent = t('teToca')
+        .replace('{a}', extremoIzq()).replace('{b}', extremoDer());
+    }
+  }
+
+  /* ---- Turno de la persona ---- */
+  function tocarFicha(i) {
+    if (!turnoJugador || partidaTerminada) return;
+    var encaje = dondeEncaja(manoJugador[i]);
+    if (!encaje) {
+      fallosSeguidos += 1;
       App.feedback.animo(feedbackEl);
-      App.tts.speak(App.i18n.t('instruccion'));
+      if (fallosSeguidos === 1) {
+        /* Regla 12: primero una pista que dirige la mirada */
+        estadoEl.textContent = t('pistaNoEncaja')
+          .replace('{a}', extremoIzq()).replace('{b}', extremoDer());
+      } else if (jugables(manoJugador).length) {
+        estadoEl.textContent = t('pistaMarcadas');
+        pintarTodo(true);
+      } else {
+        estadoEl.textContent = t('pistaRobar');
+      }
       return;
     }
-    
-    progreso.estrellas += 1;
-    progreso.cadenasCompletadas += 1;
-    guardar();
-    pintarEstrellas();
-    
-    // Crear vista en miniatura
-    crearVistaMinatura();
-    
-    // Mostrar resumen
-    var resumen = App.i18n.t('cadenaCompletada').replace('{n}', fichasColocadas.length);
-    $('#resumenFinal').textContent = resumen;
-    
+    if (encaje === 'ambos') {
+      fichaPendiente = i;
+      ladosEl.classList.remove('oculto');
+      estadoEl.textContent = t('eligeLado');
+      pintarTodo();
+      return;
+    }
+    colocar(i, encaje);
+  }
+
+  /* Orienta la ficha sola según el extremo y la coloca */
+  function colocar(i, lado) {
+    var f = manoJugador[i].slice();
+    if (cadena.length) {
+      if (lado === 'izq') {
+        if (f[0] === extremoIzq()) f = [f[1], f[0]];
+        cadena.unshift(f);
+      } else {
+        if (f[1] === extremoDer()) f = [f[1], f[0]];
+        cadena.push(f);
+      }
+    } else {
+      cadena.push(f);
+    }
+    manoJugador.splice(i, 1);
+    fichaPendiente = -1;
+    fallosSeguidos = 0;
+    pasesSeguidos = 0;
+    ladosEl.classList.add('oculto');
+    App.feedback.acierto(feedbackEl);
+    pintarTodo();
+    if (!manoJugador.length) { terminar('ganas'); return; }
+    turnoRival();
+  }
+
+  function robar() {
+    if (!turnoJugador || partidaTerminada) return;
+    if (jugables(manoJugador).length) {
+      App.feedback.animo(feedbackEl);
+      estadoEl.textContent = t('pistaMarcadas');
+      pintarTodo(true);
+      return;
+    }
+    if (!monton.length) { pasarJugador(); return; }
+    manoJugador.push(monton.pop());
+    estadoEl.textContent = t('hasRobado');
+    pintarTodo();
+  }
+
+  function pasarJugador() {
+    pasesSeguidos += 1;
+    estadoEl.textContent = t('tuPasas');
+    if (pasesSeguidos >= 2) { cerrarPartida(); return; }
+    setTimeout(turnoRival, DELAY);
+  }
+
+  /* Devuelve el turno a la persona; si no puede jugar ni robar
+     (montón vacío), pasa sola — sin dejarla atrapada. */
+  function empiezaTurnoJugador() {
+    if (partidaTerminada) return;
+    turnoJugador = true;
+    if (!jugables(manoJugador).length && !monton.length) {
+      turnoJugador = false;
+      pintarTodo();
+      pasarJugador();
+      return;
+    }
+    anunciarTurno();
+    pintarTodo();
+  }
+
+  /* ---- Turno del rival (visible y con calma) ---- */
+  function turnoRival() {
+    turnoJugador = false;
+    pintarTodo();
+    estadoEl.textContent = t('piensaRival');
+    setTimeout(pasoRival, DELAY);
+  }
+
+  function pasoRival() {
+    if (partidaTerminada) return;
+    var opciones = jugables(manoRival);
+    if (opciones.length) {
+      var i = App.utils.shuffle(opciones)[0];
+      var encaje = dondeEncaja(manoRival[i]);
+      var lado = encaje === 'ambos' ? App.utils.shuffle(['izq', 'der'])[0] : encaje;
+      var f = manoRival[i].slice();
+      if (cadena.length) {
+        if (lado === 'izq') {
+          if (f[0] === extremoIzq()) f = [f[1], f[0]];
+          cadena.unshift(f);
+        } else {
+          if (f[1] === extremoDer()) f = [f[1], f[0]];
+          cadena.push(f);
+        }
+      } else {
+        cadena.push(f);
+      }
+      manoRival.splice(i, 1);
+      pasesSeguidos = 0;
+      estadoEl.textContent = t('rivalPone');
+      pintarTodo();
+      if (!manoRival.length) { terminar('rival'); return; }
+      setTimeout(empiezaTurnoJugador, DELAY);
+      return;
+    }
+    if (monton.length) {
+      manoRival.push(monton.pop());
+      estadoEl.textContent = t('rivalRoba');
+      pintarTodo();
+      setTimeout(pasoRival, DELAY);
+      return;
+    }
+    pasesSeguidos += 1;
+    estadoEl.textContent = t('rivalPasa');
+    if (pasesSeguidos >= 2) { cerrarPartida(); return; }
+    setTimeout(empiezaTurnoJugador, DELAY);
+  }
+
+  /* ---- Finales (nunca punitivos, regla 5) ---- */
+  function cerrarPartida() {
+    if (manoJugador.length < manoRival.length) terminar('cerradoGanas');
+    else if (manoJugador.length === manoRival.length) terminar('cerradoEmpate');
+    else terminar('cerradoRival');
+  }
+
+  function terminar(tipo) {
+    partidaTerminada = true;
+    turnoJugador = false;
+    var clave = tipo === 'ganas' ? 'hasGanado'
+      : tipo === 'rival' ? 'ganaRival' : tipo;
+    estadoEl.textContent = t(clave);
+    if (tipo === 'ganas' || tipo === 'cerradoGanas') {
+      progreso.estrellas += 1;
+      progreso.victorias[nivel.id] = (progreso.victorias[nivel.id] || 0) + 1;
+      guardar();
+      App.feedback.celebrar(t(clave));
+    } else if (tipo === 'cerradoEmpate') {
+      App.feedback.acierto(feedbackEl);
+      App.tts.speak(t(clave));
+    } else {
+      App.feedback.animo(feedbackEl);
+      App.tts.speak(t(clave));
+    }
+    pintarTodo();
+    btnOtraPartida.classList.remove('oculto');
+    btnOtraPartida.focus();
+  }
+
+  /* ---- Eventos ---- */
+  montonBtn.addEventListener('click', robar);
+  $('#btnLadoIzq').addEventListener('click', function () {
+    if (fichaPendiente !== -1) colocar(fichaPendiente, 'izq');
+  });
+  $('#btnLadoDer').addEventListener('click', function () {
+    if (fichaPendiente !== -1) colocar(fichaPendiente, 'der');
+  });
+  btnOtraPartida.addEventListener('click', function () { iniciarPartida(nivel); });
+  btnSalir.addEventListener('click', function () {
+    App.tts.stop();
+    partidaTerminada = true;
     pantallaJuego.classList.add('oculto');
-    pantallaFinal.classList.remove('oculto');
-    
-    App.feedback.celebrar(App.i18n.t('finalTitulo'));
-  }
+    pintarNiveles();
+    pantallaInicio.classList.remove('oculto');
+  });
+  $('#btnInstruccion').addEventListener('click', function () {
+    App.tts.speak($('#instruccion').textContent + t('instruccionNivel'));
+  });
+  $('#btnEstado').addEventListener('click', function () {
+    App.tts.speak(estadoEl.textContent);
+  });
 
-  function crearVistaMinatura() {
-    var vistaMiniatura = $('#vistaMiniatura');
-    vistaMiniatura.innerHTML = '';
-    
-    fichasColocadas.forEach(function(ficha) {
-      var el = crearElementoFicha(ficha, false);
-      vistaMiniatura.appendChild(el);
-    });
-  }
-
-  /* ------------------------------------------------------------
-     INICIALIZACIÓN
-     ------------------------------------------------------------ */
+  pintarNiveles();
   pintarEstrellas();
-  App.i18n.apply();
-
 })();

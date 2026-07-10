@@ -320,4 +320,15 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       dos contrastes extremos —mucho calor / mucho frío—, nivel 2 mantiene
       el mismo formato y añade un tercer tiempo menos evidente —lluvia—,
       que depende de ir seco en vez de temperatura).
+- [x] Dominó reescrito (`tools/domino/`, 2026-07-10, a petición del usuario:
+      "no es fácil, interactivo ni fácil de usar"). La versión anterior era
+      un solitario con rotación MANUAL de la ficha (elegir → girar con
+      botones → intentar colocar → error). Ahora es el juego de mesa real
+      adaptado: mano de 4 fichas, rival tranquilo visible por turnos,
+      montón para robar, y la ficha SE ORIENTA SOLA al tocarla (solo
+      pregunta el lado si encaja en ambos extremos). Fichas dibujadas con
+      puntos reales (rejilla 3×3 CSS). Fallos: pista socrática → se marcan
+      las jugables (regla 12). Finales sin castigo: ganar da estrella,
+      perder da ánimo, el cierre por bloqueo compara fichas restantes y el
+      empate se celebra. Regla 13: única variable es maxPips (3/5/6).
 - [ ] Backlog transversal — ver PLAN.md §7 (modo cuidador, multi-perfil, etc.)

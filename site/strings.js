@@ -65,7 +65,7 @@
       oca_nombre: 'La Oca', oca_detalle: 'Tira el dado y avanza.',
       tresenraya_nombre: 'Tres en Raya', tresenraya_detalle: 'Haz tu línea de tres.',
       sudokuvisual_nombre: 'Sudoku Visual', sudokuvisual_detalle: 'Sin repetir en fila ni columna.',
-      domino_nombre: 'Dominó Espacial', domino_detalle: 'Encadena las fichas que coinciden.',
+      domino_nombre: 'Dominó', domino_detalle: 'Juega una partida de verdad.',
 
       chistes_nombre: 'Chistes', chistes_detalle: '¿Por qué es gracioso?',
       dichos_nombre: 'Dichos', dichos_detalle: '¿Qué significa?',
@@ -136,7 +136,7 @@
       oca_nombre: 'Goose Game', oca_detalle: 'Roll the dice and move on.',
       tresenraya_nombre: 'Tic-Tac-Toe', tresenraya_detalle: 'Make your line of three.',
       sudokuvisual_nombre: 'Visual Sudoku', sudokuvisual_detalle: 'No repeats in rows or columns.',
-      domino_nombre: 'Spatial Domino', domino_detalle: 'Chain the matching tiles.',
+      domino_nombre: 'Dominoes', domino_detalle: 'Play a real game.',
 
       chistes_nombre: 'Jokes', chistes_detalle: 'Why is it funny?',
       dichos_nombre: 'Idioms', dichos_detalle: 'What does it mean?',

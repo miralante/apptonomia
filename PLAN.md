@@ -186,7 +186,7 @@ cotidianas, dinero, horas y fechas, medidas, representaciones gráficas.
 | La Oca — juego de la oca en solitario (dado y casillas) | `tools/oca/` | ✔ Hecha |
 | Tres en Raya — lógica y anticipación contra un rival amable (niveles: azar → remata → bloquea) | `tools/tres-en-raya/` | ✔ Hecha |
 | Sudoku Visual — sudoku 4×4 con pictos, sin repetir en fila/columna/caja (niveles: 4/6/8 huecos) | `tools/sudoku-visual/` | ✔ Hecha |
-| Dominó Espacial — encadenar fichas de dominó girándolas para que coincidan los números (niveles: fichas 0-3 / 0-5 / 0-6) | `tools/domino/` | ✔ Hecha |
+| Dominó — partida real contra rival tranquilo: mano, montón y turnos; la ficha se orienta sola (niveles: fichas 0-3 / 0-5 / 0-6) | `tools/domino/` | ✔ Hecha |
 
 ### Módulo 5 — Lenguaje y comunicación (frambuesa `--mod-lenguaje`, color NUEVO)
 Cubre: vocabulario, categorías, comprensión, quién/qué/cómo/dónde/porqué, frases hechas,

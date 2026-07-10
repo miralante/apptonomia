@@ -14,108 +14,50 @@
   <div class="container">
     <header class="tool-header">
       <a href="../../site/index.html" class="back-link" data-i18n="core.volver">← Volver</a>
-      <h1 data-i18n="title">🎯 Dominó Espacial</h1>
+      <h1 data-i18n="title">🁵 Dominó</h1>
       <span class="stars" id="stars">⭐ 0</span>
     </header>
 
     <!-- Pantalla inicial -->
     <section id="pantallaInicio" class="pila centrado">
       <div class="fila centrado-fila">
-        <p class="instruccion" id="instruccion" data-i18n="instruccion">
-          Encadena las fichas de dominó. Elige una ficha, gírala si es necesario y colócala junto a la anterior. ¡Los números deben coincidir!
-        </p>
-        <button type="button" class="btn btn-audio" id="btnInstruccion" aria-label="Escuchar las instrucciones">🔊</button>
+        <p class="instruccion" id="instruccion" data-i18n="instruccion">Juega al dominó contra un rival tranquilo. Toca una ficha que encaje con un extremo de la cadena. Si no tienes, roba del montón.</p>
+        <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
       </div>
-      
-      <div class="pila modos">
-        <h2 data-i18n="elegirDificultad">¿Qué dificultad prefieres?</h2>
-        <div class="fila botones-modo">
-          <button type="button" class="btn btn-modo" id="btnNivelFacil" data-i18n="nivelFacil">😊 Fácil</button>
-          <button type="button" class="btn btn-modo" id="btnNivelMedio" data-i18n="nivelMedio">🤔 Medio</button>
-          <button type="button" class="btn btn-modo" id="btnNivelDificil" data-i18n="nivelDificil">🧠 Difícil</button>
-        </div>
-      </div>
+      <h2 data-i18n="elegirNivel">Elige el nivel</h2>
+      <div class="pila" id="niveles"></div>
     </section>
 
     <!-- Pantalla de juego -->
-    <section id="pantallaJuego" class="oculto">
-      <div class="juego-header">
-        <p class="progreso" id="progresoTexto"></p>
-        <div class="contador-fichas">
-          <span data-i18n="fichasColocadas">Fichas colocadas</span>: 
-          <span id="contadorFichas">0</span>
-        </div>
+    <section id="pantallaJuego" class="oculto pila centrado">
+      <div class="fila centrado-fila">
+        <p class="estado" id="estado" aria-live="polite"></p>
+        <button type="button" class="btn btn-audio" id="btnEstado" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
       </div>
 
-      <!-- Cadena de dominó -->
-      <div class="cadena-dominó" id="cadenaDominó" role="list" aria-label="Cadena de dominó">
-        <!-- Primera ficha de inicio -->
-        <div class="ficha inicio" id="fichaInicio">
-          <div class="mitad-ficha" data-valor="inicio">
-            <div class="punto punto-centro"></div>
-          </div>
-          <div class="mitad-ficha" data-valor="inicio">
-            <div class="punto punto-centro"></div>
-          </div>
-        </div>
+      <p class="etiqueta" data-i18n="etiquetaCadena">La mesa</p>
+      <div class="cadena-marco">
+        <div class="cadena" id="cadena"></div>
       </div>
 
-      <!-- Indicador de próximo valor -->
-      <div class="indicador-valor" id="indicadorValor">
-        <span data-i18n="encajanCon">Encajan con:</span>
-        <span class="valor-necesario" id="valorNecesario">?</span>
+      <div class="fila centrado-fila lados oculto" id="lados">
+        <button type="button" class="btn" id="btnLadoIzq" data-i18n="ladoIzquierdo">⬅️ En este lado</button>
+        <button type="button" class="btn" id="btnLadoDer" data-i18n="ladoDerecho">En este lado ➡️</button>
       </div>
 
-      <!-- Paleta de fichas disponibles -->
-      <div class="paleta-fichas">
-        <p class="etiqueta-paleta" data-i18n="eligeFicha">Elige una ficha</p>
-        <div class="fichas-disponibles" id="fichasDisponibles" role="listbox" aria-label="Fichas disponibles"></div>
+      <div class="fila centrado-fila info-partida">
+        <button type="button" class="btn btn-secundario monton" id="monton">🂠 0</button>
+        <p class="rival-info" id="rivalInfo"></p>
       </div>
 
-      <!-- Ficha seleccionada para rotar -->
-      <div class="zona-rotar oculto" id="zonaRotar">
-        <p data-i18n="fichaSeleccionada">Ficha seleccionada</p>
-        <div class="ficha ficha-seleccionada" id="fichaParaRotar"></div>
-        <div class="controles-rotar">
-          <button type="button" class="btn btn-rotar" id="btnRotarIzq" aria-label="Rotar izquierda">↺</button>
-          <button type="button" class="btn btn-rotar" id="btnRotarDer" aria-label="Rotar derecha">↻</button>
-        </div>
-        <button type="button" class="btn" id="btnColocar" data-i18n="colocarFicha">Colocar ficha</button>
-        <button type="button" class="btn btn-secundario" id="btnCancelar" data-i18n="cancelar">Cancelar</button>
-      </div>
-
-      <!-- Herramientas -->
-      <div class="herramientas">
-        <button type="button" class="btn btn-herramienta" id="btnAyuda" data-i18n="btnAyuda">💡 Ayuda</button>
-        <button type="button" class="btn btn-herramienta" id="btnNuevaCadena" data-i18n="btnNuevaCadena">🔄 Nueva cadena</button>
-      </div>
+      <p class="etiqueta" data-i18n="etiquetaMano">Tus fichas</p>
+      <div class="mano" id="mano"></div>
 
       <div class="feedback" id="feedback" aria-live="polite"></div>
-
-      <div class="fila acciones">
-        <button type="button" class="btn" id="btnTerminado" data-i18n="btnTerminado">✔ ¡Listo!</button>
+      <div class="fila centrado-fila">
+        <button type="button" class="btn oculto" id="btnOtraPartida" data-i18n="jugarOtraVez">Jugar otra vez</button>
+        <button type="button" class="btn btn-secundario" id="btnSalir" data-i18n="btnOtroNivel">Elegir otro nivel</button>
       </div>
-    </section>
-
-    <!-- Modal de ayuda socrática -->
-    <div class="modal-ayuda oculto" id="modalAyuda" role="dialog" aria-labelledby="tituloAyuda">
-      <div class="contenido-ayuda">
-        <h2 id="tituloAyuda" data-i18n="tituloAyuda">💡 Pista</h2>
-        <div class="consejo-socratico" id="consejoSocratico"></div>
-        <div class="opciones-ayuda" id="opcionesAyuda"></div>
-        <button type="button" class="btn" id="btnCerrarAyuda" data-i18n="cerrarAyuda">Entendido</button>
-      </div>
-    </div>
-
-    <!-- Pantalla final -->
-    <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
-      <div class="emoji-grande" aria-hidden="true">🎉</div>
-      <h2 data-i18n="finalTitulo">¡Cadena completada!</h2>
-      <p id="resumenFinal"></p>
-      <div class="vista-miniatura-cadena" id="vistaMiniatura"></div>
-      <button type="button" class="btn" id="btnSeguirEncadenando" data-i18n="btnSeguirEncadenando">Seguir encadenando</button>
-      <button type="button" class="btn btn-secundario" id="btnCambiarDificultad" data-i18n="btnCambiarDificultad">Cambiar dificultad</button>
-      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.volverAlMenu">Volver al menú</a>
     </section>
   </div>
 

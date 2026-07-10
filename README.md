@@ -67,7 +67,7 @@ apptonomia/
 | 🎯 Puntería y manos (coordinación) | Atrapa, Teclado, Trazos, Colorear, Piano, Constructores |
 | 📋 Mi día a día (autonomía y hogar) | Mis Rutinas, La Casa, Situaciones, Chat Seguro, Chat Acoso, ¿Lo publico?, Señales, Partes del Día, ¿Qué hago primero?, ¿Qué necesito?, ¿Dónde lo guardo?, Lista de Tareas, ¿Qué me pongo? |
 | 🧠 Memoria y atención | Parejas, Diferencias, ¿Qué falta?, Ecos, Giros y Espejos, Los Bloques, ¿Dónde está?, El Camino, Encaja la Pieza, El Teatro |
-| 🔢 Pensar y contar (razonamiento y matemáticas) | Adivinanzas, Patrones, Los Números, El Monedero, El Reloj, Historias, ¿Qué no encaja?, Puzzle, La Oca, Tres en Raya, Sudoku Visual, Dominó Espacial |
+| 🔢 Pensar y contar (razonamiento y matemáticas) | Adivinanzas, Patrones, Los Números, El Monedero, El Reloj, Historias, ¿Qué no encaja?, Puzzle, La Oca, Tres en Raya, Sudoku Visual, Dominó |
 | 💬 Lenguaje y palabras | Chistes, Dichos, Categorías, La Frase, Palabras |
 | 💜 Emociones | ¿Cómo me siento?, Calma, Entre Amigos |
 

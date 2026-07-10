@@ -1,84 +1,80 @@
 /* ============================================================
-   Apptonomia — Dominó Espacial (textos i18n)
+   Apptonomia — Textos de Dominó / Dominoes (ES/EN)
+   Se registran en App.i18n con App.i18n.register(). Ver assets/js/i18n.js.
    ============================================================ */
+(function () {
+  'use strict';
 
-App.i18n.register({
-  es: {
-    title: '🎯 Dominó Espacial',
-    instruccion: 'Encadena las fichas de dominó. Elige una ficha, gírala si es necesario y colócala junto a la anterior. ¡Los números deben coincidir!',
-    elegirDificultad: '¿Qué dificultad prefieres?',
-    nivelFacil: '😊 Fácil',
-    nivelMedio: '🤔 Medio',
-    nivelDificil: '🧠 Difícil',
-    fichasColocadas: 'Fichas colocadas',
-    encajanCon: 'Encajan con:',
-    eligeFicha: 'Elige una ficha',
-    fichaSeleccionada: 'Ficha seleccionada',
-    colocarFicha: 'Colocar ficha',
-    cancelar: 'Cancelar',
-    btnAyuda: '💡 Ayuda',
-    btnNuevaCadena: '🔄 Nueva cadena',
-    btnTerminado: '✔ ¡Listo!',
-    tituloAyuda: '💡 Pista',
-    cerrarAyuda: 'Entendido',
-    finalTitulo: '¡Cadena completada!',
-    btnSeguirEncadenando: 'Seguir encadenando',
-    btnCambiarDificultad: 'Cambiar dificultad',
-    // Feedback
-    aciertoColocar: '¡Bien! La ficha encaja.',
-    fichaColocada: 'Fichas: {n}',
-    cadenaCompletada: '¡Has completado {n} fichas!',
-    sinFichasEncajan: 'No quedan fichas que encajen. ¡Puedes terminar!',
-    // Consejos socráticos
-    consejoInicio: 'Busca una ficha que tenga el número {valor}.',
-    consejoRotacion: 'Pulsa las flechas para girar la ficha.',
-    consejoEncajar: 'El número {necesario} debe tocar el número {actual}.',
-    // Ayuda específica
-    ayudaNumero: 'El número que buscas es:',
-    ayudaResaltar: 'Estas fichas tienen el número {valor}:',
-    ayudaRotacion: 'Para girar la ficha, usa los botones ↺ y ↻.',
-    // Accesibilidad
-    ficha: 'Ficha {n1}-{n2}',
-    fichaColocada: 'Ficha {n1}-{n2} colocada',
-    cadenaVacia: 'Cadena de dominó vacía'
-  },
-  en: {
-    title: '🎯 Spatial Domino',
-    instruccion: 'Chain the domino tiles. Choose a tile, rotate it if needed, and place it next to the previous one. The numbers must match!',
-    elegirDificultad: 'What difficulty do you prefer?',
-    nivelFacil: '😊 Easy',
-    nivelMedio: '🤔 Medium',
-    nivelDificil: '🧠 Hard',
-    fichasColocadas: 'Tiles placed',
-    encajanCon: 'Match with:',
-    eligeFicha: 'Choose a tile',
-    fichaSeleccionada: 'Selected tile',
-    colocarFicha: 'Place tile',
-    cancelar: 'Cancel',
-    btnAyuda: '💡 Help',
-    btnNuevaCadena: '🔄 New chain',
-    btnTerminado: '✔ Done!',
-    tituloAyuda: '💡 Hint',
-    cerrarAyuda: 'Got it',
-    finalTitulo: 'Chain completed!',
-    btnSeguirEncadenando: 'Keep chaining',
-    btnCambiarDificultad: 'Change difficulty',
-    // Feedback
-    aciertoColocar: 'Great! The tile fits.',
-    fichaColocada: 'Tiles: {n}',
-    cadenaCompletada: 'You completed {n} tiles!',
-    sinFichasEncajan: 'No more matching tiles. You can finish!',
-    // Socratic hints
-    consejoInicio: 'Look for a tile with the number {valor}.',
-    consejoRotacion: 'Press the arrows to rotate the tile.',
-    consejoEncajar: 'The number {necesario} must touch the number {actual}.',
-    // Specific help
-    ayudaNumero: 'The number you are looking for is:',
-    ayudaResaltar: 'These tiles have the number {valor}:',
-    ayudaRotacion: 'To rotate the tile, use the ↺ and ↻ buttons.',
-    // Accessibility
-    ficha: 'Tile {n1}-{n2}',
-    fichaColocada: 'Tile {n1}-{n2} placed',
-    cadenaVacia: 'Empty domino chain'
-  }
-});
+  App.i18n.register({
+    es: {
+      title: '🁵 Dominó',
+      instruccion: 'Juega al dominó contra un rival tranquilo. Toca una ficha que encaje con un extremo de la cadena. Si no tienes, roba del montón.',
+      instruccionNivel: ' Primero elige el nivel.',
+      elegirNivel: 'Elige el nivel',
+      veces: 'victorias',
+      primeraFicha: 'Pon tu primera ficha. Toca la que quieras.',
+      teToca: 'Te toca. La cadena termina en {a} y en {b}.',
+      eligeLado: 'Tu ficha encaja en los dos lados. ¿Dónde la pones?',
+      ladoIzquierdo: '⬅️ En este lado',
+      ladoDerecho: 'En este lado ➡️',
+      piensaRival: 'El rival piensa…',
+      rivalPone: 'El rival pone una ficha.',
+      rivalRoba: 'El rival roba una ficha del montón.',
+      rivalPasa: 'El rival no puede poner ficha y pasa.',
+      tuPasas: 'No quedan fichas en el montón y no puedes poner. Pasas.',
+      hasRobado: 'Has robado una ficha.',
+      pistaNoEncaja: '🤔 Esa ficha no encaja. Mira los extremos de la cadena: {a} y {b}.',
+      pistaMarcadas: '💡 Las fichas que puedes poner están marcadas.',
+      pistaRobar: 'No tienes ninguna ficha que encaje. Pulsa el montón para robar.',
+      hasGanado: '🎉 ¡Te has quedado sin fichas! Has ganado.',
+      ganaRival: 'El rival se quedó sin fichas. ¡Casi! Otra partida y lo consigues.',
+      cerrado: 'Nadie puede poner ficha. Gana quien tiene menos fichas.',
+      cerradoGanas: '🎉 La partida se cerró y tú tienes menos fichas. ¡Has ganado!',
+      cerradoEmpate: '🤝 La partida se cerró en empate. ¡Muy bien jugado!',
+      cerradoRival: 'La partida se cerró y el rival tenía menos fichas. ¡Casi!',
+      jugarOtraVez: 'Jugar otra vez',
+      btnOtroNivel: 'Elegir otro nivel',
+      montonAria: 'Robar una ficha del montón. Quedan {n}.',
+      montonVacio: 'El montón está vacío',
+      fichaAria: 'Ficha {a} y {b}',
+      etiquetaCadena: 'La mesa',
+      etiquetaMano: 'Tus fichas',
+      fichasRival: 'Fichas del rival: {n}'
+    },
+    en: {
+      title: '🁵 Dominoes',
+      instruccion: 'Play dominoes against a relaxed rival. Touch a tile that matches one end of the chain. If you have none, draw from the pile.',
+      instruccionNivel: ' First, choose the level.',
+      elegirNivel: 'Choose the level',
+      veces: 'wins',
+      primeraFicha: 'Place your first tile. Touch any one you like.',
+      teToca: 'Your turn. The chain ends in {a} and {b}.',
+      eligeLado: 'Your tile fits on both sides. Where do you put it?',
+      ladoIzquierdo: '⬅️ On this side',
+      ladoDerecho: 'On this side ➡️',
+      piensaRival: 'Your rival is thinking…',
+      rivalPone: 'Your rival places a tile.',
+      rivalRoba: 'Your rival draws a tile from the pile.',
+      rivalPasa: 'Your rival cannot play and passes.',
+      tuPasas: 'The pile is empty and you cannot play. You pass.',
+      hasRobado: 'You drew a tile.',
+      pistaNoEncaja: '🤔 That tile does not fit. Look at the ends of the chain: {a} and {b}.',
+      pistaMarcadas: '💡 The tiles you can play are marked.',
+      pistaRobar: 'None of your tiles fit. Touch the pile to draw.',
+      hasGanado: '🎉 You have no tiles left! You won.',
+      ganaRival: 'Your rival ran out of tiles. So close! One more game and you will get it.',
+      cerrado: 'Nobody can play a tile. Whoever has fewer tiles wins.',
+      cerradoGanas: '🎉 The game closed and you have fewer tiles. You won!',
+      cerradoEmpate: '🤝 The game closed in a draw. Very well played!',
+      cerradoRival: 'The game closed and your rival had fewer tiles. So close!',
+      jugarOtraVez: 'Play again',
+      btnOtroNivel: 'Choose another level',
+      montonAria: 'Draw a tile from the pile. {n} left.',
+      montonVacio: 'The pile is empty',
+      fichaAria: 'Tile {a} and {b}',
+      etiquetaCadena: 'The table',
+      etiquetaMano: 'Your tiles',
+      fichasRival: "Rival's tiles: {n}"
+    }
+  });
+})();
