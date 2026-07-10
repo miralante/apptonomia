@@ -1,11 +1,13 @@
 # PLAN-MEJORAS.md — Plan de mejoras auditadas (2026-07-07)
 
-> **ESTADO (2026-07-10): las Partes A, B, C, E1, E2, F1-F4 y G1/G3/G4 YA
-> ESTÁN EJECUTADAS** (verificado en el repo: fuentes en `assets/fonts/`,
-> `scripts/check.js` con 8 comprobaciones, wake lock en `utils.js`,
+> **ESTADO (2026-07-10): las Partes A, B, C, E1, E2, F1-F4 y toda la G
+> (G1-G5) YA ESTÁN EJECUTADAS** (verificado en el repo: fuentes en
+> `assets/fonts/`, `scripts/check.js` con 8 comprobaciones,
+> `scripts/smoke.js` con Playwright, wake lock en `utils.js`,
 > `core.descanso`, export/import en `/ajustes/`, 4ª columna en `equipo/`,
-> anclas de módulo en la portada). NO volver a ejecutarlas. Pendientes
-> solo: D, E3-E6, F5, G2 y G5 (todas requieren aprobación del usuario).
+> anclas de módulo en la portada, `temp_original_data.js` borrado). NO
+> volver a ejecutarlas. Pendiente solo: Parte D y E3-E6 (requieren
+> aprobación del usuario).
 
 Plan ejecutable escrito para que lo siga **cualquier modelo/agente, incluso uno
 poco capaz**. Cada tarea tiene: archivo exacto, cambio exacto (texto viejo →
@@ -640,11 +642,17 @@ Parte G (pendiente, 2026-07-10):
 | # | Tarea | Riesgo | Archivos |
 |---|-------|--------|----------|
 | G1 | ✔ Hecho — check.js: paridad equipo + conteos + lint porRonda | Nulo (tooling dev) | scripts/check.js |
-| G2 | Borrar temp_original_data.js | Nulo (confirmar antes con el usuario) | raíz + .gitignore |
+| G2 | ✔ Hecho — Borrado temp_original_data.js + temp_* en .gitignore | Nulo (usuario confirmó) | raíz + .gitignore |
 | G3 | ✔ Hecho — Anclas de módulo en la portada | Bajo (solo HTML/CSS) | site/index.html, site/styles.css |
 | G4 | ✔ Hecho — Nota de coordinación entre sesiones | Nulo (solo docs) | CLAUDE.md |
-| G5 | Smoke-test de las 49 con Playwright | — | Solo con aprobación (devDependency) |
+| G5 | ✔ Hecho — scripts/smoke.js + playwright devDependency | Bajo (usuario aprobó la devDependency) | package.json, scripts/smoke.js |
 
-Commit: `39a1eba` (2026-07-10). Verificado: `node scripts/check.js` → OK
-(304 checks), y cada uno de los 3 checks nuevos probado rompiendo el caso
+Commit G1/G3/G4: `39a1eba` (2026-07-10). G2/G5: commit siguiente, mismo día
+(usuario aprobó ambos explícitamente). `node scripts/smoke.js` (49
+actividades × es/en = 98 pruebas) pasó limpio en la primera ejecución tras
+crearlo — verificado además rompiendo `tools/atrapa/app.js` a propósito
+para confirmar que el runner detecta un crash real antes de confiar en él.
+
+Verificado: `node scripts/check.js` → OK (304 checks), y cada uno de los
+3 checks nuevos de G1 probado rompiendo el caso
 real primero. Anclas verificadas con Playwright en ES/EN.

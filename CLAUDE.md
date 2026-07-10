@@ -28,14 +28,25 @@ python -m http.server 8080
 
 # Comprobación estructural (sin dependencias, antes de cualquier commit)
 node scripts/check.js
+
+# Smoke test dinámico (requiere `npm install`; usa Playwright + Chromium)
+node scripts/smoke.js               # las 49 actividades, es + en
+node scripts/smoke.js domino oca    # solo esos slugs, para depurar rápido
 ```
 
-No hay tests de comportamiento ni linter de estilo. `scripts/check.js` sí
-cubre lo estructural (sintaxis, anatomía de `tools/<slug>/`, caché de
-`sw.js`, paridad es/en, paridad de catálogo con `site/` y `equipo/`,
-conteos de actividades, y el patrón `DATA.porRonda` que ya rompió dos
-herramientas — ver su cabecera para el detalle). El resto de la
-verificación es manual (ver checklist en PLAN.md §5, Fase 5).
+`scripts/check.js` cubre lo estructural (sintaxis, anatomía de
+`tools/<slug>/`, caché de `sw.js`, paridad es/en, paridad de catálogo con
+`site/` y `equipo/`, conteos de actividades, y el patrón `DATA.porRonda`
+que ya rompió dos herramientas). `scripts/smoke.js` cubre lo que check.js
+NO puede: abre cada actividad de verdad en Chromium (español e inglés),
+pulsa el primer nivel si lo hay, y falla si aparece cualquier error de
+consola — la clase de bug "carga bien pero revienta al usarla" (así se
+encontró originalmente el crash de la-frase/palabras: solo pasaba al
+completar una ronda entera). `playwright` es devDependency de test, igual
+que `firebase-tools` lo es de despliegue: ninguna de las dos se sirve a la
+persona usuaria. No hay tests de comportamiento más allá de esto ni linter
+de estilo; el resto de la verificación es manual (ver checklist en
+PLAN.md §5, Fase 5).
 
 **Coordinación entre sesiones**: este repo se trabaja con varias sesiones
 de agente en paralelo (y el usuario también commitea directamente). Al
@@ -350,14 +361,18 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       las jugables (regla 12). Finales sin castigo: ganar da estrella,
       perder da ánimo, el cierre por bloqueo compara fichas restantes y el
       empate se celebra. Regla 13: única variable es maxPips (3/5/6).
-- [x] Parte G de PLAN-MEJORAS.md (2026-07-10, G1/G3/G4): `scripts/check.js`
-      amplía sus 5 comprobaciones a 8 (paridad con `equipo/`, conteos
-      README/SPEC sincronizados, lint del patrón `DATA.porRonda` que rompió
-      la-frase/palabras — las tres verificadas rompiendo el caso real y
-      comprobando que el checker lo detecta); anclas de módulo en la
-      portada (`site/index.html`, 6 enlaces `#mod-N` con teclado y sin JS,
-      scroll suave ya respetado por `prefers-reduced-motion` de
-      `base.css`); nota de coordinación entre sesiones en este archivo.
-      G2 (borrar `temp_original_data.js`) y G5 (smoke-test con Playwright
-      como devDependency) siguen pendientes de aprobación del usuario.
+- [x] Parte G de PLAN-MEJORAS.md COMPLETA (2026-07-10, con aprobación del
+      usuario para G2 y G5): `scripts/check.js` amplía sus 5 comprobaciones
+      a 8 (paridad con `equipo/`, conteos README/SPEC sincronizados, lint
+      del patrón `DATA.porRonda` que rompió la-frase/palabras — las tres
+      verificadas rompiendo el caso real y comprobando que el checker lo
+      detecta); anclas de módulo en la portada (`site/index.html`, 6
+      enlaces `#mod-N` con teclado y sin JS, scroll suave ya respetado por
+      `prefers-reduced-motion` de `base.css`); nota de coordinación entre
+      sesiones en este archivo; `temp_original_data.js` borrado (se
+      publicaba en el hosting sin que nadie lo usara) y `temp_*` en
+      `.gitignore`; `scripts/smoke.js` — smoke test dinámico con Playwright
+      (devDependency, como `firebase-tools`) que abre las 49 actividades en
+      es/en, pulsa el primer nivel si lo hay, y falla con cualquier error
+      de consola. Las 49 pasan limpio (98 pruebas) en la primera pasada.
 - [ ] Backlog transversal — ver PLAN.md §7 (modo cuidador, multi-perfil, etc.)
