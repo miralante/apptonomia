@@ -177,6 +177,4 @@
   $('#btnInstruccion').addEventListener('click', function () {
     App.tts.speak($('#instruccion').textContent);
   });
-
-  iniciarRonda();
 })();
