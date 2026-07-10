@@ -1,5 +1,12 @@
 # PLAN-MEJORAS.md — Plan de mejoras auditadas (2026-07-07)
 
+> **ESTADO (2026-07-10): las Partes A, B, C, E1, E2 y F1-F4 YA ESTÁN
+> EJECUTADAS** (verificado en el repo: fuentes en `assets/fonts/`,
+> `scripts/check.js`, wake lock en `utils.js`, `core.descanso`,
+> export/import en `/ajustes/`, 4ª columna en `equipo/`). NO volver a
+> ejecutarlas. Pendientes solo: D, E3-E6, F5 (requieren aprobación del
+> usuario) y la Parte G (nueva, 2026-07-10).
+
 Plan ejecutable escrito para que lo siga **cualquier modelo/agente, incluso uno
 poco capaz**. Cada tarea tiene: archivo exacto, cambio exacto (texto viejo →
 texto nuevo cuando es posible), y cómo verificar. **No improvises**: si algo no
@@ -8,7 +15,9 @@ coincide con lo descrito, para y pregunta al usuario.
 Origen: auditoría de 2026-07-07 (4 revisiones paralelas: núcleo compartido,
 reglas de accesibilidad, documentación, i18n). Los hallazgos ya fueron
 **verificados contra el código real** — no son hipótesis. La Parte E añade la
-revisión desde el punto de vista de terapia ocupacional (misma fecha).
+revisión desde el punto de vista de terapia ocupacional (misma fecha). La
+Parte G es la segunda revisión tecnológica (2026-07-10), tras crecer la app
+de 36 a 49 actividades en tres días con varias sesiones en paralelo.
 
 ---
 
@@ -515,6 +524,98 @@ beneficia a quien sepa levantar un servidor local.
 
 ---
 
+## PARTE G — Segunda revisión tecnológica (2026-07-10, presupuesto cero, simple)
+
+Contexto: en tres días la app pasó de 36 a 49 actividades, con el usuario y
+varias sesiones de agente trabajando EN PARALELO sobre el mismo repo. Los
+hallazgos de abajo no son teóricos: cada uno corresponde a un incidente real
+de esta semana. Criterio idéntico a la Parte F: nada de backend, frameworks
+ni dependencias; solo reforzar lo que ya existe.
+
+**Descartado a propósito** (mantener simple): actualizaciones diferenciales
+del Service Worker (la app entera pesa poco, cache-first completo vale);
+buscador en la portada (6 módulos con anclas bastan); framework de tests
+(check.js sin dependencias cumple).
+
+### G1. [Ejecutable] Ampliar `scripts/check.js` con los 3 huecos demostrados
+
+**Justificación.** El checker ya evitó un desastre (detectó 12 fallos de
+registro de domino/senales), pero esta semana se colaron por sus huecos:
+(a) constructores/domino/senales faltaban en `equipo/index.html` y el checker
+dio OK; (b) el conteo de actividades de `README.md`/`SPEC.md` se quedó
+desactualizado VARIAS veces (36→48 se corrigió a mano cinco veces);
+(c) el crash de la-frase/palabras (`DATA.porRonda` con `DATA` partido es/en)
+es un patrón detectable mecánicamente y hay 40+ clones donde puede reaparecer.
+
+**Cambio.** Añadir a `scripts/check.js` tres comprobaciones:
+1. **Paridad con equipo/**: para cada `tools/<slug>/`, leer el `title` de su
+   `strings.js` (bloque es, sin el emoji inicial) y comprobar que aparece
+   como texto en alguna celda `<td>` de `equipo/index.html`. Avisar también
+   del caso inverso solo si es barato (no obligatorio).
+2. **Conteos sincronizados**: extraer el número de `## Actividades (N)` en
+   `README.md` y de `(N actuales)` en `SPEC.md` y compararlos con el número
+   real de carpetas en `tools/`. Fallo si no coinciden.
+3. **Lint del patrón porRonda** (clase del bug A1): para cada herramienta,
+   si su `data.js` define `es:` y `en:` al nivel superior Y su `app.js`
+   contiene `DATA.porRonda`, fallo con mensaje "usar banco().porRonda".
+   (Regex simple sobre el texto es suficiente; no hace falta ejecutar nada.)
+
+**Verificar.** `node scripts/check.js` debe seguir dando OK. Romper cada
+caso a propósito (quitar una fila de equipo, cambiar un conteo, poner
+`DATA.porRonda` en un app.js con data es/en), comprobar que falla con el
+mensaje correcto, y deshacer.
+
+### G2. [Confirmar con el usuario] Borrar `temp_original_data.js` de la raíz
+
+**Justificación.** Es una copia de seguridad temporal del `data.js` de
+Atrapa, en UTF-16 (se ve corrupta con herramientas normales), committeada en
+la raíz del repo — y como `firebase.json` no la excluye, **se publica en el
+hosting** con cada deploy. El archivo original ya está en su sitio
+(`tools/atrapa/data.js`), así que la copia no aporta nada.
+
+**Cambio.** Confirmar con el usuario que no la necesita (la creó él) y
+entonces: `git rm temp_original_data.js` + añadir `temp_*` a `.gitignore`.
+
+### G3. [Ejecutable] Anclas de módulo en la portada
+
+**Justificación.** La portada tiene ya 49 tarjetas grandes en una sola
+columna de scroll: para el público de la app, llegar al módulo de Emociones
+son 40+ tarjetas de desplazamiento. Seis botones-ancla arriba (uno por
+módulo, con su emoji y color) reducen eso a un toque, sin cambiar nada de la
+estructura ni añadir estado.
+
+**Cambio.** En `site/index.html`, tras la cabecera: una fila de 6 botones
+`<a href="#mod-N">` con el emoji y nombre corto del módulo (claves `mod1..6`
+ya existentes en strings.js); poner `id="mod-N"` a cada
+`<section class="modulo">`. CSS: fila con `flex-wrap`, botones ≥64px,
+`scroll-behavior: smooth` respetando `prefers-reduced-motion` (media query
+que lo desactive). Verificar con Playwright que cada ancla desplaza a su
+módulo y que el foco por teclado los alcanza (son enlaces normales).
+
+### G4. [Ejecutable] Nota de coordinación entre sesiones en `CLAUDE.md`
+
+**Justificación.** El usuario trabaja con varias sesiones de agente en
+paralelo: esta semana una sesión commiteó el trabajo de otra a medias
+(`dc76398`), y hubo tres herramientas completas sin registrar durante horas.
+No se puede impedir, pero sí abaratar la reconciliación.
+
+**Cambio.** Añadir a `CLAUDE.md` (sección Comandos o nueva "Coordinación")
+tres líneas: al EMPEZAR cualquier sesión, ejecutar `git status` +
+`git log --oneline -3` + `node scripts/check.js`; si hay archivos sin
+registrar o fallos, reconciliar ANTES de construir nada nuevo; no asumir que
+el estado del repo coincide con la última conversación.
+
+### G5. [Con aprobación] Smoke-test genérico de las 49 actividades
+
+Un `scripts/smoke.js` que abra cada herramienta con Playwright en ambos
+idiomas, pulse el primer nivel/botón de inicio y falle si hay errores de
+consola. Cubriría de golpe la clase de bug "carga pero revienta al empezar".
+Requiere aprobación porque Playwright tendría que entrar como devDependency
+(hoy se usa desde el caché de npx del desarrollador, no está en
+`package.json`) — decisión de política del repo, no técnica.
+
+---
+
 ## Orden de ejecución resumido
 
 | # | Tarea | Riesgo | Archivos |
@@ -533,3 +634,13 @@ beneficia a quien sepa levantar un servidor local.
 | 12 | F4 Wake Lock | Nulo (~15 líneas progresivas) | assets/js/utils.js |
 | 13 | Subir VERSION sw.js v40→v41 | Nulo | sw.js |
 | 14 | Parte D, E3-E6 y F5 | — | Solo con aprobación del usuario |
+
+Parte G (pendiente, 2026-07-10):
+
+| # | Tarea | Riesgo | Archivos |
+|---|-------|--------|----------|
+| G1 | check.js: paridad equipo + conteos + lint porRonda | Nulo (tooling dev) | scripts/check.js |
+| G2 | Borrar temp_original_data.js | Nulo (confirmar antes con el usuario) | raíz + .gitignore |
+| G3 | Anclas de módulo en la portada | Bajo (solo HTML/CSS) | site/index.html, site/styles.css |
+| G4 | Nota de coordinación entre sesiones | Nulo (solo docs) | CLAUDE.md |
+| G5 | Smoke-test de las 49 con Playwright | — | Solo con aprobación (devDependency) |
