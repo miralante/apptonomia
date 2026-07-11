@@ -32,7 +32,11 @@ const DATA = {
           { text: 'Vas a ir a la piscina.', options: ['El bañador y la toalla', 'El abrigo', 'Los libros del cole'], correct: 0 },
           { text: 'Vas a salir de casa y hace mucho frío.', options: ['El abrigo', 'El bañador', 'Una camiseta de tirantes'], correct: 0 },
           { text: 'Vas a pintar un dibujo.', options: ['Colores o rotuladores', 'El cepillo de dientes', 'El paraguas'], correct: 0 },
-          { text: 'Vas a jugar al fútbol.', options: ['El balón y ropa de deporte', 'Un libro', 'El pijama'], correct: 0 }
+          { text: 'Vas a jugar al fútbol.', options: ['El balón y ropa de deporte', 'Un libro', 'El pijama'], correct: 0 },
+          { text: 'Vas a ducharte.', options: ['Toalla y jabón', 'El abrigo', 'Un balón'], correct: 0 },
+          { text: 'Vas a salir y hace mucho sol.', options: ['Gorra o crema de sol', 'El paraguas', 'Una bufanda'], correct: 0 },
+          { text: 'Vas a recortar figuras de papel.', options: ['Tijeras de punta redonda', 'Una cuchara', 'El pijama'], correct: 0 },
+          { text: 'Vas a pasear al perro.', options: ['La correa y bolsitas', 'El bañador', 'Un libro'], correct: 0 }
         ]
       },
       {
@@ -48,7 +52,11 @@ const DATA = {
           { text: 'Vas a hacer una videollamada con la abuela.', options: ['Cargar el móvil o la tablet', 'Coger el paraguas', 'Ponerte el pijama'], correct: 0 },
           { text: 'Vas a plantar semillas en una maceta.', options: ['Tierra y agua', 'Un cepillo de dientes', 'Un balón'], correct: 0 },
           { text: 'Vas de excursión al campo todo el día.', options: ['Agua y comida para el camino', 'Solo el pijama', 'Solo un paraguas'], correct: 0 },
-          { text: 'Vas a escribir una carta a un amigo.', options: ['Papel y bolígrafo', 'El bañador', 'Un balón'], correct: 0 }
+          { text: 'Vas a escribir una carta a un amigo.', options: ['Papel y bolígrafo', 'El bañador', 'Un balón'], correct: 0 },
+          { text: 'Vas a hacer un bizcocho y el horno tiene que estar caliente.', options: ['Encender el horno antes de empezar', 'Encenderlo al final del todo', 'No encenderlo'], correct: 0 },
+          { text: 'Vas a ir a comprar el pan.', options: ['Dinero o tarjeta', 'El pijama', 'Una manta'], correct: 0 },
+          { text: 'Vas a coger el autobús para ir al centro.', options: ['Saber el número del bus y llevar el bono o dinero', 'Solo unas gafas de sol', 'El bañador'], correct: 0 },
+          { text: 'Mañana madrugas para una excursión.', options: ['Preparar la ropa y poner el despertador esta noche', 'Acostarte muy tarde', 'Dejarlo todo para mañana'], correct: 0 }
         ]
       }
     ]
@@ -71,7 +79,11 @@ const DATA = {
           { text: 'You are going to the swimming pool.', options: ['Swimming trunks and a towel', 'A coat', 'School books'], correct: 0 },
           { text: "You are going outside and it's very cold.", options: ['A coat', 'Swimming trunks', 'A sleeveless top'], correct: 0 },
           { text: 'You are going to paint a picture.', options: ['Crayons or felt tips', 'A toothbrush', 'An umbrella'], correct: 0 },
-          { text: 'You are going to play football.', options: ['A ball and sports clothes', 'A book', 'Pyjamas'], correct: 0 }
+          { text: 'You are going to play football.', options: ['A ball and sports clothes', 'A book', 'Pyjamas'], correct: 0 },
+          { text: 'You are going to take a shower.', options: ['A towel and soap', 'A coat', 'A ball'], correct: 0 },
+          { text: 'You are going outside and it is very sunny.', options: ['A cap or sun cream', 'An umbrella', 'A scarf'], correct: 0 },
+          { text: 'You are going to cut out paper shapes.', options: ['Round-tip scissors', 'A spoon', 'Pyjamas'], correct: 0 },
+          { text: 'You are going to walk the dog.', options: ['The lead and waste bags', 'Swimming trunks', 'A book'], correct: 0 }
         ]
       },
       {
@@ -87,7 +99,11 @@ const DATA = {
           { text: 'You are going to video call your grandma.', options: ['Charge your phone or tablet', 'Grab an umbrella', 'Put on your pyjamas'], correct: 0 },
           { text: 'You are going to plant seeds in a pot.', options: ['Soil and water', 'A toothbrush', 'A ball'], correct: 0 },
           { text: 'You are going on a day trip to the countryside.', options: ['Water and food for the journey', 'Just your pyjamas', 'Just an umbrella'], correct: 0 },
-          { text: 'You are going to write a letter to a friend.', options: ['Paper and a pen', 'Swimming trunks', 'A ball'], correct: 0 }
+          { text: 'You are going to write a letter to a friend.', options: ['Paper and a pen', 'Swimming trunks', 'A ball'], correct: 0 },
+          { text: 'You are going to bake a cake and the oven needs to be hot.', options: ['Turn the oven on before you start', 'Turn it on at the very end', 'Do not turn it on'], correct: 0 },
+          { text: 'You are going to buy bread.', options: ['Money or a card', 'Pyjamas', 'A blanket'], correct: 0 },
+          { text: 'You are going to take the bus into town.', options: ['Know the bus number and bring your pass or money', 'Just sunglasses', 'Swimming trunks'], correct: 0 },
+          { text: 'You are getting up early tomorrow for a trip.', options: ['Lay out your clothes and set the alarm tonight', 'Go to bed very late', 'Leave everything for the morning'], correct: 0 }
         ]
       }
     ]

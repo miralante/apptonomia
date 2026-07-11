@@ -37,7 +37,9 @@ const DATA = {
           { picto: '🍲', tarea: 'Cenar', momento: 'Noche' },
           { picto: '🌙', tarea: 'Ponerte el pijama', momento: 'Noche' },
           { picto: '🛁', tarea: 'Bañarte antes de dormir', momento: 'Noche' },
-          { picto: '😴', tarea: 'Dormir', momento: 'Noche' }
+          { picto: '😴', tarea: 'Dormir', momento: 'Noche' },
+          { picto: '👋', tarea: 'Decir buenos días', momento: 'Mañana' },
+          { picto: '🌆', tarea: 'Volver a casa del colegio', momento: 'Tarde' }
         ]
       },
       {
@@ -57,7 +59,9 @@ const DATA = {
           { picto: '🔦', tarea: 'Apagar la luz para dormir', momento: 'Noche' },
           { picto: '📱', tarea: 'Dejar el móvil cargando', momento: 'Noche' },
           { picto: '🧸', tarea: 'Coger el peluche para dormir', momento: 'Noche' },
-          { picto: '👖', tarea: 'Dejar la ropa preparada para mañana', momento: 'Noche' }
+          { picto: '👖', tarea: 'Dejar la ropa preparada para mañana', momento: 'Noche' },
+          { picto: '🛒', tarea: 'Ayudar a guardar la compra de la tarde', momento: 'Tarde' },
+          { picto: '🦷', tarea: 'Lavarte los dientes antes de acostarte', momento: 'Noche' }
         ]
       }
     ]
@@ -83,7 +87,9 @@ const DATA = {
           { picto: '🍲', tarea: 'Have dinner', momento: 'Night' },
           { picto: '🌙', tarea: 'Put on your pyjamas', momento: 'Night' },
           { picto: '🛁', tarea: 'Take a bath before bed', momento: 'Night' },
-          { picto: '😴', tarea: 'Sleep', momento: 'Night' }
+          { picto: '😴', tarea: 'Sleep', momento: 'Night' },
+          { picto: '👋', tarea: 'Say good morning', momento: 'Morning' },
+          { picto: '🌆', tarea: 'Come home from school', momento: 'Afternoon' }
         ]
       },
       {
@@ -103,7 +109,9 @@ const DATA = {
           { picto: '🔦', tarea: 'Turn off the light to sleep', momento: 'Night' },
           { picto: '📱', tarea: 'Leave your phone charging', momento: 'Night' },
           { picto: '🧸', tarea: 'Get your teddy bear for bed', momento: 'Night' },
-          { picto: '👖', tarea: "Lay out tomorrow's clothes", momento: 'Night' }
+          { picto: '👖', tarea: "Lay out tomorrow's clothes", momento: 'Night' },
+          { picto: '🛒', tarea: 'Help put away the afternoon shopping', momento: 'Afternoon' },
+          { picto: '🦷', tarea: 'Brush your teeth before bed', momento: 'Night' }
         ]
       }
     ]

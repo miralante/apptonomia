@@ -116,10 +116,14 @@
 
   /* ---------- Chat: motor de pasos ---------- */
   function abrirChat(esc) {
-    escenario = esc;
+    /* Cada tarjeta del menú es un grupo temático con varias variantes
+       (casos); se juega UNA al azar para que el guion no se memorice.
+       La estrella (progreso.completado) sigue siendo por grupo. */
+    var v = esc.variantes[Math.floor(Math.random() * esc.variantes.length)];
+    escenario = { id: esc.id, contacto: v.contacto, relacion: v.relacion, pasos: v.pasos, regla: v.regla };
     idx = 0;
-    $('#chatAlias').textContent = esc.contacto;
-    $('#chatBadge').textContent = esc.relacion;
+    $('#chatAlias').textContent = escenario.contacto;
+    $('#chatBadge').textContent = escenario.relacion;
     $('#chatMensajes').innerHTML = '';
     $('#reglaFinal').classList.add('oculto');
     limpiarZonaRespuesta();

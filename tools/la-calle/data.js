@@ -31,7 +31,12 @@ const DATA = {
           { picto: '🚏', situacion: 'No sabes si el autobús que viene es el tuyo.', opciones: ['Mirar el número o preguntar al conductor', 'Subir a cualquier autobús que llegue', 'Cruzar la calle para verlo mejor'], correcta: 0 },
           { picto: '🧍', situacion: 'Un desconocido en la calle te dice que le acompañes a algún sitio.', opciones: ['Decir que no y alejarte hacia gente conocida', 'Acompañarlo si parece simpático', 'Seguirlo en silencio'], correcta: 0 },
           { picto: '🗺️', situacion: 'Te das cuenta de que te has perdido por la calle.', opciones: ['Pararte donde estás y pedir ayuda a un policía o a una tienda', 'Seguir caminando deprisa a ver si lo encuentras', 'Meterte por una calle que no conoces para explorar'], correcta: 0 },
-          { picto: '🪪', situacion: 'Un policía te pregunta quién eres porque te has perdido.', opciones: ['Enseñarle tu identificación o decir tu nombre y el teléfono de un familiar', 'No decir nada y alejarte', 'Decir un nombre falso'], correcta: 0 }
+          { picto: '🪪', situacion: 'Un policía te pregunta quién eres porque te has perdido.', opciones: ['Enseñarle tu identificación o decir tu nombre y el teléfono de un familiar', 'No decir nada y alejarte', 'Decir un nombre falso'], correcta: 0 },
+          { picto: '🎧', situacion: 'Vas a cruzar la calle y llevas auriculares con música.', opciones: ['Quitarte los auriculares y mirar antes de cruzar', 'Cruzar con la música alta', 'Mirar el móvil mientras cruzas'], correcta: 0 },
+          { picto: '🚇', situacion: 'El metro llega y se abren las puertas.', opciones: ['Dejar salir a la gente y después entrar', 'Entrar empujando antes de que salgan', 'Poner el pie en la puerta para que no se cierre'], correcta: 0 },
+          { picto: '🚶', situacion: 'La acera está llena de gente que viene de frente.', opciones: ['Caminar despacio por tu lado sin empujar', 'Empujar para pasar primero', 'Bajarte a la calzada para adelantar'], correcta: 0 },
+          { picto: '🚲', situacion: 'En la acera hay un carril para bicicletas pintado en el suelo.', opciones: ['Caminar fuera del carril de las bicis', 'Caminar por el medio del carril bici', 'Pararte dentro del carril a mirar el móvil'], correcta: 0 },
+          { picto: '🐕', situacion: 'Un perro que no conoces está atado en la puerta de una tienda.', opciones: ['Pasar de largo sin tocarlo', 'Acariciarlo aunque no lo conozcas', 'Darle comida de tu bolsillo'], correcta: 0 }
         ]
       },
       {
@@ -47,7 +52,12 @@ const DATA = {
           { picto: '🏬', situacion: 'Te pierdes dentro de un centro comercial muy grande.', opciones: ['Ir al mostrador de información o a una tienda y pedir ayuda', 'Salir a la calle a buscar solo', 'Sentarte en el suelo a esperar sin decir nada a nadie'], correcta: 0 },
           { picto: '📱', situacion: 'Te has perdido y llevas el móvil contigo.', opciones: ['Llamar a un familiar o persona de confianza para decir dónde estás', 'Apagar el móvil para ahorrar batería', 'Escribir a desconocidos pidiendo que vengan a buscarte'], correcta: 0 },
           { picto: '🚧', situacion: 'La acera está cortada por obras.', opciones: ['Buscar otro camino o cruzar con mucho cuidado mirando el tráfico', 'Meterte en la zona de obras aunque esté vallada', 'Caminar por la calzada sin mirar los coches'], correcta: 0 },
-          { picto: '🌙', situacion: 'Se te ha hecho de noche y todavía estás fuera de casa.', opciones: ['Avisar a un adulto de confianza de dónde estás y volver por calles conocidas e iluminadas', 'Volver por un atajo desconocido y oscuro', 'Quedarte fuera sin avisar a nadie'], correcta: 0 }
+          { picto: '🌙', situacion: 'Se te ha hecho de noche y todavía estás fuera de casa.', opciones: ['Avisar a un adulto de confianza de dónde estás y volver por calles conocidas e iluminadas', 'Volver por un atajo desconocido y oscuro', 'Quedarte fuera sin avisar a nadie'], correcta: 0 },
+          { picto: '🚌', situacion: 'Te has quedado dormido en el autobús y al despertar no sabes dónde estás.', opciones: ['Preguntar al conductor y bajarte en una parada segura', 'Bajarte corriendo en cualquier sitio', 'Quedarte callado sin pedir ayuda'], correcta: 0 },
+          { picto: '🌧️', situacion: 'Llueve mucho y el suelo de la calle resbala.', opciones: ['Caminar despacio y con cuidado', 'Correr para llegar antes', 'Cruzar corriendo entre los coches'], correcta: 0 },
+          { picto: '🧒', situacion: 'Ves a un niño pequeño solo y llorando en la calle.', opciones: ['Avisar a un policía o a un adulto para que le ayuden', 'Llevártelo tú a buscar a su familia', 'Seguir andando como si nada'], correcta: 0 },
+          { picto: '📵', situacion: 'Te has perdido y tu móvil no tiene batería.', opciones: ['Entrar en una tienda y pedir que llamen a tu familia', 'Caminar sin rumbo hasta encontrar tu casa', 'Irte con un desconocido que dice conocer tu calle'], correcta: 0 },
+          { picto: '🚕', situacion: 'Un vecino que apenas conoces insiste en llevarte en su coche.', opciones: ['Decir "no, gracias" y contárselo después a tu familia', 'Subir porque le has visto alguna vez', 'Subir para no parecer maleducado'], correcta: 0 }
         ]
       }
     ]
@@ -68,7 +78,12 @@ const DATA = {
           { picto: '🚏', situacion: "You don't know if the bus coming is yours.", opciones: ['Check the number or ask the driver', 'Get on any bus that arrives', 'Cross the street to see it better'], correcta: 0 },
           { picto: '🧍', situacion: 'A stranger on the street asks you to go with them somewhere.', opciones: ['Say no and move towards people you know', 'Go with them if they seem nice', 'Follow them in silence'], correcta: 0 },
           { picto: '🗺️', situacion: 'You realize you are lost on the street.', opciones: ['Stop where you are and ask a police officer or a shop for help', 'Keep walking fast to try to find it', 'Go down an unknown street to explore'], correcta: 0 },
-          { picto: '🪪', situacion: 'A police officer asks who you are because you are lost.', opciones: ["Show your ID or say your name and a family member's phone number", 'Say nothing and walk away', 'Give a false name'], correcta: 0 }
+          { picto: '🪪', situacion: 'A police officer asks who you are because you are lost.', opciones: ["Show your ID or say your name and a family member's phone number", 'Say nothing and walk away', 'Give a false name'], correcta: 0 },
+          { picto: '🎧', situacion: 'You are about to cross the street wearing headphones with music.', opciones: ['Take off the headphones and look before crossing', 'Cross with the music loud', 'Look at your phone while crossing'], correcta: 0 },
+          { picto: '🚇', situacion: 'The metro arrives and the doors open.', opciones: ['Let people get off first and then get on', 'Push your way in before they get off', 'Put your foot in the door so it cannot close'], correcta: 0 },
+          { picto: '🚶', situacion: 'The pavement is full of people walking towards you.', opciones: ['Walk slowly on your side without pushing', 'Push through to get past first', 'Step onto the road to overtake'], correcta: 0 },
+          { picto: '🚲', situacion: 'There is a bike lane painted on the pavement.', opciones: ['Walk outside the bike lane', 'Walk in the middle of the bike lane', 'Stand in the lane looking at your phone'], correcta: 0 },
+          { picto: '🐕', situacion: 'A dog you do not know is tied up outside a shop.', opciones: ['Walk past without touching it', 'Pet it even though you do not know it', 'Give it food from your pocket'], correcta: 0 }
         ]
       },
       {
@@ -84,7 +99,12 @@ const DATA = {
           { picto: '🏬', situacion: 'You get lost inside a very big shopping centre.', opciones: ['Go to the information desk or a shop and ask for help', 'Go outside to search on your own', 'Sit on the floor and wait without telling anyone'], correcta: 0 },
           { picto: '📱', situacion: 'You are lost and have your phone with you.', opciones: ['Call a family member or someone you trust and say where you are', 'Turn off the phone to save battery', 'Message strangers asking them to come get you'], correcta: 0 },
           { picto: '🚧', situacion: 'The pavement is blocked by roadworks.', opciones: ['Find another way or cross very carefully watching the traffic', 'Go into the fenced-off work area anyway', 'Walk on the road without watching for cars'], correcta: 0 },
-          { picto: '🌙', situacion: 'It has become dark and you are still out of the house.', opciones: ['Tell a trusted adult where you are and go back through known, lit streets', 'Go back through an unknown, dark shortcut', 'Stay out without telling anyone'], correcta: 0 }
+          { picto: '🌙', situacion: 'It has become dark and you are still out of the house.', opciones: ['Tell a trusted adult where you are and go back through known, lit streets', 'Go back through an unknown, dark shortcut', 'Stay out without telling anyone'], correcta: 0 },
+          { picto: '🚌', situacion: 'You fell asleep on the bus and wake up not knowing where you are.', opciones: ['Ask the driver and get off at a safe stop', 'Jump off anywhere in a hurry', 'Stay quiet without asking for help'], correcta: 0 },
+          { picto: '🌧️', situacion: 'It is raining hard and the street is slippery.', opciones: ['Walk slowly and carefully', 'Run to get there sooner', 'Run across between the cars'], correcta: 0 },
+          { picto: '🧒', situacion: 'You see a small child alone and crying on the street.', opciones: ['Tell a police officer or an adult so they can help', 'Take the child yourself to look for their family', 'Keep walking as if nothing happened'], correcta: 0 },
+          { picto: '📵', situacion: 'You are lost and your phone has no battery.', opciones: ['Go into a shop and ask them to call your family', 'Wander around until you find your house', 'Leave with a stranger who says they know your street'], correcta: 0 },
+          { picto: '🚕', situacion: 'A neighbour you barely know insists on driving you home.', opciones: ['Say "no, thank you" and tell your family afterwards', 'Get in because you have seen them before', 'Get in so you do not seem rude'], correcta: 0 }
         ]
       }
     ]

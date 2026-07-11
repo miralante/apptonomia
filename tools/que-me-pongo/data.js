@@ -33,7 +33,11 @@ const DATA = {
           { picto: '❄️', situacion: 'Hace mucho frío. ¿Qué te pones en el torso (arriba)?', opciones: ['Jersey de lana', 'Camiseta de tirantes', 'Camiseta de manga corta'], correcta: 0 },
           { picto: '❄️', situacion: 'Hace mucho frío. ¿Qué te pones en las piernas?', opciones: ['Pantalón largo y grueso', 'Pantalón corto', 'Bañador'], correcta: 0 },
           { picto: '❄️', situacion: 'Hace mucho frío. ¿Qué te pones en los pies?', opciones: ['Botas', 'Sandalias', 'Chanclas'], correcta: 0 },
-          { picto: '❄️', situacion: 'Hace mucho frío. ¿Qué más te pones para salir?', opciones: ['Abrigo, bufanda y guantes', 'Gafas de sol', 'Gorra de verano'], correcta: 0 }
+          { picto: '❄️', situacion: 'Hace mucho frío. ¿Qué más te pones para salir?', opciones: ['Abrigo, bufanda y guantes', 'Gafas de sol', 'Gorra de verano'], correcta: 0 },
+          { picto: '☀️', situacion: 'Hace mucho calor y vas a la piscina. ¿Qué te pones para bañarte?', opciones: ['Bañador', 'Vaqueros', 'Abrigo'], correcta: 0 },
+          { picto: '☀️', situacion: 'Hace mucho calor por la noche. ¿Qué pijama te pones?', opciones: ['Pijama fresquito de verano', 'Pijama grueso de invierno', 'Bufanda para dormir'], correcta: 0 },
+          { picto: '❄️', situacion: 'Hace mucho frío y vas a jugar con la nieve. ¿Qué te pones en las manos?', opciones: ['Guantes', 'Chanclas', 'Nada en las manos'], correcta: 0 },
+          { picto: '❄️', situacion: 'Hace mucho frío. ¿Qué te pones en la cabeza?', opciones: ['Gorro de lana', 'Gorra de verano', 'Gafas de sol'], correcta: 0 }
         ]
       },
       {
@@ -53,7 +57,12 @@ const DATA = {
           { picto: '🌧️', situacion: 'Está lloviendo. ¿Qué te pones en el torso (arriba)?', opciones: ['Camiseta de manga larga', 'Camiseta de tirantes', 'Jersey muy grueso de nieve'], correcta: 0 },
           { picto: '🌧️', situacion: 'Está lloviendo. ¿Qué te pones en las piernas?', opciones: ['Pantalón largo', 'Pantalón corto', 'Bañador'], correcta: 0 },
           { picto: '🌧️', situacion: 'Está lloviendo. ¿Qué te pones en los pies?', opciones: ['Botas de agua', 'Sandalias', 'Chanclas'], correcta: 0 },
-          { picto: '🌧️', situacion: 'Está lloviendo. ¿Qué más te pones para salir?', opciones: ['Paraguas y chubasquero', 'Gafas de sol', 'Gorro de lana para la nieve'], correcta: 0 }
+          { picto: '🌧️', situacion: 'Está lloviendo. ¿Qué más te pones para salir?', opciones: ['Paraguas y chubasquero', 'Gafas de sol', 'Gorro de lana para la nieve'], correcta: 0 },
+          { picto: '☀️', situacion: 'Hace calor y vas a caminar mucho rato. ¿Qué calzado eliges?', opciones: ['Zapatillas cómodas y frescas', 'Botas de nieve', 'Botas de agua'], correcta: 0 },
+          { picto: '❄️', situacion: 'Hace frío y sopla mucho viento. ¿Qué te pones en el cuello?', opciones: ['Bufanda', 'Nada en el cuello', 'Gafas de sol'], correcta: 0 },
+          { picto: '❄️', situacion: 'Fuera hace frío, pero dentro de casa hay calefacción. ¿Qué haces al entrar?', opciones: ['Quitarte el abrigo', 'Dejarte el abrigo puesto todo el día', 'Ponerte otro jersey más'], correcta: 0 },
+          { picto: '🌧️', situacion: 'El cielo está muy oscuro, aunque todavía no llueve. ¿Qué llevas por si acaso?', opciones: ['El paraguas en la mochila', 'Gafas de sol', 'El bañador'], correcta: 0 },
+          { picto: '🌧️', situacion: 'Deja de llover y sale el sol. ¿Qué haces con el chubasquero?', opciones: ['Quitártelo y guardarlo', 'Dejártelo puesto todo el día', 'Tirarlo a una papelera'], correcta: 0 }
         ]
       }
     ]
@@ -74,7 +83,11 @@ const DATA = {
           { picto: '❄️', situacion: 'It is very cold. What do you wear on your top (upper body)?', opciones: ['A wool jumper', 'A vest top', 'A short-sleeved t-shirt'], correcta: 0 },
           { picto: '❄️', situacion: 'It is very cold. What do you wear on your legs?', opciones: ['Thick long trousers', 'Shorts', 'Swimming trunks'], correcta: 0 },
           { picto: '❄️', situacion: 'It is very cold. What do you wear on your feet?', opciones: ['Boots', 'Sandals', 'Flip-flops'], correcta: 0 },
-          { picto: '❄️', situacion: 'It is very cold. What else do you wear to go out?', opciones: ['A coat, scarf and gloves', 'Sunglasses', 'A summer cap'], correcta: 0 }
+          { picto: '❄️', situacion: 'It is very cold. What else do you wear to go out?', opciones: ['A coat, scarf and gloves', 'Sunglasses', 'A summer cap'], correcta: 0 },
+          { picto: '☀️', situacion: 'It is very hot and you are going to the pool. What do you wear to swim?', opciones: ['A swimsuit', 'Jeans', 'A coat'], correcta: 0 },
+          { picto: '☀️', situacion: 'It is very hot at night. Which pyjamas do you wear?', opciones: ['Light summer pyjamas', 'Thick winter pyjamas', 'A scarf to sleep'], correcta: 0 },
+          { picto: '❄️', situacion: 'It is very cold and you are going to play in the snow. What do you wear on your hands?', opciones: ['Gloves', 'Flip-flops', 'Nothing on your hands'], correcta: 0 },
+          { picto: '❄️', situacion: 'It is very cold. What do you wear on your head?', opciones: ['A wool hat', 'A summer cap', 'Sunglasses'], correcta: 0 }
         ]
       },
       {
@@ -94,7 +107,12 @@ const DATA = {
           { picto: '🌧️', situacion: 'It is raining. What do you wear on your top (upper body)?', opciones: ['A long-sleeved t-shirt', 'A vest top', 'A very thick snow jumper'], correcta: 0 },
           { picto: '🌧️', situacion: 'It is raining. What do you wear on your legs?', opciones: ['Long trousers', 'Shorts', 'Swimming trunks'], correcta: 0 },
           { picto: '🌧️', situacion: 'It is raining. What do you wear on your feet?', opciones: ['Wellington boots', 'Sandals', 'Flip-flops'], correcta: 0 },
-          { picto: '🌧️', situacion: 'It is raining. What else do you wear to go out?', opciones: ['An umbrella and a raincoat', 'Sunglasses', 'A snow hat'], correcta: 0 }
+          { picto: '🌧️', situacion: 'It is raining. What else do you wear to go out?', opciones: ['An umbrella and a raincoat', 'Sunglasses', 'A snow hat'], correcta: 0 },
+          { picto: '☀️', situacion: 'It is hot and you are going to walk for a long time. Which shoes do you choose?', opciones: ['Comfortable, light trainers', 'Snow boots', 'Wellington boots'], correcta: 0 },
+          { picto: '❄️', situacion: 'It is cold and very windy. What do you wear around your neck?', opciones: ['A scarf', 'Nothing on your neck', 'Sunglasses'], correcta: 0 },
+          { picto: '❄️', situacion: 'It is cold outside, but the house has heating on. What do you do when you come in?', opciones: ['Take off your coat', 'Keep your coat on all day', 'Put on another jumper'], correcta: 0 },
+          { picto: '🌧️', situacion: 'The sky is very dark, though it is not raining yet. What do you take just in case?', opciones: ['An umbrella in your bag', 'Sunglasses', 'Swimming trunks'], correcta: 0 },
+          { picto: '🌧️', situacion: 'It stops raining and the sun comes out. What do you do with your raincoat?', opciones: ['Take it off and put it away', 'Keep it on all day', 'Throw it in a bin'], correcta: 0 }
         ]
       }
     ]

@@ -34,7 +34,9 @@ const DATA = {
           { picto: '📓', palabra: 'Cuaderno', categoria: 'Mochila' },
           { picto: '✏️', palabra: 'Lápiz', categoria: 'Mochila' },
           { picto: '📖', palabra: 'Libro', categoria: 'Mochila' },
-          { picto: '🖊️', palabra: 'Estuche', categoria: 'Mochila' }
+          { picto: '🖊️', palabra: 'Estuche', categoria: 'Mochila' },
+          { picto: '🧤', palabra: 'Guantes', categoria: 'Armario' },
+          { picto: '🍦', palabra: 'Yogur', categoria: 'Nevera' }
         ]
       },
       {
@@ -55,7 +57,9 @@ const DATA = {
           { picto: '📏', palabra: 'Regla', categoria: 'Mochila' },
           { picto: '📅', palabra: 'Agenda', categoria: 'Mochila' },
           { picto: '🍶', palabra: 'Botella de agua', categoria: 'Mochila' },
-          { picto: '🧮', palabra: 'Calculadora', categoria: 'Mochila' }
+          { picto: '🧮', palabra: 'Calculadora', categoria: 'Mochila' },
+          { picto: '🩳', palabra: 'Pijama', categoria: 'Armario' },
+          { picto: '🥗', palabra: 'Ensalada que ha sobrado', categoria: 'Nevera' }
         ]
       }
     ]
@@ -81,7 +85,9 @@ const DATA = {
           { picto: '📓', palabra: 'Notebook', categoria: 'Backpack' },
           { picto: '✏️', palabra: 'Pencil', categoria: 'Backpack' },
           { picto: '📖', palabra: 'Book', categoria: 'Backpack' },
-          { picto: '🖊️', palabra: 'Pencil case', categoria: 'Backpack' }
+          { picto: '🖊️', palabra: 'Pencil case', categoria: 'Backpack' },
+          { picto: '🧤', palabra: 'Gloves', categoria: 'Wardrobe' },
+          { picto: '🍦', palabra: 'Yoghurt', categoria: 'Fridge' }
         ]
       },
       {
@@ -102,7 +108,9 @@ const DATA = {
           { picto: '📏', palabra: 'Ruler', categoria: 'Backpack' },
           { picto: '📅', palabra: 'Planner', categoria: 'Backpack' },
           { picto: '🍶', palabra: 'Water bottle', categoria: 'Backpack' },
-          { picto: '🧮', palabra: 'Calculator', categoria: 'Backpack' }
+          { picto: '🧮', palabra: 'Calculator', categoria: 'Backpack' },
+          { picto: '🩳', palabra: 'Pyjamas', categoria: 'Wardrobe' },
+          { picto: '🥗', palabra: 'Leftover salad', categoria: 'Fridge' }
         ]
       }
     ]
