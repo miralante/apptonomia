@@ -412,3 +412,28 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       otros dos ítems del backlog transversal (pictogramas ARASAAC,
       multi-perfil/dificultad adaptativa) se han retirado del plan — ver
       `PLAN.md` §7, ya no son trabajo pendiente.
+- [x] Requisito ≥25 casos por simulación (2026-07-11/14): toda actividad de
+      simulación/entrenamiento debe tener al menos 25 casos para que las
+      rondas varíen y no se memoricen. Auditadas y ampliadas 12 (11 en el
+      commit original + `la-compra`, que se quedó fuera con 24+24 y se
+      subió a 28+28 igualando a sus motores hermanos). Los chats
+      (chat-seguro/chat-acoso) usan VARIANTES dentro de cada tarjeta
+      temática (regla 10 intacta).
+- [x] Juegos de mesa clásicos (2026-07-14, módulo Razonamiento) — 3
+      actividades nuevas que clonan la arquitectura de Tres en Raya
+      (rival tranquilo con retardo visible, tocar ficha → destinos
+      legales iluminados, ayuda socrática 💡 en 2 pasos, finales sin
+      castigo con cierre que compara fichas y empate celebrado):
+      `tools/damas/` (6×6, 6 fichas, comer no obligatorio, sin saltos
+      múltiples, coronación 👑; rival azar → come → se protege),
+      `tools/ajedrez/` (menú de 2 actividades: "Las piezas" = puzzles de
+      recoger estrellas generados al vuelo con paseo aleatorio [siempre
+      resolubles], un nivel por pieza; "Mini partida" = duelo 5×5 sin
+      peones ni jaque, se gana capturando el rey; fila inicial
+      torre-REY-dama-alfil-caballo para que las capturas de turno 1 sean
+      siempre intercambio justo, nunca dama gratis) y
+      `tools/cuatro-en-raya/` (Conecta 4 en 6×5, cada columna es UN botón
+      y la ficha cae sola; rival idéntico al de Tres en Raya). Las tres
+      verificadas con playthroughs reales de Playwright (partidas
+      completas ganadas, estrella persistida, ayuda en 2 pasos, rival N3).
+      Herramientas 53→56, sw v57→v60.

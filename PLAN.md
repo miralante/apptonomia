@@ -190,6 +190,9 @@ cotidianas, dinero, horas y fechas, medidas, representaciones gráficas.
 | Tres en Raya — lógica y anticipación contra un rival amable (niveles: azar → remata → bloquea) | `tools/tres-en-raya/` | ✔ Hecha |
 | Sudoku Visual — sudoku 4×4 con pictos, sin repetir en fila/columna/caja (niveles: 4/6/8 huecos) | `tools/sudoku-visual/` | ✔ Hecha |
 | Dominó — partida real contra rival tranquilo: mano, montón y turnos; la ficha se orienta sola (niveles: fichas 0-3 / 0-5 / 0-6) | `tools/domino/` | ✔ Hecha |
+| Las Damas — damas adaptadas 6×6, 6 fichas por bando, comer no obligatorio, coronación (niveles: rival azar → come → se protege) | `tools/damas/` | ✔ Hecha |
+| El Ajedrez — menú: puzzles de aprender cada pieza (torre/alfil/dama/caballo) + mini partida 5×5 capturando el rey (rival: azar → captura → protege) | `tools/ajedrez/` | ✔ Hecha |
+| Cuatro en Raya — Conecta 4 adaptado 6×5, columna = un botón, la ficha cae sola (niveles: rival azar → remata → tapa) | `tools/cuatro-en-raya/` | ✔ Hecha |
 
 ### Módulo 5 — Lenguaje y comunicación (frambuesa `--mod-lenguaje`, color NUEVO)
 Cubre: vocabulario, categorías, comprensión, quién/qué/cómo/dónde/porqué, frases hechas,
