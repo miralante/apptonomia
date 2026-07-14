@@ -27,23 +27,13 @@
       instruccionConQuePago: 'No tienes el precio justo. Elige el dinero que llega para pagar.',
       instruccionCambio: 'Has pagado. Cuenta el cambio y decide si está bien.',
       instruccionHucha: 'Quieres comprar algo. Cuenta tu dinero y calcula cuánto te falta.',
-      /* --- Dinero (aria y palabras habladas) --- */
-      monedaDe: 'Moneda de {v}',
-      billeteDe: 'Billete de {v}',
+      /* (Las palabras del dinero — euro, céntimos, moneda de… —
+         viven en el módulo compartido assets/js/dinero.js.) */
       anadirDinero: 'Añadir {d}',
-      palabraEuro: 'euro',
-      palabraEuros: 'euros',
-      palabraCentimos: 'céntimos',
-      palabraY: 'y',
-      ctsCorto: 'cts',
       /* --- ¿Cuánto hay? --- */
       contarPregunta: '¿Cuánto dinero hay?',
       ariaMesa: 'Dinero sobre la mesa',
       pistaContar: 'Cuenta otra vez, despacio. Empieza por el dinero más grande.',
-      unaMonedaDe: '1 moneda de {v}',
-      variasMonedasDe: '{n} monedas de {v}',
-      unBilleteDe: '1 billete de {v}',
-      variosBilletesDe: '{n} billetes de {v}',
       explicacionBien: '¡Eso es! Hay {d}. En total, {total}.',
       explicacionCasi: 'Mira: hay {d}. En total, {total}.',
       resumenContar: 'Has contado bien {n} de {t}.',
@@ -111,23 +101,13 @@
       instruccionConQuePago: 'You do not have the exact price. Choose the money that is enough to pay.',
       instruccionCambio: 'You have paid. Count the change and decide if it is right.',
       instruccionHucha: 'You want to buy something. Count your money and work out how much is missing.',
-      /* --- Money (aria and spoken words) --- */
-      monedaDe: '{v} coin',
-      billeteDe: '{v} banknote',
+      /* (Money words — euro, cents, coin of… — live in the shared
+         module assets/js/dinero.js.) */
       anadirDinero: 'Add {d}',
-      palabraEuro: 'euro',
-      palabraEuros: 'euros',
-      palabraCentimos: 'cents',
-      palabraY: 'and',
-      ctsCorto: 'cts',
       /* --- How much is there? --- */
       contarPregunta: 'How much money is there?',
       ariaMesa: 'Money on the table',
       pistaContar: 'Count again, slowly. Start with the biggest money.',
-      unaMonedaDe: '1 coin of {v}',
-      variasMonedasDe: '{n} coins of {v}',
-      unBilleteDe: '1 banknote of {v}',
-      variosBilletesDe: '{n} banknotes of {v}',
       explicacionBien: 'That is it! There is {d}. In total, {total}.',
       explicacionCasi: 'Look: there is {d}. In total, {total}.',
       resumenContar: 'You counted correctly {n} out of {t}.',

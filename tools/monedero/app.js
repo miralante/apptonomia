@@ -47,97 +47,20 @@
   }
 
   /* ============================================================
-     Dinero: formato, habla y fichas visuales (catálogo DINERO)
+     Dinero: módulo compartido App.dinero (assets/js/dinero.js)
      ============================================================ */
-  function infoDinero(cent) {
-    return DINERO.filter(function (d) { return d.cent === cent; })[0];
-  }
+  var formatear = App.dinero.formatear;
+  var hablado = App.dinero.hablado;
+  var ariaDinero = App.dinero.aria;
+  var crearFicha = App.dinero.crearFicha;
+  var descomponer = App.dinero.descomponer;
+  var desglose = App.dinero.desglose;
 
-  /* "2 €" / "50 cts" — etiqueta corta impresa en la ficha. */
-  function etiqueta(cent) {
-    return cent >= 100 ? (cent / 100) + ' €' : cent + ' ' + App.i18n.t('ctsCorto');
-  }
-
-  /* "1,50 €" — importe con separador del idioma. */
-  function formatear(cent) {
-    var sep = App.i18n.locale() === 'en' ? '.' : ',';
-    return (cent / 100).toFixed(2).replace('.', sep) + ' €';
-  }
-
-  /* "2 euros y 50 céntimos" — para hablar y para las pistas. */
-  function hablado(cent) {
-    var e = Math.floor(cent / 100);
-    var c = cent % 100;
-    var textoE = e === 1 ? '1 ' + App.i18n.t('palabraEuro') : e + ' ' + App.i18n.t('palabraEuros');
-    var textoC = c + ' ' + App.i18n.t('palabraCentimos');
-    if (e && c) return textoE + ' ' + App.i18n.t('palabraY') + ' ' + textoC;
-    if (e) return textoE;
-    return textoC;
-  }
-
-  /* "Moneda de 2 euros" / "Billete de 5 euros" (aria). */
-  function ariaDinero(cent) {
-    var clave = infoDinero(cent).tipo === 'billete' ? 'billeteDe' : 'monedaDe';
-    return App.i18n.t(clave).replace('{v}', hablado(cent));
-  }
-
-  /* Crea la ficha visual (span decorativo o botón interactivo). */
-  function crearFicha(cent, interactiva) {
-    var info = infoDinero(cent);
-    var el = document.createElement(interactiva ? 'button' : 'span');
-    if (interactiva) el.type = 'button';
-    el.className = 'dinero ' + info.tipo + ' ' + info.css;
-    el.textContent = etiqueta(cent);
-    return el;
-  }
-
-  /* Descompone un importe en fichas, de mayor a menor (greedy). */
-  function descomponer(cent) {
-    var piezas = [];
-    var restante = cent;
-    DINERO.slice().sort(function (a, b) { return b.cent - a.cent; }).forEach(function (d) {
-      while (restante >= d.cent) {
-        piezas.push(d.cent);
-        restante -= d.cent;
-      }
-    });
-    return piezas;
-  }
-
-  /* "2 monedas de 1 euro y 1 billete de 5 euros" — desglose para
-     las explicaciones (regla 11), generado del propio caso. */
-  function desglose(piezas) {
-    var grupos = [];
-    piezas.forEach(function (cent) {
-      var g = grupos.filter(function (x) { return x.cent === cent; })[0];
-      if (g) g.n += 1;
-      else grupos.push({ cent: cent, n: 1 });
-    });
-    var partes = grupos.map(function (g) {
-      var billete = infoDinero(g.cent).tipo === 'billete';
-      var clave = g.n === 1 ? (billete ? 'unBilleteDe' : 'unaMonedaDe')
-        : (billete ? 'variosBilletesDe' : 'variasMonedasDe');
-      return App.i18n.t(clave).replace('{n}', g.n).replace('{v}', hablado(g.cent));
-    });
-    if (partes.length === 1) return partes[0];
-    return partes.slice(0, -1).join(', ') + ' ' + App.i18n.t('palabraY') + ' ' + partes[partes.length - 1];
-  }
-
-  /* Pinta fichas decorativas en la mesa. */
+  /* Pinta fichas decorativas en la mesa (oculta si no hay). */
   function pintarMesa(piezas) {
     var mesaEl = $('#mesaDinero');
-    mesaEl.innerHTML = '';
-    if (!piezas || !piezas.length) {
-      mesaEl.classList.add('oculto');
-      return;
-    }
-    piezas.forEach(function (cent) {
-      var ficha = crearFicha(cent, false);
-      ficha.setAttribute('role', 'img');
-      ficha.setAttribute('aria-label', ariaDinero(cent));
-      mesaEl.appendChild(ficha);
-    });
-    mesaEl.classList.remove('oculto');
+    App.dinero.pintarFichas(mesaEl, piezas);
+    mesaEl.classList.toggle('oculto', !piezas || !piezas.length);
   }
 
   /* ============================================================

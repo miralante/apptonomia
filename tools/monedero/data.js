@@ -32,30 +32,19 @@
    app.js (montarQuiz): añadir una actividad de dinero nueva es
    escribir UN objeto de configuración.
 
-   DINERO es el catálogo visual único (valor en céntimos, tipo y
-   clase CSS de styles.css). Los importes se trabajan en céntimos
-   (enteros) para evitar errores de coma flotante.
-   app.js usa DATA[App.i18n.locale()] || DATA.es.
+   El catálogo visual del dinero y sus helpers viven en el módulo
+   compartido assets/js/dinero.js (App.dinero). Los importes se
+   trabajan en céntimos (enteros) para evitar errores de coma
+   flotante. app.js usa DATA[App.i18n.locale()] || DATA.es.
    ============================================================ */
-
-/* Catálogo de dinero: una entrada por denominación. */
-const DINERO = [
-  { cent: 5, tipo: 'moneda', css: 'm5c' },
-  { cent: 10, tipo: 'moneda', css: 'm10c' },
-  { cent: 20, tipo: 'moneda', css: 'm20c' },
-  { cent: 50, tipo: 'moneda', css: 'm50c' },
-  { cent: 100, tipo: 'moneda', css: 'm1e' },
-  { cent: 200, tipo: 'moneda', css: 'm2e' },
-  { cent: 500, tipo: 'billete', css: 'b5e' },
-  { cent: 1000, tipo: 'billete', css: 'b10e' }
-];
 
 /* ---- ¿Cuánto hay? — denominaciones por nivel (regla 13: cada
    nivel solo AÑADE tipos de dinero; el nº de piezas no cambia). */
 const CONTAR_BASE = [
   { id: 1, cents: [100, 200] },
   { id: 2, cents: [100, 200, 500, 1000] },
-  { id: 3, cents: [10, 20, 50, 100, 200, 500, 1000] }
+  { id: 3, cents: [10, 20, 50, 100, 200, 500, 1000] },
+  { id: 4, cents: [10, 20, 50, 100, 200, 500, 1000, 2000, 5000] }
 ];
 
 /* ---- Escalera de importes compartida por ¿Con qué pago?, ¿Está
@@ -157,12 +146,12 @@ const NOMBRES = {
 /* Nombre y descripción de cada nivel, por idioma. */
 const NIVELES_TXT = {
   es: {
-    contar: { 1: 'Monedas de euro', 2: 'También billetes', 3: 'También céntimos' },
+    contar: { 1: 'Monedas de euro', 2: 'También billetes', 3: 'También céntimos', 4: 'Billetes grandes' },
     pagar: { 1: 'Precios enteros', 2: 'Con 50 céntimos', 3: 'Con 10 y 20 céntimos', 4: 'Céntimos de cinco' },
     importe: { 1: 'Importes enteros', 2: 'Con 50 céntimos', 3: 'Con 10 y 20 céntimos' }
   },
   en: {
-    contar: { 1: 'Euro coins', 2: 'Also banknotes', 3: 'Also cents' },
+    contar: { 1: 'Euro coins', 2: 'Also banknotes', 3: 'Also cents', 4: 'Big banknotes' },
     pagar: { 1: 'Whole prices', 2: 'With 50 cents', 3: 'With 10 and 20 cents', 4: 'Five-cent prices' },
     importe: { 1: 'Whole amounts', 2: 'With 50 cents', 3: 'With 10 and 20 cents' }
   }

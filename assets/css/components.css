@@ -236,3 +236,70 @@
 .oculto { display: none !important; }
 .pila { display: flex; flex-direction: column; gap: var(--espacio); }
 .fila { display: flex; align-items: center; gap: var(--espacio); flex-wrap: wrap; }
+
+/* ---- Dinero visual (euros dibujados con CSS; lógica en assets/js/dinero.js) ---- */
+.dinero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 800;
+  color: #3A2E1E;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+  box-shadow: var(--sombra);
+}
+
+/* Monedas: redondas, >= 64 px (regla 2) */
+.dinero.moneda {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.m5c { background: #C98850; border: 4px solid #A2652F; }                /* cobre */
+.m10c, .m20c, .m50c { background: #E9C55B; border: 4px solid #BC9430; } /* dorado */
+.m1e { background: #D9D9D9; border: 7px solid #C9A227; }                /* centro plata, aro oro */
+.m2e { background: #E3C14B; border: 7px solid #B9B9B9; }                /* centro oro, aro plata */
+.m1e, .m2e { font-size: 20px; }
+
+/* Billetes: rectangulares con los colores reales */
+.dinero.billete {
+  min-width: 112px;
+  height: 64px;
+  border-radius: 8px;
+  font-size: 22px;
+}
+
+.b5e { background: #C9CFD8; border: 4px solid #8E99A8; }    /* gris */
+.b10e { background: #EFB2A6; border: 4px solid #C56F5C; }   /* rojo */
+.b20e { background: #AFC8E8; border: 4px solid #6D8FBC; }   /* azul */
+.b50e { background: #F2C08A; border: 4px solid #C98B3F; }   /* naranja */
+
+button.dinero { cursor: pointer; }
+button.dinero:hover { transform: scale(1.05); }
+button.dinero:disabled { cursor: default; }
+
+.dinero.correcta {
+  outline: 4px solid var(--color-acierto);
+  outline-offset: 3px;
+}
+
+.dinero.animo { opacity: 0.45; }
+
+/* Mesa donde se muestra el dinero */
+.mesa-dinero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espacio);
+  padding: var(--espacio-grande);
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button.dinero:hover { transform: none; }
+}
