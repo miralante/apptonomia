@@ -70,6 +70,7 @@
       tresenraya_nombre: 'Tres en Raya', tresenraya_detalle: 'Haz tu línea de tres.',
       sudokuvisual_nombre: 'Sudoku Visual', sudokuvisual_detalle: 'Sin repetir en fila ni columna.',
       domino_nombre: 'Dominó', domino_detalle: 'Juega una partida de verdad.',
+      damas_nombre: 'Las Damas', damas_detalle: 'Salta y come fichas.',
 
       chistes_nombre: 'Chistes', chistes_detalle: '¿Por qué es gracioso?',
       dichos_nombre: 'Dichos', dichos_detalle: '¿Qué significa?',
@@ -145,6 +146,7 @@
       tresenraya_nombre: 'Tic-Tac-Toe', tresenraya_detalle: 'Make your line of three.',
       sudokuvisual_nombre: 'Visual Sudoku', sudokuvisual_detalle: 'No repeats in rows or columns.',
       domino_nombre: 'Dominoes', domino_detalle: 'Play a real game.',
+      damas_nombre: 'Checkers', damas_detalle: 'Jump and capture pieces.',
 
       chistes_nombre: 'Jokes', chistes_detalle: 'Why is it funny?',
       dichos_nombre: 'Idioms', dichos_detalle: 'What does it mean?',

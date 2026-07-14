@@ -55,7 +55,7 @@ apptonomia/
 │   ├── js/storage.js      #   window.App.storage
 │   ├── js/feedback.js     #   window.App.feedback
 │   └── img/               #   pictogramas SVG e iconos PWA
-├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (53 actuales)
+├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (54 actuales)
 │   ├── index.html         #   estructura y carga de assets
 │   ├── app.js             #   solo lógica
 │   ├── data.js            #   solo datos (const DATA = … o { es: […], en: […] })
