@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-i18n-title="title">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,56 +13,116 @@
 <body>
   <div class="container">
     <header class="tool-header">
-      <a href="../../site/index.html" class="back-link">← Volver</a>
-      <h1>💶 El Monedero</h1>
+      <a href="../../site/index.html" class="back-link" data-i18n="core.volver">← Volver</a>
+      <h1 data-i18n="title">💶 El Monedero</h1>
       <span class="stars" id="stars">⭐ 0</span>
     </header>
 
-    <!-- Pantalla inicial -->
-    <section id="pantallaInicio" class="pila centrado">
+    <!-- Pantalla: menú de las 2 actividades -->
+    <section id="pantallaMenu" class="pila">
       <div class="fila centrado-fila">
-        <p class="instruccion" id="instruccion">Mira el precio. Toca las monedas hasta llegar al precio justo.</p>
-        <button type="button" class="btn btn-audio" id="btnInstruccion" aria-label="Escuchar las instrucciones">🔊</button>
+        <p class="instruccion" id="instruccion" data-i18n="instruccion">Aquí practicas dos cosas: contar cuánto dinero hay, y pagar el precio justo.</p>
+        <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
       </div>
-      <h2>Elige el nivel</h2>
-      <div class="pila" id="niveles"></div>
+      <div class="grid-tarjetas">
+        <button type="button" class="tarjeta-actividad" id="tarjetaContar">
+          <span class="picto" aria-hidden="true">🪙</span>
+          <span class="nombre" data-i18n="menuContar">¿Cuánto hay?</span>
+          <span class="detalle" data-i18n="menuContarDetalle">Mira el dinero y elige el total.</span>
+        </button>
+        <button type="button" class="tarjeta-actividad" id="tarjetaPagar">
+          <span class="picto" aria-hidden="true">🛒</span>
+          <span class="nombre" data-i18n="menuPagar">Paga justo</span>
+          <span class="detalle" data-i18n="menuPagarDetalle">Toca el dinero hasta el precio exacto.</span>
+        </button>
+      </div>
     </section>
 
-    <!-- Pantalla de juego -->
-    <section id="pantallaJuego" class="oculto pila">
+    <!-- ===== Actividad 1: ¿Cuánto hay? ===== -->
+
+    <section id="pantallaNivelesContar" class="oculto pila centrado">
+      <div class="fila"><button type="button" class="btn btn-secundario" id="btnVolverMenuContar" data-i18n="volverMenu">← Menú</button></div>
+      <h2 data-i18n="elegirNivel">Elige el nivel</h2>
+      <div class="pila" id="nivelesContar"></div>
+    </section>
+
+    <section id="pantallaJuegoContar" class="oculto pila">
       <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-        <span class="progress-text" id="progressText">0 / 6</span>
+        <div class="progress-fill" id="progressContarFill"></div>
+        <span class="progress-text" id="progressContarText">0 / 6</span>
+      </div>
+
+      <div class="fila centrado-fila">
+        <p class="pregunta" data-i18n="contarPregunta">¿Cuánto dinero hay?</p>
+        <button type="button" class="btn btn-audio" id="btnPreguntaContar" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+      </div>
+
+      <div class="mesa-dinero" id="mesaDinero" role="group" data-i18n-aria="ariaMesa" aria-label="Dinero sobre la mesa"></div>
+
+      <div class="opciones pila" id="opcionesContar"></div>
+
+      <div class="feedback" id="feedbackContar" aria-live="polite"></div>
+      <div class="fila explicacion oculto" id="explicacionContarWrap">
+        <p id="explicacionContar" aria-live="polite"></p>
+        <button type="button" class="btn btn-audio" id="btnEscucharExplicacionContar" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+      </div>
+      <button type="button" class="btn oculto" id="btnSiguienteContar" data-i18n="core.siguiente">Siguiente →</button>
+    </section>
+
+    <!-- ===== Actividad 2: Paga justo ===== -->
+
+    <section id="pantallaNivelesPagar" class="oculto pila centrado">
+      <div class="fila"><button type="button" class="btn btn-secundario" id="btnVolverMenuPagar" data-i18n="volverMenu">← Menú</button></div>
+      <div class="fila centrado-fila">
+        <p class="instruccion" data-i18n="pagarInstruccion">Mira el precio. Toca el dinero hasta llegar al precio justo.</p>
+        <button type="button" class="btn btn-audio" id="btnInstruccionPagar" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
+      </div>
+      <h2 data-i18n="elegirNivel">Elige el nivel</h2>
+      <div class="pila" id="nivelesPagar"></div>
+    </section>
+
+    <section id="pantallaJuegoPagar" class="oculto pila">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressPagarFill"></div>
+        <span class="progress-text" id="progressPagarText">0 / 6</span>
       </div>
 
       <div class="card centrado pila">
         <div class="producto" id="producto"></div>
         <p class="precio" id="precioTexto"></p>
-        <button type="button" class="btn btn-audio" id="btnEscuchar" aria-label="Escuchar el precio">🔊 Escuchar</button>
+        <button type="button" class="btn btn-audio" id="btnEscuchar" data-i18n-aria="escucharPrecio" aria-label="Escuchar el precio">🔊</button>
       </div>
 
-      <p class="total centrado" id="totalPuesto" aria-live="polite">Has puesto: 0,00 €</p>
+      <div class="fila centrado-fila">
+        <p class="total" id="totalPuesto" aria-live="polite">Has puesto: 0,00 €</p>
+        <button type="button" class="btn btn-secundario" id="btnAyudaPagar" data-i18n="btnAyuda">💡 Ayuda</button>
+      </div>
 
       <div class="pila-monedas" id="monedas"></div>
 
       <div class="fila centrado-fila acciones">
-        <button type="button" class="btn btn-secundario" id="btnQuitar">↩ Quitar última</button>
-        <button type="button" class="btn btn-secundario" id="btnVaciar">🗑 Vaciar</button>
-        <button type="button" class="btn" id="btnComprobar">Comprobar</button>
+        <button type="button" class="btn btn-secundario" id="btnQuitar" data-i18n="quitarUltima">↩ Quitar última</button>
+        <button type="button" class="btn btn-secundario" id="btnVaciar" data-i18n="vaciar">🗑 Vaciar</button>
+        <button type="button" class="btn" id="btnComprobar" data-i18n="comprobar">Comprobar</button>
       </div>
 
-      <div class="feedback" id="feedback" aria-live="polite"></div>
-      <button type="button" class="btn oculto" id="btnSiguiente">Siguiente →</button>
+      <div class="fila explicacion oculto" id="ayudaPagarWrap">
+        <p id="ayudaPagarTexto" aria-live="polite"></p>
+        <button type="button" class="btn btn-audio" id="btnEscucharAyudaPagar" data-i18n-aria="ariaEscucharAyuda" aria-label="Escuchar la ayuda">🔊</button>
+      </div>
+
+      <div class="feedback" id="feedbackPagar" aria-live="polite"></div>
+      <button type="button" class="btn oculto" id="btnSiguientePagar" data-i18n="core.siguiente">Siguiente →</button>
     </section>
 
-    <!-- Pantalla final -->
+    <!-- Pantalla final (compartida por las 2 actividades) -->
     <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
       <div class="emoji-grande" aria-hidden="true">🎉</div>
-      <h2>¡Ronda completada!</h2>
+      <h2 data-i18n="core.rondaCompletada">¡Ronda completada!</h2>
       <p id="resumenFinal"></p>
-      <button type="button" class="btn" id="btnRepetir">Jugar otra vez</button>
-      <button type="button" class="btn btn-secundario" id="btnOtroNivel">Elegir otro nivel</button>
-      <a href="../../site/index.html" class="btn btn-secundario">Volver al menú</a>
+      <button type="button" class="btn" id="btnRepetir" data-i18n="core.jugarOtraVez">Jugar otra vez</button>
+      <button type="button" class="btn btn-secundario" id="btnOtroNivelFinal" data-i18n="btnOtroNivel">Elegir otro nivel</button>
+      <button type="button" class="btn btn-secundario" id="btnVolverMenuFinal" data-i18n="volverMenu">← Menú</button>
     </section>
   </div>
 
@@ -71,6 +131,7 @@
   <script src="../../assets/js/tts.js"></script>
   <script src="../../assets/js/storage.js"></script>
   <script src="../../assets/js/feedback.js"></script>
+  <script src="strings.js"></script>
   <script src="data.js"></script>
   <script src="app.js"></script>
   <script>

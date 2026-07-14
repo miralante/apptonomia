@@ -181,7 +181,7 @@ cotidianas, dinero, horas y fechas, medidas, representaciones gráficas.
 |---|---|---|
 | Adivinanzas — inferencia y deducción | `tools/adivinanzas/` | ✔ Hecha (se mueve aquí en Fase 6) |
 | Patrones — completar series (formas, colores, números) | `tools/patrones/` | ✔ Hecha |
-| El Monedero — pagar con euros y comprobar el cambio | `tools/monedero/` | ✔ Hecha |
+| El Monedero — dinero físico: contar cuánto hay (casos generados) y pagar el precio justo con monedas/billetes visuales; casos nuevos en una línea | `tools/monedero/` | ✔ Hecha (rework 2026-07-14) |
 | El Reloj — leer horas y asociarlas a momentos del día | `tools/reloj/` | ✔ Hecha |
 | ¿Qué no encaja? — detectar el elemento que no pertenece al grupo | `tools/que-no-encaja/` | ✔ Hecha |
 | Historias — ordenar viñetas de una historia en secuencia temporal | `tools/historias/` | ✔ Hecha |

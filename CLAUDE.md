@@ -437,3 +437,22 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       verificadas con playthroughs reales de Playwright (partidas
       completas ganadas, estrella persistida, ayuda en 2 pasos, rival N3).
       Herramientas 53→56, sw v57→v60.
+- [x] Rework de El Monedero (2026-07-14, a petición del usuario: mejorar la
+      herramienta de dinero + arquitectura para añadir casos fácilmente).
+      Ahora es un menú con 2 actividades (patrón La Compra): "¿Cuánto
+      hay?" (nueva — contar monedas/billetes y elegir el total entre 3
+      opciones; casos GENERADOS al vuelo, pista socrática al 1º fallo y
+      explicación con desglose generado al 2º) y "Paga justo" (la de
+      siempre, con Comprobar en dos pasos —dirección → cantidad exacta—
+      y botón 💡 que enseña a pagar de mayor a menor). Dinero dibujado
+      con CSS con el aspecto real (cobre/oro/bicolor, billetes gris/rojo),
+      incluye billetes por primera vez. Arquitectura de casos: banco único
+      PRODUCTOS — añadir un caso = UNA línea + nombre es/en; el nivel se
+      deduce solo del precio (nivelDePrecio), imposible crear un caso
+      impagable. 32 casos (cumple requisito ≥25; antes 24). Regla 13
+      arreglada (única variable por nivel documentada en data.js). De
+      paso se arreglaron dos bugs heredados: index.html no cargaba
+      strings.js (el usuario veía claves como "faltaDinero" en pantalla)
+      y no tenía data-i18n (la UI quedaba en español en inglés). El
+      progreso antiguo se migra (completados → completadosPagar).
+      sw v60→v61 (sin archivos nuevos).

@@ -1,4 +1,7 @@
-/* El Monedero — estilos específicos. Lo común está en assets/css/. */
+/* El Monedero — estilos específicos. Lo común está en assets/css/.
+   Acento del módulo Razonamiento (teal --mod-razonamiento).
+   El dinero se dibuja con CSS (sin imágenes): monedas redondas con
+   los colores reales del euro y billetes rectangulares. */
 
 .tool-header h1 { color: var(--mod-razonamiento); }
 
@@ -20,7 +23,102 @@
 
 .progress-bar { margin-top: var(--espacio); }
 
-.card { border-color: var(--mod-razonamiento-suave); margin-top: var(--espacio-grande); }
+/* Tarjetas del menú (mismo patrón que La Compra) */
+.tarjeta-actividad {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; min-height: 160px; padding: var(--espacio-grande);
+  background: var(--color-superficie); border: 3px solid var(--color-borde);
+  border-radius: var(--radio); box-shadow: var(--sombra);
+  font-family: inherit; color: var(--color-texto); cursor: pointer;
+}
+.tarjeta-actividad:hover { border-color: var(--mod-razonamiento); }
+.tarjeta-actividad .picto { font-size: 48px; }
+.tarjeta-actividad .nombre { font-weight: 800; font-size: var(--texto-base); }
+.tarjeta-actividad .detalle { font-size: var(--texto-pequeno); color: var(--color-texto-suave); text-align: center; }
+
+/* ---- Dinero visual (catálogo DINERO de data.js) ---- */
+.dinero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 800;
+  color: #3A2E1E;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+  box-shadow: var(--sombra);
+}
+
+/* Monedas: redondas, ≥64 px (regla 2) */
+.dinero.moneda {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.m5c { background: #C98850; border: 4px solid #A2652F; }          /* cobre */
+.m10c, .m20c, .m50c { background: #E9C55B; border: 4px solid #BC9430; } /* dorado */
+.m1e { background: #D9D9D9; border: 7px solid #C9A227; }          /* centro plata, aro oro */
+.m2e { background: #E3C14B; border: 7px solid #B9B9B9; }          /* centro oro, aro plata */
+.m1e, .m2e { font-size: 20px; }
+
+/* Billetes: rectangulares con los colores reales */
+.dinero.billete {
+  min-width: 112px;
+  height: 64px;
+  border-radius: 8px;
+  font-size: 22px;
+}
+
+.b5e { background: #C9CFD8; border: 4px solid #8E99A8; }          /* gris */
+.b10e { background: #EFB2A6; border: 4px solid #C56F5C; }         /* rojo */
+
+/* Botón de dinero (Paga justo) */
+button.dinero { cursor: pointer; }
+button.dinero:hover { transform: scale(1.05); }
+button.dinero:disabled { cursor: default; }
+
+@media (prefers-reduced-motion: reduce) {
+  button.dinero:hover { transform: none; }
+}
+
+/* Dinero marcado por la ayuda 💡 (2ª pulsación) */
+.sugerida {
+  outline: 4px solid var(--mod-razonamiento);
+  outline-offset: 3px;
+  animation: latido-ayuda 1s ease-in-out infinite;
+}
+
+@keyframes latido-ayuda { 50% { transform: scale(1.06); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sugerida { animation: none; }
+}
+
+/* ---- ¿Cuánto hay? ---- */
+.pregunta {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+}
+
+.mesa-dinero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espacio);
+  padding: var(--espacio-grande);
+  background: var(--mod-razonamiento-suave);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+.opciones { align-items: center; }
+
+.opciones .btn-opcion { min-width: 220px; }
+
+/* ---- Paga justo ---- */
+.card { border-color: var(--mod-razonamiento-suave); margin-top: var(--espacio); }
 
 .producto { font-size: 72px; }
 
@@ -39,15 +137,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: var(--espacio);
 }
-
-.moneda {
-  background: var(--color-estrella);
-  min-width: 88px;
-}
-
-.moneda:hover { background: var(--color-estrella); }
 
 .acciones { margin-top: var(--espacio); }
 
