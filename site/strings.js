@@ -71,6 +71,7 @@
       sudokuvisual_nombre: 'Sudoku Visual', sudokuvisual_detalle: 'Sin repetir en fila ni columna.',
       domino_nombre: 'Dominó', domino_detalle: 'Juega una partida de verdad.',
       damas_nombre: 'Las Damas', damas_detalle: 'Salta y come fichas.',
+      ajedrez_nombre: 'El Ajedrez', ajedrez_detalle: 'Aprende las piezas y juega.',
 
       chistes_nombre: 'Chistes', chistes_detalle: '¿Por qué es gracioso?',
       dichos_nombre: 'Dichos', dichos_detalle: '¿Qué significa?',
@@ -147,6 +148,7 @@
       sudokuvisual_nombre: 'Visual Sudoku', sudokuvisual_detalle: 'No repeats in rows or columns.',
       domino_nombre: 'Dominoes', domino_detalle: 'Play a real game.',
       damas_nombre: 'Checkers', damas_detalle: 'Jump and capture pieces.',
+      ajedrez_nombre: 'Chess', ajedrez_detalle: 'Learn the pieces and play.',
 
       chistes_nombre: 'Jokes', chistes_detalle: 'Why is it funny?',
       dichos_nombre: 'Idioms', dichos_detalle: 'What does it mean?',
