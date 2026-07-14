@@ -3,7 +3,7 @@
    Estrategia cache-first del app shell (funciona offline).
    Al añadir archivos nuevos: añadirlos a ARCHIVOS y subir VERSION.
    ============================================================ */
-var VERSION = 'apptonomia-v59';
+var VERSION = 'apptonomia-v60';
 
 var ARCHIVOS = [
   './',
@@ -246,6 +246,11 @@ var ARCHIVOS = [
   './tools/ajedrez/data.js',
   './tools/ajedrez/strings.js',
   './tools/ajedrez/styles.css',
+  './tools/cuatro-en-raya/index.html',
+  './tools/cuatro-en-raya/app.js',
+  './tools/cuatro-en-raya/data.js',
+  './tools/cuatro-en-raya/strings.js',
+  './tools/cuatro-en-raya/styles.css',
   './tools/partes-del-dia/index.html',
   './tools/partes-del-dia/app.js',
   './tools/partes-del-dia/data.js',
