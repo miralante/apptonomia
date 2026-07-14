@@ -44,7 +44,9 @@ const DATA = {
             { picto: '🧽', palabra: 'Estropajo', categoria: 'Limpieza' },
             { picto: '🧴', palabra: 'Detergente', categoria: 'Limpieza' },
             { picto: '🧻', palabra: 'Papel higiénico', categoria: 'Limpieza' },
-            { picto: '🧹', palabra: 'Escoba', categoria: 'Limpieza' }
+            { picto: '🧹', palabra: 'Escoba', categoria: 'Limpieza' },
+            { picto: '🍓', palabra: 'Fresas', categoria: 'Frutería' },
+            { picto: '🧼', palabra: 'Pastilla de jabón', categoria: 'Limpieza' }
           ]
         },
         {
@@ -65,7 +67,9 @@ const DATA = {
             { picto: '🧼', palabra: 'Jabón de manos', categoria: 'Limpieza' },
             { picto: '🪣', palabra: 'Cubo', categoria: 'Limpieza' },
             { picto: '🧺', palabra: 'Cesta de la ropa', categoria: 'Limpieza' },
-            { picto: '🧤', palabra: 'Guantes de goma', categoria: 'Limpieza' }
+            { picto: '🧤', palabra: 'Guantes de goma', categoria: 'Limpieza' },
+            { picto: '🥬', palabra: 'Acelgas', categoria: 'Frutería' },
+            { picto: '🧆', palabra: 'Albóndigas', categoria: 'Carnicería' }
           ]
         }
       ]
@@ -91,7 +95,9 @@ const DATA = {
             { picto: '🥣', palabra: 'Sopa de sobre', momento: 'Cena' },
             { picto: '🥗', palabra: 'Lechuga para ensalada', momento: 'Cena' },
             { picto: '🧀', palabra: 'Queso', momento: 'Cena' },
-            { picto: '🍳', palabra: 'Huevos para tortilla', momento: 'Cena' }
+            { picto: '🍳', palabra: 'Huevos para tortilla', momento: 'Cena' },
+            { picto: '🍪', palabra: 'Galletas', momento: 'Desayuno' },
+            { picto: '🍗', palabra: 'Pollo asado', momento: 'Comida' }
           ]
         },
         {
@@ -111,7 +117,9 @@ const DATA = {
             { picto: '🍲', palabra: 'Caldo', momento: 'Cena' },
             { picto: '🥒', palabra: 'Pepino', momento: 'Cena' },
             { picto: '🥪', palabra: 'Pan de sándwich', momento: 'Cena' },
-            { picto: '🍇', palabra: 'Uvas de postre', momento: 'Cena' }
+            { picto: '🍇', palabra: 'Uvas de postre', momento: 'Cena' },
+            { picto: '🫐', palabra: 'Arándanos para el yogur', momento: 'Desayuno' },
+            { picto: '🥫', palabra: 'Atún en lata', momento: 'Cena' }
           ]
         }
       ]
@@ -139,7 +147,9 @@ const DATA = {
             { picto: '🧽', palabra: 'Scourer', categoria: 'Cleaning' },
             { picto: '🧴', palabra: 'Detergent', categoria: 'Cleaning' },
             { picto: '🧻', palabra: 'Toilet paper', categoria: 'Cleaning' },
-            { picto: '🧹', palabra: 'Broom', categoria: 'Cleaning' }
+            { picto: '🧹', palabra: 'Broom', categoria: 'Cleaning' },
+            { picto: '🍓', palabra: 'Strawberries', categoria: 'Fruit shop' },
+            { picto: '🧼', palabra: 'Bar of soap', categoria: 'Cleaning' }
           ]
         },
         {
@@ -160,7 +170,9 @@ const DATA = {
             { picto: '🧼', palabra: 'Hand soap', categoria: 'Cleaning' },
             { picto: '🪣', palabra: 'Bucket', categoria: 'Cleaning' },
             { picto: '🧺', palabra: 'Laundry basket', categoria: 'Cleaning' },
-            { picto: '🧤', palabra: 'Rubber gloves', categoria: 'Cleaning' }
+            { picto: '🧤', palabra: 'Rubber gloves', categoria: 'Cleaning' },
+            { picto: '🥬', palabra: 'Chard', categoria: 'Fruit shop' },
+            { picto: '🧆', palabra: 'Meatballs', categoria: 'Butcher' }
           ]
         }
       ]
@@ -186,7 +198,9 @@ const DATA = {
             { picto: '🥣', palabra: 'Instant soup', momento: 'Dinner' },
             { picto: '🥗', palabra: 'Lettuce for salad', momento: 'Dinner' },
             { picto: '🧀', palabra: 'Cheese', momento: 'Dinner' },
-            { picto: '🍳', palabra: 'Eggs for omelette', momento: 'Dinner' }
+            { picto: '🍳', palabra: 'Eggs for omelette', momento: 'Dinner' },
+            { picto: '🍪', palabra: 'Biscuits', momento: 'Breakfast' },
+            { picto: '🍗', palabra: 'Roast chicken', momento: 'Lunch' }
           ]
         },
         {
@@ -206,7 +220,9 @@ const DATA = {
             { picto: '🍲', palabra: 'Broth', momento: 'Dinner' },
             { picto: '🥒', palabra: 'Cucumber', momento: 'Dinner' },
             { picto: '🥪', palabra: 'Sandwich bread', momento: 'Dinner' },
-            { picto: '🍇', palabra: 'Grapes for dessert', momento: 'Dinner' }
+            { picto: '🍇', palabra: 'Grapes for dessert', momento: 'Dinner' },
+            { picto: '🫐', palabra: 'Blueberries for yoghurt', momento: 'Breakfast' },
+            { picto: '🥫', palabra: 'Tinned tuna', momento: 'Dinner' }
           ]
         }
       ]
