@@ -95,7 +95,17 @@ button.dinero:disabled { cursor: default; }
   .sugerida { animation: none; }
 }
 
-/* ---- ¿Cuánto hay? ---- */
+/* Ficha de dinero usada como opción de quiz (¿Con qué pago?) */
+.opciones .dinero { align-self: center; }
+
+.dinero.correcta {
+  outline: 4px solid var(--color-acierto);
+  outline-offset: 3px;
+}
+
+.dinero.animo { opacity: 0.45; }
+
+/* ---- Quiz compartido ---- */
 .pregunta {
   font-size: var(--texto-grande);
   font-weight: 700;

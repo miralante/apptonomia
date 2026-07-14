@@ -456,3 +456,18 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       y no tenía data-i18n (la UI quedaba en español en inglés). El
       progreso antiguo se migra (completados → completadosPagar).
       sw v60→v61 (sin archivos nuevos).
+- [x] Monedero fase 2 (2026-07-14): 3 actividades más — el Monedero cubre
+      el ciclo completo de una compra con 5 actividades: contar → pagar
+      justo → "¿Con qué pago?" (elegir el dinero que llega cuando no
+      tienes justo, y VER el cambio como fichas) → "¿Está bien el
+      cambio?" (contar lo devuelto y decidir Sí/No — protege de engaños)
+      → "La Hucha" (¿cuánto te falta? — reutiliza el banco PRODUCTOS
+      como objetivos). Las 3 nuevas GENERAN sus casos y comparten la
+      escalera NIVELES_IMPORTE (regla 13: única variable = finura de los
+      importes). Las 4 actividades quiz corren sobre un runner genérico
+      (montarQuiz en app.js): añadir una actividad de dinero nueva = un
+      objeto de configuración + tarjeta + strings. Pantallas de niveles
+      y de quiz compartidas. Verificado con playthrough Playwright de
+      las 5 actividades (fallos a propósito → pista → explicación
+      generada; invariantes de generación en N1-N3) y fuzz de 36 rondas.
+      sw v61→v62.

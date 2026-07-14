@@ -1,6 +1,6 @@
 /* ============================================================
    Datos: El Monedero (razonamiento — manejo funcional del dinero).
-   Dos actividades desde un menú (regla 10), como La Compra:
+   Cinco actividades desde un menú (regla 10), como La Compra:
 
    - '¿Cuánto hay?' (contar): NO tiene casos escritos — cada caso se
      genera al vuelo en app.js con las denominaciones del nivel
@@ -19,6 +19,18 @@
      N2 añade ,50 → N3 añade ,10/,20 → N4 añade céntimos de 5.
      Precios siempre en múltiplos de 5 céntimos (como el redondeo
      real); no se usan monedas de 1 y 2 céntimos.
+
+   - '¿Con qué pago?' (conquepago), '¿Está bien el cambio?' (cambio)
+     y 'La Hucha' (hucha): casos GENERADOS al vuelo en app.js. Las
+     tres comparten la MISMA escalera de niveles (NIVELES_IMPORTE):
+     regla 13, única variable = la finura de los importes
+     (enteros → con ,50 → con décimos). La Hucha reutiliza además
+     el banco PRODUCTOS como objetivos de ahorro — añadir un
+     producto alimenta a la vez 'Paga justo' y 'La Hucha'.
+
+   Las actividades tipo quiz corren sobre un runner genérico en
+   app.js (montarQuiz): añadir una actividad de dinero nueva es
+   escribir UN objeto de configuración.
 
    DINERO es el catálogo visual único (valor en céntimos, tipo y
    clase CSS de styles.css). Los importes se trabajan en céntimos
@@ -44,6 +56,17 @@ const CONTAR_BASE = [
   { id: 1, cents: [100, 200] },
   { id: 2, cents: [100, 200, 500, 1000] },
   { id: 3, cents: [10, 20, 50, 100, 200, 500, 1000] }
+];
+
+/* ---- Escalera de importes compartida por ¿Con qué pago?, ¿Está
+   bien el cambio? y La Hucha (regla 13: única variable = la finura
+   de los importes; 'paso' es el múltiplo en céntimos y los importes
+   de cada nivel NO caen en el nivel anterior — bucket, como en
+   Paga justo). */
+const NIVELES_IMPORTE = [
+  { id: 1, paso: 100 },
+  { id: 2, paso: 50 },
+  { id: 3, paso: 10 }
 ];
 
 /* ---- Paga justo — dinero disponible por nivel (acumulativo). */
@@ -135,11 +158,13 @@ const NOMBRES = {
 const NIVELES_TXT = {
   es: {
     contar: { 1: 'Monedas de euro', 2: 'También billetes', 3: 'También céntimos' },
-    pagar: { 1: 'Precios enteros', 2: 'Con 50 céntimos', 3: 'Con 10 y 20 céntimos', 4: 'Céntimos de cinco' }
+    pagar: { 1: 'Precios enteros', 2: 'Con 50 céntimos', 3: 'Con 10 y 20 céntimos', 4: 'Céntimos de cinco' },
+    importe: { 1: 'Importes enteros', 2: 'Con 50 céntimos', 3: 'Con 10 y 20 céntimos' }
   },
   en: {
     contar: { 1: 'Euro coins', 2: 'Also banknotes', 3: 'Also cents' },
-    pagar: { 1: 'Whole prices', 2: 'With 50 cents', 3: 'With 10 and 20 cents', 4: 'Five-cent prices' }
+    pagar: { 1: 'Whole prices', 2: 'With 50 cents', 3: 'With 10 and 20 cents', 4: 'Five-cent prices' },
+    importe: { 1: 'Whole amounts', 2: 'With 50 cents', 3: 'With 10 and 20 cents' }
   }
 };
 
@@ -167,7 +192,16 @@ function construirMonedero(loc) {
     };
   });
 
-  return { porRonda: 6, contar: { niveles: contar }, pagar: { niveles: pagar } };
+  var importe = NIVELES_IMPORTE.map(function (n) {
+    return { id: n.id, nombre: prefijo + n.id, descripcion: txt.importe[n.id], paso: n.paso };
+  });
+
+  return {
+    porRonda: 6,
+    contar: { niveles: contar },
+    pagar: { niveles: pagar },
+    importe: { niveles: importe }
+  };
 }
 
 const DATA = {

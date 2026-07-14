@@ -18,69 +18,77 @@
       <span class="stars" id="stars">⭐ 0</span>
     </header>
 
-    <!-- Pantalla: menú de las 2 actividades -->
+    <!-- Pantalla: menú de las 5 actividades -->
     <section id="pantallaMenu" class="pila">
       <div class="fila centrado-fila">
-        <p class="instruccion" id="instruccion" data-i18n="instruccion">Aquí practicas dos cosas: contar cuánto dinero hay, y pagar el precio justo.</p>
+        <p class="instruccion" id="instruccion" data-i18n="instruccion">Aquí practicas el dinero de verdad: contarlo, pagar, comprobar el cambio y ahorrar.</p>
         <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
       </div>
       <div class="grid-tarjetas">
-        <button type="button" class="tarjeta-actividad" id="tarjetaContar">
+        <button type="button" class="tarjeta-actividad" data-actividad="contar">
           <span class="picto" aria-hidden="true">🪙</span>
           <span class="nombre" data-i18n="menuContar">¿Cuánto hay?</span>
           <span class="detalle" data-i18n="menuContarDetalle">Mira el dinero y elige el total.</span>
         </button>
-        <button type="button" class="tarjeta-actividad" id="tarjetaPagar">
+        <button type="button" class="tarjeta-actividad" data-actividad="pagar">
           <span class="picto" aria-hidden="true">🛒</span>
           <span class="nombre" data-i18n="menuPagar">Paga justo</span>
           <span class="detalle" data-i18n="menuPagarDetalle">Toca el dinero hasta el precio exacto.</span>
         </button>
+        <button type="button" class="tarjeta-actividad" data-actividad="conquepago">
+          <span class="picto" aria-hidden="true">💵</span>
+          <span class="nombre" data-i18n="menuConQuePago">¿Con qué pago?</span>
+          <span class="detalle" data-i18n="menuConQuePagoDetalle">Elige el dinero que llega.</span>
+        </button>
+        <button type="button" class="tarjeta-actividad" data-actividad="cambio">
+          <span class="picto" aria-hidden="true">🔍</span>
+          <span class="nombre" data-i18n="menuCambio">¿Está bien el cambio?</span>
+          <span class="detalle" data-i18n="menuCambioDetalle">Cuenta el cambio y decide.</span>
+        </button>
+        <button type="button" class="tarjeta-actividad" data-actividad="hucha">
+          <span class="picto" aria-hidden="true">🐷</span>
+          <span class="nombre" data-i18n="menuHucha">La Hucha</span>
+          <span class="detalle" data-i18n="menuHuchaDetalle">¿Cuánto te falta para comprarlo?</span>
+        </button>
       </div>
     </section>
 
-    <!-- ===== Actividad 1: ¿Cuánto hay? ===== -->
-
-    <section id="pantallaNivelesContar" class="oculto pila centrado">
-      <div class="fila"><button type="button" class="btn btn-secundario" id="btnVolverMenuContar" data-i18n="volverMenu">← Menú</button></div>
+    <!-- Pantalla de niveles (compartida por todas las actividades) -->
+    <section id="pantallaNiveles" class="oculto pila centrado">
+      <div class="fila"><button type="button" class="btn btn-secundario" id="btnVolverMenuNiveles" data-i18n="volverMenu">← Menú</button></div>
+      <div class="fila centrado-fila">
+        <p class="instruccion" id="instruccionActividad"></p>
+        <button type="button" class="btn btn-audio" id="btnInstruccionActividad" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
+      </div>
       <h2 data-i18n="elegirNivel">Elige el nivel</h2>
-      <div class="pila" id="nivelesContar"></div>
+      <div class="pila" id="niveles"></div>
     </section>
 
-    <section id="pantallaJuegoContar" class="oculto pila">
+    <!-- Pantalla de juego de los quiz (compartida: contar, conquepago, cambio, hucha) -->
+    <section id="pantallaJuegoQuiz" class="oculto pila">
       <div class="progress-bar">
-        <div class="progress-fill" id="progressContarFill"></div>
-        <span class="progress-text" id="progressContarText">0 / 6</span>
+        <div class="progress-fill" id="progressQuizFill"></div>
+        <span class="progress-text" id="progressQuizText">0 / 6</span>
       </div>
 
       <div class="fila centrado-fila">
-        <p class="pregunta" data-i18n="contarPregunta">¿Cuánto dinero hay?</p>
-        <button type="button" class="btn btn-audio" id="btnPreguntaContar" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+        <p class="pregunta" id="enunciadoQuiz"></p>
+        <button type="button" class="btn btn-audio" id="btnEnunciadoQuiz" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
       </div>
 
-      <div class="mesa-dinero" id="mesaDinero" role="group" data-i18n-aria="ariaMesa" aria-label="Dinero sobre la mesa"></div>
+      <div class="mesa-dinero oculto" id="mesaDinero" role="group" data-i18n-aria="ariaMesa" aria-label="Dinero sobre la mesa"></div>
 
-      <div class="opciones pila" id="opcionesContar"></div>
+      <div class="opciones pila" id="opcionesQuiz"></div>
 
-      <div class="feedback" id="feedbackContar" aria-live="polite"></div>
-      <div class="fila explicacion oculto" id="explicacionContarWrap">
-        <p id="explicacionContar" aria-live="polite"></p>
-        <button type="button" class="btn btn-audio" id="btnEscucharExplicacionContar" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+      <div class="feedback" id="feedbackQuiz" aria-live="polite"></div>
+      <div class="fila explicacion oculto" id="explicacionQuizWrap">
+        <p id="explicacionQuiz" aria-live="polite"></p>
+        <button type="button" class="btn btn-audio" id="btnEscucharExplicacionQuiz" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
       </div>
-      <button type="button" class="btn oculto" id="btnSiguienteContar" data-i18n="core.siguiente">Siguiente →</button>
+      <button type="button" class="btn oculto" id="btnSiguienteQuiz" data-i18n="core.siguiente">Siguiente →</button>
     </section>
 
-    <!-- ===== Actividad 2: Paga justo ===== -->
-
-    <section id="pantallaNivelesPagar" class="oculto pila centrado">
-      <div class="fila"><button type="button" class="btn btn-secundario" id="btnVolverMenuPagar" data-i18n="volverMenu">← Menú</button></div>
-      <div class="fila centrado-fila">
-        <p class="instruccion" data-i18n="pagarInstruccion">Mira el precio. Toca el dinero hasta llegar al precio justo.</p>
-        <button type="button" class="btn btn-audio" id="btnInstruccionPagar" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
-      </div>
-      <h2 data-i18n="elegirNivel">Elige el nivel</h2>
-      <div class="pila" id="nivelesPagar"></div>
-    </section>
-
+    <!-- Pantalla de juego de Paga justo (interactiva, propia) -->
     <section id="pantallaJuegoPagar" class="oculto pila">
       <div class="progress-bar">
         <div class="progress-fill" id="progressPagarFill"></div>
@@ -115,7 +123,7 @@
       <button type="button" class="btn oculto" id="btnSiguientePagar" data-i18n="core.siguiente">Siguiente →</button>
     </section>
 
-    <!-- Pantalla final (compartida por las 2 actividades) -->
+    <!-- Pantalla final (compartida por todas las actividades) -->
     <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
       <div class="emoji-grande" aria-hidden="true">🎉</div>
       <h2 data-i18n="core.rondaCompletada">¡Ronda completada!</h2>

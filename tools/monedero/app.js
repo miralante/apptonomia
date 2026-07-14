@@ -1,15 +1,18 @@
 /* ============================================================
    Apptonomia — El Monedero (razonamiento: manejo funcional del
    dinero). Datos en data.js. Módulos compartidos en assets/js/.
-   Dos actividades desde un menú (patrón La Compra):
-   - ¿Cuánto hay?: se muestran monedas/billetes y se elige el total
-     entre 3 opciones (regla 11). Los casos se GENERAN al vuelo con
-     las denominaciones del nivel: variedad infinita. Primer fallo →
-     pista socrática; segundo → explicación con el desglose (regla 12).
-   - Paga justo: tocar dinero hasta el precio exacto. Comprobar con
-     andamiaje: 1º fallo solo dirección (falta/sobra), 2º la cantidad
-     exacta que falta o sobra. Botón 💡 Ayuda en 2 pasos que enseña
-     la estrategia de pagar de mayor a menor (greedy).
+   Cinco actividades desde un menú (patrón La Compra):
+   - ¿Cuánto hay? · ¿Con qué pago? · ¿Está bien el cambio? ·
+     La Hucha: quiz de dinero físico con casos GENERADOS al vuelo.
+     Corren sobre un runner genérico (montarQuiz más abajo):
+     ▶ AÑADIR UNA ACTIVIDAD DE DINERO NUEVA = un objeto de
+       configuración en ACTIVIDADES (generar, enunciado, mesa,
+       opciones, pista, explicación) + su tarjeta en index.html
+       + sus textos en strings.js.
+     Todas cumplen las reglas 11 y 12: explicación generada del
+     propio caso al resolver, pista socrática al primer fallo.
+   - Paga justo: interactiva (tocar dinero hasta el precio exacto),
+     con Comprobar en dos pasos y botón 💡 de estrategia greedy.
    Los importes se trabajan en céntimos (enteros) para evitar
    errores de coma flotante. El error nunca se castiga (regla 5).
    ============================================================ */
@@ -26,16 +29,18 @@
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completadosPagar) progreso.completadosPagar = progreso.completados || {};
-  if (!progreso.completadosContar) progreso.completadosContar = {};
+  ['completadosContar', 'completadosConQuePago', 'completadosCambio', 'completadosHucha']
+    .forEach(function (clave) { if (!progreso[clave]) progreso[clave] = {}; });
   delete progreso.completados;
 
   function guardar() { App.storage.set(TOOL_ID, progreso); }
   function pintarEstrellas() { starsEl.textContent = '⭐ ' + progreso.estrellas; }
   function datos() { return DATA[App.i18n.locale()] || DATA.es; }
+  function azar(lista) { return lista[Math.floor(Math.random() * lista.length)]; }
 
   /* ---- Pantallas ---- */
-  var PANTALLAS = ['pantallaMenu', 'pantallaNivelesContar', 'pantallaJuegoContar',
-    'pantallaNivelesPagar', 'pantallaJuegoPagar', 'pantallaFinal'];
+  var PANTALLAS = ['pantallaMenu', 'pantallaNiveles', 'pantallaJuegoQuiz',
+    'pantallaJuegoPagar', 'pantallaFinal'];
   function mostrar(id) {
     PANTALLAS.forEach(function (p) { $('#' + p).classList.add('oculto'); });
     $('#' + id).classList.remove('oculto');
@@ -86,66 +91,21 @@
     return el;
   }
 
-  /* ============================================================
-     Actividad 1 — ¿Cuánto hay? (casos generados al vuelo)
-     ============================================================ */
-  var mesaEl = $('#mesaDinero');
-  var opcionesEl = $('#opcionesContar');
-  var feedbackContarEl = $('#feedbackContar');
-  var explicacionContarWrap = $('#explicacionContarWrap');
-  var explicacionContarEl = $('#explicacionContar');
-  var btnSiguienteContar = $('#btnSiguienteContar');
-
-  var nivelC = null;
-  var casoC = null;
-  var idxC = 0;
-  var aciertosC = 0;
-  var intentosC = 0;
-  var resueltoC = false;
-
-  function pintarNivelesContar() {
-    var cont = $('#nivelesContar');
-    cont.innerHTML = '';
-    datos().contar.niveles.forEach(function (n) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'btn btn-nivel';
-      var veces = progreso.completadosContar[n.id] || 0;
-      btn.innerHTML = n.nombre + ' — ' + n.descripcion +
-        ' <span class="nivel-info">(' + App.i18n.t('vecesTexto').replace('{n}', veces) + ')</span>';
-      btn.addEventListener('click', function () { iniciarRondaContar(n); });
-      cont.appendChild(btn);
-    });
-  }
-
-  /* Genera un caso: 2-4 piezas de las denominaciones del nivel y
-     3 opciones (el total y 2 cercanas, todas distintas). */
-  function generarCaso(nivel) {
-    var n = 2 + Math.floor(Math.random() * 3);
+  /* Descompone un importe en fichas, de mayor a menor (greedy). */
+  function descomponer(cent) {
     var piezas = [];
-    var total = 0;
-    for (var k = 0; k < n; k++) {
-      var v = nivel.cents[Math.floor(Math.random() * nivel.cents.length)];
-      piezas.push(v);
-      total += v;
-    }
-    piezas.sort(function (a, b) { return b - a; });
-    var distractores = [];
-    App.utils.shuffle(nivel.cents).forEach(function (d) {
-      [total + d, total - d].forEach(function (x) {
-        if (x > 0 && x !== total && distractores.indexOf(x) === -1 && distractores.length < 2) {
-          distractores.push(x);
-        }
-      });
+    var restante = cent;
+    DINERO.slice().sort(function (a, b) { return b.cent - a.cent; }).forEach(function (d) {
+      while (restante >= d.cent) {
+        piezas.push(d.cent);
+        restante -= d.cent;
+      }
     });
-    while (distractores.length < 2) {
-      distractores.push(total + (distractores.length + 1) * nivel.cents[0]);
-    }
-    return { piezas: piezas, total: total, opciones: App.utils.shuffle([total].concat(distractores)) };
+    return piezas;
   }
 
-  /* "2 monedas de 1 euro y 1 billete de 5 euros" — desglose para la
-     explicación (regla 11), generado del propio caso. */
+  /* "2 monedas de 1 euro y 1 billete de 5 euros" — desglose para
+     las explicaciones (regla 11), generado del propio caso. */
   function desglose(piezas) {
     var grupos = [];
     piezas.forEach(function (cent) {
@@ -163,112 +123,438 @@
     return partes.slice(0, -1).join(', ') + ' ' + App.i18n.t('palabraY') + ' ' + partes[partes.length - 1];
   }
 
-  function mostrarTextoContar(texto) {
-    explicacionContarEl.textContent = texto;
-    explicacionContarWrap.classList.remove('oculto');
-    App.tts.speak(texto);
-  }
-
-  function pintarProgresoContar() {
-    var total = datos().porRonda;
-    $('#progressContarFill').style.width = (idxC / total * 100) + '%';
-    $('#progressContarText').textContent = idxC + ' / ' + total;
-  }
-
-  function iniciarRondaContar(n) {
-    nivelC = n;
-    idxC = 0;
-    aciertosC = 0;
-    mostrar('pantallaJuegoContar');
-    renderContar();
-  }
-
-  function renderContar() {
-    casoC = generarCaso(nivelC);
-    intentosC = 0;
-    resueltoC = false;
-    feedbackContarEl.textContent = '';
-    feedbackContarEl.className = 'feedback';
-    explicacionContarWrap.classList.add('oculto');
-    explicacionContarEl.textContent = '';
-    btnSiguienteContar.classList.add('oculto');
-
+  /* Pinta fichas decorativas en la mesa. */
+  function pintarMesa(piezas) {
+    var mesaEl = $('#mesaDinero');
     mesaEl.innerHTML = '';
-    casoC.piezas.forEach(function (cent) {
+    if (!piezas || !piezas.length) {
+      mesaEl.classList.add('oculto');
+      return;
+    }
+    piezas.forEach(function (cent) {
       var ficha = crearFicha(cent, false);
       ficha.setAttribute('role', 'img');
       ficha.setAttribute('aria-label', ariaDinero(cent));
       mesaEl.appendChild(ficha);
     });
-
-    opcionesEl.innerHTML = '';
-    casoC.opciones.forEach(function (cent) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'btn-opcion';
-      btn.textContent = formatear(cent);
-      btn.addEventListener('click', function () { responderContar(btn, cent); });
-      opcionesEl.appendChild(btn);
-    });
-
-    pintarProgresoContar();
-    pintarEstrellas();
-  }
-
-  function explicarContar(bien) {
-    var clave = bien ? 'explicacionBien' : 'explicacionCasi';
-    mostrarTextoContar(App.i18n.t(clave)
-      .replace('{d}', desglose(casoC.piezas))
-      .replace('{total}', formatear(casoC.total)));
-  }
-
-  function responderContar(btn, cent) {
-    if (resueltoC) return;
-    if (cent === casoC.total) {
-      resueltoC = true;
-      btn.classList.add('correcta');
-      if (intentosC === 0) {
-        progreso.estrellas += 1;
-        aciertosC += 1;
-        guardar();
-        pintarEstrellas();
-      }
-      App.feedback.acierto(feedbackContarEl);
-      explicarContar(true);
-      btnSiguienteContar.classList.remove('oculto');
-      btnSiguienteContar.focus();
-      return;
-    }
-    intentosC += 1;
-    btn.classList.add('animo');
-    btn.disabled = true;
-    App.feedback.animo(feedbackContarEl);
-    if (intentosC === 1) {
-      /* Primer fallo: pista socrática, sin dar la respuesta (regla 12). */
-      mostrarTextoContar(App.i18n.t('pistaContar'));
-    } else {
-      /* Segundo fallo: se explica con el desglose y se señala la
-         opción correcta (regla 11: nadie se queda sin resolución). */
-      resueltoC = true;
-      App.utils.$$('#opcionesContar .btn-opcion').forEach(function (b) {
-        if (b.textContent === formatear(casoC.total)) b.classList.add('correcta');
-        b.disabled = true;
-      });
-      explicarContar(false);
-      btnSiguienteContar.classList.remove('oculto');
-      btnSiguienteContar.focus();
-    }
-  }
-
-  function siguienteContar() {
-    idxC += 1;
-    App.tts.stop();
-    if (idxC >= datos().porRonda) terminarRonda('contar');
-    else renderContar();
+    mesaEl.classList.remove('oculto');
   }
 
   /* ============================================================
-     Actividad 2 — Paga justo
+     Generadores de casos (variedad infinita, cero autoría)
+     ============================================================ */
+
+  /* Todos los productos del banco, en el idioma activo. */
+  function todosLosProductos() {
+    return datos().pagar.niveles.reduce(function (lista, n) {
+      return lista.concat(n.productos);
+    }, []);
+  }
+
+  /* ¿Está el importe en el "bucket" del paso? (los importes de un
+     nivel no caen en el nivel anterior, como en Paga justo). */
+  function enBucket(cent, paso) {
+    if (paso === 100) return cent % 100 === 0;
+    if (paso === 50) return cent % 50 === 0 && cent % 100 !== 0;
+    return cent % 10 === 0 && cent % 50 !== 0;
+  }
+
+  /* Importes del bucket estrictamente entre min y max. */
+  function importesEnHueco(min, max, paso) {
+    var lista = [];
+    for (var v = paso; v < max; v += paso) {
+      if (v > min && enBucket(v, paso)) lista.push(v);
+    }
+    return lista;
+  }
+
+  /* Par (precio, pagado): pagado es la única opción que llega y el
+     cambio nunca es cero. Compartido por conquepago y cambio. */
+  function generarPar(paso) {
+    var pares = [[200, 100], [500, 200], [1000, 500]];   /* [pagado, inferior] */
+    var candidatos = [];
+    pares.forEach(function (par) {
+      var precios = importesEnHueco(par[1], par[0], paso);
+      if (precios.length) candidatos.push({ pagado: par[0], inferior: par[1], precios: precios });
+    });
+    var c = azar(candidatos);
+    return { pagado: c.pagado, inferior: c.inferior, precio: azar(c.precios) };
+  }
+
+  /* Distractores de importe: cercanos, distintos y positivos. */
+  function distractoresDe(correcto, paso) {
+    var lista = [];
+    App.utils.shuffle([paso, 100, paso * 2]).forEach(function (d) {
+      [correcto + d, correcto - d].forEach(function (x) {
+        if (x > 0 && x !== correcto && lista.indexOf(x) === -1 && lista.length < 2) lista.push(x);
+      });
+    });
+    while (lista.length < 2) lista.push(correcto + (lista.length + 1) * paso);
+    return lista;
+  }
+
+  /* ============================================================
+     Runner genérico de quiz de dinero
+     ============================================================ */
+  var enunciadoQuizEl = $('#enunciadoQuiz');
+  var opcionesQuizEl = $('#opcionesQuiz');
+  var feedbackQuizEl = $('#feedbackQuiz');
+  var explicacionQuizWrap = $('#explicacionQuizWrap');
+  var explicacionQuizEl = $('#explicacionQuiz');
+  var btnSiguienteQuiz = $('#btnSiguienteQuiz');
+
+  var actividadActual = 'contar';
+  var nivelQ = null;
+  var casoQ = null;
+  var idxQ = 0;
+  var aciertosQ = 0;
+  var intentosQ = 0;
+  var resueltoQ = false;
+  var opcionBotones = [];
+
+  function cfgActual() { return ACTIVIDADES[actividadActual]; }
+
+  function mostrarTextoQuiz(texto) {
+    explicacionQuizEl.textContent = texto;
+    explicacionQuizWrap.classList.remove('oculto');
+    App.tts.speak(texto);
+  }
+
+  function pintarProgresoQuiz() {
+    var total = datos().porRonda;
+    $('#progressQuizFill').style.width = (idxQ / total * 100) + '%';
+    $('#progressQuizText').textContent = idxQ + ' / ' + total;
+  }
+
+  function iniciarRondaQuiz(nivel) {
+    nivelQ = nivel;
+    idxQ = 0;
+    aciertosQ = 0;
+    mostrar('pantallaJuegoQuiz');
+    renderQuiz();
+  }
+
+  function renderQuiz() {
+    var cfg = cfgActual();
+    casoQ = cfg.generar(nivelQ);
+    intentosQ = 0;
+    resueltoQ = false;
+    feedbackQuizEl.textContent = '';
+    feedbackQuizEl.className = 'feedback';
+    explicacionQuizWrap.classList.add('oculto');
+    explicacionQuizEl.textContent = '';
+    btnSiguienteQuiz.classList.add('oculto');
+
+    enunciadoQuizEl.textContent = cfg.enunciado(casoQ);
+    pintarMesa(cfg.mesa ? cfg.mesa(casoQ) : null);
+
+    opcionesQuizEl.innerHTML = '';
+    opcionBotones = [];
+    cfg.opciones(casoQ).forEach(function (op) {
+      var btn;
+      if (cfg.tipoOpcion === 'ficha') {
+        btn = crearFicha(op.cent, true);
+        btn.setAttribute('aria-label', ariaDinero(op.cent));
+      } else {
+        btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn-opcion';
+        btn.textContent = op.texto;
+      }
+      btn.addEventListener('click', function () { responderQuiz(btn, op); });
+      opcionesQuizEl.appendChild(btn);
+      opcionBotones.push({ btn: btn, op: op });
+    });
+
+    pintarProgresoQuiz();
+    pintarEstrellas();
+  }
+
+  function resolverQuiz(bien) {
+    var cfg = cfgActual();
+    resueltoQ = true;
+    opcionBotones.forEach(function (par) {
+      par.btn.disabled = true;
+      if (par.op.correcta) par.btn.classList.add('correcta');
+    });
+    mostrarTextoQuiz(cfg.explicacion(casoQ, bien));
+    if (cfg.alResolver) cfg.alResolver(casoQ);
+    btnSiguienteQuiz.classList.remove('oculto');
+    btnSiguienteQuiz.focus();
+  }
+
+  function responderQuiz(btn, op) {
+    if (resueltoQ) return;
+    if (op.correcta) {
+      if (intentosQ === 0) {
+        aciertosQ += 1;
+        progreso.estrellas += 1;
+        guardar();
+        pintarEstrellas();
+      }
+      App.feedback.acierto(feedbackQuizEl);
+      resolverQuiz(true);
+      return;
+    }
+    intentosQ += 1;
+    btn.classList.add('animo');
+    btn.disabled = true;
+    App.feedback.animo(feedbackQuizEl);
+    if (intentosQ === 1) {
+      /* Primer fallo: pista socrática, sin dar la respuesta (regla 12). */
+      mostrarTextoQuiz(cfgActual().pista(casoQ));
+    } else {
+      /* Segundo fallo: se marca la correcta y se explica el porqué
+         (regla 11: nadie se queda sin resolución). */
+      resolverQuiz(false);
+    }
+  }
+
+  function siguienteQuiz() {
+    idxQ += 1;
+    App.tts.stop();
+    if (idxQ >= datos().porRonda) terminarRonda(aciertosQ);
+    else renderQuiz();
+  }
+
+  /* ============================================================
+     Configuración de las actividades (▶ añadir aquí las nuevas)
+     ============================================================ */
+  var ACTIVIDADES = {
+
+    /* --- ¿Cuánto hay? — contar el dinero de la mesa --- */
+    contar: {
+      esQuiz: true,
+      instruccion: 'instruccionContar',
+      progresoClave: 'completadosContar',
+      resumen: 'resumenContar',
+      niveles: function () { return datos().contar.niveles; },
+      generar: function (nivel) {
+        var n = 2 + Math.floor(Math.random() * 3);
+        var piezas = [];
+        var total = 0;
+        for (var k = 0; k < n; k++) {
+          var v = azar(nivel.cents);
+          piezas.push(v);
+          total += v;
+        }
+        piezas.sort(function (a, b) { return b - a; });
+        var distractores = [];
+        App.utils.shuffle(nivel.cents).forEach(function (d) {
+          [total + d, total - d].forEach(function (x) {
+            if (x > 0 && x !== total && distractores.indexOf(x) === -1 && distractores.length < 2) {
+              distractores.push(x);
+            }
+          });
+        });
+        while (distractores.length < 2) {
+          distractores.push(total + (distractores.length + 1) * nivel.cents[0]);
+        }
+        return { piezas: piezas, total: total, importes: App.utils.shuffle([total].concat(distractores)) };
+      },
+      enunciado: function () { return App.i18n.t('contarPregunta'); },
+      mesa: function (caso) { return caso.piezas; },
+      opciones: function (caso) {
+        return caso.importes.map(function (cent) {
+          return { texto: formatear(cent), correcta: cent === caso.total };
+        });
+      },
+      pista: function () { return App.i18n.t('pistaContar'); },
+      explicacion: function (caso, bien) {
+        return App.i18n.t(bien ? 'explicacionBien' : 'explicacionCasi')
+          .replace('{d}', desglose(caso.piezas))
+          .replace('{total}', formatear(caso.total));
+      }
+    },
+
+    /* --- ¿Con qué pago? — elegir el dinero que llega --- */
+    conquepago: {
+      esQuiz: true,
+      tipoOpcion: 'ficha',
+      instruccion: 'instruccionConQuePago',
+      progresoClave: 'completadosConQuePago',
+      resumen: 'resumenConQuePago',
+      niveles: function () { return datos().importe.niveles; },
+      generar: function (nivel) {
+        var par = generarPar(nivel.paso);
+        var producto = azar(todosLosProductos());
+        var menores = [500, 200, 100, 50].filter(function (c) { return c < par.inferior; });
+        var opciones = App.utils.shuffle([
+          { cent: par.pagado, correcta: true },
+          { cent: par.inferior, correcta: false },
+          { cent: azar(menores), correcta: false }
+        ]);
+        return {
+          picto: producto.picto,
+          nombre: producto.nombre,
+          precio: par.precio,
+          pagado: par.pagado,
+          cambio: par.pagado - par.precio,
+          lista: opciones
+        };
+      },
+      enunciado: function (caso) {
+        return caso.picto + ' ' + App.i18n.t('enunciadoConQuePago')
+          .replace('{nombre}', caso.nombre)
+          .replace('{precio}', formatear(caso.precio));
+      },
+      mesa: function () { return null; },
+      opciones: function (caso) { return caso.lista; },
+      pista: function () { return App.i18n.t('pistaConQuePago'); },
+      explicacion: function (caso, bien) {
+        return App.i18n.t(bien ? 'explicacionPagoBien' : 'explicacionPagoCasi')
+          .replace('{pagado}', hablado(caso.pagado))
+          .replace('{cambio}', formatear(caso.cambio));
+      },
+      /* Al resolver, el cambio aparece como fichas en la mesa:
+         conecta pagar con el cambio físico. */
+      alResolver: function (caso) { pintarMesa(descomponer(caso.cambio)); }
+    },
+
+    /* --- ¿Está bien el cambio? — verificar lo devuelto --- */
+    cambio: {
+      esQuiz: true,
+      instruccion: 'instruccionCambio',
+      progresoClave: 'completadosCambio',
+      resumen: 'resumenCambio',
+      niveles: function () { return datos().importe.niveles; },
+      generar: function (nivel) {
+        var par = generarPar(nivel.paso);
+        var bueno = par.pagado - par.precio;
+        var esBien = Math.random() < 0.5;
+        var mostrado = bueno;
+        if (!esBien) {
+          var deltas = App.utils.shuffle([nivel.paso, -nivel.paso, 100, -100]);
+          for (var k = 0; k < deltas.length; k++) {
+            var m = bueno + deltas[k];
+            if (m > 0 && m !== bueno) { mostrado = m; break; }
+          }
+        }
+        return { precio: par.precio, pagado: par.pagado, bueno: bueno, mostrado: mostrado, esBien: mostrado === bueno };
+      },
+      enunciado: function (caso) {
+        return App.i18n.t('enunciadoCambio')
+          .replace('{precio}', formatear(caso.precio))
+          .replace('{pagado}', hablado(caso.pagado));
+      },
+      mesa: function (caso) { return descomponer(caso.mostrado); },
+      /* Sí/No en orden fijo (natural), no se barajan. */
+      opciones: function (caso) {
+        return [
+          { texto: App.i18n.t('si'), correcta: caso.esBien },
+          { texto: App.i18n.t('no'), correcta: !caso.esBien }
+        ];
+      },
+      pista: function () { return App.i18n.t('pistaCambio'); },
+      explicacion: function (caso) {
+        var clave = caso.esBien ? 'explicacionCambioBien' :
+          (caso.mostrado < caso.bueno ? 'explicacionCambioFalta' : 'explicacionCambioSobra');
+        return App.i18n.t(clave)
+          .replace('{bueno}', formatear(caso.bueno))
+          .replace('{mostrado}', formatear(caso.mostrado));
+      }
+    },
+
+    /* --- La Hucha — ¿cuánto falta para comprarlo? --- */
+    hucha: {
+      esQuiz: true,
+      instruccion: 'instruccionHucha',
+      progresoClave: 'completadosHucha',
+      resumen: 'resumenHucha',
+      niveles: function () { return datos().importe.niveles; },
+      generar: function (nivel) {
+        /* Objetivos: el banco PRODUCTOS del bucket del nivel. */
+        var banco = datos().pagar.niveles.filter(function (n) { return n.id === nivel.id; })[0];
+        var candidatos = banco.productos.filter(function (p) { return p.precioCent >= 2 * nivel.paso; });
+        var producto = azar(candidatos);
+        var pasos = producto.precioCent / nivel.paso;
+        var tienes = nivel.paso * (1 + Math.floor(Math.random() * (pasos - 1)));
+        var falta = producto.precioCent - tienes;
+        var opciones = App.utils.shuffle([falta].concat(distractoresDe(falta, nivel.paso)));
+        return {
+          picto: producto.picto,
+          nombre: producto.nombre,
+          precio: producto.precioCent,
+          tienes: tienes,
+          falta: falta,
+          importes: opciones
+        };
+      },
+      enunciado: function (caso) {
+        var nombre = caso.nombre.charAt(0).toLowerCase() + caso.nombre.slice(1);
+        return caso.picto + ' ' + App.i18n.t('enunciadoHucha')
+          .replace('{nombre}', nombre)
+          .replace('{precio}', formatear(caso.precio));
+      },
+      mesa: function (caso) { return descomponer(caso.tienes); },
+      opciones: function (caso) {
+        return caso.importes.map(function (cent) {
+          return { texto: formatear(cent), correcta: cent === caso.falta };
+        });
+      },
+      pista: function () { return App.i18n.t('pistaHucha'); },
+      explicacion: function (caso, bien) {
+        return App.i18n.t(bien ? 'explicacionHuchaBien' : 'explicacionHuchaCasi')
+          .replace('{precio}', formatear(caso.precio))
+          .replace('{tienes}', formatear(caso.tienes))
+          .replace('{falta}', formatear(caso.falta));
+      }
+    },
+
+    /* --- Paga justo — interactiva, fuera del runner --- */
+    pagar: {
+      esQuiz: false,
+      instruccion: 'pagarInstruccion',
+      progresoClave: 'completadosPagar',
+      resumen: 'resumenPagar',
+      niveles: function () { return datos().pagar.niveles; }
+    }
+  };
+
+  /* ============================================================
+     Menú y niveles (compartidos)
+     ============================================================ */
+  function abrirActividad(id) {
+    actividadActual = id;
+    var cfg = cfgActual();
+    $('#instruccionActividad').textContent = App.i18n.t(cfg.instruccion);
+    pintarNiveles();
+    mostrar('pantallaNiveles');
+  }
+
+  function pintarNiveles() {
+    var cfg = cfgActual();
+    var cont = $('#niveles');
+    cont.innerHTML = '';
+    cfg.niveles().forEach(function (n) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn btn-nivel';
+      var veces = progreso[cfg.progresoClave][n.id] || 0;
+      btn.innerHTML = n.nombre + ' — ' + n.descripcion +
+        ' <span class="nivel-info">(' + App.i18n.t('vecesTexto').replace('{n}', veces) + ')</span>';
+      btn.addEventListener('click', function () {
+        if (cfg.esQuiz) iniciarRondaQuiz(n);
+        else iniciarRondaPagar(n);
+      });
+      cont.appendChild(btn);
+    });
+  }
+
+  function terminarRonda(aciertos) {
+    var cfg = cfgActual();
+    var nivel = cfg.esQuiz ? nivelQ : nivelP;
+    progreso[cfg.progresoClave][nivel.id] = (progreso[cfg.progresoClave][nivel.id] || 0) + 1;
+    guardar();
+    $('#resumenFinal').textContent = App.i18n.t(cfg.resumen)
+      .replace('{n}', aciertos)
+      .replace('{t}', datos().porRonda);
+    mostrar('pantallaFinal');
+    App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
+  }
+
+  /* ============================================================
+     Actividad — Paga justo (interactiva)
      ============================================================ */
   var productoEl = $('#producto');
   var precioTextoEl = $('#precioTexto');
@@ -290,21 +576,6 @@
   var resueltoP = false;
   var ayudaPasoP = 0;
   var botonesDinero = {};  /* cent -> botón, para marcar la ayuda */
-
-  function pintarNivelesPagar() {
-    var cont = $('#nivelesPagar');
-    cont.innerHTML = '';
-    datos().pagar.niveles.forEach(function (n) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'btn btn-nivel';
-      var veces = progreso.completadosPagar[n.id] || 0;
-      btn.innerHTML = n.nombre + ' — ' + n.descripcion +
-        ' <span class="nivel-info">(' + App.i18n.t('vecesTexto').replace('{n}', veces) + ')</span>';
-      btn.addEventListener('click', function () { iniciarRondaPagar(n); });
-      cont.appendChild(btn);
-    });
-  }
 
   function iniciarRondaPagar(n) {
     nivelP = n;
@@ -466,51 +737,26 @@
   function siguientePagar() {
     idxP += 1;
     App.tts.stop();
-    if (idxP >= datos().porRonda) terminarRonda('pagar');
+    if (idxP >= datos().porRonda) terminarRonda(aciertosP);
     else renderPagar();
   }
 
-  /* ============================================================
-     Final de ronda (compartido)
-     ============================================================ */
-  var actividadActual = 'contar';
-
-  function terminarRonda(actividad) {
-    actividadActual = actividad;
-    var total = datos().porRonda;
-    if (actividad === 'contar') {
-      progreso.completadosContar[nivelC.id] = (progreso.completadosContar[nivelC.id] || 0) + 1;
-      $('#resumenFinal').textContent = App.i18n.t('resumenContar')
-        .replace('{n}', aciertosC).replace('{t}', total);
-    } else {
-      progreso.completadosPagar[nivelP.id] = (progreso.completadosPagar[nivelP.id] || 0) + 1;
-      $('#resumenFinal').textContent = App.i18n.t('resumenPagar')
-        .replace('{n}', aciertosP).replace('{t}', total);
-    }
-    guardar();
-    mostrar('pantallaFinal');
-    App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
-  }
-
   /* ---- Eventos ---- */
-  $('#tarjetaContar').addEventListener('click', function () {
-    pintarNivelesContar();
-    mostrar('pantallaNivelesContar');
+  App.utils.$$('.tarjeta-actividad').forEach(function (btn) {
+    btn.addEventListener('click', function () { abrirActividad(btn.getAttribute('data-actividad')); });
   });
-  $('#tarjetaPagar').addEventListener('click', function () {
-    pintarNivelesPagar();
-    mostrar('pantallaNivelesPagar');
-  });
-  $('#btnVolverMenuContar').addEventListener('click', function () { App.tts.stop(); mostrar('pantallaMenu'); });
-  $('#btnVolverMenuPagar').addEventListener('click', function () { App.tts.stop(); mostrar('pantallaMenu'); });
+  $('#btnVolverMenuNiveles').addEventListener('click', function () { App.tts.stop(); mostrar('pantallaMenu'); });
   $('#btnVolverMenuFinal').addEventListener('click', function () { App.tts.stop(); mostrar('pantallaMenu'); });
-
-  btnSiguienteContar.addEventListener('click', siguienteContar);
-  $('#btnPreguntaContar').addEventListener('click', function () {
-    App.tts.speak(App.i18n.t('contarPregunta'));
+  $('#btnInstruccionActividad').addEventListener('click', function () {
+    App.tts.speak($('#instruccionActividad').textContent);
   });
-  $('#btnEscucharExplicacionContar').addEventListener('click', function () {
-    App.tts.speak(explicacionContarEl.textContent);
+
+  btnSiguienteQuiz.addEventListener('click', siguienteQuiz);
+  $('#btnEnunciadoQuiz').addEventListener('click', function () {
+    App.tts.speak(enunciadoQuizEl.textContent);
+  });
+  $('#btnEscucharExplicacionQuiz').addEventListener('click', function () {
+    App.tts.speak(explicacionQuizEl.textContent);
   });
 
   $('#btnEscuchar').addEventListener('click', function () {
@@ -526,23 +772,12 @@
   });
 
   $('#btnRepetir').addEventListener('click', function () {
-    if (actividadActual === 'contar') iniciarRondaContar(nivelC);
+    if (cfgActual().esQuiz) iniciarRondaQuiz(nivelQ);
     else iniciarRondaPagar(nivelP);
   });
-  $('#btnOtroNivelFinal').addEventListener('click', function () {
-    if (actividadActual === 'contar') {
-      pintarNivelesContar();
-      mostrar('pantallaNivelesContar');
-    } else {
-      pintarNivelesPagar();
-      mostrar('pantallaNivelesPagar');
-    }
-  });
+  $('#btnOtroNivelFinal').addEventListener('click', function () { abrirActividad(actividadActual); });
   $('#btnInstruccion').addEventListener('click', function () {
     App.tts.speak($('#instruccion').textContent);
-  });
-  $('#btnInstruccionPagar').addEventListener('click', function () {
-    App.tts.speak(App.i18n.t('pagarInstruccion'));
   });
 
   pintarEstrellas();
