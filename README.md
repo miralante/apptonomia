@@ -60,7 +60,7 @@ apptonomia/
 └── sw.js              # Service worker (cache offline)
 ```
 
-## Actividades (56)
+## Actividades (57)
 
 | Módulo | Actividades |
 |---|---|

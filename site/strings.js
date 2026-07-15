@@ -45,6 +45,7 @@
       lacalle_nombre: 'La Calle', lacalle_detalle: 'Cruza y muévete con seguridad.',
       emergencias_nombre: 'Emergencias', emergencias_detalle: 'Reconoce y practica pedir ayuda.',
       lacompra_nombre: 'La Compra', lacompra_detalle: 'Secciones del súper y tu lista.',
+      latienda_nombre: 'La Tienda', latienda_detalle: 'Compra de verdad con tu dinero.',
       micuerpoavisa_nombre: 'Mi Cuerpo Me Avisa', micuerpoavisa_detalle: 'Nota lo que sientes y cuida de ti.',
 
       parejas_nombre: 'Parejas', parejas_detalle: 'Busca las cartas iguales.',
@@ -123,6 +124,7 @@
       lacalle_nombre: 'The Street', lacalle_detalle: 'Cross and move around safely.',
       emergencias_nombre: 'Emergencies', emergencias_detalle: 'Recognize and practice asking for help.',
       lacompra_nombre: 'The Shopping', lacompra_detalle: 'Shop sections and your list.',
+      latienda_nombre: 'The Shop', latienda_detalle: 'Really buy things with your money.',
       micuerpoavisa_nombre: 'My Body Tells Me', micuerpoavisa_detalle: 'Notice how you feel and take care of yourself.',
 
       parejas_nombre: 'Pairs', parejas_detalle: 'Find the matching cards.',

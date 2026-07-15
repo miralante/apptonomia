@@ -1,0 +1,77 @@
+/* La Tienda — estilos específicos. Lo común está en assets/css/
+   (el dinero visual vive en components.css + assets/js/dinero.js).
+   Acento del módulo Autonomía/hogar (verde --mod-secuencia). */
+
+.tool-header h1 { color: var(--mod-secuencia); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-secuencia);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+/* Tarjetas del menú (mismo patrón que La Compra) */
+.tarjeta-actividad {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; min-height: 160px; padding: var(--espacio-grande);
+  background: var(--color-superficie); border: 3px solid var(--color-borde);
+  border-radius: var(--radio); box-shadow: var(--sombra);
+  font-family: inherit; color: var(--color-texto); cursor: pointer;
+}
+.tarjeta-actividad:hover { border-color: var(--mod-secuencia); }
+.tarjeta-actividad .picto { font-size: 48px; }
+.tarjeta-actividad .nombre { font-weight: 800; font-size: var(--texto-base); }
+.tarjeta-actividad .detalle { font-size: var(--texto-pequeno); color: var(--color-texto-suave); text-align: center; }
+
+.pregunta {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+}
+
+/* La mesa con el tinte del módulo */
+.mesa-dinero { background: var(--mod-secuencia-suave); }
+
+/* El mostrador (paso de pagar) se distingue de tu monedero */
+.mesa-dinero.mostrador {
+  background: var(--color-superficie);
+  border-style: dashed;
+  min-height: 88px;
+}
+
+.opciones { align-items: center; }
+
+.opciones .btn-opcion { min-width: 220px; }
+
+/* Productos (cartel de la compra) */
+.card { border-color: var(--mod-secuencia-suave); margin-top: var(--espacio); }
+
+.producto { font-size: 72px; }
+
+.precio {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+}
+
+.total {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  color: var(--mod-secuencia);
+}
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
