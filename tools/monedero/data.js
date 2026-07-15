@@ -58,6 +58,15 @@ const NIVELES_IMPORTE = [
   { id: 3, paso: 10 }
 ];
 
+/* ---- Más o menos — deltas posibles respecto al euro objetivo
+   (regla 13: única variable = la distancia al euro; el nivel 3
+   introduce el ,50 y su regla "el 50 sube"). */
+const REDONDEO_BASE = [
+  { id: 1, deltas: [10, 20] },
+  { id: 2, deltas: [30, 40] },
+  { id: 3, deltas: [50] }
+];
+
 /* ---- Paga justo — dinero disponible por nivel (acumulativo). */
 const PAGAR_CENTS = {
   1: [100, 200, 500],
@@ -148,12 +157,14 @@ const NIVELES_TXT = {
   es: {
     contar: { 1: 'Monedas de euro', 2: 'También billetes', 3: 'También céntimos', 4: 'Billetes grandes' },
     pagar: { 1: 'Precios enteros', 2: 'Con 50 céntimos', 3: 'Con 10 y 20 céntimos', 4: 'Céntimos de cinco' },
-    importe: { 1: 'Importes enteros', 2: 'Con 50 céntimos', 3: 'Con 10 y 20 céntimos' }
+    importe: { 1: 'Importes enteros', 2: 'Con 50 céntimos', 3: 'Con 10 y 20 céntimos' },
+    redondeo: { 1: 'Muy cerca del euro', 2: 'Un poco más lejos', 3: 'Acaba en 50' }
   },
   en: {
     contar: { 1: 'Euro coins', 2: 'Also banknotes', 3: 'Also cents', 4: 'Big banknotes' },
     pagar: { 1: 'Whole prices', 2: 'With 50 cents', 3: 'With 10 and 20 cents', 4: 'Five-cent prices' },
-    importe: { 1: 'Whole amounts', 2: 'With 50 cents', 3: 'With 10 and 20 cents' }
+    importe: { 1: 'Whole amounts', 2: 'With 50 cents', 3: 'With 10 and 20 cents' },
+    redondeo: { 1: 'Very close to the euro', 2: 'A little further', 3: 'Ends in 50' }
   }
 };
 
@@ -185,11 +196,16 @@ function construirMonedero(loc) {
     return { id: n.id, nombre: prefijo + n.id, descripcion: txt.importe[n.id], paso: n.paso };
   });
 
+  var redondeo = REDONDEO_BASE.map(function (n) {
+    return { id: n.id, nombre: prefijo + n.id, descripcion: txt.redondeo[n.id], deltas: n.deltas };
+  });
+
   return {
     porRonda: 6,
     contar: { niveles: contar },
     pagar: { niveles: pagar },
-    importe: { niveles: importe }
+    importe: { niveles: importe },
+    redondeo: { niveles: redondeo }
   };
 }
 

@@ -23,10 +23,13 @@
       menuCambioDetalle: 'Cuenta el cambio y decide.',
       menuHucha: 'La Hucha',
       menuHuchaDetalle: '¿Cuánto te falta para comprarlo?',
+      menuRedondeo: 'Más o menos',
+      menuRedondeoDetalle: '¿Cuánto es, sin contar céntimos?',
       instruccionContar: '¿Cuánto dinero hay? Cuenta el dinero y elige el total.',
       instruccionConQuePago: 'No tienes el precio justo. Elige el dinero que llega para pagar.',
       instruccionCambio: 'Has pagado. Cuenta el cambio y decide si está bien.',
       instruccionHucha: 'Quieres comprar algo. Cuenta tu dinero y calcula cuánto te falta.',
+      instruccionRedondeo: 'Mira el precio. Di cuánto es, más o menos, sin contar los céntimos.',
       /* (Las palabras del dinero — euro, céntimos, moneda de… —
          viven en el módulo compartido assets/js/dinero.js.) */
       anadirDinero: 'Añadir {d}',
@@ -59,6 +62,15 @@
       explicacionHuchaBien: '¡Eso es! Cuesta {precio}. Tienes {tienes}. Te faltan {falta}.',
       explicacionHuchaCasi: 'Mira: cuesta {precio}. Tienes {tienes}. Te faltan {falta}.',
       resumenHucha: 'Has calculado bien {n} de {t}.',
+      /* --- Más o menos --- */
+      enunciadoRedondeo: '{nombre} cuesta {precio}. ¿Cuánto es, más o menos?',
+      unosEuros: 'unos {n} €',
+      pistaRedondeo: 'Mira los céntimos. ¿Están más cerca del euro de arriba o del euro de abajo?',
+      explicacionRedondeoBien: '¡Eso es! {precio} está muy cerca de {n} €. Decimos: unos {n} €.',
+      explicacionRedondeoCasi: 'Mira: {precio} está muy cerca de {n} €. Decimos: unos {n} €.',
+      explicacionRedondeoMedioBien: '¡Eso es! {precio} acaba en 50. Cuando acaba en 50, decimos el euro de arriba: unos {n} €.',
+      explicacionRedondeoMedioCasi: 'Mira: {precio} acaba en 50. Cuando acaba en 50, decimos el euro de arriba: unos {n} €.',
+      resumenRedondeo: 'Has estimado bien {n} de {t}.',
       /* --- Paga justo --- */
       pagarInstruccion: 'Mira el precio. Toca el dinero hasta llegar al precio justo.',
       hasPuesto: 'Has puesto: {total}',
@@ -97,10 +109,13 @@
       menuCambioDetalle: 'Count the change and decide.',
       menuHucha: 'The Piggy Bank',
       menuHuchaDetalle: 'How much is missing to buy it?',
+      menuRedondeo: 'More or less',
+      menuRedondeoDetalle: 'How much is it, without counting cents?',
       instruccionContar: 'How much money is there? Count the money and choose the total.',
       instruccionConQuePago: 'You do not have the exact price. Choose the money that is enough to pay.',
       instruccionCambio: 'You have paid. Count the change and decide if it is right.',
       instruccionHucha: 'You want to buy something. Count your money and work out how much is missing.',
+      instruccionRedondeo: 'Look at the price. Say how much it is, more or less, without counting the cents.',
       /* (Money words — euro, cents, coin of… — live in the shared
          module assets/js/dinero.js.) */
       anadirDinero: 'Add {d}',
@@ -133,6 +148,15 @@
       explicacionHuchaBien: 'That is it! It costs {precio}. You have {tienes}. {falta} is missing.',
       explicacionHuchaCasi: 'Look: it costs {precio}. You have {tienes}. {falta} is missing.',
       resumenHucha: 'You worked it out correctly {n} out of {t}.',
+      /* --- More or less --- */
+      enunciadoRedondeo: '{nombre} costs {precio}. How much is that, more or less?',
+      unosEuros: 'about {n} €',
+      pistaRedondeo: 'Look at the cents. Are they closer to the euro above or the euro below?',
+      explicacionRedondeoBien: 'That is it! {precio} is very close to {n} €. We say: about {n} €.',
+      explicacionRedondeoCasi: 'Look: {precio} is very close to {n} €. We say: about {n} €.',
+      explicacionRedondeoMedioBien: 'That is it! {precio} ends in 50. When it ends in 50, we say the euro above: about {n} €.',
+      explicacionRedondeoMedioCasi: 'Look: {precio} ends in 50. When it ends in 50, we say the euro above: about {n} €.',
+      resumenRedondeo: 'You estimated correctly {n} out of {t}.',
       /* --- Pay the exact price --- */
       pagarInstruccion: 'Look at the price. Touch the money until you reach the exact price.',
       hasPuesto: 'You have put in: {total}',

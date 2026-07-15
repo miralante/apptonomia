@@ -29,7 +29,7 @@
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completadosPagar) progreso.completadosPagar = progreso.completados || {};
-  ['completadosContar', 'completadosConQuePago', 'completadosCambio', 'completadosHucha']
+  ['completadosContar', 'completadosConQuePago', 'completadosCambio', 'completadosHucha', 'completadosRedondeo']
     .forEach(function (clave) { if (!progreso[clave]) progreso[clave] = {}; });
   delete progreso.completados;
 
@@ -421,6 +421,57 @@
           .replace('{precio}', formatear(caso.precio))
           .replace('{tienes}', formatear(caso.tienes))
           .replace('{falta}', formatear(caso.falta));
+      }
+    },
+
+    /* --- Más o menos — redondeo mental ("cuesta unos 3 €") --- */
+    redondeo: {
+      esQuiz: true,
+      instruccion: 'instruccionRedondeo',
+      progresoClave: 'completadosRedondeo',
+      resumen: 'resumenRedondeo',
+      niveles: function () { return datos().redondeo.niveles; },
+      generar: function (nivel) {
+        var objetivo = 2 + Math.floor(Math.random() * 8);   /* 2-9 € */
+        var delta = azar(nivel.deltas);
+        /* El ,50 siempre por debajo del objetivo: x,50 SUBE a x+1. */
+        var signo = delta === 50 ? -1 : azar([-1, 1]);
+        var mostrado = objetivo * 100 + signo * delta;
+        /* Producto de sabor con precio de referencia cercano. */
+        var cercanos = todosLosProductos().filter(function (p) {
+          return Math.abs(p.precioCent - mostrado) <= 150;
+        });
+        var producto = azar(cercanos.length ? cercanos : todosLosProductos());
+        return {
+          picto: producto.picto,
+          nombre: producto.nombre,
+          mostrado: mostrado,
+          objetivo: objetivo,
+          esMedio: delta === 50,
+          candidatos: [objetivo - 1, objetivo, objetivo + 1]
+        };
+      },
+      enunciado: function (caso) {
+        return caso.picto + ' ' + App.i18n.t('enunciadoRedondeo')
+          .replace('{nombre}', caso.nombre)
+          .replace('{precio}', formatear(caso.mostrado));
+      },
+      mesa: function () { return null; },
+      /* Tres euros consecutivos, en orden (no se barajan: es una
+         recta numérica, no un quiz de despiste). */
+      opciones: function (caso) {
+        return caso.candidatos.map(function (n) {
+          return { texto: App.i18n.t('unosEuros').replace('{n}', n), correcta: n === caso.objetivo };
+        });
+      },
+      pista: function () { return App.i18n.t('pistaRedondeo'); },
+      explicacion: function (caso, bien) {
+        var clave = caso.esMedio ?
+          (bien ? 'explicacionRedondeoMedioBien' : 'explicacionRedondeoMedioCasi') :
+          (bien ? 'explicacionRedondeoBien' : 'explicacionRedondeoCasi');
+        return App.i18n.t(clave)
+          .replace('{precio}', formatear(caso.mostrado))
+          .replace(/\{n\}/g, caso.objetivo);
       }
     },
 
