@@ -175,7 +175,7 @@
       resuelto = true;
       anadirALista(item);
       App.utils.$$('.btn.caja', listasDiaEl).forEach(function (b) { b.disabled = true; });
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       progreso.estrellas += 1;
       aciertosRonda += 1;
       guardar();
@@ -191,7 +191,7 @@
       }
       btn.classList.add('animo');
       btn.disabled = true;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
     }
   }
 

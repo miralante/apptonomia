@@ -236,13 +236,13 @@
     var i = huecoActivo;
     if (vi === solucion[i]) {
       colocar(i, vi);
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       explicacionEl.textContent = App.i18n.t('explicacionCorrecta');
       explicacionWrap.classList.remove('oculto');
       comprobarCompletado();
     } else {
       intentosHueco[i] = (intentosHueco[i] || 0) + 1;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       if (intentosHueco[i] === 1) {
         /* Regla 12: primer fallo → pista, nunca la respuesta */
         explicacionEl.textContent = App.i18n.t('pista');

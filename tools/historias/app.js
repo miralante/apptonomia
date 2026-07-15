@@ -118,13 +118,13 @@
       pintarSlots();
       btn.disabled = true;
       btn.classList.add('colocada');
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       siguienteEsperado += 1;
       if (siguienteEsperado >= historia.vinetas.length) {
         terminarHistoria();
       }
     } else {
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
     }
   }
 

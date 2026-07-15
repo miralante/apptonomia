@@ -170,7 +170,7 @@
         terminarSecuencia();
       }
     } else {
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       posicionEsperada = 0;
       etapaTextoEl.textContent = App.i18n.t('etapaCasi');
       setTimeout(reproducirSecuencia, 700);
@@ -178,7 +178,7 @@
   }
 
   function terminarSecuencia() {
-    App.feedback.acierto(feedbackEl);
+    App.feedback.success(feedbackEl);
     progreso.estrellas += 1;
     aciertosRonda += 1;
     guardar();

@@ -355,14 +355,14 @@
         t.classList.add('fallo');
         setTimeout(function () { t.classList.remove('fallo'); }, 500);
       });
-      App.feedback.animo($('#feedback'));
+      App.feedback.encourage($('#feedback'));
     }
   }
 
   function pasoCompletado() {
     game.esperando = true;
     marcarObjetivo(null);
-    App.feedback.acierto($('#feedback'));
+    App.feedback.success($('#feedback'));
     setTimeout(function () {
       if (!game) return;
       game.esperando = false;

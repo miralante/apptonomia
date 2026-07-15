@@ -215,14 +215,14 @@
         guardar();
         pintarEstrellas();
       }
-      App.feedback.acierto(feedbackQuizEl);
+      App.feedback.success(feedbackQuizEl);
       resolverQuiz(true);
       return;
     }
     intentosQ += 1;
     btn.classList.add('animo');
     btn.disabled = true;
-    App.feedback.animo(feedbackQuizEl);
+    App.feedback.encourage(feedbackQuizEl);
     if (intentosQ === 1) {
       /* Primer fallo: pista socrática, sin dar la respuesta (regla 12). */
       mostrarTextoQuiz(cfgActual().pista(casoQ));
@@ -645,7 +645,7 @@
         guardar();
         pintarEstrellas();
       }
-      App.feedback.acierto(feedbackPagarEl);
+      App.feedback.success(feedbackPagarEl);
       btnComprobar.disabled = true;
       btnSiguientePagar.classList.remove('oculto');
       btnSiguientePagar.focus();

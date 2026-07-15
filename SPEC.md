@@ -162,7 +162,7 @@ herramienta): `volver`, `volverAlMenu`, `jugarOtraVez`, `siguiente`, `escuchar`,
 
 **Patrón de `strings.js`**: registrar `{ title, instruccion, …clave: 'texto', … }` en
 `es` y `en` con las mismas claves en ambos idiomas (verificable con un script que
-compare `Object.keys` recursivamente — ver `PLAN-I18N.md` §3). Placeholders con
+compare `Object.keys` recursivamente — ver `PLAN.md` §9.1). Placeholders con
 llaves (`'{n} veces'`) se sustituyen en `app.js` con `.replace('{n}', valor)`.
 Datos con texto en `data.js` (nombres, enunciados) se separan del array estructural
 y se indexan por `id` desde `strings.js`, o se duplica `DATA = {es:[…], en:[…]}`

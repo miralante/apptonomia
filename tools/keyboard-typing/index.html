@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <header class="tool-header">
-      <a href="../../site/index.html" class="back-link" data-i18n="core.volver">← Volver</a>
+      <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Volver</a>
       <h1 data-i18n="title">⌨️ Teclado</h1>
       <span class="stars" id="stars">⭐ 0</span>
     </header>
@@ -22,7 +22,7 @@
     <section id="pantallaNombre" class="oculto pila">
       <div class="fila centrado-fila">
         <p class="instruccion" id="textoNombre" data-i18n="textoNombre">¡Hola! ¿Cómo te llamas? Escribe tu nombre con el teclado.</p>
-        <button type="button" class="btn btn-audio" id="btnLeerNombre" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnLeerNombre" data-i18n-aria="core.listenInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
       </div>
       <input id="inputNombre" class="input-nombre" type="text" maxlength="20" autocomplete="off" spellcheck="false" data-i18n-aria="inputNombreAria" aria-label="Escribe tu nombre">
       <div class="fila centrado-fila">
@@ -53,7 +53,7 @@
     <section id="pantallaMenu" class="oculto pila">
       <div class="fila centrado-fila">
         <h2 id="saludo" data-i18n="saludoHola">¡Hola!</h2>
-        <button type="button" class="btn btn-audio" id="btnLeerSaludo" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el saludo">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnLeerSaludo" data-i18n-aria="core.listenTexto" aria-label="Escuchar el saludo">🔊</button>
       </div>
       <p class="instruccion centrado" data-i18n="eligeJuego">Elige un juego.</p>
       <div class="grid-tarjetas" id="menuJuegos">
@@ -114,7 +114,7 @@
       <div class="fila">
         <button type="button" class="btn btn-secundario" id="btnSalirJuego" data-i18n="btnMenu">← Menú</button>
         <h2 class="titulo-juego" id="tituloJuego" data-i18n="tituloJuegoDefault">Juego</h2>
-        <button type="button" class="btn btn-audio" id="btnLeerJuego" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnLeerJuego" data-i18n-aria="core.listenInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
       </div>
       <p class="instruccion centrado" id="instruccionJuego"></p>
       <div class="card centrado">
@@ -153,7 +153,7 @@
       <div class="fila">
         <button type="button" class="btn btn-secundario" id="btnSalirLibre" data-i18n="btnMenu">← Menú</button>
         <h2 class="titulo-juego" data-i18n="modoLibreNombre">Escribe libre</h2>
-        <button type="button" class="btn btn-audio" id="btnLeerLibre" data-i18n="core.escuchar" data-i18n-aria="escucharTextoAria" aria-label="Escuchar mi texto">🔊 Escuchar</button>
+        <button type="button" class="btn btn-audio" id="btnLeerLibre" data-i18n="core.listen" data-i18n-aria="escucharTextoAria" aria-label="Escuchar mi texto">🔊 Escuchar</button>
         <button type="button" class="btn btn-secundario" id="btnBorrarLibre" data-i18n-aria="borrarTextoAria" aria-label="Borrar el texto">🗑️</button>
       </div>
       <textarea id="areaLibre" class="area-libre" rows="4" spellcheck="false" data-i18n-aria="areaLibreAria" aria-label="Escribe aquí lo que quieras" placeholder="Escribe aquí..."></textarea>

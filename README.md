@@ -2,7 +2,9 @@
 
 Aplicación web de actividades de terapia ocupacional para personas con
 discapacidad intelectual. Pensada para usarse de forma autónoma, en el navegador,
-sin coste y sin datos personales. Interfaz en español y Lectura Fácil.
+sin coste y sin datos personales. Interfaz multiidioma y Lectura Fácil.
+
+Es una PWA sobre HTTPS.
 
 ## Uso
 
@@ -17,8 +19,6 @@ Microsoft Store en vez de dar error — en ese caso usa `npx serve .`.)
 
 Abrir http://localhost:8080/site/index.html
 
-Es una PWA: una vez desplegada (HTTPS real), tras la primera visita funciona sin
-conexión y se puede instalar como aplicación de escritorio o de móvil.
 
 Despliegue (Firebase Hosting, proyecto `apptonomia`):
 

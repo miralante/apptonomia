@@ -199,7 +199,7 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
 - [x] Ola 4 — numeros (matemáticas del día a día: contar, valor posicional hasta el billón, fracciones, decimales, tablas, cálculo mental y medidas)
 - [x] Ola 5 — chat-seguro (seguridad en internet: chats simulados para practicar respuestas ante manipulación — fotos, datos, contraseñas, secretos, quedadas)
 - [x] i18n — aplicación bilingüe ES/EN (`App.i18n` + `strings.js` por herramienta en
-      las 30 actividades; caché de `sw.js` al día). Ver `PLAN-I18N.md`.
+      las 30 actividades; caché de `sw.js` al día). Ver `PLAN.md` §9.1.
 - [x] Teclado — modo "Teclado del móvil" (`DATA.layouts.movil`): se detecta y
       preselecciona solo en dispositivos táctiles (`App.utils.esTactil()`), enseña
       a escribir con los dos pulgares (mitad izquierda/derecha) para trabajar
@@ -362,7 +362,7 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       perder da ánimo, el cierre por bloqueo compara fichas restantes y el
       empate se celebra. Regla 13: única variable es maxPips (3/5/6).
 - [x] Parte G de PLAN-MEJORAS.md COMPLETA (2026-07-10, con aprobación del
-      usuario para G2 y G5): `scripts/check.js` amplía sus 5 comprobaciones
+      usuario para G2 y G5; ver `PLAN.md` §9.2): `scripts/check.js` amplía sus 5 comprobaciones
       a 8 (paridad con `equipo/`, conteos README/SPEC sincronizados, lint
       del patrón `DATA.porRonda` que rompió la-frase/palabras — las tres
       verificadas rompiendo el caso real y comprobando que el checker lo
@@ -376,7 +376,7 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       es/en, pulsa el primer nivel si lo hay, y falla con cualquier error
       de consola. Las 49 pasan limpio (98 pruebas) en la primera pasada.
 - [x] Parte D + E3-E6 de PLAN-MEJORAS.md (2026-07-10, con aprobación del
-      usuario): 4 actividades nuevas de terapia ocupacional —
+      usuario; ver `PLAN.md` §9.2): 4 actividades nuevas de terapia ocupacional —
       `tools/la-calle/` (movilidad comunitaria: cruzar, transporte,
       perderse; clon de ¿Qué hago primero?), `tools/mi-cuerpo-avisa/`
       (interocepción, módulo Emociones — resuelve D1 dándole una 4ª

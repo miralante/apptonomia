@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <header class="tool-header">
-      <a href="../../site/index.html" class="back-link" data-i18n="core.volver">← Volver</a>
+      <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Volver</a>
       <h1 data-i18n="title">♟️ El Ajedrez</h1>
       <span class="stars" id="stars">⭐ 0</span>
     </header>
@@ -22,7 +22,7 @@
     <section id="pantallaMenu" class="pila">
       <div class="fila centrado-fila">
         <p class="instruccion" id="instruccion" data-i18n="instruccion">Aquí practicas dos cosas: primero aprende cómo mueve cada pieza, y después juega una mini partida.</p>
-        <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.listenInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
       </div>
       <div class="grid-tarjetas">
         <button type="button" class="tarjeta-actividad" id="tarjetaPiezas">
@@ -54,7 +54,7 @@
 
       <div class="fila centrado-fila">
         <p class="estado" id="estadoPiezas" aria-live="polite"></p>
-        <button type="button" class="btn btn-audio" id="btnEstadoPiezas" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnEstadoPiezas" data-i18n-aria="core.listenTexto" aria-label="Escuchar el texto">🔊</button>
         <button type="button" class="btn btn-secundario" id="btnAyudaPiezas" data-i18n="btnAyuda">💡 Ayuda</button>
       </div>
 
@@ -74,7 +74,7 @@
       <div class="fila"><button type="button" class="btn btn-secundario" id="btnVolverMenuPartida" data-i18n="volverMenu">← Menú</button></div>
       <div class="fila centrado-fila">
         <p class="instruccion" data-i18n="instruccionPartida">Tú llevas las piezas blancas. Captura el rey del rival ♚ y protege el tuyo ♔.</p>
-        <button type="button" class="btn btn-audio" id="btnInstruccionPartida" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnInstruccionPartida" data-i18n-aria="core.listenInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
       </div>
       <h2 data-i18n="elegirNivel">Elige el nivel</h2>
       <div class="pila" id="nivelesPartida"></div>
@@ -83,7 +83,7 @@
     <section id="pantallaJuegoPartida" class="oculto pila centrado">
       <div class="fila centrado-fila">
         <p class="estado" id="estadoPartida" aria-live="polite"></p>
-        <button type="button" class="btn btn-audio" id="btnEstadoPartida" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnEstadoPartida" data-i18n-aria="core.listenTexto" aria-label="Escuchar el texto">🔊</button>
         <button type="button" class="btn btn-secundario" id="btnAyudaPartida" data-i18n="btnAyuda">💡 Ayuda</button>
       </div>
 
@@ -104,9 +104,9 @@
     <!-- Pantalla final de ronda (Las piezas) -->
     <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
       <div class="emoji-grande" aria-hidden="true">🎉</div>
-      <h2 data-i18n="core.rondaCompletada">¡Ronda completada!</h2>
+      <h2 data-i18n="core.roundComplete">¡Ronda completada!</h2>
       <p id="resumenFinal"></p>
-      <button type="button" class="btn" id="btnRepetir" data-i18n="core.jugarOtraVez">Jugar otra vez</button>
+      <button type="button" class="btn" id="btnRepetir" data-i18n="core.playAgain">Jugar otra vez</button>
       <button type="button" class="btn btn-secundario" id="btnOtroNivelFinal" data-i18n="btnOtroNivel">Elegir otro nivel</button>
       <button type="button" class="btn btn-secundario" id="btnVolverMenuFinal" data-i18n="volverMenu">← Menú</button>
     </section>

@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <header class="tool-header">
-      <a href="../../site/index.html" class="back-link" data-i18n="core.volver">← Volver</a>
+      <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Volver</a>
       <h1 data-i18n="title">🔎 ¿Qué no encaja?</h1>
       <span class="stars" id="stars">⭐ 0</span>
     </header>
@@ -22,7 +22,7 @@
     <section id="pantallaInicio" class="pila centrado">
       <div class="fila centrado-fila">
         <p class="instruccion" id="instruccion" data-i18n="instruccion">Mira los cuatro dibujos. Toca el que no va con los demás.</p>
-        <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.listenInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
       </div>
       <h2 data-i18n="tituloNiveles">Elige el nivel</h2>
       <div class="pila" id="niveles"></div>
@@ -41,9 +41,9 @@
       <div class="feedback" id="feedback" aria-live="polite"></div>
       <div class="fila explicacion oculto" id="explicacionWrap">
         <p id="explicacion" aria-live="polite"></p>
-        <button type="button" class="btn btn-audio" id="btnEscucharExplicacion" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnEscucharExplicacion" data-i18n-aria="core.listenTexto" aria-label="Escuchar el texto">🔊</button>
       </div>
-      <button type="button" class="btn oculto" id="btnSiguiente" data-i18n="core.siguiente">Siguiente →</button>
+      <button type="button" class="btn oculto" id="btnSiguiente" data-i18n="core.next">Siguiente →</button>
     </section>
 
     <!-- Pantalla final -->
@@ -51,9 +51,9 @@
       <div class="emoji-grande" aria-hidden="true">🎉</div>
       <h2 data-i18n="rondaCompletadaTitulo">¡Ronda completada!</h2>
       <p id="resumenFinal"></p>
-      <button type="button" class="btn" id="btnRepetir" data-i18n="core.jugarOtraVez">Jugar otra vez</button>
+      <button type="button" class="btn" id="btnRepetir" data-i18n="core.playAgain">Jugar otra vez</button>
       <button type="button" class="btn btn-secundario" id="btnOtroNivel" data-i18n="otroNivel">Elegir otro nivel</button>
-      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.volverAlMenu">Volver al menú</a>
+      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backAlMenu">Volver al menú</a>
     </section>
   </div>
 

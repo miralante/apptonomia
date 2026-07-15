@@ -368,7 +368,7 @@
        modelo la pista de la plantilla (más abajo) es más útil que la
        instrucción genérica, aunque haya 0 bloques. */
     if (numBloques === 0 && modoActual !== 'plantilla') {
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       App.tts.speak(App.i18n.t('instruccion'));
       return;
     }
@@ -379,7 +379,7 @@
         /* Modelo sin terminar: pista, nunca reproche. 1ª vez texto;
            2ª además se marcan las casillas que faltan. */
         pistasListo += 1;
-        App.feedback.animo(feedbackEl);
+        App.feedback.encourage(feedbackEl);
         var clave = pistasListo === 1 ? 'pistaPlantilla1' : 'pistaPlantilla2';
         feedbackEl.textContent = App.i18n.t(clave);
         if (pistasListo >= 2) {

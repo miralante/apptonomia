@@ -46,6 +46,14 @@ const MUCHO_BASE = [
   { id: 3, mult: 3 }
 ];
 
+/* Escalera de '¿Es de fiar?': lo evidente de la ganga sospechosa
+   (regla 13: única variable = el divisor del precio). */
+const FIAR_BASE = [
+  { id: 1, div: 10 },
+  { id: 2, div: 5 },
+  { id: 3, div: 3 }
+];
+
 /* El nivel de un producto se deduce SOLO de su precio. */
 function nivelDePrecio(cent) {
   if (cent % 100 === 0) return 1;   /* euros enteros */
@@ -80,7 +88,8 @@ const PRODUCTOS = [
   { picto: '🥖', clave: 'barraPan', precio: 1.20 },
   { picto: '🍫', clave: 'chocolatina', precio: 1.80 },
   { picto: '🔋', clave: 'pilas', precio: 2.60 },
-  { picto: '🧴', clave: 'champu', precio: 3.90 }
+  { picto: '🧴', clave: 'champu', precio: 3.90 },
+  { picto: '🧣', clave: 'bufanda', precio: 6.90 }
 ];
 
 /* Nombre de cada producto, por idioma (clave -> nombre). */
@@ -92,7 +101,7 @@ const NOMBRES = {
     gel: 'El gel de ducha', taza: 'La taza', peluche: 'El peluche',
     sacapuntas: 'El sacapuntas', caramelos: 'Los caramelos', manzana: 'La manzana',
     cruasan: 'El cruasán', barraPan: 'La barra de pan', chocolatina: 'La chocolatina',
-    pilas: 'Las pilas', champu: 'El champú'
+    pilas: 'Las pilas', champu: 'El champú', bufanda: 'La bufanda'
   },
   en: {
     leche: 'The milk', cuaderno: 'The notebook', gorra: 'The cap', balon: 'The ball',
@@ -101,7 +110,7 @@ const NOMBRES = {
     gel: 'The shower gel', taza: 'The mug', peluche: 'The teddy bear',
     sacapuntas: 'The pencil sharpener', caramelos: 'The sweets', manzana: 'The apple',
     cruasan: 'The croissant', barraPan: 'The loaf of bread', chocolatina: 'The chocolate bar',
-    pilas: 'The batteries', champu: 'The shampoo'
+    pilas: 'The batteries', champu: 'The shampoo', bufanda: 'The scarf'
   }
 };
 
@@ -109,11 +118,13 @@ const NOMBRES = {
 const NIVELES_TXT = {
   es: {
     importe: { 1: 'Importes enteros', 2: 'Con 50 céntimos', 3: 'Con 10 y 20 céntimos' },
-    mucho: { 1: 'Diferencias enormes', 2: 'Diferencias grandes', 3: 'Diferencias claras' }
+    mucho: { 1: 'Diferencias enormes', 2: 'Diferencias grandes', 3: 'Diferencias claras' },
+    fiar: { 1: 'Gangas imposibles', 2: 'Gangas enormes', 3: 'Gangas claras' }
   },
   en: {
     importe: { 1: 'Whole amounts', 2: 'With 50 cents', 3: 'With 10 and 20 cents' },
-    mucho: { 1: 'Huge differences', 2: 'Big differences', 3: 'Clear differences' }
+    mucho: { 1: 'Huge differences', 2: 'Big differences', 3: 'Clear differences' },
+    fiar: { 1: 'Impossible bargains', 2: 'Huge bargains', 3: 'Clear bargains' }
   }
 };
 
@@ -135,12 +146,17 @@ function construirTienda(loc) {
     return { id: n.id, nombre: prefijo + n.id, descripcion: txt.mucho[n.id], mult: n.mult };
   });
 
+  var fiar = FIAR_BASE.map(function (n) {
+    return { id: n.id, nombre: prefijo + n.id, descripcion: txt.fiar[n.id], div: n.div };
+  });
+
   return {
     porRonda: 6,
     porRondaTienda: 3,
     productos: productos,
     importe: { niveles: importe },
-    mucho: { niveles: mucho }
+    mucho: { niveles: mucho },
+    fiar: { niveles: fiar }
   };
 }
 

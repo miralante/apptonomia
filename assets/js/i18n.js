@@ -20,38 +20,38 @@
   var DICT = {
     es: {
       core: {
-        volver: '← Volver',
-        volverAlMenu: 'Volver al menú',
-        jugarOtraVez: 'Jugar otra vez',
-        siguiente: 'Siguiente →',
-        escuchar: '🔊 Escuchar',
-        escucharInstrucciones: 'Escuchar las instrucciones',
-        escucharTexto: 'Escuchar el texto',
-        cargando: 'Cargando…',
-        rondaCompletada: '¡Ronda completada!',
-        descanso: '¡Llevas un buen rato! Puedes descansar si quieres.'
+        back: '← Volver',
+        backToMenu: 'Volver al menú',
+        playAgain: 'Jugar otra vez',
+        next: 'Siguiente →',
+        listen: '🔊 Escuchar',
+        listenInstructions: 'Escuchar las instrucciones',
+        listenText: 'Escuchar el texto',
+        loading: 'Cargando…',
+        roundComplete: '¡Ronda completada!',
+        rest: '¡Llevas un buen rato! Puedes descansar si quieres.'
       },
       feedback: {
-        acierto: ['¡Muy bien!', '¡Genial!', '¡Lo has conseguido!', '¡Estupendo!', '¡Sigue así!'],
-        animo: ['Casi. ¡Inténtalo otra vez!', 'No pasa nada. ¡Otra vez!', 'Prueba de nuevo. ¡Tú puedes!']
+        success: ['¡Muy bien!', '¡Genial!', '¡Lo has conseguido!', '¡Estupendo!', '¡Sigue así!'],
+        encourage: ['Casi. ¡Inténtalo otra vez!', 'No pasa nada. ¡Otra vez!', 'Prueba de nuevo. ¡Tú puedes!']
       }
     },
     en: {
       core: {
-        volver: '← Back',
-        volverAlMenu: 'Back to menu',
-        jugarOtraVez: 'Play again',
-        siguiente: 'Next →',
-        escuchar: '🔊 Listen',
-        escucharInstrucciones: 'Listen to the instructions',
-        escucharTexto: 'Listen to the text',
-        cargando: 'Loading…',
-        rondaCompletada: 'Round complete!',
-        descanso: 'You have been playing a while! You can rest if you want.'
+        back: '← Back',
+        backToMenu: 'Back to menu',
+        playAgain: 'Play again',
+        next: 'Next →',
+        listen: '🔊 Listen',
+        listenInstructions: 'Listen to the instructions',
+        listenText: 'Listen to the text',
+        loading: 'Loading…',
+        roundComplete: 'Round complete!',
+        rest: 'You have been playing a while! You can rest if you want.'
       },
       feedback: {
-        acierto: ['Well done!', 'Great!', 'You got it!', 'Fantastic!', 'Keep it up!'],
-        animo: ['Almost. Try again!', "That's okay. Try again!", 'Try once more. You can do it!']
+        success: ['Well done!', 'Great!', 'You got it!', 'Fantastic!', 'Keep it up!'],
+        encourage: ['Almost. Try again!', "That's okay. Try again!", 'Try once more. You can do it!']
       }
     }
   };

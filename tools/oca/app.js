@@ -137,7 +137,7 @@
       progreso.estrellas += 1;
       guardar();
       pintarEstrellas();
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       feedbackEl.textContent = App.i18n.t('regalo');
     }
 

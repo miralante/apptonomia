@@ -1,7 +1,7 @@
 /* ============================================================
    Apptonomia — Textos de El Reloj (ES/EN)
    Se registran en App.i18n con App.i18n.register(). Ver assets/js/i18n.js.
-   IMPORTANTE: las horas NO se traducen de forma literal (ver PLAN-I18N.md
+   IMPORTANTE: las horas NO se traducen de forma literal (ver PLAN.md §9.1
    Fase 3). Cada idioma usa sus propias expresiones horarias.
    ============================================================ */
 (function () {

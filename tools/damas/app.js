@@ -379,11 +379,11 @@
       App.feedback.celebrar(App.i18n.t(clave));
     } else if (tipo === 'cerradoEmpate') {
       estadoEl.textContent = App.i18n.t(clave);
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       App.tts.speak(App.i18n.t(clave));
     } else {
       estadoEl.textContent = App.i18n.t(clave);
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       App.tts.speak(App.i18n.t(clave));
     }
     btnOtraPartida.classList.remove('oculto');

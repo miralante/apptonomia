@@ -96,7 +96,7 @@
     guardar();
     pintarEstrellas();
     pintarProgreso();
-    App.feedback.acierto(feedbackEl);
+    App.feedback.success(feedbackEl);
     if (toques >= DATA.toquesPorRonda) {
       terminarRonda();
     } else {

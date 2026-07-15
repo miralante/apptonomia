@@ -165,7 +165,7 @@
       resueltoS = true;
       btn.classList.add('correcta');
       App.utils.$$('.caja', cajasSEl).forEach(function (b) { b.disabled = true; });
-      App.feedback.acierto(feedbackSEl);
+      App.feedback.success(feedbackSEl);
       progreso.estrellas += 1;
       aciertosS += 1;
       guardar();
@@ -182,7 +182,7 @@
       }
       btn.classList.add('animo');
       btn.disabled = true;
-      App.feedback.animo(feedbackSEl);
+      App.feedback.encourage(feedbackSEl);
     }
   }
 
@@ -345,7 +345,7 @@
       resueltoL = true;
       anadirALista(item);
       App.utils.$$('.btn.caja', listasDiaEl).forEach(function (b) { b.disabled = true; });
-      App.feedback.acierto(feedbackLEl);
+      App.feedback.success(feedbackLEl);
       progreso.estrellas += 1;
       aciertosL += 1;
       guardar();
@@ -362,7 +362,7 @@
       }
       btn.classList.add('animo');
       btn.disabled = true;
-      App.feedback.animo(feedbackLEl);
+      App.feedback.encourage(feedbackLEl);
     }
   }
 

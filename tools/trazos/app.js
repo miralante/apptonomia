@@ -156,7 +156,7 @@
     var dibujados = trazos.reduce(function (acc, t) { return acc.concat(t); }, []);
 
     if (!dibujados.length) {
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       return;
     }
 
@@ -167,7 +167,7 @@
 
     if (porcentaje >= 0.75) {
       resuelto = true;
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       progreso.estrellas += 1;
       aciertosRonda += 1;
       guardar();
@@ -175,7 +175,7 @@
       btnSiguiente.classList.remove('oculto');
       btnSiguiente.focus();
     } else {
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
     }
   }
 

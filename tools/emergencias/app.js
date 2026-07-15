@@ -136,7 +136,7 @@
       resueltoR = true;
       btn.classList.add('correcta');
       App.utils.$$('#opcionesReconocer .btn-opcion').forEach(function (b) { b.disabled = true; });
-      App.feedback.acierto(feedbackREl);
+      App.feedback.success(feedbackREl);
       progreso.estrellas += 1;
       aciertosR += 1;
       guardar();
@@ -153,7 +153,7 @@
       }
       btn.classList.add('animo');
       btn.disabled = true;
-      App.feedback.animo(feedbackREl);
+      App.feedback.encourage(feedbackREl);
     }
   }
 
@@ -257,13 +257,13 @@
       pintarSlotsL();
       btn.disabled = true;
       btn.classList.add('colocada');
-      App.feedback.acierto(feedbackLEl);
+      App.feedback.success(feedbackLEl);
       siguienteEsperadoL += 1;
       if (siguienteEsperadoL >= lista.items.length) {
         terminarTareaL();
       }
     } else {
-      App.feedback.animo(feedbackLEl);
+      App.feedback.encourage(feedbackLEl);
     }
   }
 

@@ -163,13 +163,13 @@
     var c = (tortuga % columnas()) + mv.dc;
     if (f < 0 || f >= filas() || c < 0 || c >= columnas()) {
       estadoEl.textContent = App.i18n.t('choqueBorde');
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       return;
     }
     var destino = f * columnas() + c;
     if (arboles.indexOf(destino) !== -1) {
       estadoEl.textContent = App.i18n.t('choqueArbol');
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       return;
     }
     tortuga = destino;

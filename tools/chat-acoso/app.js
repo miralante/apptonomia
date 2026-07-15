@@ -170,7 +170,7 @@
     if (op.segura) {
       $$('#chatOpciones .btn-opcion').forEach(function (b) { b.disabled = true; });
       btn.classList.add('correcta');
-      App.feedback.acierto($('#feedback'));
+      App.feedback.success($('#feedback'));
       burbuja('yo', op.texto);
       if (op.avisoSeguro) {
         $('#consejoSeguroTexto').textContent = op.avisoSeguro;
@@ -183,7 +183,7 @@
     } else {
       btn.classList.add('animo');
       btn.disabled = true;
-      App.feedback.animo($('#feedback'));
+      App.feedback.encourage($('#feedback'));
       $('#consejoTexto').textContent = op.aviso;
       $('#consejo').classList.remove('oculto');
     }
@@ -198,7 +198,7 @@
     btn.addEventListener('click', function () {
       btn.disabled = true;
       burbuja('sistema', paso.confirmacion);
-      App.feedback.acierto($('#feedback'));
+      App.feedback.success($('#feedback'));
       setTimeout(function () {
         limpiarZonaRespuesta();
         siguientePaso();

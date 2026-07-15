@@ -139,14 +139,14 @@
       piezaSeleccionada.btn.remove();
       piezaSeleccionada = null;
       colocadas += 1;
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       if (colocadas >= slotsEl.length) {
         terminarImagen();
       }
     } else {
       App.utils.$$('.pieza').forEach(function (b) { b.classList.remove('seleccionada'); });
       piezaSeleccionada = null;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
     }
   }
 

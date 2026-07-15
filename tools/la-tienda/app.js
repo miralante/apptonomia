@@ -31,7 +31,7 @@
   /* Progreso persistente */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
-  ['completadosTienda', 'completadosQuedame', 'completadosMucho']
+  ['completadosTienda', 'completadosQuedame', 'completadosMucho', 'completadosPaga', 'completadosFiar']
     .forEach(function (clave) { if (!progreso[clave]) progreso[clave] = {}; });
 
   function guardar() { App.storage.set(TOOL_ID, progreso); }
@@ -159,14 +159,14 @@
         guardar();
         pintarEstrellas();
       }
-      App.feedback.acierto(feedbackQuizEl);
+      App.feedback.success(feedbackQuizEl);
       resolverQuiz(true);
       return;
     }
     intentosQ += 1;
     btn.classList.add('animo');
     btn.disabled = true;
-    App.feedback.animo(feedbackQuizEl);
+    App.feedback.encourage(feedbackQuizEl);
     if (intentosQ === 1) {
       mostrarTextoQuiz(cfgActual().pista(casoQ));
     } else {
@@ -186,6 +186,7 @@
      ============================================================ */
   var saldoQ = 0;      /* ¿Qué me queda?: saldo vivo de la secuencia */
   var gastoIdxQ = 0;
+  var semana = null;   /* La paga de la semana: {saldo, objetivo, dia} */
 
   var ACTIVIDADES = {
 
@@ -286,6 +287,148 @@
       explicacion: function (caso) {
         return App.i18n.t(caso.esBien ? 'explicacionMuchoBien' : 'explicacionMuchoMal')
           .replace('{nombre}', minuscula(caso.nombre))
+          .replace('{ref}', formatear(caso.ref))
+          .replace('{mostrado}', formatear(caso.mostrado));
+      }
+    },
+
+    /* --- La paga de la semana — presupuesto con objetivo --- */
+    paga: {
+      esQuiz: true,
+      instruccion: 'instruccionPaga',
+      progresoClave: 'completadosPaga',
+      resumen: 'resumenPaga',
+      niveles: function () { return datos().importe.niveles; },
+      alIniciar: function () { semana = null; },
+      generar: function (nivel) {
+        if (!semana || semana.dia >= 6) {
+          /* Semana nueva: paga de 20 € y objetivo del sábado del
+             bucket del nivel (así los cálculos respetan la regla 13). */
+          var objetivos = datos().productos.filter(function (p) {
+            return p.bucket === nivel.id && p.precioCent >= 300 && p.precioCent <= 1000;
+          });
+          semana = { saldo: 2000, objetivo: azar(objetivos), dia: 0 };
+        }
+        semana.dia += 1;
+        var caso;
+        if (semana.dia === 6) {
+          /* Sábado: la recompensa. Siempre llega por construcción
+             (solo se compra si sigue llegando para el objetivo). */
+          caso = {
+            dia: semana.dia,
+            saldo: semana.saldo,
+            picto: semana.objetivo.picto,
+            nombre: semana.objetivo.nombre,
+            precio: semana.objetivo.precioCent,
+            objetivo: semana.objetivo,
+            esSabado: true,
+            sePuede: true,
+            quedaria: semana.saldo - semana.objetivo.precioCent
+          };
+        } else {
+          var tentaciones = datos().productos.filter(function (p) {
+            return p.bucket === nivel.id && p.precioCent < semana.saldo && p !== semana.objetivo;
+          });
+          var producto = azar(tentaciones);
+          var sePuede = (semana.saldo - producto.precioCent) >= semana.objetivo.precioCent;
+          caso = {
+            dia: semana.dia,
+            saldo: semana.saldo,
+            picto: producto.picto,
+            nombre: producto.nombre,
+            precio: producto.precioCent,
+            objetivo: semana.objetivo,
+            esSabado: false,
+            sePuede: sePuede,
+            quedaria: semana.saldo - producto.precioCent
+          };
+          /* El saldo evoluciona SIEMPRE según la acción correcta:
+             fallar nunca arruina la semana (regla 5). */
+          if (sePuede) semana.saldo -= producto.precioCent;
+        }
+        return caso;
+      },
+      enunciado: function (caso) {
+        var clave = caso.esSabado ? 'enunciadoPagaSabado' : 'enunciadoPagaDia';
+        return caso.picto + ' ' + App.i18n.t(clave)
+          .replace('{dia}', App.i18n.t('dia' + caso.dia))
+          .replace('{saldo}', formatear(caso.saldo))
+          .replace('{nombre}', minuscula(caso.nombre))
+          .replace('{precio}', formatear(caso.precio));
+      },
+      mesa: function (caso) { return descomponer(caso.saldo); },
+      opciones: function (caso) {
+        return [
+          { texto: App.i18n.t('si'), correcta: caso.sePuede },
+          { texto: App.i18n.t('no'), correcta: !caso.sePuede }
+        ];
+      },
+      pista: function (caso) {
+        return App.i18n.t('pistaPaga').replace('{objetivo}', minuscula(caso.objetivo.nombre));
+      },
+      explicacion: function (caso) {
+        if (caso.esSabado) {
+          return App.i18n.t('explicacionPagaSabado')
+            .replace('{saldo}', formatear(caso.saldo))
+            .replace('{nombre}', minuscula(caso.nombre))
+            .replace('{precio}', formatear(caso.precio))
+            .replace('{queda}', formatear(caso.quedaria));
+        }
+        return App.i18n.t(caso.sePuede ? 'explicacionPagaSi' : 'explicacionPagaNo')
+          .replace('{saldo}', formatear(caso.saldo))
+          .replace('{nombre}', minuscula(caso.nombre))
+          .replace('{precio}', formatear(caso.precio))
+          .replace('{queda}', formatear(caso.quedaria))
+          .replace('{objetivo}', minuscula(caso.objetivo.nombre))
+          .replace('{precioObjetivo}', formatear(caso.objetivo.precioCent));
+      }
+    },
+
+    /* --- ¿Es de fiar? — gangas sospechosas (antesala de estafas) --- */
+    fiar: {
+      esQuiz: true,
+      instruccion: 'instruccionFiar',
+      progresoClave: 'completadosFiar',
+      resumen: 'resumenFiar',
+      niveles: function () { return datos().fiar.niveles; },
+      generar: function (nivel) {
+        /* Solo productos con referencia alta: la ganga se tiene
+           que VER (≥ 4,50 €). */
+        var candidatos = datos().productos.filter(function (p) { return p.precioCent >= 450; });
+        var producto = azar(candidatos);
+        var esFiable = Math.random() < 0.5;
+        var mostrado = producto.precioCent;
+        if (!esFiable) {
+          mostrado = Math.max(5, Math.round(producto.precioCent / nivel.div / 5) * 5);
+        }
+        return {
+          picto: producto.picto,
+          nombre: producto.nombre,
+          ref: producto.precioCent,
+          mostrado: mostrado,
+          esFiable: esFiable,
+          contexto: 1 + Math.floor(Math.random() * 3)
+        };
+      },
+      enunciado: function (caso) {
+        return caso.picto + ' ' + App.i18n.t('enunciadoFiar')
+          .replace('{contexto}', App.i18n.t('contextoFiar' + caso.contexto))
+          .replace('{nombre}', minuscula(caso.nombre))
+          .replace('{precio}', formatear(caso.mostrado));
+      },
+      mesa: function () { return null; },
+      opciones: function (caso) {
+        return [
+          { texto: App.i18n.t('pareceFiar'), correcta: caso.esFiable },
+          { texto: App.i18n.t('sospechoso'), correcta: !caso.esFiable }
+        ];
+      },
+      pista: function (caso) {
+        return App.i18n.t('pistaFiar').replace('{nombre}', minuscula(caso.nombre));
+      },
+      explicacion: function (caso) {
+        return App.i18n.t(caso.esFiable ? 'explicacionFiarBien' : 'explicacionFiarMal')
+          .replace('{nombre}', caso.nombre)
           .replace('{ref}', formatear(caso.ref))
           .replace('{mostrado}', formatear(caso.mostrado));
       }
@@ -503,7 +646,7 @@
 
   function responderPaso1(btn, dijoSi) {
     if (dijoSi === compra.llega) {
-      App.feedback.acierto(feedbackTiendaEl);
+      App.feedback.success(feedbackTiendaEl);
       resolverPaso1();
       return;
     }
@@ -511,7 +654,7 @@
     compra.fallo = true;
     btn.classList.add('animo');
     btn.disabled = true;
-    App.feedback.animo(feedbackTiendaEl);
+    App.feedback.encourage(feedbackTiendaEl);
     if (intentosPaso === 1) {
       mostrarTextoTienda(App.i18n.t('pistaPaso1'));
     } else {
@@ -571,7 +714,7 @@
     if (puesto < precio) {
       intentosPaso += 1;
       compra.fallo = true;
-      App.feedback.animo(feedbackTiendaEl);
+      App.feedback.encourage(feedbackTiendaEl);
       var texto = intentosPaso === 1 ? App.i18n.t('faltaDinero1') :
         App.i18n.t('faltaDinero2').replace('{dif}', hablado(precio - puesto));
       mostrarTextoTienda(texto);
@@ -579,7 +722,7 @@
     }
     compra.pagado = puesto;
     compra.cambioBueno = puesto - precio;
-    App.feedback.acierto(feedbackTiendaEl);
+    App.feedback.success(feedbackTiendaEl);
     if (compra.cambioBueno === 0) {
       /* Pago justo: no hay cambio que revisar. */
       mostrarTextoTienda(App.i18n.t('pagoJusto'));
@@ -631,7 +774,7 @@
 
   function responderPaso3(btn, dijoSi) {
     if (dijoSi === compra.cambioEsBien) {
-      App.feedback.acierto(feedbackTiendaEl);
+      App.feedback.success(feedbackTiendaEl);
       resolverPaso3();
       return;
     }
@@ -639,7 +782,7 @@
     compra.fallo = true;
     btn.classList.add('animo');
     btn.disabled = true;
-    App.feedback.animo(feedbackTiendaEl);
+    App.feedback.encourage(feedbackTiendaEl);
     if (intentosPaso === 1) {
       mostrarTextoTienda(App.i18n.t('pistaPaso3'));
     } else {

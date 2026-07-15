@@ -24,7 +24,7 @@
       <h1>Apptonomia</h1>
       <div class="fila centrado-fila">
         <p class="saludo" id="saludo" data-i18n="saludo">Hola. ¿Qué quieres hacer hoy?</p>
-        <button type="button" class="btn btn-audio" id="btnSaludo" data-i18n-aria="escucharSaludo" aria-label="Escuchar el saludo">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnSaludo" data-i18n-aria="listenGreeting" aria-label="Escuchar el saludo">🔊</button>
       </div>
       <p class="stars" id="estrellasTotales">⭐ 0</p>
     </header>
@@ -32,7 +32,7 @@
     <div id="avisoActualizacion" class="aviso-actualizacion oculto centrado" role="status" aria-live="polite">
       <div class="fila centrado-fila">
         <p data-i18n="avisoActualizacionTexto">🎉 Hay una versión nueva de la app.</p>
-        <button type="button" class="btn btn-audio" id="btnLeerActualizacion" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnLeerActualizacion" data-i18n-aria="core.listenText" aria-label="Escuchar el texto">🔊</button>
       </div>
       <button type="button" class="btn btn-secundario" id="btnActualizar" data-i18n="btnActualizar">🔄 Actualizar ahora</button>
     </div>
@@ -395,7 +395,7 @@
 
       document.getElementById('estrellasTotales').textContent =
         '⭐ ' + App.storage.estrellasTotales();
-      document.getElementById('estrellasTotales').title = App.i18n.t('tusEstrellas');
+      document.getElementById('estrellasTotales').title = App.i18n.t('yourStars');
 
       document.getElementById('btnSaludo').addEventListener('click', function () {
         App.tts.speak(App.i18n.t('saludo'));

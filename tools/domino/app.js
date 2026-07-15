@@ -207,7 +207,7 @@
     var encaje = dondeEncaja(manoJugador[i]);
     if (!encaje) {
       fallosSeguidos += 1;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       if (fallosSeguidos === 1) {
         /* Regla 12: primero una pista que dirige la mirada */
         estadoEl.textContent = t('pistaNoEncaja')
@@ -249,7 +249,7 @@
     fallosSeguidos = 0;
     pasesSeguidos = 0;
     ladosEl.classList.add('oculto');
-    App.feedback.acierto(feedbackEl);
+    App.feedback.success(feedbackEl);
     pintarTodo();
     if (!manoJugador.length) { terminar('ganas'); return; }
     turnoRival();
@@ -258,7 +258,7 @@
   function robar() {
     if (!turnoJugador || partidaTerminada) return;
     if (jugables(manoJugador).length) {
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       estadoEl.textContent = t('pistaMarcadas');
       pintarTodo(true);
       return;
@@ -358,10 +358,10 @@
       guardar();
       App.feedback.celebrar(t(clave));
     } else if (tipo === 'cerradoEmpate') {
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       App.tts.speak(t(clave));
     } else {
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       App.tts.speak(t(clave));
     }
     pintarTodo();

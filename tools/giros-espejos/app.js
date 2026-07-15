@@ -155,7 +155,7 @@
       resuelto = true;
       btn.classList.add('correcta');
       App.utils.$$('#opciones .opcion-figura').forEach(function (b) { b.disabled = true; });
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       explicacionEl.textContent = App.i18n.t(claveTipo('ok'));
       explicacionWrap.classList.remove('oculto');
       progreso.estrellas += 1;
@@ -168,7 +168,7 @@
       intentos += 1;
       btn.classList.add('animo');
       btn.disabled = true;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       if (intentos === 1) {
         /* Regla 12: primer fallo → pista, nunca la respuesta */
         explicacionEl.textContent = App.i18n.t(claveTipo('pista'));

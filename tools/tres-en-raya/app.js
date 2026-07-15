@@ -246,12 +246,12 @@
       App.feedback.celebrar(App.i18n.t('hasGanado'));
     } else if (resultado === 'empate') {
       estadoEl.textContent = App.i18n.t('empate');
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       App.tts.speak(App.i18n.t('empate'));
     } else {
       /* Perder: nunca castigo (regla 5) — ánimo y un consejo concreto. */
       estadoEl.textContent = App.i18n.t('haGanadoRival');
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       App.tts.speak(App.i18n.t('haGanadoRival'));
     }
     btnOtraPartida.classList.remove('oculto');

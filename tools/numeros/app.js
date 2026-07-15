@@ -67,7 +67,7 @@
 
   /* Separador de miles ('.' es / ',' en) y decimal (',' es / '.' en).
      No es solo estilo: intercambiar el separador entre idiomas es
-     obligatorio para que el número se lea correctamente (ver PLAN-I18N.md
+     obligatorio para que el número se lea correctamente (ver PLAN.md §9.1
      Fase 5). */
   function separadorMiles() { return App.i18n.locale() === 'en' ? ',' : '.'; }
   function separadorDecimal() { return App.i18n.locale() === 'en' ? '.' : ','; }
@@ -769,7 +769,7 @@
       mostrarExplicacion(op.correcta);
       resuelto = true;
       btn.classList.add('correcta');
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       progreso.estrellas += 1;
       aciertosRonda += 1;
       guardar();
@@ -786,7 +786,7 @@
       }
       btn.classList.add('animo');
       btn.disabled = true;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
     }
   }
 

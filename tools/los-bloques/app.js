@@ -180,11 +180,11 @@
     limpiarAviso();
     if (modelo[i] === colorSel) {
       pintarCelda(i, colorSel);
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       comprobarCompletado();
     } else {
       intentosCelda[i] = (intentosCelda[i] || 0) + 1;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       if (intentosCelda[i] === 1) {
         /* Regla 12: primer fallo → pista, nunca la respuesta */
         mostrarAviso(App.i18n.t(modelo[i] === null ? 'pistaVacia' : 'pistaColor'));

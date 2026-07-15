@@ -122,7 +122,7 @@
     var hechos = hechosDe(rutinaActual);
     hechos[i] = true;
     guardar();
-    App.feedback.acierto(feedbackEl);
+    App.feedback.success(feedbackEl);
 
     if (contarHechos(rutinaActual) === rutinaActual.pasos.length) {
       progreso.estrellas += 1;

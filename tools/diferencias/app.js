@@ -126,7 +126,7 @@
       btn.classList.add('encontrada');
       btn.disabled = true;
       fallosSeguidos = 0;
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       progreso.estrellas += 1;
       aciertosRonda += 1;
       guardar();
@@ -137,7 +137,7 @@
       }
     } else {
       fallosSeguidos += 1;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       if (fallosSeguidos >= FALLOS_PARA_AYUDA) {
         mostrarAyuda();
         fallosSeguidos = 0;

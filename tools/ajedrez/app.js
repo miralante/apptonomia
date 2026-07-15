@@ -281,7 +281,7 @@
     if (idx !== -1) {
       estrellas.splice(idx, 1);
       estadoPiezasEl.textContent = App.i18n.t(estrellas.length ? 'estrellaRecogida' : 'puzzleCompletado');
-      App.feedback.acierto(feedbackPiezasEl);
+      App.feedback.success(feedbackPiezasEl);
     }
     pintarPiezas();
     if (estrellas.length === 0) {
@@ -601,10 +601,10 @@
       pintarEstrellas();
       App.feedback.celebrar(App.i18n.t(clave));
     } else if (tipo === 'cerradoEmpate') {
-      App.feedback.acierto(feedbackPartidaEl);
+      App.feedback.success(feedbackPartidaEl);
       App.tts.speak(App.i18n.t(clave));
     } else {
-      App.feedback.animo(feedbackPartidaEl);
+      App.feedback.encourage(feedbackPartidaEl);
       App.tts.speak(App.i18n.t(clave));
     }
     btnOtraPartida.classList.remove('oculto');

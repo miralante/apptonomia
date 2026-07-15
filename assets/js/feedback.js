@@ -1,6 +1,6 @@
 /* ==========================================================================
    Apptonomia — Refuerzo positivo y mensajes de ánimo
-   Expone window.App.feedback.acierto(zona) / .animo(zona) / .celebrar(msg)
+   Expone window.App.feedback.success(zona) / .encourage(zona) / .celebrate(msg)
    Reglas 5 y 6 de CLAUDE.md: el error nunca se castiga; refuerzo <= 2 s.
    Mensajes según idioma activo (App.i18n.pick). Requiere utils.js e i18n.js.
    ========================================================================== */
@@ -60,12 +60,12 @@
    * @param {Element} [zona] - elemento donde escribir el mensaje
    * @returns {string} el mensaje usado
    */
-  function acierto(zona) {
-    var msg = alAzar('feedback.acierto');
+  function success(zona) {
+    var msg = alAzar('feedback.success');
     if (zona) {
       zona.textContent = '⭐ ' + msg;
-      zona.classList.remove('animo');
-      zona.classList.add('acierto');
+      zona.classList.remove('encourage');
+      zona.classList.add('success');
     }
     sonidoAcierto();
     return msg;
@@ -76,12 +76,12 @@
    * @param {Element} [zona]
    * @returns {string} el mensaje usado
    */
-  function animo(zona) {
-    var msg = alAzar('feedback.animo');
+  function encourage(zona) {
+    var msg = alAzar('feedback.encourage');
     if (zona) {
       zona.textContent = msg;
-      zona.classList.remove('acierto');
-      zona.classList.add('animo');
+      zona.classList.remove('success');
+      zona.classList.add('encourage');
     }
     sonidoAnimo();
     return msg;
@@ -97,11 +97,11 @@
    * @param {string} mensaje - p. ej. '¡Rutina completada!'
    * @param {function} [despues] - callback al ocultarse
    */
-  function celebrar(mensaje, despues) {
+  function celebrate(mensaje, despues) {
     rondasSesion += 1;
     if (rondasSesion % 5 === 0) {
-      var descanso = window.App.i18n ? window.App.i18n.t('core.descanso') : '';
-      if (descanso) mensaje = mensaje + ' ' + descanso;
+      var rest = window.App.i18n ? window.App.i18n.t('core.rest') : '';
+      if (rest) mensaje = mensaje + ' ' + rest;
     }
     var capa = document.getElementById('app-celebration');
     if (!capa) {
@@ -126,8 +126,8 @@
   }
 
   window.App.feedback = {
-    acierto: acierto,
-    animo: animo,
-    celebrar: celebrar
+    success: success,
+    encourage: encourage,
+    celebrate: celebrate
   };
 })();

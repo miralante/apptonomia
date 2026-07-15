@@ -124,13 +124,13 @@
       pintarSlots();
       btn.disabled = true;
       btn.classList.add('colocada');
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       siguienteEsperado += 1;
       if (siguienteEsperado >= lista.items.length) {
         terminarTarea();
       }
     } else {
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
     }
   }
 

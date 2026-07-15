@@ -9,8 +9,8 @@
     es: {
       title: 'Apptonomia',
       saludo: 'Hola. ¿Qué quieres hacer hoy?',
-      escucharSaludo: 'Escuchar el saludo',
-      tusEstrellas: 'Tus estrellas',
+      listenGreeting: 'Escuchar el saludo',
+      yourStars: 'Tus estrellas',
       idioma: 'Elegir idioma',
       avisoActualizacionTexto: '🎉 Hay una versión nueva de la app.',
       btnActualizar: '🔄 Actualizar ahora',
@@ -88,8 +88,8 @@
     en: {
       title: 'Apptonomia',
       saludo: 'Hello. What do you want to do today?',
-      escucharSaludo: 'Listen to the greeting',
-      tusEstrellas: 'Your stars',
+      listenGreeting: 'Listen to the greeting',
+      yourStars: 'Your stars',
       idioma: 'Choose language',
       avisoActualizacionTexto: '🎉 There is a new version of the app.',
       btnActualizar: '🔄 Update now',

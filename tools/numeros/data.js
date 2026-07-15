@@ -13,7 +13,7 @@
      idioma (DATA.lecturas[locale][lista]). OJO: la escala numérica
      cambia entre idiomas (1.000.000.000 es "mil millones" en español
      pero "one billion" en inglés; 10^12 es "un billón" en español
-     pero "one trillion" en inglés). Ver PLAN-I18N.md Fase 5.
+     pero "one trillion" en inglés). Ver PLAN.md §9.1 Fase 5.
    - DATA.medidas: equivalencias del sistema métrico, por idioma
      (DATA.medidas[locale]). Las respuestas falsas están escritas a
      mano para controlar la dificultad.

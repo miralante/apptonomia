@@ -122,7 +122,7 @@
       App.utils.$$('#opciones .btn-opcion').forEach(function (b) {
         b.disabled = true;
       });
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       progreso.estrellas += 1;
       aciertosRonda += 1;
       guardar();
@@ -139,7 +139,7 @@
       }
       btn.classList.add('animo');
       btn.disabled = true;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
     }
   }
 

@@ -1,606 +1,465 @@
-# Apptonomia — Plan de Refactorización y Ampliación
+# Apptonomia — Plan Director
 
 > Aplicación web interactiva, ligera y de bajo coste para personas con **discapacidad intelectual**.
 > Objetivo: ejercicios de terapia ocupacional de forma **autónoma** desde el navegador,
 > promoviendo independencia, estimulación cognitiva y habilidades de la vida diaria.
 
-Este plan está escrito para ser ejecutado **paso a paso por un modelo LLM sencillo**:
-cada fase tiene tareas concretas, archivos exactos y criterios de aceptación verificables.
-No se requiere build step, frameworks ni backend. Solo HTML + CSS + JS vanilla.
+---
+
+## Índice
+
+1. [Diagnóstico de lo existente](#1-diagnóstico-de-lo-existente)
+2. [Principios de diseño](#2-principios-de-diseño)
+3. [Estructura de proyecto](#3-estructura-de-proyecto)
+4. [Catálogo de módulos y actividades](#4-catálogo-de-módulos-y-actividades)
+5. [Taxonomía terapéutica](#5-taxonomía-terapéutica)
+6. [Fases de ejecución](#6-fases-de-ejecución)
+7. [Cómo añadir una actividad nueva](#7-cómo-añadir-una-actividad-nueva)
+8. [Backlog priorizado](#8-backlog-priorizado)
+9. [Planes complementarios](#9-planes-complementarios)
 
 ---
 
 ## 1. Diagnóstico de lo existente
 
-### Lo que ya hay (se conserva)
+### 1.1 Lo que ya hay (se conserva)
 
 | Herramienta | Carpeta | Estado |
 |---|---|---|
-| Teclado Pro | `tools/keyboard-typing/` | Funcional, guarda progreso en localStorage |
-| Club de la Comedia | `tools/comedy-club/` | Funcional, 100 chistes, audio TTS |
-| Dichos de España | `tools/dichos/` | Funcional, 100 dichos, audio TTS |
-| Adivinanzas | `tools/adivinanzas/` | Funcional, 100 adivinanzas, audio TTS |
-| Landing | `site/` | Funcional, tema oscuro neón |
+| Teclado Pro | `tools/keyboard-typing/` | ✔ Funcional, guarda progreso en localStorage |
+| Club de la Comedia | `tools/comedy-club/` | ✔ Funcional, 100 chistes, audio TTS |
+| Dichos de España | `tools/dichos/` | ✔ Funcional, 100 dichos, audio TTS |
+| Adivinanzas | `tools/adivinanzas/` | ✔ Funcional, 100 adivinanzas, audio TTS |
+| Landing | `site/` | ✔ Funcional, tema claro con 6 módulos |
 
-### Problemas detectados (a corregir en la refactorización)
+### 1.2 Problemas detectados originalmente (ya corregidos)
 
-1. **Código duplicado**: cada herramienta repite ~380 líneas de CSS y las mismas
-   funciones JS (shuffle, TTS, progreso, celebración). Un cambio hay que hacerlo 4 veces.
-2. **Datos mezclados con lógica**: los 100 chistes/dichos/adivinanzas están dentro de
-   `app.js`. Deben ir en un `data.js` separado para poder ampliarlos sin tocar lógica.
-3. **Progreso no persistente**: solo Teclado Pro usa localStorage. En los 3 juegos,
-   al cerrar el navegador se pierden las estrellas.
-4. **Accesibilidad cognitiva insuficiente** (lo más importante):
-   - Tema oscuro con neón y mucho texto de marketing: distrae y dificulta la lectura.
-   - Textos largos y metáforas ("sin excusas", "tu progreso, tu camino") — no cumplen
-     pautas de **Lectura Fácil**.
-   - Botones y tipografía pequeños para usuarios con dificultades motoras finas.
-   - Sin ARIA consistente, sin soporte `prefers-reduced-motion`, sin navegación por teclado garantizada.
-   - Emojis como única iconografía: mejor pictogramas grandes y consistentes (estilo ARASAAC).
-5. **PWA no implementada**: se declara "PWA ready" pero no hay `manifest.json` ni service worker.
-   Sin offline no hay verdadera autonomía.
-6. **Landing orientada a marketing**, no al usuario final con discapacidad intelectual:
-   demasiadas secciones, CTAs y texto. Debe ser un menú simple de actividades.
+1. **Código duplicado**: cada herramienta repetía ~380 líneas de CSS y las mismas funciones JS. → **Corregido** con núcleo compartido en `assets/`.
+2. **Datos mezclados con lógica**: los datos estaban dentro de `app.js`. → **Corregido** con `data.js` separado por herramienta.
+3. **Progreso no persistente**: solo Teclado Pro usaba localStorage. → **Corregido** con `App.storage` compartido.
+4. **Accesibilidad cognitiva insuficiente**: tema oscuro con neón, textos largos, botones pequeños. → **Corregido** con tema claro, tipografía grande (Atkinson Hyperlegible), botones ≥64px.
+5. **PWA no implementada**: sin `manifest.json` ni service worker. → **Corregido** con `sw.js` y `manifest.json`.
+6. **Landing orientada a marketing**: demasiadas secciones y texto. → **Corregido** con menú simple de actividades.
+
+### 1.3 Estado actual verificado (2026-07-15)
+
+| Componente | Estado |
+|---|---|
+| Núcleo compartido (`assets/`) | ✔ Completo (tokens.css, base.css, components.css, utils.js, tts.js, storage.js, feedback.js, i18n.js) |
+| i18n ES/EN | ✔ Completo (30 herramientas + landing + sw.js) |
+| Landing con 6 módulos | ✔ Completa |
+| PWA offline | ✔ Funcional |
+| Scripts de verificación | ✔ check.js (304 checks), smoke.js (98 pruebas Playwright) |
+| Preferencias de usuario | ✔ Tamaño de letra, sonidos on/off |
+| Exportar/importar progreso | ✔ En `/ajustes/` |
+| Fuentes autoalojadas | ✔ Atkinson Hyperlegible + Nunito en `assets/fonts/` |
+| Wake Lock (pantalla encendida) | ✔ Implementado en utils.js |
+| Guía para equipo de apoyo | ✔ `/equipo/` con columna "En el día a día" |
+| Aviso de descanso (cada 5 rondas) | ✔ Implementado |
 
 ---
 
-## 2. Principios de diseño (obligatorios en todo el proyecto)
+## 2. Principios de diseño
 
-Estos principios mandan sobre cualquier otra decisión. Si una tarea entra en conflicto
-con ellos, ganan los principios.
+Estos principios mandan sobre cualquier otra decisión. Si una tarea entra en conflicto con ellos, ganan los principios.
 
-1. **Lectura Fácil**: frases cortas, una idea por frase, vocabulario cotidiano,
-   sin metáforas, sin ironía en la interfaz (el humor solo dentro de las actividades que lo trabajan).
+1. **Lectura Fácil**: frases cortas, una idea por frase, vocabulario cotidiano, sin metáforas.
 2. **Una acción por pantalla**: el usuario nunca debe decidir entre más de 4–6 opciones visibles.
 3. **Objetivos táctiles grandes**: botones mínimo **64×64 px**, separación mínima 16 px.
-4. **Tipografía grande**: base 20 px, títulos 28–36 px, fuente redonda y legible (Atkinson Hyperlegible o Nunito).
+4. **Tipografía grande**: base 20 px, títulos 28–36 px, fuente legible (Atkinson Hyperlegible o Nunito).
 5. **Tema claro por defecto** con alto contraste (WCAG AA mínimo, AAA cuando sea posible).
-   Modo oscuro opcional, nunca neón como color de texto.
-6. **Audio en todo**: cada texto importante tiene botón 🔊 (Web Speech API, es-ES, velocidad 0.9).
+6. **Audio en todo**: cada texto importante tiene botón 🔊 (Web Speech API, es-ES/en-US, velocidad 0.9).
 7. **Sin presión**: sin cronómetros visibles, sin puntuación negativa, sin "game over".
-   El error nunca se castiga: se anima a intentarlo otra vez.
-8. **Refuerzo positivo inmediato**: celebración visual + sonora al acertar. Breve (≤2 s) y desactivable.
+8. **Refuerzo positivo inmediato**: celebración visual + sonora al acertar (≤2 s).
 9. **`prefers-reduced-motion`**: todas las animaciones se desactivan si el sistema lo pide.
-10. **Autonomía**: la app funciona offline (PWA), sin login, sin coste, sin datos personales.
-    Todo el progreso se guarda solo en `localStorage`.
+10. **Autonomía**: funciona offline (PWA), sin login, sin coste, sin datos personales.
 
 ---
 
-## 3. Estructura de proyecto objetivo
+## 3. Estructura de proyecto
 
 ```
 apptonomia/
-├── CLAUDE.md                  # Guía para trabajar con Claude (ya creada)
-├── PLAN.md                    # Este plan
+├── CLAUDE.md                  # Guía para trabajar con Claude
+├── PLAN.md                    # Este plan director
 ├── README.md                  # Documentación breve
+├── SPEC.md                    # Especificación técnica
 ├── package.json
 ├── index.html                 # Redirección a site/index.html
 ├── manifest.json              # PWA
 ├── sw.js                      # Service worker (cache offline)
-├── assets/                    # ← NÚCLEO COMPARTIDO (nuevo)
+├── assets/
 │   ├── css/
-│   │   ├── tokens.css         # Variables: colores, tipografía, espaciado
-│   │   ├── base.css           # Reset + estilos base accesibles
-│   │   └── components.css     # Botones, tarjetas, barra de progreso, modales
+│   │   ├── tokens.css         # Variables CSS
+│   │   ├── base.css           # Reset + estilos base
+│   │   └── components.css     # Componentes reutilizables
 │   ├── js/
-│   │   ├── tts.js             # Texto a voz (speak, stop)
-│   │   ├── storage.js         # Progreso en localStorage (get/set por herramienta)
-│   │   ├── feedback.js        # Celebración, sonidos, mensajes de ánimo
-│   │   └── utils.js           # shuffle, helpers DOM
-│   └── img/                   # Pictogramas SVG compartidos
+│   │   ├── utils.js           # shuffle, helpers DOM, Wake Lock
+│   │   ├── tts.js             # Texto a voz
+│   │   ├── storage.js         # localStorage + exportar/importar
+│   │   ├── feedback.js        # Celebración, sonidos, ánimo
+│   │   └── i18n.js            # Sistema de internacionalización
+│   ├── fonts/                 # Atkinson Hyperlegible + Nunito
+│   └── img/
 ├── site/
-│   ├── index.html             # Menú principal simple (rediseñado)
-│   └── styles.css             # Solo estilos propios de la landing
-└── tools/                     # Una carpeta por actividad
-    ├── keyboard-typing/       # EXISTENTE (refactor ligero)
-    ├── comedy-club/           # EXISTENTE (refactor)
-    ├── dichos/                # EXISTENTE (refactor)
-    ├── adivinanzas/           # EXISTENTE (refactor)
-    ├── atrapa/                # NUEVO — Módulo 1: Coordinación oculomanual
-    ├── rutinas/               # NUEVO — Módulo 2: Secuenciación y autonomía
-    ├── parejas/               # NUEVO — Módulo 3: Memoria y funciones ejecutivas
-    └── emociones/             # NUEVO — Módulo 4: Gestión emocional
+│   ├── index.html             # Landing con 6 módulos
+│   ├── strings.js             # Textos ES/EN
+│   └── styles.css
+├── ajustes/
+│   ├── index.html             # Preferencias + exportar/importar progreso
+│   └── app.js
+├── equipo/
+│   ├── index.html             # Guía para el equipo de apoyo
+│   └── styles.css
+├── scripts/
+│   ├── check.js               # Verificación estructural (304 checks)
+│   └── smoke.js              # Smoke test con Playwright (98 pruebas)
+└── tools/                     # Una carpeta por actividad (60+ herramientas)
 ```
 
-**Anatomía estándar de una herramienta** (obligatoria para toda herramienta nueva o refactorizada):
+### Anatomía estándar de una herramienta
 
 ```
 tools/<slug>/
-├── index.html    # Usa assets/css/*.css + styles.css propio mínimo
-├── app.js        # Solo lógica. Importa módulos compartidos de assets/js/
-├── data.js       # Solo datos (const DATA = [...]) — sin lógica
-└── styles.css    # Solo lo específico de esta herramienta (< 150 líneas)
+├── index.html     # Carga assets/css/*.css + styles.css
+├── app.js         # Solo lógica. Importa módulos compartidos de assets/js/
+├── data.js        # Solo datos (const DATA = {...} por idioma si aplica)
+├── strings.js     # Textos ES/EN (registrados en App.i18n)
+└── styles.css     # Estilos propios (< 150 líneas)
 ```
-
-Los módulos compartidos se cargan con `<script src="../../assets/js/tts.js"></script>` (sin ES modules,
-para máxima compatibilidad y simplicidad con `file://`).
 
 ---
 
 ## 4. Catálogo de módulos y actividades
 
-La landing agrupa las herramientas en **6 módulos** (áreas terapéuticas), derivados de la
-taxonomía completa de objetivos (ver §4.1). Cada módulo tiene un color y pictograma propios.
-Estructura pensada para añadir actividades sin rediseñar nada.
-
 ### Módulo 1 — Coordinación y motricidad (azul `--mod-coordinacion`)
-Cubre: coordinación ojo-mano, motricidad fina, escritura y copia, dibujo.
 
 | Actividad | Carpeta | Estado |
 |---|---|---|
-| Atrapa — pulsar un objetivo que cambia de posición | `tools/atrapa/` | ✔ Hecha |
-| Teclado — mecanografía guiada | `tools/keyboard-typing/` | ✔ Hecha |
-| Trazos — repasar formas y letras con el dedo/ratón | `tools/trazos/` | ✔ Hecha |
-| Colorear — pintar dibujos por zonas | `tools/colorear/` | ✔ Hecha |
-| Piano — tocar el teclado del ordenador como un piano (libre, seguir melodía, Simón dice, canciones, compositor) | `tools/piano-teclas/` | ✔ Hecha |
-| Constructores — mundo de bloques estilo Minecraft: construcción libre (3 tamaños de mundo) o seguir un modelo con guía fantasma por casilla; equivocarse nunca penaliza | `tools/constructores/` | ✔ Hecha |
+| Atrapa — pulsar objetivo que cambia de posición | `tools/atrapa/` | ✔ |
+| Teclado — mecanografía guiada | `tools/keyboard-typing/` | ✔ |
+| Trazos — repasar formas y letras | `tools/trazos/` | ✔ |
+| Colorear — pintar dibujos por zonas | `tools/colorear/` | ✔ |
+| Piano — tocar el teclado como piano | `tools/piano-teclas/` | ✔ |
+| Constructores — bloques estilo Minecraft | `tools/constructores/` | ✔ |
 
 ### Módulo 2 — Autonomía y hogar (verde `--mod-secuencia`)
-Cubre: AVD, aseo, tareas del hogar, organización, situaciones cotidianas, gestión del tiempo.
 
 | Actividad | Carpeta | Estado |
 |---|---|---|
-| Mis Rutinas — rutinas diarias paso a paso | `tools/rutinas/` | ✔ Hecha |
-| La Casa — ordenar los pasos de una tarea del hogar (hacer la cama, poner la lavadora) | `tools/la-casa/` | ✔ Hecha |
-| Situaciones — ¿qué haces si…? (situaciones cotidianas con opciones) | `tools/situaciones/` | ✔ Hecha |
-| Chat Seguro — chats simulados para practicar respuestas ante manipulación en línea | `tools/chat-seguro/` | ✔ Hecha |
-| Chat Acoso — chats simulados para reconocer el acoso entre iguales (insultos, exclusión, rumores, fotos, amenazas, presión de grupo) y saber cómo actuar | `tools/chat-acoso/` | ✔ Hecha |
-| ¿Lo publico? — decidir qué es más seguro en situaciones de redes sociales (fotos con datos personales, perfiles falsos, retos virales, bulos, estafas, privacidad) | `tools/lo-publico/` | ✔ Hecha |
-| Señales — reconocer señalética cotidiana (peligro, baño, prohibición, salidas, emergencias, transporte), 6 niveles por tipo | `tools/senales/` | ✔ Hecha |
-| Partes del Día — clasificar tareas diarias en Mañana/Tarde/Noche, listas se van construyendo por caja | `tools/partes-del-dia/` | ✔ Hecha |
-| ¿Qué hago primero? — priorización: elegir la tarea más urgente entre varias posibles | `tools/que-primero/` | ✔ Hecha |
-| ¿Qué necesito? — planificación: elegir qué preparar antes de una tarea u objetivo | `tools/que-necesito/` | ✔ Hecha |
-| ¿Dónde lo guardo? — organización: clasificar objetos por su sitio de almacenaje (armario/nevera/mochila) | `tools/donde-lo-guardo/` | ✔ Hecha |
-| Lista de Tareas — ordenar tareas mixtas de casa, trabajo y cuidado personal en su orden lógico del día | `tools/lista-tareas/` | ✔ Hecha |
-| ¿Qué me pongo? — elegir ropa adecuada según el tiempo (calor/frío/lluvia) para torso, piernas, pies y extra | `tools/que-me-pongo/` | ✔ Hecha |
-| La Calle — movilidad comunitaria: cruzar, transporte, perderse, a quién seguir | `tools/la-calle/` | ✔ Hecha |
-| Emergencias — reconocer una emergencia real y practicar la estructura de pedir ayuda (112) | `tools/emergencias/` | ✔ Hecha |
-| La Compra — secciones del súper y planificar la lista de la compra por comida del día | `tools/la-compra/` | ✔ Hecha |
-| La Tienda — usar el dinero en la vida real: compra completa en 3 pasos (¿te llega? → pagar con monedero finito → revisar el cambio), control del gasto (¿qué me queda?) y sentido del precio (¿mucho o poco?) | `tools/la-tienda/` | ✔ Hecha (2026-07-15) |
+| Mis Rutinas — rutinas diarias paso a paso | `tools/rutinas/` | ✔ |
+| La Casa — ordenar pasos de tareas del hogar | `tools/la-casa/` | ✔ |
+| Situaciones — ¿qué haces si…? | `tools/situaciones/` | ✔ |
+| Chat Seguro — practicar ante manipulación en línea | `tools/chat-seguro/` | ✔ |
+| Chat Acoso — reconocer acoso entre iguales | `tools/chat-acoso/` | ✔ |
+| ¿Lo público? — decisiones en redes sociales | `tools/lo-publico/` | ✔ |
+| Señales — reconocer señalética cotidiana | `tools/senales/` | ✔ |
+| Partes del Día — clasificar tareas por momento | `tools/partes-del-dia/` | ✔ |
+| ¿Qué hago primero? — priorización | `tools/que-primero/` | ✔ |
+| ¿Qué necesito? — planificación | `tools/que-necesito/` | ✔ |
+| ¿Dónde lo guardo? — organización | `tools/donde-lo-guardo/` | ✔ |
+| Lista de Tareas — ordenar tareas del día | `tools/lista-tareas/` | ✔ |
+| ¿Qué me pongo? — ropa según el tiempo | `tools/que-me-pongo/` | ✔ |
+| La Calle — movilidad comunitaria | `tools/la-calle/` | ✔ |
+| Emergencias — reconocer y pedir ayuda (112) | `tools/emergencias/` | ✔ |
+| La Compra — secciones del supermercado | `tools/la-compra/` | ✔ |
+| La Tienda — usar dinero en compra real | `tools/la-tienda/` | ✔ |
 
 ### Módulo 3 — Memoria y atención (naranja `--mod-memoria`)
-Cubre: memoria visual/auditiva/verbal, corto plazo, atención sostenida, percepción global y de detalles.
 
 | Actividad | Carpeta | Estado |
 |---|---|---|
-| Parejas — emparejar cartas idénticas | `tools/parejas/` | ✔ Hecha |
-| Diferencias — encontrar las diferencias entre dos escenas | `tools/diferencias/` | ✔ Hecha |
-| ¿Qué falta? — memorizar objetos y detectar cuál desaparece | `tools/que-falta/` | ✔ Hecha |
-| Ecos — repetir secuencias de sonidos/colores (memoria auditiva y ritmo) | `tools/ecos/` | ✔ Hecha |
-| Giros y Espejos — rotación mental, reflejos e inversiones de grafías b/d/p/q (niveles: girado → espejo → letras) | `tools/giros-espejos/` | ✔ Hecha |
-| Los Bloques — copiar un modelo de bloques de colores en cuadrícula 4×4 (niveles: 4/6/8 bloques) | `tools/los-bloques/` | ✔ Hecha |
-| ¿Dónde está? — vocabulario espacial: tocar el objeto a la izquierda/derecha/encima/debajo (niveles: eje horizontal → vertical → mixto) | `tools/donde-esta/` | ✔ Hecha |
-| El Camino — orientación y rutas estilo robot de suelo: llevar la tortuga a la estrella con flechas (niveles: 0/3/5 árboles, BFS garantiza solución) | `tools/el-camino/` | ✔ Hecha |
-| Encaja la Pieza — tetris adaptado sin caída ni tiempo: mover/girar/bajar la pieza a su hueco (niveles: piezas de 2/3/4 celdas) | `tools/encajar/` | ✔ Hecha |
-| El Teatro — escenas con profundidad: colocar personajes delante/detrás del decorado (niveles: 2/3/4 órdenes por escena) | `tools/el-teatro/` | ✔ Hecha |
+| Parejas — emparejar cartas | `tools/parejas/` | ✔ |
+| Diferencias — encontrar diferencias entre escenas | `tools/diferencias/` | ✔ |
+| ¿Qué falta? — memorizar y detectar ausencia | `tools/que-falta/` | ✔ |
+| Ecos — repetir secuencias de sonidos/colores | `tools/ecos/` | ✔ |
+| Giros y Espejos — rotación mental | `tools/giros-espejos/` | ✔ |
+| Los Bloques — copiar modelo en cuadrícula | `tools/los-bloques/` | ✔ |
+| ¿Dónde está? — vocabulario espacial | `tools/donde-esta/` | ✔ |
+| El Camino — orientación estilo robot | `tools/el-camino/` | ✔ |
+| Encaja la Pieza — tetris adaptado sin caída | `tools/encajar/` | ✔ |
+| El Teatro — profundidad con personajes | `tools/el-teatro/` | ✔ |
 
-### Módulo 4 — Razonamiento y matemáticas (teal `--mod-razonamiento`, color NUEVO)
-Cubre: patrones, deducción, inferencia, ordenación, priorización, números, operaciones
-cotidianas, dinero, horas y fechas, medidas, representaciones gráficas.
+### Módulo 4 — Razonamiento y matemáticas (teal `--mod-razonamiento`)
 
 | Actividad | Carpeta | Estado |
 |---|---|---|
-| Adivinanzas — inferencia y deducción | `tools/adivinanzas/` | ✔ Hecha (se mueve aquí en Fase 6) |
-| Patrones — completar series (formas, colores, números) | `tools/patrones/` | ✔ Hecha |
-| El Monedero — dinero físico, ciclo completo de la compra: contar cuánto hay, pagar justo, pagar sin tener justo (y ver el cambio), comprobar el cambio devuelto y ahorrar (La Hucha); casos generados o en una línea | `tools/monedero/` | ✔ Hecha (rework + fase 2, 2026-07-14) |
-| El Reloj — leer horas y asociarlas a momentos del día | `tools/reloj/` | ✔ Hecha |
-| ¿Qué no encaja? — detectar el elemento que no pertenece al grupo | `tools/que-no-encaja/` | ✔ Hecha |
-| Historias — ordenar viñetas de una historia en secuencia temporal | `tools/historias/` | ✔ Hecha |
-| Puzzle — recomponer una imagen tocando piezas y su sitio | `tools/puzzle/` | ✔ Hecha |
-| La Oca — juego de la oca en solitario (dado y casillas) | `tools/oca/` | ✔ Hecha |
-| Tres en Raya — lógica y anticipación contra un rival amable (niveles: azar → remata → bloquea) | `tools/tres-en-raya/` | ✔ Hecha |
-| Sudoku Visual — sudoku 4×4 con pictos, sin repetir en fila/columna/caja (niveles: 4/6/8 huecos) | `tools/sudoku-visual/` | ✔ Hecha |
-| Dominó — partida real contra rival tranquilo: mano, montón y turnos; la ficha se orienta sola (niveles: fichas 0-3 / 0-5 / 0-6) | `tools/domino/` | ✔ Hecha |
-| Las Damas — damas adaptadas 6×6, 6 fichas por bando, comer no obligatorio, coronación (niveles: rival azar → come → se protege) | `tools/damas/` | ✔ Hecha |
-| El Ajedrez — menú: puzzles de aprender cada pieza (torre/alfil/dama/caballo) + mini partida 5×5 capturando el rey (rival: azar → captura → protege) | `tools/ajedrez/` | ✔ Hecha |
-| Cuatro en Raya — Conecta 4 adaptado 6×5, columna = un botón, la ficha cae sola (niveles: rival azar → remata → tapa) | `tools/cuatro-en-raya/` | ✔ Hecha |
+| Adivinanzas — inferencia y deducción | `tools/adivinanzas/` | ✔ |
+| Patrones — completar series | `tools/patrones/` | ✔ |
+| El Monedero — dinero físico y cambio | `tools/monedero/` | ✔ |
+| El Reloj — leer horas | `tools/reloj/` | ✔ |
+| ¿Qué no encaja? — detectar el intruso | `tools/que-no-encaja/` | ✔ |
+| Historias — ordenar viñetas | `tools/historias/` | ✔ |
+| Puzzle — recomponer imagen | `tools/puzzle/` | ✔ |
+| La Oca — juego en solitario | `tools/oca/` | ✔ |
+| Tres en Raya — lógica contra rival | `tools/tres-en-raya/` | ✔ |
+| Sudoku Visual — sudoku 4×4 con pictos | `tools/sudoku-visual/` | ✔ |
+| Dominó — partida contra rival | `tools/domino/` | ✔ |
+| Las Damas — damas adaptadas 6×6 | `tools/damas/` | ✔ |
+| El Ajedrez — puzzles de piezas | `tools/ajedrez/` | ✔ |
+| Cuatro en Raya — conecta 4 adaptado | `tools/cuatro-en-raya/` | ✔ |
 
-### Módulo 5 — Lenguaje y comunicación (frambuesa `--mod-lenguaje`, color NUEVO)
-Cubre: vocabulario, categorías, comprensión, quién/qué/cómo/dónde/porqué, frases hechas,
-ideas principales, léxico comprensivo y expresivo, ortografía.
+### Módulo 5 — Lenguaje y comunicación (frambuesa `--mod-lenguaje`)
 
 | Actividad | Carpeta | Estado |
 |---|---|---|
-| Chistes (Club de la Comedia) — comprensión del humor | `tools/comedy-club/` | ✔ Hecha (se mueve aquí en Fase 6) |
-| Dichos — lenguaje figurado | `tools/dichos/` | ✔ Hecha (se mueve aquí en Fase 6) |
-| Categorías — clasificar palabras/pictos (animales, comida, ropa…) | `tools/categorias/` | ✔ Hecha |
-| La Frase — leer una frase y responder quién / qué / dónde | `tools/la-frase/` | ✔ Hecha |
-| Palabras — vocabulario temático con imagen, texto y audio | `tools/palabras/` | ✔ Hecha |
+| Chistes — Club de la Comedia | `tools/comedy-club/` | ✔ |
+| Dichos — lenguaje figurado | `tools/dichos/` | ✔ |
+| Categorías — clasificar palabras | `tools/categorias/` | ✔ |
+| La Frase — quién / qué / dónde | `tools/la-frase/` | ✔ |
+| Palabras — vocabulario temático | `tools/palabras/` | ✔ |
+| Números — matemáticas del día a día | `tools/numeros/` | ✔ |
 
 ### Módulo 6 — Emociones y relaciones (morado `--mod-emocional`)
-Cubre: reconocimiento de sentimientos, autocontrol, autoestima, gestión del estrés,
-gestión de conflictos, respiración, conciencia interior.
 
 | Actividad | Carpeta | Estado |
 |---|---|---|
-| ¿Cómo me siento? — identificador de emociones + registro semanal | `tools/emociones/` | ✔ Hecha |
-| Calma — sesiones guiadas de respiración y relajación | `tools/calma/` | ✔ Hecha |
-| Entre Amigos — reconocer emociones en otros y resolver conflictos sencillos | `tools/entre-amigos/` | ✔ Hecha |
-| Mi Cuerpo Me Avisa — interocepción: notar señales del cuerpo y elegir qué hacer | `tools/mi-cuerpo-avisa/` | ✔ Hecha |
+| ¿Cómo me siento? — identificador de emociones | `tools/emociones/` | ✔ |
+| Calma — respiración y relajación | `tools/calma/` | ✔ |
+| Entre Amigos — emociones y conflictos | `tools/entre-amigos/` | ✔ |
+| Mi Cuerpo Me Avisa — interocepción | `tools/mi-cuerpo-avisa/` | ✔ |
 
-### 4.1 Mapa de cobertura de la taxonomía terapéutica
+---
 
-Estado de cada área de la taxonomía de objetivos:
-✔ = ya cubierta · ⏳ = en backlog (con su ola) · ✖ = fuera de alcance de una web autónoma.
+## 5. Taxonomía terapéutica
 
-| Área | Estado | Dónde |
+Estado de cobertura de áreas de la taxonomía de objetivos:
+
+| Área | Estado | Herramienta |
 |---|---|---|
-| Montar piezas (puzzles, configuraciones) | ✔ | `puzzle` |
+| Montar piezas (puzzles) | ✔ | `puzzle` |
 | Razonamiento: patrones | ✔ | `patrones` |
-| Razonamiento: deducción, inferencia, adivinación | ✔ | `adivinanzas` |
-| Razonamiento: ordenación de ideas, priorización | ✔ | `historias`, `la-casa` |
+| Razonamiento: deducción, inferencia | ✔ | `adivinanzas` |
+| Razonamiento: ordenación, priorización | ✔ | `historias`, `la-casa` |
 | Razonamiento: coherencia temática | ✔ | `que-no-encaja` |
-| Razonamiento: codificación/decodificación | ✔ Hecho | `patrones` nivel 4 "Descifra el código" (símbolo→letra, mismo motor de secuencia) |
+| Razonamiento: codificación/decodificación | ✔ | `patrones` nivel 4 |
 | Atención | ✔ | `diferencias`, `que-falta` |
 | Espacio / tiempo, orientación espacial | ✔ | `reloj`, `historias`, `puzzle` |
 | Memoria visual / corto plazo | ✔ | `parejas`, `que-falta` |
 | Memoria auditiva / verbal | ✔ | `ecos` |
 | Lenguaje: vocabulario, categorías | ✔ | `categorias`, `palabras` |
-| Lenguaje: comprensión, quién/qué/dónde | ✔ | `la-frase` |
+| Lenguaje: comprensión | ✔ | `la-frase` |
 | Lenguaje: frases hechas, refranes, chistes | ✔ | `dichos`, `comedy-club` |
-| Lenguaje: ortografía, escritura y copia | ✔ | `keyboard-typing`, `trazos` |
+| Lenguaje: ortografía, escritura | ✔ | `keyboard-typing`, `trazos` |
 | Interacción social: sentimientos, conflictos | ✔ | `emociones`, `situaciones`, `entre-amigos` |
-| Seguridad en internet: manipulación, datos, fotos | ✔ | `chat-seguro`, `chat-acoso`, `lo-publico` |
-| Matemáticas: operaciones, dinero, medidas | ✔ | `monedero`, `patrones` (series numéricas) |
-| Tiempo, fechas y horas | ✔ | `reloj` |
-| Musicalidad y ritmo | ✔ | `ecos` (secuencias rítmicas), `piano-teclas` (tocar melodías) |
-| Hogar: aseo, tareas, organización | ✔ | `rutinas`, `la-casa` |
+| Seguridad en internet | ✔ | `chat-seguro`, `chat-acoso`, `lo-publico` |
+| Matemáticas: operaciones, dinero | ✔ | `monedero`, `numeros` |
+| Tiempo, horas | ✔ | `reloj` |
+| Musicalidad y ritmo | ✔ | `ecos`, `piano-teclas` |
+| Hogar: aseo, tareas, organización | ✔ | `rutinas`, `la-casa`, `emergencias` |
 | Creatividad, dibujar y colorear | ✔ | `colorear`, `trazos` |
 | Percepción global y de detalles | ✔ | `diferencias` |
-| Respiración, conciencia interior | ✔ | `emociones` (respiración), `calma` |
+| Respiración, conciencia interior | ✔ | `emociones`, `calma`, `mi-cuerpo-avisa` |
 | Coordinación ojo-mano, motricidad fina | ✔ | `atrapa`, `keyboard-typing`, `trazos` |
-| Juegos de mesa (damas, oca, ajedrez) | ✔ | `oca` (turnos simples) |
-| Motricidad gruesa, coordinación postural/corporal | ✖ | Requiere espacio físico y acompañante |
-| Trabajo en equipo | ✖ | La app es individual, sin conexión entre usuarios |
-| Expresión oral evaluada | ✖ por ahora | El reconocimiento de voz del navegador no es fiable aquí |
+| Juegos de mesa | ✔ | `oca`, `tres-en-raya`, `domino`, `damas`, `ajedrez`, `cuatro-en-raya` |
+| Movilidad comunitaria | ✔ | `la-calle` |
+| Autonomía en salud | ✔ | `emergencias`, `mi-cuerpo-avisa` |
+| Compra y dinero en contexto real | ✔ | `la-compra`, `la-tienda`, `monedero` |
+| Motricidad gruesa, coordinación postural | ✖ | Requiere espacio físico y acompañante |
+| Trabajo en equipo | ✖ | App individual, sin conexión entre usuarios |
+| Expresión oral evaluada | ✖ | Reconocimiento de voz no fiable |
 
 ---
 
-## 5. Fases de ejecución
+## 6. Fases de ejecución
 
-Ejecutar en orden. **No empezar una fase sin cumplir los criterios de la anterior.**
+### Fase 0 — Preparación ✔ Completada
 
----
+- [x] Repositorio git inicializado
+- [x] Carpetas `assets/css/`, `assets/js/`, `assets/img/` creadas
+- [x] `index.html` de redirección a `site/index.html`
 
-### FASE 0 — Preparación (30 min)
+### Fase 1 — Núcleo compartido (assets/) ✔ Completada
 
-1. Si no existe repositorio git: `git init` y commit inicial con el estado actual.
-2. Crear las carpetas: `assets/css/`, `assets/js/`, `assets/img/`.
-3. Crear `index.html` en la raíz con `<meta http-equiv="refresh" content="0; url=site/index.html">`.
+- [x] `assets/css/tokens.css` — Variables CSS
+- [x] `assets/css/base.css` — Reset, tipografía, accesibilidad
+- [x] `assets/css/components.css` — Botones, tarjetas, modales
+- [x] `assets/js/utils.js` — shuffle, helpers DOM
+- [x] `assets/js/tts.js` — Texto a voz es-ES/en-US
+- [x] `assets/js/storage.js` — Progreso en localStorage
+- [x] `assets/js/feedback.js` — Celebración, sonidos, ánimo
 
-**Criterio de aceptación**: commit "estado inicial" existe; carpetas creadas.
+### Fase 2 — Refactor de herramientas existentes ✔ Completada
 
----
+Refactorizadas: comedy-club, dichos, adivinanzas, keyboard-typing.
 
-### FASE 1 — Núcleo compartido (assets/)
+### Fase 3 — Nuevos módulos (atrapa, rutinas, parejas, emociones) ✔ Completada
 
-#### 1.1 `assets/css/tokens.css`
-Variables CSS. Contenido de referencia:
+### Fase 4 — Nueva landing + PWA ✔ Completada
 
-```css
-:root {
-  /* Colores base — tema claro accesible */
-  --color-fondo: #FAF7F2;
-  --color-superficie: #FFFFFF;
-  --color-texto: #1A1A2E;
-  --color-texto-suave: #4A4A68;
-  /* Colores de módulo */
-  --mod-coordinacion: #1B6CA8;   /* azul */
-  --mod-secuencia: #2E7D32;      /* verde */
-  --mod-memoria: #C05621;        /* naranja */
-  --mod-emocional: #6B3FA0;      /* morado */
-  /* Feedback */
-  --color-acierto: #2E7D32;
-  --color-animo: #C05621;        /* nunca rojo agresivo para el error */
-  /* Tipografía */
-  --fuente: 'Atkinson Hyperlegible', 'Nunito', system-ui, sans-serif;
-  --texto-base: 20px;
-  --texto-grande: 28px;
-  --texto-titulo: 36px;
-  /* Táctil */
-  --boton-min: 64px;
-  --espacio: 16px;
-  --radio: 16px;
-}
-```
+### Fase 5 — Verificación final ✔ Completada
 
-#### 1.2 `assets/css/base.css`
-Reset simple, `font-size` base, foco visible (`:focus-visible` con contorno 3 px),
-`@media (prefers-reduced-motion: reduce)` que anula animaciones y transiciones.
+Automatizado con Playwright:
+- [x] Consola limpia en las 98 pruebas (49 actividades × es/en)
+- [x] Rondas completas sin errores
+- [x] Persistencia verificada
+- [x] i18n funcional en ambos idiomas
 
-#### 1.3 `assets/css/components.css`
-Clases reutilizables: `.btn` (≥64 px, texto grande), `.btn-audio`, `.card`,
-`.progress-bar`, `.celebration`, `.stars`, `.back-link` (botón "← Volver" grande, siempre arriba a la izquierda).
+### Fase 6 — Reorganización en 6 módulos ✔ Completada
 
-#### 1.4 `assets/js/utils.js`
-```js
-// Expone window.App.utils
-function shuffle(array) { /* Fisher-Yates, copia */ }
-function $(sel) { return document.querySelector(sel); }
-```
+- [x] Módulo Razonamiento (teal) añadido
+- [x] Módulo Lenguaje (frambuesa) añadido
+- [x] Herramientas reubicadas correctamente
 
-#### 1.5 `assets/js/tts.js`
-```js
-// Expone window.App.tts.speak(texto) y .stop()
-// SpeechSynthesisUtterance con lang 'es-ES', rate 0.9
-// Cancela lectura anterior antes de hablar
-```
+### Fase 7 — Ola 1 de nuevas actividades ✔ Completada
 
-#### 1.6 `assets/js/storage.js`
-```js
-// Expone window.App.storage
-// get(toolId)  -> objeto de progreso o {}
-// set(toolId, data) -> guarda JSON en localStorage clave 'apptonomia:<toolId>'
-// Siempre envuelto en try/catch (modo privado puede fallar)
-```
-
-#### 1.7 `assets/js/feedback.js`
-```js
-// Expone window.App.feedback
-// acierto()  -> mensaje "¡Muy bien!" + animación breve + sonido suave (Web Audio, opcional)
-// animo()    -> mensaje "Casi. ¡Inténtalo otra vez!" — nunca punitivo
-// Respeta prefers-reduced-motion
-```
-
-**Criterios de aceptación Fase 1**
-- Los 7 archivos existen y no dan errores en consola al cargarlos en una página en blanco.
-- `App.tts.speak('hola')` reproduce voz en español.
-- `App.storage.set('test',{a:1})` y `App.storage.get('test')` funcionan.
+Patrones, diferencias, monedero, reloj, categorias.
 
 ---
 
-### FASE 2 — Refactor de herramientas existentes
+## 7. Cómo añadir una actividad nueva
 
-Aplicar a `comedy-club`, `dichos` y `adivinanzas` (una por una, commit por herramienta):
-
-1. **Extraer datos**: mover el array de preguntas a `data.js` (`const DATA = [...]`).
-2. **Sustituir funciones locales** (shuffle, TTS, celebración) por las de `assets/js/`.
-3. **Persistir progreso**: estrellas y preguntas superadas con `App.storage`.
-4. **Adaptar estilos**: cargar `tokens.css`, `base.css`, `components.css`;
-   dejar en `styles.css` local solo lo específico. Migrar a tema claro accesible.
-5. **Accesibilidad**: botones ≥64 px, texto base 20 px, `aria-live="polite"` en feedback,
-   navegación completa por teclado (Tab + Enter), foco visible.
-6. **Lectura Fácil**: revisar todos los textos de la interfaz (instrucciones, botones, mensajes).
-
-Para `keyboard-typing`: refactor ligero — solo puntos 4, 5 y 6 (su lógica y storage ya funcionan).
-
-**Criterios de aceptación Fase 2** (por herramienta)
-- Jugable de principio a fin sin errores en consola.
-- Cerrar y reabrir el navegador conserva las estrellas.
-- `styles.css` local < 150 líneas.
-- Todos los botones alcanzables con Tab y activables con Enter.
+1. **Crear carpeta** `tools/<slug>/` con los 4 archivos de la anatomía estándar.
+2. **Copiar cabecera HTML** de otra herramienta (carga de `assets/css/*` y `assets/js/*`).
+3. **Crear `strings.js`** con textos en ES y EN (registrados en `App.i18n`).
+4. **Poner datos en `data.js`**, lógica en `app.js`, estilos propios en `styles.css`.
+5. **Guardar progreso** con `App.storage.set('<slug>', {...})`.
+6. **Añadir tarjeta** en `site/index.html` dentro del módulo correspondiente + `site/strings.js`.
+7. **Añadir archivos a `sw.js`** (lista `ARCHIVOS`) y subir `VERSION`.
+8. **Añadir fila en `/equipo/`** con columna "En el día a día" (E1).
+9. **Ejecutar verificación**: `node scripts/check.js` y `node scripts/smoke.js`.
 
 ---
 
-### FASE 3 — Nuevos módulos (una herramienta por sub-fase, commit cada una)
+## 8. Backlog priorizado
 
-Todas siguen la anatomía estándar (§3) y los principios (§2).
+### Completados
 
-#### 3.1 `tools/atrapa/` — Atrapa el objetivo (Coordinación oculomanual)
-
-- **Pantalla inicial**: título, instrucción en Lectura Fácil ("Toca el círculo. Se mueve cuando lo tocas."),
-  botón 🔊, botón grande "Empezar", selector de tamaño del objetivo (Grande / Mediano / Pequeño = niveles).
-- **Juego**: un objetivo circular colorido (SVG animado suave, p. ej. una estrella o pelota)
-  aparece en posición aleatoria dentro del área de juego. Al pulsarlo: celebración breve,
-  +1 estrella, se recoloca en otra posición aleatoria (mínimo a 30 % de distancia).
-- **Sesión**: 10 toques = ronda completada → pantalla de celebración con estrellas y
-  botones "Jugar otra vez" / "Volver al menú".
-- **Progresión**: tamaños 120 px / 90 px / 64 px. Nunca menor de 64 px.
-- **Datos guardados**: rondas completadas por nivel, mejor precisión (toques acertados/total).
-- **Sin cronómetro visible.** Opcionalmente registrar tiempo medio de reacción en storage
-  (solo dato interno, nunca mostrado como presión).
-
-#### 3.2 `tools/rutinas/` — Mis Rutinas (Secuenciación y autonomía)
-
-- **Datos** (`data.js`): 4 rutinas predefinidas, cada una con 4–7 pasos.
-  Cada paso: `{ texto: "Me lavo las manos", picto: "🧼" (o SVG), audio: true }`.
-  Rutinas iniciales: "Por la mañana", "Antes de comer", "Por la noche", "Salir de casa".
-- **Pantalla inicial**: tarjetas grandes, una por rutina, con pictograma y nombre.
-- **Vista de rutina**: pasos en vertical, uno resaltado a la vez. Cada paso tiene:
-  pictograma grande, texto en Lectura Fácil, botón 🔊 y botón grande "✔ Hecho".
-  Al marcar "Hecho": check verde animado, se avanza al siguiente paso.
-- **Final**: al completar todos los pasos, celebración + "¡Rutina completada!".
-- **Persistencia**: estado de la rutina del día (se reinicia automáticamente cada día
-  comparando la fecha guardada con la actual).
-- **Ampliable**: el formato de `data.js` debe permitir añadir rutinas nuevas solo
-  añadiendo objetos al array (documentar el formato en comentario cabecera).
-
-#### 3.3 `tools/parejas/` — Parejas (Memoria y funciones ejecutivas)
-
-- **Niveles**: Fácil = 3 parejas (6 cartas), Medio = 4 parejas, Difícil = 6 parejas. Se elige al inicio.
-- **Cartas**: pictogramas/emojis grandes de categorías cotidianas (animales, comida, objetos de casa).
-  Carta mínima 90×90 px, rejilla con separación amplia.
-- **Mecánica**: destapar 2 cartas. Si coinciden: quedan descubiertas + refuerzo positivo.
-  Si no: mensaje de ánimo neutro y se vuelven a tapar tras 1,5 s.
-- **Sin límite de intentos ni tiempo.** Contador solo de parejas encontradas ("2 de 4").
-- **Final**: celebración + estrellas (1 por nivel fácil, 2 medio, 3 difícil) + repetir/volver.
-- **Persistencia**: estrellas acumuladas y niveles completados.
-
-#### 3.4 `tools/emociones/` — ¿Cómo me siento? (Gestión emocional)
-
-- **Pantalla única principal**: pregunta "¿Cómo te sientes hoy?" con audio automático opcional.
-  6 emociones básicas como botones muy grandes (mín. 120 px) con cara pictográfica y nombre:
-  Contento, Triste, Enfadado, Asustado, Cansado, Tranquilo.
-- **Respuesta adaptada** al seleccionar una emoción:
-  - Validación verbal y sonora: "Estás contento. ¡Qué bien!" / "Estás triste. No pasa nada. A veces nos sentimos así."
-  - Pantalla de respuesta con color e ilustración acordes (colores calmados para emociones difíciles).
-  - **Sugerencia de regulación** en Lectura Fácil: p. ej. para "Enfadado" → ejercicio de respiración
-    guiada visual (círculo que crece y decrece, "Coge aire… suelta el aire…", 3 ciclos).
-- **Registro**: guarda la emoción con fecha en storage → vista simple "Mi semana" con
-  los pictogramas de los últimos 7 días (autoconocimiento, y útil si un profesional lo consulta).
-- **Nunca** juzgar la emoción ("está mal enfadarse" ❌). Todas las emociones son válidas.
-
-**Criterios de aceptación Fase 3** (por herramienta)
-- Cumple la anatomía estándar y usa los módulos compartidos.
-- Usable solo con toques/clics (sin teclado obligatorio) y también navegable por teclado.
-- Todos los textos con audio disponible.
-- Sin errores en consola; progreso persiste tras recargar.
-
----
-
-### FASE 4 — Nueva landing + PWA
-
-#### 4.1 Rediseño de `site/index.html`
-- Estructura: saludo breve ("Hola. ¿Qué quieres hacer hoy?" + 🔊) y las actividades
-  agrupadas por los 4 módulos (§4), cada módulo con su color y pictograma.
-- Tarjetas grandes (mín. 160 px de alto), pictograma dominante, nombre corto, sin párrafos largos.
-- Eliminar: hero de marketing, sección "info", CTA final, footer con metáforas.
-  La landing es un **menú**, no una web promocional.
-- Mostrar estrellas totales acumuladas (leídas de storage) como refuerzo, sin rankings.
-
-#### 4.2 PWA
-- `manifest.json`: nombre, iconos (192/512 px, generar SVG→PNG), `display: standalone`,
-  colores de tema, `start_url: ./site/index.html`.
-- `sw.js`: cache-first de todos los archivos estáticos (app shell). Versión de caché
-  incrementable en una constante.
-- Registrar el SW desde la landing y las herramientas.
-
-**Criterios de aceptación Fase 4**
-- Lighthouse: Accesibilidad ≥ 95, PWA instalable.
-- Con el servidor apagado tras una primera visita, la app sigue funcionando (offline).
-- La landing no contiene ningún párrafo de más de 2 frases.
-
----
-
-### FASE 5 — Verificación final
-
-> Estado 2026-07-07: lo automatizable se verifica con Playwright en cada cambio (consola limpia, rondas completas, i18n, persistencia). Sigue pendiente la pasada manual: móvil real, contraste AA sistemático y revisión humana de Lectura Fácil.
-
-Checklist manual completo (ejecutar y anotar resultado):
-
-- [ ] Cada herramienta jugable de principio a fin sin errores de consola.
-- [ ] Progreso persiste en todas las herramientas tras cerrar el navegador.
-- [ ] Audio funciona en todas las pantallas con texto.
-- [ ] Navegación por teclado completa (Tab/Enter) en todo el sitio.
-- [ ] Botones ≥ 64 px reales (medir con DevTools).
-- [ ] Contraste AA verificado (herramienta: DevTools > Lighthouse o WebAIM).
-- [ ] `prefers-reduced-motion` desactiva animaciones (probar con emulación de DevTools).
-- [ ] Funciona en móvil (responsive, viewport 360 px) y escritorio.
-- [ ] Textos revisados con criterios de Lectura Fácil.
-- [ ] PWA instalable y funcional offline.
-- [ ] Actualizar `README.md` y `SPEC.md` con la estructura final.
-
----
-
-### FASE 6 — Reorganización en 6 módulos (tras completar Fases 0–5)
-
-1. Añadir a `assets/css/tokens.css` los dos colores nuevos:
-   ```css
-   --mod-razonamiento: #00695C;        /* teal */
-   --mod-razonamiento-suave: #E0F0EE;
-   --mod-lenguaje: #B3446C;            /* frambuesa */
-   --mod-lenguaje-suave: #F7E8EE;
-   ```
-2. Reorganizar `site/index.html` en los 6 módulos del §4 (mismo patrón de secciones con
-   `--acento`/`--acento-suave`). Mover `adivinanzas` a Razonamiento y
-   `comedy-club`/`dichos` a Lenguaje.
-3. Actualizar los `styles.css` de `adivinanzas` (→ `--mod-razonamiento`) y de
-   `comedy-club`/`dichos` (→ `--mod-lenguaje`).
-4. Subir la versión de caché en `sw.js`.
-5. Actualizar CLAUDE.md (lista de módulos en "Cómo añadir una actividad nueva").
-
-**Criterio de aceptación**: landing con 6 módulos; ninguna herramienta rota; colores AA.
-
----
-
-### FASE 7 — Ola 1 de nuevas actividades (una por sub-fase, en este orden)
-
-Todas siguen la anatomía estándar (§3) y los principios (§2). Persisten `{estrellas, ...}`.
-
-#### 7.1 `tools/patrones/` — Patrones (Razonamiento)
-- **Mecánica**: se muestra una serie con un hueco (p. ej. 🔵🔴🔵🔴🔵❓) y 3 opciones grandes.
-  Elegir la que continúa la serie.
-- **Niveles**: 1) colores/formas AB, 2) ABC y tamaños, 3) series numéricas simples (+1, +2, dobles).
-- **Datos**: `data.js` con series predefinidas por nivel `{ serie: [...], opciones: [...], correcta }`.
-  Mínimo 20 por nivel.
-- **Ronda**: 8 series. Estrellas por nivel (1/2/3).
-
-#### 7.2 `tools/diferencias/` — Diferencias (Atención / Percepción)
-- **Mecánica**: dos escenas lado a lado (composición de emojis/SVG posicionados, NO fotos:
-  así las diferencias se generan por datos). Tocar en la escena derecha lo que es distinto.
-- **Datos**: `data.js` con escenas `{ fondo, objetos: [{picto, x, y, cambiado?}] }`;
-  3–5 diferencias por escena; objetos ≥ 56 px con zona táctil ≥ 64 px.
-- **Ayuda sin castigo**: tras 3 toques fallidos, una diferencia parpadea suavemente.
-- **Ronda**: 3 escenas.
-
-#### 7.3 `tools/monedero/` — El Monedero (Matemáticas cotidianas)
-- **Mecánica**: "El pan cuesta 1,50 €". Arrastrar o tocar monedas/billetes grandes
-  (SVG de euros) para llegar al precio exacto. Botón "Comprobar".
-- **Niveles**: 1) precios enteros con monedas de 1-2 €, 2) con 50 céntimos, 3) céntimos variados.
-- **Feedback**: si falta o sobra dinero, decirlo en Lectura Fácil ("Falta dinero. Añade más.")
-  sin contar como error.
-- **Datos**: productos cotidianos con picto y precio en `data.js`.
-
-#### 7.4 `tools/reloj/` — El Reloj (Tiempo)
-- **Mecánica A (leer)**: reloj analógico SVG → elegir la hora correcta entre 3 opciones.
-- **Mecánica B (asociar)**: "¿Qué hora es la de comer?" → elegir entre relojes.
-- **Niveles**: 1) horas en punto, 2) y media, 3) y cuarto / menos cuarto.
-- **Datos**: momentos del día con picto (desayuno, comida, cena, dormir) en `data.js`.
-
-#### 7.5 `tools/categorias/` — Categorías (Lenguaje)
-- **Mecánica**: aparece un picto+palabra (🍎 Manzana) y 2–3 cajas grandes
-  ("Comida", "Animales", "Ropa"). Tocar la caja correcta.
-- **Audio**: la palabra se lee al aparecer; las cajas tienen 🔊.
-- **Niveles**: 1) 2 categorías muy distintas, 2) 3 categorías, 3) categorías próximas
-  (frutas vs verduras).
-- **Datos**: `data.js` con `{ palabra, picto, categoria }`, mínimo 60 ítems.
-- **Ronda**: 10 palabras.
-
-**Criterios de aceptación Fase 7** (por herramienta): los de la Fase 3, más:
-tarjeta añadida a la landing en su módulo, archivos en `sw.js` con versión subida,
-y checklist §5-Fase 5 pasado.
-
----
-
-## 6. Cómo añadir una actividad nueva (receta para el futuro)
-
-1. Crear `tools/<slug>/` con los 4 archivos de la anatomía estándar (§3).
-2. Copiar la cabecera HTML de otra herramienta (carga de `assets/css/*` y `assets/js/*`).
-3. Poner los datos en `data.js`, la lógica en `app.js`, estilos propios mínimos en `styles.css`.
-4. Guardar progreso con `App.storage.set('<slug>', {...})`.
-5. Añadir la tarjeta en `site/index.html` dentro del módulo que corresponda.
-6. Añadir los archivos nuevos a la lista de caché de `sw.js` y subir la versión.
-7. Pasar el checklist de la Fase 5 para la nueva herramienta.
-
----
-
-## 7. Backlog priorizado (Olas 2 y 3 + transversales)
-
-### Ola 2 — Ampliar razonamiento, memoria y comprensión (✔ completada)
-| Actividad | Módulo | Áreas de la taxonomía |
+| Actividad | Módulo | Commit |
 |---|---|---|
-| `historias` — ordenar viñetas en secuencia temporal | Razonamiento | Ordenación, espacio/tiempo, análisis |
-| `que-no-encaja` — el intruso del grupo | Razonamiento | Coherencia temática, categorización |
-| `la-frase` — quién / qué / dónde sobre una frase leída | Lenguaje | Comprensión, análisis de texto |
-| `que-falta` — memorizar y detectar el objeto que desaparece | Memoria | Memoria visual a corto plazo, atención |
-| `ecos` — repetir secuencias de sonidos/colores | Memoria | Memoria auditiva, ritmo, atención |
-| `la-casa` — ordenar pasos de tareas del hogar | Autonomía | Tareas del hogar, secuenciación, priorización |
-| `situaciones` — ¿qué haces si…? | Autonomía | Situaciones cotidianas, conducta, autocontrol |
+| `historias` | Razonamiento | ✔ |
+| `que-no-encaja` | Razonamiento | ✔ |
+| `la-frase` | Lenguaje | ✔ |
+| `que-falta` | Memoria | ✔ |
+| `ecos` | Memoria | ✔ |
+| `la-casa` | Autonomía | ✔ |
+| `situaciones` | Autonomía | ✔ |
+| `trazos` | Coordinación | ✔ |
+| `colorear` | Coordinación | ✔ |
+| `puzzle` | Razonamiento | ✔ |
+| `oca` | Razonamiento | ✔ |
+| `palabras` | Lenguaje | ✔ |
+| `calma` | Emociones | ✔ |
+| `entre-amigos` | Emociones | ✔ |
+| `la-calle` | Autonomía | ✔ |
+| `mi-cuerpo-avisa` | Emociones | ✔ |
+| `emergencias` | Autonomía | ✔ |
+| `la-compra` | Autonomía | ✔ |
+| `la-tienda` | Autonomía | ✔ |
+| `giros-espejos` | Memoria | ✔ |
+| `los-bloques` | Memoria | ✔ |
+| `donde-esta` | Memoria | ✔ |
+| `el-camino` | Memoria | ✔ |
+| `encajar` | Memoria | ✔ |
+| `el-teatro` | Memoria | ✔ |
+| `senales` | Autonomía | ✔ |
+| `partes-del-dia` | Autonomía | ✔ |
+| `que-primero` | Autonomía | ✔ |
+| `que-necesito` | Autonomía | ✔ |
+| `donde-lo-guardo` | Autonomía | ✔ |
+| `lista-tareas` | Autonomía | ✔ |
+| `que-me-pongo` | Autonomía | ✔ |
+| `constructores` | Coordinación | ✔ |
+| `chat-seguro` | Autonomía | ✔ |
+| `chat-acoso` | Autonomía | ✔ |
+| `lo-publico` | Autonomía | ✔ |
+| `sudoku-visual` | Razonamiento | ✔ |
+| `domino` | Razonamiento | ✔ |
+| `damas` | Razonamiento | ✔ |
+| `ajedrez` | Razonamiento | ✔ |
+| `cuatro-en-raya` | Razonamiento | ✔ |
+| `numeros` | Razonamiento | ✔ |
 
-### Ola 3 — Creatividad, juego y calma (✔ completada)
-| Actividad | Módulo | Áreas de la taxonomía |
+### Retirados del plan (a petición del usuario, 2026-07-10)
+
+- Pictogramas ARASAAC locales para sustituir emojis
+- Multi-perfil local
+- Dificultad adaptativa
+
+### Pendiente de aprobación
+
+| Propuesta | Descripción |
+|---|---|
+| Publicación HTTPS | Firebase Hosting o GitHub Pages |
+
+---
+
+## 9. Planes complementarios
+
+### 9.1 PLAN-I18N.md — Migración i18n (COMPLETADO)
+
+**Estado**: ✔ Completado (2026-07-07)
+
+Migración completa de la aplicación a bilingüe español/inglés:
+- 30 herramientas con `strings.js` y uso de `App.i18n`
+- Landing con selector de idioma
+- Service worker cacheando todos los archivos i18n
+- TTS funcionando en ambos idiomas
+
+**Commits**:
+- `37bce3a` — i18n: estado inicial (25 tools)
+- `33a2deb` — i18n: colorear ES/EN
+- `8550784` — i18n: historias ES/EN
+- `7643fac` — i18n: reloj ES/EN
+- `7cca8b7` — i18n: keyboard-typing ES/EN
+- `a1d4b19` — i18n: numeros ES/EN
+- `0556751` — i18n: cache i18n.js and strings.js in service worker (v29)
+- Commits finales de verificación
+
+### 9.2 PLAN-MEJORAS.md — Auditoría y mejoras (COMPLETADO)
+
+**Estado**: ✔ Completado (2026-07-15)
+
+Revisión completa con 4 partes:
+
+**Parte A — Bugs reales** (completados):
+- A1: Fix `DATA.porRonda` en la-frase y palabras
+- A2: Teclas de keyboard-typing a 64px mínimo
+
+**Parte B — Consistencia técnica** (completados):
+- B1: `fallo` → `animo` en piano-teclas
+- B2: TTS onvoiceschanged para cargar voces async
+- B3: Comentario desfasado en que-necesito
+- B4: Documentación de progresión en historias
+
+**Parte C — Documentación** (completados):
+- C1: Actualizada referencia a módulos en CLAUDE.md
+- C2: Notas de obsolescencia en PLAN-I18N.md
+- C3: Estado de verificación en PLAN.md
+
+**Parte D — Producto** (resuelto):
+- D1: Módulo Emociones ampliado con mi-cuerpo-avisa
+- D2: Preferencias de usuario + Progreso por actividad en /ajustes/
+- D3: Patrones nivel 4 (codificación/decodificación)
+
+**Parte E — Terapia ocupacional** (completados):
+- E1: Columna "En el día a día" en /equipo/
+- E2: Aviso de descanso cada 5 rondas
+- E3: La Calle (✔)
+- E4: Mi cuerpo me avisa (✔)
+- E5: Emergencias (✔)
+- E6: La Compra (✔)
+
+**Parte F — Experto tecnológico** (completados):
+- F1: Exportar/importar progreso en /ajustes/
+- F2: Fuentes autoalojadas (Atkinson + Nunito)
+- F3: scripts/check.js (304 checks)
+- F4: Wake Lock en utils.js
+
+**Parte G — Segunda revisión** (completados):
+- G1: check.js ampliado con paridad equipo, conteos, lint porRonda
+- G2: Borrado temp_original_data.js
+- G3: Anclas de módulo en portada
+- G4: Nota de coordinación en CLAUDE.md
+- G5: scripts/smoke.js con Playwright
+
+---
+
+## Historial de versiones del plan
+
+| Fecha | Versión | Cambios |
 |---|---|---|
-| `trazos` — repasar formas y letras | Coordinación | Motricidad fina, escritura y copia, grafomotricidad |
-| `colorear` — pintar por zonas | Coordinación | Creatividad, percepción, motricidad fina |
-| `puzzle` — recomponer una imagen (arrastrar piezas) | Razonamiento | Montar piezas, orientación espacial, percepción global |
-| `oca` — juego de la oca en solitario (dado y casillas con mini-retos) | Razonamiento | Juegos de mesa, turnos, conteo |
-| `palabras` — vocabulario temático con imagen y audio | Lenguaje | Léxico comprensivo y expresivo, vocabulario temático |
-| `calma` — respiración y relajación guiadas | Emociones | Respiración, gestión del estrés, conciencia interior |
-| `entre-amigos` — emociones en otros y conflictos sencillos | Emociones | Interacción social, gestión de conflictos, autoestima |
-
-### Ola 4 — Matemáticas para el día a día (✔ completada)
-| Actividad | Módulo | Áreas de la taxonomía |
-|---|---|---|
-| `numeros` — 8 actividades con cifras coloreadas por posición (azul unidades, verde decenas, morado centenas; coma y signos en naranja): contar de 1/2/5/10 en 10, unidades-decenas-centenas con bloques y lectura de números hasta el billón, fracciones con figuras, decimales con precios, tablas de sumar con puntos, tablas de multiplicar con filas, cálculo mental (dobles, +10/+100/+1.000) y conversión de medidas (metro, kilo, litro) | Razonamiento/Matemáticas | Numeración, valor posicional, operaciones, fracciones, decimales, dinero, medidas |
-
-### Transversales (cuando haya masa crítica de actividades)
-- Modo cuidador/profesional: historial de progreso por actividad. ✔ Hecho — sección
-  "Progreso por actividad" en `/ajustes/` (PLAN-MEJORAS.md D2-ítem3).
-- Rutinas personalizables desde la interfaz (editor simple para familiares).
-- Ajustes de usuario: tamaño de letra, activar/desactivar sonidos. ✔ Hecho — sección
-  "Preferencias de la persona usuaria" en `/ajustes/` (PLAN-MEJORAS.md D2-ítem1). Modo
-  oscuro sigue sin implementar.
-
-Retirados del plan a petición del usuario (2026-07-10): pictogramas ARASAAC locales
-para sustituir emojis, multi-perfil local y dificultad adaptativa. No son trabajo
-pendiente.
+| 2026-07-07 | 1.0 | Plan inicial creado |
+| 2026-07-07 | 2.0 | Plan-I18N.md completado |
+| 2026-07-10 | 3.0 | Plan-MEJORAS.md partes A-G1 |
+| 2026-07-15 | 4.0 | Unificación en PLAN.md único, todas las partes completadas |

@@ -215,7 +215,7 @@
       encajar(false);
     } else {
       intentos += 1;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       if (intentos === 1) {
         /* Regla 12: primer fallo → pista, nunca la solución */
         explicacionEl.textContent = App.i18n.t('pistaForma');

@@ -177,7 +177,7 @@
     var o = ordenes[idxOrden];
     if (i === slotObjetivo()) {
       slots[i] = { picto: o.personaje.picto, nombre: o.personaje.el };
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       explicacionEl.textContent = App.i18n.t('okSitio')
         .replace('{pers}', cap(o.personaje.el))
         .replace('{rel}', App.i18n.t('rel_' + o.rel))
@@ -192,7 +192,7 @@
       }
     } else {
       intentos += 1;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       if (intentos === 1) {
         /* Regla 12: primer fallo → enseña qué fila es delante/detrás */
         explicacionEl.textContent = App.i18n

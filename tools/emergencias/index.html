@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <header class="tool-header">
-      <a href="../../site/index.html" class="back-link" data-i18n="core.volver">← Volver</a>
+      <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Volver</a>
       <h1 data-i18n="title">🚨 Emergencias</h1>
       <span class="stars" id="stars">⭐ 0</span>
     </header>
@@ -22,7 +22,7 @@
     <section id="pantallaMenu" class="pila">
       <div class="fila centrado-fila">
         <p class="instruccion" id="instruccion" data-i18n="instruccion">Aquí practicas dos cosas: saber si algo es una emergencia de verdad, y practicar cómo pedir ayuda. El 112 solo es para emergencias de verdad.</p>
-        <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.listenInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
       </div>
       <div class="grid-tarjetas">
         <button type="button" class="tarjeta-actividad" id="tarjetaReconocer">
@@ -52,17 +52,17 @@
 
       <div class="card centrado pila">
         <div class="situacion-picto" id="situacionPicto"></div>
-        <p class="texto-principal" id="situacionTexto" data-i18n="core.cargando">Cargando…</p>
-        <button type="button" class="btn btn-audio" id="btnEscucharReconocer" data-i18n-aria="core.escucharTexto" aria-label="Escuchar la situación"><span data-i18n="core.escuchar">🔊 Escuchar</span></button>
+        <p class="texto-principal" id="situacionTexto" data-i18n="core.loading">Cargando…</p>
+        <button type="button" class="btn btn-audio" id="btnEscucharReconocer" data-i18n-aria="core.listenTexto" aria-label="Escuchar la situación"><span data-i18n="core.listen">🔊 Escuchar</span></button>
       </div>
       <h2 class="pregunta centrado" data-i18n="pregunta">¿Qué haces?</h2>
       <div class="pila" id="opcionesReconocer"></div>
       <div class="feedback" id="feedbackReconocer" aria-live="polite"></div>
       <div class="fila explicacion oculto" id="explicacionReconocerWrap">
         <p id="explicacionReconocer" aria-live="polite"></p>
-        <button type="button" class="btn btn-audio" id="btnEscucharExplicacionReconocer" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnEscucharExplicacionReconocer" data-i18n-aria="core.listenTexto" aria-label="Escuchar el texto">🔊</button>
       </div>
-      <button type="button" class="btn oculto" id="btnSiguienteReconocer" data-i18n="core.siguiente">Siguiente →</button>
+      <button type="button" class="btn oculto" id="btnSiguienteReconocer" data-i18n="core.next">Siguiente →</button>
     </section>
 
     <!-- Pantalla: practica la llamada -->
@@ -72,7 +72,7 @@
       </div>
       <div class="fila centrado-fila">
         <p class="instruccion" id="instruccionLlamada" data-i18n="instruccionLlamada">Toca los pasos en el orden correcto para pedir ayuda: primero quién eres, luego qué pasa, luego dónde estás.</p>
-        <button type="button" class="btn btn-audio" id="btnInstruccionLlamada" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnInstruccionLlamada" data-i18n-aria="core.listenInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progressLlamadaFill"></div>
@@ -93,9 +93,9 @@
     <!-- Pantalla final (compartida por las 2 actividades) -->
     <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
       <div class="emoji-grande" aria-hidden="true">🎉</div>
-      <h2 data-i18n="core.rondaCompletada">¡Ronda completada!</h2>
+      <h2 data-i18n="core.roundComplete">¡Ronda completada!</h2>
       <p id="resumenFinal"></p>
-      <button type="button" class="btn" id="btnRepetir" data-i18n="core.jugarOtraVez">Jugar otra vez</button>
+      <button type="button" class="btn" id="btnRepetir" data-i18n="core.playAgain">Jugar otra vez</button>
       <button type="button" class="btn btn-secundario" id="btnVolverMenuFinal" data-i18n="volverMenu">← Volver</button>
     </section>
   </div>

@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <header class="tool-header">
-      <a href="../../site/index.html" class="back-link" data-i18n="core.volver">← Volver</a>
+      <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Volver</a>
       <h1 data-i18n="title">🛒 La Compra</h1>
       <span class="stars" id="stars">⭐ 0</span>
     </header>
@@ -22,7 +22,7 @@
     <section id="pantallaMenu" class="pila">
       <div class="fila centrado-fila">
         <p class="instruccion" id="instruccion" data-i18n="instruccion">Aquí practicas dos cosas: en qué sección del súper está cada producto, y para qué comida del día lo necesitas.</p>
-        <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.escucharInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.listenInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
       </div>
       <div class="grid-tarjetas">
         <button type="button" class="tarjeta-actividad" id="tarjetaSecciones">
@@ -61,9 +61,9 @@
       <div class="feedback" id="feedbackSecciones" aria-live="polite"></div>
       <div class="fila explicacion oculto" id="explicacionSeccionesWrap">
         <p id="explicacionSecciones" aria-live="polite"></p>
-        <button type="button" class="btn btn-audio" id="btnEscucharExplicacionSecciones" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnEscucharExplicacionSecciones" data-i18n-aria="core.listenTexto" aria-label="Escuchar el texto">🔊</button>
       </div>
-      <button type="button" class="btn oculto" id="btnSiguienteSecciones" data-i18n="core.siguiente">Siguiente →</button>
+      <button type="button" class="btn oculto" id="btnSiguienteSecciones" data-i18n="core.next">Siguiente →</button>
     </section>
 
     <!-- ===== Actividad 2: mi lista de la compra ===== -->
@@ -88,9 +88,9 @@
       <div class="feedback" id="feedbackLista" aria-live="polite"></div>
       <div class="fila explicacion oculto" id="explicacionListaWrap">
         <p id="explicacionLista" aria-live="polite"></p>
-        <button type="button" class="btn btn-audio" id="btnEscucharExplicacionLista" data-i18n-aria="core.escucharTexto" aria-label="Escuchar el texto">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnEscucharExplicacionLista" data-i18n-aria="core.listenTexto" aria-label="Escuchar el texto">🔊</button>
       </div>
-      <button type="button" class="btn oculto" id="btnSiguienteLista" data-i18n="core.siguiente">Siguiente →</button>
+      <button type="button" class="btn oculto" id="btnSiguienteLista" data-i18n="core.next">Siguiente →</button>
 
       <div class="listas-dia" id="listasDia"></div>
     </section>
@@ -98,9 +98,9 @@
     <!-- Pantalla final (compartida por las 2 actividades) -->
     <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
       <div class="emoji-grande" aria-hidden="true">🎉</div>
-      <h2 data-i18n="core.rondaCompletada">¡Ronda completada!</h2>
+      <h2 data-i18n="core.roundComplete">¡Ronda completada!</h2>
       <p id="resumenFinal"></p>
-      <button type="button" class="btn" id="btnRepetir" data-i18n="core.jugarOtraVez">Jugar otra vez</button>
+      <button type="button" class="btn" id="btnRepetir" data-i18n="core.playAgain">Jugar otra vez</button>
       <button type="button" class="btn btn-secundario" id="btnOtroNivel" data-i18n="btnOtroNivel">Elegir otro nivel</button>
       <button type="button" class="btn btn-secundario" id="btnVolverMenuFinal" data-i18n="volverMenu">← Menú</button>
     </section>

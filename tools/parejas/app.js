@@ -112,11 +112,11 @@
       primera = null;
       encontradas += 1;
       pintarContador();
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       if (encontradas === nivel.parejas) terminar();
     } else {
       bloqueado = true;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       var p = primera;
       setTimeout(function () {
         p.textContent = '❓';

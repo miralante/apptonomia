@@ -137,7 +137,7 @@
       resuelto = true;
       btn.classList.add('correcta');
       App.utils.$$('.objeto', escenaEl).forEach(function (b) { b.disabled = true; });
-      App.feedback.acierto(feedbackEl);
+      App.feedback.success(feedbackEl);
       explicacionEl.textContent = App.i18n.t('okRelacion')
         .replace('{objeto}', cap(item.objetivo.el))
         .replace('{rel}', App.i18n.t('rel_' + item.rel))
@@ -153,7 +153,7 @@
       intentos += 1;
       btn.classList.add('animo');
       btn.disabled = true;
-      App.feedback.animo(feedbackEl);
+      App.feedback.encourage(feedbackEl);
       if (intentos === 1) {
         /* Regla 12: primer fallo → estrategia, nunca la respuesta */
         explicacionEl.textContent = App.i18n.t('pista')
