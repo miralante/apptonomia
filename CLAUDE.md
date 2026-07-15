@@ -471,3 +471,25 @@ actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStora
       las 5 actividades (fallos a propósito → pista → explicación
       generada; invariantes de generación en N1-N3) y fuzz de 36 rondas.
       sw v61→v62.
+- [x] Dinero fase 3 (2026-07-15): el dinero visual se promueve a módulo
+      compartido del núcleo — `assets/js/dinero.js` expone `App.dinero`
+      (catálogo con billetes de 20 € y 50 € nuevos, crearFicha,
+      formatear, hablado, desglose, descomponer, pintarFichas; sus
+      textos en el namespace `dinero.*`) y el CSS del dinero vive en
+      `components.css`. El Monedero lo consume (refactor sin cambios de
+      comportamiento, verificado re-ejecutando los playthroughs de fase
+      2) y gana el nivel 4 de ¿Cuánto hay? (billetes grandes). Nueva
+      herramienta `tools/la-tienda/` (módulo Autonomía, junto a La
+      Compra): usar el dinero en la vida real — "Una compra" (simulación
+      completa en 3 pasos: ¿te llega? → pagar con monedero FINITO, cada
+      ficha se usa una vez → revisar el cambio, que a veces viene mal;
+      las dos ramas se resuelven sin frustración: eliges algo más
+      barato / el dependiente lo corrige), "¿Qué me queda?" (control del
+      gasto con resta encadenada sobre precios REALES del banco) y
+      "¿Mucho o poco?" (sentido del precio, pedido por el usuario: el
+      precio del banco es la referencia de lo que las cosas cuestan
+      normalmente; regla 13: el multiplicador del exceso ×10→×5→×3).
+      Banco propio de 24 productos con precios de referencia realistas
+      (una línea por caso alimenta las 3 actividades). Verificado con
+      playthrough de ramas + fuzz de 18 compras en N1-N3.
+      Herramientas 56→57, sw v62→v64.

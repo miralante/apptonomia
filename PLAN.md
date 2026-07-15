@@ -156,6 +156,7 @@ Cubre: AVD, aseo, tareas del hogar, organización, situaciones cotidianas, gesti
 | La Calle — movilidad comunitaria: cruzar, transporte, perderse, a quién seguir | `tools/la-calle/` | ✔ Hecha |
 | Emergencias — reconocer una emergencia real y practicar la estructura de pedir ayuda (112) | `tools/emergencias/` | ✔ Hecha |
 | La Compra — secciones del súper y planificar la lista de la compra por comida del día | `tools/la-compra/` | ✔ Hecha |
+| La Tienda — usar el dinero en la vida real: compra completa en 3 pasos (¿te llega? → pagar con monedero finito → revisar el cambio), control del gasto (¿qué me queda?) y sentido del precio (¿mucho o poco?) | `tools/la-tienda/` | ✔ Hecha (2026-07-15) |
 
 ### Módulo 3 — Memoria y atención (naranja `--mod-memoria`)
 Cubre: memoria visual/auditiva/verbal, corto plazo, atención sostenida, percepción global y de detalles.
