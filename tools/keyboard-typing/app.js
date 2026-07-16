@@ -20,13 +20,25 @@
   state.estrellas = state.estrellas || 0;
   state.completado = state.completado || {};
   state.opciones = state.opciones || {};
-  if (typeof state.opciones.teclado !== 'string' || !DATA.layouts[state.opciones.teclado]) {
-    state.opciones.teclado = App.utils.esTactil() ? 'movil' : (state.opciones.numeros ? 'normal' : 'simplificado');
+  if (!tecladoDisponible(state.opciones.teclado)) {
+    state.opciones.teclado = tecladoInicial();
   }
   delete state.opciones.numeros;
   if (state.opciones.color !== 'dedos') state.opciones.color = 'manos';
 
   function guardar() { App.storage.set(SLUG, state); }
+
+  function esDispositivoTactil() {
+    return App.utils.esTactil();
+  }
+
+  function tecladoDisponible(tipo) {
+    return !!DATA.layouts[tipo] && (esDispositivoTactil() ? tipo === 'movil' : tipo !== 'movil');
+  }
+
+  function tecladoInicial() {
+    return esDispositivoTactil() ? 'movil' : 'simplificado';
+  }
 
   /* Partida en curso. null fuera de pantallaJuego.
      type 'seq': { cfg: { modo, titulo, pasos, claveEstrella, alTerminar }, idx, pos, esperando }
@@ -144,6 +156,7 @@
 
   function actualizarOpcionesUI() {
     $$('.btn-teclado').forEach(function (b) {
+      b.classList.toggle('oculto', !tecladoDisponible(b.dataset.teclado));
       b.setAttribute('aria-pressed', String(b.dataset.teclado === state.opciones.teclado));
     });
     $$('.btn-color').forEach(function (b) {
@@ -252,6 +265,9 @@
       /* "Coloca los dedos" enseña a encontrar F y J por su marca táctil:
          una pantalla lisa no tiene esa marca, no aplica en modo móvil. */
       if (m === 'posicion') { t.classList.toggle('oculto', esMovil()); return; }
+      /* La disposición móvil no contiene números: este juego requiere un
+        teclado físico con teclado numérico. */
+      if (m === 'numeros') { t.classList.toggle('oculto', esMovil()); return; }
       if (m === 'lecciones') badge.textContent = hechas > 0 ? App.i18n.t('deTexto').replace('{hechas}', hechas).replace('{total}', todasLecciones.length) : '';
       else badge.textContent = state.completado[m] ? '⭐' : '';
     });
@@ -519,6 +535,7 @@
   document.addEventListener('click', function (e) {
     var bt = e.target.closest('.btn-teclado');
     if (bt) {
+      if (!tecladoDisponible(bt.dataset.teclado)) return;
       state.opciones.teclado = bt.dataset.teclado;
       guardar();
       renderTeclados();

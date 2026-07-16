@@ -1,0 +1,22 @@
+/* ============================================================
+   Apptonomia — Textos de que-me-pongo (EN)
+   Archivo específico del idioma. Generado/actualizado por scripts/refactor-i18n.js.
+   Se carga condicionalmente desde index.html según App.i18n.locale().
+   ============================================================ */
+(function () {
+  'use strict';
+
+  App.i18n.register({
+    "title": "👕 What Do I Wear?",
+    "instruccion": "Look at the weather. Choose the right clothes.",
+    "instruccionNivel": " First, choose the level.",
+    "elegirNivel": "Choose the level",
+    "pregunta": "What do you wear?",
+    "veces": "times",
+    "resumenFinal": "You won {n} stars. You now have {total} stars.",
+    "btnOtroNivel": "Choose another level",
+    "explicacionCorrecta": "✅ Correct! Those clothes are right for that weather.",
+    "explicacionIncorrectaA": "❌ Those clothes are not right. The correct answer is: ",
+    "pista": "🤔 Try again. Think about the weather: "
+  }, 'en');
+})();

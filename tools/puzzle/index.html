@@ -71,7 +71,13 @@
   <script src="../../assets/js/tts.js"></script>
   <script src="../../assets/js/storage.js"></script>
   <script src="../../assets/js/feedback.js"></script>
-  <script src="strings.js"></script>
+  <script>
+  /* Carga condicional del archivo de idioma activo (es|en). */
+  (function () {
+    var loc = window.App.i18n.locale();
+    document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
+  })();
+</script>
   <script src="data.js"></script>
   <script src="app.js"></script>
   <script>

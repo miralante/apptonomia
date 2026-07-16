@@ -14,8 +14,6 @@
       "package.json",
       "package-lock.json",
       "README.md",
-      "SPEC.md",
-      "PLAN.md",
       "CLAUDE.md",
       "agent.md"
     ],

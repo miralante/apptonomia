@@ -1,495 +1,96 @@
-# CLAUDE.md — Apptonomia
+# CLAUDE.md — Flujo para agentes IA
 
-Guía para Claude (y cualquier LLM) al trabajar en este proyecto.
-Leer también `SPEC.md` (especificación técnica: arquitectura, APIs del núcleo y
-recetas de desarrollo), `I18N.md` (arquitectura multiidioma y cómo añadir un idioma
-nuevo) y `PLAN.md` (hoja de ruta) antes de hacer cambios grandes.
-Si algún documento contradice a este, gana este.
+> Este archivo contiene **solo instrucciones operativas para agentes IA**.
+> No es una especificación del producto, una referencia técnica, un catálogo ni
+> un registro del estado del proyecto.
 
-## Qué es este proyecto
+## 1. Fuentes canónicas
 
-Aplicación web de terapia ocupacional para **personas con discapacidad intelectual**.
-El usuario final usa la app **solo**, sin profesional al lado. Todo lo que se construya
-debe poder entenderse y usarse de forma autónoma.
+Cada tema se mantiene en un único documento. Antes de actuar, identifica la
+materia del cambio y lee su fuente canónica:
 
-- **Idioma de la interfaz**: español (España) e inglés, en **Lectura Fácil** en los dos.
-  Selector de idioma en la landing (`App.i18n`, ver `I18N.md` y `SPEC.md` §3.2b);
-  recuerda la elección en `localStorage`.
-- **Idioma del código**: inglés (nombres de variables/funciones); comentarios pueden ir en español.
-- **Stack**: HTML5 + CSS3 + JavaScript vanilla. **Sin frameworks, sin build step, sin backend, sin dependencias npm.**
-- **Persistencia**: solo `localStorage`. Sin login, sin cookies, sin datos personales, sin analítica.
+| Tema | Fuente canónica |
+|---|---|
+| Qué es el producto, para quién y principios no negociables | [`doc/es/SPEC.md`](doc/es/SPEC.md) · [`doc/en/SPEC.md`](doc/en/SPEC.md) |
+| Arquitectura, estructura, anatomía, APIs, contratos, pruebas y despliegue | [`doc/es/tecnico.md`](doc/es/tecnico.md) · [`doc/en/technical.md`](doc/en/technical.md) |
+| Internacionalización | [`doc/I18N.md`](doc/I18N.md) · [`doc/en/I18N.md`](doc/en/I18N.md) |
+| Catálogo de actividades | [`doc/es/actividades.md`](doc/es/actividades.md) · [`doc/en/activities.md`](doc/en/activities.md) |
+| Cobertura y orientación terapéutica | [`doc/es/equipo.md`](doc/es/equipo.md) · [`doc/en/team.md`](doc/en/team.md) |
+| Roadmap y decisiones de producto cerradas | Sigue en Git: cada PR deja su mensaje y la sesión actual puede usar `git log` para reconstruir el camino. |
+| Flujo de contribución humana | [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) · [`CONTRIBUTING.md`](CONTRIBUTING.md) |
+| Flujo operativo de agentes IA | `CLAUDE.md` (este archivo) |
 
-## Comandos
+La fuente canónica de cada materia prevalece para esa materia. Si dos documentos
+se contradicen, no conviertas `CLAUDE.md` en una copia de ambos: contrasta el
+código y corrige el documento desactualizado en su ubicación canónica.
+
+## 2. Flujo obligatorio de trabajo
+
+### 2.1 Al empezar una sesión
+
+Este repositorio puede recibir cambios del usuario y de varias sesiones en
+paralelo. Ejecuta antes de modificar nada:
 
 ```bash
-# Servidor local (desde la raíz del repo)
-python -m http.server 8080
-# Abrir: http://localhost:8080/site/index.html
-
-# Comprobación estructural (sin dependencias, antes de cualquier commit)
+git status --short
+git log --oneline -3
 node scripts/check.js
-
-# Smoke test dinámico (requiere `npm install`; usa Playwright + Chromium)
-node scripts/smoke.js               # las 49 actividades, es + en
-node scripts/smoke.js domino oca    # solo esos slugs, para depurar rápido
 ```
 
-`scripts/check.js` cubre lo estructural (sintaxis, anatomía de
-`tools/<slug>/`, caché de `sw.js`, paridad es/en, paridad de catálogo con
-`site/` y `equipo/`, conteos de actividades, y el patrón `DATA.porRonda`
-que ya rompió dos herramientas). `scripts/smoke.js` cubre lo que check.js
-NO puede: abre cada actividad de verdad en Chromium (español e inglés),
-pulsa el primer nivel si lo hay, y falla si aparece cualquier error de
-consola — la clase de bug "carga bien pero revienta al usarla" (así se
-encontró originalmente el crash de la-frase/palabras: solo pasaba al
-completar una ronda entera). `playwright` es devDependency de test, igual
-que `firebase-tools` lo es de despliegue: ninguna de las dos se sirve a la
-persona usuaria. No hay tests de comportamiento más allá de esto ni linter
-de estilo; el resto de la verificación es manual (ver checklist en
-PLAN.md §5, Fase 5).
+- Lee y conserva cualquier cambio sin confirmar que no sea tuyo.
+- No uses `git reset --hard`, `git clean`, `git checkout -- <archivo>` ni otra
+  operación que descarte trabajo para «arreglar» el estado inicial.
+- Si `check.js` ya falla, averigua si el fallo pertenece al trabajo en curso antes
+  de añadir cambios nuevos.
 
-**Coordinación entre sesiones**: este repo se trabaja con varias sesiones
-de agente en paralelo (y el usuario también commitea directamente). Al
-EMPEZAR cualquier sesión, antes de construir nada:
-```bash
-git status && git log --oneline -3 && node scripts/check.js
-```
-Si hay cambios sin commitear que no son tuyos, o `check.js` falla, es
-trabajo de otra sesión — reconciliar primero (leer qué cambió, decidir si
-hace falta terminarlo) en vez de asumir que el estado del repo coincide
-con la última conversación.
+### 2.2 Antes de editar
 
-Es una PWA: una vez desplegada (HTTPS real), es instalable como aplicación de
-escritorio o de móvil.
+1. Clasifica la tarea con la tabla de fuentes canónicas.
+2. Lee las secciones relevantes y los archivos de código afectados.
+3. Para UI, contenido o actividades, revisa siempre `SPEC.md` §3–§4 y
+   `tecnico.md` §5.
+4. El plan de proyecto cerrado vive en `git log`. La materia y el documento
+   canónico a usar dependen del tema, no de una hoja de ruta externa.
 
-**En remote-control** (sesión en la nube, sin Python ni navegador local) no se puede
-levantar el servidor local ni abrir un navegador para probar los cambios. En ese caso,
-para probar la app hay que desplegar un canal de preview en Firebase Hosting y abrir la
-URL que devuelve:
+### 2.3 Durante el cambio
 
-```bash
-npm run firebase:hosting
-```
+- Haz el cambio mínimo y coherente que resuelva la tarea; no mezcles refactors
+  ajenos al objetivo.
+- No sobrescribas trabajo paralelo. Si el archivo cambió desde la última lectura,
+  vuelve a leerlo y reconcilia las dos intenciones.
+- Actualiza la fuente canónica correspondiente, no una copia en `CLAUDE.md`.
+- Si cambia texto de interfaz, conserva la paridad de idiomas definida en
+  `doc/I18N.md` y `doc/en/I18N.md`.
+- Si cambia una actividad, sigue la receta de `tecnico.md` §9 y actualiza los
+  catálogos y guías que esa receta indica (actividades, equipo).
 
-(usa `firebase-tools hosting:channel:deploy preview`, proyecto `apptonomia` definido en
-`.firebaserc`). Avisar al usuario antes de desplegar, ya que sube contenido a un servicio
-externo aunque sea un canal de preview temporal.
+### 2.4 Antes de terminar
 
-## Estructura
+1. Ejecuta siempre `node scripts/check.js`.
+2. Ejecuta las pruebas relevantes descritas en `tecnico.md` §12.
+3. Comprueba los enlaces si modificaste documentación.
+4. Informa solo de verificaciones realmente ejecutadas; indica con claridad las
+   pruebas manuales que queden pendientes.
 
-```
-apptonomia/
-├── assets/            # Código compartido — CAMBIOS AQUÍ AFECTAN A TODO
-│   ├── css/           # tokens.css (variables), base.css, components.css
-│   ├── js/            # i18n.js, tts.js, storage.js, feedback.js, utils.js (exponen window.App.*)
-│   └── img/           # Pictogramas SVG
-├── site/              # Menú principal (landing simple) + strings.js (ES/EN)
-├── equipo/            # Guía para el equipo de apoyo — RUTA OCULTA (ver nota abajo)
-├── ajustes/           # Ver/borrar localStorage — RUTA OCULTA (ver nota abajo)
-├── tools/<slug>/      # Una carpeta por actividad
-│   ├── index.html
-│   ├── app.js         # Solo lógica
-│   ├── data.js        # Solo datos (const DATA = [...] o { es: [...], en: [...] })
-│   ├── strings.js     # Solo texto ES/EN, registrado con App.i18n.register()
-│   └── styles.css     # Solo estilos específicos (< 150 líneas)
-├── manifest.json      # PWA
-└── sw.js              # Service worker (al añadir archivos: actualizar lista de caché y versión)
-```
+## 3. Operaciones externas y destructivas
 
-Los módulos compartidos se cargan con `<script src="../../assets/js/x.js"></script>`
-(scripts clásicos, no ES modules) y exponen `window.App.tts`, `App.storage`, `App.feedback`,
-`App.utils`, `App.i18n`. Orden de carga: `utils.js` → `i18n.js` → `tts.js` → `storage.js`
-→ `feedback.js` → `strings.js` de la herramienta → `data.js` → `app.js`.
+- Un despliegue, incluso a un canal temporal de Firebase, realiza una operación
+  de red: solicita aprobación explícita antes de ejecutarlo. Los comandos están
+  en `tecnico.md` §12.5.
+- No publiques, hagas `push` ni abras/cierres recursos externos sin petición o
+  autorización explícita.
+- No elimines ni reviertas cambios del usuario o de otra sesión para simplificar
+  tu tarea; intégralos o explica el conflicto.
 
-**Rutas ocultas** (`/equipo/`, `/ajustes/`): páginas para adultos que gestionan el
-dispositivo, no para la persona usuaria. Solo se llega conociendo la URL: **no
-enlazarlas nunca** desde `site/index.html` ni desde las actividades, y llevan
-`<meta name="robots" content="noindex, nofollow">`. Son las únicas páginas donde se
-permite lenguaje clínico o de administración. `/equipo/` es la guía (objetivos,
-áreas terapéuticas, propósito de cada actividad) — mantenerla al día al añadir
-actividades o módulos. `/ajustes/` deja ver y borrar lo guardado en `localStorage`
-(datos de la persona: idioma + nombre; o restablecimiento completo) — ver `SPEC.md` §8.2.
+## 4. Qué no debe volver a este archivo
 
-## Reglas de accesibilidad (OBLIGATORIAS — nunca las incumplas)
+No añadas aquí:
 
-1. **Lectura Fácil**: frases cortas, una idea por frase, sin metáforas ni ironía en la UI.
-   Ejemplo bueno: "Toca el círculo." Ejemplo malo: "¡Demuestra tus reflejos felinos!"
-2. **Botones ≥ 64×64 px**, separación ≥ 16 px. Texto base 20 px mínimo.
-3. **Tema claro de alto contraste** (WCAG AA mínimo). Nunca texto neón sobre fondo oscuro.
-4. **Audio en todo texto importante**: botón 🔊 usando `App.tts.speak()` (idioma activo
-   vía `App.i18n.lang()`, rate 0.9).
-5. **Sin presión**: nunca cronómetros visibles, puntuación negativa, "game over" ni castigos.
-   El error se responde con ánimo ("Casi. ¡Inténtalo otra vez!"), nunca con rojo agresivo ni sonidos duros.
-6. **Refuerzo positivo** al acertar: usar `App.feedback.acierto()`. Breve (≤ 2 s).
-7. **`prefers-reduced-motion`**: toda animación nueva debe respetarlo.
-8. **Navegación por teclado**: todo interactivo alcanzable con Tab y activable con Enter; foco visible.
-9. **ARIA**: `aria-label` en botones de icono, `aria-live="polite"` en zonas de feedback.
-10. **Máximo 4–6 opciones visibles** por pantalla. Una acción principal por pantalla.
-11. **Preguntas tipo quiz** (una pregunta, varias opciones, una correcta): **máximo 3
-    opciones**, nunca más. Al elegir una opción (acierte o falle), mostrar siempre una
-    **explicación breve de por qué es correcta o incorrecta** — nunca solo un
-    "¡Bien!"/"Casi" genérico sin motivo. La explicación va en `strings.js` (con audio
-    🔊) y se guarda en `data.js` junto a cada pregunta/opción.
-12. **Método socrático al fallar**: en el **primer** fallo de una pregunta, no dar
-    la respuesta directa. Mostrar antes una **pista corta** que redirija la
-    atención al dato ya disponible (repetir el enunciado, señalar el detalle
-    clave) — nunca una pregunta abierta o ambigua, sigue siendo Lectura Fácil.
-    Solo en el **segundo** fallo de la misma pregunta se muestra la explicación
-    completa con la respuesta correcta (regla 11) — nunca se deja a la persona
-    sin resolución. La pista va en `strings.js`/`data.js` junto a la pregunta,
-    con audio 🔊 igual que la explicación.
-13. **Progresión gradual entre niveles** (carga cognitiva: estimulante sin
-    saturar): si una actividad tiene niveles, cada nivel solo puede cambiar
-    **una** variable de dificultad respecto al anterior (más opciones, más
-    elementos que memorizar, un concepto más fino…) — nunca varias a la vez.
-    Documentar en el comentario de cabecera de `data.js` qué variable cambia
-    en cada nivel, para poder revisarlo de un vistazo.
+- principios de producto o reglas de accesibilidad;
+- estructura del proyecto, anatomía de actividades, APIs o recetas;
+- catálogo o taxonomía terapéutica;
+- hojas de ruta, fases, backlog o estado actual;
+- crónicas de implementaciones y bugs ya resueltos.
 
-## Convenciones de código
-
-- Datos siempre en `data.js`, separados de la lógica. Formato documentado en comentario de cabecera.
-- Texto siempre en `strings.js` (`App.i18n.register({es:{...}, en:{...}})`), nunca
-  hardcodeado en `app.js` ni como único contenido de un nodo sin `data-i18n`/`data-i18n-aria`.
-  Leer con `App.i18n.t('clave')`; frase al azar con `App.i18n.pick('clave')`.
-- Progreso: `App.storage.get('<slug>')` / `App.storage.set('<slug>', obj)`
-  (clave interna `apptonomia:<slug>`). Siempre tolerante a fallos (try/catch ya incluido en storage.js).
-- Barajar con `App.utils.shuffle()` — nunca `sort(() => Math.random()-0.5)`.
-- CSS: usar las variables de `assets/css/tokens.css` (`--color-*`, `--mod-*`, `--boton-min`…).
-  No duplicar componentes que ya existen en `components.css`.
-- Cada herramienta debe funcionar de forma aislada: sin estado global compartido entre herramientas.
-- Commits pequeños, uno por herramienta o cambio coherente, mensaje en inglés.
-
-## Cómo añadir una actividad nueva
-
-(Receta detallada con APIs y contratos: `SPEC.md` §4. Módulo terapéutico nuevo: `SPEC.md` §5.)
-
-1. Crear `tools/<slug>/` con `index.html`, `app.js`, `data.js`, `strings.js`, `styles.css`.
-2. Copiar la cabecera HTML de una herramienta existente (enlaces a assets/ y orden de
-   scripts, incluido `i18n.js` y `strings.js` propio).
-3. Escribir los textos en `strings.js` en español e inglés con las mismas claves.
-4. Añadir tarjeta en `site/index.html` dentro del módulo correspondiente (ver PLAN.md §4):
-   Coordinación=azul, Autonomía/hogar=verde, Memoria/atención=naranja,
-   Razonamiento/matemáticas=teal, Lenguaje=frambuesa, Emociones=morado.
-   (Los 6 módulos están activos desde la Fase 6.)
-5. Añadir archivos (incluido `strings.js`) a la caché de `sw.js` y subir la versión.
-6. Verificar: jugable sin errores de consola en ambos idiomas, progreso persiste al
-   recargar y al cambiar de idioma, audio funciona, navegable por teclado, botones ≥ 64 px.
-
-## Qué NO hacer
-
-- No añadir frameworks, bundlers, npm dependencies ni CDNs de JS (Google Fonts sí está permitido).
-- No pedir ni almacenar datos personales.
-- No usar lenguaje clínico ("paciente", "terapia", "discapacidad") en la interfaz de usuario.
-- No añadir mecánicas competitivas, rankings ni comparación entre usuarios.
-- No eliminar herramientas existentes: `keyboard-typing`, `comedy-club`, `dichos`, `adivinanzas` se conservan.
-- No hacer refactors masivos en un solo commit; seguir las fases de `PLAN.md`.
-
-## Estado actual (actualizar al avanzar)
-
-- [x] Herramientas existentes funcionales: keyboard-typing, comedy-club, dichos, adivinanzas
-- [x] Fase 1 — Núcleo compartido `assets/`
-- [x] Fase 2 — Refactor de herramientas existentes
-- [x] Fase 3 — Nuevas herramientas: atrapa, rutinas, parejas, emociones
-- [x] Fase 4 — Nueva landing + PWA
-- [x] Fase 5 — Verificación final (checks automáticos; pendiente prueba manual en navegador)
-- [x] Fase 6 — Reorganización de la landing en 6 módulos (colores nuevos: teal y frambuesa)
-- [x] Fase 7 — Ola 1: patrones, diferencias, monedero, reloj, categorias
-- [x] Ola 2 — historias, que-no-encaja, la-frase, que-falta, ecos, la-casa, situaciones
-- [x] Ola 3 — trazos, colorear, puzzle, oca, palabras, calma, entre-amigos
-- [x] Ola 4 — numeros (matemáticas del día a día: contar, valor posicional hasta el billón, fracciones, decimales, tablas, cálculo mental y medidas)
-- [x] Ola 5 — chat-seguro (seguridad en internet: chats simulados para practicar respuestas ante manipulación — fotos, datos, contraseñas, secretos, quedadas)
-- [x] i18n — aplicación bilingüe ES/EN (`App.i18n` + `strings.js` por herramienta en
-      las 30 actividades; caché de `sw.js` al día). Ver `PLAN.md` §9.1.
-- [x] Teclado — modo "Teclado del móvil" (`DATA.layouts.movil`): se detecta y
-      preselecciona solo en dispositivos táctiles (`App.utils.esTactil()`), enseña
-      a escribir con los dos pulgares (mitad izquierda/derecha) para trabajar
-      lateralidad. Único tipo de teclado tocable de verdad (ver SPEC.md §6).
-- [x] Piano — `tools/piano-teclas/` (toca el teclado del ordenador como un piano:
-      libre, seguir melodía, Simón dice, canciones, compositor). Existía sin
-      terminar (sin `data.js`, i18n sin conectar, `prompt()` nativo, teclas sin
-      accesibilidad, 3 funciones a medias); revisada y completada por petición
-      del usuario — ver `git log --oneline -- tools/piano-teclas/`.
-- [x] `/ajustes/` — ruta oculta para ver y borrar `localStorage`: datos de la
-      persona (idioma + nombre, progreso intacto) o restablecimiento completo,
-      cada uno con confirmación en dos pasos. Ver `SPEC.md` §8.2.
-- [x] Aviso de actualización en la landing: cuando el Service Worker cambia de
-      versión, aparece un aviso con botón para recargar y aplicar lo nuevo. Ver
-      `SPEC.md` §7.
-- [x] Preguntas tipo quiz — regla 11 de accesibilidad aplicada a las 14
-      actividades existentes: máximo 3 opciones (bajadas de 4 en adivinanzas,
-      chistes, dichos y ¿qué no encaja?) y explicación al elegir cualquier
-      opción, acierto o fallo (generada a partir del propio dato de la
-      pregunta en la mayoría; escrita a mano solo en Chat Seguro, donde el
-      razonamiento de seguridad es el objetivo real). Ver `CLAUDE.md` regla 11
-      y `SPEC.md` §4.
-- [x] Método socrático — regla 12 de accesibilidad aplicada a las 13
-      actividades quiz de arriba (todas menos Chat Seguro, que ya cumplía por
-      su propio diseño: nunca revela directamente la respuesta correcta,
-      solo explica por qué la opción elegida es arriesgada). En el primer
-      fallo se muestra una pista corta (repetir el enunciado o animar a
-      mirar/pensar otra vez), nunca la respuesta; solo en el segundo fallo se
-      explica la respuesta correcta. Ver `CLAUDE.md` regla 12 y `SPEC.md` §4.
-- [x] Progresión de niveles — regla 13 de accesibilidad (carga cognitiva).
-      Auditadas las 19 actividades con niveles; 5 incumplían (cambiaban más
-      de una variable de dificultad a la vez) y se han corregido: Categorías
-      (nivel 3 mantiene 3 cajas, ya no baja a 2, y añade "Frutos secos"),
-      La Oca (las casillas de regalo se calculan a partir del tamaño del
-      tablero en vez de guardarse aparte), Parejas (columnas fijas en 4,
-      solo sube el nº de parejas), Los Números (`contar`, `unidades`,
-      `fracciones`, `cabeza`: reordenadas o con `max` derivado de la otra
-      variable), y Entre Amigos (ahora 4 niveles: identificar emoción básica
-      → emociones menos comunes → conflictos simples → conflictos difíciles,
-      en vez de saltar de emociones a conflictos en un solo paso). Ver
-      `CLAUDE.md` regla 13 y `SPEC.md` §4.
-- [x] Chat Acoso (`tools/chat-acoso/`, módulo Autonomía/hogar) — nueva actividad:
-      chats simulados para reconocer acoso entre compañeros (insultos,
-      exclusión, rumores, fotos para reírse, amenazas, presión de grupo para
-      molestar a otro) y saber cómo actuar. La respuesta correcta siempre
-      incluye contárselo a un adulto de confianza — nunca defenderse solo ni
-      ignorarlo. Reutiliza el motor de Chat Seguro (mismo patrón de
-      aviso/avisoSeguro).
-- [x] Partes del Día (`tools/partes-del-dia/`, módulo Autonomía/hogar) — nueva
-      actividad: clasificar tareas diarias (desayunar, hacer los deberes,
-      cenar…) en Mañana/Tarde/Noche. A diferencia de Categorías, cada acierto
-      se añade a una lista visual que se va construyendo en su caja durante
-      toda la ronda (no desaparece). 2 niveles (regla 13: solo cambia lo obvio
-      que es el momento del día, nunca el nº de cajas).
-- [x] Organización, planificación y priorización (módulo Autonomía/hogar) —
-      3 actividades nuevas, cada una centrada en una sola habilidad:
-      `tools/que-primero/` (priorización: situación con 2-3 cosas posibles
-      que hacer, elegir la más urgente entre 3 opciones — reutiliza el motor
-      de Situaciones), `tools/que-necesito/` (planificación: dada una tarea u
-      objetivo, elegir qué hace falta preparar antes — motor de Situaciones
-      con preguntas de una sola frase, sin picto), `tools/donde-lo-guardo/`
-      (organización: objeto cotidiano → su sitio de guardado en casa —
-      armario/nevera/mochila — clon exacto del motor de Categorías). Las 3
-      con 2 niveles cada una (regla 13: mismo nº de opciones/cajas, solo
-      cambia lo obvio de la respuesta correcta).
-- [x] Lista de Tareas (`tools/lista-tareas/`, módulo Autonomía/hogar) — nueva
-      actividad: ordenar tareas independientes de casa, trabajo y cuidado
-      personal (no pasos de una sola tarea del hogar, como La Casa) en el
-      orden lógico del día — p. ej. vestirte → coger el bus → fichar entrada
-      → hacer un encargo → fichar salida → volver a casa → cenar. Adapta el
-      motor de La Casa (tocar en orden, un toque fuera de orden solo anima a
-      seguir, sin castigo) mostrando picto + texto en vez de solo picto,
-      porque las tareas de ámbitos abstractos (trabajo) no se identifican
-      solo con un emoji. 2 niveles (regla 13: 3 tareas → 4 tareas por lista,
-      mismo patrón que ya usaba La Casa).
-- [x] ¿Lo publico? (`tools/lo-publico/`, módulo Autonomía/hogar) — nueva
-      actividad: peligros de las redes sociales no cubiertos aún por Chat
-      Seguro (manipulación en chat privado) ni Chat Acoso (acoso entre
-      iguales) — decidir qué es más seguro ante situaciones de publicación
-      pública y contenido viral: fotos con datos personales visibles
-      (dirección, colegio), perfiles falsos, retos virales peligrosos,
-      bulos/cadenas, estafas (premios, tarjetas regalo) y ajustes de
-      privacidad de la cuenta. Reutiliza el motor de Situaciones/¿Qué hago
-      primero? (situación + picto + 3 opciones, pista socrática en el primer
-      fallo). 2 niveles (regla 13: nivel 1 son casos claros de datos
-      personales, nivel 2 mantiene el mismo formato y pasa a casos más
-      sutiles — perfiles falsos, retos, bulos — sin añadir más variables).
-- [x] Juegos de lógica (módulo Razonamiento) — 2 actividades nuevas adaptadas:
-      `tools/tres-en-raya/` (la persona es ❌ y siempre empieza; el rival ⭕
-      juega según el nivel — regla 13, única variable es cuánto se fija el
-      rival: azar → remata su línea → también bloquea la tuya; perder no se
-      castiga [regla 5]: mensaje de ánimo con consejo concreto y otra
-      partida, el empate también se celebra) y `tools/sudoku-visual/`
-      (4×4 con pictos en vez de números, bloques 2×2 sombreados; se valida
-      contra una solución precalculada para que nunca haya callejones sin
-      salida; primer fallo → pista socrática [regla 12], segundo fallo → se
-      explica y se coloca solo [regla 11], nadie se queda atascado; regla 13:
-      única variable es el nº de huecos, 4 → 6 → 8). Ambos juegos llevan
-      además un botón 💡 Ayuda a demanda con método socrático en dos pasos:
-      la 1ª pulsación hace una pregunta que dirige la atención al dato clave
-      (sin dar la jugada); la 2ª marca la casilla concreta y explica el
-      porqué. En el sudoku, colocar el picto sigue siendo cosa de la persona.
-- [x] Percepción viso-espacial (módulo Memoria/atención) — 3 actividades
-      nuevas: `tools/giros-espejos/` (rotación mental, reflejos e
-      inversiones de grafías; regla 13: única variable es el tipo de
-      transformación — girado → espejo → letras b/d/p/q; transformaciones
-      con CSS en un span interior, nunca en el botón), `tools/los-bloques/`
-      (construcción tipo bloques: copiar un modelo 4×4 de bloques de
-      colores con paleta de 3; regla 13: única variable es el nº de bloques
-      4 → 6 → 8; validación amable por casilla — pista al primer fallo, al
-      segundo se corrige sola), y `tools/donde-esta/` (vocabulario espacial:
-      tocar el objeto a la izquierda/derecha/encima/debajo de la
-      referencia; ítems generados al vuelo con nombres es/en para el TTS
-      [los emojis no se leen en voz alta]; regla 13: única variable es el
-      eje — horizontal → vertical → mixto; la pista socrática enseña la
-      estrategia: "busca primero la referencia, después mira hacia el
-      lado"). Las secuencias visuales ya estaban cubiertas por Patrones.
-- [x] Viso-espacial, segunda tanda (módulo Memoria/atención) — 3 actividades
-      más, sin solaparse con las anteriores: `tools/el-camino/` (orientación
-      y rutas estilo robot de suelo: llevar la tortuga a la estrella con 4
-      flechas —y flechas del teclado físico—; los tableros se generan al
-      vuelo y una BFS garantiza que siempre hay camino; regla 13: única
-      variable es el nº de árboles 0/3/5; chocar solo avisa, regla 5),
-      `tools/encajar/` (tetris adaptado: la pieza se mueve/gira/baja con
-      botones, SIN caída automática ni cronómetro; el hueco es la huella
-      exacta de la pieza, generado por pieza; regla 13: única variable es
-      el tamaño de pieza 2/3/4 celdas; fallos: pista → hueco marcado → se
-      encaja sola), y `tools/el-teatro/` (escenas con profundidad: escenario
-      de 2 filas ×4 columnas —fondo arriba pequeño, delante abajo grande—
-      y órdenes "Pon el perro delante del árbol"; regla 13: única variable
-      es el nº de órdenes por escena 2/3/4; la pista enseña qué fila es
-      delante/detrás; nombres con artículo es/en para el TTS).
-- [x] Tanda del usuario (2026-07-09): `tools/constructores/` (Coordinación —
-      construcción libre con bloques, sin modelo ni acierto/fallo),
-      `tools/senales/` (Autonomía — señalética cotidiana: peligro, baño,
-      prohibición, salidas, emergencias, transporte; 6 niveles, 3 opciones
-      por pregunta) y `tools/domino/` (Razonamiento — encadenar fichas de
-      dominó girándolas para que coincidan los números). Las tres venían
-      completas (5 archivos, i18n conectado); el registro que faltaba
-      (tarjetas, strings de portada, sw.js, equipo/, PLAN.md, conteos) lo
-      detectó `scripts/check.js` y se completó junto a la 2ª tanda
-      viso-espacial.
-- [x] ¿Qué me pongo? (`tools/que-me-pongo/`, módulo Autonomía/hogar) — nueva
-      actividad: elegir la ropa adecuada (torso, piernas, pies, un extra
-      como gorra/paraguas) según el tiempo que hace. Clon exacto del motor
-      de ¿Qué hago primero? (situación + picto + 3 opciones, explicación y
-      pista socrática ya incluidas). 2 niveles (regla 13: nivel 1 solo los
-      dos contrastes extremos —mucho calor / mucho frío—, nivel 2 mantiene
-      el mismo formato y añade un tercer tiempo menos evidente —lluvia—,
-      que depende de ir seco en vez de temperatura).
-- [x] Dominó reescrito (`tools/domino/`, 2026-07-10, a petición del usuario:
-      "no es fácil, interactivo ni fácil de usar"). La versión anterior era
-      un solitario con rotación MANUAL de la ficha (elegir → girar con
-      botones → intentar colocar → error). Ahora es el juego de mesa real
-      adaptado: mano de 4 fichas, rival tranquilo visible por turnos,
-      montón para robar, y la ficha SE ORIENTA SOLA al tocarla (solo
-      pregunta el lado si encaja en ambos extremos). Fichas dibujadas con
-      puntos reales (rejilla 3×3 CSS). Fallos: pista socrática → se marcan
-      las jugables (regla 12). Finales sin castigo: ganar da estrella,
-      perder da ánimo, el cierre por bloqueo compara fichas restantes y el
-      empate se celebra. Regla 13: única variable es maxPips (3/5/6).
-- [x] Parte G de PLAN-MEJORAS.md COMPLETA (2026-07-10, con aprobación del
-      usuario para G2 y G5; ver `PLAN.md` §9.2): `scripts/check.js` amplía sus 5 comprobaciones
-      a 8 (paridad con `equipo/`, conteos README/SPEC sincronizados, lint
-      del patrón `DATA.porRonda` que rompió la-frase/palabras — las tres
-      verificadas rompiendo el caso real y comprobando que el checker lo
-      detecta); anclas de módulo en la portada (`site/index.html`, 6
-      enlaces `#mod-N` con teclado y sin JS, scroll suave ya respetado por
-      `prefers-reduced-motion` de `base.css`); nota de coordinación entre
-      sesiones en este archivo; `temp_original_data.js` borrado (se
-      publicaba en el hosting sin que nadie lo usara) y `temp_*` en
-      `.gitignore`; `scripts/smoke.js` — smoke test dinámico con Playwright
-      (devDependency, como `firebase-tools`) que abre las 49 actividades en
-      es/en, pulsa el primer nivel si lo hay, y falla con cualquier error
-      de consola. Las 49 pasan limpio (98 pruebas) en la primera pasada.
-- [x] Parte D + E3-E6 de PLAN-MEJORAS.md (2026-07-10, con aprobación del
-      usuario; ver `PLAN.md` §9.2): 4 actividades nuevas de terapia ocupacional —
-      `tools/la-calle/` (movilidad comunitaria: cruzar, transporte,
-      perderse; clon de ¿Qué hago primero?), `tools/mi-cuerpo-avisa/`
-      (interocepción, módulo Emociones — resuelve D1 dándole una 4ª
-      herramienta al módulo más pequeño; clon de ¿Qué necesito?),
-      `tools/emergencias/` (menú de 2 actividades: reconocer una emergencia
-      real —quiz que mezcla emergencias con "falsas alarmas"— y practicar
-      la llamada —ordenar nombre→qué pasa→dónde estás, motor de Lista de
-      Tareas—; deja clarísimo que el 112 es solo para emergencias de
-      verdad), `tools/la-compra/` (menú de 2 actividades: secciones del
-      súper —clon de ¿Dónde lo guardo?— y lista de la compra por comida
-      del día —clon de Partes del Día—; cierra la cadena de AVD
-      instrumental con El Monedero y La Casa). Un bug real de las
-      herramientas con menú de 2 actividades: en `la-compra` los `momentos`
-      de la lista acumulativa se pusieron por error dentro de cada NIVEL en
-      vez de al nivel superior (como en Partes del Día) — `banco().lista.
-      momentos` salía `undefined` y crasheaba al elegir nivel; lo encontró
-      Playwright jugando la actividad de verdad, no una lectura del código.
-      También D3 (`tools/patrones/` nivel 4 "Descifra el código",
-      símbolo→letra, mismo motor de secuencia — cierra el hueco de la
-      taxonomía en PLAN.md §4.1) y D2 ítem 1 (preferencias de tamaño de
-      letra y sonidos en `/ajustes/`, aplicadas UNA VEZ en el núcleo
-      compartido — `--escala-texto` en `tokens.css` + `storage.js` la lee y
-      la aplica al cargar cualquier página, `feedback.js` respeta la
-      preferencia de sonidos — así las 53 actividades la heredan sin tocar
-      ni una). Herramientas ahora 53, sw v51→v52.
-- [x] D2-ítem3 de PLAN-MEJORAS.md "modo cuidador" (2026-07-10, el usuario
-      eligió este ítem entre los 3 pendientes de D2): nueva sección
-      "Progreso por actividad" en `/ajustes/`, vista de solo lectura con
-      las estrellas de las 53 actividades agrupadas por módulo, mismo
-      patrón visual que las tablas de `/equipo/` (filas estáticas con
-      `data-tool="<slug>"`, JS solo rellena "⭐ N" o "Sin empezar").
-      `equipo/` enlaza a la vista. sw v52→v53. A petición del usuario, los
-      otros dos ítems del backlog transversal (pictogramas ARASAAC,
-      multi-perfil/dificultad adaptativa) se han retirado del plan — ver
-      `PLAN.md` §7, ya no son trabajo pendiente.
-- [x] Requisito ≥25 casos por simulación (2026-07-11/14): toda actividad de
-      simulación/entrenamiento debe tener al menos 25 casos para que las
-      rondas varíen y no se memoricen. Auditadas y ampliadas 12 (11 en el
-      commit original + `la-compra`, que se quedó fuera con 24+24 y se
-      subió a 28+28 igualando a sus motores hermanos). Los chats
-      (chat-seguro/chat-acoso) usan VARIANTES dentro de cada tarjeta
-      temática (regla 10 intacta).
-- [x] Juegos de mesa clásicos (2026-07-14, módulo Razonamiento) — 3
-      actividades nuevas que clonan la arquitectura de Tres en Raya
-      (rival tranquilo con retardo visible, tocar ficha → destinos
-      legales iluminados, ayuda socrática 💡 en 2 pasos, finales sin
-      castigo con cierre que compara fichas y empate celebrado):
-      `tools/damas/` (6×6, 6 fichas, comer no obligatorio, sin saltos
-      múltiples, coronación 👑; rival azar → come → se protege),
-      `tools/ajedrez/` (menú de 2 actividades: "Las piezas" = puzzles de
-      recoger estrellas generados al vuelo con paseo aleatorio [siempre
-      resolubles], un nivel por pieza; "Mini partida" = duelo 5×5 sin
-      peones ni jaque, se gana capturando el rey; fila inicial
-      torre-REY-dama-alfil-caballo para que las capturas de turno 1 sean
-      siempre intercambio justo, nunca dama gratis) y
-      `tools/cuatro-en-raya/` (Conecta 4 en 6×5, cada columna es UN botón
-      y la ficha cae sola; rival idéntico al de Tres en Raya). Las tres
-      verificadas con playthroughs reales de Playwright (partidas
-      completas ganadas, estrella persistida, ayuda en 2 pasos, rival N3).
-      Herramientas 53→56, sw v57→v60.
-- [x] Rework de El Monedero (2026-07-14, a petición del usuario: mejorar la
-      herramienta de dinero + arquitectura para añadir casos fácilmente).
-      Ahora es un menú con 2 actividades (patrón La Compra): "¿Cuánto
-      hay?" (nueva — contar monedas/billetes y elegir el total entre 3
-      opciones; casos GENERADOS al vuelo, pista socrática al 1º fallo y
-      explicación con desglose generado al 2º) y "Paga justo" (la de
-      siempre, con Comprobar en dos pasos —dirección → cantidad exacta—
-      y botón 💡 que enseña a pagar de mayor a menor). Dinero dibujado
-      con CSS con el aspecto real (cobre/oro/bicolor, billetes gris/rojo),
-      incluye billetes por primera vez. Arquitectura de casos: banco único
-      PRODUCTOS — añadir un caso = UNA línea + nombre es/en; el nivel se
-      deduce solo del precio (nivelDePrecio), imposible crear un caso
-      impagable. 32 casos (cumple requisito ≥25; antes 24). Regla 13
-      arreglada (única variable por nivel documentada en data.js). De
-      paso se arreglaron dos bugs heredados: index.html no cargaba
-      strings.js (el usuario veía claves como "faltaDinero" en pantalla)
-      y no tenía data-i18n (la UI quedaba en español en inglés). El
-      progreso antiguo se migra (completados → completadosPagar).
-      sw v60→v61 (sin archivos nuevos).
-- [x] Monedero fase 2 (2026-07-14): 3 actividades más — el Monedero cubre
-      el ciclo completo de una compra con 5 actividades: contar → pagar
-      justo → "¿Con qué pago?" (elegir el dinero que llega cuando no
-      tienes justo, y VER el cambio como fichas) → "¿Está bien el
-      cambio?" (contar lo devuelto y decidir Sí/No — protege de engaños)
-      → "La Hucha" (¿cuánto te falta? — reutiliza el banco PRODUCTOS
-      como objetivos). Las 3 nuevas GENERAN sus casos y comparten la
-      escalera NIVELES_IMPORTE (regla 13: única variable = finura de los
-      importes). Las 4 actividades quiz corren sobre un runner genérico
-      (montarQuiz en app.js): añadir una actividad de dinero nueva = un
-      objeto de configuración + tarjeta + strings. Pantallas de niveles
-      y de quiz compartidas. Verificado con playthrough Playwright de
-      las 5 actividades (fallos a propósito → pista → explicación
-      generada; invariantes de generación en N1-N3) y fuzz de 36 rondas.
-      sw v61→v62.
-- [x] Dinero fase 3 (2026-07-15): el dinero visual se promueve a módulo
-      compartido del núcleo — `assets/js/dinero.js` expone `App.dinero`
-      (catálogo con billetes de 20 € y 50 € nuevos, crearFicha,
-      formatear, hablado, desglose, descomponer, pintarFichas; sus
-      textos en el namespace `dinero.*`) y el CSS del dinero vive en
-      `components.css`. El Monedero lo consume (refactor sin cambios de
-      comportamiento, verificado re-ejecutando los playthroughs de fase
-      2) y gana el nivel 4 de ¿Cuánto hay? (billetes grandes). Nueva
-      herramienta `tools/la-tienda/` (módulo Autonomía, junto a La
-      Compra): usar el dinero en la vida real — "Una compra" (simulación
-      completa en 3 pasos: ¿te llega? → pagar con monedero FINITO, cada
-      ficha se usa una vez → revisar el cambio, que a veces viene mal;
-      las dos ramas se resuelven sin frustración: eliges algo más
-      barato / el dependiente lo corrige), "¿Qué me queda?" (control del
-      gasto con resta encadenada sobre precios REALES del banco) y
-      "¿Mucho o poco?" (sentido del precio, pedido por el usuario: el
-      precio del banco es la referencia de lo que las cosas cuestan
-      normalmente; regla 13: el multiplicador del exceso ×10→×5→×3).
-      Banco propio de 24 productos con precios de referencia realistas
-      (una línea por caso alimenta las 3 actividades). Verificado con
-      playthrough de ramas + fuzz de 18 compras en N1-N3.
-      Herramientas 56→57, sw v62→v64.
+Esos contenidos pertenecen a las fuentes de §1. El historial detallado de cambios
+vive en Git; `CLAUDE.md` debe seguir siendo breve, operativo y estable.

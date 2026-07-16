@@ -1,0 +1,21 @@
+/* ============================================================
+   Apptonomia — Textos de la-casa (ES)
+   Archivo específico del idioma. Generado/actualizado por scripts/refactor-i18n.js.
+   Se carga condicionalmente desde index.html según App.i18n.locale().
+   ============================================================ */
+(function () {
+  'use strict';
+
+  App.i18n.register({
+    "title": "🏠 La Casa",
+    "instruccion": "Toca los pasos en el orden correcto, de primero a último.",
+    "instruccionNivel": " Primero elige el nivel.",
+    "elegirNivel": "Elige el nivel",
+    "etiquetaOrden": "Tu orden",
+    "etiquetaPasos": "Pasos",
+    "ariaPaso": "Paso",
+    "veces": "veces",
+    "resumenFinal": "Has ordenado {n} tareas. Ahora tienes {total} estrellas.",
+    "btnOtroNivel": "Elegir otro nivel"
+  }, 'es');
+})();

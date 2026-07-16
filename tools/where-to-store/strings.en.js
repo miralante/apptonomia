@@ -1,0 +1,21 @@
+/* ============================================================
+   Apptonomia — Textos de donde-lo-guardo (EN)
+   Archivo específico del idioma. Generado/actualizado por scripts/refactor-i18n.js.
+   Se carga condicionalmente desde index.html según App.i18n.locale().
+   ============================================================ */
+(function () {
+  'use strict';
+
+  App.i18n.register({
+    "title": "🗄️ Where Do I Keep It?",
+    "instruccion": "Look at the object. Touch the box for the right place.",
+    "elegirNivel": "Choose a level",
+    "escucharCategoria": "Listen: {categoria}",
+    "veces": "({n} times)",
+    "resumenFinal": "You won {n} stars. You now have {total} stars.",
+    "elegirOtroNivel": "Choose another level",
+    "explicacionCorrecta": "✅ Correct! That is the right place.",
+    "explicacionIncorrectaA": "❌ That is not the place. It goes in: ",
+    "pista": "🤔 Try again. Think about what that object is used for."
+  }, 'en');
+})();

@@ -1,0 +1,684 @@
+# Technical information
+
+> Documentation for developers who want to understand, maintain or extend Apptonomia.
+>
+> Repository documentation map:
+
+| Document | What it contains | When to read it |
+|---|---|---|
+| `CLAUDE.md` | Operational workflow and coordination for AI agents | Only when an AI agent performs the change |
+| `doc/<en\|es>/technical.md` (this) | Architecture, core APIs, contracts and development recipes | When developing or modifying modules |
+| Project history | Lives in Git (`git log`); no external roadmap is maintained. |
+| `README.md` | Brief intro, how to run and deploy | First contact with the repo |
+| `equipo/index.html` | Guide for families/professionals (hidden route, see §8) | When adding activities: keep it up to date |
+| `agent.md` | Compatibility pointer to `CLAUDE.md` | Don't use as source |
+
+Each subject has one canonical source: product in `SPEC.md`, technical matters
+in this document, i18n in `I18N.md`. The closed project roadmap lives in
+`git log`. `CLAUDE.md` only defines the workflow for AI agents and does not
+redefine these rules.
+
+---
+
+## 1. Product and constraints
+
+Web application for occupational therapy for people with intellectual disability,
+usable **autonomously** (without a professional next to them). Interface in Spain's
+Spanish, in Easy Reading format.
+
+### Non-negotiable technical constraints
+
+- **HTML5 + CSS3 + Vanilla JavaScript.** No frameworks, no bundlers, no build step,
+  no backend, no runtime npm dependencies (devDependencies for deployment
+  like `firebase-tools` are allowed).
+- **Classic scripts**, not ES modules (compatibility with `file://` and old browsers).
+  All shared code is exposed on `window.App.*`.
+- **No JS CDNs.** Only external exception: Google Fonts (Atkinson Hyperlegible and Nunito).
+- **Persistence only in `localStorage`.** No login, no cookies, no personal data,
+  no analytics.
+- **Offline-first PWA**: `manifest.json` + `sw.js` (cache-first of the app shell).
+- **Code style**: ES5-style JS in tools (`var`, classic functions,
+  IIFE with `'use strict'`); variable/function names in English or Spanish per
+  the existing file — follow the style of the file you're touching. Comments in Spanish.
+
+---
+
+## 2. Architecture and modular design
+
+The project has **three levels of modularity**:
+
+```
+apptonomia/
+├── index.html             # Level 0: redirect to site/index.html
+├── site/index.html        # Level 0: landing = activity menu (6 modules)
+├── assets/                # Level 1: SHARED CORE
+│   ├── css/tokens.css     #   design variables (colors, typography, touch)
+│   ├── css/base.css       #   reset, visible focus, prefers-reduced-motion
+│   ├── css/components.css #   reusable components (.btn, .card, …)
+│   ├── js/utils.js        #   window.App.utils
+│   ├── js/i18n.js         #   window.App.i18n
+│   ├── js/tts.js          #   window.App.tts
+│   ├── js/storage.js      #   window.App.storage
+│   ├── js/feedback.js     #   window.App.feedback
+│   ├── js/dinero.js       #   window.App.dinero (euro activities)
+│   └── img/               #   SVG pictograms and PWA icons
+├── tools/<slug>/          # Level 2: one folder per ACTIVITY (57 current)
+│   ├── index.html         #   structure and asset loading
+│   ├── app.js             #   logic only
+│   ├── data.js            #   data only
+│   ├── strings.es.js      #   Spanish text
+│   ├── strings.en.js      #   English text
+│   └── styles.css         #   specific styles only (< 150 lines)
+├── equipo/                # Hidden route: guide for the support team (§8)
+├── ajustes/               # Hidden route: view/delete localStorage (§8.2)
+├── manifest.json          # PWA
+├── sw.js                  # Service worker: cache list + VERSION (§11)
+├── firebase.json          # Hosting (deployment)
+└── .firebaserc            # Firebase project: apptonomia
+```
+
+### 2.1 Level 1 — Shared core (`assets/`)
+
+A change here affects **all** activities. `i18n.js` must load after `utils.js` and
+before `tts.js`/`feedback.js`, because both read the active language. After the
+core, load **only** `strings.<locale>.js`, followed by `data.js` and `app.js`.
+The exact conditional loader is documented in §6.2 and is part of the standard
+anatomy in §4.
+
+### 2.2 Level 2 — Therapeutic modules (landing grouping)
+
+Activities are grouped in **6 modules** (therapeutic areas). Each module is just
+a `<section class="modulo">` in `site/index.html` with two CSS accent variables —
+no code per module:
+
+| Module | Area | Color token | Activities |
+|---|---|---|---|
+| 🎯 Aiming and hands | Coordination and motor skills | `--mod-coordinacion` (blue) | atrapa, keyboard-typing, trazos, colorear, piano-teclas, constructores |
+| 📋 My daily routine | Autonomy and home | `--mod-secuencia` (green) | rutinas, la-casa, situaciones, chat-seguro, chat-acoso, lo-publico, senales, partes-del-dia, que-primero, que-necesito, donde-lo-guardo, lista-tareas, que-me-pongo, la-calle, emergencias, la-compra, la-tienda |
+| 🧠 Memory and attention | Memory and attention | `--mod-memoria` (orange) | parejas, diferencias, que-falta, ecos, giros-espejos, los-bloques, donde-esta, el-camino, encajar, el-teatro |
+| 🔢 Thinking and counting | Reasoning and math | `--mod-razonamiento` (teal) | adivinanzas, patrones, numeros, monedero, reloj, historias, que-no-encaja, puzzle, oca, tres-en-raya, sudoku-visual, domino, damas, ajedrez, cuatro-en-raya |
+| 💬 Language and words | Language and communication | `--mod-lenguaje` (raspberry) | comedy-club, dichos, categorias, la-frase, palabras, keyboard-typing |
+| 💜 Emotions | Emotions and relationships | `--mod-emocional` (purple) | emociones, calma, entre-amigos, mi-cuerpo-avisa |
+
+Each token has its soft pair: `--mod-<x>` and `--mod-<x>-suave` (backgrounds).
+The functional catalog is in [`activities.md`](activities.md), and therapeutic
+purpose is in [`team.md`](team.md) and `equipo/index.html`.
+
+### 2.3 Level 3 — Activities (`tools/<slug>/`)
+
+Each activity is **autonomous and isolated**:
+
+- It doesn't share state with other activities (each reads/writes only its own storage key).
+- It doesn't import anything from another `tools/` folder.
+- It works if you open its `index.html` directly.
+- Strict separation: data in `data.js` (format documented in a header comment),
+  logic in `app.js`, one text file per language (`strings.es.js` /
+  `strings.en.js`), and own styles in `styles.css` (< 150 lines, using core tokens).
+
+---
+
+## 3. Shared core API (reference)
+
+### 3.1 `window.App.utils` (`utils.js`)
+
+| Function | Signature | Description |
+|---|---|---|
+| `shuffle` | `(array) → array` | Shuffled copy (Fisher-Yates). **Never** `sort(() => Math.random()-0.5)` |
+| `$` | `(selector) → Element` | Shortcut for `querySelector` |
+| `$$` | `(selector) → Array<Element>` | Shortcut for `querySelectorAll` (returns real Array) |
+| `hoy` | `() → 'YYYY-MM-DD'` | Today's local date (for daily routines) |
+| `reducedMotion` | `() → boolean` | true if the system requests less animation |
+| `esTactil` | `() → boolean` | true if the device is mainly touch-based (`hover:none, pointer:coarse`) — physical keyboard/mouse not expected. Used by `keyboard-typing` to pre-select the mobile keyboard |
+
+### 3.2 `window.App.tts` (`tts.js`)
+
+| Function | Signature | Description |
+|---|---|---|
+| `speak` | `(text, [onEnd])` | Reads in the active language (`App.i18n.lang()`: es-ES or en-US) at speed 0.9. Cancels previous reading. If synthesis isn't available, calls `onEnd` anyway |
+| `stop` | `()` | Stops reading |
+| `disponible` | `boolean` | Whether the browser supports speechSynthesis |
+
+### 3.3 `window.App.i18n` (`i18n.js`)
+
+ES/EN system. Active language: `localStorage['apptonomia:locale']`, or detected
+from `navigator.language` if nothing is saved. Changing language reloads the page.
+**Complete architecture reference and recipe for adding a new language: `doc/en/I18N.md`.**
+
+| Function | Signature | Description |
+|---|---|---|
+| `locale` | `() → 'es'\|'en'` | Active language |
+| `setLocale` | `(loc)` | Saves the language and reloads the page |
+| `lang` | `() → 'es-ES'\|'en-US'` | BCP-47 code for `App.tts.speak` |
+| `register` | `(dict, locale)` | Registers one language dictionary from `strings.<locale>.js`. The old `({es:{…}, en:{…}})` signature remains for compatibility |
+| `t` | `(key) → string` | Looks up `key` (with dots, e.g. `'core.back'` or `'nivel.c1'`) in the active language; falls back to Spanish; returns the key if not found |
+| `pick` | `(key) → string` | Like `t`, but if the value is an array (e.g. `feedback.success`) returns a random element |
+| `apply` | `([root])` | Applies `data-i18n` (textContent) and `data-i18n-aria` (aria-label) to all DOM under `root` (default, `document`) |
+
+Common keys already registered in `core.*` (do not redefine them in activity
+files): `back`, `backToMenu`, `playAgain`, `next`, `listen`,
+`listenInstructions`, `listenText`, `loading`, `roundComplete`, `rest`.
+
+Each `strings.<locale>.js` registers `{ title, instruccion, … }` with its locale,
+and `strings.es.js` / `strings.en.js` must keep exactly the same keys.
+`scripts/check.js` checks that parity. Brace placeholders (`'{n} times'`) are
+substituted in `app.js` with `.replace('{n}', value)`. Translatable data patterns
+and rules for numbers and dates are documented in [`doc/en/I18N.md`](../I18N.md).
+
+### 3.4 `window.App.storage` (`storage.js`)
+
+Internal key: `apptonomia:<toolId>`. All functions are failure-tolerant
+(private mode, full storage): they never throw.
+
+| Function | Signature | Description |
+|---|---|---|
+| `get` | `(toolId) → object` | Saved progress, or `{}` if nothing or error |
+| `set` | `(toolId, data) → boolean` | Saves JSON. `false` if failed |
+| `remove` | `(toolId) → boolean` | Deletes the tool's progress |
+| `estrellasTotales` | `() → number` | Sums `datos.estrellas` of all `apptonomia:*` keys (used by landing) |
+| `listaToolIds` | `() → string[]` | Ids of tools with something saved, without `'locale'` (used by `ajustes/`) |
+
+**Progress contract**: the saved object should include `estrellas` (number) if the
+activity gives stars — that's what the landing sums. The rest of the object is free
+per activity. Typical example: `{ estrellas: 3, completado: { nivel1: true }, opciones: {...} }`.
+
+### 3.5 `window.App.feedback` (`feedback.js`)
+
+| Function | Signature | Description |
+|---|---|---|
+| `acierto` | `([zone]) → string` | Random positive message + soft sound. Writes to `zone` (element with `aria-live="polite"`) and adds `.acierto` class |
+| `animo` | `([zone]) → string` | Encouragement message after failure (never punitive) + neutral tone. Class `.animo` |
+| `celebrar` | `(message, [after])` | Fullscreen celebration layer ≤ 2s (1.2s with reduced motion); calls `after` when hidden |
+
+Sounds: generated with Web Audio (no files), fail silently.
+
+### 3.6 `window.App.dinero` (`dinero.js`)
+
+Shared module for representing and explaining euros in The Purse and The Store.
+All amounts are expressed as **integer cents**, never floating-point decimals.
+Activities that use it load `dinero.js` after `feedback.js` and before
+`strings.<locale>.js`. Visual styles live in `components.css`.
+
+| Member | Description |
+|---|---|
+| `CATALOGO` | Available denominations from 5 cents to 50 euros |
+| `info(cent)` | Returns the type and CSS class for a denomination |
+| `etiqueta(cent)` | Short label printed on the item (`2 €`, `50 cts`) |
+| `formatear(cent)` | Localized amount (`1,50 €` / `1.50 €`) |
+| `hablado(cent)` | Written amount for TTS and explanations |
+| `aria(cent)` | Accessible name for a coin or banknote |
+| `crearFicha(cent, interactiva)` | Creates a decorative element or button |
+| `descomponer(cent)` | Breaks an amount into items, largest first |
+| `desglose(piezas)` | Verbally explains a collection of items |
+| `pintarFichas(contenedor, piezas)` | Renders decorative items with ARIA |
+
+### 3.7 CSS Components (`components.css`)
+
+Available classes — **don't duplicate them** in local `styles.css`:
+
+- Structure: `.container` (max 900px), `.pila` (column with gap), `.fila`
+  (row with wrap), `.centrado`, `.oculto` (display none !important).
+- Buttons: `.btn` (primary, ≥ 64px), `.btn-secundario`, `.btn-acierto`, `.btn-audio`
+  (🔊 button; state `.hablando` or `aria-pressed="true"`), `.btn-opcion`
+  (multiple choice answer; states `.correcta` / `.animo`), `.back-link`.
+- Game: `.card`, `.progress-bar` + `.progress-fill` + `.progress-text`, `.stars`,
+  `.feedback` (aria-live zone; states `.acierto` / `.animo`), `.celebration`
+  (created by feedback.js), `.tool-header`, `.grid-tarjetas`.
+
+**Main tokens** (`tokens.css`): base colors (`--color-fondo/superficie/texto/
+texto-suave/borde`), 6 module pairs (`--mod-*` / `--mod-*-suave`), feedback
+(`--color-acierto`, `--color-animo` — orange, never aggressive red —, `--color-estrella`),
+typography (`--texto-base` 20px, `--texto-pequeno` 17px, `--texto-grande`, `--texto-titulo`),
+touch (`--boton-min` 64px, `--espacio` 16px, `--radio`, `--sombra`).
+
+---
+
+## 4. Activity anatomy
+
+Each activity in `tools/<slug>/` follows this pattern:
+
+### 4.1 `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="title">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apptonomia</title>
+    <link rel="stylesheet" href="../../assets/css/tokens.css">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Back</a>
+    <h1 data-i18n="title">Pairs</h1>
+    <div id="app"></div>
+    <script src="../../assets/js/utils.js"></script>
+    <script src="../../assets/js/i18n.js"></script>
+    <script src="../../assets/js/tts.js"></script>
+    <script src="../../assets/js/storage.js"></script>
+    <script src="../../assets/js/feedback.js"></script>
+    <script>
+      (function () {
+        var loc = window.App.i18n.locale();
+        document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
+      })();
+    </script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+```
+
+### 4.2 `data.js`
+
+```javascript
+// Activity data goes here.
+// NO logic or UI text here.
+// Format: documented in header comment per activity.
+
+var DATA = {
+    // Difficulty levels
+    niveles: [
+        { nombre: 'nivel.nivel1', pares: 3 },
+        { nombre: 'nivel.nivel2', pares: 4 },
+        { nombre: 'nivel.nivel3', pares: 6 }
+    ]
+};
+```
+
+### 4.3 `strings.es.js` and `strings.en.js`
+
+Each file contains one language, and both keep the same keys:
+
+```javascript
+// strings.es.js
+(function () {
+    'use strict';
+    App.i18n.register({
+        title: 'Parejas',
+        instruction: 'Toca las cartas para encontrar las que son iguales.',
+        nivel1: 'Fácil',
+        nivel2: 'Medio',
+        nivel3: 'Difícil'
+    }, 'es');
+})();
+```
+
+```javascript
+// strings.en.js
+(function () {
+    'use strict';
+    App.i18n.register({
+        title: 'Pairs',
+        instruction: 'Tap the cards to find the matching ones.',
+        nivel1: 'Easy',
+        nivel2: 'Medium',
+        nivel3: 'Hard'
+    }, 'en');
+})();
+```
+
+### 4.4 `app.js`
+
+```javascript
+// Activity logic
+(function() {
+    'use strict';
+
+    // Read saved progress
+    var saved = App.storage.get('pairs') || {};
+
+    function init() {
+        // Apply translations
+        App.i18n.apply();
+
+        // Generate dynamic content
+        var instruction = App.i18n.t('instruction');
+        // ... rest of the logic
+    }
+
+    // Start when DOM is ready
+    document.addEventListener('DOMContentLoaded', init);
+})();
+```
+
+### 4.5 `styles.css`
+
+```css
+/* Activity-specific styles */
+/* Use CSS tokens available in tokens.css */
+
+.actividad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espacio);
+}
+```
+
+---
+
+## 5. Accessibility rules
+
+When creating new activities, follow these **13 mandatory rules**:
+
+1. **Easy Reading**: short sentences, one idea per sentence
+2. **Buttons ≥ 64×64 px**, spacing ≥ 16 px
+3. **High contrast** (WCAG AA minimum)
+4. **Audio on all important text**: 🔊 button with `App.tts.speak()`
+5. **No pressure**: no timers, negative scoring or "game over"
+6. **Positive reinforcement** when correct: `App.feedback.acierto()`
+7. **Respect `prefers-reduced-motion`**
+8. **Complete keyboard navigation**
+9. **ARIA** on icon buttons and feedback zones
+10. **Maximum 4-6 options** per screen
+11. **Quiz-type questions**: maximum 3 options, always with explanation
+12. **Socratic method** when failing: hint before giving the answer
+13. **Gradual progression**: each level changes only one variable
+
+---
+
+## 6. Internationalization
+
+### 6.1 Multi-file system per language
+
+Texts for each activity/landing live in **separate files per language** (not in a
+single monolithic file). This way the client only downloads the active language and
+maintenance is independent per language.
+
+```
+site/strings.es.js    ← Spanish only (registers in locale 'es')
+site/strings.en.js    ← English only (registers in locale 'en')
+
+tools/pairs/strings.es.js    ← Spanish only
+tools/pairs/strings.en.js    ← English only
+... (same pattern for all 57 activities)
+```
+
+Each file follows this pattern:
+
+```js
+(function () {
+  'use strict';
+  App.i18n.register({
+    title: '🃏 Pairs',
+    instruction: 'Find the two matching cards.',
+    // ... rest of keys in this language
+  }, 'en');  // or 'es', 'fr', ...
+})();
+```
+
+`register(dict, locale)` (with second argument) registers texts only in that
+locale. The complete API is in `assets/js/i18n.js` (also has a legacy
+`register({es:..., en:...})` signature for backward compatibility).
+
+### 6.2 Conditional loading in `index.html`
+
+`assets/js/i18n.js` must load **before** `tts.js`/`feedback.js`, which read the
+active language. The texts file is injected synchronously per locale:
+
+```html
+<script src="../../assets/js/utils.js"></script>
+<script src="../../assets/js/i18n.js"></script>
+<script src="../../assets/js/tts.js"></script>
+<script src="../../assets/js/storage.js"></script>
+<script src="../../assets/js/feedback.js"></script>
+<script>
+  /* Conditional load of the active language file (es|en). */
+  (function () {
+    var loc = window.App.i18n.locale();
+    document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
+  })();
+</script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+```
+
+`document.write` during HTML parsing is synchronous, so the injected `<script>`
+executes before the following ones — preserving the dependency order.
+
+### 6.3 Common keys (`core.*`, `feedback.*`)
+
+Already defined in `assets/js/i18n.js` (don't redefine in `strings.<locale>.js`):
+
+| Key | ES | EN |
+|-----|----|----|
+| `core.back` | ← Volver | ← Back |
+| `core.backToMenu` | Volver al menú | Back to menu |
+| `core.playAgain` | Jugar otra vez | Play again |
+| `core.next` | Siguiente → | Next → |
+| `core.listen` | 🔊 Escuchar | 🔊 Listen |
+| `feedback.success` | [array] | [array] |
+| `feedback.encourage` | [array] | [array] |
+
+### 6.4 Adding a new language (steps)
+
+1. Add the code to `SOPORTADOS` in `assets/js/i18n.js`
+2. Add core and feedback texts in `i18n.js` §1.2
+3. Add a button to the selector in `site/index.html`
+4. Create `site/strings.<locale>.js`
+5. Create `tools/<slug>/strings.<locale>.js` for each activity (same keys)
+6. Bump `VERSION` in `sw.js` and add the new files to `ARCHIVOS`
+7. Add `'<locale>'` to `STRING_LOCALES` in `scripts/check.js`
+8. Run `node scripts/check.js` (validates key parity)
+9. Run `node scripts/smoke.js --lang <locale>` (validates loading in browsers)
+
+Detailed recipe and considerations (numbers, hours, cultural content) in
+`doc/en/I18N.md` §5.
+
+---
+
+## 7. Cross-cutting contracts
+
+- **Isolation**: an activity never reads another activity's storage key. The only
+  allowed coupling is `estrellasTotales()` from the landing.
+- **Error never punishes**: don't subtract stars or progress; failure produces
+  `animo()` and can be retried without limit.
+- **No visible timers**: measuring times internally is allowed (data in storage),
+  showing them as pressure isn't.
+- **UI texts**: Spain's Spanish and English, Easy Reading in both, no clinical
+  language ("patient", "therapy", "disability"). Clinical language is only
+  allowed in `equipo/` and in repo documentation. All text lives in
+  `strings.<locale>.js` (never hardcoded in `app.js` nor as sole content of an HTML node
+  without `data-i18n`).
+- **Case bank for simulations**: a simulation or training activity must provide
+  at least **25 cases** so rounds cannot simply be memorized. Chats may use
+  variants of thematic cards, while still respecting §5's maximum visible options.
+- **Decorative on-screen keyboards** (`keyboard-typing`): visual elements with
+  `pointer-events: none`; the real input is the physical keyboard. **Deliberate
+  exception**: the `movil` keyboard type (`DATA.layouts.movil`, CSS class
+  `.tocable`) is touchable, because on a mobile/tablet there's no physical keyboard
+  to press — the screen is the only real input. It's detected and pre-selected
+  (`App.utils.esTactil()`, based on `matchMedia('(hover:none) and
+  (pointer:coarse)')`) without the user having to choose anything.
+
+---
+
+## 8. Hidden routes
+
+Pages for adults (family/teachers/AI agent) who manage the device, not for the
+end user. Common rules to all: **never link them** from `site/index.html` or
+from activities (access only by known URL), they carry
+`<meta name="robots" content="noindex, nofollow">`, and they're the only product
+pages where clinical or device-administration language is allowed.
+
+### 8.1 `/equipo/`
+
+Guide for families, therapists and teachers + technical note for AI agents
+about the project, design and activity catalog. Keep it up to date when adding
+activities or modules.
+
+### 8.2 `/ajustes/`
+
+View and delete what's saved in this browser's `localStorage`. Two actions,
+each with two-step confirmation (one click asks for confirmation, the second
+deletes):
+
+- **Reset person data**: `App.storage.remove('locale')` +
+  empty the `nombre` field of tools that ask for it (currently
+  `keyboard-typing` and `piano-teclas` — keep this list in
+  `ajustes/app.js` if a new tool requires a name).
+- **Reset entire application**: deletes all `apptonomia:*` keys
+  (`App.storage.listaToolIds()` + `remove('locale')`). Equivalent to a first use.
+
+---
+
+## 9. Recipe: developing a new activity
+
+1. **Choose a module and therapeutic objective.** Check coverage in
+   [`team.md`](team.md). Any open priorities live as GitHub issues; the
+   closed project roadmap can be reconstructed with `git log`.
+2. **Create `tools/<slug>/`** with the 6 files from §4: `index.html`, `app.js`,
+   `data.js`, `strings.es.js`, `strings.en.js` and `styles.css`. Copy the HTML
+   structure and script footer from an existing activity in the same module.
+3. **`data.js`**: `var DATA = {...}` — data only, with its format documented in a
+   header comment. No logic or UI text. A quiz has at most 3 options, one
+   explanation per option and a first-failure hint. If there are levels, each
+   changes only one difficulty variable (§5).
+4. **`strings.es.js` and `strings.en.js`**: register one dictionary per file with
+   `App.i18n.register(dict, 'es' | 'en')`. Both must have the same keys (§6).
+5. **`app.js`**: use an IIFE with `'use strict'`. Read and save with
+   `App.storage.get/set('<slug>')`; reuse `App.*` APIs before creating new shared logic.
+6. **`styles.css`**: activity-specific styles only (< 150 lines), using tokens and
+   the module accent color.
+7. **Meet all 13 accessibility rules** (§5).
+8. **Register the activity in every canonical location**:
+   - Card in `site/index.html` and matching keys in
+     `site/strings.es.js` / `site/strings.en.js`.
+   - All 6 activity files in `sw.js`'s `ARCHIVOS`, and bump `VERSION` (§11).
+   - Row in `equipo/index.html` and bilingual entry in `activities.md`.
+9. **Verify** with §12 commands and criteria: structure, both languages,
+   persistence, audio, keyboard, touch targets and responsive view.
+10. **Create a small, coherent commit** with an English message.
+
+---
+
+## 10. Recipe: adding a new therapeutic module (area)
+
+Only if the area does not fit the 6 existing modules (check coverage in
+[`team.md`](team.md)):
+
+1. Add the token pair in `assets/css/tokens.css`:
+   `--mod-<name>: <AA color over white>;` and `--mod-<name>-suave: <light background>;`.
+   Verify AA contrast of the color against `--color-superficie`.
+2. Add the `<section class="modulo">` in `site/index.html` with
+   `style="--acento: var(--mod-<name>); --acento-suave: var(--mod-<name>-suave);"`,
+   an `<h2>` with emoji + name in Easy Reading, and its `grid-tarjetas`.
+3. Document the module in `activities.md`, `team.md`, `equipo/index.html` and
+   §2.2 of this document.
+4. Create the first activity of the module (recipe §9).
+
+---
+
+## 11. PWA and service worker
+
+- `sw.js` is **cache-first** for the app shell. Contract when touching files:
+  1. New file → add it to the `ARCHIVOS` list.
+  2. Any change to cached files → **bump `VERSION`** (`apptonomia-vNN`),
+     otherwise users with the installed PWA won't receive the change.
+- The fetch handler also caches new same-origin resources on demand and
+  falls back to `site/index.html` offline.
+- **Update notice** (`site/index.html`): since the SW does `skipWaiting()` +
+  `clients.claim()` without asking, the landing detects the controller change
+  (`navigator.serviceWorker.oncontrollerchange`) and shows a notice with
+  "Update now" button (reloads the page). It distinguishes the first install
+  (no previous controller: no notice) from a real update (there was one).
+  Only on the landing, not on each tool.
+- `manifest.json`: `display: standalone`, `start_url` in `site/index.html`,
+  192/512 icons in `assets/img/`.
+- To check installability objectively: DevTools → Lighthouse → "PWA" category.
+
+---
+
+## 12. Execution, verification and deployment
+
+### 12.1 Local server
+
+```bash
+# Option 1: Python
+python -m http.server 8080          # → http://localhost:8080/site/index.html
+
+# Option 2: npx serve
+npx serve .                         # alternative if no Python
+```
+
+### 12.2 Syntax and structure checks
+
+```bash
+# Quick syntax check for a JS file
+node --check tools/<slug>/app.js
+
+# Complete structural check
+node scripts/check.js
+```
+
+`scripts/check.js` checks, among other things:
+- JavaScript syntax
+- Activity folder structure
+- Key parity between `strings.es.js` and `strings.en.js`
+- Service worker cache
+
+### 12.3 Smoke test
+
+```bash
+node scripts/smoke.js
+```
+
+Opens all 57 activities in Chromium (ES and EN) and verifies there are no console errors.
+
+### 12.4 Cross-browser and cross-device test
+
+```bash
+# Default test (3 browsers × 3 devices × 1 language = 9 tests per activity)
+node scripts/cross-browser.js
+
+# Test in both languages too (× 2 languages = 18 tests per activity)
+node scripts/cross-browser.js --all-langs
+
+# Test a single activity
+node scripts/cross-browser.js pairs
+
+# Via npm
+npm run test:cross
+npm test          # check + smoke + cross-browser
+```
+
+`scripts/cross-browser.js` opens each activity in **Chromium (Chrome/Edge),
+Firefox and WebKit (Safari)**, on **desktop, iPhone 12 and Pixel 5**, and
+verifies:
+
+- No console or page errors
+- "Back" button visible
+- Audio button (`.btn-audio`) present
+- All `.btn` are ≥ 64×64 px (accessibility rule 2)
+- ES → EN language change works (if selector is in the activity)
+- On mobile: no horizontal scroll (responsive 360 px)
+
+Requirements:
+
+```bash
+npm install
+npx playwright install chromium firefox webkit
+```
+
+### 12.5 Deployment
+
+```bash
+# Firebase Hosting (project "apptonomia")
+npm run firebase:hosting            # preview channel (for testing)
+npm run firebase:deploy             # production
+```
+
+In **remote-control** sessions (without local browser) the only way to test is the
+Firebase preview channel — notify the user before deploying.
+
+The scripts automate structure and basic loading checks. Complete functional
+walkthroughs, content quality and accessibility review still require manual testing.
+
+---
+
+## 13. License
+
+This project is open source under MIT license. See the repository for more details.

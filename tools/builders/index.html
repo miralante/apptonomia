@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="title">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constructores | Apptonomia</title>
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="tool-header">
+      <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Volver</a>
+      <h1 data-i18n="title">🏗️ Constructores</h1>
+      <span class="stars" id="stars">⭐ 0</span>
+    </header>
+
+    <!-- Pantalla inicial -->
+    <section id="pantallaInicio" class="pila centrado">
+      <div class="fila centrado-fila">
+        <p class="instruccion" id="instruccion" data-i18n="instruccion">Elige bloques de colores. Toca la zona donde quieres ponerlos. ¡Construye lo que quieras!</p>
+        <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.listenInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
+      </div>
+      
+      <div class="pila modos">
+        <h2 data-i18n="elegirModo">¿Qué quieres hacer?</h2>
+        <div class="fila botones-modo">
+          <button type="button" class="btn btn-modo" id="btnModoLibre" data-i18n="modoLibre">🎨 Crear libremente</button>
+          <button type="button" class="btn btn-modo" id="btnModoPlantilla" data-i18n="modoPlantilla">📋 Seguir un modelo</button>
+        </div>
+      </div>
+
+      <!-- Selector de tamaño de mundo (modo libre, oculto inicialmente) -->
+      <div id="selectorTamano" class="oculto pila">
+        <h2 data-i18n="elegirTamano">Elige el tamaño del mundo</h2>
+        <div class="fila botones-modo" id="tamanos"></div>
+      </div>
+
+      <!-- Selector de plantillas (oculto inicialmente) -->
+      <div id="selectorPlantilla" class="oculto pila">
+        <h2 data-i18n="elegirPlantilla">Elige un modelo</h2>
+        <div class="grid-plantillas" id="plantillas"></div>
+      </div>
+    </section>
+
+    <!-- Pantalla de juego -->
+    <section id="pantallaJuego" class="oculto">
+      <div class="construccion-header">
+        <p class="construccion-titulo" id="construccionTitulo"></p>
+        <div class="contador-bloques">
+          <span data-i18n="bloquesColocados">Bloques puestos</span>: 
+          <span id="contadorBloques">0</span>
+        </div>
+      </div>
+
+      <!-- Cuadrícula de construcción -->
+      <div id="cuadricula" role="grid" aria-label="Zona de construcción"></div>
+
+      <!-- Paleta de bloques -->
+      <div class="paleta-bloques">
+        <p class="etiqueta-paleta" data-i18n="eligeBloque">Elige un bloque</p>
+        <div class="fila bloques" id="bloques" role="radiogroup" aria-label="Bloques disponibles"></div>
+      </div>
+
+      <!-- Herramientas -->
+      <div class="herramientas">
+        <button type="button" class="btn btn-herramienta" id="btnBorrar" data-i18n="modoBorrar">🗑️ Borrar</button>
+        <button type="button" class="btn btn-herramienta" id="btnLimpiarTodo" data-i18n="btnLimpiarTodo">🧹 Empezar de nuevo</button>
+      </div>
+
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+
+      <div class="fila acciones">
+        <button type="button" class="btn" id="btnTerminado" data-i18n="btnTerminado">✔ ¡Listo!</button>
+      </div>
+    </section>
+
+    <!-- Pantalla final -->
+    <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
+      <div class="emoji-grande" aria-hidden="true">🏆</div>
+      <h2 data-i18n="finalTitulo">¡Bravo!</h2>
+      <p id="resumenFinal"></p>
+      <div class="vista-miniatura" id="vistaMiniatura"></div>
+      <button type="button" class="btn" id="btnSeguirCreando" data-i18n="btnSeguirCreando">Seguir creando</button>
+      <button type="button" class="btn btn-secundario" id="btnCambiarPlantilla" data-i18n="btnCambiarPlantilla">Cambiar modelo</button>
+      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backAlMenu">Volver al menú</a>
+    </section>
+  </div>
+
+  <script src="../../assets/js/utils.js"></script>
+  <script src="../../assets/js/i18n.js"></script>
+  <script src="../../assets/js/tts.js"></script>
+  <script src="../../assets/js/storage.js"></script>
+  <script src="../../assets/js/feedback.js"></script>
+  <script>
+  /* Carga condicional del archivo de idioma activo (es|en). */
+  (function () {
+    var loc = window.App.i18n.locale();
+    document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
+  })();
+</script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../../sw.js').catch(function () {});
+    }
+  </script>
+</body>
+</html>

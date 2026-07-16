@@ -2,11 +2,15 @@
    Apptonomia — Internacionalización (i18n)
    Expone window.App.i18n. Cargar DESPUÉS de utils.js y ANTES de tts.js/feedback.js.
    Orden estándar: utils.js -> i18n.js -> tts.js -> storage.js -> feedback.js ->
-   strings.js -> data.js -> app.js.
+   carga condicional de strings.<locale>.js -> data.js -> app.js.
 
    Idioma activo: localStorage 'apptonomia:locale' si es soportado; si no,
    se detecta navigator.language (prefijo 'en' -> 'en', cualquier otro -> 'es').
-   Cada página registra sus propios textos con App.i18n.register({es:{...}, en:{...}}).
+
+   Sistema multi-archivo (recomendado):
+     - texts separados por idioma: tools/<slug>/strings.es.js, tools/<slug>/strings.en.js
+     - solo se carga el del locale activo (ahorra ancho de banda y simplifica mantenimiento)
+     - cada archivo llama a App.i18n.register({clave: 'texto', ...}, 'es'|'en')
    ========================================================================== */
 (function () {
   'use strict';
@@ -89,8 +93,30 @@
     return locale() === 'en' ? 'en-US' : 'es-ES';
   }
 
-  /** Fusiona un diccionario nuevo {es:{...}, en:{...}} en el diccionario interno. */
-  function register(dict) {
+  /**
+   * Fusiona textos en el diccionario interno.
+   *
+   * Dos firmas retrocompatibles:
+   *  1. Multi-archivo (recomendada): App.i18n.register(dict, locale)
+   *       Carga solo el idioma activo. Cada strings.<locale>.js registra sus textos.
+   *         Ej: App.i18n.register({title: 'Parejas', ...}, 'es');
+   *  2. Legacy (un solo archivo con ambos idiomas): App.i18n.register({es: {...}, en: {...}})
+   *       Registra en todos los locales presentes en el dict.
+   */
+  function register(dict, locale) {
+    // Firma nueva: (dict, locale)
+    if (typeof locale === 'string') {
+      if (SOPORTADOS.indexOf(locale) === -1) return;
+      if (!dict || typeof dict !== 'object') return;
+      DICT[locale] = DICT[locale] || {};
+      for (var clave in dict) {
+        if (Object.prototype.hasOwnProperty.call(dict, clave)) {
+          DICT[locale][clave] = dict[clave];
+        }
+      }
+      return;
+    }
+    // Firma antigua: ({es: {...}, en: {...}})
     SOPORTADOS.forEach(function (loc) {
       if (!dict[loc]) return;
       DICT[loc] = DICT[loc] || {};
@@ -162,6 +188,7 @@
 
   window.App.i18n = {
     SOPORTADOS: SOPORTADOS,
+    POR_DEFECTO: POR_DEFECTO,
     locale: locale,
     setLocale: setLocale,
     lang: lang,

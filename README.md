@@ -1,81 +1,61 @@
 # Apptonomia
 
-Aplicación web de actividades de terapia ocupacional para personas con
-discapacidad intelectual. Pensada para usarse de forma autónoma, en el navegador,
-sin coste y sin datos personales. Interfaz multiidioma y Lectura Fácil.
+> 🌐 **Other languages:** [Español](README.es.md)
 
-Es una PWA sobre HTTPS.
+Multi-language web application for occupational therapy activities for people with
+intellectual disability. Designed to be used autonomously, in the browser,
+free of charge and without personal data.
 
-## Uso
+- 🌐 **App**: [apptonomia.web.app](https://apptonomia.web.app)
+- 📦 **Repository**: [github.com/thenkdframe/apptonomia](https://github.com/thenkdframe/apptonomia)
 
-```bash
-python -m http.server 8080
-```
+---
 
-(alternativa sin Python: `npx serve .`, sirve en `http://localhost:3000` por
-defecto salvo que se indique otro puerto con `-l`. En Windows, si `python` no
-está realmente instalado, el sistema puede mostrar un acceso directo a la
-Microsoft Store en vez de dar error — en ese caso usa `npx serve .`.)
+## 👥 Roles in the project
 
-Abrir http://localhost:8080/site/index.html
+Apptonomia has **three differentiated roles**. Each has its own space:
 
+| Role | Who they are | How they participate | Where to look first |
+|---|---|---|---|
+| 👤 **End user** (person with intellectual disability) | The person who practices the activities | Uses the app autonomously. **Does not participate** in development. | The application |
+| ❤️ **Support**: family, caregiver, therapist, teacher | Person close to the end user | Accompanies, supervises, and provides content (what activities are missing, if wording is clear, if difficulty is right). | [`CONTRIBUTING.md`](CONTRIBUTING.md) · [`doc/en/team.md`](doc/en/team.md) |
+| 💻 **Construction**: developer | The person who programs the application | Implements code, maintains architecture, reviews PRs, deploys. | [`CONTRIBUTING.md`](CONTRIBUTING.md) · [`doc/en/technical.md`](doc/en/technical.md) |
 
-Despliegue (Firebase Hosting, proyecto `apptonomia`):
+> 💡 **The end user is always a person with intellectual disability, and their
+> voice is central** to the project. Product, content, language and UI design
+> decisions are always made from their experience and tested with them before
+> publishing. What stays outside their participation is purely technical
+> decisions (GitHub, code architecture, infrastructure) — not because they are
+> ignored, but because that is the domain of support people and developers.
 
-```bash
-npm run firebase:hosting   # canal de preview
-npm run firebase:deploy    # producción
-```
+---
 
-Comprobación estructural (sin dependencias, sin linter): verifica que todo el
-JS parsea, que cada `tools/<slug>/` tiene sus 5 archivos, que `sw.js` está en
-paridad con el disco, que `strings.js` tiene las mismas claves en es/en, y que
-el catálogo de `site/index.html` coincide con las carpetas de `tools/`.
+## 📚 Documentation
 
-```bash
-node scripts/check.js
-```
+All project documentation lives in the `doc/` folder:
 
-## Documentación
-
-| Documento | Contenido |
+| Language | Entry point |
 |---|---|
-| `CLAUDE.md` | Reglas obligatorias y convenciones (leer siempre primero) |
-| `SPEC.md` | Especificación técnica: arquitectura, diseño modular, APIs y recetas |
-| `I18N.md` | Arquitectura multiidioma (ES/EN) y cómo añadir un idioma nuevo |
-| `PLAN.md` | Hoja de ruta, catálogo de actividades y taxonomía terapéutica |
-| `equipo/` | Guía para familias y profesionales (ruta oculta, solo por URL) |
-| `ajustes/` | Ver/borrar el progreso guardado en este navegador (ruta oculta, solo por URL) |
+| 🇪🇸 Español | [`doc/index.md`](doc/index.md) |
+| 🇬🇧 English (this file) | [`doc/en/index.md`](doc/en/index.md) |
 
-## Estructura
+By role and profile, the most relevant docs are:
 
-```
-apptonomia/
-├── assets/            # Núcleo compartido (css, js, pictogramas)
-├── site/index.html    # Menú principal (6 módulos) + strings.js (ES/EN)
-├── equipo/            # Guía para el equipo de apoyo (ruta oculta)
-├── ajustes/           # Ver/borrar localStorage (ruta oculta)
-├── tools/<slug>/      # Una carpeta por actividad (index.html, app.js, data.js, strings.js, styles.css)
-├── manifest.json      # PWA
-└── sw.js              # Service worker (cache offline)
-```
-
-## Actividades (57)
-
-| Módulo | Actividades |
+| I am… | Start here |
 |---|---|
-| 🎯 Puntería y manos (coordinación) | Atrapa, Teclado, Trazos, Colorear, Piano, Constructores |
-| 📋 Mi día a día (autonomía y hogar) | Mis Rutinas, La Casa, Situaciones, Chat Seguro, Chat Acoso, ¿Lo publico?, Señales, Partes del Día, ¿Qué hago primero?, ¿Qué necesito?, ¿Dónde lo guardo?, Lista de Tareas, ¿Qué me pongo?, La Calle, Emergencias, La Compra |
-| 🧠 Memoria y atención | Parejas, Diferencias, ¿Qué falta?, Ecos, Giros y Espejos, Los Bloques, ¿Dónde está?, El Camino, Encaja la Pieza, El Teatro |
-| 🔢 Pensar y contar (razonamiento y matemáticas) | Adivinanzas, Patrones, Los Números, El Monedero, El Reloj, Historias, ¿Qué no encaja?, Puzzle, La Oca, Tres en Raya, Sudoku Visual, Dominó |
-| 💬 Lenguaje y palabras | Chistes, Dichos, Categorías, La Frase, Palabras |
-| 💜 Emociones | ¿Cómo me siento?, Calma, Entre Amigos, Mi Cuerpo Me Avisa |
+| 👤 End user or family member | [`doc/en/README.md`](doc/en/README.md) |
+| ❤️ Therapist, family, or support professional | [`doc/en/team.md`](doc/en/team.md) |
+| 🤔 I want to understand what Apptonomia is and why | [`doc/en/SPEC.md`](doc/en/SPEC.md) |
+| 💻 Developer | [`doc/en/technical.md`](doc/en/technical.md) |
 
-Para añadir una actividad nueva: receta en `SPEC.md` §4 y reglas en `CLAUDE.md`.
-Para añadir un idioma nuevo: receta en `I18N.md` §5.
+### 📄 Other repo documents
 
-## Stack
+| Document | Audience |
+|---|---|
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Anyone who wants to contribute (family, therapists, devs) |
+| `CLAUDE.md` | AI agents: operational workflow, coordination and approvals |
+| Project history | Lives in `git log`; no external roadmap is maintained |
+| `doc/I18N.md` / `doc/en/I18N.md` | Details of the ES/EN multilanguage system |
 
-HTML5 + CSS3 + JavaScript vanilla. Sin frameworks, sin build, sin backend.
-Progreso solo en `localStorage`. Interfaz en español e inglés (`App.i18n`, ver
-`I18N.md`); audio con Web Speech API (es-ES / en-US según el idioma activo).
+---
+

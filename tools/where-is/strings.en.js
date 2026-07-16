@@ -1,0 +1,31 @@
+/* ============================================================
+   Apptonomia — Textos de donde-esta (EN)
+   Archivo específico del idioma. Generado/actualizado por scripts/refactor-i18n.js.
+   Se carga condicionalmente desde index.html según App.i18n.locale().
+   ============================================================ */
+(function () {
+  'use strict';
+
+  App.i18n.register({
+    "title": "🧭 Where Is It?",
+    "instruccion": "Read the sentence. Touch the right picture.",
+    "instruccionNivel": " First, choose the level.",
+    "elegirNivel": "Choose the level",
+    "veces": "times",
+    "consigna": "Touch what is {rel} {ref}.",
+    "rel_izq": "to the left of",
+    "rel_der": "to the right of",
+    "rel_enc": "above",
+    "rel_deb": "below",
+    "mira_izq": "to its left",
+    "mira_der": "to its right",
+    "mira_enc": "up",
+    "mira_deb": "down",
+    "okRelacion": "✅ Correct! {objeto} is {rel} {ref}.",
+    "pista": "🤔 First find {ref}. Then look {mira}.",
+    "malRelacion": "❌ {Rel} {ref} is {objeto}. It is marked: touch it.",
+    "resumenFinal": "You won {n} stars. You now have {total} stars.",
+    "btnOtroNivel": "Choose another level",
+    "ariaObjeto": "Touch {objeto}"
+  }, 'en');
+})();

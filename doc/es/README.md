@@ -1,0 +1,131 @@
+# Apptonomia
+
+**Aplicación web de actividades de terapia ocupacional para personas con discapacidad intelectual.**
+
+---
+
+## ¿Qué es Apptonomia?
+
+Apptonomia es una herramienta digital pensada para que personas con discapacidad intelectual puedan practicar habilidades de la vida diaria de forma **autónoma**, sin necesidad de que un profesional esté a su lado en todo momento.
+
+La aplicación ofrece **57 actividades** organizadas en **6 áreas temáticas**:
+
+| Módulo | ¿Qué trabaja? | Ejemplos |
+|--------|----------------|----------|
+| 🎯 **Coordinación y motricidad** | Movimientos precisos con manos y dedos | Atrapa objetos, Piano, Trazos |
+| 📋 **Autonomía y hogar** | Vida independiente en casa y comunidad | Rutinas, Cocinar, Emergencias |
+| 🧠 **Memoria y atención** | Recordar y concentrarse | Parejas, Diferencias, Patrones |
+| 🔢 **Pensar y contar** | Razonamiento y matemáticas | Adivinanzas, Reloj, Dominó |
+| 💬 **Lenguaje y palabras** | Comunicación y vocabulario | Chistes, Dichos, Categorías |
+| 💜 **Emociones** | Reconocer y gestionar emociones | ¿Cómo me siento?, Calma |
+
+---
+
+## Características principales
+
+### ✅ Diseñada para la autonomía
+
+- **Lectura Fácil**: frases cortas, vocabulario cotidiano, una idea por pantalla
+- **Sin presión**: no hay cronómetros, ni notas negativas, ni castigos
+- **Refuerzo positivo**: celebra los aciertos con sonidos y animaciones amables
+
+### ✅ Accesible para todos
+
+- **Botones grandes**: mínimo 64×64 píxeles
+- **Texto grande**: letra clara y legible (Atkinson Hyperlegible)
+- **Alto contraste**: colores claros sobre fondo blanco
+- **Audio disponible**: cada texto importante se puede escuchar con un botón 🔊
+
+### ✅ Funciona sin internet
+
+- **Offline**: se puede usar sin conexión una vez instalada
+- **Sin datos personales**: no pide registro, correo ni contraseña
+- **Gratis**: no hay que pagar nada
+
+### ✅ En dos idiomas
+
+- 🇪🇸 **Español** (predeterminado)
+- 🇬🇧 **English** (se puede cambiar desde el menú)
+
+---
+
+## Cómo empezar
+
+### 1. Abrir la aplicación
+
+Visita **[apptonomia.web.app](https://apptonomia.web.app)** o abre el archivo `site/index.html` desde un servidor local.
+
+### 2. Elegir una actividad
+
+En la pantalla principal verás 6 módulos. Toca el módulo que te interese y después elige una actividad.
+
+### 3. Cambiar el idioma
+
+Toca el botón del idioma (🇪🇸 o 🇬🇧) en la parte superior de la pantalla.
+
+### 4. Instalar en el dispositivo (opcional)
+
+Si quieres tener la aplicación en tu teléfono o tablet como una app:
+
+1. Abre la aplicación en el navegador
+2. Busca la opción "Instalar" o "Añadir a pantalla de inicio"
+3. Confirma la instalación
+
+---
+
+## Ejemplo de uso
+
+Imagina que quieres practicar las horas. En el módulo **🔢 Pensar y contar**, elige **El Reloj**. La aplicación te mostrará un reloj y te preguntará "¿Qué hora es?". Tú puedes:
+
+1. **Mirar** el reloj
+2. **Escuchar** la pregunta con el botón 🔊
+3. **Tocar** la respuesta correcta
+
+Si aciertas, aparecerá una celebración breve. Si no, recibirá un mensaje de ánimo: "Casi. ¡Inténtalo otra vez!".
+
+---
+
+## Actividades destacadas
+
+### Para trabajar en casa
+
+| Actividad | ¿Qué hace? |
+|-----------|------------|
+| **Mis Rutinas** | Repasa las rutinas del día: despertar, vestirse, comer... |
+| **La Casa** | Ordena los pasos para hacer tareas del hogar |
+| **Emergencias** | Aprende cuándo llamar al 112 y qué decir |
+| **La Compra** | Practica en el supermercado |
+
+### Para pensar y resolver
+
+| Actividad | ¿Qué hace? |
+|-----------|------------|
+| **Parejas** | Encuentra las cartas que coinciden |
+| **Adivinanzas** | Descubre qué es a partir de pistas |
+| **Patrones** | Completa series de formas o colores |
+| **Dominó** | Juega una partida de dominó |
+
+### Para las emociones
+
+| Actividad | ¿Qué hace? |
+|-----------|------------|
+| **¿Cómo me siento?** | Aprende a reconocer las emociones |
+| **Calma** | Ejercicios de respiración guiada |
+| **Entre Amigos** | Resuelve situaciones con amigos |
+
+---
+
+## Más información
+
+- [Guía rápida de uso](guia-rapida.md) — Explicación paso a paso
+- [Catálogo de actividades](actividades.md) — Lista completa de las 57 actividades
+- [Guía para profesionales](equipo.md) — Cómo usar Apptonomia en terapia
+- [Información técnica](tecnico.md) — Para desarrolladores
+
+---
+
+## Créditos y licencia
+
+Apptonomia es un proyecto de código abierto. Fue creado pensando en las necesidades de las personas con discapacidad intelectual y sus familias.
+
+Los pictogramas utilizados son emojis estándar del sistema operativo para máxima compatibilidad.

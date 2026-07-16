@@ -1,0 +1,62 @@
+/* ============================================================
+   Apptonomia — Textos de la-tienda (EN)
+   Archivo específico del idioma. Generado/actualizado por scripts/refactor-i18n.js.
+   Se carga condicionalmente desde index.html según App.i18n.locale().
+   ============================================================ */
+(function () {
+  'use strict';
+
+  App.i18n.register({
+    "title": "🏪 The Shop",
+    "instruccion": "Here you use money like in real life: you do a whole purchase, keep track of what is left and think about whether a price is fair.",
+    "volverMenu": "← Menu",
+    "elegirNivel": "Choose the level",
+    "vecesTexto": "{n} times",
+    "btnOtroNivel": "Choose another level",
+    "si": "Yes",
+    "no": "No",
+    "ariaMesa": "Money on the table",
+    "menuTienda": "One purchase",
+    "menuTiendaDetalle": "Start to finish: look, pay and check.",
+    "menuQuedame": "What is left?",
+    "menuQuedameDetalle": "You keep buying. Work out what is left.",
+    "menuMucho": "Too much or okay?",
+    "menuMuchoDetalle": "Is that price fair or too much?",
+    "instruccionTienda": "You will do a whole purchase: check if you have enough, pay and check the change.",
+    "instruccionQuedame": "You start with some money. You buy things. Work out how much is left.",
+    "instruccionMucho": "Look at the product and its price. Think if it is fair or too much money.",
+    "compraDe": "Purchase {n} of {t}",
+    "paso1Enunciado": "{nombre} costs {precio}. This is your money. Is it enough?",
+    "pistaPaso1": "Count your money, slowly. Then look at the price.",
+    "explicaLlega": "You have {total}. The price is {precio}. Yes, it is enough.",
+    "explicaNoLlega": "You have {total}. The price is {precio}. It is not enough.",
+    "resolucionNoLlega": "You choose something cheaper: {nombre}, for {precio}.",
+    "paso2Enunciado": "Pay. The price is {precio}. Touch your money to put it on the counter.",
+    "hasPuesto": "On the counter: {total}",
+    "btnPagar": "Pay",
+    "pagoJusto": "You pay the exact amount! No change. Purchase complete.",
+    "faltaDinero1": "Not enough money. Look at the price and look at the counter.",
+    "faltaDinero2": "{dif} missing. Put more money on the counter.",
+    "ariaQuitarDelMostrador": "Take {d} off the counter",
+    "paso3Enunciado": "You paid {pagado}. The price is {precio}. You get this back. Is the change right?",
+    "pistaPaso3": "Count the money you got back. Think how much they had to give you back.",
+    "explicaCambioBien": "The right change is {bueno}. You got {mostrado}. It is right.",
+    "explicaCambioMal": "The right change is {bueno}. You got {mostrado}. It is wrong.",
+    "resolucionCambioBien": "The change is right. Purchase complete!",
+    "resolucionCambioMal": "Well spotted: the change was wrong. You tell the shop assistant and they give you the right change.",
+    "btnContinuar": "Continue →",
+    "resumenTienda": "Perfect purchases: {n} of {t}.",
+    "enunciadoQuedame": "You have {saldo}. You buy {nombre}. It costs {gasto}. How much is left?",
+    "pistaQuedame": "Look at the money on the table. Take away the cost and count what is left.",
+    "explicacionQuedameBien": "That is it! You had {saldo}. {nombre} costs {gasto}. You have {queda} left.",
+    "explicacionQuedameCasi": "Look: you had {saldo}. {nombre} costs {gasto}. You have {queda} left.",
+    "resumenQuedame": "You worked it out correctly {n} of {t}.",
+    "enunciadoMucho": "{nombre} costs {mostrado}. Is that fair or too much?",
+    "estaBien": "It is fair",
+    "esDemasiado": "It is too much",
+    "pistaMucho": "Think: how much does {nombre} normally cost? Much more or much less?",
+    "explicacionMuchoBien": "Normally, {nombre} costs about {ref}. {mostrado} is a normal price.",
+    "explicacionMuchoMal": "Normally, {nombre} costs about {ref}. {mostrado} is too much money.",
+    "resumenMucho": "You judged {n} of {t} prices correctly."
+  }, 'en');
+})();

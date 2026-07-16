@@ -6,18 +6,18 @@
    Comprueba:
    1. Que todos los .js de tools/, site/ y assets/js/ parsean
       (equivalente a `node --check`).
-   2. Que cada tools/<slug>/ tiene exactamente los 5 archivos
-      canónicos (index.html, app.js, data.js, strings.js, styles.css).
+   2. Que cada tools/<slug>/ tiene los archivos canónicos:
+      index.html, app.js, data.js, strings.es.js, strings.en.js, styles.css.
    3. Paridad sw.js <-> disco: toda ruta de ARCHIVOS existe, y todo
       archivo de herramienta está en ARCHIVOS.
-   4. Paridad de claves es/en en cada strings.js de tools/<slug>/.
+   4. Paridad de claves es/en entre strings.es.js y strings.en.js.
    5. Paridad de catálogo: cada tools/<slug>/ tiene tarjeta en
       site/index.html (href="../tools/<slug>/") y viceversa.
    6. Paridad con equipo/: el nombre de portada (site/index.html) de
       cada actividad aparece también en equipo/index.html.
    7. Conteos sincronizados: el nº de "## Actividades (N)" en
-      README.md y "(N actuales)" en SPEC.md coincide con el nº real
-      de carpetas en tools/.
+      README.md (ES) y el comentario "(N actividades)" en
+      doc/es/tecnico.md coinciden con el nº real de carpetas en tools/.
    8. Lint del patrón que rompió la-frase/palabras: si data.js
       separa { es, en } a nivel superior (sin porRonda de nivel
       superior) y app.js usa el literal DATA.porRonda en vez de
@@ -73,28 +73,38 @@ archivosJs.forEach(function (archivo) {
   }
 });
 
-/* --- 2. Anatomía estándar de tools/<slug>/ --- */
-var CANONICOS = ['index.html', 'app.js', 'data.js', 'strings.js', 'styles.css'];
+/* --- 2. Anatomía estándar de tools/<slug>/ ---
+   Los strings ahora están separados por idioma (strings.es.js + strings.en.js)
+   en lugar de un único strings.js monolítico. */
+var CANONICOS_BASE = ['index.html', 'app.js', 'data.js', 'styles.css'];
+var STRING_LOCALES = ['es', 'en'];
 var toolsDir = path.join(RAIZ, 'tools');
 var slugs = fs.readdirSync(toolsDir, { withFileTypes: true })
   .filter(function (e) { return e.isDirectory(); })
-  .map(function (e) { return e.name; });
+  .map(function (e) { return e.name; })
+  .sort();
 
 slugs.forEach(function (slug) {
   checks += 1;
   var dir = path.join(toolsDir, slug);
   var archivos = fs.readdirSync(dir);
-  var faltan = CANONICOS.filter(function (c) { return archivos.indexOf(c) === -1; });
-  var sobran = archivos.filter(function (a) { return CANONICOS.indexOf(a) === -1; });
-  if (faltan.length || sobran.length) {
+  var faltanBase = CANONICOS_BASE.filter(function (c) { return archivos.indexOf(c) === -1; });
+  var faltanStrings = STRING_LOCALES
+    .map(function (loc) { return 'strings.' + loc + '.js'; })
+    .filter(function (f) { return archivos.indexOf(f) === -1; });
+  var esperados = CANONICOS_BASE.concat(STRING_LOCALES.map(function (loc) { return 'strings.' + loc + '.js'; }));
+  var sobran = archivos.filter(function (a) { return esperados.indexOf(a) === -1; });
+  if (faltanBase.length || faltanStrings.length || sobran.length) {
     var detalle = [];
-    if (faltan.length) detalle.push('faltan: ' + faltan.join(', '));
+    if (faltanBase.length) detalle.push('faltan base: ' + faltanBase.join(', '));
+    if (faltanStrings.length) detalle.push('faltan strings: ' + faltanStrings.join(', '));
     if (sobran.length) detalle.push('sobran: ' + sobran.join(', '));
     fallos.push('tools/' + slug + '/: ' + detalle.join('; '));
   }
 });
 
-/* --- 3. Paridad sw.js <-> disco --- */
+/* --- 3. Paridad sw.js <-> disco ---
+   sw.js debe listar tanto strings.es.js como strings.en.js por actividad. */
 checks += 1;
 var swContenido = fs.readFileSync(path.join(RAIZ, 'sw.js'), 'utf8');
 var matchArchivos = swContenido.match(/var ARCHIVOS = \[([\s\S]*?)\];/);
@@ -118,15 +128,45 @@ rutasSw.forEach(function (ruta) {
 });
 
 slugs.forEach(function (slug) {
-  CANONICOS.forEach(function (archivo) {
-    var ruta = './tools/' + slug + '/' + archivo;
-    if (rutasSw.indexOf(ruta) === -1) {
-      fallos.push('sw.js: falta ' + ruta + ' en ARCHIVOS');
-    }
-  });
+  CANONICOS_BASE.concat(STRING_LOCALES.map(function (loc) { return 'strings.' + loc + '.js'; }))
+    .forEach(function (archivo) {
+      var ruta = './tools/' + slug + '/' + archivo;
+      if (rutasSw.indexOf(ruta) === -1) {
+        fallos.push('sw.js: falta ' + ruta + ' en ARCHIVOS');
+      }
+    });
 });
 
-/* --- 4. Paridad de claves es/en en strings.js --- */
+/* --- 4. Paridad de claves es/en entre strings.es.js y strings.en.js --- */
+function extraerDictDeStrings(archivo, locale) {
+  // archivo = strings.es.js o strings.en.js; locale = 'es' o 'en' (el del archivo)
+  var capturado = null;
+  var sandbox = {
+    App: {
+      i18n: {
+        register: function (dict, loc) {
+          // Acepta ambas firmas: legacy ({es:...,en:...}) y nueva (dict, locale)
+          if (typeof loc === 'string') {
+            capturado = dict;
+          } else if (dict && dict.es) {
+            capturado = dict.es; // firma legacy; solo usamos uno
+            if (locale === 'en' && dict.en) capturado = dict.en;
+          }
+        }
+      }
+    },
+    window: {}
+  };
+  sandbox.window = sandbox;
+  try {
+    vm.createContext(sandbox);
+    vm.runInContext(fs.readFileSync(archivo, 'utf8'), sandbox, { filename: archivo });
+  } catch (e) {
+    return null;
+  }
+  return capturado;
+}
+
 function clavesPlanas(obj, prefijo) {
   var out = [];
   Object.keys(obj || {}).forEach(function (k) {
@@ -142,39 +182,25 @@ function clavesPlanas(obj, prefijo) {
 }
 
 slugs.forEach(function (slug) {
-  var archivo = path.join(toolsDir, slug, 'strings.js');
-  if (!fs.existsSync(archivo)) return;
+  var archivoEs = path.join(toolsDir, slug, 'strings.es.js');
+  var archivoEn = path.join(toolsDir, slug, 'strings.en.js');
+  if (!fs.existsSync(archivoEs) || !fs.existsSync(archivoEn)) return;
   checks += 1;
-  var capturado = null;
-  var sandbox = {
-    App: {
-      i18n: {
-        register: function (dict) { capturado = dict; }
-      }
-    },
-    window: {}
-  };
-  sandbox.window = sandbox;
-  try {
-    vm.createContext(sandbox);
-    vm.runInContext(fs.readFileSync(archivo, 'utf8'), sandbox, { filename: archivo });
-  } catch (e) {
-    fallos.push('tools/' + slug + '/strings.js: error al ejecutar — ' + e.message);
+  var dictEs = extraerDictDeStrings(archivoEs, 'es');
+  var dictEn = extraerDictDeStrings(archivoEn, 'en');
+  if (!dictEs || !dictEn) {
+    fallos.push('tools/' + slug + '/: no se han podido extraer los dicts es/en');
     return;
   }
-  if (!capturado || !capturado.es || !capturado.en) {
-    fallos.push('tools/' + slug + '/strings.js: no registra bloques es/en');
-    return;
-  }
-  var clavesEs = clavesPlanas(capturado.es, '').sort();
-  var clavesEn = clavesPlanas(capturado.en, '').sort();
+  var clavesEs = clavesPlanas(dictEs, '').sort();
+  var clavesEn = clavesPlanas(dictEn, '').sort();
   var soloEs = clavesEs.filter(function (c) { return clavesEn.indexOf(c) === -1; });
   var soloEn = clavesEn.filter(function (c) { return clavesEs.indexOf(c) === -1; });
   if (soloEs.length || soloEn.length) {
     var detalle = [];
     if (soloEs.length) detalle.push('solo en es: ' + soloEs.join(', '));
     if (soloEn.length) detalle.push('solo en en: ' + soloEn.join(', '));
-    fallos.push('tools/' + slug + '/strings.js: ' + detalle.join('; '));
+    fallos.push('tools/' + slug + '/: ' + detalle.join('; '));
   }
 });
 
@@ -200,12 +226,7 @@ slugsEnSite.forEach(function (slug) {
 });
 
 /* --- 6. Paridad con equipo/: el nombre de portada de cada tarjeta
-   de site/index.html debe aparecer también en equipo/index.html.
-   Se usa el nombre de la PORTADA (no el <title> interno de cada
-   herramienta) porque algunas herramientas antiguas tienen un
-   título propio más "de marca" (p.ej. comedy-club se titula "Club
-   de la Comedia" pero se cataloga como "Chistes" en portada y en
-   equipo) — comparar contra ese nombre da cero falsos positivos. */
+   de site/index.html debe aparecer también en equipo/index.html. */
 checks += 1;
 var equipoHtml = fs.readFileSync(path.join(RAIZ, 'equipo', 'index.html'), 'utf8');
 var reTarjeta = /<a href="\.\.\/tools\/([^/]+)\/index\.html" class="tarjeta">[\s\S]*?<span class="nombre"[^>]*>([^<]+)<\/span>/g;
@@ -213,31 +234,31 @@ var mt;
 while ((mt = reTarjeta.exec(siteHtml)) !== null) {
   var nombrePortada = mt[2].trim();
   if (equipoHtml.indexOf(nombrePortada) === -1) {
-    fallos.push('equipo/index.html: falta "' + nombrePortada + '" (tools/' + mt[1] + '/), o el texto no coincide exactamente');
+    fallos.push('equipo/index.html: falta "' + nombrePortada + '" (tools/' + mt[1] + '), o el texto no coincide exactamente');
   }
 }
 
-/* --- 7. Conteos sincronizados: README.md y SPEC.md deben decir el
-   número real de carpetas en tools/. --- */
-checks += 1;
-var readmeTxt = fs.readFileSync(path.join(RAIZ, 'README.md'), 'utf8');
-var mReadme = readmeTxt.match(/## Actividades \((\d+)\)/);
-if (!mReadme) {
-  fallos.push('README.md: no se encontró "## Actividades (N)"');
-} else if (Number(mReadme[1]) !== slugs.length) {
-  fallos.push('README.md: dice ' + mReadme[1] + ' actividades, pero tools/ tiene ' + slugs.length);
-}
+/* --- 7. Conteos sincronizados: doc/es/tecnico.md y doc/en/technical.md
+   deben decir el número real de carpetas en tools/ (mediante
+   "(N actuales)" en su §2.2). --- */
+['es', 'en'].forEach(function (loc) {
+  checks += 1;
+  var ruta = path.join(RAIZ, 'doc', loc, loc === 'es' ? 'tecnico.md' : 'technical.md');
+  if (!fs.existsSync(ruta)) return;
+  var txt = fs.readFileSync(ruta, 'utf8');
+  // ES usa "(N actuales)", EN usa "(N current)" (mismo sentido, distinta palabra)
+  var m = txt.match(/\((\d+) (?:actuales|current)\)/);
+  if (!m) {
+    fallos.push('doc/' + loc + '/' + (loc === 'es' ? 'tecnico' : 'technical') +
+                '.md: no se encontró "(N actuales)" / "(N current)"');
+  } else if (Number(m[1]) !== slugs.length) {
+    fallos.push('doc/' + loc + '/' + (loc === 'es' ? 'tecnico' : 'technical') +
+                '.md: dice ' + m[1] + ', pero tools/ tiene ' + slugs.length);
+  }
+});
 
-var specTxt = fs.readFileSync(path.join(RAIZ, 'SPEC.md'), 'utf8');
-var mSpec = specTxt.match(/\((\d+) actuales\)/);
-if (!mSpec) {
-  fallos.push('SPEC.md: no se encontró "(N actuales)"');
-} else if (Number(mSpec[1]) !== slugs.length) {
-  fallos.push('SPEC.md: dice ' + mSpec[1] + ' actuales, pero tools/ tiene ' + slugs.length);
-}
-
-/* --- 8. Lint del patrón que rompió la-frase/palabras: data.js con
-   { es, en } de nivel superior (sin porRonda de nivel superior) +
+/* --- 8. Lint del patrón que rompió la-frase/palabras: si data.js
+   separa { es, en } a nivel superior (sin porRonda de nivel superior) +
    app.js que usa el literal DATA.porRonda en vez de banco().porRonda. */
 slugs.forEach(function (slug) {
   var dataFile = path.join(toolsDir, slug, 'data.js');
@@ -245,7 +266,7 @@ slugs.forEach(function (slug) {
   if (!fs.existsSync(dataFile) || !fs.existsSync(appFile)) return;
   checks += 1;
   var appTxt = fs.readFileSync(appFile, 'utf8');
-  if (!/\bDATA\.porRonda\b/.test(appTxt)) return; /* no usa el patrón de riesgo */
+  if (!/\bDATA\.porRonda\b/.test(appTxt)) return;
   var sandboxD = { window: {} };
   sandboxD.window = sandboxD;
   var datos;
@@ -256,7 +277,7 @@ slugs.forEach(function (slug) {
       sandboxD, { filename: dataFile }
     );
     datos = sandboxD.__CHECK_DATA__;
-  } catch (e) { return; /* si no evalúa aislado, no es de este check */ }
+  } catch (e) { return; }
   if (datos && datos.es && typeof datos.es === 'object' && typeof datos.porRonda === 'undefined') {
     fallos.push('tools/' + slug + '/app.js: usa DATA.porRonda pero data.js separa { es, en } sin porRonda de nivel superior — usar banco().porRonda (ver bug real en la-frase/palabras)');
   }

@@ -15,10 +15,10 @@
 
   var $ = App.utils.$;
 
-  /* Herramientas que guardan un nombre de pila (ver PLAN.md §9.1 /
-     equipo/index.html §Progreso y privacidad). Mantener esta lista al
-     día si una herramienta nueva pide un nombre. */
-  var HERRAMIENTAS_CON_NOMBRE = ['keyboard-typing', 'piano-teclas'];
+  /* Herramientas que guardan un nombre de pila (ver equipo/index.html
+     §Progreso y privacidad). Mantener esta lista al día si una
+     herramienta nueva pide un nombre. */
+  var HERRAMIENTAS_CON_NOMBRE = ['keyboard-typing', 'piano-keys'];
 
   var PREFIJO = 'apptonomia:';
 
@@ -106,8 +106,8 @@
     });
   }
 
-  /* --- Modo cuidador (D2-ítem3 de PLAN.md §9.2): progreso de solo
-     lectura por actividad. Cada celda de progreso ya está en el HTML con
+  /* --- Modo cuidador: progreso de solo lectura por actividad.
+     Cada celda de progreso ya está en el HTML con
      data-tool="<slug>"; aquí solo se rellena el texto, sin generar el
      catálogo por JS (mismo criterio que equipo/index.html: filas
      estáticas, fuente de verdad legible sin ejecutar nada). --- */
@@ -119,7 +119,7 @@
     });
   }
 
-  /* --- Preferencias (D2 de PLAN.md §9.2): tamaño de letra y sonidos.
+  /* --- Preferencias: tamaño de letra y sonidos.
      Se guardan juntas en 'apptonomia:prefs' (un único objeto JSON, no una
      clave por preferencia) para no ensuciar listaToolIds()/estrellasTotales()
      con más claves que excluir — storage.js ya excluye 'prefs' entera. */
