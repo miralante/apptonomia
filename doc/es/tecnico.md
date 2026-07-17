@@ -14,7 +14,7 @@
 | `agent.md` | Puntero de compatibilidad hacia `CLAUDE.md` | No usar como fuente |
 
 Cada materia tiene una única fuente canónica: producto en `SPEC.md`, técnica
-en este documento, i18n en `doc/I18N.md` (y `doc/en/I18N.md`). El roadmap
+en este documento, i18n en `I18N.md` (y `../en/I18N.md`). El roadmap
 cerrado del proyecto vive en
 `git log`. `CLAUDE.md` solo regula el flujo de trabajo de los agentes IA y no
 redefine estas reglas.
@@ -37,8 +37,12 @@ Aplicación web de terapia ocupacional para personas con discapacidad intelectua
   sin analítica.
 - **PWA offline-first**: `manifest.json` + `sw.js` (cache-first del app shell).
 - **Estilo de código**: JS estilo ES5 en las herramientas (`var`, funciones clásicas,
-  IIFE con `'use strict'`); nombres de variables/funciones en inglés o español según
-  el archivo existente — seguir el estilo del archivo que se toca. Comentarios en español.
+  IIFE con `'use strict'`); nombres de variables/funciones e identificadores en
+  inglés siempre que se toque un archivo — el código pertenece al ámbito
+  tecnológico. Comentarios también en inglés. Excepción: los propios textos de
+  interfaz (`strings.es.js`, contenido de `data.js` como palabras o frases) van
+  en el idioma que representan. Archivos existentes en español (identificadores
+  o comentarios) se migran al tocarlos, no de golpe.
 
 ---
 
@@ -61,7 +65,7 @@ apptonomia/
 │   ├── js/feedback.js     #   window.App.feedback
 │   ├── js/dinero.js       #   window.App.dinero (actividades de euros)
 │   └── img/               #   pictogramas SVG e iconos PWA
-├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (57 actuales)
+├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (64 actuales)
 │   ├── index.html         #   estructura y carga de assets
 │   ├── app.js             #   solo lógica
 │   ├── data.js            #   solo datos
@@ -70,6 +74,7 @@ apptonomia/
 │   └── styles.css         #   solo estilos específicos (< 150 líneas)
 ├── equipo/                # Ruta oculta: guía para el equipo de apoyo (§8)
 ├── ajustes/               # Ruta oculta: ver/borrar localStorage (§8.2)
+├── presentacion/          # Ruta oculta: presentación pública del proyecto (§8.3)
 ├── manifest.json          # PWA
 ├── sw.js                  # Service worker: lista de caché + VERSION (§7)
 ├── firebase.json          # Hosting (despliegue)
@@ -92,12 +97,20 @@ no hay código por módulo:
 
 | Módulo | Área | Token de color | Actividades |
 |---|---|---|---|
-| 🎯 Puntería y manos | Coordinación y motricidad | `--mod-coordinacion` (azul) | atrapa, keyboard-typing, trazos, colorear, piano-teclas, constructores |
-| 📋 Mi día a día | Autonomía y hogar | `--mod-secuencia` (verde) | rutinas, la-casa, situaciones, chat-seguro, chat-acoso, lo-publico, senales, partes-del-dia, que-primero, que-necesito, donde-lo-guardo, lista-tareas, que-me-pongo, la-calle, emergencias, la-compra, la-tienda |
-| 🧠 Memoria y atención | Memoria y atención | `--mod-memoria` (naranja) | parejas, diferencias, que-falta, ecos, giros-espejos, los-bloques, donde-esta, el-camino, encajar, el-teatro |
-| 🔢 Pensar y contar | Razonamiento y matemáticas | `--mod-razonamiento` (teal) | adivinanzas, patrones, numeros, monedero, reloj, historias, que-no-encaja, puzzle, oca, tres-en-raya, sudoku-visual, domino, damas, ajedrez, cuatro-en-raya |
-| 💬 Lenguaje y palabras | Lenguaje y comunicación | `--mod-lenguaje` (frambuesa) | comedy-club, dichos, categorias, la-frase, palabras, keyboard-typing |
-| 💜 Emociones | Emociones y relaciones | `--mod-emocional` (morado) | emociones, calma, entre-amigos, mi-cuerpo-avisa |
+| 🎯 Puntería y manos | Coordinación y motricidad | `--mod-coordinacion` (azul) | catch, keyboard-typing, tracing, coloring, piano-keys, builders |
+| 📋 Mi día a día | Autonomía y hogar | `--mod-secuencia` (verde) | routines, house, situations, safe-chat, bullying-chat, post-or-not, signs, times-of-day, what-first, what-do-i-need, where-to-store, task-list, what-to-wear, street, emergencies, phone-numbers, shopping, shop |
+| 🧠 Memoria y atención | Memoria y atención | `--mod-memoria` (naranja) | pairs, differences, whats-missing, ecos, turns-mirrors, blocks, where-is, path, fit, theatre |
+| 🔢 Pensar y contar | Razonamiento y matemáticas | `--mod-razonamiento` (teal) | riddles, patterns, numbers, quantities, roman-numerals, wallet, clock, stories, odd-one-out, puzzle, oca, tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
+| 💬 Lenguaje y palabras | Lenguaje y comunicación | `--mod-lenguaje` (frambuesa) | comedy-club, idioms, double-meaning, categories, sentence, words, dictionary, spelling, word-search |
+| 💜 Emociones | Emociones y relaciones | `--mod-emocional` (morado) | emotions, calm, friends, my-body |
+
+> **Nota multi-área**: una actividad puede trabajar más de un área terapéutica
+> (por ejemplo, `keyboard-typing` trabaja coordinación pero también lenguaje y
+> escritura). En la landing aparece **una sola vez**, dentro de su **módulo
+> principal**: el que mejor representa su objetivo principal. Los módulos
+> terapéuticos sirven para navegar; las áreas se reflejan en la descripción de
+> cada actividad en `equipo/index.html`. El catálogo global se reconstruye a
+> partir de los slugs reales en `tools/` (verificado por `scripts/check.js`).
 
 Cada token tiene su par suave: `--mod-<x>` y `--mod-<x>-suave` (fondos).
 El catálogo funcional está en [`actividades.md`](actividades.md) y el propósito
@@ -142,7 +155,7 @@ Cada actividad es **autónoma y aislada**:
 
 Sistema ES/EN. Idioma activo: `localStorage['apptonomia:locale']`, o se detecta de
 `navigator.language` si no hay nada guardado. Cambiar de idioma recarga la página.
-**Referencia completa de la arquitectura y receta para añadir un idioma nuevo: `doc/I18N.md`.**
+**Referencia completa de la arquitectura y receta para añadir un idioma nuevo: `I18N.md`.**
 
 | Función | Firma | Descripción |
 |---|---|---|
@@ -163,7 +176,7 @@ Cada `strings.<locale>.js` registra `{ title, instruccion, … }` con su locale,
 `scripts/check.js` comprueba esa paridad. Los placeholders con llaves
 (`'{n} veces'`) se sustituyen en `app.js` con `.replace('{n}', valor)`. La
 arquitectura, los patrones de datos traducibles y las reglas para números y fechas
-están desarrollados en [`doc/I18N.md`](../I18N.md).
+están desarrollados en [`I18N.md`](I18N.md).
 
 ### 3.4 `window.App.storage` (`storage.js`)
 
@@ -396,7 +409,7 @@ site/strings.en.js    ← solo inglés (registra en locale 'en')
 
 tools/pairs/strings.es.js    ← solo español
 tools/pairs/strings.en.js    ← solo inglés
-... (mismo patrón para todas las 57 actividades)
+... (mismo patrón para todas las 64 actividades)
 ```
 
 Cada archivo sigue este patrón:
@@ -469,7 +482,7 @@ Ya están definidas en `assets/js/i18n.js` (no redefinir en `strings.<locale>.js
 9. Ejecutar `node scripts/smoke.js --lang <locale>` (valida carga en navegadores)
 
 Receta detallada y consideraciones (números, horas, contenido cultural) en
-`doc/I18N.md` §5.
+`I18N.md` §5.
 
 ---
 
@@ -526,6 +539,26 @@ borra):
   `ajustes/app.js` si una herramienta nueva pide un nombre).
 - **Restablecer toda la aplicación**: borra todas las claves `apptonomia:*`
   (`App.storage.listaToolIds()` + `remove('locale')`). Equivale a un primer uso.
+
+### 8.3 `/presentacion/`
+
+Página pública de presentación del proyecto. Una sola vista, sin scripts, en
+español de España, pensada para periodistas, financiadores, nuevos colaboradores
+y cualquier persona que llega al sitio o al repositorio y quiere entender qué
+es Apptonomia sin abrir el código.
+
+Tiene seis secciones: el origen del proyecto, los seis principios que no se
+negocian (autonomía, sin presión, privacidad, Lectura Fácil, accesibilidad,
+tecnología sobria), cómo está hecha la aplicación (PWA estática, sin backend,
+`localStorage` único, MIT, sólo fuentes externas), las seis áreas terapéuticas
+con el total de 63 actividades, autoría y cinco formas de colaborar (probar,
+proponer, revisar, contribuir código, difundir). El pie enlaza al menú de
+actividades y a la guía del equipo de apoyo, pero ningún enlace público apunta
+a ella: solo se llega escribiendo la URL.
+
+Actualizarla cuando se añadan módulos o cuando cambie el número total de
+actividades. No añadir aquí texto dirigido a la persona usuaria: esa página
+no es para ella.
 
 ---
 
@@ -633,7 +666,7 @@ node scripts/check.js
 node scripts/smoke.js
 ```
 
-Abre las 57 actividades en Chromium (ES y EN) y verifica que no hay errores de consola.
+Abre las 64 actividades en Chromium (ES y EN) y verifica que no hay errores de consola.
 
 ### 12.4 Test cross-browser y cross-device
 

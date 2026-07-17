@@ -38,8 +38,12 @@ Spanish, in Easy Reading format.
   no analytics.
 - **Offline-first PWA**: `manifest.json` + `sw.js` (cache-first of the app shell).
 - **Code style**: ES5-style JS in tools (`var`, classic functions,
-  IIFE with `'use strict'`); variable/function names in English or Spanish per
-  the existing file — follow the style of the file you're touching. Comments in Spanish.
+  IIFE with `'use strict'`); variable/function names and identifiers always in
+  English whenever a file is touched — code belongs to the technology domain.
+  Comments in English too. Exception: the UI text itself (`strings.es.js`,
+  `data.js` content such as words or sentences) stays in the language it
+  represents. Existing Spanish-named files (identifiers or comments) are
+  migrated when touched, not all at once.
 
 ---
 
@@ -62,7 +66,7 @@ apptonomia/
 │   ├── js/feedback.js     #   window.App.feedback
 │   ├── js/dinero.js       #   window.App.dinero (euro activities)
 │   └── img/               #   SVG pictograms and PWA icons
-├── tools/<slug>/          # Level 2: one folder per ACTIVITY (57 current)
+├── tools/<slug>/          # Level 2: one folder per ACTIVITY (64 current)
 │   ├── index.html         #   structure and asset loading
 │   ├── app.js             #   logic only
 │   ├── data.js            #   data only
@@ -71,6 +75,7 @@ apptonomia/
 │   └── styles.css         #   specific styles only (< 150 lines)
 ├── equipo/                # Hidden route: guide for the support team (§8)
 ├── ajustes/               # Hidden route: view/delete localStorage (§8.2)
+├── presentacion/          # Hidden route: public project presentation (§8.3)
 ├── manifest.json          # PWA
 ├── sw.js                  # Service worker: cache list + VERSION (§11)
 ├── firebase.json          # Hosting (deployment)
@@ -93,12 +98,21 @@ no code per module:
 
 | Module | Area | Color token | Activities |
 |---|---|---|---|
-| 🎯 Aiming and hands | Coordination and motor skills | `--mod-coordinacion` (blue) | atrapa, keyboard-typing, trazos, colorear, piano-teclas, constructores |
-| 📋 My daily routine | Autonomy and home | `--mod-secuencia` (green) | rutinas, la-casa, situaciones, chat-seguro, chat-acoso, lo-publico, senales, partes-del-dia, que-primero, que-necesito, donde-lo-guardo, lista-tareas, que-me-pongo, la-calle, emergencias, la-compra, la-tienda |
-| 🧠 Memory and attention | Memory and attention | `--mod-memoria` (orange) | parejas, diferencias, que-falta, ecos, giros-espejos, los-bloques, donde-esta, el-camino, encajar, el-teatro |
-| 🔢 Thinking and counting | Reasoning and math | `--mod-razonamiento` (teal) | adivinanzas, patrones, numeros, monedero, reloj, historias, que-no-encaja, puzzle, oca, tres-en-raya, sudoku-visual, domino, damas, ajedrez, cuatro-en-raya |
-| 💬 Language and words | Language and communication | `--mod-lenguaje` (raspberry) | comedy-club, dichos, categorias, la-frase, palabras, keyboard-typing |
-| 💜 Emotions | Emotions and relationships | `--mod-emocional` (purple) | emociones, calma, entre-amigos, mi-cuerpo-avisa |
+| 🎯 Aiming and hands | Coordination and motor skills | `--mod-coordinacion` (blue) | catch, keyboard-typing, tracing, coloring, piano-keys, builders |
+| 📋 My daily routine | Autonomy and home | `--mod-secuencia` (green) | routines, house, situations, safe-chat, bullying-chat, post-or-not, signs, times-of-day, what-first, what-do-i-need, where-to-store, task-list, what-to-wear, street, emergencies, phone-numbers, shopping, shop |
+| 🧠 Memory and attention | Memory and attention | `--mod-memoria` (orange) | pairs, differences, whats-missing, ecos, turns-mirrors, blocks, where-is, path, fit, theatre |
+| 🔢 Thinking and counting | Reasoning and math | `--mod-razonamiento` (teal) | riddles, patterns, numbers, quantities, roman-numerals, wallet, clock, stories, odd-one-out, puzzle, oca, tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
+| 💬 Language and words | Language and communication | `--mod-lenguaje` (raspberry) | comedy-club, idioms, double-meaning, categories, sentence, words, dictionary, spelling, word-search |
+| 💜 Emotions | Emotions and relationships | `--mod-emocional` (purple) | emotions, calm, friends, my-body |
+
+> **Multi-area note**: an activity may work on more than one therapeutic
+> area (for example, `keyboard-typing` works on coordination but also on
+> language and writing). In the landing it appears **once**, under its
+> **main module**: the one that best represents its primary goal. The
+> therapeutic modules exist for navigation; cross-area work is reflected
+> in the description of each activity in `equipo/index.html`. The global
+> catalog is rebuilt from the actual slugs in `tools/` (checked by
+> `scripts/check.js`).
 
 Each token has its soft pair: `--mod-<x>` and `--mod-<x>-suave` (backgrounds).
 The functional catalog is in [`activities.md`](activities.md), and therapeutic
@@ -394,7 +408,7 @@ site/strings.en.js    ← English only (registers in locale 'en')
 
 tools/pairs/strings.es.js    ← Spanish only
 tools/pairs/strings.en.js    ← English only
-... (same pattern for all 57 activities)
+... (same pattern for all 64 activities)
 ```
 
 Each file follows this pattern:
@@ -523,6 +537,26 @@ deletes):
 - **Reset entire application**: deletes all `apptonomia:*` keys
   (`App.storage.listaToolIds()` + `remove('locale')`). Equivalent to a first use.
 
+### 8.3 `/presentacion/`
+
+Public-facing presentation of the project. Single static page, Spanish only,
+no scripts. Aimed at journalists, funders, new contributors and anyone arriving
+from the repository or the site who wants to understand what Apptonomia is
+without opening the source code.
+
+Six sections: the project's origin, the six non-negotiable principles
+(autonomy, no pressure, privacy, Easy Reading, accessibility, sober
+technology), how the application is built (static PWA, no backend, single
+`localStorage`, MIT, only external assets are the fonts), the six
+therapeutic areas and the total of 63 activities, authorship, and five
+ways to help (testing, proposing, reviewing, contributing code, spreading
+the word). The footer links to the activity menu and to the team guide,
+but no public link points at it: it is only reached by typing the URL.
+
+Keep it up to date when modules are added or when the total activity
+count changes. Do not add text aimed at the end user here: that page is
+not for them.
+
 ---
 
 ## 9. Recipe: developing a new activity
@@ -626,7 +660,7 @@ node scripts/check.js
 node scripts/smoke.js
 ```
 
-Opens all 57 activities in Chromium (ES and EN) and verifies there are no console errors.
+Opens all 64 activities in Chromium (ES and EN) and verifies there are no console errors.
 
 ### 12.4 Cross-browser and cross-device test
 
