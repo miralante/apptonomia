@@ -1,0 +1,67 @@
+/* My Schedule — Autonomy and home module. */
+
+.tool-header h1 { color: var(--mod-secuencia); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-secuencia);
+}
+
+.btn-opcion:hover,
+.btn-opcion:focus-visible,
+.back-link:hover {
+  border-color: var(--mod-secuencia);
+}
+
+.centered-row { justify-content: center; }
+
+.instruction {
+  max-width: 620px;
+  font-size: var(--texto-base);
+}
+
+.level-button {
+  width: min(100%, 560px);
+  align-self: center;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.case-card {
+  margin-top: var(--espacio);
+  border-color: var(--mod-secuencia-suave);
+}
+
+.case-icon { font-size: 72px; }
+
+.case-text {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: var(--texto-grande);
+  font-weight: 700;
+}
+
+.question { color: var(--color-texto-suave); }
+
+.next-button {
+  align-self: center;
+  min-width: 220px;
+}
+
+.end-icon { font-size: 96px; }
+
+#endScreen {
+  padding-top: var(--espacio-grande);
+  align-items: center;
+}
+
+#endText {
+  max-width: 620px;
+  margin: 0;
+  font-size: var(--texto-grande);
+}
+
+@media (max-width: 420px) {
+  .case-card { padding: var(--espacio); }
+  .case-text { font-size: var(--texto-base); }
+  .centered-row { align-items: stretch; }
+}

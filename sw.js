@@ -1,9 +1,9 @@
 /* ============================================================
    Apptonomia — Service Worker
-   Estrategia cache-first del app shell (funciona offline).
-   Al añadir archivos nuevos: añadirlos a ARCHIVOS y subir VERSION.
+   Cache-first strategy for the app shell (works offline).
+   When adding new files: add them to ARCHIVOS and bump VERSION.
    ============================================================ */
-var VERSION = 'apptonomia-v68';
+var VERSION = 'apptonomia-v77';
 
 var ARCHIVOS = [
   './',
@@ -111,6 +111,12 @@ var ARCHIVOS = [
   './tools/idioms/strings.es.js',
   './tools/idioms/strings.en.js',
   './tools/idioms/styles.css',
+  './tools/double-meaning/index.html',
+  './tools/double-meaning/app.js',
+  './tools/double-meaning/data.js',
+  './tools/double-meaning/strings.es.js',
+  './tools/double-meaning/strings.en.js',
+  './tools/double-meaning/styles.css',
   './tools/differences/index.html',
   './tools/differences/app.js',
   './tools/differences/data.js',
@@ -165,6 +171,12 @@ var ARCHIVOS = [
   './tools/emergencies/strings.es.js',
   './tools/emergencies/strings.en.js',
   './tools/emergencies/styles.css',
+  './tools/phone-numbers/index.html',
+  './tools/phone-numbers/app.js',
+  './tools/phone-numbers/data.js',
+  './tools/phone-numbers/strings.es.js',
+  './tools/phone-numbers/strings.en.js',
+  './tools/phone-numbers/styles.css',
   './tools/fit/index.html',
   './tools/fit/app.js',
   './tools/fit/data.js',
@@ -231,12 +243,24 @@ var ARCHIVOS = [
   './tools/task-list/strings.es.js',
   './tools/task-list/strings.en.js',
   './tools/task-list/styles.css',
+  './tools/my-agenda/index.html',
+  './tools/my-agenda/app.js',
+  './tools/my-agenda/data.js',
+  './tools/my-agenda/strings.es.js',
+  './tools/my-agenda/strings.en.js',
+  './tools/my-agenda/styles.css',
   './tools/post-or-not/index.html',
   './tools/post-or-not/app.js',
   './tools/post-or-not/data.js',
   './tools/post-or-not/strings.es.js',
   './tools/post-or-not/strings.en.js',
   './tools/post-or-not/styles.css',
+  './tools/social-safety/index.html',
+  './tools/social-safety/app.js',
+  './tools/social-safety/data.js',
+  './tools/social-safety/strings.es.js',
+  './tools/social-safety/strings.en.js',
+  './tools/social-safety/styles.css',
   './tools/blocks/index.html',
   './tools/blocks/app.js',
   './tools/blocks/data.js',
@@ -261,6 +285,18 @@ var ARCHIVOS = [
   './tools/numbers/strings.es.js',
   './tools/numbers/strings.en.js',
   './tools/numbers/styles.css',
+  './tools/quantities/index.html',
+  './tools/quantities/app.js',
+  './tools/quantities/data.js',
+  './tools/quantities/strings.es.js',
+  './tools/quantities/strings.en.js',
+  './tools/quantities/styles.css',
+  './tools/roman-numerals/index.html',
+  './tools/roman-numerals/app.js',
+  './tools/roman-numerals/data.js',
+  './tools/roman-numerals/strings.es.js',
+  './tools/roman-numerals/strings.en.js',
+  './tools/roman-numerals/styles.css',
   './tools/oca/index.html',
   './tools/oca/app.js',
   './tools/oca/data.js',
@@ -273,6 +309,24 @@ var ARCHIVOS = [
   './tools/words/strings.es.js',
   './tools/words/strings.en.js',
   './tools/words/styles.css',
+  './tools/dictionary/index.html',
+  './tools/dictionary/app.js',
+  './tools/dictionary/data.js',
+  './tools/dictionary/strings.es.js',
+  './tools/dictionary/strings.en.js',
+  './tools/dictionary/styles.css',
+  './tools/spelling/index.html',
+  './tools/spelling/app.js',
+  './tools/spelling/data.js',
+  './tools/spelling/strings.es.js',
+  './tools/spelling/strings.en.js',
+  './tools/spelling/styles.css',
+  './tools/word-search/index.html',
+  './tools/word-search/app.js',
+  './tools/word-search/data.js',
+  './tools/word-search/strings.es.js',
+  './tools/word-search/strings.en.js',
+  './tools/word-search/styles.css',
   './tools/pairs/index.html',
   './tools/pairs/app.js',
   './tools/pairs/data.js',
@@ -380,7 +434,7 @@ var ARCHIVOS = [
 self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open(VERSION).then(function (cache) {
-      /* cache: 'reload' evita guardar copias viejas desde la caché HTTP del navegador */
+      /* cache: 'reload' avoids storing stale copies from the browser's HTTP cache */
       var peticiones = ARCHIVOS.map(function (a) {
         return new Request(a, { cache: 'reload' });
       });
@@ -410,7 +464,7 @@ self.addEventListener('fetch', function (event) {
     caches.match(event.request).then(function (respuesta) {
       if (respuesta) return respuesta;
       return fetch(event.request).then(function (r) {
-        /* Cachear también recursos nuevos del mismo origen y fuentes */
+        /* Also cache new same-origin resources and fonts */
         var copia = r.clone();
         caches.open(VERSION).then(function (cache) {
           cache.put(event.request, copia);

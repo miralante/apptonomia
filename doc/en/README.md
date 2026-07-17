@@ -8,16 +8,10 @@
 
 Apptonomia is a digital tool designed for people with intellectual disability to practice daily living skills **independently**, without needing a professional by their side at all times.
 
-The app offers **57 activities** organized into **6 thematic areas**:
-
-| Module | What it works on | Examples |
-|--------|-----------------|----------|
-| 🎯 **Coordination and motor skills** | Precise hand and finger movements | Catch objects, Piano, Tracing |
-| 📋 **Autonomy and home** | Independent living at home and in the community | Routines, Cooking, Emergencies |
-| 🧠 **Memory and attention** | Remembering and focusing | Pairs, Differences, Patterns |
-| 🔢 **Thinking and counting** | Reasoning and mathematics | Riddles, Clock, Dominoes |
-| 💬 **Language and words** | Communication and vocabulary | Jokes, Sayings, Categories |
-| 💜 **Emotions** | Recognizing and managing emotions | How do I feel?, Calm |
+The app offers **66 activities** organized into **6 modules**. See the full
+table of modules and their therapeutic goals in [`SPEC.md`](SPEC.md) §2.1,
+and the complete activity-by-activity catalog in
+[`activities.md`](activities.md).
 
 ---
 
@@ -35,12 +29,6 @@ The app offers **57 activities** organized into **6 thematic areas**:
 - **Large text**: clear readable font (Atkinson Hyperlegible)
 - **High contrast**: light colors on white background
 - **Audio available**: every important text can be heard with a 🔊 button
-
-### ✅ Works offline
-
-- **Offline**: can be used without connection once installed
-- **No personal data**: no registration, email or password required
-- **Free**: no payment needed
 
 ### ✅ In two languages
 
@@ -62,14 +50,6 @@ On the main screen you'll see 6 modules. Tap the module you're interested in and
 ### 3. Change language
 
 Tap the language button (🇪🇸 or 🇬🇧) at the top of the screen.
-
-### 4. Install on device (optional)
-
-If you want the app on your phone or tablet like a regular app:
-
-1. Open the app in the browser
-2. Look for "Install" or "Add to Home Screen" option
-3. Confirm the installation
 
 ---
 
@@ -118,7 +98,7 @@ If you get it right, a brief celebration appears. If not, you'll receive an enco
 ## More information
 
 - [Quick guide](quick-guide.md) — Step by step explanation
-- [Activity catalog](activities.md) — Complete list of all 57 activities
+- [Activity catalog](activities.md) — Complete list of all 66 activities
 - [Guide for professionals](team.md) — How to use Apptonomia in therapy
 - [Technical information](technical.md) — For developers
 

@@ -1,6 +1,6 @@
 # Activity catalog
 
-Apptonomia has **57 activities** organized into **6 modules** according to the type of skill they work on.
+Apptonomia has **66 activities** organized into **6 modules** according to the type of skill they work on.
 
 ---
 
@@ -35,15 +35,18 @@ Apptonomia has **57 activities** organized into **6 modules** according to the t
 | **Safe Chat** | Practice how to respond if someone manipulates you online |
 | **Bullying Chat** | Recognize bullying situations among peers and how to act |
 | **What to Post?** | Decide what is safe to post on social media |
+| **Social media, intimacy and law** | Practise handling sexual manipulation, intimate images, pornography, threats and legal consequences |
 | **Signs** | Recognize danger, bathroom, prohibited, exit signs... |
 | **Parts of the Day** | Classify activities by morning, afternoon or night |
 | **What do I do first?** | Learn to prioritize: if several things happen, what to do first |
 | **What do I need?** | Choose what tools are needed before a task |
 | **Where do I put it?** | Learn where things are stored at home |
 | **Task List** | Put daily tasks in the correct order |
+| **My Schedule** | Prepare for an appointment or task: order, materials and timing |
 | **What do I wear?** | Choose appropriate clothing based on the weather |
 | **The Street** | Crossing the street, public transport, what to do if you get lost |
 | **Emergencies** | Recognize real emergencies and practice calling 112 |
+| **Important Phone Numbers** | Learn that 112 is the number for police, firefighters and medical emergencies |
 | **Shopping** | Learn supermarket sections and the shopping list |
 | **The Store** | Use real money in shopping: pay, receive change, manage expenses |
 
@@ -105,6 +108,8 @@ Apptonomia has **57 activities** organized into **6 modules** according to the t
 | Activity | Description |
 |----------|-------------|
 | **Numbers** | Counting, place value, fractions, decimals, operations |
+| **Quantities** | Practise little and much, increasing and decreasing, rounding, and finding the middle number with a slider |
+| **Roman Numerals** | Read Roman numerals and recognize which century you're in |
 
 ---
 
@@ -118,10 +123,13 @@ Apptonomia has **57 activities** organized into **6 modules** according to the t
 |----------|-------------|
 | **Jokes** | Read jokes and understand why they're funny |
 | **Sayings** | Learn figurative expressions and their meaning |
+| **Double Meaning** | Detect whether a word in the phrase can mean one thing or two |
 | **Categories** | Classify words into groups (animals, fruits...) |
 | **The Sentence** | Complete sentences by saying who, what or where |
 | **Words** | Learn thematic vocabulary (colors, animals, professions...) |
-| **Keyboard** | Type words and phrases on the computer |
+| **Dictionary** | Learn hard words with a simple meaning and an example |
+| **Complete the Word** | Choose the missing letter to spell the word correctly |
+| **Word Search** | Find themed words hidden on a letter board, with levels and painted-letter hints |
 
 ---
 
@@ -145,13 +153,13 @@ Apptonomia has **57 activities** organized into **6 modules** according to the t
 | Module | Nº activities | Color |
 |--------|---------------|-------|
 | 🎯 Coordination and motor skills | 6 | Blue |
-| 📋 Autonomy and home | 17 | Green |
+| 📋 Autonomy and home | 20 | Green |
 | 🧠 Memory and attention | 10 | Orange |
-| 🔢 Thinking and counting | 15 | Teal |
-| 💬 Language and words | 6 | Raspberry |
+| 🔢 Thinking and counting | 17 | Teal |
+| 💬 Language and words | 9 | Raspberry |
 | 💜 Emotions | 4 | Purple |
 
-**Total: 57 activities**
+**Total: 66 activities**
 
 ---
 
@@ -173,6 +181,7 @@ Apptonomia has **57 activities** organized into **6 modules** according to the t
 - Patterns
 - The House
 - The Clock
+- My Schedule
 - Safe Chat
 - Calm
 - The Purse
@@ -211,16 +220,16 @@ Apptonomia includes several classic board games adapted:
 → **Module 1**: Catch, Tracing, Coloring, Piano, Builders
 
 ### If you want to be more independent at home
-→ **Module 2**: Routines, The House, Emergencies, Shopping, The Store
+→ **Module 2**: Routines, The House, My Schedule, Emergencies, Important Phone Numbers, Shopping, The Store
 
 ### If you want to improve memory
 → **Module 3**: Pairs, What's missing?, Echoes, The Blocks
 
 ### If you want to practice mathematics
-→ **Module 4**: The Purse, The Clock, Numbers, The Goose
+→ **Module 4**: The Purse, The Clock, Numbers, Quantities, Roman Numerals, The Goose
 
 ### If you want to learn more words
-→ **Module 5**: Categories, Words, Sayings, Jokes
+→ **Module 5**: Categories, Words, Dictionary, Complete the Word, Word Search, Sayings, Double Meaning, Jokes
 
 ### If you want to better understand emotions
 → **Module 6**: How do I feel?, Calm, Among Friends, My Body Tells Me

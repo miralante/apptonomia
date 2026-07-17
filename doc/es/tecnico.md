@@ -65,7 +65,7 @@ apptonomia/
 │   ├── js/feedback.js     #   window.App.feedback
 │   ├── js/dinero.js       #   window.App.dinero (actividades de euros)
 │   └── img/               #   pictogramas SVG e iconos PWA
-├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (64 actuales)
+├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (66 actuales)
 │   ├── index.html         #   estructura y carga de assets
 │   ├── app.js             #   solo lógica
 │   ├── data.js            #   solo datos
@@ -98,7 +98,7 @@ no hay código por módulo:
 | Módulo | Área | Token de color | Actividades |
 |---|---|---|---|
 | 🎯 Puntería y manos | Coordinación y motricidad | `--mod-coordinacion` (azul) | catch, keyboard-typing, tracing, coloring, piano-keys, builders |
-| 📋 Mi día a día | Autonomía y hogar | `--mod-secuencia` (verde) | routines, house, situations, safe-chat, bullying-chat, post-or-not, signs, times-of-day, what-first, what-do-i-need, where-to-store, task-list, what-to-wear, street, emergencies, phone-numbers, shopping, shop |
+| 📋 Mi día a día | Autonomía y hogar | `--mod-secuencia` (verde) | routines, house, situations, safe-chat, bullying-chat, post-or-not, social-safety, signs, times-of-day, what-first, what-do-i-need, where-to-store, task-list, my-agenda, what-to-wear, street, emergencies, phone-numbers, shopping, shop |
 | 🧠 Memoria y atención | Memoria y atención | `--mod-memoria` (naranja) | pairs, differences, whats-missing, ecos, turns-mirrors, blocks, where-is, path, fit, theatre |
 | 🔢 Pensar y contar | Razonamiento y matemáticas | `--mod-razonamiento` (teal) | riddles, patterns, numbers, quantities, roman-numerals, wallet, clock, stories, odd-one-out, puzzle, oca, tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
 | 💬 Lenguaje y palabras | Lenguaje y comunicación | `--mod-lenguaje` (frambuesa) | comedy-club, idioms, double-meaning, categories, sentence, words, dictionary, spelling, word-search |
@@ -409,7 +409,7 @@ site/strings.en.js    ← solo inglés (registra en locale 'en')
 
 tools/pairs/strings.es.js    ← solo español
 tools/pairs/strings.en.js    ← solo inglés
-... (mismo patrón para todas las 64 actividades)
+... (mismo patrón para todas las 66 actividades)
 ```
 
 Cada archivo sigue este patrón:
@@ -551,7 +551,7 @@ Tiene seis secciones: el origen del proyecto, los seis principios que no se
 negocian (autonomía, sin presión, privacidad, Lectura Fácil, accesibilidad,
 tecnología sobria), cómo está hecha la aplicación (PWA estática, sin backend,
 `localStorage` único, MIT, sólo fuentes externas), las seis áreas terapéuticas
-con el total de 63 actividades, autoría y cinco formas de colaborar (probar,
+con el total de 66 actividades, autoría y cinco formas de colaborar (probar,
 proponer, revisar, contribuir código, difundir). El pie enlaza al menú de
 actividades y a la guía del equipo de apoyo, pero ningún enlace público apunta
 a ella: solo se llega escribiendo la URL.
@@ -666,7 +666,7 @@ node scripts/check.js
 node scripts/smoke.js
 ```
 
-Abre las 64 actividades en Chromium (ES y EN) y verifica que no hay errores de consola.
+Abre las 66 actividades en Chromium (ES y EN) y verifica que no hay errores de consola.
 
 ### 12.4 Test cross-browser y cross-device
 

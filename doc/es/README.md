@@ -8,16 +8,10 @@
 
 Apptonomia es una herramienta digital pensada para que personas con discapacidad intelectual puedan practicar habilidades de la vida diaria de forma **autónoma**, sin necesidad de que un profesional esté a su lado en todo momento.
 
-La aplicación ofrece **57 actividades** organizadas en **6 áreas temáticas**:
-
-| Módulo | ¿Qué trabaja? | Ejemplos |
-|--------|----------------|----------|
-| 🎯 **Coordinación y motricidad** | Movimientos precisos con manos y dedos | Atrapa objetos, Piano, Trazos |
-| 📋 **Autonomía y hogar** | Vida independiente en casa y comunidad | Rutinas, Cocinar, Emergencias |
-| 🧠 **Memoria y atención** | Recordar y concentrarse | Parejas, Diferencias, Patrones |
-| 🔢 **Pensar y contar** | Razonamiento y matemáticas | Adivinanzas, Reloj, Dominó |
-| 💬 **Lenguaje y palabras** | Comunicación y vocabulario | Chistes, Dichos, Categorías |
-| 💜 **Emociones** | Reconocer y gestionar emociones | ¿Cómo me siento?, Calma |
+La aplicación ofrece **66 actividades** organizadas en **6 módulos**. Ver la
+tabla completa de módulos y sus objetivos terapéuticos en
+[`SPEC.md`](SPEC.md) §2.1, y el catálogo completo actividad por actividad en
+[`actividades.md`](actividades.md).
 
 ---
 
@@ -35,12 +29,6 @@ La aplicación ofrece **57 actividades** organizadas en **6 áreas temáticas**:
 - **Texto grande**: letra clara y legible (Atkinson Hyperlegible)
 - **Alto contraste**: colores claros sobre fondo blanco
 - **Audio disponible**: cada texto importante se puede escuchar con un botón 🔊
-
-### ✅ Funciona sin internet
-
-- **Offline**: se puede usar sin conexión una vez instalada
-- **Sin datos personales**: no pide registro, correo ni contraseña
-- **Gratis**: no hay que pagar nada
 
 ### ✅ En dos idiomas
 
@@ -62,14 +50,6 @@ En la pantalla principal verás 6 módulos. Toca el módulo que te interese y de
 ### 3. Cambiar el idioma
 
 Toca el botón del idioma (🇪🇸 o 🇬🇧) en la parte superior de la pantalla.
-
-### 4. Instalar en el dispositivo (opcional)
-
-Si quieres tener la aplicación en tu teléfono o tablet como una app:
-
-1. Abre la aplicación en el navegador
-2. Busca la opción "Instalar" o "Añadir a pantalla de inicio"
-3. Confirma la instalación
 
 ---
 
@@ -118,7 +98,7 @@ Si aciertas, aparecerá una celebración breve. Si no, recibirá un mensaje de �
 ## Más información
 
 - [Guía rápida de uso](guia-rapida.md) — Explicación paso a paso
-- [Catálogo de actividades](actividades.md) — Lista completa de las 57 actividades
+- [Catálogo de actividades](actividades.md) — Lista completa de las 66 actividades
 - [Guía para profesionales](equipo.md) — Cómo usar Apptonomia en terapia
 - [Información técnica](tecnico.md) — Para desarrolladores
 

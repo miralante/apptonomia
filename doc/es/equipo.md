@@ -53,6 +53,7 @@ Antes de usar la aplicación, observa al usuario con estas preguntas:
 | **Patrones** | Lógica y secuenciación |
 | **La Casa** | Secuenciación de tareas domésticas |
 | **El Reloj** | Gestión del tiempo |
+| **Mi agenda** | Planificación temporal y anticipación |
 | **Chat Seguro** | Seguridad en internet |
 
 #### Para usuarios avanzados
@@ -81,7 +82,7 @@ Cada actividad tiene **3 niveles** (Fácil → Medio → Difícil). Para elegir:
 Si el nivel 1 sigue siendo difícil, puedes:
 
 - Reducir el número de elementos (ej: menos cartas en Parejas)
--增加 apoyo físico para guiar el movimiento
+- Aumentar el apoyo físico para guiar el movimiento
 - Usar la actividad como demostración antes de pedir autonomía
 
 ---
@@ -162,9 +163,11 @@ Algunas actividades tratan temas delicados:
 | Actividad | Tema | Recomendación |
 |-----------|------|---------------|
 | **Emergencias** | 112, situaciones de peligro | Revisar primero, acompañar si es necesario |
+| **Teléfonos Importantes** | 112, situaciones de peligro | Revisar primero, acompañar si es necesario |
 | **Chat Seguro** | Manipulación online | Adecuado para mayores de edad o con supervisión |
 | **Chat Acoso** | Acoso entre iguales | Siempre con supervisión profesional |
 | **¿Lo público?** | Redes sociales | Adecuado para mayores de edad o con supervisión |
+| **Redes, intimidad y ley** | Manipulación sexual, intimidad digital y consecuencias legales | Siempre con supervisión profesional o familiar |
 
 ---
 
@@ -179,30 +182,34 @@ actividad está en [`actividades.md`](actividades.md).
 | Montar piezas y puzles | ✔ | Puzzle |
 | Patrones y series | ✔ | Patrones |
 | Deducción e inferencia | ✔ | Adivinanzas |
-| Ordenación y priorización | ✔ | Historias, La Casa, ¿Qué hago primero? |
+| Ordenación y priorización | ✔ | Historias, La Casa, ¿Qué hago primero?, Mi agenda |
 | Coherencia temática | ✔ | ¿Qué no encaja? |
 | Codificación y decodificación | ✔ | Patrones (nivel 4) |
 | Atención | ✔ | Diferencias, ¿Qué falta? |
 | Espacio, tiempo y orientación espacial | ✔ | El Reloj, Historias, Puzzle |
 | Memoria visual y a corto plazo | ✔ | Parejas, ¿Qué falta? |
 | Memoria auditiva y verbal | ✔ | Ecos |
-| Vocabulario y categorías | ✔ | Categorías, Palabras |
+| Vocabulario y categorías | ✔ | Categorías, Palabras, Sopa de Letras |
+| Vocabulario avanzado y aprendizaje significativo | ✔ | Diccionario |
+| Ortografía | ✔ | Completa la Palabra |
 | Comprensión del lenguaje | ✔ | La Frase |
 | Frases hechas, refranes y chistes | ✔ | Dichos, Chistes |
+| Ambigüedad léxica y comprensión del contexto | ✔ | Doble Sentido |
 | Ortografía y escritura | ✔ | Teclado, Trazos |
 | Sentimientos y conflictos sociales | ✔ | ¿Cómo me siento?, Situaciones, Entre Amigos |
-| Seguridad en internet | ✔ | Chat Seguro, Chat Acoso, ¿Lo público? |
+| Seguridad en internet | ✔ | Chat Seguro, Chat Acoso, ¿Lo público?, Redes, intimidad y ley |
 | Operaciones matemáticas y dinero | ✔ | El Monedero, Números |
-| Tiempo y horas | ✔ | El Reloj |
+| Lectura de números romanos y siglos | ✔ | Números Romanos |
+| Tiempo y horas | ✔ | El Reloj, Mi agenda |
 | Musicalidad y ritmo | ✔ | Ecos, Piano |
-| Aseo, tareas y organización del hogar | ✔ | Mis Rutinas, La Casa, Emergencias |
+| Aseo, tareas y organización del hogar | ✔ | Mis Rutinas, La Casa, Mi agenda, Emergencias |
 | Creatividad, dibujo y color | ✔ | Colorear, Trazos |
 | Percepción global y de detalles | ✔ | Diferencias |
 | Respiración y conciencia interior | ✔ | ¿Cómo me siento?, Calma, Mi Cuerpo Me Avisa |
 | Coordinación ojo-mano y motricidad fina | ✔ | Atrapa, Teclado, Trazos |
 | Juegos de mesa | ✔ | La Oca, Tres en Raya, Dominó, Las Damas, El Ajedrez, Cuatro en Raya |
 | Movilidad comunitaria | ✔ | La Calle |
-| Autonomía en salud | ✔ | Emergencias, Mi Cuerpo Me Avisa |
+| Autonomía en salud | ✔ | Emergencias, Teléfonos Importantes, Mi Cuerpo Me Avisa |
 | Compra y dinero en contexto real | ✔ | La Compra, La Tienda, El Monedero |
 
 Las capacidades que el producto no pretende cubrir y sus motivos se definen en
@@ -217,8 +224,10 @@ Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 → **Módulo 2: Autonomía y hogar**
 - Mis Rutinas
 - La Casa
+- Mi agenda
 - La Tienda
 - Emergencias
+- Teléfonos Importantes
 - La Compra
 - ¿Dónde lo guardo?
 - Partes del Día
@@ -263,8 +272,8 @@ Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 ### La actividad es demasiado fácil
 
 1. Sube al siguiente nivel
-2. Cronometra para motivar (opcional)
-3. Introduce una actividad nueva
+2. Introduce una actividad nueva
+3. Deja que decida cuándo repetir o cambiar de actividad
 
 ### No funciona el audio
 
@@ -277,7 +286,7 @@ Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 ## Más información
 
 - [Guía rápida de uso](guia-rapida.md) — Explicación para usuarios
-- [Catálogo de actividades](actividades.md) — Descripción de las 57 actividades
+- [Catálogo de actividades](actividades.md) — Descripción de las 66 actividades
 - [Información técnica](tecnico.md) — Para desarrolladores
 - [Página del equipo](../../equipo/index.html) — Versión web interactiva
 

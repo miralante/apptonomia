@@ -53,6 +53,7 @@ Before using the application, observe the user with these questions:
 | **Patterns** | Logic and sequencing |
 | **The House** | Household task sequencing |
 | **The Clock** | Time management |
+| **My Schedule** | Time planning and anticipation |
 | **Safe Chat** | Internet safety |
 
 #### For advanced users
@@ -162,9 +163,11 @@ Some activities deal with sensitive topics:
 | Activity | Topic | Recommendation |
 |----------|-------|---------------|
 | **Emergencies** | 112, dangerous situations | Review first, accompany if necessary |
+| **Important Phone Numbers** | 112, dangerous situations | Review first, accompany if necessary |
 | **Safe Chat** | Online manipulation | Suitable for adults or with supervision |
 | **Bullying Chat** | Peer bullying | Always with professional supervision |
 | **What to Post?** | Social media | Suitable for adults or with supervision |
+| **Social media, intimacy and law** | Sexual manipulation, digital intimacy and legal consequences | Always with professional or family supervision |
 
 ---
 
@@ -179,30 +182,34 @@ identify gaps and choose an activity for a support goal. See
 | Assembling pieces and puzzles | ✔ | Puzzle |
 | Patterns and sequences | ✔ | Patterns |
 | Deduction and inference | ✔ | Riddles |
-| Ordering and prioritization | ✔ | Stories, The House, What do I do first? |
+| Ordering and prioritization | ✔ | Stories, The House, What do I do first?, My Schedule |
 | Thematic coherence | ✔ | What doesn't fit? |
 | Encoding and decoding | ✔ | Patterns (level 4) |
 | Attention | ✔ | Differences, What's missing? |
 | Space, time and spatial orientation | ✔ | The Clock, Stories, Puzzle |
 | Visual and short-term memory | ✔ | Pairs, What's missing? |
 | Auditory and verbal memory | ✔ | Echoes |
-| Vocabulary and categories | ✔ | Categories, Words |
+| Vocabulary and categories | ✔ | Categories, Words, Word Search |
+| Advanced vocabulary and meaningful learning | ✔ | Dictionary |
+| Spelling | ✔ | Complete the Word |
 | Language comprehension | ✔ | The Sentence |
 | Idioms, sayings and jokes | ✔ | Sayings, Jokes |
+| Lexical ambiguity and context comprehension | ✔ | Double Meaning |
 | Spelling and writing | ✔ | Keyboard, Tracing |
 | Feelings and social conflicts | ✔ | How do I feel?, Situations, Among Friends |
-| Internet safety | ✔ | Safe Chat, Bullying Chat, What to Post? |
+| Internet safety | ✔ | Safe Chat, Bullying Chat, What to Post?, Social media, intimacy and law |
 | Mathematical operations and money | ✔ | The Purse, Numbers |
-| Time and clock reading | ✔ | The Clock |
+| Reading Roman numerals and centuries | ✔ | Roman Numerals |
+| Time and clock reading | ✔ | The Clock, My Schedule |
 | Musicality and rhythm | ✔ | Echoes, Piano |
-| Personal care, household tasks and organization | ✔ | My Routines, The House, Emergencies |
+| Personal care, household tasks and organization | ✔ | My Routines, The House, My Schedule, Emergencies |
 | Creativity, drawing and coloring | ✔ | Coloring, Tracing |
 | Global and detailed perception | ✔ | Differences |
 | Breathing and body awareness | ✔ | How do I feel?, Calm, My Body Tells Me |
 | Eye-hand coordination and fine motor skills | ✔ | Catch, Keyboard, Tracing |
 | Board games | ✔ | The Goose, Tic Tac Toe, Dominoes, Checkers, Chess, Connect 4 |
 | Community mobility | ✔ | The Street |
-| Health autonomy | ✔ | Emergencies, My Body Tells Me |
+| Health autonomy | ✔ | Emergencies, Important Phone Numbers, My Body Tells Me |
 | Shopping and money in real contexts | ✔ | Shopping, The Store, The Purse |
 
 Capabilities the product does not intend to cover, and the reasons why, are
@@ -217,8 +224,10 @@ defined in [`SPEC.md`](SPEC.md) §6.
 → **Module 2: Autonomy and home**
 - My Routines
 - The House
+- My Schedule
 - The Store
 - Emergencies
+- Important Phone Numbers
 - Shopping
 - Where do I put it?
 - Parts of the Day
@@ -263,8 +272,8 @@ defined in [`SPEC.md`](SPEC.md) §6.
 ### The activity is too easy
 
 1. Move to the next level
-2. Time for motivation (optional)
-3. Introduce a new activity
+2. Introduce a new activity
+3. Let them decide when to repeat or switch activities
 
 ### Audio doesn't work
 
@@ -277,7 +286,7 @@ defined in [`SPEC.md`](SPEC.md) §6.
 ## More information
 
 - [Quick guide](quick-guide.md) — Explanation for users
-- [Activity catalog](activities.md) — Description of all 57 activities
+- [Activity catalog](activities.md) — Description of all 66 activities
 - [Technical information](technical.md) — For developers
 - [Team page](../../equipo/index.html) — Interactive web version
 

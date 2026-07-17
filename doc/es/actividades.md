@@ -1,12 +1,12 @@
 # Catálogo de actividades
 
-Apptonomia tiene **57 actividades** organizadas en **6 módulos** según el tipo de habilidad que trabajan.
+Apptonomia tiene **66 actividades** organizadas en **6 módulos** según el tipo de habilidad que trabajan.
 
 ---
 
-## Módulo 1: 🎯 Coordinación y motricidad
+## Módulo 1: 🎯 Puntería y manos
 
-**Color del módulo:** Azul
+**Área:** Coordinación y motricidad · **Color del módulo:** Azul
 
 **¿Qué trabaja?** Movimientos precisos con las manos, coordinación ojo-mano, motricidad fina.
 
@@ -21,9 +21,9 @@ Apptonomia tiene **57 actividades** organizadas en **6 módulos** según el tipo
 
 ---
 
-## Módulo 2: 📋 Autonomía y hogar
+## Módulo 2: 📋 Mi día a día
 
-**Color del módulo:** Verde
+**Área:** Autonomía y hogar · **Color del módulo:** Verde
 
 **¿Qué trabaja?** Habilidades para vivir de forma independiente en casa y en la comunidad.
 
@@ -35,15 +35,18 @@ Apptonomia tiene **57 actividades** organizadas en **6 módulos** según el tipo
 | **Chat Seguro** | Practica cómo responder si alguien te manipula por internet |
 | **Chat Acoso** | Reconoce situaciones de acoso entre compañeros y cómo actuar |
 | **¿Lo público?** | Decide qué es seguro publicar en redes sociales |
+| **Redes, intimidad y ley** | Practica ante manipulación sexual, imágenes íntimas, pornografía, amenazas y consecuencias legales |
 | **Señales** | Reconoce señales de peligro, baño, prohibido, salidas... |
 | **Partes del Día** | Clasifica actividades según sean de mañana, tarde o noche |
 | **¿Qué hago primero?** | Aprende a priorizar: si pasan varias cosas, qué hacer antes |
 | **¿Qué necesito?** | Elige qué útiles hacer falta preparar antes de una tarea |
 | **¿Dónde lo guardo?** | Aprende dónde se guardan las cosas en casa |
 | **Lista de Tareas** | Ordena tareas del día en el orden correcto |
+| **Mi agenda** | Prepara una cita o tarea: orden, materiales y momento adecuado |
 | **¿Qué me pongo?** | Elige la ropa adecuada según el tiempo que hace |
 | **La Calle** | Cruzar la calle, transporte público, qué hacer si te pierdes |
 | **Emergencias** | Reconoce emergencias reales y practica llamar al 112 |
+| **Teléfonos Importantes** | Aprende que el 112 sirve para policía, bomberos y emergencia médica |
 | **La Compra** | Aprende las secciones del supermercado y la lista de la compra |
 | **La Tienda** | Usa dinero real en una compra: pagar, recibir cambio, controlar gastos |
 
@@ -105,6 +108,8 @@ Apptonomia tiene **57 actividades** organizadas en **6 módulos** según el tipo
 | Actividad | Descripción |
 |-----------|-------------|
 | **Números** | Contar, valor de las cifras, fracciones, decimales, operaciones |
+| **Cantidades** | Practica poco y mucho, subir y bajar, aproximar y encontrar el número de en medio con una barra |
+| **Números Romanos** | Lee números romanos y reconoce en qué siglo estás |
 
 ---
 
@@ -118,10 +123,13 @@ Apptonomia tiene **57 actividades** organizadas en **6 módulos** según el tipo
 |-----------|-------------|
 | **Chistes** | Lee chistes y entiende por qué dan risa |
 | **Dichos** | Aprende expresiones figuradas y su significado |
+| **Doble Sentido** | Detecta si una palabra de la frase puede significar una cosa o dos |
 | **Categorías** | Clasifica palabras en grupos (animales, frutas...) |
 | **La Frase** | Completa frases diciendo quién, qué o dónde |
 | **Palabras** | Aprende vocabulario temático (colores, animales, profesiones...) |
-| **Teclado** | Escribe palabras y frases en el ordenador |
+| **Diccionario** | Aprende palabras difíciles con un significado sencillo y un ejemplo |
+| **Completa la Palabra** | Elige la letra que falta para escribir bien la palabra |
+| **Sopa de Letras** | Busca palabras temáticas escondidas en un tablero, con niveles y pistas que pintan letras |
 
 ---
 
@@ -144,14 +152,14 @@ Apptonomia tiene **57 actividades** organizadas en **6 módulos** según el tipo
 
 | Módulo | Nº actividades | Color |
 |--------|----------------|-------|
-| 🎯 Coordinación y motricidad | 6 | Azul |
-| 📋 Autonomía y hogar | 17 | Verde |
+| 🎯 Puntería y manos | 6 | Azul |
+| 📋 Mi día a día | 20 | Verde |
 | 🧠 Memoria y atención | 10 | Naranja |
-| 🔢 Pensar y contar | 15 | Teal |
-| 💬 Lenguaje y palabras | 6 | Frambuesa |
+| 🔢 Pensar y contar | 17 | Teal |
+| 💬 Lenguaje y palabras | 9 | Frambuesa |
 | 💜 Emociones | 4 | Morado |
 
-**Total: 57 actividades**
+**Total: 66 actividades**
 
 ---
 
@@ -173,6 +181,7 @@ Apptonomia tiene **57 actividades** organizadas en **6 módulos** según el tipo
 - Patrones
 - La Casa
 - El Reloj
+- Mi agenda
 - Chat Seguro
 - Calma
 - El Monedero
@@ -211,16 +220,16 @@ Apptonomia incluye varios juegos de mesa clásicos adaptados:
 → **Módulo 1**: Atrapa, Trazos, Colorear, Piano, Constructores
 
 ### Si quieres ser más independiente en casa
-→ **Módulo 2**: Rutinas, La Casa, Emergencias, La Compra, La Tienda
+→ **Módulo 2**: Rutinas, La Casa, Mi agenda, Emergencias, Teléfonos Importantes, La Compra, La Tienda
 
 ### Si quieres mejorar la memoria
 → **Módulo 3**: Parejas, ¿Qué falta?, Ecos, Los Bloques
 
 ### Si quieres practicar matemáticas
-→ **Módulo 4**: El Monedero, El Reloj, Números, La Oca
+→ **Módulo 4**: El Monedero, El Reloj, Números, Cantidades, Números Romanos, La Oca
 
 ### Si quieres aprender más palabras
-→ **Módulo 5**: Categorías, Palabras, Dichos, Chistes
+→ **Módulo 5**: Categorías, Palabras, Diccionario, Completa la Palabra, Sopa de Letras, Dichos, Doble Sentido, Chistes
 
 ### Si quieres entender mejor las emociones
 → **Módulo 6**: ¿Cómo me siento?, Calma, Entre Amigos, Mi Cuerpo Me Avisa
