@@ -163,7 +163,7 @@
     resumenFinal.textContent = App.i18n.t('resumenFinal')
       .replace('{n}', aciertosRonda)
       .replace('{total}', progreso.estrellas);
-    App.feedback.celebrar(App.i18n.t('rondaCompletadaTitulo'));
+    App.feedback.celebrate(App.i18n.t('rondaCompletadaTitulo'));
   }
 
   /* Events */

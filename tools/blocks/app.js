@@ -216,7 +216,7 @@
     pintarEstrellas();
     pintarProgreso();
     botonesCelda.forEach(function (b) { b.disabled = true; });
-    App.feedback.celebrar(App.i18n.t('construccionCompletada'));
+    App.feedback.celebrate(App.i18n.t('construccionCompletada'));
     btnSiguiente.classList.remove('oculto');
     btnSiguiente.focus();
   }
@@ -237,7 +237,7 @@
     pantallaFinal.classList.remove('oculto');
     $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
       .replace('{n}', aciertosRonda).replace('{total}', progreso.estrellas);
-    App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
+    App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }
 
   /* Events */

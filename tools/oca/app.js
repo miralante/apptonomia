@@ -158,7 +158,7 @@
     pantallaFinal.classList.remove('oculto');
     $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
       .replace('{total}', progreso.estrellas);
-    App.feedback.celebrar(App.i18n.t('meta'));
+    App.feedback.celebrate(App.i18n.t('meta'));
   }
 
   /* Events */

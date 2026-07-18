@@ -397,7 +397,7 @@
     var cfg = game.cfg;
     game = null;
     premiar(cfg.claveEstrella);
-    App.feedback.celebrar(mensajeFinal(), cfg.alTerminar);
+    App.feedback.celebrate(mensajeFinal(), cfg.alTerminar);
   }
 
   /* ---------- Modos de juego ---------- */
@@ -489,7 +489,7 @@
     if (total > 0 && hechas === total) {
       game = null;
       premiar('todas');
-      App.feedback.celebrar(mensajeFinal(), irMenu);
+      App.feedback.celebrate(mensajeFinal(), irMenu);
     }
   }
 

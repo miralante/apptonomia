@@ -524,7 +524,7 @@
       .replace('{n}', aciertos)
       .replace('{t}', datos().porRonda);
     mostrar('pantallaFinal');
-    App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
+    App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }
 
   /* ============================================================

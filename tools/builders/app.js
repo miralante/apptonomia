@@ -414,7 +414,7 @@
     pantallaJuego.classList.add('oculto');
     pantallaFinal.classList.remove('oculto');
 
-    App.feedback.celebrar(App.i18n.t('finalTitulo'));
+    App.feedback.celebrate(App.i18n.t('finalTitulo'));
   }
 
   function crearVistaMinatura() {

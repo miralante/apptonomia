@@ -20,7 +20,7 @@
 
     <div class="fila">
       <p class="instruccion" id="instruccion" data-i18n="instruccion">Lee el chiste. Después elige por qué es gracioso.</p>
-      <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.listenInstrucciones" aria-label="Escuchar las instrucciones">🔊</button>
+      <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.listenInstructions" aria-label="Escuchar las instrucciones">🔊</button>
     </div>
 
     <div class="progress-bar">
@@ -31,14 +31,14 @@
     <main id="pantallaJuego" class="pila">
       <div class="card centrado pila">
         <p class="texto-principal" id="textoPregunta" data-i18n="core.loading">Cargando…</p>
-        <button type="button" class="btn btn-audio" id="btnEscuchar" data-i18n-aria="core.listenTexto" aria-label="Escuchar el texto"><span data-i18n="core.listen">🔊 Escuchar</span></button>
+        <button type="button" class="btn btn-audio" id="btnEscuchar" data-i18n-aria="core.listenText" aria-label="Escuchar el texto"><span data-i18n="core.listen">🔊 Escuchar</span></button>
       </div>
       <h2 class="pregunta centrado" data-i18n="pregunta">¿Por qué es gracioso?</h2>
       <div class="pila" id="opciones"></div>
       <div class="feedback" id="feedback" aria-live="polite"></div>
       <div class="fila explicacion oculto" id="explicacionWrap">
         <p id="explicacion" aria-live="polite"></p>
-        <button type="button" class="btn btn-audio" id="btnEscucharExplicacion" data-i18n-aria="core.listenTexto" aria-label="Escuchar el texto">🔊</button>
+        <button type="button" class="btn btn-audio" id="btnEscucharExplicacion" data-i18n-aria="core.listenText" aria-label="Escuchar el texto">🔊</button>
       </div>
       <button type="button" class="btn oculto" id="btnSiguiente" data-i18n="core.next">Siguiente →</button>
     </main>
@@ -48,7 +48,7 @@
       <h2 data-i18n="core.roundComplete">¡Ronda completada!</h2>
       <p id="resumenFinal"></p>
       <button type="button" class="btn" id="btnRepetir" data-i18n="core.playAgain">Jugar otra vez</button>
-      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backAlMenu">Volver al menú</a>
+      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backToMenu">Volver al menú</a>
     </section>
   </div>
 

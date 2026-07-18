@@ -94,7 +94,7 @@
     $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
       .replace('{n}', progreso.estrellas)
       .replace('{palabra}', palabra);
-    App.feedback.celebrar(App.i18n.t('celebrarMsg'));
+    App.feedback.celebrate(App.i18n.t('celebrarMsg'));
   }
 
   function terminarAntes() {

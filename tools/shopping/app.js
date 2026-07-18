@@ -203,7 +203,7 @@
     pantallaFinal.classList.remove('oculto');
     $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
       .replace('{n}', aciertosS).replace('{total}', progreso.estrellas);
-    App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
+    App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }
 
   /* ================= Actividad 2: mi lista de la compra ================= */
@@ -383,7 +383,7 @@
     pantallaFinal.classList.remove('oculto');
     $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
       .replace('{n}', aciertosL).replace('{total}', progreso.estrellas);
-    App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
+    App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }
 
   /* ---- Eventos ---- */

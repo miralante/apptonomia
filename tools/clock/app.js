@@ -280,7 +280,7 @@
     $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
       .replace('{n}', aciertosRonda)
       .replace('{estrellas}', progreso.estrellas);
-    App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
+    App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }
 
   /* Events */

@@ -302,7 +302,7 @@
     pintarEstrellas();
     $('#resumenFinal').textContent = App.i18n.t('resumenPiezas').replace('{n}', resueltos);
     mostrar('pantallaFinal');
-    App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
+    App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }
 
   /* Puzzle hint: 1st tap asks; 2nd marks the square that picks up a
@@ -599,7 +599,7 @@
       progreso.victorias[nivelPartida.id] = (progreso.victorias[nivelPartida.id] || 0) + 1;
       guardar();
       pintarEstrellas();
-      App.feedback.celebrar(App.i18n.t(clave));
+      App.feedback.celebrate(App.i18n.t(clave));
     } else if (tipo === 'cerradoEmpate') {
       App.feedback.success(feedbackPartidaEl);
       App.tts.speak(App.i18n.t(clave));

@@ -876,7 +876,7 @@
       .replace('{n}', aciertosRonda)
       .replace('{actividad}', App.i18n.t('actividad.' + actividad.id + '.nombre'))
       .replace('{estrellas}', progreso.estrellas);
-    App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
+    App.feedback.celebrate(App.i18n.t('core.roundComplete'));
 
     var idxNivel = actividad.niveles.indexOf(nivel);
     var siguienteNivel = (aciertosRonda === DATA.porRonda && idxNivel !== -1 && idxNivel + 1 < actividad.niveles.length)

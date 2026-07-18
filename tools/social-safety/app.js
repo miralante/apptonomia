@@ -111,7 +111,7 @@
     paintStars();
     $('#endText').textContent = App.i18n.t('endText');
     showScreen('endScreen');
-    App.feedback.celebrar(App.i18n.t('roundComplete'));
+    App.feedback.celebrate(App.i18n.t('roundComplete'));
   }
 
   $('#instructionAudio').addEventListener('click', function () { App.tts.speak($('#instruction').textContent); });

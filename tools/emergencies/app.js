@@ -174,7 +174,7 @@
     pantallaFinal.classList.remove('oculto');
     $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
       .replace('{n}', aciertosR).replace('{total}', progreso.estrellas);
-    App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
+    App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }
 
   /* ================= Actividad 2: practica la llamada ================= */
@@ -287,7 +287,7 @@
     pantallaFinal.classList.remove('oculto');
     $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
       .replace('{n}', aciertosL).replace('{total}', progreso.estrellas);
-    App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
+    App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }
 
   /* ---- Eventos ---- */

@@ -215,7 +215,7 @@
     }
     $('#reglaTexto').textContent = esc.regla;
     $('#reglaFinal').classList.remove('oculto');
-    App.feedback.celebrar(App.i18n.t('chatSuperado'));
+    App.feedback.celebrate(App.i18n.t('chatSuperado'));
   }
 
   /* ---------- Eventos ---------- */

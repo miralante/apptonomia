@@ -298,7 +298,7 @@
       progreso.victorias[nivel.id] = (progreso.victorias[nivel.id] || 0) + 1;
       guardar();
       pintarEstrellas();
-      App.feedback.celebrar(App.i18n.t('hasGanado'));
+      App.feedback.celebrate(App.i18n.t('hasGanado'));
     } else if (resultado === 'empate') {
       estadoEl.textContent = App.i18n.t('empate');
       App.feedback.success(feedbackEl);

@@ -356,7 +356,7 @@
       progreso.estrellas += 1;
       progreso.victorias[nivel.id] = (progreso.victorias[nivel.id] || 0) + 1;
       guardar();
-      App.feedback.celebrar(t(clave));
+      App.feedback.celebrate(t(clave));
     } else if (tipo === 'cerradoEmpate') {
       App.feedback.success(feedbackEl);
       App.tts.speak(t(clave));

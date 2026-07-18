@@ -376,7 +376,7 @@
       progreso.victorias[nivel.id] = (progreso.victorias[nivel.id] || 0) + 1;
       guardar();
       pintarEstrellas();
-      App.feedback.celebrar(App.i18n.t(clave));
+      App.feedback.celebrate(App.i18n.t(clave));
     } else if (tipo === 'cerradoEmpate') {
       estadoEl.textContent = App.i18n.t(clave);
       App.feedback.success(feedbackEl);

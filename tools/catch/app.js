@@ -111,7 +111,7 @@
     pantallaFinal.classList.remove('oculto');
     resumenFinal.textContent =
       'Has atrapado ' + DATA.toquesPorRonda + ' dibujos. ¡Muy bien!';
-    App.feedback.celebrar('¡Ronda completada!');
+    App.feedback.celebrate('¡Ronda completada!');
   }
 
   /* Events */
