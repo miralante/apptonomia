@@ -298,7 +298,7 @@
       "numbers": {
         "name": 'Los Números',
         "does": 'Cuenta, lee números grandes, suma, resta, multiplica y mide, con cifras coloreadas por posición.',
-        "works": 'Numeración, valor posicional, fracciones, decimales, cálculo mental, medidas.',
+        "works": 'Numeración, valor posicional (con canjes de 10 y la escalera del ×10 hasta el billón), fracciones, decimales, cálculo mental, medidas.',
         "daily": 'Dejad que cuente y pague cosas reales usando números grandes.'
       },
       "quantities": {

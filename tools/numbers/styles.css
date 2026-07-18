@@ -106,6 +106,16 @@
   border-radius: 8px; font-weight: 700; font-size: 12px; color: var(--mod-secuencia);
 }
 .bloque-1 { width: 26px; height: 26px; border-radius: 50%; background: var(--mod-coordinacion-suave); border: 3px solid var(--mod-coordinacion); }
+.bloque-1000 {
+  min-width: 76px; height: 60px; padding: 0 6px; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--mod-razonamiento-suave); border: 3px solid var(--mod-razonamiento);
+  border-radius: 8px; font-weight: 800; color: var(--mod-razonamiento);
+}
+/* Ten small blocks framed together: ready to trade for 1 big one. */
+.canje-grupo {
+  display: inline-flex; flex-wrap: wrap; gap: 4px; align-items: flex-end; justify-content: center;
+  max-width: 200px; padding: 8px; border: 3px dashed var(--mod-razonamiento); border-radius: var(--radio);
+}
 
 /* Fractions */
 .frac { display: inline-flex; flex-direction: column; align-items: center; font-weight: 800; font-size: 28px; line-height: 1.2; }

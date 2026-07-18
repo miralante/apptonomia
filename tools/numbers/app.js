@@ -287,6 +287,74 @@
       };
     },
 
+    /* Place-value exchange: 10 of one kind become 1 of the next
+       (units→tens, tens→hundreds, hundreds→thousands). Even questions
+       group small blocks into framed tens; odd questions go the other
+       way (how many small ones make these big blocks?). */
+    canje: function (nv, i) {
+      var bloques = [
+        '<span class="bloque-1"></span>',
+        '<span class="bloque-10">10</span>',
+        '<span class="bloque-100">100</span>',
+        '<span class="bloque-1000">1' + separadorMiles() + '000</span>'
+      ];
+      var pista = App.i18n.t('gen.canjePista' + nv.lugar);
+      if (i % 2 === 0) {
+        /* Big blocks get large fast: fewer groups for bigger places. */
+        var k = ri(2, [5, 4, 3][nv.lugar]);
+        var n = k * 10;
+        var enunciado = App.i18n.t('gen.canjeDirecto' + nv.lugar).replace('{n}', n);
+        return {
+          enunciado: enunciado,
+          hablar: enunciado + ' ' + pista,
+          visual: '<div class="bloques">' +
+            repetir('<span class="canje-grupo">' + repetir(bloques[nv.lugar], 10) + '</span>', k) +
+            '</div><p class="pista">' + pista + '</p>',
+          visualAria: App.i18n.t('gen.canjeAriaDirecto').replace('{k}', k),
+          leyenda: leyendaPos(),
+          opciones: construirOpciones(k, [n, k + 1, k - 1],
+            function (v) { return numero(v); })
+        };
+      }
+      var kInv = ri(2, 9);
+      var enunciadoInv = App.i18n.t('gen.canjeInverso' + nv.lugar).replace('{k}', kInv);
+      return {
+        enunciado: enunciadoInv,
+        hablar: enunciadoInv + ' ' + pista,
+        visual: '<div class="bloques"><span class="bloques-grupo">' +
+          repetir(bloques[nv.lugar + 1], kInv) +
+          '</span></div><p class="pista">' + pista + '</p>',
+        visualAria: App.i18n.t('gen.canjeAriaInverso').replace('{k}', kInv),
+        leyenda: leyendaPos(),
+        opciones: construirOpciones(kInv * 10, [kInv, kInv * 10 + 10, (kInv - 1) * 10],
+          function (v) { return numero(v); })
+      };
+    },
+
+    /* ×10 ladder: multiplying a power of ten by 10 moves every digit
+       one place left, up to 10^12 (un billón / one trillion). The
+       exponent range gives exactly 6 rungs per level, so a round
+       walks the whole ladder without repeats. */
+    escalera: function (nv) {
+      var exponentes = [];
+      for (var e = nv.minExp; e <= nv.maxExp; e++) exponentes.push(e);
+      var exp = sacar('esc' + nv.id, exponentes);
+      var n = Math.pow(10, exp);
+      var correcto = n * 10;
+      return {
+        enunciado: App.i18n.t('gen.escaleraEnunciado'),
+        hablar: App.i18n.t('gen.escaleraHablar')
+          .replace('{palabras}', DATA.potencias[App.i18n.locale()][exp]),
+        visual: '<div class="expresion">' + numero(10) + signo('×') +
+          numero(n, { etiquetas: true }) + signo('=') +
+          '<span class="caja-num hueco">?</span></div>' +
+          '<p class="pista">' + App.i18n.t('gen.escaleraPista') + '</p>',
+        leyenda: leyendaPos(),
+        opciones: construirOpciones(correcto, [n, correcto * 10],
+          function (v) { return numero(v); })
+      };
+    },
+
     dictado: function (nv) {
       var n = ri(11, nv.max);
       var candidatos = App.utils.shuffle(

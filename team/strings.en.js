@@ -298,7 +298,7 @@
       "numbers": {
         "name": 'Numbers',
         "does": 'Counts, reads large numbers, adds, subtracts, multiplies and measures, with digits colored by place value.',
-        "works": 'Numeracy, place value, fractions, decimals, mental math, measurement.',
+        "works": 'Numeracy, place value (with trades of 10 and the ×10 ladder up to one trillion), fractions, decimals, mental math, measurement.',
         "daily": 'Let them count and pay for real things using large numbers.'
       },
       "quantities": {

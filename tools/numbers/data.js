@@ -28,7 +28,7 @@ var DATA = {
   porRonda: 6,
 
   grupos: [
-    { id: 'numeros', ids: ['contar', 'unidades', 'fracciones', 'decimales'] },
+    { id: 'numeros', ids: ['contar', 'unidades', 'placevalue', 'fracciones', 'decimales'] },
     { id: 'calcular', ids: ['sumar', 'restar', 'multiplicar', 'cabeza', 'llega', 'cambio', 'medidas'] }
   ],
 
@@ -58,6 +58,22 @@ var DATA = {
         { id: 'udictado', tipo: 'dictado', max: 999 },
         { id: 'umiles', tipo: 'lectura', lista: 'miles' },
         { id: 'umillones', tipo: 'lectura', lista: 'millones' }
+      ]
+    },
+
+    placevalue: {
+      /* Place-value exchange ("10 of these make 1 of those") and the
+         ×10 ladder up to 10^12. Progression (rule 13): pv1→pv2→pv3
+         only change 'lugar' (which exchange). pv3→pv4 changes 'tipo'
+         (exchange → ladder). pv4→pv5 only changes the exponent range
+         (up to a million → up to a trillion / billón). */
+      picto: '🔁',
+      niveles: [
+        { id: 'pv1', tipo: 'canje', lugar: 0 },
+        { id: 'pv2', tipo: 'canje', lugar: 1 },
+        { id: 'pv3', tipo: 'canje', lugar: 2 },
+        { id: 'pv4', tipo: 'escalera', minExp: 0, maxExp: 5 },
+        { id: 'pv5', tipo: 'escalera', minExp: 6, maxExp: 11 }
       ]
     },
 
@@ -229,6 +245,20 @@ var DATA = {
         { n: 1000000000000, palabras: 'one trillion', nota: 'One trillion is a thousand billions.' }
       ]
     }
+  },
+
+  /* Words for the powers of ten (index = exponent, 0..12), used by the
+     'escalera' (×10 ladder) generator to speak the numbers aloud.
+     Note the scale change between languages (I18N.md §2): 10^9 is
+     "mil millones" (es) but "one billion" (en); 10^12 is "un billón"
+     (es) but "one trillion" (en). */
+  potencias: {
+    es: ['uno', 'diez', 'cien', 'mil', 'diez mil', 'cien mil', 'un millón',
+      'diez millones', 'cien millones', 'mil millones', 'diez mil millones',
+      'cien mil millones', 'un billón'],
+    en: ['one', 'ten', 'one hundred', 'one thousand', 'ten thousand',
+      'one hundred thousand', 'one million', 'ten million', 'one hundred million',
+      'one billion', 'ten billion', 'one hundred billion', 'one trillion']
   },
 
   /* Metric system equivalences, per language.
