@@ -13,22 +13,10 @@ navegador, sin coste y sin datos personales.
 
 ## 👥 Roles en el proyecto
 
-Apptonomia tiene **tres roles claramente diferenciados**. Cada uno tiene un
-espacio propio:
-
-| Rol | Quién es | Cómo participa | Dónde mira primero |
-|---|---|---|---|
-| 👤 **Persona usuaria** (con discapacidad intelectual) | La persona que practica las actividades | Usa la aplicación de forma autónoma. **No participa** en el desarrollo. | La aplicación |
-| ❤️ **Apoyo**: familia, cuidador/a, terapeuta, profesor/a | Persona cercana a la persona usuaria | Acompaña, supervisa y aporta contenido (qué actividades faltan, si el wording es claro, si la dificultad es adecuada). | [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) · [`doc/es/equipo.md`](doc/es/equipo.md) |
-| 💻 **Construcción**: desarrollador/a | Persona que programa la aplicación | Implementa el código, mantiene la arquitectura, revisa PRs, despliega. | [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) · [`doc/es/tecnico.md`](doc/es/tecnico.md) |
-
-> 💡 **Importante**: la **persona usuaria final** es siempre una persona con
-> discapacidad intelectual, y **su voz es central** en el proyecto. Las decisiones
-> de producto, contenido, lenguaje y diseño de la interfaz se piensan siempre
-> desde su experiencia y se prueban con ellas antes de publicar. Lo que sí
-> queda fuera de su participación son las decisiones puramente técnicas (GitHub,
-> arquitectura del código, infraestructura) — no porque se las ignore, sino
-> porque es el ámbito propio de las personas de apoyo y desarrolladoras.
+Apptonomia tiene tres roles claramente diferenciados — persona usuaria, apoyo
+y construcción — cada uno con su propio espacio y su propio punto de
+entrada. Ver [`doc/es/roles.md`](doc/es/roles.md) para quién es cada uno,
+cómo participa, y dónde debe mirar primero.
 
 ---
 
@@ -38,7 +26,7 @@ Toda la documentación del proyecto está en la carpeta `doc/`:
 
 | Idioma | Punto de entrada |
 |---|---|
-| 🇪🇸 Español (este archivo) | [`doc/index.md`](doc/index.md) |
+| 🇪🇸 Español (este archivo) | [`doc/es/indice.md`](doc/es/indice.md) |
 | 🇬🇧 English | [`doc/en/index.md`](doc/en/index.md) |
 
 Según tu rol y perfil, te interesa una u otra documentación:
@@ -57,7 +45,7 @@ Según tu rol y perfil, te interesa una u otra documentación:
 | [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) | Familias, terapeutas y desarrolladores que quieran contribuir |
 | `CLAUDE.md` | Agentes IA: reglas obligatorias y estado del proyecto |
 | Historial del proyecto | En `git log`; no se mantiene una hoja de ruta externa |
-| `doc/I18N.md` / `doc/en/I18N.md` | Detalles del sistema multiidioma ES/EN |
+| `doc/es/I18N.md` / `doc/en/I18N.md` | Detalles del sistema multiidioma ES/EN |
 
 ---
 

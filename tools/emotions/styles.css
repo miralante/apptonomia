@@ -1,4 +1,4 @@
-/* ¿Cómo me siento? — estilos específicos. Lo común está en assets/css/. */
+/* How Do I Feel? — tool-specific styles. Shared styles live in assets/css/. */
 
 .tool-header h1 { color: var(--mod-emocional); }
 
@@ -10,7 +10,7 @@
 
 body { transition: background 0.5s ease; }
 
-/* Rejilla de 6 emociones (botones muy grandes, mín. 120 px) */
+/* Grid of 6 emotions (very large buttons, min. 120 px) */
 .rejilla-emociones {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -47,7 +47,7 @@ body { transition: background 0.5s ease; }
 
 #pantallaRespuesta .btn { align-self: center; min-width: 280px; }
 
-/* Respiración: círculo que crece y decrece (4 s por fase) */
+/* Breathing: circle that grows and shrinks (4 s per phase) */
 #circuloRespiracion {
   width: 120px;
   height: 120px;

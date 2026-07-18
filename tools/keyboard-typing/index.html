@@ -49,7 +49,7 @@
       </div>
     </section>
 
-    <!-- Pantalla: menú de juegos -->
+    <!-- Screen: game menu -->
     <section id="pantallaMenu" class="oculto pila">
       <div class="fila centrado-fila">
         <h2 id="saludo" data-i18n="saludoHola">¡Hola!</h2>
@@ -109,7 +109,7 @@
       <div class="grid-lecciones" id="listaLecciones"></div>
     </section>
 
-    <!-- Pantalla: juego (posición, lecciones, palabras, reto y números) -->
+    <!-- Screen: game (position, lessons, words, challenge and numbers) -->
     <section id="pantallaJuego" class="oculto pila">
       <div class="fila">
         <button type="button" class="btn btn-secundario" id="btnSalirJuego" data-i18n="btnMenu">← Menú</button>
@@ -180,7 +180,7 @@
   <script src="../../assets/js/storage.js"></script>
   <script src="../../assets/js/feedback.js"></script>
   <script>
-  /* Carga condicional del archivo de idioma activo (es|en). */
+  /* Conditional load of the active language file (es|en). */
   (function () {
     var loc = window.App.i18n.locale();
     document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');

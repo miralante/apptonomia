@@ -1,27 +1,27 @@
 #!/usr/bin/env node
 /* ============================================================
    Apptonomia — scripts/cross-browser.js
-   Test funcional cross-browser y cross-device: lanza cada actividad
-   en Chromium (Chrome), Firefox y WebKit (Safari), en escritorio y en
-   dos dispositivos móviles emulados (iPhone 12 y Pixel 5). Verifica:
+   Cross-browser and cross-device functional test: launches every
+   activity in Chromium (Chrome), Firefox and WebKit (Safari), on
+   desktop and on two emulated mobile devices (iPhone 12 and Pixel 5).
+   Checks:
 
-   - Sin errores de consola ni de página
-   - Cambio de idioma ES → EN funciona
-   - Los botones principales son visibles y ≥ 64×64 px (regla 2 de
-     accesibilidad)
-   - El botón de audio (🔊) existe en la actividad
-   - El botón "Volver" lleva a la landing
-   - En móvil: cabe en 360 px sin scroll horizontal
+   - No console or page errors
+   - Language switch ES → EN works
+   - Main buttons are visible and ≥ 64×64 px (accessibility rule 2)
+   - The audio button (🔊) exists in the activity
+   - The "Back" button leads to the landing page
+   - On mobile: fits in 360 px with no horizontal scroll
 
-   Complementa a scripts/smoke.js (que prueba solo Chromium en ES/EN
-   de escritorio) y a scripts/check.js (estático).
+   Complements scripts/smoke.js (which only tests Chromium in ES/EN
+   on desktop) and scripts/check.js (static).
 
-   Uso:
+   Usage:
      node scripts/cross-browser.js [slug1 slug2 ...]
-   Sin argumentos, prueba las 57 actividades. Con argumentos, solo
-   esos slugs (útil para depurar uno solo).
+   With no arguments, tests all 57 activities. With arguments, only
+   those slugs (useful to debug a single one).
 
-   Requiere playwright y los navegadores:
+   Requires playwright and the browsers:
      npm install
      npx playwright install chromium firefox webkit
    ============================================================ */
@@ -35,8 +35,8 @@ var RAIZ = path.join(__dirname, '..');
 var PUERTO = 5185;
 var TIMEOUT_NAV = 15000;
 var ESPERA_ASENTAR = 350;
-var BOTON_MIN = 64;          // regla 2 de accesibilidad (tecnico.md §5)
-var ANCHO_MIN_MOVIL = 360;   // ancho mínimo responsive
+var BOTON_MIN = 64;          // accessibility rule 2 (tecnico.md §5)
+var ANCHO_MIN_MOVIL = 360;   // minimum responsive width
 
 var MIME = {
     '.html':  'text/html; charset=utf-8',
@@ -49,7 +49,7 @@ var MIME = {
     '.webmanifest': 'application/manifest+json'
 };
 
-/* ---- Servidor estático mínimo (sin dependencias) ---- */
+/* ---- Minimal static server (no dependencies) ---- */
 function crearServidor() {
     return http.createServer(function (req, res) {
         var urlPath = decodeURIComponent(req.url.split('?')[0]);
@@ -83,14 +83,14 @@ function listarSlugs() {
         .sort();
 }
 
-/* ---- Combinaciones navegador × dispositivo × idioma ----
-   Se eligen así:
-   - Navegadores: Chromium (Chrome/Edge), Firefox, WebKit (Safari)
-     → cubre los tres motores reales que usa la gente en escritorio y móvil.
-   - Dispositivos: escritorio (viewport 1280×800) + dos móviles emulados
-     (iPhone 12 y Pixel 5) → cubre la regla de responsive a 360 px.
-   - Idiomas: solo "es" por defecto (los smoke.js ya prueban ES+EN desktop).
-     Puedes pasar `--lang en` para probar en inglés también.
+/* ---- Browser × device × language combinations ----
+   Chosen this way:
+   - Browsers: Chromium (Chrome/Edge), Firefox, WebKit (Safari)
+     → covers the three real engines people use on desktop and mobile.
+   - Devices: desktop (1280×800 viewport) + two emulated mobiles
+     (iPhone 12 and Pixel 5) → covers the 360 px responsive rule.
+   - Languages: only "es" by default (smoke.js already tests ES+EN desktop).
+     Pass `--lang en` to also test in English.
 */
 function combinacionesDefecto() {
     var dispositivos = [
@@ -206,19 +206,19 @@ function probarUnaCombinacion(playwright, slug, combo) {
         }
 
         function verificarAccesibilidad() {
-            // Botón de volver a la landing
+            // Back-to-landing button
             return page.locator('a[href*="site/index.html"]').first()
                 .isVisible({ timeout: 500 }).catch(function () { return false; })
                 .then(function (hayVolver) {
                     var f1 = errorSiNoCumple(hayVolver, 'no se ve el botón "Volver" al menú');
                     if (f1) anotar(f1);
-                    // Botón de audio (.btn-audio)
+                    // Audio button (.btn-audio)
                     return page.locator('.btn-audio').first()
                         .isVisible({ timeout: 500 }).catch(function () { return false; });
                 })
                 .then(function (hayAudio) {
                     if (!hayAudio) anotar('no se ve el botón de audio (.btn-audio)');
-                    // Botones ≥ BOTON_MIN
+                    // Buttons ≥ BOTON_MIN
                     return page.locator('.btn').all();
                 })
                 .then(function (botones) {
@@ -247,7 +247,7 @@ function probarUnaCombinacion(playwright, slug, combo) {
 
         function verificarResponsive() {
             if (!combo.dispositivo.preset) return Promise.resolve();
-            // Comprobar que la página no se desborda horizontalmente
+            // Check that the page doesn't overflow horizontally
             return page.evaluate(function () {
                 return {
                     anchoDoc: Math.max(
@@ -265,12 +265,12 @@ function probarUnaCombinacion(playwright, slug, combo) {
         }
 
         function probarIdioma() {
-            // Solo si la combinación es ES, probamos el cambio a EN
+            // Only test the switch to EN if the combination is ES
             if (combo.locale !== 'es') return Promise.resolve();
             return page.locator('button[data-locale="en"], a[data-locale="en"]').first()
                 .isVisible({ timeout: 500 }).catch(function () { return false; })
                 .then(function (haySelector) {
-                    if (!haySelector) return; // selector puede no estar en la actividad
+                    if (!haySelector) return; // selector might not be in the activity
                     return page.locator('button[data-locale="en"], a[data-locale="en"]').first()
                         .click({ timeout: 800 }).catch(function () { return null; })
                         .then(function () { return page.waitForTimeout(ESPERA_ASENTAR); })

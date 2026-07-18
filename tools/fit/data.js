@@ -23,12 +23,12 @@
   'use strict';
 
   var PIEZAS = {
-    /* dominó: 2 celdas */
+    /* domino: 2 cells */
     domino: [
       [[0, 0], [1, 0]],
       [[0, 0], [0, 1]]
     ],
-    /* triminós: 3 celdas */
+    /* trominoes: 3 cells */
     triI: [
       [[0, 0], [1, 0], [2, 0]],
       [[0, 0], [0, 1], [0, 2]]
@@ -39,7 +39,7 @@
       [[0, 0], [1, 0], [1, 1]],
       [[1, 0], [0, 1], [1, 1]]
     ],
-    /* tetrominós: 4 celdas */
+    /* tetrominoes: 4 cells */
     cuadrado: [
       [[0, 0], [1, 0], [0, 1], [1, 1]]
     ],

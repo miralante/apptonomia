@@ -26,12 +26,12 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
 
-  /* Estado de la ronda */
+  /* Round state */
   var nivel = null;
   var formas = [];
   var idx = 0;
@@ -95,7 +95,7 @@
     pintarEstrellas();
   }
 
-  /* ---- Dibujo con puntero (ratón, dedo o lápiz) ---- */
+  /* ---- Drawing with pointer (mouse, finger, or pen) ---- */
   function coordenadas(evt) {
     var rect = lienzo.getBoundingClientRect();
     var x = ((evt.clientX - rect.left) / rect.width) * 100;
@@ -130,7 +130,7 @@
     dibujando = false;
   }
 
-  /* ---- Comprobación de cobertura ---- */
+  /* ---- Coverage check ---- */
   function puntosFinos(puntos, pasos) {
     var finos = [];
     for (var i = 0; i < puntos.length - 1; i++) {
@@ -208,7 +208,7 @@
     App.feedback.celebrar(App.i18n.t('finalTitulo'));
   }
 
-  /* Eventos */
+  /* Events */
   lienzo.addEventListener('pointerdown', iniciarTrazo);
   lienzo.addEventListener('pointermove', continuarTrazo);
   lienzo.addEventListener('pointerup', terminarTrazo);

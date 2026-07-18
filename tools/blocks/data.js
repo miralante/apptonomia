@@ -1,23 +1,23 @@
 /* ============================================================
-   Datos: Los Bloques (memoria/atención — construcción viso-espacial
-   tipo tetris/bloques: copiar un modelo en una cuadrícula).
-   Formato: DATA.es / DATA.en, cada uno con:
-   { porRonda, colores: { R, B, Y } (nombre hablado de cada color),
+   Data: Blocks (memory/attention — visual-spatial construction,
+   tetris/blocks style: copy a model onto a grid).
+   Format: DATA.es / DATA.en, each with:
+   { porRonda, colores: { R, B, Y } (spoken name of each color),
      niveles: [{ id, nombre, descripcion, modelos: string[] }] }
-   Cada modelo es un string de 16 caracteres (cuadrícula 4×4, fila a
-   fila): '.' = casilla vacía, 'R' = rojo, 'B' = azul, 'Y' = amarillo.
-   Progresión (regla 13, un solo cambio por nivel): la única variable
-   es el número de bloques de color del modelo (4 → 6 → 8). La
-   cuadrícula (4×4) y la paleta (3 colores) no cambian nunca.
-   Los modelos son iguales en ambos idiomas; solo se traducen los
-   textos. app.js usa DATA[App.i18n.locale()] || DATA.es.
-   Para ampliar: añadir strings de 16 caracteres con el número de
-   bloques exacto del nivel.
+   Each model is a 16-character string (4×4 grid, row by row):
+   '.' = empty cell, 'R' = red, 'B' = blue, 'Y' = yellow.
+   Progression (rule 13, one change per level): the only variable is
+   the number of colored blocks in the model (4 → 6 → 8). The grid
+   (4×4) and the palette (3 colors) never change.
+   Models are the same in both languages; only the texts are
+   translated. app.js uses DATA[App.i18n.locale()] || DATA.es.
+   To extend: add 16-character strings with the level's exact
+   number of blocks.
    ============================================================ */
 (function () {
   'use strict';
 
-  /* 4 bloques */
+  /* 4 blocks */
   var MODELOS_1 = [
     'RRRR............',
     'B...B...B...B...',
@@ -27,7 +27,7 @@
     'Y..Y........Y..Y'
   ];
 
-  /* 6 bloques */
+  /* 6 blocks */
   var MODELOS_2 = [
     'R...R...R...RRR.',
     'BBBB.B...B......',
@@ -37,7 +37,7 @@
     '.Y..YYY..Y...Y..'
   ];
 
-  /* 8 bloques */
+  /* 8 blocks */
   var MODELOS_3 = [
     'RRRRRRRR........',
     'BBBBB..BB..B....',

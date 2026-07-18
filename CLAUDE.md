@@ -1,19 +1,22 @@
 # CLAUDE.md — Flujo para agentes IA
 
-> Este archivo contiene **solo instrucciones operativas para agentes IA**.
-> No es una especificación del producto, una referencia técnica, un catálogo ni
-> un registro del estado del proyecto.
+## Idioma del proyecto
+
+- **Interfaz de usuario**: multilingüe. Idiomas activos por defecto: **español (`es`)** e **inglés (`en`)**, con `es` como idioma por defecto y fallback cuando una clave falta o el idioma detectado no está soportado.
+- **Código técnico**: **siempre en inglés** — variables, funciones, identificadores, comentarios y mensajes de commit. Los textos de UI van en `strings.<locale>.js`, pero las **claves** de esos diccionarios son código y van en inglés.
+- Fuente canónica de la política completa (núcleo `App.i18n`, formato de números/horas, selector de la landing, receta para añadir un idioma): [`doc/es/I18N.md`](doc/es/I18N.md) · [`doc/en/I18N.md`](doc/en/I18N.md) y [`doc/es/tecnico.md`](doc/es/tecnico.md) §1.
 
 ## 1. Fuentes canónicas
 
-Cada tema se mantiene en un único documento. Antes de actuar, identifica la
+Antes de actuar, identifica la
 materia del cambio y lee su fuente canónica:
 
 | Tema | Fuente canónica |
 |---|---|
 | Qué es el producto, para quién y principios no negociables | [`doc/es/SPEC.md`](doc/es/SPEC.md) · [`doc/en/SPEC.md`](doc/en/SPEC.md) |
+| Roles del proyecto (persona usuaria, apoyo, construcción) y quién mira cada documento primero | [`doc/es/roles.md`](doc/es/roles.md) · [`doc/en/roles.md`](doc/en/roles.md) |
 | Arquitectura, estructura, anatomía, APIs, contratos, pruebas y despliegue | [`doc/es/tecnico.md`](doc/es/tecnico.md) · [`doc/en/technical.md`](doc/en/technical.md) |
-| Internacionalización | [`doc/I18N.md`](doc/I18N.md) · [`doc/en/I18N.md`](doc/en/I18N.md) |
+| Internacionalización | [`doc/es/I18N.md`](doc/es/I18N.md) · [`doc/en/I18N.md`](doc/en/I18N.md) |
 | Catálogo de actividades | [`doc/es/actividades.md`](doc/es/actividades.md) · [`doc/en/activities.md`](doc/en/activities.md) |
 | Cobertura y orientación terapéutica | [`doc/es/equipo.md`](doc/es/equipo.md) · [`doc/en/team.md`](doc/en/team.md) |
 | Roadmap y decisiones de producto cerradas | Sigue en Git: cada PR deja su mensaje y la sesión actual puede usar `git log` para reconstruir el camino. |
@@ -60,7 +63,7 @@ node scripts/check.js
   vuelve a leerlo y reconcilia las dos intenciones.
 - Actualiza la fuente canónica correspondiente, no una copia en `CLAUDE.md`.
 - Si cambia texto de interfaz, conserva la paridad de idiomas definida en
-  `doc/I18N.md` y `doc/en/I18N.md`.
+  `doc/es/I18N.md` y `doc/en/I18N.md`.
 - Si cambia una actividad, sigue la receta de `tecnico.md` §9 y actualiza los
   catálogos y guías que esa receta indica (actividades, equipo).
 
@@ -94,3 +97,14 @@ No añadas aquí:
 
 Esos contenidos pertenecen a las fuentes de §1. El historial detallado de cambios
 vive en Git; `CLAUDE.md` debe seguir siendo breve, operativo y estable.
+
+## graphify
+
+This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+
+Rules:
+- For codebase questions, first run `graphify query "<question>"` when graphify-out/graph.json exists. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
+- If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
+- Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
+- After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
+

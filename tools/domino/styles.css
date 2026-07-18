@@ -1,7 +1,7 @@
-/* Dominó — estilos específicos. Lo común está en assets/css/.
-   Acento del módulo Razonamiento (teal --mod-razonamiento).
-   Las fichas se dibujan con puntos reales (rejilla 3×3 por mitad,
-   clases .pip.pos0 … .pip.pos8 según el valor). */
+/* Dominoes — tool-specific styles. Shared styles live in assets/css/.
+   Reasoning module accent (teal --mod-razonamiento).
+   Tiles are drawn with real pips (3×3 grid per half,
+   classes .pip.pos0 … .pip.pos8 depending on the value). */
 
 .tool-header h1 { color: var(--mod-razonamiento); }
 
@@ -121,7 +121,7 @@
   box-shadow: 0 0 0 4px var(--mod-razonamiento-suave);
 }
 
-/* ---- Montón e info del rival ---- */
+/* ---- Boneyard and opponent info ---- */
 .monton {
   min-width: 88px;
   min-height: 72px;

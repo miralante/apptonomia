@@ -1,13 +1,13 @@
-/* Los Números — estilos específicos. Lo común está en assets/css/.
-   Colores por posición: azul unidades, verde decenas, morado centenas.
-   La coma, los céntimos y los signos van en naranja. */
+/* Numbers — tool-specific styles. Shared styles live in assets/css/.
+   Colors by place value: blue units, green tens, purple hundreds.
+   The comma, cents, and signs are shown in orange. */
 
 .tool-header h1 { color: var(--mod-razonamiento); }
 .btn:not(.btn-secundario):not(.btn-audio) { background: var(--mod-razonamiento); }
 .instruccion { font-size: var(--texto-base); }
 .centrado-fila { justify-content: center; }
 
-/* Menú de actividades */
+/* Activity menu */
 .menu-grupo h2 { margin: var(--espacio-grande) 0 var(--espacio); color: var(--mod-razonamiento); }
 .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--espacio); }
 .btn-actividad {
@@ -27,13 +27,13 @@
 .nivel-info { font-weight: 400; font-size: var(--texto-pequeno); opacity: 0.9; }
 #btnVolverMenu { align-self: center; }
 
-/* Cifras de colores por posición */
+/* Color-coded digits by place value */
 .num-color { font-weight: 800; letter-spacing: 2px; }
-.cifra-u { color: var(--mod-coordinacion); }   /* azul — unidades */
-.cifra-d { color: var(--mod-secuencia); }      /* verde — decenas */
-.cifra-c { color: var(--mod-emocional); }      /* morado — centenas */
+.cifra-u { color: var(--mod-coordinacion); }   /* blue — units */
+.cifra-d { color: var(--mod-secuencia); }      /* green — tens */
+.cifra-c { color: var(--mod-emocional); }      /* purple — hundreds */
 .cifra-sep { color: var(--color-texto-suave); }
-.cifra-coma, .cifra-dec, .signo { color: var(--mod-memoria); } /* naranja */
+.cifra-coma, .cifra-dec, .signo { color: var(--mod-memoria); } /* orange */
 .destacada { text-decoration: underline; text-underline-offset: 6px; }
 .grupo { display: inline-flex; flex-direction: column; align-items: center; }
 .grupo-etq { font-size: 14px; font-weight: 700; color: var(--color-texto-suave); letter-spacing: 0; }
@@ -46,7 +46,7 @@
 .pista { color: var(--color-texto-suave); font-size: var(--texto-base); }
 .palabras-num { font-size: var(--texto-grande); font-weight: 800; }
 
-/* Secuencias de contar */
+/* Counting sequences */
 .secuencia { display: flex; flex-wrap: wrap; gap: var(--espacio); justify-content: center; }
 .caja-num {
   min-width: 64px; min-height: 64px; padding: 8px 12px;
@@ -56,14 +56,14 @@
 }
 .caja-num.hueco { border-style: dashed; border-color: var(--mod-razonamiento); color: var(--mod-razonamiento); }
 
-/* Expresiones (sumas, tablas, cálculo de cabeza) */
+/* Expressions (addition, tables, mental math) */
 .expresion {
   display: flex; align-items: center; justify-content: center;
   gap: 12px; font-size: 40px; font-weight: 800; flex-wrap: wrap;
 }
 .signo { font-size: 40px; font-weight: 800; }
 
-/* Puntos para contar */
+/* Dots for counting */
 .puntos { display: flex; align-items: center; justify-content: center; gap: var(--espacio); flex-wrap: wrap; }
 .grupo-puntos { display: grid; grid-template-columns: repeat(5, 18px); gap: 6px; }
 .punto { width: 18px; height: 18px; border-radius: 50%; background: var(--mod-razonamiento); }
@@ -72,7 +72,7 @@
 .filas-puntos { display: flex; flex-direction: column; gap: 6px; align-items: center; }
 .fila-puntos { display: flex; gap: 6px; }
 
-/* Puntos tachados al restar */
+/* Crossed-out dots when subtracting */
 .punto.quitado { background: var(--color-superficie); border: 3px solid var(--mod-memoria); position: relative; }
 .punto.quitado::before, .punto.quitado::after {
   content: ''; position: absolute; top: 50%; left: 10%;
@@ -81,10 +81,10 @@
 .punto.quitado::before { transform: translateY(-50%) rotate(45deg); }
 .punto.quitado::after { transform: translateY(-50%) rotate(-45deg); }
 
-/* Dictado numérico */
+/* Number dictation */
 .dictado-espera { font-size: 80px; }
 
-/* ¿Te llega? */
+/* Is it enough? */
 .llega-caja {
   background: var(--color-superficie); border: 3px solid var(--color-borde);
   border-radius: var(--radio); padding: var(--espacio); text-align: center;
@@ -92,7 +92,7 @@
 .llega-etq { font-weight: 700; margin-bottom: 8px; color: var(--color-texto-suave); }
 .llega-fila { display: flex; gap: var(--espacio); flex-wrap: wrap; justify-content: center; }
 
-/* Bloques de unidades, decenas y centenas */
+/* Units, tens, and hundreds blocks */
 .bloques { display: flex; align-items: flex-end; justify-content: center; gap: var(--espacio-grande); flex-wrap: wrap; }
 .bloques-grupo { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; justify-content: center; max-width: 340px; }
 .bloque-100 {
@@ -107,20 +107,20 @@
 }
 .bloque-1 { width: 26px; height: 26px; border-radius: 50%; background: var(--mod-coordinacion-suave); border: 3px solid var(--mod-coordinacion); }
 
-/* Fracciones */
+/* Fractions */
 .frac { display: inline-flex; flex-direction: column; align-items: center; font-weight: 800; font-size: 28px; line-height: 1.2; }
 .frac-num { color: var(--mod-coordinacion); border-bottom: 4px solid var(--color-texto); padding: 0 10px; }
 .frac-den { color: var(--mod-secuencia); padding: 0 10px; }
 .op-frac { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; }
 
-/* Precios y medidas */
+/* Prices and measurements */
 .picto-medida { font-size: 64px; }
 .medida-txt { font-size: var(--texto-grande); font-weight: 800; }
 .op-precio { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; font-size: var(--texto-base); }
 .op-precio .num-color { font-size: 30px; }
 .op-precio .op-picto { font-size: 44px; }
 
-/* Opciones de respuesta */
+/* Answer options */
 .opciones .btn-opcion { text-align: center; font-size: 26px; }
 .opciones.opciones-fila { flex-direction: row; justify-content: center; flex-wrap: wrap; }
 .opciones.opciones-fila .btn-opcion { width: auto; min-width: 180px; }

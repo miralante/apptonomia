@@ -1,0 +1,110 @@
+/* ============================================================
+   Apptonomia — Textos de Ajustes (ES)
+   Archivo específico del idioma. Se carga condicionalmente
+   desde index.html según App.i18n.locale().
+   ============================================================ */
+(function () {
+  'use strict';
+
+  App.i18n.register({
+    title: '⚙️ Apptonomia — Ajustes',
+    routeNotice: 'Página de ajustes. No aparece en el menú de la aplicación: solo se llega escribiendo esta dirección.',
+    intro: 'Aquí se puede borrar lo guardado en este navegador. Pensada para quien gestiona el dispositivo (familia, profesorado), no para la persona usuaria.',
+
+    stateTitle: 'Estado actual de este navegador',
+    currentLanguage: 'Idioma actual: {lang}',
+    languageNameEs: 'Español',
+    languageNameEn: 'English',
+    activitiesWithProgress: 'Actividades con progreso guardado: {n}',
+    totalStars: 'Estrellas totales: {n}',
+
+    progressTitle: 'Progreso por actividad',
+    progressIntro: 'Estrellas ⭐ guardadas en este navegador, actividad por actividad. "Sin empezar" quiere decir que la persona todavía no ha jugado a esa actividad en este dispositivo.',
+    notStarted: 'Sin empezar',
+    colActivity: 'Actividad',
+    colProgress: 'Progreso',
+
+    module1: '🎯 Puntería y manos',
+    module2: '📋 Mi día a día',
+    module3: '🧠 Memoria y atención',
+    module4: '🔢 Pensar y contar',
+    module5: '💬 Lenguaje y palabras',
+    module6: '💜 Emociones',
+
+    activity: {
+      'catch': 'Atrapa', 'keyboard-typing': 'Teclado', 'piano-keys': 'Piano',
+      'tracing': 'Trazos', 'coloring': 'Colorear', 'builders': 'Constructores',
+      'routines': 'Mis Rutinas', 'house': 'La Casa', 'situations': 'Situaciones',
+      'safe-chat': 'Chat Seguro', 'bullying-chat': 'Chat Acoso', 'post-or-not': '¿Lo publico?',
+      'social-safety': 'Redes, intimidad y ley', 'signs': 'Señales', 'times-of-day': 'Partes del Día',
+      'what-first': '¿Qué hago primero?', 'what-do-i-need': '¿Qué necesito?', 'where-to-store': '¿Dónde lo guardo?',
+      'task-list': 'Lista de Tareas', 'my-agenda': 'Mi agenda', 'what-to-wear': '¿Qué me pongo?',
+      'street': 'La Calle', 'emergencies': 'Emergencias', 'phone-numbers': 'Teléfonos Importantes',
+      'shopping': 'La Compra', 'shop': 'La Tienda',
+      'pairs': 'Parejas', 'differences': 'Diferencias', 'whats-missing': '¿Qué falta?',
+      'ecos': 'Ecos', 'turns-mirrors': 'Giros y Espejos', 'blocks': 'Los Bloques',
+      'where-is': '¿Dónde está?', 'path': 'El Camino', 'fit': 'Encaja la Pieza', 'theatre': 'El Teatro',
+      'riddles': 'Adivinanzas', 'patterns': 'Patrones', 'numbers': 'Los Números', 'quantities': 'Cantidades',
+      'roman-numerals': 'Números Romanos', 'wallet': 'El Monedero', 'clock': 'El Reloj', 'stories': 'Historias',
+      'odd-one-out': '¿Qué no encaja?', 'puzzle': 'Puzzle', 'oca': 'La Oca', 'tic-tac-toe': 'Tres en Raya',
+      'visual-sudoku': 'Sudoku Visual', 'domino': 'Dominó', 'checkers': 'Las Damas', 'chess': 'El Ajedrez',
+      'connect-four': 'Cuatro en Raya',
+      'comedy-club': 'Chistes', 'idioms': 'Dichos', 'double-meaning': 'Doble Sentido', 'categories': 'Categorías',
+      'sentence': 'La Frase', 'words': 'Palabras', 'dictionary': 'Diccionario', 'spelling': 'Completa la Palabra',
+      'word-search': 'Sopa de Letras',
+      'emotions': '¿Cómo me siento?', 'calm': 'Calma', 'friends': 'Entre Amigos', 'my-body': 'Mi Cuerpo Me Avisa'
+    },
+
+    backupTitle: 'Copia de mi progreso',
+    backupIntro: 'El progreso solo se guarda en este navegador. Si se borra por error (limpieza del navegador, cambio de dispositivo…) se pierde para siempre. Aquí se puede guardar una copia en un archivo y recuperarla más tarde.',
+    btnExport: '💾 Guardar copia',
+    feedbackExportDone: 'Hecho. Revisa la carpeta de descargas del navegador.',
+    retrieveLabel: 'Recuperar copia desde un archivo:',
+    btnImport: '📂 Recuperar copia',
+    confirmImport: '¿Seguro? Toca otra vez para sustituir el progreso actual.',
+    importWarning1: 'Recuperar una copia ',
+    importWarningStrong: 'sustituye',
+    importWarning2: ' el progreso actual de las actividades que aparezcan en el archivo.',
+    feedbackReadError: 'No se ha podido leer el archivo. Inténtalo otra vez.',
+    feedbackInvalidFile: 'Ese archivo no es una copia válida (no se puede leer). No se ha tocado nada.',
+    feedbackInvalidBackup: 'Ese archivo no es una copia de Apptonomia válida. No se ha tocado nada.',
+    feedbackImportDone: 'Hecho. Se ha recuperado el progreso guardado en el archivo.',
+
+    prefsTitle: 'Preferencias de la persona usuaria',
+    prefsIntro: 'Estos ajustes se aplican en todas las actividades. Los cambia quien gestiona el dispositivo; la persona usuaria no necesita venir a esta página.',
+    fontSizeLabel: 'Tamaño de letra',
+    fontNormal: 'Normal',
+    fontLarge: 'Grande',
+    fontExtraLarge: 'Muy grande',
+    soundsLabel: 'Sonidos de acierto y ánimo',
+    soundsOn: '🔊 Activados',
+    soundsOff: '🔇 Desactivados',
+    soundsNote: 'Esto no afecta a la voz que lee los textos (🔊 de cada pantalla), solo a los pitidos cortos de acierto y ánimo.',
+
+    resetPersonTitle: 'Restablecer los datos de la persona',
+    resetPersonIntro1: 'Borra el ',
+    resetPersonIntroStrong1: 'idioma elegido',
+    resetPersonIntro2: ' (la próxima vez se detecta de nuevo o se vuelve a español) y el ',
+    resetPersonIntroStrong2: 'nombre',
+    resetPersonIntro3: ' escrito en Teclado y en Piano.',
+    resetPersonNote1: 'El progreso (estrellas, niveles y canciones guardadas) de todas las actividades ',
+    resetPersonNoteStrong: 'NO se borra',
+    resetPersonNote2: '.',
+    btnResetPerson: '🧑 Restablecer datos de la persona',
+    confirmResetPerson: '¿Seguro? Toca otra vez para borrar idioma y nombres.',
+    feedbackResetPersonDone: 'Hecho. Idioma y nombres borrados. El progreso se ha conservado.',
+
+    resetAppTitle: 'Restablecer toda la aplicación',
+    resetAppIntro1: 'Borra ',
+    resetAppIntroStrong: 'todo',
+    resetAppIntro2: ' lo guardado en este navegador: idioma, nombres, estrellas, niveles completados y canciones guardadas de todas las actividades.',
+    resetAppNoteStrong: 'No se puede deshacer.',
+    resetAppNote2: ' Es como si la aplicación se abriera por primera vez.',
+    btnResetApp: '🗑️ Restablecer toda la aplicación',
+    confirmResetApp: '¿Seguro? Toca otra vez para borrar TODO. No se puede deshacer.',
+    feedbackResetAppDone: 'Hecho. Se ha borrado todo. La aplicación queda como recién instalada.',
+
+    footerActivities: 'Ir a las actividades',
+    footerTeamGuide: 'Guía para el equipo de apoyo'
+  }, 'es');
+})();

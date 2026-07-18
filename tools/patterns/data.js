@@ -1016,7 +1016,7 @@ const NIVELES_BASE = [
     }
 ];
 
-/* Nombre y descripción de cada nivel, por idioma (id -> {nombre, descripcion}). */
+/* Name and description of each level, per language (id -> {nombre, descripcion}). */
 const NOMBRES_NIVEL = {
   es: {
     1: { nombre: 'Nivel 1', descripcion: 'Colores y formas' },

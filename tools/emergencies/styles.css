@@ -1,4 +1,4 @@
-/* Emergencias — estilos específicos. Lo común está en assets/css/.
+/* Emergencies — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Autonomía y hogar (verde --mod-secuencia). */
 
 .tool-header h1 { color: var(--mod-secuencia); }
@@ -13,7 +13,7 @@
 
 .progress-bar { margin-top: var(--espacio); }
 
-/* ---- Menú de las 2 actividades ---- */
+/* ---- Menu of the 2 activities ---- */
 .tarjeta-actividad {
   position: relative;
   display: flex; flex-direction: column; align-items: center; justify-content: center;

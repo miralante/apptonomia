@@ -26,12 +26,12 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (typeof progreso.rondas !== 'number') progreso.rondas = 0;
 
-  /* Estado de la ronda */
+  /* Round state */
   var escenas = [];
   var escenaIdx = 0;
   var porRonda = 3;
@@ -188,7 +188,7 @@
     App.feedback.celebrar(App.i18n.t('rondaCompletadaTitulo'));
   }
 
-  /* Eventos */
+  /* Events */
   btnSiguiente.addEventListener('click', siguienteEscena);
   $('#btnEmpezar').addEventListener('click', empezarRonda);
   $('#btnRepetir').addEventListener('click', empezarRonda);

@@ -1,4 +1,4 @@
-/* Lista de Tareas — estilos específicos. Lo común está en assets/css/.
+/* Task List — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Autonomía y hogar (verde --mod-secuencia). */
 
 .tool-header h1 { color: var(--mod-secuencia); }

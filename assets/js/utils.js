@@ -1,7 +1,7 @@
 /* ==========================================================================
-   Apptonomia — Utilidades compartidas
-   Expone window.App.utils
-   Cargar con: <script src="../../assets/js/utils.js"></script>
+   Apptonomia — Shared utilities
+   Exposes window.App.utils
+   Load with: <script src="../../assets/js/utils.js"></script>
    ========================================================================== */
 (function () {
   'use strict';
@@ -9,8 +9,8 @@
   window.App = window.App || {};
 
   /**
-   * Baraja una copia del array (Fisher-Yates).
-   * Nunca usar sort(() => Math.random() - 0.5).
+   * Shuffles a copy of the array (Fisher-Yates).
+   * Never use sort(() => Math.random() - 0.5).
    */
   function shuffle(array) {
     var copy = array.slice();
@@ -23,17 +23,17 @@
     return copy;
   }
 
-  /** Atajo de querySelector. */
+  /** Shortcut for querySelector. */
   function $(selector) {
     return document.querySelector(selector);
   }
 
-  /** Atajo de querySelectorAll (devuelve Array). */
+  /** Shortcut for querySelectorAll (returns an Array). */
   function $$(selector) {
     return Array.prototype.slice.call(document.querySelectorAll(selector));
   }
 
-  /** Fecha de hoy como 'YYYY-MM-DD' (para rutinas diarias). */
+  /** Today's date as 'YYYY-MM-DD' (for daily routines). */
   function hoy() {
     var d = new Date();
     var m = String(d.getMonth() + 1).padStart(2, '0');
@@ -41,32 +41,32 @@
     return d.getFullYear() + '-' + m + '-' + day;
   }
 
-  /** true si el usuario prefiere menos animaciones. */
+  /** true if the user prefers less animation. */
   function reducedMotion() {
     return window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
-  /** true si el dispositivo es principalmente táctil (no se espera teclado
-      físico): sin puntero fino (ratón/trackpad) como entrada principal.
-      Un portátil con pantalla táctil sigue dando false (su entrada principal
-      es el ratón/trackpad), un móvil o tablet da true. */
+  /** true if the device is mainly touch-based (no physical keyboard
+      expected): no fine pointer (mouse/trackpad) as the primary input.
+      A laptop with a touchscreen still returns false (its primary input
+      is the mouse/trackpad); a phone or tablet returns true. */
   function esTactil() {
     return !!(window.matchMedia &&
       window.matchMedia('(hover: none) and (pointer: coarse)').matches);
   }
 
-  /* Mantener la pantalla encendida durante la actividad (Screen Wake Lock).
-     Mejora progresiva: si el navegador no la soporta, no pasa nada.
-     Requiere gesto de usuario, así que se pide en el primer toque/clic;
-     se vuelve a pedir al recuperar visibilidad (el lock se libera solo
-     al ocultar la pestaña). */
+  /* Keep the screen awake during the activity (Screen Wake Lock).
+     Progressive enhancement: if the browser doesn't support it, nothing
+     happens. Requires a user gesture, so it's requested on the first
+     tap/click; it's requested again on regaining visibility (the lock
+     is released automatically when the tab is hidden). */
   if ('wakeLock' in navigator) {
     var wakeLockSentinel = null;
     var pedirWakeLock = function () {
       navigator.wakeLock.request('screen').then(function (sentinel) {
         wakeLockSentinel = sentinel;
-      }).catch(function () { /* denegado o no disponible: seguir sin bloqueo */ });
+      }).catch(function () { /* denied or unavailable: keep going without the lock */ });
     };
     document.addEventListener('pointerdown', function primeraVez() {
       pedirWakeLock();

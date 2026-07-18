@@ -1,4 +1,4 @@
-/* ¿Qué me pongo? — estilos específicos. Lo común está en assets/css/.
+/* What Do I Wear? — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Autonomía y hogar (verde --mod-secuencia). */
 
 .tool-header h1 { color: var(--mod-secuencia); }

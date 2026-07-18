@@ -225,11 +225,11 @@ function teclaDecorativa(finger, wide, label) {
 }
 
 DATA.layouts = {
-  /* Solo letras: el método de mecanografía de toda la vida. */
+  /* Letters only: the classic touch-typing method. */
   simplificado: [DATA.rows[0], DATA.rows[1], DATA.rows[2], DATA.rows[3]],
 
-  /* Teclado de ordenador completo: números arriba y teclas de
-     función alrededor (Tab, Mayús, Intro, Borrar), como uno real. */
+  /* Full computer keyboard: numbers on top and function keys
+     around it (Tab, Shift, Enter, Backspace), like a real one. */
   normal: [
     DATA.numberRow.concat([teclaDecorativa('rp', 'media', 'borrar')]),
     [teclaDecorativa('lp', 'media', 'tab')].concat(DATA.rows[0]),
@@ -238,15 +238,15 @@ DATA.layouts = {
     DATA.rows[3]
   ],
 
-  /* Teclado de móvil: mismas letras que "simplificado", pero cada tecla
-     se marca con el pulgar que la escribe ('lt' pulgar izquierdo, 'rt'
-     pulgar derecho — mitad izquierda/derecha de cada fila) en vez del
-     dedo de mecanografía de 8 dedos. A diferencia de los demás tipos,
-     ESTE teclado sí se puede tocar (ver app.js, clase 'tocable'): en un
-     móvil no hay teclado físico que pulsar, así que la pantalla es la
-     única entrada real. Sin teclas decorativas (Tab/Mayús/Intro no
-     existen en un teclado de letras de móvil) ni marca táctil (bump):
-     una pantalla lisa no se nota al tacto como sí se notan F y J. */
+  /* Mobile keyboard: same letters as "simplified", but each key is
+     marked with the thumb that types it ('lt' left thumb, 'rt'
+     right thumb — left/right half of each row) instead of the
+     8-finger touch-typing finger. Unlike the other types, THIS
+     keyboard can actually be tapped (see app.js, 'tocable' class):
+     on a phone there's no physical keyboard to press, so the screen
+     is the only real input. No decorative keys (Tab/Shift/Enter
+     don't exist on a mobile letter keyboard) and no tactile bump:
+     a flat screen can't be felt by touch the way F and J can. */
   movil: [
     [
       { ch: 'q', finger: 'lt' }, { ch: 'w', finger: 'lt' }, { ch: 'e', finger: 'lt' },

@@ -1,4 +1,4 @@
-/* Cuatro en Raya — estilos específicos. Lo común está en assets/css/.
+/* Four in a Row — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Razonamiento (teal --mod-razonamiento). */
 
 .tool-header h1 { color: var(--mod-razonamiento); }
@@ -68,7 +68,7 @@
   border-radius: 50%;
 }
 
-/* Caída de la ficha (se anula con prefers-reduced-motion) */
+/* Piece drop (disabled with prefers-reduced-motion) */
 .hueco.cae { animation: caida 0.35s ease-in; }
 
 @keyframes caida {
@@ -81,7 +81,7 @@
   border-color: var(--color-acierto);
 }
 
-/* Columna sugerida por la ayuda (2ª pulsación de 💡) */
+/* Column suggested by the hint (2nd tap of 💡) */
 .columna.sugerida {
   border-color: var(--mod-razonamiento);
   box-shadow: 0 0 0 4px var(--mod-razonamiento);

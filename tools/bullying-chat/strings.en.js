@@ -23,4 +23,5 @@
     "chatSuperado": "Chat completed!",
     "paraRecordarHablado": "Remember this."
   }, 'en');
+
 })();

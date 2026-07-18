@@ -53,7 +53,7 @@
     pantallaMenu.classList.remove('oculto');
   }
 
-  /* ================= Actividad 1: ¿En qué sección? ================= */
+  /* ================= Activity 1: Which section? ================= */
   var nivelS = null;
   var itemsS = [];
   var idxS = 0;

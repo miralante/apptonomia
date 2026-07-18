@@ -31,12 +31,12 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
 
-  /* Estado de la ronda */
+  /* Round state */
   var nivel = null;
   var idxEscena = 0;
   var aciertosRonda = 0;
@@ -97,8 +97,8 @@
     });
     columnasOrden.forEach(function (col, i) {
       var refSlot = slots[col] ? slots[col] : slots[COLS + col];
-      /* Si la referencia está en el fondo (fila 0), el personaje va
-         delante; si está delante (fila 1), va detrás. */
+      /* If the reference is in the back (row 0), the character goes
+         in front; if it's in front (row 1), it goes behind. */
       var rel = refSlot.fila === 0 ? 'delante' : 'detras';
       ordenes.push({ personaje: personajes[i], ref: refSlot.ref, refCol: col, rel: rel });
     });
@@ -194,7 +194,7 @@
       intentos += 1;
       App.feedback.encourage(feedbackEl);
       if (intentos === 1) {
-        /* Regla 12: primer fallo → enseña qué fila es delante/detrás */
+        /* Rule 12: first failure → shows which row is front/back */
         explicacionEl.textContent = App.i18n
           .t(o.rel === 'delante' ? 'pistaDelante' : 'pistaDetras')
           .replace('{ref}', o.ref.el);
@@ -245,7 +245,7 @@
     App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
   }
 
-  /* Eventos */
+  /* Events */
   btnSiguiente.addEventListener('click', siguiente);
   $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {

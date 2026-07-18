@@ -1,0 +1,105 @@
+/* Word Search — tool-specific styles. Shared styles live in assets/css/. */
+
+.tool-header h1 { color: var(--mod-lenguaje); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-lenguaje);
+}
+
+.instruction { font-size: var(--texto-base); }
+
+.center-row { justify-content: center; }
+
+.btn-topic,
+.btn-level { min-width: 300px; align-self: center; }
+
+.level-info {
+  display: block;
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.words-title {
+  font-size: var(--texto-base);
+  color: var(--color-texto-suave);
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* Chips of pending words: can also be listened to. */
+.chip {
+  min-height: 48px;
+  padding: 8px 18px;
+  border: 2px solid var(--mod-lenguaje-suave);
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+  font-size: var(--texto-base);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chip.found {
+  text-decoration: line-through;
+  background: var(--mod-lenguaje-suave);
+  opacity: 0.7;
+}
+
+/* Letter board */
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: var(--espacio);
+}
+
+.board-row { display: flex; gap: 4px; }
+
+.cell {
+  width: clamp(34px, 10vw, 56px);
+  height: clamp(34px, 10vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-borde);
+  border-radius: 8px;
+  background: var(--color-superficie);
+  font-size: var(--texto-base);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cell.sel {
+  background: var(--mod-lenguaje);
+  color: #fff;
+  border-color: var(--mod-lenguaje);
+}
+
+/* Hint: the letter is painted a color to guide the search. */
+.cell.hint {
+  background: var(--color-estrella);
+  border-color: var(--color-estrella);
+}
+
+.cell.found {
+  background: var(--mod-lenguaje-suave);
+  border-color: var(--mod-lenguaje);
+}
+
+.btn-hint { margin-top: var(--espacio); }
+
+.big-emoji { font-size: 96px; }
+
+#endScreen { padding-top: 48px; }
+
+#endScreen .btn { align-self: center; min-width: 280px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .cell.hint { animation: pulse 1.2s ease-in-out 3; }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+}

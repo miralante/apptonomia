@@ -17,7 +17,7 @@
   var feedbackEl = $('#feedback');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
@@ -69,7 +69,7 @@
     feedbackEl.textContent = '';
     feedbackEl.className = 'feedback';
 
-    /* Elegir símbolos al azar y duplicarlos (pictogramas, sin idioma) */
+    /* Pick random symbols and duplicate them (pictograms, language-agnostic) */
     var banco = DATA[App.i18n.locale()] || DATA.es;
     var simbolos = App.utils.shuffle(banco.simbolos).slice(0, nivel.parejas);
     var cartas = App.utils.shuffle(simbolos.concat(simbolos));
@@ -144,7 +144,7 @@
     App.feedback.celebrar(App.i18n.t('celebrarTexto'));
   }
 
-  /* Eventos */
+  /* Events */
   $('#btnRepetir').addEventListener('click', function () { empezar(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {
     pantallaFinal.classList.add('oculto');

@@ -31,7 +31,7 @@
     pantalla.classList.remove('oculto');
   }
 
-  /* ---- Selección de emoción ---- */
+  /* ---- Emotion selection ---- */
   function pintarEmociones() {
     var cont = $('#emociones');
     cont.innerHTML = '';
@@ -52,19 +52,19 @@
   function elegir(emo) {
     emocionActual = emo;
 
-    /* Registrar (una entrada por día: la última elegida) */
+    /* Log it (one entry per day: the last one chosen) */
     var hoy = App.utils.hoy();
     progreso.historial = progreso.historial.filter(function (r) {
       return r.fecha !== hoy;
     });
     progreso.historial.push({ fecha: hoy, id: emo.id });
-    /* Conservar solo los últimos 30 días */
+    /* Keep only the last 30 days */
     if (progreso.historial.length > 30) {
       progreso.historial = progreso.historial.slice(-30);
     }
     guardar();
 
-    /* Pintar respuesta adaptada */
+    /* Paint the adapted response */
     $('#respuestaPicto').textContent = emo.picto;
     $('#respuestaMensaje').textContent = emo.mensaje;
     $('#respuestaMensaje').style.color = emo.color;
@@ -79,10 +79,10 @@
     }
 
     mostrar(pantallaRespuesta);
-    /* El audio solo se reproduce si el usuario pulsa el botón "Escuchar" (btnOirRespuesta) */
+    /* Audio only plays if the user taps the "Listen" button (btnOirRespuesta) */
   }
 
-  /* ---- Ejercicio de respiración (3 ciclos) ---- */
+  /* ---- Breathing exercise (3 cycles) ---- */
   function respirar() {
     mostrar(pantallaRespiracion);
     var circulo = $('#circuloRespiracion');
@@ -159,7 +159,7 @@
     mostrar(pantallaSeleccion);
   }
 
-  /* Eventos */
+  /* Events */
   $('#btnPregunta').addEventListener('click', function () {
     App.tts.speak(App.i18n.t('pregunta'));
   });

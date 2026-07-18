@@ -18,7 +18,7 @@
       <span class="stars" id="stars">⭐ 0</span>
     </header>
 
-    <!-- Pantalla: menú de las 2 actividades -->
+    <!-- Screen: 2-activity menu -->
     <section id="pantallaMenu" class="pila">
       <div class="fila centrado-fila">
         <p class="instruccion" id="instruccion" data-i18n="instruccion">Aquí practicas dos cosas: en qué sección del súper está cada producto, y para qué comida del día lo necesitas.</p>
@@ -38,7 +38,7 @@
       </div>
     </section>
 
-    <!-- ===== Actividad 1: ¿En qué sección? ===== -->
+    <!-- ===== Activity 1: Which section? ===== -->
 
     <section id="pantallaNivelesSecciones" class="oculto pila centrado">
       <div class="fila"><button type="button" class="btn btn-secundario" id="btnVolverMenuSecciones" data-i18n="volverMenu">← Menú</button></div>
@@ -112,7 +112,7 @@
   <script src="../../assets/js/storage.js"></script>
   <script src="../../assets/js/feedback.js"></script>
   <script>
-  /* Carga condicional del archivo de idioma activo (es|en). */
+  /* Conditional load of the active language file (es|en). */
   (function () {
     var loc = window.App.i18n.locale();
     document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');

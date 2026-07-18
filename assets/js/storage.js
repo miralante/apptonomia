@@ -1,8 +1,8 @@
 /* ==========================================================================
-   Apptonomia — Progreso en localStorage
-   Expone window.App.storage.get(toolId) / .set(toolId, data) / .remove(toolId)
-   Clave interna: 'apptonomia:<toolId>'. Sin datos personales.
-   Siempre tolerante a fallos (modo privado puede lanzar excepciones).
+   Apptonomia — Progress in localStorage
+   Exposes window.App.storage.get(toolId) / .set(toolId, data) / .remove(toolId)
+   Internal key: 'apptonomia:<toolId>'. No personal data.
+   Always fault-tolerant (private mode can throw exceptions).
    ========================================================================== */
 (function () {
   'use strict';
@@ -11,17 +11,16 @@
 
   var PREFIJO = 'apptonomia:';
 
-  /* Claves de 'apptonomia:*' que NO son progreso de una actividad:
-     'locale' (idioma) y 'prefs' (tamaño de letra, sonidos — ver
-     /ajustes/). Se excluyen de estrellasTotales() y listaToolIds(). */
+  /* Keys under 'apptonomia:*' that are NOT an activity's progress:
+     'locale' (language) and 'prefs' (font size, sounds — see
+     /settings/). Excluded from estrellasTotales() and listaToolIds(). */
   var CLAVES_NO_HERRAMIENTA = ['locale', 'prefs'];
 
-  /* Aplica ya mismo la preferencia de tamaño de letra guardada en
-     /ajustes/ (regla: una sola vez en el núcleo compartido, nunca por
-     herramienta — storage.js se carga en site/ y en todas las
-     actividades antes de pintar nada). Por defecto --escala-texto
-     queda en 1 (tokens.css), así que quien no haya tocado la
-     preferencia no ve ningún cambio. */
+  /* Applies right away the font-size preference saved in /settings/
+     (rule: only once in the shared core, never per tool — storage.js
+     is loaded in site/ and in every activity before anything is
+     painted). --escala-texto defaults to 1 (tokens.css), so anyone
+     who hasn't touched the preference sees no change. */
   (function aplicarTamanoLetra() {
     try {
       var raw = localStorage.getItem(PREFIJO + 'prefs');
@@ -29,13 +28,13 @@
       var ESCALA = { normal: 1, grande: 1.15, muygrande: 1.3 };
       var escala = ESCALA[prefs.tamanoLetra] || 1;
       document.documentElement.style.setProperty('--escala-texto', escala);
-    } catch (e) { /* silencio: se queda el tamaño por defecto */ }
+    } catch (e) { /* silent: keeps the default size */ }
   })();
 
   /**
-   * Lee el progreso de una herramienta.
-   * @param {string} toolId - slug de la herramienta, p. ej. 'parejas'
-   * @returns {object} progreso guardado o {} si no hay nada / hay error
+   * Reads a tool's saved progress.
+   * @param {string} toolId - tool slug, e.g. 'parejas'
+   * @returns {object} saved progress, or {} if there is none / on error
    */
   function get(toolId) {
     try {
@@ -47,10 +46,10 @@
   }
 
   /**
-   * Guarda el progreso de una herramienta.
+   * Saves a tool's progress.
    * @param {string} toolId
-   * @param {object} data - objeto serializable a JSON
-   * @returns {boolean} true si se guardó
+   * @param {object} data - JSON-serializable object
+   * @returns {boolean} true if it was saved
    */
   function set(toolId, data) {
     try {
@@ -61,7 +60,7 @@
     }
   }
 
-  /** Borra el progreso de una herramienta. */
+  /** Deletes a tool's progress. */
   function remove(toolId) {
     try {
       localStorage.removeItem(PREFIJO + toolId);
@@ -71,13 +70,13 @@
     }
   }
 
-  /** Suma de estrellas de todas las herramientas (para el menú).
-      Bug corregido: el try/catch envolvía TODO el bucle, así que una sola
-      clave no-JSON entre medias (p. ej. 'apptonomia:locale', que guarda un
-      string plano como 'en', no JSON) cortaba la suma para el resto de
-      herramientas que vinieran después en el orden de iteración de
-      localStorage (no es el orden de inserción). Cada clave se procesa
-      ahora en su propio try/catch. */
+  /** Sum of stars across all tools (for the menu).
+      Fixed bug: the try/catch used to wrap the WHOLE loop, so a single
+      non-JSON key in between (e.g. 'apptonomia:locale', which stores a
+      plain string like 'en', not JSON) cut the sum short for the rest
+      of the tools that came later in localStorage's iteration order
+      (not insertion order). Each key is now processed in its own
+      try/catch. */
   function estrellasTotales() {
     var total = 0;
     for (var i = 0; i < localStorage.length; i++) {
@@ -89,15 +88,15 @@
         if (datos && typeof datos.estrellas === 'number') {
           total += datos.estrellas;
         }
-      } catch (e) { /* clave individual corrupta o no-JSON: seguir con las demás */ }
+      } catch (e) { /* individual key corrupt or non-JSON: keep going with the rest */ }
     }
     return total;
   }
 
   /**
-   * Ids de todas las herramientas con algo guardado (sin el prefijo,
-   * y sin las claves de CLAVES_NO_HERRAMIENTA). Usado por ajustes/
-   * para mostrar el estado y para el restablecimiento completo.
+   * Ids of every tool with something saved (without the prefix,
+   * and without the CLAVES_NO_HERRAMIENTA keys). Used by ajustes/
+   * to show status and for the full reset.
    * @returns {string[]}
    */
   function listaToolIds() {
@@ -109,7 +108,7 @@
         var id = clave.slice(PREFIJO.length);
         if (CLAVES_NO_HERRAMIENTA.indexOf(id) === -1) out.push(id);
       }
-    } catch (e) { /* ignorar */ }
+    } catch (e) { /* ignore */ }
     return out;
   }
 

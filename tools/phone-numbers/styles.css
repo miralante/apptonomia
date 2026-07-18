@@ -1,0 +1,64 @@
+/* Important Phone Numbers — tool-specific styles. Shared styles live in assets/css/.
+   Acento del módulo Autonomía y hogar (verde --mod-secuencia). */
+
+.tool-header h1 { color: var(--mod-secuencia); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-secuencia);
+}
+
+.instruction { font-size: var(--texto-base); }
+
+.center-row { justify-content: center; }
+
+.progress-bar { margin-top: var(--espacio); }
+
+/* ---- Fichas ---- */
+.card { border-color: var(--mod-secuencia-suave); margin-top: var(--espacio-grande); }
+
+.card-picto { font-size: 64px; }
+
+.card-situation {
+  font-size: var(--texto-base);
+  text-align: center;
+  max-width: 480px;
+}
+
+.card-number {
+  font-size: var(--texto-titulo);
+  font-weight: 800;
+  color: var(--mod-secuencia);
+}
+
+/* ---- Resumen ---- */
+.summary-row {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+}
+
+.summary-text {
+  font-size: var(--texto-base);
+  color: var(--color-texto-suave);
+  text-align: center;
+  margin-top: var(--espacio);
+}
+
+/* ---- Test ---- */
+.situation-picto { font-size: 64px; }
+
+.quiz-text {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.quiz-question { color: var(--color-texto-suave); }
+
+.big-emoji { font-size: 96px; }
+
+#endScreen { padding-top: 48px; }
+
+#endScreen .btn { align-self: center; min-width: 280px; }

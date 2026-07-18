@@ -42,7 +42,7 @@ all times.
 **Occupational therapists and teachers:**
 - Select activities that fit specific therapeutic objectives
 - Use the application as a complement between sessions
-- Can view the usage guide at `equipo/`
+- Can view the usage guide at `team/`
 
 ---
 
@@ -63,7 +63,7 @@ Apptonomia works on **6 therapeutic areas** (modules):
 
 The complete catalog, area by area and activity by activity, is in
 [`activities.md`](activities.md). The specific therapeutic purpose of each
-activity is in `equipo/index.html`.
+activity is in `team/index.html`.
 
 ### 2.2 UX goals
 
@@ -98,7 +98,7 @@ that are never broken, because they define what kind of experience we offer.
 - Short sentences, one idea per sentence
 - Everyday vocabulary (no technical jargon)
 - No clinical language in the interface ("patient", "therapy", "disability")
-- Clinical language is only allowed in `equipo/` and in repo documentation
+- Clinical language is only allowed in `team/` and in repo documentation
 
 ### 3.4 Privacy by default
 
@@ -106,6 +106,15 @@ that are never broken, because they define what kind of experience we offer.
 - **No cookies or analytics**: no tracking
 - **No personal data**: progress is saved on the device (`localStorage`)
 - The application works without an internet connection
+- **Local progress contract**: `localStorage` storage is limited to
+  `estrellas` (an integer) and `completado` (which levels are done), plus the
+  few optional items each activity may ask for explicitly (for example, the
+  name typed into Keyboard or Piano, which the user can erase at any time).
+  We **never** store: failures, time taken, attempt counts, comparisons with
+  other people, detailed usage histories, or identifying profiles. Progress
+  never leaves the device; the local backup is the responsibility of whoever
+  manages the device (see `/settings/`). Progress is not synced to the cloud
+  nor cross-referenced between devices.
 
 ### 3.5 Universal accessibility
 
@@ -147,7 +156,7 @@ A change in Apptonomia is considered successful when:
 4. **Works offline**: the app keeps being usable without connection
 5. **Respects privacy**: no new personal data is collected
 6. **Maintains ES/EN parity**: any new text appears in both languages
-7. **Doesn't break existing activities**: the 57 activities keep working the same
+7. **Doesn't break existing activities**: existing activities keep working the same
 
 ---
 
@@ -178,10 +187,4 @@ in the future:
 This SPEC.md is the **product definition**: WHAT, FOR WHOM and WHY.
 The rest of the documentation covers the HOW:
 
-| To understand… | Read… |
-|---|---|
-| How the app is built | [`technical.md`](technical.md) |
-| How to use the app | [`quick-guide.md`](quick-guide.md) |
-| What activities there are | [`activities.md`](activities.md) |
-| How to use Apptonomia in therapy | [`team.md`](team.md) |
-| Map of all documentation | [`../index.md`](../index.md) |
+Further information, see map of all documentation | [`index.md`](index.md) |

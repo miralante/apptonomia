@@ -1,8 +1,8 @@
 /* ==========================================================================
-   Apptonomia — Refuerzo positivo y mensajes de ánimo
-   Expone window.App.feedback.success(zona) / .encourage(zona) / .celebrate(msg)
-   Reglas 5 y 6 de CLAUDE.md: el error nunca se castiga; refuerzo <= 2 s.
-   Mensajes según idioma activo (App.i18n.pick). Requiere utils.js e i18n.js.
+   Apptonomia — Positive reinforcement and encouragement messages
+   Exposes window.App.feedback.success(zona) / .encourage(zona) / .celebrate(msg)
+   Rules 5 and 6 of CLAUDE.md: mistakes are never punished; feedback <= 2 s.
+   Messages follow the active language (App.i18n.pick). Requires utils.js and i18n.js.
    ========================================================================== */
 (function () {
   'use strict';
@@ -14,9 +14,9 @@
     return '';
   }
 
-  /* Sonido suave con Web Audio (sin archivos). Falla en silencio.
-     Respeta la preferencia "Sonidos" de /ajustes/ (por defecto
-     activados: solo se silencia si alguien la ha puesto a false). */
+  /* Soft sound with Web Audio (no audio files). Fails silently.
+     Honors the "Sounds" preference from /settings/ (on by default:
+     only muted if someone has explicitly turned it off). */
   var audioCtx = null;
 
   function sonidosActivados() {
@@ -42,23 +42,23 @@
       gain.connect(audioCtx.destination);
       osc.start();
       osc.stop(audioCtx.currentTime + duracion);
-    } catch (e) { /* silencio */ }
+    } catch (e) { /* silent */ }
   }
 
   function sonidoAcierto() {
-    tono(523.25, 0.15);          /* do */
-    setTimeout(function () { tono(659.25, 0.2); }, 120); /* mi */
+    tono(523.25, 0.15);          /* C */
+    setTimeout(function () { tono(659.25, 0.2); }, 120); /* E */
   }
 
   function sonidoAnimo() {
-    /* Suave y neutro, nunca duro (regla 5) */
+    /* Soft and neutral, never harsh (rule 5) */
     tono(392, 0.2, 'sine');
   }
 
   /**
-   * Refuerzo positivo en una zona de feedback (elemento con aria-live).
-   * @param {Element} [zona] - elemento donde escribir el mensaje
-   * @returns {string} el mensaje usado
+   * Positive reinforcement in a feedback zone (element with aria-live).
+   * @param {Element} [zona] - element to write the message into
+   * @returns {string} the message used
    */
   function success(zona) {
     var msg = alAzar('feedback.success');
@@ -72,9 +72,9 @@
   }
 
   /**
-   * Mensaje de ánimo tras un fallo. Nunca punitivo.
+   * Encouragement message after a mistake. Never punitive.
    * @param {Element} [zona]
-   * @returns {string} el mensaje usado
+   * @returns {string} the message used
    */
   function encourage(zona) {
     var msg = alAzar('feedback.encourage');
@@ -87,15 +87,15 @@
     return msg;
   }
 
-  /* Rondas completadas en esta sesión de página (regla 5: nunca en
-     localStorage, nunca presión — solo una frase amable cada 5 rondas). */
+  /* Rounds completed in this page session (rule 5: never in
+     localStorage, never pressure — just a kind phrase every 5 rounds). */
   var rondasSesion = 0;
 
   /**
-   * Pantalla de celebración breve (usa .celebration de components.css).
-   * Crea el elemento si no existe. Se oculta sola tras 2 s.
-   * @param {string} mensaje - p. ej. '¡Rutina completada!'
-   * @param {function} [despues] - callback al ocultarse
+   * Brief celebration screen (uses .celebration from components.css).
+   * Creates the element if it doesn't exist. Hides itself after 2 s.
+   * @param {string} mensaje - e.g. '¡Rutina completada!'
+   * @param {function} [despues] - callback when it hides
    */
   function celebrate(mensaje, despues) {
     rondasSesion += 1;

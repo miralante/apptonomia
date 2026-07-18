@@ -27,7 +27,7 @@
   var pantallaFinal = $('#pantallaFinal');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completadoReconocer) progreso.completadoReconocer = 0;

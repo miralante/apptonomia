@@ -33,7 +33,7 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
@@ -42,8 +42,8 @@
   var nivel = null;
   var idxPieza = 0;
   var aciertosRonda = 0;
-  var llenas = [];          /* índices f*columnas+c rellenos */
-  var hueco = [];           /* índices que la pieza debe ocupar */
+  var llenas = [];          /* filled row*columns+col indexes */
+  var hueco = [];           /* indexes the piece must occupy */
   var clavePieza = '';
   var orientacion = 0;
   var piezaX = 0;
@@ -101,7 +101,7 @@
     progressText.textContent = idxPieza + ' / ' + porRonda;
   }
 
-  /* ---- Generación: hueco = huella de la pieza apoyada en el suelo ---- */
+  /* ---- Generation: hueco = footprint of the piece resting on the floor ---- */
   function nuevaPieza() {
     clavePieza = App.utils.shuffle(nivel.piezas)[0];
     var ors = banco().piezas[clavePieza];
@@ -114,7 +114,7 @@
       return (offsetY + c[1]) * cols() + (xFinal + c[0]);
     });
 
-    /* Rellenar el resto de las filas que toca el hueco */
+    /* Fill in the rest of the rows the gap touches */
     llenas = [];
     var filasHueco = {};
     hueco.forEach(function (i) { filasHueco[Math.floor(i / cols())] = true; });
@@ -125,8 +125,8 @@
       }
     });
 
-    /* La pieza aparece arriba, en una orientación al azar (puede
-       necesitar giros) y columna inicial centrada */
+    /* The piece appears at the top, in a random orientation (may
+       need rotating) and a centered starting column */
     orientacion = Math.floor(Math.random() * ors.length);
     piezaX = Math.min(2, cols() - anchura(celdasPieza()));
     intentos = 0;
@@ -217,7 +217,7 @@
       intentos += 1;
       App.feedback.encourage(feedbackEl);
       if (intentos === 1) {
-        /* Regla 12: primer fallo → pista, nunca la solución */
+        /* Rule 12: first mistake → hint, never the solution */
         explicacionEl.textContent = App.i18n.t('pistaForma');
         explicacionWrap.classList.remove('oculto');
         pintarTablero();
@@ -274,7 +274,7 @@
     App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
   }
 
-  /* Eventos */
+  /* Events */
   $('#btnIzquierda').addEventListener('click', function () { mover(-1); });
   $('#btnDerecha').addEventListener('click', function () { mover(1); });
   $('#btnGirar').addEventListener('click', girar);

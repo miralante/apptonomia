@@ -1,4 +1,4 @@
-/* ¿Qué no encaja? — estilos específicos. Lo común está en assets/css/. */
+/* What Doesn't Belong? — tool-specific styles. Shared styles live in assets/css/. */
 
 .tool-header h1 { color: var(--mod-razonamiento); }
 

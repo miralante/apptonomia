@@ -18,7 +18,7 @@
       <span class="stars" id="stars">⭐ 0</span>
     </header>
 
-    <!-- Pantalla: menú de las 3 actividades -->
+    <!-- Screen: 3-activity menu -->
     <section id="pantallaMenu" class="pila">
       <div class="fila centrado-fila">
         <p class="instruccion" id="instruccion" data-i18n="instruccion">Aquí usas el dinero como en la vida real: haces una compra entera, controlas lo que te queda y piensas si un precio está bien.</p>
@@ -54,7 +54,7 @@
       <div class="pila" id="niveles"></div>
     </section>
 
-    <!-- Pantalla de juego de los quiz (¿Qué me queda?, ¿Mucho o poco?) -->
+    <!-- Quiz game screen ("What's left?", "Too much or too little?") -->
     <section id="pantallaJuegoQuiz" class="oculto pila">
       <div class="progress-bar">
         <div class="progress-fill" id="progressQuizFill"></div>
@@ -132,7 +132,7 @@
   <script src="../../assets/js/feedback.js"></script>
   <script src="../../assets/js/dinero.js"></script>
   <script>
-  /* Carga condicional del archivo de idioma activo (es|en). */
+  /* Conditional load of the active language file (es|en). */
   (function () {
     var loc = window.App.i18n.locale();
     document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');

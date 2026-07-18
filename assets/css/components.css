@@ -1,17 +1,17 @@
 /* ==========================================================================
-   Apptonomia — Componentes reutilizables
-   Requiere tokens.css y base.css.
-   Botones >= 64px, separación >= 16px (reglas 2 y 10 de CLAUDE.md).
+   Apptonomia — Reusable components
+   Requires tokens.css and base.css.
+   Buttons >= 64px, gap >= 16px (CLAUDE.md rules 2 and 10).
    ========================================================================== */
 
-/* ---- Contenedor de página ---- */
+/* ---- Page container ---- */
 .container {
   max-width: 900px;
   margin: 0 auto;
   padding: var(--espacio-grande) var(--espacio);
 }
 
-/* ---- Botones ---- */
+/* ---- Buttons ---- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -41,7 +41,7 @@
 
 .btn-acierto { background: var(--color-acierto); }
 
-/* Botón de audio (regla 4 de CLAUDE.md) */
+/* Audio button (CLAUDE.md rule 4) */
 .btn-audio {
   background: var(--color-superficie);
   color: var(--color-texto);
@@ -54,7 +54,7 @@
   background: var(--mod-coordinacion-suave);
 }
 
-/* Opciones de respuesta (multiple choice) */
+/* Answer options (multiple choice) */
 .btn-opcion {
   width: 100%;
   min-height: var(--boton-min);
@@ -81,7 +81,7 @@
   background: var(--color-animo-suave);
 }
 
-/* ---- Enlace de volver (siempre arriba a la izquierda) ---- */
+/* ---- Back link (always top left) ---- */
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -99,7 +99,7 @@
 
 .back-link:hover { border-color: var(--mod-coordinacion); }
 
-/* ---- Tarjetas ---- */
+/* ---- Cards ---- */
 .card {
   background: var(--color-superficie);
   border: 3px solid var(--color-borde);
@@ -108,7 +108,7 @@
   box-shadow: var(--sombra);
 }
 
-/* ---- Barra de progreso (sin presión: solo informativa) ---- */
+/* ---- Progress bar (no pressure: informational only) ---- */
 .progress-bar {
   position: relative;
   height: 28px;
@@ -137,7 +137,7 @@
   color: var(--color-texto);
 }
 
-/* ---- Estrellas ---- */
+/* ---- Stars ---- */
 .stars {
   display: inline-flex;
   align-items: center;
@@ -147,7 +147,7 @@
   color: var(--color-estrella);
 }
 
-/* ---- Zona de feedback (aria-live) ---- */
+/* ---- Feedback zone (aria-live) ---- */
 .feedback {
   min-height: 64px;
   display: flex;
@@ -162,7 +162,7 @@
 .feedback.acierto { color: var(--color-acierto); }
 .feedback.animo { color: var(--color-animo); }
 
-/* ---- Explicación de por qué una respuesta es correcta/incorrecta (quiz) ---- */
+/* ---- Explanation of why an answer is right/wrong (quiz) ---- */
 .explicacion {
   max-width: 640px;
   margin: 0 auto;
@@ -176,7 +176,7 @@
 }
 .explicacion p { margin: 0; flex: 1; }
 
-/* ---- Celebración (breve, <= 2 s) ---- */
+/* ---- Celebration (brief, <= 2 s) ---- */
 .celebration {
   position: fixed;
   inset: 0;
@@ -210,7 +210,7 @@
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* ---- Cabecera estándar de herramienta ---- */
+/* ---- Standard tool header ---- */
 .tool-header {
   display: flex;
   align-items: center;
@@ -224,20 +224,20 @@
   font-size: var(--texto-grande);
 }
 
-/* ---- Rejilla de tarjetas grandes (menú) ---- */
+/* ---- Grid of large cards (menu) ---- */
 .grid-tarjetas {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: var(--espacio-grande);
 }
 
-/* Utilidades */
+/* Utilities */
 .centrado { text-align: center; }
 .oculto { display: none !important; }
 .pila { display: flex; flex-direction: column; gap: var(--espacio); }
 .fila { display: flex; align-items: center; gap: var(--espacio); flex-wrap: wrap; }
 
-/* ---- Dinero visual (euros dibujados con CSS; lógica en assets/js/dinero.js) ---- */
+/* ---- Visual money (euros drawn with CSS; logic in assets/js/dinero.js) ---- */
 .dinero {
   display: inline-flex;
   align-items: center;
@@ -249,7 +249,7 @@
   box-shadow: var(--sombra);
 }
 
-/* Monedas: redondas, >= 64 px (regla 2) */
+/* Coins: round, >= 64 px (rule 2) */
 .dinero.moneda {
   width: 68px;
   height: 68px;
@@ -257,13 +257,13 @@
   font-size: 18px;
 }
 
-.m5c { background: #C98850; border: 4px solid #A2652F; }                /* cobre */
-.m10c, .m20c, .m50c { background: #E9C55B; border: 4px solid #BC9430; } /* dorado */
-.m1e { background: #D9D9D9; border: 7px solid #C9A227; }                /* centro plata, aro oro */
-.m2e { background: #E3C14B; border: 7px solid #B9B9B9; }                /* centro oro, aro plata */
+.m5c { background: #C98850; border: 4px solid #A2652F; }                /* copper */
+.m10c, .m20c, .m50c { background: #E9C55B; border: 4px solid #BC9430; } /* gold */
+.m1e { background: #D9D9D9; border: 7px solid #C9A227; }                /* silver center, gold ring */
+.m2e { background: #E3C14B; border: 7px solid #B9B9B9; }                /* gold center, silver ring */
 .m1e, .m2e { font-size: 20px; }
 
-/* Billetes: rectangulares con los colores reales */
+/* Banknotes: rectangular with the real colors */
 .dinero.billete {
   min-width: 112px;
   height: 64px;
@@ -271,10 +271,10 @@
   font-size: 22px;
 }
 
-.b5e { background: #C9CFD8; border: 4px solid #8E99A8; }    /* gris */
-.b10e { background: #EFB2A6; border: 4px solid #C56F5C; }   /* rojo */
-.b20e { background: #AFC8E8; border: 4px solid #6D8FBC; }   /* azul */
-.b50e { background: #F2C08A; border: 4px solid #C98B3F; }   /* naranja */
+.b5e { background: #C9CFD8; border: 4px solid #8E99A8; }    /* gray */
+.b10e { background: #EFB2A6; border: 4px solid #C56F5C; }   /* red */
+.b20e { background: #AFC8E8; border: 4px solid #6D8FBC; }   /* blue */
+.b50e { background: #F2C08A; border: 4px solid #C98B3F; }   /* orange */
 
 button.dinero { cursor: pointer; }
 button.dinero:hover { transform: scale(1.05); }
@@ -287,7 +287,7 @@ button.dinero:disabled { cursor: default; }
 
 .dinero.animo { opacity: 0.45; }
 
-/* Mesa donde se muestra el dinero */
+/* Table where the money is displayed */
 .mesa-dinero {
   display: flex;
   flex-wrap: wrap;

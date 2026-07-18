@@ -1,4 +1,4 @@
-/* El Teatro — estilos específicos. Lo común está en assets/css/.
+/* The Theatre — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Memoria y atención (naranja --mod-memoria).
    La profundidad se transmite con dos bandas: FONDO arriba (cielo,
    contenido más pequeño) y DELANTE abajo (suelo, más grande).
@@ -48,11 +48,11 @@
   padding: 12px;
 }
 
-/* Fondo: banda de cielo, contenido más pequeño (lejos) */
+/* Back: sky band, smaller content (far) */
 .banda.fondo { background: #DCEBF5; }
 .banda.fondo .sitio { font-size: 34px; }
 
-/* Delante: banda de suelo, contenido más grande (cerca) */
+/* Front: ground band, larger content (near) */
 .banda.delante { background: #E8E3D5; }
 .banda.delante .sitio { font-size: 52px; }
 

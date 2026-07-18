@@ -1,8 +1,8 @@
 /* ==========================================================================
-   Apptonomia — Texto a voz (Web Speech API)
-   Expone window.App.tts.speak(texto, onEnd) y App.tts.stop()
-   Voz e idioma según App.i18n.lang() (regla 4 de CLAUDE.md: velocidad 0.9).
-   Requiere i18n.js cargado antes.
+   Apptonomia — Text to speech (Web Speech API)
+   Exposes window.App.tts.speak(texto, onEnd) and App.tts.stop()
+   Voice and language follow App.i18n.lang() (CLAUDE.md rule 4: rate 0.9).
+   Requires i18n.js loaded first.
    ========================================================================== */
 (function () {
   'use strict';
@@ -38,9 +38,9 @@
   }
 
   /**
-   * Lee un texto en voz alta. Cancela cualquier lectura anterior.
+   * Reads a text aloud. Cancels any previous reading.
    * @param {string} texto
-   * @param {function} [onEnd] - callback al terminar (opcional)
+   * @param {function} [onEnd] - callback on finish (optional)
    */
   function speak(texto, onEnd) {
     if (!disponible || !texto) {
@@ -59,7 +59,7 @@
     window.speechSynthesis.speak(u);
   }
 
-  /** Detiene la lectura actual. */
+  /** Stops the current reading. */
   function stop() {
     if (disponible) window.speechSynthesis.cancel();
   }

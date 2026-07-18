@@ -1,4 +1,4 @@
-/* Mi Cuerpo Me Avisa — estilos específicos. Lo común está en assets/css/.
+/* My Body Tells Me — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Emociones (morado --mod-emocional). */
 
 .tool-header h1 { color: var(--mod-emocional); }

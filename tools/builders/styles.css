@@ -160,9 +160,9 @@
   outline-offset: -3px;
 }
 
-/* --- Texturas de bloque (solo gradientes CSS, sin imágenes) ---
-   Todas llevan el mismo bisel: luz arriba-izquierda, sombra
-   abajo-derecha — el "relieve" clásico de bloque de Minecraft. */
+/* --- Block textures (CSS gradients only, no images) ---
+   They all share the same bevel: light top-left, shadow
+   bottom-right — the classic Minecraft-block "relief". */
 .bloque-tierra, .bloque-cesped, .bloque-piedra, .bloque-madera,
 .bloque-agua, .bloque-techo, .bloque-ladrillo, .bloque-arena {
   box-shadow:
@@ -179,7 +179,7 @@
   background-position: 0 0, 7px 9px;
 }
 
-/* Césped: franja verde arriba sobre tierra — el bloque icónico */
+/* Grass: green strip on top of dirt — the iconic block */
 .bloque-cesped {
   background-color: #8B5A2B;
   background-image:
@@ -339,8 +339,8 @@
   box-shadow: none;
 }
 
-/* En vistas pequeñas (previa y miniatura) el bisel de 3px taparía la
-   textura entera: fuera bisel, solo el color/textura base. */
+/* In small views (preview and thumbnail) the 3px bevel would hide
+   the whole texture: no bevel there, just the base color/texture. */
 .preview-plantilla .celda,
 .vista-miniatura .celda {
   box-shadow: none;

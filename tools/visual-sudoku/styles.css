@@ -1,4 +1,4 @@
-/* Sudoku Visual — estilos específicos. Lo común está en assets/css/.
+/* Visual Sudoku — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Razonamiento (teal --mod-razonamiento). */
 
 .tool-header h1 { color: var(--mod-razonamiento); }

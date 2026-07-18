@@ -28,6 +28,9 @@ that's precisely the goal: the tool is for them.
 > UI design decisions **are tested and validated with them** whenever
 > possible, and their feedback is the primary source for improvement.
 
+See [`doc/en/roles.md`](doc/en/roles.md) for where each role should look first
+(README, quick-guide, team.md, technical.md, …).
+
 ---
 
 ## 🔀 GitHub workflow
@@ -180,7 +183,7 @@ When a PR adds an activity, your review as support person is what validates:
 - Tested on mobile (responsive 360 px)
 - No console errors
 - If you changed cached files, you bumped `VERSION` in `sw.js`
-- If you added an activity, it's in `equipo/index.html` and `site/index.html`
+- If you added an activity, it's in `team/index.html` and `site/index.html`
 
 ---
 
@@ -203,7 +206,7 @@ When a PR adds an activity, your review as support person is what validates:
 - **New dependencies** (npm, CDNs) — vanilla JS only, see [`doc/en/technical.md`](doc/en/technical.md) §1
 - **Features that add pressure** to the end user (visible timers, rankings,
   comparisons, "game over")
-- **Clinical language in the UI** — only allowed in `equipo/` and in
+- **Clinical language in the UI** — only allowed in `team/` and in
   internal documentation
 - **Personal data** of any kind — the app runs on `localStorage` only
 - **Imposing technical decisions on the end user** — their experience is

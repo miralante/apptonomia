@@ -17,7 +17,7 @@
       <h1>💜 <span data-i18n="title">¿Cómo me siento?</span></h1>
     </header>
 
-    <!-- Selección de emoción -->
+    <!-- Emotion selection -->
     <section id="pantallaSeleccion" class="pila centrado">
       <div class="fila centrado-fila">
         <h2 id="pregunta" data-i18n="pregunta">¿Cómo te sientes hoy?</h2>
@@ -37,7 +37,7 @@
       <button type="button" class="btn btn-secundario" id="btnVolverSeleccion" data-i18n="volver">Volver</button>
     </section>
 
-    <!-- Ejercicio de respiración -->
+    <!-- Breathing exercise -->
     <section id="pantallaRespiracion" class="oculto centrado pila">
       <div id="circuloRespiracion" aria-hidden="true"></div>
       <h2 id="textoRespiracion" aria-live="polite" data-i18n="cogeAire">Coge aire…</h2>
@@ -60,7 +60,7 @@
   <script src="../../assets/js/storage.js"></script>
   <script src="../../assets/js/feedback.js"></script>
   <script>
-  /* Carga condicional del archivo de idioma activo (es|en). */
+  /* Conditional load of the active language file (es|en). */
   (function () {
     var loc = window.App.i18n.locale();
     document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');

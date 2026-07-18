@@ -42,7 +42,7 @@ de que un profesional esté presente en cada momento.
 **Terapeutas ocupacionales y profesores:**
 - Seleccionan actividades que se ajustan a objetivos terapéuticos concretos
 - Usan la aplicación como complemento entre sesiones
-- Pueden ver la guía de uso en `equipo/`
+- Pueden ver la guía de uso en `team/`
 
 ---
 
@@ -63,7 +63,7 @@ Apptonomia trabaja **6 áreas terapéuticas** (módulos):
 
 El catálogo completo, área por área y actividad por actividad, está en
 [`actividades.md`](actividades.md). El propósito terapéutico específico de cada
-actividad está en `equipo/index.html`.
+actividad está en `team/index.html`.
 
 ### 2.2 Objetivos de UX
 
@@ -98,7 +98,7 @@ que nunca se rompen, porque definen qué tipo de experiencia ofrecemos.
 - Frases cortas, una idea por frase
 - Vocabulario cotidiano (sin tecnicismos)
 - Sin lenguaje clínico en la interfaz ("paciente", "terapia", "discapacidad")
-- El lenguaje clínico solo se permite en `equipo/` y en la documentación del repo
+- El lenguaje clínico solo se permite en `team/` y en la documentación del repo
 
 ### 3.4 Privacidad por defecto
 
@@ -106,6 +106,15 @@ que nunca se rompen, porque definen qué tipo de experiencia ofrecemos.
 - **Sin cookies ni analítica**: nada de rastreo
 - **Sin datos personales**: el progreso se guarda en el dispositivo (`localStorage`)
 - La aplicación funciona sin conexión a internet
+- **Contrato de progreso local**: el almacenamiento en `localStorage` se limita a
+  `estrellas` (número entero) y a `completado` (qué niveles se han terminado),
+  más los pocos datos opcionales que la actividad pida explícitamente (por
+  ejemplo, el nombre escrito en Teclado o en Piano, que la persona usuaria borra
+  cuando quiera). **Nunca** se guardan: fallos, tiempo tardado, número de
+  intentos, comparativas con otras personas, historiales detallados de uso ni
+  perfiles identificables. El progreso nunca sale del dispositivo; la copia
+  local es responsabilidad de quien gestiona el dispositivo (ver `/settings/`).
+  El progreso no se sincroniza en la nube ni se cruza entre dispositivos.
 
 ### 3.5 Accesibilidad universal
 
@@ -147,7 +156,7 @@ Un cambio en Apptonomia se considera exitoso cuando:
 4. **Funciona offline**: la app sigue siendo usable sin conexión
 5. **Respeta la privacidad**: no se recoge ningún dato personal nuevo
 6. **Mantiene la paridad ES/EN**: cualquier texto nuevo aparece en ambos idiomas
-7. **No rompe actividades existentes**: las 57 actividades siguen funcionando igual
+7. **No rompe actividades existentes**: las actividades existentes siguen funcionando igual
 
 ---
 
@@ -178,10 +187,4 @@ Decisiones explícitas que pueden sorprender — están aquí para que no se
 Este SPEC.md es la **definición del producto**: QUÉ, PARA QUIÉN y POR QUÉ.
 El resto de la documentación cubre el CÓMO:
 
-| Para entender… | Lee… |
-|---|---|
-| Cómo está construida la app | [`tecnico.md`](tecnico.md) |
-| Cómo usar la app | [`guia-rapida.md`](guia-rapida.md) |
-| Qué actividades hay | [`actividades.md`](actividades.md) |
-| Cómo usar Apptonomia en terapia | [`equipo.md`](equipo.md) |
-| El mapa de toda la documentación | [`../index.md`](../index.md) |
+Para más informacion, consultar el mapa de toda la documentación | [`indice.md`](indice.md) |

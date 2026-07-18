@@ -35,7 +35,7 @@
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (typeof progreso.rondas !== 'number') progreso.rondas = 0;
 
-  /* Estado de la ronda actual */
+  /* Current round state */
   var items = [];
   var idx = 0;
   var aciertosRonda = 0;
@@ -105,9 +105,10 @@
     explicacionWrap.classList.remove('oculto');
   }
 
-  /* Método socrático: en el primer fallo no se da la respuesta, se
-     redirige a la pista ya visible. Solo en el segundo fallo se
-     explica la respuesta correcta (mostrarExplicacion). */
+  /* Socratic method: on the first mistake the answer isn't given,
+     the person is pointed back to the hint already on screen. Only
+     on the second mistake is the correct answer explained
+     (mostrarExplicacion). */
   function mostrarPista(item) {
     explicacionEl.textContent = App.i18n.t('pista') + '"' + item.text + '"';
     explicacionWrap.classList.remove('oculto');
@@ -130,7 +131,7 @@
       btnSiguiente.classList.remove('oculto');
       btnSiguiente.focus();
     } else {
-      /* Ánimo, nunca castigo: puede volver a intentarlo */
+      /* Encouragement, never punishment: can try again */
       intentos += 1;
       if (intentos === 1) {
         mostrarPista(item);
@@ -165,7 +166,7 @@
     App.feedback.celebrar(App.i18n.t('rondaCompletadaTitulo'));
   }
 
-  /* Eventos */
+  /* Events */
   btnEscuchar.addEventListener('click', function () {
     App.tts.speak(items[idx].text);
   });

@@ -288,7 +288,7 @@ Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 - [Guía rápida de uso](guia-rapida.md) — Explicación para usuarios
 - [Catálogo de actividades](actividades.md) — Descripción de las 66 actividades
 - [Información técnica](tecnico.md) — Para desarrolladores
-- [Página del equipo](../../equipo/index.html) — Versión web interactiva
+- [Página del equipo](../../team/index.html) — Versión web interactiva
 
 ---
 

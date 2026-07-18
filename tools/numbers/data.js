@@ -34,8 +34,8 @@ var DATA = {
 
   actividades: {
     contar: {
-      /* Progresión (regla 13): única variable es 'paso'. 'max' (el
-         rango de números disponible) se deriva de 'paso' en app.js. */
+      /* Progression (rule 13): the only variable is 'paso'. 'max' (the
+         available number range) is derived from 'paso' in app.js. */
       picto: '🔢',
       niveles: [
         { id: 'c1', tipo: 'contar', paso: 1 },
@@ -46,11 +46,11 @@ var DATA = {
     },
 
     unidades: {
-      /* Progresión (regla 13): orden pensado para que cada paso
-         cambie una sola cosa. u999→udictado solo cambia 'tipo' (el
-         rango se mantiene en 999). udictado→umiles cambia 'tipo' con
-         un salto de magnitud mínimo (999→miles, la escala siguiente
-         natural). umiles→umillones solo cambia 'lista'. */
+      /* Progression (rule 13): order designed so each step changes
+         a single thing. u999→udictado only changes 'tipo' (the
+         range stays at 999). udictado→umiles changes 'tipo' with
+         a minimal magnitude jump (999→thousands, the next natural
+         scale). umiles→umillones only changes 'lista'. */
       picto: '🧱',
       niveles: [
         { id: 'u99', tipo: 'bloques', max: 99 },
@@ -62,12 +62,12 @@ var DATA = {
     },
 
     fracciones: {
-      /* Progresión (regla 13): f1→f2 solo cambia las fracciones
-         (medios/cuartos → tercios/sextos). f2→f3 cambia de tipo
-         (identificar → comparar), pero 'pares' de f3 reutiliza
-         EXCLUSIVAMENTE fracciones ya vistas en f1/f2 — la única
-         novedad real es la habilidad de comparar, no fracciones
-         nuevas que sumar a la carga. */
+      /* Progression (rule 13): f1→f2 only changes the fractions
+         (halves/quarters → thirds/sixths). f2→f3 changes the type
+         (identify → compare), but f3's 'pares' EXCLUSIVELY reuses
+         fractions already seen in f1/f2 — the only real novelty
+         is the comparing skill, not new fractions adding to the
+         load. */
       picto: '🍕',
       niveles: [
         {
@@ -123,12 +123,13 @@ var DATA = {
     },
 
     cabeza: {
-      /* Progresión (regla 13): dentro de cada operación (sumaGrande,
-         restaGrande, multiplicaGrande) sube solo la magnitud
-         (10→100→1000). Al cambiar de operación, la magnitud siempre
-         vuelve a la MISMA constante fija (10) — no es una segunda
-         variable eligiéndose de nuevo cada vez, es un ancla fija —
-         así que el único cambio real en esos saltos es la operación. */
+      /* Progression (rule 13): within each operation (sumaGrande,
+         restaGrande, multiplicaGrande) only the magnitude increases
+         (10→100→1000). When the operation changes, the magnitude
+         always resets to the SAME fixed constant (10) — it's not a
+         second variable being re-chosen each time, it's a fixed
+         anchor — so the only real change across those jumps is the
+         operation. */
       picto: '🧠',
       niveles: [
         { id: 'k1', tipo: 'dobles' },
@@ -169,8 +170,8 @@ var DATA = {
     }
   },
 
-  /* Números grandes y su lectura, por idioma. nota se muestra como pista.
-     La escala cambia entre idiomas: ver aviso arriba. */
+  /* Large numbers and how to read them, per language. nota is shown as a hint.
+     The scale differs between languages: see the note above. */
   lecturas: {
     es: {
       miles: [
@@ -230,9 +231,9 @@ var DATA = {
     }
   },
 
-  /* Equivalencias del sistema métrico, por idioma.
-     q: lo que se pregunta · r: respuesta buena · falsas: 2 respuestas malas
-     ej: ejemplo cotidiano (opcional). */
+  /* Metric system equivalences, per language.
+     q: what is being asked · r: correct answer · falsas: 2 wrong answers
+     ej: everyday example (optional). */
   medidas: {
     es: {
       longitud: {
@@ -306,9 +307,9 @@ var DATA = {
     }
   },
 
-  /* Casos para "¿Te llega?" (importes en céntimos, independientes del idioma).
-     llegaUno: tiene vs. precio de un producto.
-     llegaDos: tiene vs. la suma de dos productos. */
+  /* Cases for "Is it enough?" (amounts in cents, language-independent).
+     llegaUno: amount held vs. price of one product.
+     llegaDos: amount held vs. the sum of two products. */
   llegaUno: [
     { tiene: 300, precio: 250 },
     { tiene: 300, precio: 380 },
@@ -331,9 +332,9 @@ var DATA = {
     { tiene: 300, precios: [150, 175] }
   ],
 
-  /* Casos para "El Cambio" (importes en céntimos, independientes del idioma).
-     billete: lo que se paga · precio: lo que cuesta.
-     La devolución (billete - precio) se calcula en app.js. */
+  /* Cases for "The Change" (amounts in cents, language-independent).
+     billete: amount paid with · precio: what it costs.
+     The change due (billete - precio) is computed in app.js. */
   cambio: {
     facil: [
       { billete: 500, precio: 300 },

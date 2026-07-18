@@ -1,8 +1,8 @@
 /* ============================================================
-   Datos: Atrapa — configuración de niveles.
-   Formato: niveles[] = { id, nombre, tamano (px, nunca < 64) }
-   toquesPorRonda: toques necesarios para completar una ronda.
-   Para ampliar: añadir niveles nuevos al array.
+   Data: Catch — level configuration.
+   Format: niveles[] = { id, nombre, tamano (px, never < 64) }
+   toquesPorRonda: taps needed to complete a round.
+   To extend: add new levels to the array.
    ============================================================ */
 const DATA = {
   toquesPorRonda: 10,
@@ -11,6 +11,6 @@ const DATA = {
     { id: 'mediano', nombre: 'Mediano', tamano: 90, estrellas: 2 },
     { id: 'pequeno', nombre: 'Pequeño', tamano: 64, estrellas: 3 }
   ],
-  /* Emojis que va mostrando el objetivo (variedad = motivación) */
+  /* Emojis shown by the target (variety = motivation) */
   objetivos: ['⚽', '🎈', '⭐', '🍎', '🐥', '🌸', '🚗', '🐟', '🎁', '🦋']
 };

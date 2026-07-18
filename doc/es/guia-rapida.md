@@ -148,7 +148,7 @@ Puedes tocar **"Actualizar ahora"** para tener la última versión.
 
 ## Configuración personal
 
-Toca el botón de **ajustes** (⚙️) si quieres:
+Toca el botón de **settings** (⚙️) si quieres:
 
 - Cambiar el tamaño del texto (más grande o más pequeño)
 - Activar o desactivar los sonidos
@@ -201,7 +201,7 @@ Si necesitas más información:
 
 - [Catálogo de actividades](actividades.md) — Lista completa de las 66 actividades
 - [Información técnica](tecnico.md) — Para desarrolladores y profesionales
-- [Página del equipo](../equipo/index.html) — Guía para familias y profesionales
+- [Página del equipo](../team/index.html) — Guía para familias y profesionales
 
 ---
 

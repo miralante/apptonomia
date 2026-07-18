@@ -16,7 +16,7 @@
   var DELAY = App.utils.reducedMotion() ? 0 : 700;
   var DATOS = DATA[App.i18n.locale()] || DATA.es;
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completado) progreso.completado = {};
@@ -34,7 +34,7 @@
     });
   }
 
-  /* ---------- Menú ---------- */
+  /* ---------- Menu ---------- */
   function pintarMenu() {
     var cont = $('#listaChats');
     cont.innerHTML = '';
@@ -114,9 +114,9 @@
 
   /* ---------- Chat: motor de pasos ---------- */
   function abrirChat(esc) {
-    /* Cada tarjeta del menú es un grupo temático con varias variantes
-       (casos); se juega UNA al azar para que el guion no se memorice.
-       La estrella (progreso.completado) sigue siendo por grupo. */
+    /* Each menu card is a topic group with several variants
+       (cases); ONE is played at random so the script isn't memorized.
+       The star (progreso.completado) is still tracked per group. */
     var v = esc.variantes[Math.floor(Math.random() * esc.variantes.length)];
     escenario = { id: esc.id, contacto: v.contacto, pasos: v.pasos, regla: v.regla };
     idx = 0;

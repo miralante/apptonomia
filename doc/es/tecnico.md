@@ -10,7 +10,7 @@
 | `doc/<es\|en>/tecnico.md` (este) | Arquitectura, APIs del núcleo, contratos y recetas de desarrollo | Al desarrollar o modificar módulos |
 | Historial del proyecto | Sigue en Git (`git log`); sin hoja de ruta externa. |
 | `README.md` | Presentación breve, cómo ejecutar y desplegar | Primer contacto con el repo |
-| `equipo/index.html` | Guía para familias/profesionales (ruta oculta, ver §8) | Al añadir actividades: mantenerla al día |
+| `team/index.html` | Guía para familias/profesionales (ruta oculta, ver §8) | Al añadir actividades: mantenerla al día |
 | `agent.md` | Puntero de compatibilidad hacia `CLAUDE.md` | No usar como fuente |
 
 Cada materia tiene una única fuente canónica: producto en `SPEC.md`, técnica
@@ -109,12 +109,12 @@ no hay código por módulo:
 > escritura). En la landing aparece **una sola vez**, dentro de su **módulo
 > principal**: el que mejor representa su objetivo principal. Los módulos
 > terapéuticos sirven para navegar; las áreas se reflejan en la descripción de
-> cada actividad en `equipo/index.html`. El catálogo global se reconstruye a
+> cada actividad en `team/index.html`. El catálogo global se reconstruye a
 > partir de los slugs reales en `tools/` (verificado por `scripts/check.js`).
 
 Cada token tiene su par suave: `--mod-<x>` y `--mod-<x>-suave` (fondos).
 El catálogo funcional está en [`actividades.md`](actividades.md) y el propósito
-terapéutico en [`equipo.md`](equipo.md) y `equipo/index.html`.
+terapéutico en [`equipo.md`](equipo.md) y `team/index.html`.
 
 ### 2.3 Nivel 3 — Actividades (`tools/<slug>/`)
 
@@ -189,7 +189,7 @@ Clave interna: `apptonomia:<toolId>`. Todas las funciones son tolerantes a fallo
 | `set` | `(toolId, data) → boolean` | Guarda JSON. `false` si falló |
 | `remove` | `(toolId) → boolean` | Borra el progreso de la herramienta |
 | `estrellasTotales` | `() → number` | Suma `datos.estrellas` de todas las claves `apptonomia:*` (la usa la landing) |
-| `listaToolIds` | `() → string[]` | Ids de las herramientas con algo guardado, sin `'locale'` (la usa `ajustes/`) |
+| `listaToolIds` | `() → string[]` | Ids de las herramientas con algo guardado, sin `'locale'` (la usa `settings/`) |
 
 **Contrato de progreso**: el objeto guardado debe incluir `estrellas` (number) si la
 actividad da estrellas — es lo que suma la landing. El resto del objeto es libre por
@@ -496,7 +496,7 @@ Receta detallada y consideraciones (números, horas, contenido cultural) en
   storage), mostrarlos como presión no.
 - **Textos de la UI**: español de España e inglés, Lectura Fácil en los dos, sin
   lenguaje clínico ("paciente", "terapia", "discapacidad"). El lenguaje clínico solo
-  se permite en `equipo/` y en la documentación del repo. Todo texto vive en
+  se permite en `team/` y en la documentación del repo. Todo texto vive en
   `strings.<locale>.js` (nunca hardcodeado en `app.js` ni como único contenido de un nodo HTML
   sin `data-i18n`).
 - **Banco de casos en simulaciones**: una actividad de simulación o entrenamiento
@@ -518,16 +518,19 @@ Receta detallada y consideraciones (números, horas, contenido cultural) en
 Páginas para adultos (familia/profesorado/agente IA) que gestionan el dispositivo,
 no para la persona usuaria. Reglas comunes a todas: **no enlazarlas nunca** desde
 `site/index.html` ni desde las actividades (acceso solo por URL conocida), llevan
-`<meta name="robots" content="noindex, nofollow">`, y son las únicas páginas del
-producto donde se permite lenguaje clínico o de administración del dispositivo.
+`<meta name="robots" content="noindex, nofollow">`, son las únicas páginas del
+producto donde se permite lenguaje clínico o de administración del dispositivo, y
+siguen el mismo patrón multiidioma que el resto del sitio (`strings.es.js` /
+`strings.en.js`, `data-i18n`, selector de idioma) — verificado por `scripts/check.js`
+igual que en `tools/`.
 
-### 8.1 `/equipo/`
+### 8.1 `/team/`
 
 Guía para familias, terapeutas y profesorado + nota técnica para agentes de IA
 sobre el proyecto, el diseño y el catálogo de actividades. Mantenerla actualizada
-al añadir actividades o módulos.
+al añadir actividades o módulos, en los dos idiomas.
 
-### 8.2 `/ajustes/`
+### 8.2 `/settings/`
 
 Ver y borrar lo guardado en `localStorage` de este navegador. Dos acciones,
 cada una con confirmación en dos pasos (un clic pide confirmar, el segundo
@@ -535,17 +538,16 @@ borra):
 
 - **Restablecer datos de la persona**: `App.storage.remove('locale')` +
   vaciar el campo `nombre` de las herramientas que lo piden (hoy
-  `keyboard-typing` y `piano-teclas` — mantener esta lista en
-  `ajustes/app.js` si una herramienta nueva pide un nombre).
+  `keyboard-typing` y `piano-keys` — mantener esta lista en
+  `settings/app.js` si una herramienta nueva pide un nombre).
 - **Restablecer toda la aplicación**: borra todas las claves `apptonomia:*`
   (`App.storage.listaToolIds()` + `remove('locale')`). Equivale a un primer uso.
 
-### 8.3 `/presentacion/`
+### 8.3 `/about/`
 
-Página pública de presentación del proyecto. Una sola vista, sin scripts, en
-español de España, pensada para periodistas, financiadores, nuevos colaboradores
-y cualquier persona que llega al sitio o al repositorio y quiere entender qué
-es Apptonomia sin abrir el código.
+Página pública de presentación del proyecto, pensada para periodistas,
+financiadores, nuevos colaboradores y cualquier persona que llega al sitio o al
+repositorio y quiere entender qué es Apptonomia sin abrir el código.
 
 Tiene seis secciones: el origen del proyecto, los seis principios que no se
 negocian (autonomía, sin presión, privacidad, Lectura Fácil, accesibilidad,
@@ -557,8 +559,8 @@ actividades y a la guía del equipo de apoyo, pero ningún enlace público apunt
 a ella: solo se llega escribiendo la URL.
 
 Actualizarla cuando se añadan módulos o cuando cambie el número total de
-actividades. No añadir aquí texto dirigido a la persona usuaria: esa página
-no es para ella.
+actividades, en los dos idiomas. No añadir aquí texto dirigido a la persona
+usuaria: esa página no es para ella.
 
 ---
 
@@ -587,7 +589,7 @@ no es para ella.
    - Tarjeta en `site/index.html` y claves correspondientes en
      `site/strings.es.js` / `site/strings.en.js`.
    - Los 6 archivos de la actividad en `ARCHIVOS` de `sw.js`, y subir `VERSION` (§11).
-   - Fila en `equipo/index.html` y entrada bilingüe en `actividades.md` / `activities.md`.
+   - Fila en `team/index.html` y entrada bilingüe en `actividades.md` / `activities.md`.
 9. **Verificar** con los comandos y criterios de §12: estructura, ambos idiomas,
    persistencia, audio, teclado, objetivos táctiles y vista responsive.
 10. **Crear un commit** pequeño y coherente, con mensaje en inglés.
@@ -606,7 +608,7 @@ Solo si el área no encaja en los 6 módulos existentes (comprobar la cobertura 
    `style="--acento: var(--mod-<nombre>); --acento-suave: var(--mod-<nombre>-suave);"`,
    un `<h2>` con emoji + nombre en Lectura Fácil, y su `grid-tarjetas`.
 3. Documentar el módulo en `actividades.md` / `activities.md`, `equipo.md` /
-   `team.md`, `equipo/index.html` y §2.2 de esta documentación.
+   `team.md`, `team/index.html` y §2.2 de esta documentación.
 4. Crear la primera actividad del módulo (receta §9).
 
 ---

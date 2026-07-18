@@ -22,8 +22,8 @@
   var FICHA = { J: '🟡', R: '🔵' };
   var DELAY = App.utils.reducedMotion() ? 0 : 700;
 
-  /* Todas las líneas de 4 casillas (horizontales, verticales y
-     diagonales), precalculadas una vez como índices fila*COLS+col. */
+  /* Every 4-square line (horizontal, vertical and diagonal),
+     precomputed once as row*COLS+col indexes. */
   var LINEAS = (function () {
     var lineas = [];
     var f, c, k;
@@ -64,19 +64,19 @@
   var ayudaTextoEl = $('#ayudaTexto');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.victorias) progreso.victorias = {};
 
-  /* Estado de la partida */
+  /* Game state */
   var nivel = null;
-  var celdas = [];        /* 'J' | 'R' | null, índices 0-29 (fila 0 arriba) */
-  var columnasEl = [];    /* botón por columna */
-  var huecosEl = [];      /* span por casilla */
+  var celdas = [];        /* 'J' | 'R' | null, indexes 0-29 (row 0 at top) */
+  var columnasEl = [];    /* button per column */
+  var huecosEl = [];      /* span per cell */
   var turnoJugador = true;
   var partidaTerminada = false;
-  var ayudaPaso = 0;      /* método socrático: 1ª pulsación pregunta, 2ª marca la columna */
+  var ayudaPaso = 0;      /* Socratic method: 1st tap asks, 2nd marks the column */
 
   function guardar() { App.storage.set(TOOL_ID, progreso); }
   function pintarEstrellas() { starsEl.textContent = '⭐ ' + progreso.estrellas; }
@@ -98,8 +98,8 @@
     });
   }
 
-  /* ---- Tablero ---- */
-  /* Fila donde caería la ficha en la columna c, o -1 si está llena. */
+  /* ---- Board ---- */
+  /* Row where the piece would land in column c, or -1 if it's full. */
   function filaLibre(tab, c) {
     for (var f = FILAS - 1; f >= 0; f--) {
       if (!tab[f * COLS + c]) return f;
@@ -121,7 +121,7 @@
     return null;
   }
 
-  /* Columna donde 'quien' completaría su línea de cuatro al tirar, o -1. */
+  /* Column where 'quien' would complete their line of four, or -1. */
   function columnaQueCompleta(quien) {
     var libres = columnasLibres(celdas);
     for (var k = 0; k < libres.length; k++) {
@@ -194,7 +194,7 @@
     pintarEstrellas();
   }
 
-  /* Coloca la ficha con una pequeña caída animada (CSS respeta
+  /* Places the piece with a small drop animation (CSS respects
      prefers-reduced-motion). */
   function soltarFicha(c, quien) {
     var f = filaLibre(celdas, c);
@@ -203,14 +203,14 @@
     var span = huecosEl[f * COLS + c];
     span.style.setProperty('--desde', (-(f + 1) * 108) + '%');
     span.classList.remove('cae');
-    void span.offsetWidth;   /* reinicia la animación */
+    void span.offsetWidth;   /* restarts the animation */
     span.classList.add('cae');
     return f;
   }
 
-  /* El rival juega según la habilidad del nivel (ver data.js):
-     'azar' elige columna al azar; 'gana' remata su línea si puede;
-     'bloquea' además te tapa. Cada nivel añade UNA habilidad. */
+  /* The opponent plays according to the level's skill (see data.js):
+     'azar' picks a random column; 'gana' finishes its line if it
+     can; 'bloquea' also blocks you. Each level adds ONE skill. */
   function eligeColumnaRival() {
     var hab = nivel.habilidad;
     if (hab === 'gana' || hab === 'bloquea') {
@@ -228,9 +228,9 @@
     linea.forEach(function (i) { huecosEl[i].classList.add('ganadora'); });
   }
 
-  /* ---- Ayuda a demanda (método socrático en dos pasos) ----
-     1ª pulsación: pregunta que dirige la atención al dato clave.
-     2ª pulsación: marca la columna concreta y explica el porqué. */
+  /* ---- Hint on demand (two-step Socratic method) ----
+     1st tap: a question that directs attention to the key detail.
+     2nd tap: marks the exact column and explains why. */
   function limpiarAyuda() {
     ayudaPaso = 0;
     ayudaWrap.classList.add('oculto');
@@ -304,7 +304,7 @@
       App.feedback.success(feedbackEl);
       App.tts.speak(App.i18n.t('empate'));
     } else {
-      /* Perder: nunca castigo (regla 5) — ánimo y un consejo concreto. */
+      /* Losing: never punished (rule 5) — encouragement and a concrete tip. */
       estadoEl.textContent = App.i18n.t('haGanadoRival');
       App.feedback.encourage(feedbackEl);
       App.tts.speak(App.i18n.t('haGanadoRival'));

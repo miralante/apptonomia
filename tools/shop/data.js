@@ -31,8 +31,8 @@
    DATA[App.i18n.locale()] || DATA.es.
    ============================================================ */
 
-/* Escalera compartida de importes (regla 13: única variable = la
-   finura; 'paso' es el múltiplo en céntimos, en bucket). */
+/* Shared amounts ladder (rule 13: the only variable is the
+   granularity; 'paso' is the multiple in cents, in bucket). */
 const NIVELES_IMPORTE = [
   { id: 1, paso: 100 },
   { id: 2, paso: 50 },
@@ -56,9 +56,9 @@ const FIAR_BASE = [
 
 /* El nivel de un producto se deduce SOLO de su precio. */
 function nivelDePrecio(cent) {
-  if (cent % 100 === 0) return 1;   /* euros enteros */
-  if (cent % 50 === 0) return 2;    /* acaba en ,50 */
-  return 3;                         /* décimos (,10 … ,90) */
+  if (cent % 100 === 0) return 1;   /* whole euros */
+  if (cent % 50 === 0) return 2;    /* ends in ,50 */
+  return 3;                         /* tenths (,10 … ,90) */
 }
 
 /* ▶ Banco de productos con precios de referencia REALISTAS. */
@@ -80,7 +80,7 @@ const PRODUCTOS = [
   { picto: '🧴', clave: 'gel', precio: 4.50 },
   { picto: '☕', clave: 'taza', precio: 5.50 },
   { picto: '🧸', clave: 'peluche', precio: 7.50 },
-  /* Nivel 3 — precios con décimos */
+  /* Level 3 — prices with tenths */
   { picto: '✏️', clave: 'sacapuntas', precio: 0.60 },
   { picto: '🍬', clave: 'caramelos', precio: 0.70 },
   { picto: '🍎', clave: 'manzana', precio: 0.90 },
@@ -114,7 +114,7 @@ const NOMBRES = {
   }
 };
 
-/* Nombre y descripción de cada nivel, por idioma. */
+/* Name and description of each level, per language. */
 const NIVELES_TXT = {
   es: {
     importe: { 1: 'Importes enteros', 2: 'Con 50 céntimos', 3: 'Con 10 y 20 céntimos' },

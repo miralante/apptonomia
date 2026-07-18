@@ -74,8 +74,8 @@
     }, []);
   }
 
-  /* ¿Está el importe en el "bucket" del paso? (los importes de un
-     nivel no caen en el nivel anterior, como en Paga justo). */
+  /* Is the amount in the step's "bucket"? (a level's amounts
+     don't fall into the previous level, like in Paga justo). */
   function enBucket(cent, paso) {
     if (paso === 100) return cent % 100 === 0;
     if (paso === 50) return cent % 50 === 0 && cent % 100 !== 0;
@@ -91,8 +91,8 @@
     return lista;
   }
 
-  /* Par (precio, pagado): pagado es la única opción que llega y el
-     cambio nunca es cero. Compartido por conquepago y cambio. */
+  /* Pair (precio, pagado): pagado is the only amount that's enough and
+     the change is never zero. Shared by conquepago and cambio. */
   function generarPar(paso) {
     var pares = [[200, 100], [500, 200], [1000, 500]];   /* [pagado, inferior] */
     var candidatos = [];
@@ -224,11 +224,11 @@
     btn.disabled = true;
     App.feedback.encourage(feedbackQuizEl);
     if (intentosQ === 1) {
-      /* Primer fallo: pista socrática, sin dar la respuesta (regla 12). */
+      /* First failure: Socratic hint, without giving the answer (rule 12). */
       mostrarTextoQuiz(cfgActual().pista(casoQ));
     } else {
-      /* Segundo fallo: se marca la correcta y se explica el porqué
-         (regla 11: nadie se queda sin resolución). */
+      /* Second failure: the correct answer is marked and explained
+         (rule 11: no one is left without a resolution). */
       resolverQuiz(false);
     }
   }
@@ -245,7 +245,7 @@
      ============================================================ */
   var ACTIVIDADES = {
 
-    /* --- ¿Cuánto hay? — contar el dinero de la mesa --- */
+    /* --- How much is there? — count the money on the table --- */
     contar: {
       esQuiz: true,
       instruccion: 'instruccionContar',
@@ -290,7 +290,7 @@
       }
     },
 
-    /* --- ¿Con qué pago? — elegir el dinero que llega --- */
+    /* --- What do I pay with? — choose the money that's enough --- */
     conquepago: {
       esQuiz: true,
       tipoOpcion: 'ficha',
@@ -334,7 +334,7 @@
       alResolver: function (caso) { pintarMesa(descomponer(caso.cambio)); }
     },
 
-    /* --- ¿Está bien el cambio? — verificar lo devuelto --- */
+    /* --- Is the change correct? — verify what's given back --- */
     cambio: {
       esQuiz: true,
       instruccion: 'instruccionCambio',
@@ -361,7 +361,7 @@
           .replace('{pagado}', hablado(caso.pagado));
       },
       mesa: function (caso) { return descomponer(caso.mostrado); },
-      /* Sí/No en orden fijo (natural), no se barajan. */
+      /* Yes/No in fixed (natural) order, not shuffled. */
       opciones: function (caso) {
         return [
           { texto: App.i18n.t('si'), correcta: caso.esBien },
@@ -378,7 +378,7 @@
       }
     },
 
-    /* --- La Hucha — ¿cuánto falta para comprarlo? --- */
+    /* --- The Piggy Bank — how much is left to buy it? --- */
     hucha: {
       esQuiz: true,
       instruccion: 'instruccionHucha',
@@ -424,7 +424,7 @@
       }
     },
 
-    /* --- Más o menos — redondeo mental ("cuesta unos 3 €") --- */
+    /* --- More or less — mental rounding ("costs about 3 €") --- */
     redondeo: {
       esQuiz: true,
       instruccion: 'instruccionRedondeo',
@@ -545,11 +545,11 @@
   var productosRonda = [];
   var idxP = 0;
   var aciertosP = 0;
-  var puestas = [];      /* céntimos de cada pieza puesta, en orden */
+  var puestas = [];      /* cents of each piece placed, in order */
   var fallosP = 0;       /* comprobaciones falladas de este producto */
   var resueltoP = false;
   var ayudaPasoP = 0;
-  var botonesDinero = {};  /* cent -> botón, para marcar la ayuda */
+  var botonesDinero = {};  /* cent -> button, to mark the hint */
 
   function iniciarRondaPagar(n) {
     nivelP = n;
@@ -561,8 +561,8 @@
     renderPagar();
   }
 
-  /* Botones de dinero del nivel, de mayor a menor (enseña a pagar
-     empezando por lo grande). */
+  /* Level's money buttons, from largest to smallest (teaches paying
+     by starting with the largest). */
   function pintarDineroPagar() {
     monedasEl.innerHTML = '';
     botonesDinero = {};
@@ -667,9 +667,9 @@
     App.tts.speak(texto);
   }
 
-  /* ---- 💡 Ayuda a demanda (método socrático en dos pasos) ----
-     Enseña la estrategia de pagar de mayor a menor: 1ª pulsación
-     pregunta por el dinero más grande que cabe; la 2ª lo marca. */
+  /* ---- 💡 On-demand hint (two-step Socratic method) ----
+     Teaches the largest-to-smallest paying strategy: 1st tap
+     asks for the largest amount that fits; the 2nd marks it. */
   function limpiarAyudaPagar() {
     ayudaPasoP = 0;
     ayudaPagarWrap.classList.add('oculto');
@@ -697,7 +697,7 @@
     } else {
       texto = App.i18n.t('ayudaPagar' + ayudaPasoP);
       if (ayudaPasoP === 2) {
-        /* El dinero más grande del nivel que cabe en lo que queda. */
+        /* The largest money in the level that fits in what's left. */
         var mejor = nivelP.cents.filter(function (c) { return c <= restante; })
           .sort(function (a, b) { return b - a; })[0];
         if (mejor) botonesDinero[mejor].classList.add('sugerida');

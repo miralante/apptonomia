@@ -18,7 +18,7 @@
       <span class="stars" id="stars">⭐ 0</span>
     </header>
 
-    <!-- Pantalla inicial -->
+    <!-- Start screen -->
     <section id="pantallaInicio" class="pila centrado">
       <div class="fila centrado-fila">
         <p class="instruccion" id="instruccion" data-i18n="instruccion">Mira el reloj. Elige la hora correcta.</p>
@@ -28,7 +28,7 @@
       <div class="pila" id="niveles"></div>
     </section>
 
-    <!-- Pantalla de juego -->
+    <!-- Game screen -->
     <section id="pantallaJuego" class="oculto pila">
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill"></div>
@@ -49,7 +49,7 @@
       <button type="button" class="btn oculto" id="btnSiguiente" data-i18n="core.next">Siguiente →</button>
     </section>
 
-    <!-- Pantalla final -->
+    <!-- End screen -->
     <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
       <div class="emoji-grande" aria-hidden="true">🎉</div>
       <h2 data-i18n="core.roundComplete">¡Ronda completada!</h2>
@@ -66,7 +66,7 @@
   <script src="../../assets/js/storage.js"></script>
   <script src="../../assets/js/feedback.js"></script>
   <script>
-  /* Carga condicional del archivo de idioma activo (es|en). */
+  /* Conditional load of the active language file (es|en). */
   (function () {
     var loc = window.App.i18n.locale();
     document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');

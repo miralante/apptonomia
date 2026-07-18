@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="title">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teléfonos Importantes | Apptonomia</title>
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="tool-header">
+      <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Volver</a>
+      <h1 data-i18n="title">📞 Teléfonos Importantes</h1>
+      <span class="stars" id="stars">⭐ 0</span>
+    </header>
+
+    <!-- Pantalla 1: fichas -->
+    <section id="cardsScreen" class="pila centrado">
+      <div class="fila center-row">
+        <p class="instruction" data-i18n="instruction">Aprende qué número marcar. Primero mira las fichas, luego el resumen y después haz el test.</p>
+        <button type="button" class="btn btn-audio" id="instructionBtn" data-i18n-aria="core.listenInstructions" aria-label="Escuchar las instrucciones">🔊</button>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="cardsProgressFill"></div>
+        <span class="progress-text" id="cardsProgressText">1 / 3</span>
+      </div>
+      <div class="card centrado pila">
+        <div class="card-picto" id="cardPicto" aria-hidden="true"></div>
+        <h2 id="cardName"></h2>
+        <p class="card-situation" id="cardSituation"></p>
+        <p class="card-number" id="cardNumber"></p>
+        <button type="button" class="btn btn-audio" id="cardListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar la ficha"><span data-i18n="core.listen">🔊 Escuchar</span></button>
+      </div>
+      <button type="button" class="btn" id="nextCardBtn" data-i18n="core.next">Siguiente →</button>
+    </section>
+
+    <!-- Pantalla 2: resumen -->
+    <section id="summaryScreen" class="oculto pila centrado">
+      <h2 data-i18n="summaryTitle">Un solo número para todo</h2>
+      <div class="card pila" id="summaryCard"></div>
+      <div class="fila center-row">
+        <button type="button" class="btn btn-audio" id="summaryListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar el resumen">🔊</button>
+      </div>
+      <button type="button" class="btn" id="startQuizBtn" data-i18n="startQuiz">Hacer el test</button>
+    </section>
+
+    <!-- Pantalla 3: test -->
+    <section id="quizScreen" class="oculto pila">
+      <div class="progress-bar">
+        <div class="progress-fill" id="quizProgressFill"></div>
+        <span class="progress-text" id="quizProgressText">0 / 8</span>
+      </div>
+      <div class="card centrado pila">
+        <div class="situation-picto" id="quizPicto" aria-hidden="true"></div>
+        <p class="quiz-text" id="quizSituation" data-i18n="core.loading">Cargando…</p>
+        <button type="button" class="btn btn-audio" id="quizListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar la situación">🔊</button>
+      </div>
+      <h2 class="quiz-question centrado" data-i18n="quizQuestion">¿A qué número llamas?</h2>
+      <div class="pila" id="quizOptions"></div>
+      <div class="feedback" id="quizFeedback" aria-live="polite"></div>
+      <div class="fila explicacion oculto" id="quizExplanationWrap">
+        <p id="quizExplanation" aria-live="polite"></p>
+        <button type="button" class="btn btn-audio" id="quizExplanationListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar el texto">🔊</button>
+      </div>
+      <button type="button" class="btn oculto" id="quizNextBtn" data-i18n="core.next">Siguiente →</button>
+    </section>
+
+    <!-- End screen -->
+    <section id="endScreen" class="oculto centrado pila" aria-live="polite">
+      <div class="big-emoji" aria-hidden="true">🎉</div>
+      <h2 data-i18n="core.roundComplete">¡Ronda completada!</h2>
+      <p id="finalSummary"></p>
+      <button type="button" class="btn" id="replayBtn" data-i18n="core.playAgain">Jugar otra vez</button>
+      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backToMenu">Volver al menú</a>
+    </section>
+  </div>
+
+  <script src="../../assets/js/utils.js"></script>
+  <script src="../../assets/js/i18n.js"></script>
+  <script src="../../assets/js/tts.js"></script>
+  <script src="../../assets/js/storage.js"></script>
+  <script src="../../assets/js/feedback.js"></script>
+  <script>
+  /* Conditional load of the active language file (es|en). */
+  (function () {
+    var loc = window.App.i18n.locale();
+    document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
+  })();
+</script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../../sw.js').catch(function () {});
+    }
+  </script>
+</body>
+</html>

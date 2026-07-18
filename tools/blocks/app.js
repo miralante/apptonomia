@@ -1,13 +1,12 @@
 /* ============================================================
-   Apptonomia — Los Bloques (construcción viso-espacial)
-   Datos en data.js (DATA.niveles con modelos de 16 casillas).
-   Mecánica: se muestra un modelo 4×4 con bloques de color; al lado,
-   una cuadrícula vacía y una paleta de 3 colores. Se elige color y
-   se tocan casillas para copiarlo. Validación amable e inmediata:
-   pintar bien → acierto; primer fallo en una casilla → pista
-   socrática (regla 12); segundo fallo → se explica y se corrige
-   sola (regla 11), nadie se queda atascado. Ronda de 3 modelos;
-   1 estrella por construcción completada.
+   Apptonomia — Blocks (visual-spatial construction)
+   Data in data.js (DATA.niveles with 16-cell models).
+   Mechanic: a 4×4 model with colored blocks is shown; next to it,
+   an empty grid and a palette of 3 colors. Pick a color and tap
+   cells to copy it. Kind, immediate validation: correct paint →
+   success; first mistake on a cell → Socratic hint (rule 12);
+   second mistake → it's explained and self-corrected (rule 11),
+   nobody gets stuck. Round of 3 models; 1 star per completed build.
    ============================================================ */
 (function () {
   'use strict';
@@ -30,20 +29,20 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
 
-  /* Estado de la ronda */
+  /* Round state */
   var nivel = null;
   var idxModelo = 0;
   var aciertosRonda = 0;
   var modelo = [];          /* 'R'|'B'|'Y'|null ×16 */
-  var pintado = [];         /* idem, lo que lleva la persona */
+  var pintado = [];         /* same shape, what the person has painted so far */
   var botonesCelda = [];
   var colorSel = 'R';
-  var intentosCelda = {};   /* idx -> nº de fallos (regla 12) */
+  var intentosCelda = {};   /* idx -> number of mistakes (rule 12) */
   var completado = false;
 
   function guardar() { App.storage.set(TOOL_ID, progreso); }
@@ -186,13 +185,13 @@
       intentosCelda[i] = (intentosCelda[i] || 0) + 1;
       App.feedback.encourage(feedbackEl);
       if (intentosCelda[i] === 1) {
-        /* Regla 12: primer fallo → pista, nunca la respuesta */
+        /* Rule 12: first mistake → hint, never the answer */
         mostrarAviso(App.i18n.t(modelo[i] === null ? 'pistaVacia' : 'pistaColor'));
       } else if (modelo[i] === null) {
-        /* Casilla vacía en el modelo: se explica, no hay nada que corregir */
+        /* Empty cell in the model: it's explained, nothing to correct */
         mostrarAviso(App.i18n.t('malVacia'));
       } else {
-        /* Segundo fallo con color: se explica y se corrige sola */
+        /* Second mistake with a color: it's explained and self-corrected */
         mostrarAviso(App.i18n.t('malColor').replace('{color}', nombreColor(modelo[i])));
         pintarCelda(i, modelo[i]);
         comprobarCompletado();
@@ -241,7 +240,7 @@
     App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
   }
 
-  /* Eventos */
+  /* Events */
   btnSiguiente.addEventListener('click', siguiente);
   $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {

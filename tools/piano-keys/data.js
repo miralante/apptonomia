@@ -32,11 +32,11 @@ const DATA = {
       secuencia: ['C', 'C', 'G', 'G', 'A', 'A', 'G', 'F', 'F', 'E', 'E', 'D', 'D', 'C']
     },
     {
-      /* "Himno de la alegría" (Beethoven) / "Ode to Joy": antes había
-         aquí una segunda entrada ("Twinkle") con la MISMA secuencia
-         que "estrellita" — son la misma melodía en dos idiomas, no
-         dos canciones distintas. Se sustituye por una canción real
-         diferente para no repetir contenido. */
+      /* "Himno de la alegría" (Beethoven) / "Ode to Joy": there used
+         to be a second entry here ("Twinkle") with the SAME sequence
+         as "estrellita" — they're the same melody in two languages,
+         not two different songs. Replaced with a genuinely different
+         song so content isn't repeated. */
       id: 'himnoalegria', dificultad: 'media',
       secuencia: ['E', 'E', 'F', 'G', 'G', 'F', 'E', 'D', 'C', 'C', 'D', 'E', 'D', 'C']
     },

@@ -22,7 +22,7 @@
   var btnTerminado = $('#btnTerminado');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (typeof progreso.dibujosPintados !== 'number') progreso.dibujosPintados = 0;
@@ -118,7 +118,7 @@
     App.feedback.celebrar(App.i18n.t('finalTitulo'));
   }
 
-  /* Eventos */
+  /* Events */
   btnTerminado.addEventListener('click', terminar);
   $('#btnOtroDibujo').addEventListener('click', function () {
     pantallaFinal.classList.add('oculto');

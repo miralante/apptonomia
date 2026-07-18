@@ -33,12 +33,12 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
 
-  /* Estado de la ronda */
+  /* Round state */
   var nivel = null;
   var items = [];
   var idx = 0;
@@ -84,8 +84,8 @@
     progressText.textContent = idx + ' / ' + porRonda;
   }
 
-  /* Construye las 3 opciones del ítem según el tipo del nivel.
-     Cada opción: { contenido, clase, esCorrecta, esLetra } */
+  /* Builds the item's 3 options based on the level's type.
+     Each option: { contenido, clase, esCorrecta, esLetra } */
   function construirOpciones(item) {
     if (nivel.tipo === 'giro') {
       return App.utils.shuffle([
@@ -203,7 +203,7 @@
     App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
   }
 
-  /* Eventos */
+  /* Events */
   btnSiguiente.addEventListener('click', siguiente);
   $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {

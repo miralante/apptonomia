@@ -31,7 +31,7 @@
       <p class="feedback" id="avisoNombre" aria-live="polite"></p>
     </section>
 
-    <!-- Pantalla: menú principal -->
+    <!-- Screen: main menu -->
     <section id="pantallaMenu" class="oculto pila">
       <div class="fila centrado-fila">
         <h2 id="saludo" data-i18n="saludoMusico">¡Hola, músico!</h2>
@@ -116,7 +116,7 @@
       <div class="feedback" id="feedbackLibre" aria-live="polite"></div>
     </section>
 
-    <!-- Pantalla: seguir melodía -->
+    <!-- Screen: follow the melody -->
     <section id="pantallaSeguir" class="oculto pila">
       <div class="fila">
         <button type="button" class="btn btn-secundario" id="btnSalirSeguir" data-i18n="menu">← Menú</button>
@@ -152,7 +152,7 @@
       </div>
     </section>
 
-    <!-- Pantalla: Simón dice -->
+    <!-- Screen: Simon says -->
     <section id="pantallaSimon" class="oculto pila">
       <div class="fila">
         <button type="button" class="btn btn-secundario" id="btnSalirSimon" data-i18n="menu">← Menú</button>
@@ -222,7 +222,7 @@
         <button type="button" class="btn btn-piano" id="btnGuardarComp" data-i18n="guardarCompBtn">💾 Guardar</button>
       </div>
 
-      <!-- Nombrar canción: reemplaza al prompt() nativo, oculto hasta pulsar Guardar -->
+      <!-- Name the song: replaces the native prompt(), hidden until Save is tapped -->
       <div class="nombrar-cancion oculto pila" id="nombrarCancion">
         <label for="inputNombreCancion" class="instruccion" data-i18n="promptNombreCancion">¿Cómo quieres llamar a tu canción?</label>
         <input id="inputNombreCancion" class="input-nombre-cancion" type="text" maxlength="30" autocomplete="off" data-i18n-aria="nombreCancionAria" aria-label="Nombre de la canción">
@@ -236,7 +236,7 @@
       <div class="feedback" id="feedbackComp" aria-live="polite"></div>
     </section>
 
-    <!-- Partículas de celebración -->
+    <!-- Celebration particles -->
     <div class="particles" id="particles"></div>
   </div>
 
@@ -246,7 +246,7 @@
   <script src="../../assets/js/storage.js"></script>
   <script src="../../assets/js/feedback.js"></script>
   <script>
-  /* Carga condicional del archivo de idioma activo (es|en). */
+  /* Conditional load of the active language file (es|en). */
   (function () {
     var loc = window.App.i18n.locale();
     document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');

@@ -18,7 +18,7 @@
 
 var DATA = {};
 
-/* Tamaños de mundo del modo libre */
+/* Free-mode world sizes */
 DATA.tamanos = [
   { id: 'pequeno', cols: 6, rows: 4 },
   { id: 'mediano', cols: 8, rows: 5 },
@@ -39,7 +39,7 @@ DATA.bloques = [
   { id: 'arena' }
 ];
 
-/* Plantillas (modelos para copiar), de más simple a más compleja */
+/* Templates (models to copy), from simplest to most complex */
 DATA.plantillas = [
   {
     id: 'casita',

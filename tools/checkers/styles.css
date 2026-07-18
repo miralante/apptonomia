@@ -1,4 +1,4 @@
-/* Las Damas — estilos específicos. Lo común está en assets/css/.
+/* Checkers — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Razonamiento (teal --mod-razonamiento). */
 
 .tool-header h1 { color: var(--mod-razonamiento); }
@@ -84,7 +84,7 @@
   border-color: var(--color-acierto);
 }
 
-/* Jugada sugerida por la ayuda (2ª pulsación de 💡) */
+/* Move suggested by the hint (2nd tap of 💡) */
 .celda.sugerida {
   border-color: var(--mod-razonamiento);
   box-shadow: 0 0 0 4px var(--mod-razonamiento-suave);

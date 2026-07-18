@@ -1,9 +1,9 @@
 /* ============================================================
-   Datos: Calma (respiración y relajación guiadas). ES/EN.
-   Formato: DATA.<idioma>.niveles = [{ id, nombre, descripcion,
-     estrellas, ciclos (número de repeticiones de coger/soltar aire) }]
-   app.js usa DATA[App.i18n.locale()] || DATA.es.
-   Para ampliar: añadir una sesión con otro número de ciclos.
+   Data: Calm (guided breathing and relaxation). ES/EN.
+   Format: DATA.<language>.niveles = [{ id, nombre, descripcion,
+     estrellas, ciclos (number of inhale/exhale repetitions) }]
+   app.js uses DATA[App.i18n.locale()] || DATA.es.
+   To extend: add a session with a different number of cycles.
    ============================================================ */
 const DATA = {
   es: {

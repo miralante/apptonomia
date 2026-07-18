@@ -18,7 +18,7 @@
       <span class="stars" id="stars">⭐ 0</span>
     </header>
 
-    <!-- Pantalla inicial -->
+    <!-- Start screen -->
     <section id="pantallaInicio" class="pila centrado">
       <div class="fila centrado-fila">
         <p class="instruccion" id="instruccion" data-i18n="instruccion">Respira despacio siguiendo el círculo. Coge aire cuando crece, suelta el aire cuando encoge.</p>
@@ -28,7 +28,7 @@
       <div class="pila" id="niveles"></div>
     </section>
 
-    <!-- Pantalla de sesión -->
+    <!-- Session screen -->
     <section id="pantallaSesion" class="oculto centrado pila">
       <div id="circuloRespiracion" aria-hidden="true"></div>
       <h2 id="textoRespiracion" aria-live="polite" data-i18n="cogeAire">Coge aire…</h2>
@@ -36,7 +36,7 @@
       <button type="button" class="btn btn-secundario" id="btnTerminarSesion" data-i18n="terminar">Terminar</button>
     </section>
 
-    <!-- Pantalla final -->
+    <!-- End screen -->
     <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
       <div class="emoji-grande" aria-hidden="true">😌</div>
       <h2 data-i18n="finalTitulo">¡Muy bien! ¿Estás más tranquilo?</h2>
@@ -53,7 +53,7 @@
   <script src="../../assets/js/storage.js"></script>
   <script src="../../assets/js/feedback.js"></script>
   <script>
-  /* Carga condicional del archivo de idioma activo (es|en). */
+  /* Conditional load of the active language file (es|en). */
   (function () {
     var loc = window.App.i18n.locale();
     document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');

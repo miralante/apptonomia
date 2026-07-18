@@ -29,6 +29,9 @@ código**, y ese es justamente el objetivo: que la herramienta sea para ellas.
 > se prueban y se validan con ella** siempre que es posible, y su feedback es
 > la fuente principal para mejorarlas.
 
+Consulta [`doc/es/roles.md`](doc/es/roles.md) para saber por dónde debe
+empezar cada rol (README, guía rápida, equipo.md, tecnico.md, …).
+
 ---
 
 ## 🔀 Flujo de trabajo en GitHub
@@ -172,7 +175,7 @@ valida que:
 
 - **Actividad nueva** → [`doc/es/tecnico.md`](doc/es/tecnico.md) §9
 - **Módulo nuevo** → [`doc/es/tecnico.md`](doc/es/tecnico.md) §10
-- **Idioma nuevo** → [`doc/I18N.md`](doc/I18N.md) §5
+- **Idioma nuevo** → [`doc/es/I18N.md`](doc/es/I18N.md) §5
 
 ### Checklist antes de abrir PR
 
@@ -182,14 +185,14 @@ valida que:
 - Probado en móvil (responsive 360 px)
 - Sin errores en consola
 - Si cambias archivos cacheados, has subido `VERSION` en `sw.js`
-- Si has añadido una actividad, está en `equipo/index.html` y `site/index.html`
+- Si has añadido una actividad, está en `team/index.html` y `site/index.html`
 
 ---
 
 ## 🌐 Guía para traductores
 
 - Toda la UI vive en archivos `strings.<locale>.js` dentro de cada actividad
-- Para añadir un idioma nuevo, ver [`doc/I18N.md`](doc/I18N.md) §5
+- Para añadir un idioma nuevo, ver [`doc/es/I18N.md`](doc/es/I18N.md) §5
 - Mantén el estilo **Lectura Fácil** también en la traducción
 - Cuidado con números y dinero (separadores y escala): ver nota en
   [`doc/es/tecnico.md`](doc/es/tecnico.md) §3.3
@@ -205,7 +208,7 @@ valida que:
 - **Dependencias nuevas** (npm, CDNs) — solo JS vanilla, ver [`doc/es/tecnico.md`](doc/es/tecnico.md) §1
 - **Funcionalidades que añadan presión** al usuario final (cronómetros visibles,
   rankings, comparativas, "game over")
-- **Lenguaje clínico en la UI** — solo se permite en `equipo/` y en la
+- **Lenguaje clínico en la UI** — solo se permite en `team/` y en la
   documentación interna
 - **Datos personales** de ningún tipo — la app funciona en `localStorage`
   únicamente

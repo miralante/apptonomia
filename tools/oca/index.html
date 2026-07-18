@@ -18,7 +18,7 @@
       <span class="stars" id="stars">⭐ 0</span>
     </header>
 
-    <!-- Pantalla inicial -->
+    <!-- Start screen -->
     <section id="pantallaInicio" class="pila centrado">
       <div class="fila centrado-fila">
         <p class="instruccion" id="instruccion" data-i18n="instruccion">Tira el dado y avanza por el tablero hasta llegar a la meta.</p>
@@ -28,7 +28,7 @@
       <div class="pila" id="niveles"></div>
     </section>
 
-    <!-- Pantalla de juego -->
+    <!-- Game screen -->
     <section id="pantallaJuego" class="oculto pila">
       <p class="casilla-actual centrado" id="casillaActual" aria-live="polite"></p>
 
@@ -42,7 +42,7 @@
       <div class="feedback" id="feedback" aria-live="polite"></div>
     </section>
 
-    <!-- Pantalla final -->
+    <!-- End screen -->
     <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
       <div class="emoji-grande" aria-hidden="true">🏁</div>
       <h2 data-i18n="finalTitulo">¡Has llegado a la meta!</h2>
@@ -59,7 +59,7 @@
   <script src="../../assets/js/storage.js"></script>
   <script src="../../assets/js/feedback.js"></script>
   <script>
-  /* Carga condicional del archivo de idioma activo (es|en). */
+  /* Conditional load of the active language file (es|en). */
   (function () {
     var loc = window.App.i18n.locale();
     document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');

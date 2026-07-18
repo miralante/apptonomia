@@ -23,4 +23,5 @@
     "chatSuperado": "¡Chat superado!",
     "paraRecordarHablado": "Para recordar."
   }, 'es');
+
 })();

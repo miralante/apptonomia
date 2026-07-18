@@ -1,20 +1,20 @@
 /* ==========================================================================
-   Apptonomia — Dinero visual compartido (euros dibujados con CSS)
-   Expone window.App.dinero: el catálogo de monedas y billetes y los
-   helpers de formato/habla que usan las herramientas de dinero
-   (El Monedero, La Tienda). Las clases CSS (.dinero, .m5c … .b50e,
-   .mesa-dinero) viven en assets/css/components.css.
-   Los importes SIEMPRE en céntimos (enteros): evita errores de coma
-   flotante. Requiere i18n.js (cargar tras feedback.js, antes del
-   strings.js de la herramienta).
+   Apptonomia — Shared visual money (euros drawn with CSS)
+   Exposes window.App.dinero: the coin/banknote catalog and the
+   format/speech helpers used by the money tools (El Monedero, La
+   Tienda). CSS classes (.dinero, .m5c … .b50e, .mesa-dinero) live in
+   assets/css/components.css.
+   Amounts are ALWAYS in cents (integers): avoids floating-point
+   errors. Requires i18n.js (load after feedback.js, before the
+   tool's strings.js).
    ========================================================================== */
 (function () {
   'use strict';
 
   window.App = window.App || {};
 
-  /* Textos propios del módulo (namespace dinero.*), como hace
-     i18n.js con core.* y feedback.*. */
+  /* Module-specific texts (dinero.* namespace), the same way
+     i18n.js does with core.* and feedback.*. */
   App.i18n.register({
     es: {
       dinero: {
@@ -48,9 +48,9 @@
     }
   });
 
-  /* Catálogo: una entrada por denominación (sin 1 y 2 céntimos:
-     carga cognitiva; los importes van en múltiplos de 5, como el
-     redondeo real). La clase css la dibuja components.css. */
+  /* Catalog: one entry per denomination (no 1 and 2 cent coins:
+     cognitive load; amounts go in multiples of 5, like real-world
+     rounding). The css class draws it via components.css. */
   var CATALOGO = [
     { cent: 5, tipo: 'moneda', css: 'm5c' },
     { cent: 10, tipo: 'moneda', css: 'm10c' },
@@ -68,18 +68,18 @@
     return CATALOGO.filter(function (d) { return d.cent === cent; })[0];
   }
 
-  /* "2 €" / "50 cts" — etiqueta corta impresa en la ficha. */
+  /* "2 €" / "50 cts" — short label printed on the token. */
   function etiqueta(cent) {
     return cent >= 100 ? (cent / 100) + ' €' : cent + ' ' + App.i18n.t('dinero.cts');
   }
 
-  /* "1,50 €" — importe con el separador del idioma activo. */
+  /* "1,50 €" — amount with the active language's decimal separator. */
   function formatear(cent) {
     var sep = App.i18n.locale() === 'en' ? '.' : ',';
     return (cent / 100).toFixed(2).replace('.', sep) + ' €';
   }
 
-  /* "2 euros y 50 céntimos" — para hablar y para las pistas. */
+  /* "2 euros y 50 céntimos" — for speech and for hints. */
   function hablado(cent) {
     var e = Math.floor(cent / 100);
     var c = cent % 100;
@@ -90,13 +90,13 @@
     return textoC;
   }
 
-  /* "Moneda de 2 euros" / "Billete de 5 euros" (aria). */
+  /* "Moneda de 2 euros" / "Billete de 5 euros" (aria label). */
   function aria(cent) {
     var clave = info(cent).tipo === 'billete' ? 'dinero.billeteDe' : 'dinero.monedaDe';
     return App.i18n.t(clave).replace('{v}', hablado(cent));
   }
 
-  /* Crea la ficha visual (span decorativo o botón interactivo). */
+  /* Creates the visual token (decorative span or interactive button). */
   function crearFicha(cent, interactiva) {
     var d = info(cent);
     var el = document.createElement(interactiva ? 'button' : 'span');
@@ -106,7 +106,7 @@
     return el;
   }
 
-  /* Descompone un importe en fichas, de mayor a menor (greedy). */
+  /* Breaks an amount into tokens, largest to smallest (greedy). */
   function descomponer(cent) {
     var piezas = [];
     var restante = cent;
@@ -119,8 +119,8 @@
     return piezas;
   }
 
-  /* "2 monedas de 1 euro y 1 billete de 5 euros" — desglose para
-     explicaciones (regla 11), generado del propio caso. */
+  /* "2 monedas de 1 euro y 1 billete de 5 euros" — breakdown for
+     explanations (rule 11), generated from the case itself. */
   function desglose(piezas) {
     var grupos = [];
     piezas.forEach(function (cent) {
@@ -138,7 +138,7 @@
     return partes.slice(0, -1).join(', ') + ' ' + App.i18n.t('dinero.y') + ' ' + partes[partes.length - 1];
   }
 
-  /* Pinta fichas decorativas dentro de un contenedor (lo vacía). */
+  /* Paints decorative tokens inside a container (clears it first). */
   function pintarFichas(contenedor, piezas) {
     contenedor.innerHTML = '';
     (piezas || []).forEach(function (cent) {

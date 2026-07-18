@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 /* ============================================================
    Apptonomia — scripts/rename-tool-slugs.js
-   Renombra tools/<old>/ a tools/<new>/ y actualiza todas las
-   referencias en sw.js, site/index.html y site/strings.<locale>.js.
+   Renames tools/<old>/ to tools/<new>/ and updates every
+   reference in sw.js, site/index.html and site/strings.<locale>.js.
 
-   No toca nada dentro de tools/<slug>/ ni de los archivos de la
-   actividad (el contenido es agnóstico al slug).
+   Doesn't touch anything inside tools/<slug>/ or the activity's own
+   files (their content is agnostic to the slug).
 
-   Las claves i18n ("<slug>_nombre", "<slug>_detalle") se derivan
-   del slug sin guiones, igual que el resto del proyecto.
+   The i18n keys ("<slug>_nombre", "<slug>_detalle") are derived
+   from the slug without hyphens, same as the rest of the project.
 
-   Uso: node scripts/rename-tool-slugs.js
-   Salida: lista de movimientos + reemplazos + estado final.
+   Usage: node scripts/rename-tool-slugs.js
+   Output: list of moves + replacements + final status.
    ============================================================ */
 'use strict';
 
@@ -21,7 +21,7 @@ var execSync = require('child_process').execSync;
 
 var RAIZ = path.join(__dirname, '..');
 
-// old slug -> new slug (NO incluye ajedrez -> chess, ya hecho en el piloto)
+// old slug -> new slug (does NOT include ajedrez -> chess, already done in the pilot)
 var RENAMES = {
   'adivinanzas': 'riddles',
   'atrapa': 'catch',
@@ -78,7 +78,7 @@ var RENAMES = {
 function keyBase(slug) { return slug.replace(/-/g, ''); }
 function toPosix(p) { return p.split(path.sep).join('/'); }
 
-/* === 1. Mover directorios + actualizar índice git === */
+/* === 1. Move directories + update the git index === */
 var moved = 0;
 Object.keys(RENAMES).forEach(function (oldSlug) {
   var newSlug = RENAMES[oldSlug];
@@ -101,8 +101,8 @@ Object.keys(RENAMES).forEach(function (oldSlug) {
 });
 console.log('Movidos: ' + moved);
 
-/* === 2. Reemplazos masivos en ficheros ===
-   Hacemos el más largo primero para evitar pisar prefijos comunes. */
+/* === 2. Bulk replacements across files ===
+   Longest first to avoid clobbering common prefixes. */
 var pairs = Object.keys(RENAMES).map(function (k) { return [k, RENAMES[k]]; });
 pairs.sort(function (a, b) { return b[0].length - a[0].length; });
 

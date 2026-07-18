@@ -201,7 +201,7 @@ If you need more information:
 
 - [Activity catalog](activities.md) — Complete list of 66 activities
 - [Technical information](technical.md) — For developers and professionals
-- [Team page](../equipo/index.html) — Guide for families and professionals
+- [Team page](../team/index.html) — Guide for families and professionals
 
 ---
 

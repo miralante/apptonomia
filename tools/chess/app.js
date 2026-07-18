@@ -26,18 +26,18 @@
     J: { torre: '♖', caballo: '♘', alfil: '♗', dama: '♕', rey: '♔' },
     R: { torre: '♜', caballo: '♞', alfil: '♝', dama: '♛', rey: '♚' }
   };
-  /* Colocación inicial (misma columna en ambos bandos). El orden
-     importa: torre y dama comparten columna con las del rival, así
-     que pueden capturarse en el primer turno — con el rey al lado
-     (columna 1) esas capturas SIEMPRE se responden (intercambio
-     justo de pieza por pieza, nunca una pieza gratis que
-     desequilibre la partida en el turno 1). */
+  /* Starting setup (same column on both sides). The order matters:
+     the rook and queen share a column with the opponent's, so they
+     can capture each other on the first turn — with the king next
+     to it (column 1), those captures ALWAYS get answered (a fair
+     piece-for-piece trade, never a free piece that unbalances the
+     game on turn 1). */
   var ORDEN_FILA = ['torre', 'rey', 'dama', 'alfil', 'caballo'];
   var DELAY = App.utils.reducedMotion() ? 0 : 800;
 
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.rondasPiezas) progreso.rondasPiezas = {};
@@ -213,7 +213,7 @@
         return { pos: pos, estrellas: App.utils.shuffle(candidatas).slice(0, cuantas) };
       }
     }
-    /* No debería llegar aquí; puzzle mínimo de emergencia. */
+    /* Should never reach here; minimal emergency puzzle. */
     return { pos: 0, estrellas: [tipo === 'alfil' ? 12 : 2] };
   }
 
@@ -305,8 +305,8 @@
     App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
   }
 
-  /* Ayuda del puzzle: 1ª pulsación pregunta; 2ª marca la casilla que
-     recoge una estrella o, si ninguna llega, la que más acerca. */
+  /* Puzzle hint: 1st tap asks; 2nd marks the square that picks up a
+     star or, if none is reachable, the one that gets closest. */
   function limpiarAyudaPiezas() {
     ayudaPasoP = 0;
     ayudaPiezasWrap.classList.add('oculto');
@@ -451,10 +451,10 @@
     setTimeout(turnoRival, capturada ? DELAY * 2 : DELAY);
   }
 
-  /* El rival juega según la habilidad del nivel (ver data.js):
-     'azar' al azar; 'captura' además come si puede y remata al rey;
-     'protege' además evita dejar su rey o la pieza movida a tiro.
-     Cada nivel añade UNA habilidad (regla 13). */
+  /* The opponent plays according to the level's skill (see data.js):
+     'azar' random; 'captura' also captures when possible and finishes
+     the king; 'protege' also avoids leaving its king or the moved
+     piece exposed. Each level adds ONE skill (rule 13). */
   function eligeMovimientoRival(movs) {
     var hab = nivelPartida.habilidad;
     if (hab === 'captura' || hab === 'protege') {
@@ -534,9 +534,9 @@
     pintarPartida();
   }
 
-  /* ---- Ayuda de la partida (método socrático en dos pasos) ----
-     Prioridad: capturar el rey > salvar tu rey > captura segura >
-     jugada segura > cualquier jugada. */
+  /* ---- Game hint (two-step Socratic method) ----
+     Priority: capture the king > save your king > safe capture >
+     safe move > any move. */
   function limpiarAyudaPartida() {
     ayudaPasoM = 0;
     ayudaPartidaWrap.classList.add('oculto');

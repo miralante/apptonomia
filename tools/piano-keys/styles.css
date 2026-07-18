@@ -1,12 +1,12 @@
 /* ==========================================================================
-   Piano — Estilos consistentes con el proyecto Apptonomia
-   Usa tokens.css para colores y espaciado
+   Piano — Styles consistent with the Apptonomia project
+   Uses tokens.css for colors and spacing
    ========================================================================== */
 
-/* ---- Campos de texto (nombre del jugador, nombre de canción) ----
-   .input-nombre no tenía ningún estilo propio en este archivo: se
-   mostraba con el input por defecto del navegador, sin cumplir el
-   tamaño mínimo de texto/toque del resto de la app. */
+/* ---- Text fields (player name, song name) ----
+   .input-nombre had no styling of its own in this file: it was
+   shown with the browser's default input, not meeting the rest
+   of the app's minimum text/touch size. */
 .input-nombre,
 .input-nombre-cancion {
   display: block; width: 100%; max-width: 420px; margin: 0 auto;
@@ -145,7 +145,7 @@
   50% { box-shadow: 0 0 20px var(--mod-coordinacion); }
 }
 
-/* ---- Simón dice ---- */
+/* ---- Simon says ---- */
 .simon-board {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -386,7 +386,7 @@
   50% { box-shadow: 0 0 16px var(--mod-coordinacion); }
 }
 
-/* ---- Partículas ---- */
+/* ---- Particles ---- */
 .particles {
   position: fixed;
   top: 0;

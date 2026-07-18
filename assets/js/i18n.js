@@ -1,16 +1,16 @@
 /* ==========================================================================
-   Apptonomia — Internacionalización (i18n)
-   Expone window.App.i18n. Cargar DESPUÉS de utils.js y ANTES de tts.js/feedback.js.
-   Orden estándar: utils.js -> i18n.js -> tts.js -> storage.js -> feedback.js ->
-   carga condicional de strings.<locale>.js -> data.js -> app.js.
+   Apptonomia — Internationalization (i18n)
+   Exposes window.App.i18n. Load AFTER utils.js and BEFORE tts.js/feedback.js.
+   Standard order: utils.js -> i18n.js -> tts.js -> storage.js -> feedback.js ->
+   conditional load of strings.<locale>.js -> data.js -> app.js.
 
-   Idioma activo: localStorage 'apptonomia:locale' si es soportado; si no,
-   se detecta navigator.language (prefijo 'en' -> 'en', cualquier otro -> 'es').
+   Active language: localStorage 'apptonomia:locale' if supported; otherwise
+   detected from navigator.language ('en' prefix -> 'en', anything else -> 'es').
 
-   Sistema multi-archivo (recomendado):
-     - texts separados por idioma: tools/<slug>/strings.es.js, tools/<slug>/strings.en.js
-     - solo se carga el del locale activo (ahorra ancho de banda y simplifica mantenimiento)
-     - cada archivo llama a App.i18n.register({clave: 'texto', ...}, 'es'|'en')
+   Multi-file system (recommended):
+     - texts split by language: tools/<slug>/strings.es.js, tools/<slug>/strings.en.js
+     - only the active locale's file is loaded (saves bandwidth, simpler maintenance)
+     - each file calls App.i18n.register({key: 'text', ...}, 'es'|'en')
    ========================================================================== */
 (function () {
   'use strict';
@@ -69,7 +69,7 @@
         var prefijo = (idiomas[i] || '').slice(0, 2).toLowerCase();
         if (SOPORTADOS.indexOf(prefijo) !== -1) return prefijo;
       }
-    } catch (e) { /* ignorar */ }
+    } catch (e) { /* ignore */ }
     return POR_DEFECTO;
   }
 
@@ -77,7 +77,7 @@
     try {
       var guardado = localStorage.getItem(CLAVE_LOCALE);
       if (guardado && SOPORTADOS.indexOf(guardado) !== -1) return guardado;
-    } catch (e) { /* ignorar */ }
+    } catch (e) { /* ignore */ }
     return detectar();
   }
 
@@ -85,7 +85,7 @@
     if (SOPORTADOS.indexOf(loc) === -1) return;
     try {
       localStorage.setItem(CLAVE_LOCALE, loc);
-    } catch (e) { /* ignorar */ }
+    } catch (e) { /* ignore */ }
     location.reload();
   }
 
@@ -94,17 +94,17 @@
   }
 
   /**
-   * Fusiona textos en el diccionario interno.
+   * Merges texts into the internal dictionary.
    *
-   * Dos firmas retrocompatibles:
-   *  1. Multi-archivo (recomendada): App.i18n.register(dict, locale)
-   *       Carga solo el idioma activo. Cada strings.<locale>.js registra sus textos.
-   *         Ej: App.i18n.register({title: 'Parejas', ...}, 'es');
-   *  2. Legacy (un solo archivo con ambos idiomas): App.i18n.register({es: {...}, en: {...}})
-   *       Registra en todos los locales presentes en el dict.
+   * Two backward-compatible signatures:
+   *  1. Multi-file (recommended): App.i18n.register(dict, locale)
+   *       Loads only the active language. Each strings.<locale>.js registers its texts.
+   *         E.g.: App.i18n.register({title: 'Parejas', ...}, 'es');
+   *  2. Legacy (single file with both languages): App.i18n.register({es: {...}, en: {...}})
+   *       Registers into every locale present in the dict.
    */
   function register(dict, locale) {
-    // Firma nueva: (dict, locale)
+    // New signature: (dict, locale)
     if (typeof locale === 'string') {
       if (SOPORTADOS.indexOf(locale) === -1) return;
       if (!dict || typeof dict !== 'object') return;
@@ -116,7 +116,7 @@
       }
       return;
     }
-    // Firma antigua: ({es: {...}, en: {...}})
+    // Old signature: ({es: {...}, en: {...}})
     SOPORTADOS.forEach(function (loc) {
       if (!dict[loc]) return;
       DICT[loc] = DICT[loc] || {};

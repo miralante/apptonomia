@@ -288,7 +288,7 @@ defined in [`SPEC.md`](SPEC.md) §6.
 - [Quick guide](quick-guide.md) — Explanation for users
 - [Activity catalog](activities.md) — Description of all 66 activities
 - [Technical information](technical.md) — For developers
-- [Team page](../../equipo/index.html) — Interactive web version
+- [Team page](../../team/index.html) — Interactive web version
 
 ---
 

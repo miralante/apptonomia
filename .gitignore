@@ -5,3 +5,5 @@ Thumbs.db
 node_modules/
 .firebase/
 temp_*
+"**/graphify-out/" 
+".graphify*" 

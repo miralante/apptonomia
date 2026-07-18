@@ -1,4 +1,4 @@
-/* Mis Rutinas — estilos específicos. Lo común está en assets/css/. */
+/* My Routines — tool-specific styles. Shared styles live in assets/css/. */
 
 .tool-header h1 { color: var(--mod-secuencia); }
 
@@ -8,7 +8,7 @@
 
 .instruccion { flex: 1; min-width: 200px; }
 
-/* Tarjetas del menú de rutinas */
+/* Routine menu cards */
 .tarjeta-rutina {
   display: flex;
   flex-direction: column;

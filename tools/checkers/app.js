@@ -35,19 +35,19 @@
   var ayudaTextoEl = $('#ayudaTexto');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.victorias) progreso.victorias = {};
 
-  /* Estado de la partida */
+  /* Game state */
   var nivel = null;
-  var celdas = [];        /* null | { bando: 'J'|'R', dama: bool }, índices 0-35 */
-  var botones = [];       /* botón por casilla oscura; null en las claras */
+  var celdas = [];        /* null | { bando: 'J'|'R', dama: bool }, indices 0-35 */
+  var botones = [];       /* button per dark square; null on light ones */
   var turnoJugador = true;
   var partidaTerminada = false;
-  var seleccion = -1;     /* casilla de la ficha elegida, o -1 */
-  var ayudaPaso = 0;      /* método socrático: 1ª pulsación pregunta, 2ª marca la jugada */
+  var seleccion = -1;     /* selected piece's square, or -1 */
+  var ayudaPaso = 0;      /* Socratic method: 1st tap asks, 2nd marks the move */
 
   function guardar() { App.storage.set(TOOL_ID, progreso); }
   function pintarEstrellas() { starsEl.textContent = '⭐ ' + progreso.estrellas; }
@@ -285,7 +285,7 @@
       if (partidaTerminada) return;
       var movs = movimientosBando(celdas, RIVAL);
       if (movs.length === 0) {
-        /* El rival está bloqueado: la persona gana. */
+        /* The opponent is blocked: the person wins. */
         estadoEl.textContent = App.i18n.t('rivalBloqueado');
         terminar('ganas');
         return;
@@ -321,10 +321,10 @@
     pintarTablero();
   }
 
-  /* ---- Ayuda a demanda (método socrático en dos pasos) ----
-     1ª pulsación: pregunta que dirige la atención al dato clave,
-     sin decir la jugada. 2ª pulsación: marca la ficha y la casilla
-     de destino y explica el porqué. Se reinicia al mover. */
+  /* ---- Hint on demand (two-step Socratic method) ----
+     1st tap: a question that directs attention to the key detail,
+     without stating the move. 2nd tap: marks the piece and the
+     destination square and explains why. Resets on moving. */
   function limpiarAyuda() {
     ayudaPaso = 0;
     ayudaWrap.classList.add('oculto');

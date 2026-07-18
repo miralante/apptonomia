@@ -1,5 +1,5 @@
-/* ¿Lo publico? — estilos específicos. Lo común está en assets/css/.
-   Acento del módulo Autonomía y hogar (verde --mod-secuencia). */
+/* Should I Post It? — tool-specific styles. Shared styles live in assets/css/.
+   Autonomy and home module accent (green --mod-secuencia). */
 
 .tool-header h1 { color: var(--mod-secuencia); }
 

@@ -34,18 +34,18 @@
   var ayudaTextoEl = $('#ayudaTexto');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.victorias) progreso.victorias = {};
 
   /* Estado de la partida */
   var nivel = null;
-  var celdas = [];        /* 'X' | 'O' | null, índices 0-8 */
+  var celdas = [];        /* 'X' | 'O' | null, indices 0-8 */
   var botones = [];
   var turnoJugador = true;
   var partidaTerminada = false;
-  var ayudaPaso = 0;      /* método socrático: 1ª pulsación pregunta, 2ª marca la casilla */
+  var ayudaPaso = 0;      /* Socratic method: 1st tap asks, 2nd tap marks the cell */
 
   function guardar() { App.storage.set(TOOL_ID, progreso); }
   function pintarEstrellas() { starsEl.textContent = '⭐ ' + progreso.estrellas; }
@@ -120,7 +120,7 @@
     pintarEstrellas();
   }
 
-  /* ---- Lógica ---- */
+  /* ---- Logic ---- */
   function lineaGanadora(quien) {
     for (var i = 0; i < LINEAS.length; i++) {
       var l = LINEAS[i];
@@ -135,7 +135,7 @@
     return libres;
   }
 
-  /* Devuelve la casilla que completa una línea de 'quien', o -1. */
+  /* Returns the cell that completes a line for 'quien', or -1. */
   function casillaQueCompleta(quien) {
     for (var i = 0; i < LINEAS.length; i++) {
       var l = LINEAS[i];
@@ -150,9 +150,9 @@
     return -1;
   }
 
-  /* El rival juega según la habilidad del nivel (ver data.js):
-     'azar' elige al azar; 'gana' remata su línea si puede; 'bloquea'
-     además tapa la línea del jugador. Cada nivel añade UNA habilidad. */
+  /* The opponent plays based on the level's skill (see data.js):
+     'azar' picks at random; 'gana' finishes its line if it can; 'bloquea'
+     also blocks the player's line. Each level adds ONE skill. */
   function eligeCasillaRival() {
     var hab = nivel.habilidad;
     if (hab === 'gana' || hab === 'bloquea') {
@@ -171,10 +171,10 @@
     linea.forEach(function (i) { botones[i].classList.add('ganadora'); });
   }
 
-  /* ---- Ayuda a demanda (método socrático en dos pasos) ----
-     1ª pulsación: pregunta que dirige la atención al dato clave,
-     sin decir la casilla. 2ª pulsación: marca la casilla concreta
-     y explica el porqué. Se reinicia al mover ficha. */
+  /* ---- On-demand hint (two-step Socratic method) ----
+     1st tap: question that directs attention to the key fact,
+     without naming the cell. 2nd tap: marks the specific cell
+     and explains why. Resets when a piece is moved. */
   function limpiarAyuda() {
     ayudaPaso = 0;
     ayudaWrap.classList.add('oculto');
@@ -249,7 +249,7 @@
       App.feedback.success(feedbackEl);
       App.tts.speak(App.i18n.t('empate'));
     } else {
-      /* Perder: nunca castigo (regla 5) — ánimo y un consejo concreto. */
+      /* Losing: never punished (rule 5) — encouragement and a concrete tip. */
       estadoEl.textContent = App.i18n.t('haGanadoRival');
       App.feedback.encourage(feedbackEl);
       App.tts.speak(App.i18n.t('haGanadoRival'));

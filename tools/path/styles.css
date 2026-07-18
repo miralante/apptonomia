@@ -1,4 +1,4 @@
-/* El Camino — estilos específicos. Lo común está en assets/css/.
+/* The Path — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Memoria y atención (naranja --mod-memoria). */
 
 .tool-header h1 { color: var(--mod-memoria); }

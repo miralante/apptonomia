@@ -27,12 +27,12 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
 
-  /* Estado de la ronda */
+  /* Round state */
   var nivel = null;
   var preguntas = [];
   var idx = 0;
@@ -49,9 +49,9 @@
     return h === 0 ? 12 : h;
   }
 
-  /* Texto en Lectura Fácil de una hora (formato analógico de 12 h).
-     Cada idioma tiene sus propias expresiones horarias (ver strings.js);
-     NO es una traducción literal palabra por palabra. */
+  /* Easy Read text for a given time (12-hour analog format).
+     Each language has its own time expressions (see strings.js);
+     it is NOT a literal word-for-word translation. */
   function textoHora(h, minuto) {
     if (minuto === 0) return App.i18n.t('horaEnPunto').replace('{h}', h);
     if (minuto === 15) return App.i18n.t('horaYCuarto').replace('{h}', h);
@@ -225,9 +225,10 @@
     explicacionWrap.classList.remove('oculto');
   }
 
-  /* Método socrático: en el primer fallo no se da la respuesta, se
-     anima a mirar el reloj/momento otra vez. Solo en el segundo
-     fallo se explica la hora correcta (mostrarExplicacion). */
+  /* Socratic method: on the first mistake the answer isn't given,
+     the person is encouraged to look at the clock/moment again.
+     Only on the second mistake is the correct time explained
+     (mostrarExplicacion). */
   function mostrarPista(p) {
     explicacionEl.textContent = App.i18n.t(p.tipo === 'leer' ? 'pistaLeer' : 'pistaAsociar');
     explicacionWrap.classList.remove('oculto');
@@ -282,7 +283,7 @@
     App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
   }
 
-  /* Eventos */
+  /* Events */
   btnEscuchar.addEventListener('click', function () {
     App.tts.speak(preguntaTextoEl.textContent);
   });

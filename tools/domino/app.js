@@ -39,7 +39,7 @@
   var btnSalir = $('#btnSalir');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.victorias) progreso.victorias = {};
@@ -52,7 +52,7 @@
   var cadena = [];          /* fichas colocadas, ya orientadas: [izq, der] */
   var turnoJugador = true;
   var partidaTerminada = false;
-  var fichaPendiente = -1;  /* índice de mano esperando elegir lado */
+  var fichaPendiente = -1;  /* hand index waiting to choose a side */
   var fallosSeguidos = 0;
   var pasesSeguidos = 0;
 
@@ -113,8 +113,8 @@
   function extremoIzq() { return cadena.length ? cadena[0][0] : null; }
   function extremoDer() { return cadena.length ? cadena[cadena.length - 1][1] : null; }
 
-  /* Devuelve dónde encaja una ficha: 'izq' | 'der' | 'ambos' | null.
-     Con la cadena vacía toda ficha vale ('der'). */
+  /* Returns where a tile fits: 'izq' | 'der' | 'ambos' | null.
+     With an empty chain any tile fits ('der'). */
   function dondeEncaja(ficha) {
     if (!cadena.length) return 'der';
     var izq = ficha[0] === extremoIzq() || ficha[1] === extremoIzq();
@@ -186,7 +186,7 @@
     pintarMonton();
     rivalInfoEl.textContent = t('fichasRival').replace('{n}', manoRival.length);
     pintarEstrellas();
-    /* La última ficha colocada queda a la vista */
+    /* The last tile placed stays in view */
     if (cadenaEl.lastChild) {
       cadenaEl.lastChild.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     }
@@ -230,7 +230,7 @@
     colocar(i, encaje);
   }
 
-  /* Orienta la ficha sola según el extremo y la coloca */
+  /* Orients the tile on its own based on the end, and places it */
   function colocar(i, lado) {
     var f = manoJugador[i].slice();
     if (cadena.length) {

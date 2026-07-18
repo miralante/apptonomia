@@ -35,16 +35,16 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
 
-  /* Estado de la ronda */
+  /* Round state */
   var nivel = null;
   var idxCamino = 0;
   var aciertosRonda = 0;
-  var arboles = [];       /* índices f*columnas+c */
+  var arboles = [];       /* row*columns+col indexes */
   var meta = -1;
   var tortuga = -1;
   var enJuego = false;
@@ -86,7 +86,7 @@
     progressText.textContent = idxCamino + ' / ' + porRonda;
   }
 
-  /* ---- Generación con garantía de solución (BFS) ---- */
+  /* ---- Generation with a guaranteed solution (BFS) ---- */
   function hayCamino(desde, hasta, bloqueadas) {
     var total = filas() * columnas();
     var visitadas = {};
@@ -213,7 +213,7 @@
     App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
   }
 
-  /* Eventos */
+  /* Events */
   ['arriba', 'abajo', 'izquierda', 'derecha'].forEach(function (dir) {
     $('#btn' + dir.charAt(0).toUpperCase() + dir.slice(1))
       .addEventListener('click', function () { mover(dir); });

@@ -1,4 +1,4 @@
-/* El Monedero — estilos específicos. Lo común está en assets/css/.
+/* The Wallet — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Razonamiento (teal --mod-razonamiento).
    El dinero se dibuja con CSS (sin imágenes): monedas redondas con
    los colores reales del euro y billetes rectangulares. */
@@ -23,7 +23,7 @@
 
 .progress-bar { margin-top: var(--espacio); }
 
-/* Tarjetas del menú (mismo patrón que La Compra) */
+/* Menu cards (same pattern as The Shop) */
 .tarjeta-actividad {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 8px; min-height: 160px; padding: var(--espacio-grande);
@@ -40,10 +40,10 @@
    vive en assets/css/components.css + assets/js/dinero.js. Aquí solo
    los ajustes propios de la herramienta. */
 
-/* La mesa con el tinte del módulo Razonamiento */
+/* The table with the Reasoning module's tint */
 .mesa-dinero { background: var(--mod-razonamiento-suave); }
 
-/* Dinero marcado por la ayuda 💡 (2ª pulsación) */
+/* Money marked by the 💡 hint (2nd tap) */
 .sugerida {
   outline: 4px solid var(--mod-razonamiento);
   outline-offset: 3px;
@@ -56,7 +56,7 @@
   .sugerida { animation: none; }
 }
 
-/* Ficha de dinero usada como opción de quiz (¿Con qué pago?) */
+/* Money token used as a quiz option ("What do I pay with?") */
 .opciones .dinero { align-self: center; }
 
 /* ---- Quiz compartido ---- */

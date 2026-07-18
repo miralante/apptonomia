@@ -26,12 +26,12 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
 
-  /* Estado de la ronda */
+  /* Round state */
   var nivel = null;
   var items = [];
   var idx = 0;
@@ -114,9 +114,10 @@
     explicacionWrap.classList.remove('oculto');
   }
 
-  /* Método socrático: en el primer fallo no se da la respuesta, se
-     redirige a la tarea ya visible. Solo en el segundo fallo se
-     explica qué hacía falta (mostrarExplicacion). */
+  /* Socratic method: on the first mistake the answer isn't given,
+     the person is pointed back to the task already on screen. Only
+     on the second mistake is what was needed explained
+     (mostrarExplicacion). */
   function mostrarPista(item) {
     explicacionEl.textContent = App.i18n.t('pista') + '"' + item.text + '"';
     explicacionWrap.classList.remove('oculto');
@@ -169,7 +170,7 @@
     App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
   }
 
-  /* Eventos */
+  /* Events */
   btnEscuchar.addEventListener('click', function () {
     App.tts.speak(items[idx].text);
   });

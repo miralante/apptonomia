@@ -1,37 +1,37 @@
 /* ============================================================
-   Datos: Chat Acoso (autonomía — detectar el acoso entre iguales
-   y saber cómo actuar).
-   Simulador de chats para practicar cómo responder cuando alguien
-   conocido (compañeros, grupo de clase, taller) acosa por chat:
-   insultos, exclusión, rumores, fotos para reírse, amenazas, o
-   presión para unirse a molestar a otro. La respuesta correcta
-   SIEMPRE incluye contárselo a un adulto de confianza — nunca
-   devolver el ataque, nunca ignorarlo sin más, nunca guardar el
-   secreto si te lo piden.
-   Formato: DATA.es / DATA.en, cada uno con:
+   Data: Bullying Chat (autonomy — recognizing peer bullying and
+   knowing how to react).
+   Chat simulator to practice how to respond when someone you know
+   (classmates, class group, workshop) bullies over chat: insults,
+   exclusion, rumors, photos to laugh at, threats, or pressure to
+   join in on bothering someone else. The correct answer ALWAYS
+   includes telling a trusted adult — never fighting back, never
+   just ignoring it, never keeping the secret if asked to.
+   Format: DATA.es / DATA.en, each with:
    {
-     escenarios: [{               → un GRUPO temático (una tarjeta del menú)
+     escenarios: [{               → a thematic GROUP (one menu card)
        id, titulo, picto,
-       variantes: [{              → un CASO concreto; al abrir la tarjeta
-         contacto,                  se juega UNA variante al azar, así el
-         relacion,                  guion no se puede memorizar
+       variantes: [{              → a concrete CASE; opening the card
+         contacto,                  plays ONE variant at random, so the
+         relacion,                  script can't be memorized
          pasos: [
-           { tipo: 'msg', texto }                  → mensaje que recibe el usuario
-           { tipo: 'eleccion', opciones: [         → el usuario elige respuesta
-               { texto, segura: true, avisoSeguro } → segura: explica por qué, el chat sigue
-               { texto, segura: false, aviso }     → arriesgada: consejo y se reintenta
+           { tipo: 'msg', texto }                  → message the user receives
+           { tipo: 'eleccion', opciones: [         → the user picks a reply
+               { texto, segura: true, avisoSeguro } → safe: explains why, the chat continues
+               { texto, segura: false, aviso }     → risky: advice, then retry
              ] }
-           { tipo: 'accion', texto, confirmacion } → botón final (contarlo) + mensaje
+           { tipo: 'accion', texto, confirmacion } → final button (tell someone) + message
          ],
-         regla: norma para recordar al terminar
+         regla: rule to remember at the end
        }]
      }],
-     normas: resumen de todas las normas (pantalla "Mis normas")
+     normas: summary of every rule (the "My rules" screen)
    }
-   El menú sigue con pocas tarjetas (regla 10); los casos (≥25 en
-   total) viven dentro de las variantes. La estrella se gana por
-   grupo. app.js usa DATA[App.i18n.locale()] || DATA.es.
-   Tono: Lectura Fácil, sin asustar, nunca culpar a quien lo sufre.
+   The menu stays with few cards (rule 10); the cases (≥25 total)
+   live inside the variants. The star is earned per group. app.js
+   uses DATA[App.i18n.locale()] || DATA.es.
+   Tone: Easy Read, without scaring, never blaming whoever is
+   suffering it.
    ============================================================ */
 const DATA = {
 

@@ -27,8 +27,8 @@
     ['☀️', '🌙', '⛅', '🌈']
   ];
 
-  /* Cuadrículas 4×4 resueltas (índices 0-3 sobre el tema), fila a fila.
-     Todas cumplen: sin repetir en fila, columna ni bloque 2×2. */
+  /* Solved 4×4 grids (indices 0-3 over the theme), row by row.
+     All satisfy: no repeats in any row, column, or 2×2 block. */
   var SOLUCIONES = [
     [0, 1, 2, 3,
      2, 3, 0, 1,

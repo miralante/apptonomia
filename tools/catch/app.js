@@ -1,8 +1,8 @@
 /* ============================================================
-   Apptonomia — Atrapa (coordinación oculomanual)
-   El objetivo aparece en posiciones aleatorias. Al tocarlo:
-   refuerzo positivo y se recoloca (mínimo 30 % de distancia).
-   10 toques = ronda completada. Sin cronómetro visible.
+   Apptonomia — Catch (eye-hand coordination)
+   The target appears at random positions. Tapping it triggers
+   positive reinforcement and it moves again (at least 30% away).
+   10 taps = round completed. No visible timer.
    ============================================================ */
 (function () {
   'use strict';
@@ -21,12 +21,12 @@
   var pantallaFinal = $('#pantallaFinal');
   var resumenFinal = $('#resumenFinal');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.rondas) progreso.rondas = {};
 
-  /* Estado */
+  /* State */
   var nivel = null;
   var toques = 0;
   var posAnterior = { x: 0.5, y: 0.5 };
@@ -40,7 +40,7 @@
     progressText.textContent = toques + ' / ' + DATA.toquesPorRonda;
   }
 
-  /* Pantalla inicial: botones de nivel */
+  /* Start screen: level buttons */
   function pintarNiveles() {
     var cont = $('#niveles');
     cont.innerHTML = '';
@@ -71,7 +71,7 @@
     moverObjetivo();
   }
 
-  /* Nueva posición aleatoria, alejada al menos un 30 % de la anterior */
+  /* New random position, at least 30% away from the previous one */
   function moverObjetivo() {
     var x, y, dist, intentos = 0;
     do {
@@ -114,7 +114,7 @@
     App.feedback.celebrar('¡Ronda completada!');
   }
 
-  /* Eventos */
+  /* Events */
   objetivoEl.addEventListener('click', acierto);
   $('#btnRepetir').addEventListener('click', function () { empezar(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {
@@ -126,7 +126,7 @@
     App.tts.speak($('#instruccion').textContent + ' Primero elige el tamaño.');
   });
 
-  /* Recolocar el objetivo si cambia el tamaño de la ventana */
+  /* Reposition the target if the window size changes */
   window.addEventListener('resize', function () {
     if (nivel && !pantallaJuego.classList.contains('oculto')) moverObjetivo();
   });

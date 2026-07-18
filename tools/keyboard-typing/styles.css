@@ -17,7 +17,7 @@
   border: 3px solid var(--color-borde); border-radius: var(--radio);
 }
 
-/* ---- Menú de juegos ---- */
+/* ---- Game menu ---- */
 .tarjeta-modo {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 8px; min-height: 150px; padding: var(--espacio);
@@ -61,7 +61,7 @@
 .letra.actual { background: var(--mod-coordinacion-suave); color: var(--mod-coordinacion); border-color: var(--mod-coordinacion); }
 .letra.hecha { background: var(--color-acierto-suave); color: var(--color-acierto); border-color: var(--color-acierto); }
 
-/* ---- Guía de manos ---- */
+/* ---- Hand guide ---- */
 .guia { justify-content: center; }
 .manos { width: 280px; max-width: 60%; }
 .manos .palma { fill: #E7E1D7; stroke: var(--color-borde); stroke-width: 2; }
@@ -105,9 +105,10 @@
 .color-dedos :where(.tecla.f-lm, .tecla.f-rm) { background: var(--mod-emocional-suave); }
 .color-dedos :where(.tecla.f-li, .tecla.f-ri) { background: var(--mod-secuencia-suave); }
 .color-dedos :where(.tecla.f-th) { background: var(--mod-coordinacion-suave); }
-/* Teclado de móvil: solo hay 2 "dedos" (pulgar izq/der), así que colorear
-   por dedo y colorear por mano son lo mismo — siempre por lado, nunca del
-   mismo color, para que la lateralidad se vea aunque se elija "por dedo". */
+/* Mobile keyboard: there are only 2 "fingers" (left/right thumb), so
+   coloring by finger and coloring by hand are the same thing — always
+   by side, never the same color, so laterality shows even when "by
+   finger" is chosen. */
 .color-dedos :where(.tecla.f-lt) { background: var(--mod-coordinacion-suave); }
 .color-dedos :where(.tecla.f-rt) { background: var(--mod-secuencia-suave); }
 
@@ -122,9 +123,9 @@
 .tecla.fallo { background: var(--color-animo-suave); border-color: var(--color-animo); color: var(--color-animo); }
 .tecla.hecha { background: var(--color-acierto-suave); border-color: var(--color-acierto); color: var(--color-acierto); }
 
-/* Teclado de móvil: el único que se toca de verdad (ver app.js, esMovil()).
-   Los demás tipos siguen con pointer-events: none del padre; aquí se
-   reactiva solo sobre las teclas con letra, no sobre el contenedor. */
+/* Mobile keyboard: the only one that's really tappable (see app.js,
+   esMovil()). The other types keep the parent's pointer-events: none;
+   here it's re-enabled only on keys with a letter, not the container. */
 .teclado.tocable .tecla[data-ch] { pointer-events: auto; cursor: pointer; }
 .teclado.tocable .tecla[data-ch]:active { transform: translateY(2px); }
 
@@ -133,7 +134,7 @@
 .btn-teclado[aria-pressed="true"],
 .btn-color[aria-pressed="true"] { border-color: var(--mod-coordinacion); background: var(--mod-coordinacion-suave); }
 
-/* ---- Teclado numérico ---- */
+/* ---- Number pad ---- */
 .numpad { width: 100%; max-width: 300px; margin: 0 auto; }
 .numpad .tecla, .numpad-inline .tecla { max-width: none; min-height: 64px; }
 .numpad-inline { width: 100%; max-width: 220px; }
@@ -146,7 +147,7 @@
   border: 3px solid var(--color-borde); border-radius: var(--radio); resize: vertical;
 }
 
-/* ---- Pantallas pequeñas ---- */
+/* ---- Small screens ---- */
 @media (max-width: 640px) {
   .teclado, .numpad, .numpad-inline, .fila-teclas { gap: 5px; }
   .fila-vista-teclado .numpad-inline { max-width: none; }

@@ -1,23 +1,23 @@
 #!/usr/bin/env node
 /* ============================================================
    Apptonomia — scripts/smoke.js
-   Smoke test dinámico de las 49 actividades con Playwright: abre
-   cada tools/<slug>/index.html en español e inglés, pulsa el primer
-   nivel si lo hay, y falla si aparece cualquier error de consola o
-   de página. Complementa a scripts/check.js (estático): esto detecta
-   la clase de bug "carga pero revienta al usarlo" (el crash real de
-   la-frase/palabras solo aparecía al pulsar "Siguiente" tras la
-   última pregunta, invisible para cualquier chequeo estático).
+   Dynamic smoke test of all activities with Playwright: opens
+   every tools/<slug>/index.html in Spanish and English, clicks the
+   first level if there is one, and fails if any console or page
+   error shows up. Complements scripts/check.js (static): this
+   catches the "loads fine but breaks when used" class of bug (the
+   real la-frase/palabras crash only showed up when clicking "Next"
+   after the last question, invisible to any static check).
 
-   Uso: node scripts/smoke.js [slug1 slug2 ...]
-   Sin argumentos, prueba las 49. Con argumentos, solo esos slugs
-   (útil para depurar uno solo rápido).
+   Usage: node scripts/smoke.js [slug1 slug2 ...]
+   With no arguments, tests all of them. With arguments, only those
+   slugs (handy for quickly debugging a single one).
 
-   Requiere `playwright` instalado (npm install) y el navegador
-   Chromium descargado (npx playwright install chromium si hace
-   falta). DevDependency de test, igual que firebase-tools lo es de
-   despliegue — SPEC.md §1 ya permite devDependencies que no formen
-   parte del código servido a la persona usuaria.
+   Requires `playwright` installed (npm install) and the Chromium
+   browser downloaded (npx playwright install chromium if needed).
+   Test devDependency, the same way firebase-tools is a deployment
+   one — SPEC.md §1 already allows devDependencies that aren't part
+   of the code served to the end user.
    ============================================================ */
 'use strict';
 
@@ -41,7 +41,7 @@ var MIME = {
   '.webmanifest': 'application/manifest+json'
 };
 
-/* ---- Servidor estático mínimo (sin dependencias) ---- */
+/* ---- Minimal static server (no dependencies) ---- */
 function crearServidor() {
   return http.createServer(function (req, res) {
     var urlPath = decodeURIComponent(req.url.split('?')[0]);

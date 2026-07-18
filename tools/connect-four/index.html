@@ -18,7 +18,7 @@
       <span class="stars" id="stars">⭐ 0</span>
     </header>
 
-    <!-- Pantalla inicial -->
+    <!-- Start screen -->
     <section id="pantallaInicio" class="pila centrado">
       <div class="fila centrado-fila">
         <p class="instruccion" id="instruccion" data-i18n="instruccion">Tú eres 🟡. Toca una columna: tu ficha cae hasta abajo. Haz una línea de cuatro antes que el rival.</p>
@@ -28,7 +28,7 @@
       <div class="pila" id="niveles"></div>
     </section>
 
-    <!-- Pantalla de juego -->
+    <!-- Game screen -->
     <section id="pantallaJuego" class="oculto pila centrado">
       <div class="fila centrado-fila">
         <p class="estado" id="estado" aria-live="polite"></p>
@@ -57,7 +57,7 @@
   <script src="../../assets/js/storage.js"></script>
   <script src="../../assets/js/feedback.js"></script>
   <script>
-  /* Carga condicional del archivo de idioma activo (es|en). */
+  /* Conditional load of the active language file (es|en). */
   (function () {
     var loc = window.App.i18n.locale();
     document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');

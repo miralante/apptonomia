@@ -1,4 +1,4 @@
-/* Giros y Espejos — estilos específicos. Lo común está en assets/css/.
+/* Turns and Mirrors — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Memoria y atención (naranja --mod-memoria).
    Las transformaciones (giro/espejo) se aplican al span .figura
    interior, nunca al botón (bordes y foco quedan derechos). */
@@ -96,7 +96,7 @@
   background: var(--color-animo-suave);
 }
 
-/* Opción correcta marcada tras el segundo fallo */
+/* Correct option marked after the second failure */
 .opcion-figura.sugerida {
   border-color: var(--mod-memoria);
   box-shadow: 0 0 0 4px var(--mod-memoria-suave);

@@ -1,12 +1,12 @@
 /* ============================================================
-   Apptonomia — Chat Acoso (autonomía: detectar el acoso entre
-   iguales y saber cómo actuar)
-   Simulador de chats para practicar cómo responder ante acoso de
-   compañeros conocidos (insultos, exclusión, rumores, fotos,
-   amenazas, presión para unirse a molestar a otro). El error nunca
-   se castiga: se explica con un consejo y se vuelve a elegir. Cada
-   chat termina contándoselo a un adulto de confianza.
-   Datos en data.js. Módulos compartidos en assets/js/.
+   Apptonomia — Bullying Chat (autonomy: recognizing peer bullying
+   and knowing how to react)
+   Chat simulator to practice how to respond to bullying from people
+   you know (insults, exclusion, rumors, photos, threats, pressure to
+   join in on bothering someone else). A mistake is never punished:
+   it's explained with advice and the person chooses again. Every
+   chat ends by telling a trusted adult.
+   Data in data.js. Shared modules in assets/js/.
    ============================================================ */
 (function () {
   'use strict';
@@ -18,12 +18,12 @@
   var DELAY = App.utils.reducedMotion() ? 0 : 700;
   var DATOS = DATA[App.i18n.locale()] || DATA.es;
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completado) progreso.completado = {};
 
-  /* Chat en curso */
+  /* Chat in progress */
   var escenario = null;
   var idx = 0;
 
@@ -36,7 +36,7 @@
     });
   }
 
-  /* ---------- Menú ---------- */
+  /* ---------- Menu ---------- */
   function pintarMenu() {
     var cont = $('#listaChats');
     cont.innerHTML = '';
@@ -62,7 +62,7 @@
     mostrarPantalla('pantallaMenu');
   }
 
-  /* ---------- Normas ---------- */
+  /* ---------- Rules ---------- */
   function pintarNormas() {
     var cont = $('#listaNormas');
     cont.innerHTML = '';
@@ -83,7 +83,7 @@
     });
   }
 
-  /* ---------- Chat: burbujas ---------- */
+  /* ---------- Chat: bubbles ---------- */
   function burbuja(quien, texto) {
     var fila = document.createElement('div');
     fila.className = 'burbuja-fila ' + quien;
@@ -114,11 +114,11 @@
     f.className = 'feedback';
   }
 
-  /* ---------- Chat: motor de pasos ---------- */
+  /* ---------- Chat: step engine ---------- */
   function abrirChat(esc) {
-    /* Cada tarjeta del menú es un grupo temático con varias variantes
-       (casos); se juega UNA al azar para que el guion no se memorice.
-       La estrella (progreso.completado) sigue siendo por grupo. */
+    /* Each menu card is a thematic group with several variants
+       (cases); ONE is played at random so the script can't be
+       memorized. The star (progreso.completado) is still per group. */
     var v = esc.variantes[Math.floor(Math.random() * esc.variantes.length)];
     escenario = { id: esc.id, contacto: v.contacto, relacion: v.relacion, pasos: v.pasos, regla: v.regla };
     idx = 0;
@@ -221,7 +221,7 @@
     App.feedback.celebrar(App.i18n.t('chatSuperado'));
   }
 
-  /* ---------- Eventos ---------- */
+  /* ---------- Events ---------- */
   $('#btnInstruccion').addEventListener('click', function () {
     App.tts.speak($('#instruccion').textContent);
   });
@@ -242,6 +242,6 @@
     App.tts.speak(App.i18n.t('paraRecordarHablado') + ' ' + $('#reglaTexto').textContent);
   });
 
-  /* ---------- Arranque ---------- */
+  /* ---------- Startup ---------- */
   pintarMenu();
 })();

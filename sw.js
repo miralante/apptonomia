@@ -3,7 +3,7 @@
    Cache-first strategy for the app shell (works offline).
    When adding new files: add them to ARCHIVOS and bump VERSION.
    ============================================================ */
-var VERSION = 'apptonomia-v77';
+var VERSION = 'apptonomia-v79';
 
 var ARCHIVOS = [
   './',
@@ -13,11 +13,19 @@ var ARCHIVOS = [
   './site/styles.css',
   './site/strings.es.js',
   './site/strings.en.js',
-  './equipo/index.html',
-  './equipo/styles.css',
-  './ajustes/index.html',
-  './ajustes/app.js',
-  './ajustes/styles.css',
+  './team/index.html',
+  './team/styles.css',
+  './team/strings.es.js',
+  './team/strings.en.js',
+  './settings/index.html',
+  './settings/app.js',
+  './settings/styles.css',
+  './settings/strings.es.js',
+  './settings/strings.en.js',
+  './about/index.html',
+  './about/styles.css',
+  './about/strings.es.js',
+  './about/strings.en.js',
   './assets/css/tokens.css',
   './assets/css/base.css',
   './assets/css/components.css',

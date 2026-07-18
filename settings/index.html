@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="title">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajustes | Apptonomia</title>
+  <!-- Hidden route: not linked from the main menu and should not be indexed.
+       Aimed at families, therapists, or teachers managing the device. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container settings">
+    <header class="cabecera-settings">
+      <div class="idioma-selector" role="group" aria-label="Elegir idioma">
+        <button type="button" class="btn-idioma" id="btnIdiomaEs" data-locale="es" aria-pressed="false">🇪🇸 Español</button>
+        <button type="button" class="btn-idioma" id="btnIdiomaEn" data-locale="en" aria-pressed="false">🇬🇧 English</button>
+      </div>
+      <p class="aviso-ruta" data-i18n="routeNotice">Página de ajustes. No aparece en el menú de la aplicación:
+        solo se llega escribiendo esta dirección.</p>
+      <h1 data-i18n="title">⚙️ Apptonomia — Ajustes</h1>
+      <p class="entradilla" data-i18n="intro">Aquí se puede borrar lo guardado en este navegador. Pensada para
+        quien gestiona el dispositivo (familia, profesorado), no para la persona usuaria.</p>
+    </header>
+
+    <main class="pila">
+
+      <section id="estado" class="card">
+        <h2 data-i18n="stateTitle">Estado actual de este navegador</h2>
+        <ul id="listaEstado">
+          <li data-i18n="core.loading">Cargando…</li>
+        </ul>
+      </section>
+
+      <section id="progreso-actividades" class="card guia">
+        <h2 data-i18n="progressTitle">Progreso por actividad</h2>
+        <p data-i18n="progressIntro">Estrellas ⭐ guardadas en este navegador, actividad por actividad. "Sin empezar" quiere
+          decir que la persona todavía no ha jugado a esa actividad en este dispositivo.</p>
+
+        <article class="card modulo-guia" style="--acento: var(--mod-coordinacion);">
+          <h3 data-i18n="module1">🎯 Puntería y manos</h3>
+          <table>
+            <thead><tr><th data-i18n="colActivity">Actividad</th><th data-i18n="colProgress">Progreso</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="activity.catch">Atrapa</td><td data-tool="catch">—</td></tr>
+              <tr><td data-i18n="activity.keyboard-typing">Teclado</td><td data-tool="keyboard-typing">—</td></tr>
+              <tr><td data-i18n="activity.piano-keys">Piano</td><td data-tool="piano-keys">—</td></tr>
+              <tr><td data-i18n="activity.tracing">Trazos</td><td data-tool="tracing">—</td></tr>
+              <tr><td data-i18n="activity.coloring">Colorear</td><td data-tool="coloring">—</td></tr>
+              <tr><td data-i18n="activity.builders">Constructores</td><td data-tool="builders">—</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card modulo-guia" style="--acento: var(--mod-secuencia);">
+          <h3 data-i18n="module2">📋 Mi día a día</h3>
+          <table>
+            <thead><tr><th data-i18n="colActivity">Actividad</th><th data-i18n="colProgress">Progreso</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="activity.routines">Mis Rutinas</td><td data-tool="routines">—</td></tr>
+              <tr><td data-i18n="activity.house">La Casa</td><td data-tool="house">—</td></tr>
+              <tr><td data-i18n="activity.situations">Situaciones</td><td data-tool="situations">—</td></tr>
+              <tr><td data-i18n="activity.safe-chat">Chat Seguro</td><td data-tool="safe-chat">—</td></tr>
+              <tr><td data-i18n="activity.bullying-chat">Chat Acoso</td><td data-tool="bullying-chat">—</td></tr>
+              <tr><td data-i18n="activity.post-or-not">¿Lo publico?</td><td data-tool="post-or-not">—</td></tr>
+              <tr><td data-i18n="activity.social-safety">Redes, intimidad y ley</td><td data-tool="social-safety">—</td></tr>
+              <tr><td data-i18n="activity.signs">Señales</td><td data-tool="signs">—</td></tr>
+              <tr><td data-i18n="activity.times-of-day">Partes del Día</td><td data-tool="times-of-day">—</td></tr>
+              <tr><td data-i18n="activity.what-first">¿Qué hago primero?</td><td data-tool="what-first">—</td></tr>
+              <tr><td data-i18n="activity.what-do-i-need">¿Qué necesito?</td><td data-tool="what-do-i-need">—</td></tr>
+              <tr><td data-i18n="activity.where-to-store">¿Dónde lo guardo?</td><td data-tool="where-to-store">—</td></tr>
+              <tr><td data-i18n="activity.task-list">Lista de Tareas</td><td data-tool="task-list">—</td></tr>
+              <tr><td data-i18n="activity.my-agenda">Mi agenda</td><td data-tool="my-agenda">—</td></tr>
+              <tr><td data-i18n="activity.what-to-wear">¿Qué me pongo?</td><td data-tool="what-to-wear">—</td></tr>
+              <tr><td data-i18n="activity.street">La Calle</td><td data-tool="street">—</td></tr>
+              <tr><td data-i18n="activity.emergencies">Emergencias</td><td data-tool="emergencies">—</td></tr>
+              <tr><td data-i18n="activity.phone-numbers">Teléfonos Importantes</td><td data-tool="phone-numbers">—</td></tr>
+              <tr><td data-i18n="activity.shopping">La Compra</td><td data-tool="shopping">—</td></tr>
+              <tr><td data-i18n="activity.shop">La Tienda</td><td data-tool="shop">—</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card modulo-guia" style="--acento: var(--mod-memoria);">
+          <h3 data-i18n="module3">🧠 Memoria y atención</h3>
+          <table>
+            <thead><tr><th data-i18n="colActivity">Actividad</th><th data-i18n="colProgress">Progreso</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="activity.pairs">Parejas</td><td data-tool="pairs">—</td></tr>
+              <tr><td data-i18n="activity.differences">Diferencias</td><td data-tool="differences">—</td></tr>
+              <tr><td data-i18n="activity.whats-missing">¿Qué falta?</td><td data-tool="whats-missing">—</td></tr>
+              <tr><td data-i18n="activity.ecos">Ecos</td><td data-tool="ecos">—</td></tr>
+              <tr><td data-i18n="activity.turns-mirrors">Giros y Espejos</td><td data-tool="turns-mirrors">—</td></tr>
+              <tr><td data-i18n="activity.blocks">Los Bloques</td><td data-tool="blocks">—</td></tr>
+              <tr><td data-i18n="activity.where-is">¿Dónde está?</td><td data-tool="where-is">—</td></tr>
+              <tr><td data-i18n="activity.path">El Camino</td><td data-tool="path">—</td></tr>
+              <tr><td data-i18n="activity.fit">Encaja la Pieza</td><td data-tool="fit">—</td></tr>
+              <tr><td data-i18n="activity.theatre">El Teatro</td><td data-tool="theatre">—</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card modulo-guia" style="--acento: var(--mod-razonamiento);">
+          <h3 data-i18n="module4">🔢 Pensar y contar</h3>
+          <table>
+            <thead><tr><th data-i18n="colActivity">Actividad</th><th data-i18n="colProgress">Progreso</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="activity.riddles">Adivinanzas</td><td data-tool="riddles">—</td></tr>
+              <tr><td data-i18n="activity.patterns">Patrones</td><td data-tool="patterns">—</td></tr>
+              <tr><td data-i18n="activity.numbers">Los Números</td><td data-tool="numbers">—</td></tr>
+              <tr><td data-i18n="activity.quantities">Cantidades</td><td data-tool="quantities">—</td></tr>
+              <tr><td data-i18n="activity.roman-numerals">Números Romanos</td><td data-tool="roman-numerals">—</td></tr>
+              <tr><td data-i18n="activity.wallet">El Monedero</td><td data-tool="wallet">—</td></tr>
+              <tr><td data-i18n="activity.clock">El Reloj</td><td data-tool="clock">—</td></tr>
+              <tr><td data-i18n="activity.stories">Historias</td><td data-tool="stories">—</td></tr>
+              <tr><td data-i18n="activity.odd-one-out">¿Qué no encaja?</td><td data-tool="odd-one-out">—</td></tr>
+              <tr><td data-i18n="activity.puzzle">Puzzle</td><td data-tool="puzzle">—</td></tr>
+              <tr><td data-i18n="activity.oca">La Oca</td><td data-tool="oca">—</td></tr>
+              <tr><td data-i18n="activity.tic-tac-toe">Tres en Raya</td><td data-tool="tic-tac-toe">—</td></tr>
+              <tr><td data-i18n="activity.visual-sudoku">Sudoku Visual</td><td data-tool="visual-sudoku">—</td></tr>
+              <tr><td data-i18n="activity.domino">Dominó</td><td data-tool="domino">—</td></tr>
+              <tr><td data-i18n="activity.checkers">Las Damas</td><td data-tool="checkers">—</td></tr>
+              <tr><td data-i18n="activity.chess">El Ajedrez</td><td data-tool="chess">—</td></tr>
+              <tr><td data-i18n="activity.connect-four">Cuatro en Raya</td><td data-tool="connect-four">—</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card modulo-guia" style="--acento: var(--mod-lenguaje);">
+          <h3 data-i18n="module5">💬 Lenguaje y palabras</h3>
+          <table>
+            <thead><tr><th data-i18n="colActivity">Actividad</th><th data-i18n="colProgress">Progreso</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="activity.comedy-club">Chistes</td><td data-tool="comedy-club">—</td></tr>
+              <tr><td data-i18n="activity.idioms">Dichos</td><td data-tool="idioms">—</td></tr>
+              <tr><td data-i18n="activity.double-meaning">Doble Sentido</td><td data-tool="double-meaning">—</td></tr>
+              <tr><td data-i18n="activity.categories">Categorías</td><td data-tool="categories">—</td></tr>
+              <tr><td data-i18n="activity.sentence">La Frase</td><td data-tool="sentence">—</td></tr>
+              <tr><td data-i18n="activity.words">Palabras</td><td data-tool="words">—</td></tr>
+              <tr><td data-i18n="activity.dictionary">Diccionario</td><td data-tool="dictionary">—</td></tr>
+              <tr><td data-i18n="activity.spelling">Completa la Palabra</td><td data-tool="spelling">—</td></tr>
+              <tr><td data-i18n="activity.word-search">Sopa de Letras</td><td data-tool="word-search">—</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card modulo-guia" style="--acento: var(--mod-emocional);">
+          <h3 data-i18n="module6">💜 Emociones</h3>
+          <table>
+            <thead><tr><th data-i18n="colActivity">Actividad</th><th data-i18n="colProgress">Progreso</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="activity.emotions">¿Cómo me siento?</td><td data-tool="emotions">—</td></tr>
+              <tr><td data-i18n="activity.calm">Calma</td><td data-tool="calm">—</td></tr>
+              <tr><td data-i18n="activity.friends">Entre Amigos</td><td data-tool="friends">—</td></tr>
+              <tr><td data-i18n="activity.my-body">Mi Cuerpo Me Avisa</td><td data-tool="my-body">—</td></tr>
+            </tbody>
+          </table>
+        </article>
+      </section>
+
+      <section id="copia-progreso" class="card">
+        <h2 data-i18n="backupTitle">Copia de mi progreso</h2>
+        <p data-i18n="backupIntro">El progreso solo se guarda en este navegador. Si se borra por error (limpieza del
+          navegador, cambio de dispositivo…) se pierde para siempre. Aquí se puede guardar una
+          copia en un archivo y recuperarla más tarde.</p>
+        <button type="button" class="btn btn-secundario" id="btnExportar" data-i18n="btnExport">💾 Guardar copia</button>
+        <p class="feedback" id="feedbackExportar" aria-live="polite"></p>
+        <hr>
+        <label class="etiqueta-archivo" for="inputImportar" data-i18n="retrieveLabel">Recuperar copia desde un archivo:</label>
+        <input type="file" accept=".json,application/json" id="inputImportar">
+        <button type="button" class="btn btn-secundario" id="btnImportar" disabled data-i18n="btnImport">📂 Recuperar copia</button>
+        <p class="nota-reset"><span data-i18n="importWarning1">Recuperar una copia </span><strong data-i18n="importWarningStrong">sustituye</strong><span data-i18n="importWarning2"> el progreso actual de
+          las actividades que aparezcan en el archivo.</span></p>
+        <p class="feedback" id="feedbackImportar" aria-live="polite"></p>
+      </section>
+
+      <section id="preferencias" class="card">
+        <h2 data-i18n="prefsTitle">Preferencias de la persona usuaria</h2>
+        <p data-i18n="prefsIntro">Estos ajustes se aplican en todas las actividades. Los cambia quien gestiona el
+          dispositivo; la persona usuaria no necesita venir a esta página.</p>
+
+        <p class="etiqueta-pref" data-i18n="fontSizeLabel">Tamaño de letra</p>
+        <div class="selector-pref" id="selectorTamano" role="group" aria-label="Tamaño de letra">
+          <button type="button" class="btn-pref" data-valor="normal" aria-pressed="false" data-i18n="fontNormal">Normal</button>
+          <button type="button" class="btn-pref" data-valor="grande" aria-pressed="false" data-i18n="fontLarge">Grande</button>
+          <button type="button" class="btn-pref" data-valor="muygrande" aria-pressed="false" data-i18n="fontExtraLarge">Muy grande</button>
+        </div>
+
+        <p class="etiqueta-pref" data-i18n="soundsLabel">Sonidos de acierto y ánimo</p>
+        <div class="selector-pref" id="selectorSonidos" role="group" aria-label="Sonidos">
+          <button type="button" class="btn-pref" data-valor="on" aria-pressed="false" data-i18n="soundsOn">🔊 Activados</button>
+          <button type="button" class="btn-pref" data-valor="off" aria-pressed="false" data-i18n="soundsOff">🔇 Desactivados</button>
+        </div>
+        <p class="nota-reset" data-i18n="soundsNote">Esto no afecta a la voz que lee los textos (🔊 de cada pantalla),
+          solo a los pitidos cortos de acierto y ánimo.</p>
+      </section>
+
+      <section id="reset-persona" class="card tarjeta-reset">
+        <h2 data-i18n="resetPersonTitle">Restablecer los datos de la persona</h2>
+        <p><span data-i18n="resetPersonIntro1">Borra el </span><strong data-i18n="resetPersonIntroStrong1">idioma elegido</strong><span data-i18n="resetPersonIntro2"> (la próxima vez se detecta de nuevo o se vuelve a español) y el </span><strong data-i18n="resetPersonIntroStrong2">nombre</strong><span data-i18n="resetPersonIntro3"> escrito en Teclado y en Piano.</span></p>
+        <p class="nota-reset"><span data-i18n="resetPersonNote1">El progreso (estrellas, niveles y canciones guardadas) de todas las actividades </span><strong data-i18n="resetPersonNoteStrong">NO se borra</strong><span data-i18n="resetPersonNote2">.</span></p>
+        <button type="button" class="btn btn-secundario" id="btnResetPersona" data-i18n="btnResetPerson">🧑 Restablecer datos de la persona</button>
+        <p class="feedback" id="feedbackPersona" aria-live="polite"></p>
+      </section>
+
+      <section id="reset-app" class="card tarjeta-reset tarjeta-peligro">
+        <h2 data-i18n="resetAppTitle">Restablecer toda la aplicación</h2>
+        <p><span data-i18n="resetAppIntro1">Borra </span><strong data-i18n="resetAppIntroStrong">todo</strong><span data-i18n="resetAppIntro2"> lo guardado en este navegador: idioma, nombres, estrellas, niveles completados y canciones guardadas de todas las actividades.</span></p>
+        <p class="nota-reset"><strong data-i18n="resetAppNoteStrong">No se puede deshacer.</strong><span data-i18n="resetAppNote2"> Es como si la aplicación se abriera por primera vez.</span></p>
+        <button type="button" class="btn btn-secundario" id="btnResetApp" data-i18n="btnResetApp">🗑️ Restablecer toda la aplicación</button>
+        <p class="feedback" id="feedbackApp" aria-live="polite"></p>
+      </section>
+
+      <footer class="pie-settings">
+        <a class="btn btn-secundario" href="../site/index.html" data-i18n="footerActivities">Ir a las actividades</a>
+        <a class="btn btn-secundario" href="../team/index.html" data-i18n="footerTeamGuide">Guía para el equipo de apoyo</a>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/storage.js"></script>
+  <script>
+  /* Conditional load of the active language file (es|en). */
+  (function () {
+    var loc = window.App.i18n.locale();
+    document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
+  })();
+</script>
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      function paintLanguageSelector() {
+        var active = App.i18n.locale();
+        document.getElementById('btnIdiomaEs').setAttribute('aria-pressed', String(active === 'es'));
+        document.getElementById('btnIdiomaEn').setAttribute('aria-pressed', String(active === 'en'));
+      }
+      document.getElementById('btnIdiomaEs').addEventListener('click', function () { App.i18n.setLocale('es'); });
+      document.getElementById('btnIdiomaEn').addEventListener('click', function () { App.i18n.setLocale('en'); });
+      paintLanguageSelector();
+    })();
+  </script>
+</body>
+</html>

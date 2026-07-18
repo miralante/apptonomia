@@ -11,7 +11,7 @@
   var POR_RONDA = 8;
   var $ = App.utils.$;
 
-  /* Nombres hablados de los símbolos, para el botón de audio (por idioma) */
+  /* Spoken names of the symbols, for the audio button (per language) */
   var NOMBRES = {
     es: {
       '🔵': 'círculo azul', '🔴': 'círculo rojo', '🟢': 'círculo verde',
@@ -54,12 +54,12 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
 
-  /* Estado de la ronda */
+  /* Round state */
   var nivel = null;
   var items = [];
   var idx = 0;
@@ -163,9 +163,10 @@
     explicacionWrap.classList.remove('oculto');
   }
 
-  /* Método socrático: en el primer fallo no se da la respuesta, se
-     anima a mirar la serie otra vez. Solo en el segundo fallo se
-     explica la respuesta correcta (mostrarExplicacion). */
+  /* Socratic method: on the first mistake the answer isn't given,
+     the person is encouraged to look at the sequence again. Only on
+     the second mistake is the correct answer explained
+     (mostrarExplicacion). */
   function mostrarPista() {
     explicacionEl.textContent = App.i18n.t('pista');
     explicacionWrap.classList.remove('oculto');
@@ -221,7 +222,7 @@
     App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
   }
 
-  /* Eventos */
+  /* Events */
   btnEscuchar.addEventListener('click', function () {
     App.tts.speak(textoSerie(items[idx].patron));
   });

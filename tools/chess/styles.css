@@ -1,4 +1,4 @@
-/* El Ajedrez — estilos específicos. Lo común está en assets/css/.
+/* Chess — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Razonamiento (teal --mod-razonamiento). */
 
 .tool-header h1 { color: var(--mod-razonamiento); }
@@ -25,7 +25,7 @@
   min-height: 1.4em;
 }
 
-/* Tarjetas del menú (mismo patrón que La Compra) */
+/* Menu cards (same pattern as The Shopping) */
 .tarjeta-actividad {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 8px; min-height: 160px; padding: var(--espacio-grande);
@@ -38,7 +38,7 @@
 .tarjeta-actividad .nombre { font-weight: 800; font-size: var(--texto-base); }
 .tarjeta-actividad .detalle { font-size: var(--texto-pequeno); color: var(--color-texto-suave); text-align: center; }
 
-/* Tablero 5×5 con casillas alternas (ancho impar: alterna por índice) */
+/* 5×5 board with alternating squares (odd width: alternates by index) */
 .tablero-ajedrez {
   display: grid;
   grid-template-columns: repeat(5, minmax(60px, 76px));
@@ -72,8 +72,8 @@
 
 .pieza { line-height: 1; }
 
-/* Piezas de la persona en el color del módulo, para distinguirlas
-   de las del rival (negras) además de por la forma del glifo. */
+/* The person's pieces in the module color, to tell them apart from
+   the opponent's (black) beyond just the glyph shape. */
 .tuya-pieza { color: var(--mod-razonamiento); }
 
 .celda.elegida {
@@ -86,7 +86,7 @@
   border-color: var(--color-acierto);
 }
 
-/* Jugada sugerida por la ayuda (2ª pulsación de 💡) */
+/* Move suggested by the hint (2nd tap of 💡) */
 .celda.sugerida {
   border-color: var(--mod-razonamiento);
   box-shadow: 0 0 0 4px var(--mod-razonamiento-suave);

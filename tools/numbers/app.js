@@ -30,12 +30,12 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
 
-  /* Estado de la ronda */
+  /* Round state */
   var actividad = null;
   var nivel = null;
   var idx = 0;
@@ -61,7 +61,7 @@
     return p.orden[p.i++];
   }
 
-  /* ---- Cifras de colores por posición ---- */
+  /* ---- Color-coded digits by place value ---- */
 
   var POS_CLASE = ['cifra-u', 'cifra-d', 'cifra-c'];
 
@@ -87,8 +87,8 @@
       '<span class="cifra-d">' + App.i18n.t('leyendaPartesTotalTxt') + '</span>';
   }
 
-  /* html de las cifras de n. destacar: posición (0=unidades, 1=decenas…)
-     que se subraya. etiquetas: rótulos de grupo (miles, millones…). */
+  /* html for the digits of n. destacar: place (0=units, 1=tens…)
+     that gets underlined. etiquetas: group labels (thousands, millions…). */
   function cifras(n, etiquetas, destacar) {
     var s = String(n);
     var grupos = [];
@@ -161,7 +161,7 @@
       '</span><span class="frac-den">' + f[1] + '</span></span>';
   }
 
-  /* ---- Opciones numéricas (3, únicas, barajadas) ---- */
+  /* ---- Numeric options (3, unique, shuffled) ---- */
 
   function construirOpciones(correcto, distractores, formato) {
     var valores = [correcto];
@@ -189,7 +189,7 @@
     return '<span class="grupo-puntos">' + repetir('<span class="punto ' + clase + '"></span>', n) + '</span>';
   }
 
-  /* Puntos para restar: los últimos "quitar" llevan una cruz. */
+  /* Dots to subtract: the last "quitar" ones get an X. */
   function grupoPuntosResta(total, quitar) {
     var s = '';
     for (var i = 0; i < total; i++) {
@@ -208,9 +208,9 @@
   var GENERADORES = {
 
     contar: function (nv) {
-      /* 'max' se deriva de 'paso' (única variable de dificultad,
-         regla 13): pasos más grandes necesitan más margen para que
-         la secuencia de 5 términos tenga sentido. */
+      /* 'max' is derived from 'paso' (the only difficulty variable,
+         rule 13): bigger steps need more headroom for the 5-term
+         sequence to make sense. */
       var max = nv.paso * 12;
       var inicio = ri(0, Math.floor((max - nv.paso * 4) / nv.paso)) * nv.paso;
       var seq = [];
@@ -245,7 +245,7 @@
       if (d) html += '<span class="bloques-grupo">' + repetir('<span class="bloque-10">10</span>', d) + '</span>';
       if (u) html += '<span class="bloques-grupo">' + repetir('<span class="bloque-1"></span>', u) + '</span>';
       html += '</div>';
-      var trocado = c * 100 + u * 10 + d; /* decenas y unidades al revés */
+      var trocado = c * 100 + u * 10 + d; /* tens and units swapped */
       return {
         enunciado: App.i18n.t('gen.bloquesEnunciado'),
         hablar: App.i18n.t('gen.bloquesHablar').replace('{texto}', texto),
@@ -264,7 +264,7 @@
       var otros = App.utils.shuffle(lista.filter(function (o) { return o.n !== item.n; })).slice(0, 2);
       var nota = item.nota ? '<p class="pista">' + item.nota + '</p>' : '';
       if (i % 2 === 0) {
-        /* número → palabras */
+        /* number → words */
         return {
           enunciado: App.i18n.t('gen.lecturaEnunciadoNumASim'),
           hablar: App.i18n.t('gen.lecturaHablarNumASim'),
@@ -275,7 +275,7 @@
           ))
         };
       }
-      /* palabras → número */
+      /* words → number */
       return {
         enunciado: App.i18n.t('gen.lecturaEnunciadoSimANum'),
         hablar: App.i18n.t('gen.lecturaHablarSimANum').replace('{palabras}', item.palabras),
@@ -636,7 +636,7 @@
     });
   }
 
-  /* ---- Menú de actividades ---- */
+  /* ---- Activity menu ---- */
   function pintarMenu() {
     var cont = $('#menuGrupos');
     cont.innerHTML = '';
@@ -736,7 +736,7 @@
     progressText.textContent = idx + ' / ' + DATA.porRonda;
     pintarEstrellas();
 
-    /* El audio solo se reproduce si el usuario pulsa el botón "Escuchar" (btnEscuchar) */
+    /* Audio only plays if the user taps the "Listen" button (btnEscuchar) */
   }
 
   /* Extrae el texto visible de un option.html (puede llevar <span> internos) */
@@ -754,9 +754,10 @@
     explicacionWrap.classList.remove('oculto');
   }
 
-  /* Método socrático: en el primer fallo no se da la respuesta, se
-     anima a mirar el enunciado/visual otra vez. Solo en el segundo
-     fallo se explica la respuesta correcta (mostrarExplicacion). */
+  /* Socratic method: on the first mistake the answer isn't given,
+     the person is encouraged to look at the question/visual again.
+     Only on the second mistake is the correct answer explained
+     (mostrarExplicacion). */
   function mostrarPista() {
     explicacionEl.textContent = App.i18n.t('pista');
     explicacionWrap.classList.remove('oculto');

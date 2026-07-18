@@ -1,4 +1,4 @@
-/* Encaja la Pieza — estilos específicos. Lo común está en assets/css/.
+/* Fit the Piece — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Memoria y atención (naranja --mod-memoria) para la
    cabecera y los botones normales, igual que el resto de la app.
 
@@ -39,7 +39,7 @@
   min-height: 1.4em;
 }
 
-/* ---- Paleta de piezas, estilo tetrominó clásico ---- */
+/* ---- Piece palette, classic tetromino style ---- */
 .tablero-piezas {
   --pz-domino: #F2545B;
   --pz-triI: #2FBF71;
@@ -78,7 +78,7 @@
   border-radius: 6px;
 }
 
-/* Relleno fijo del tablero: bloques "de obstáculo", metal apagado */
+/* Fixed board filler: "obstacle" blocks, dull metal */
 .celda.llena {
   background: linear-gradient(135deg, #5B6478, #333A4C);
   border-color: transparent;

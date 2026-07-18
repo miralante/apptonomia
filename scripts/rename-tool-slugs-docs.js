@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /* ============================================================
    Apptonomia — scripts/rename-tool-slugs-docs.js
-   Actualiza las rutas tools/<slug>/ en la documentación técnica
-   para que reflejen los slugs neutros renombrados.
+   Updates the tools/<slug>/ paths in the technical documentation
+   to reflect the renamed neutral slugs.
 
-   Mismo mapa que rename-tool-slugs.js (con ajedrez -> chess
-   incluido también). Sólo toca paths, no textos descriptivos.
+   Same map as rename-tool-slugs.js (with ajedrez -> chess also
+   included). Only touches paths, not descriptive text.
 
-   Uso: node scripts/rename-tool-slugs-docs.js
+   Usage: node scripts/rename-tool-slugs-docs.js
    ============================================================ */
 'use strict';
 
@@ -71,7 +71,7 @@ var RENAMES = {
 };
 
 var pairs = Object.keys(RENAMES).map(function (k) { return [k, RENAMES[k]]; });
-// Slug más largo primero para evitar pisar prefijos comunes
+// Longest slug first to avoid clobbering common prefixes
 pairs.sort(function (a, b) { return b[0].length - a[0].length; });
 
 function replaceInText(txt, mapping) {
@@ -92,7 +92,7 @@ function replaceInText(txt, mapping) {
 var targets = [
   'doc/es/tecnico.md',
   'doc/en/technical.md',
-  'doc/I18N.md',
+  'doc/es/I18N.md',
   'doc/en/I18N.md',
   'CLAUDE.md',
   'agent.md',
@@ -100,7 +100,7 @@ var targets = [
   'README.es.md',
   'CONTRIBUTING.md',
   'CONTRIBUTING.es.md',
-  'doc/index.md'
+  'doc/es/indice.md'
 ];
 targets.forEach(function (rel) {
   var full = path.join(RAIZ, rel);

@@ -22,7 +22,7 @@
   var feedbackEl = $('#feedback');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
@@ -161,7 +161,7 @@
     App.feedback.celebrar(App.i18n.t('meta'));
   }
 
-  /* Eventos */
+  /* Events */
   btnTirar.addEventListener('click', tirar);
   $('#btnRepetir').addEventListener('click', function () { iniciarPartida(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {

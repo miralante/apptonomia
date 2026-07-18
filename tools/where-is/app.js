@@ -28,12 +28,12 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
 
-  /* Estado de la ronda */
+  /* Round state */
   var nivel = null;
   var idx = 0;
   var aciertosRonda = 0;
@@ -78,9 +78,9 @@
     progressText.textContent = idx + ' / ' + porRonda;
   }
 
-  /* Genera un ítem: relación del nivel + 3 objetos distintos.
-     Colocación: la referencia siempre en el centro; el objetivo en
-     el lado que dice la relación; el distractor en el contrario. */
+  /* Generates an item: the level's relation + 3 distinct objects.
+     Placement: the reference is always in the center; the target on
+     the side the relation says; the distractor on the opposite side. */
   function generarItem() {
     var rel = App.utils.shuffle(nivel.relaciones)[0];
     var eje = (rel === 'izq' || rel === 'der') ? 'fila' : 'columna';
@@ -191,7 +191,7 @@
     App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
   }
 
-  /* Eventos */
+  /* Events */
   btnSiguiente.addEventListener('click', siguiente);
   $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {

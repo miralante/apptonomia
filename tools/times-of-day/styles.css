@@ -1,4 +1,4 @@
-/* Partes del Día — estilos específicos. Lo común está en assets/css/.
+/* Times of Day — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Autonomía y hogar (verde --mod-secuencia). */
 
 .tool-header h1 { color: var(--mod-secuencia); }
@@ -30,7 +30,7 @@
   font-weight: 700;
 }
 
-/* ---- Las 3 cajas de momento del día, cada una con su lista ---- */
+/* ---- The 3 time-of-day boxes, each with its own list ---- */
 .listas-dia {
   display: flex;
   flex-wrap: wrap;

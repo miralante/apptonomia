@@ -39,7 +39,7 @@
   var vistaMiniatura = $('#vistaMiniatura');
   var btnLimpiarTodo = $('#btnLimpiarTodo');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (typeof progreso.construcciones !== 'number') progreso.construcciones = 0;
@@ -195,7 +195,7 @@
       celda.setAttribute('aria-label',
         App.i18n.t('celdaConBloque').replace('{bloque}', nombreBloque(bloqueId)));
     } else if (celda.dataset.bloquePlantilla) {
-      /* Fantasma: el bloque objetivo atenuado, para saber cuál va aquí */
+      /* Ghost: the target block dimmed, to show which one goes here */
       celda.classList.add('fantasma', 'bloque-' + celda.dataset.bloquePlantilla);
       celda.setAttribute('aria-label',
         App.i18n.t('celdaFantasma').replace('{bloque}', nombreBloque(celda.dataset.bloquePlantilla)));
@@ -240,7 +240,7 @@
     if (!enPartida) return;
     if (casillasQueFaltan().length === 0) {
       enPartida = false;
-      /* Pausa corta para que se vea el último bloque puesto */
+      /* Short pause so the last placed block can be seen */
       setTimeout(function () { terminarConstruccion(); }, 600);
     }
   }
@@ -295,9 +295,9 @@
     }
   });
 
-  /* Confirmación en dos pasos sobre el propio botón (mismo patrón que
-     /ajustes/), en vez del confirm() nativo del navegador (sin
-     traducir y fuera del estilo de la app). */
+  /* Two-step confirmation on the button itself (same pattern as
+     /settings/), instead of the browser's native confirm() (not
+     translated and outside the app's style). */
   btnLimpiarTodo.addEventListener('click', function () {
     if (!confirmandoLimpiar) {
       confirmandoLimpiar = true;
@@ -387,8 +387,8 @@
         }
         return;
       }
-      /* Completo: comprobarPlantilla() ya lo habrá capturado, pero por
-         si acaso (p. ej. pulsan ¡Listo! durante la pausa de 600 ms) */
+      /* Complete: comprobarPlantilla() should have already caught this,
+         but just in case (e.g. they tap Done during the 600 ms pause) */
       if (!enPartida) return;
       enPartida = false;
     }

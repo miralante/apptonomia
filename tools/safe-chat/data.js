@@ -1355,3 +1355,33 @@ const DATA = {
     ]
   }
 };
+
+DATA.es.escenarios.forEach(function (grupo) {
+  grupo.variantes.forEach(function (caso) {
+    caso.regla += ' Esta persona era peligrosa. Podía ser un hacker o un delincuente que quería engañarte o robar tus datos.';
+  });
+});
+
+DATA.en.escenarios.forEach(function (group) {
+  group.variantes.forEach(function (scenario) {
+    scenario.regla += ' This person was dangerous. They could have been a hacker or a criminal trying to trick you or steal your information.';
+  });
+});
+
+[DATA.es, DATA.en].forEach(function (locale) {
+  locale.escenarios.forEach(function (grupo) {
+    grupo.variantes.forEach(function (caso) {
+      caso.pasos.forEach(function (paso) {
+        if (paso.tipo !== 'eleccion') return;
+        paso.opciones.filter(function (opcion) { return opcion.segura; }).forEach(function (opcion) {
+          Object.defineProperty(opcion, 'segura', {
+            get: function () {
+              document.querySelectorAll('#chatOpciones .btn-opcion.animo').forEach(function (boton) { boton.remove(); });
+              return true;
+            }
+          });
+        });
+      });
+    });
+  });
+});

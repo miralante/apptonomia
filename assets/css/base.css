@@ -1,12 +1,12 @@
 /* ==========================================================================
    Apptonomia — Base styles
-   Reset simple + estilos base accesibles. Requiere tokens.css.
+   Simple reset + accessible base styles. Requires tokens.css.
    ========================================================================== */
 
-/* Fuentes autoalojadas (licencia SIL OFL, subset latin, woff2).
-   Antes se cargaban desde fonts.googleapis.com: era la única petición
-   externa de la app y no funcionaba offline (PWA). Ahora viven en
-   assets/fonts/ y están cacheadas por sw.js como el resto del app shell. */
+/* Self-hosted fonts (SIL OFL license, latin subset, woff2).
+   They used to load from fonts.googleapis.com: it was the app's only
+   external request and it didn't work offline (PWA). Now they live in
+   assets/fonts/ and are cached by sw.js like the rest of the app shell. */
 @font-face {
   font-family: 'Atkinson Hyperlegible';
   font-style: normal;
@@ -65,14 +65,14 @@ button {
 
 a { color: var(--mod-coordinacion); }
 
-/* Foco visible en todo elemento interactivo (regla 8 de CLAUDE.md) */
+/* Visible focus on every interactive element (CLAUDE.md rule 8) */
 :focus-visible {
   outline: 3px solid var(--color-foco);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* Solo lectores de pantalla */
+/* Screen readers only */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -85,7 +85,7 @@ a { color: var(--mod-coordinacion); }
   border: 0;
 }
 
-/* Regla 7 de CLAUDE.md: respetar prefers-reduced-motion */
+/* CLAUDE.md rule 7: respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

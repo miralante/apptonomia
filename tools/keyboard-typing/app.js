@@ -77,9 +77,9 @@
     return state.opciones.teclado === 'extendido';
   }
 
-  /* El único tipo de teclado que se puede tocar de verdad: en un móvil no
-     hay teclado físico que pulsar, la pantalla es la entrada real. Los
-     demás tipos son decorativos (pointer-events: none en CSS). */
+  /* The only keyboard type that can really be tapped: on a phone there
+     is no physical keyboard to press, the screen is the real input.
+     The other types are decorative (pointer-events: none in CSS). */
   function esMovil() {
     return state.opciones.teclado === 'movil';
   }
@@ -147,9 +147,9 @@
       c.classList.toggle('color-manos', state.opciones.color === 'manos');
     });
     actualizarOpcionesUI();
-    /* Recalcular la guía completa (no solo marcarObjetivo): cambiar de
-       tipo de teclado a mitad de partida puede cambiar qué dedo/pulgar
-       corresponde a la misma tecla (p. ej. física de 8 dedos → móvil). */
+    /* Recompute the whole guide (not just marcarObjetivo): switching
+       keyboard type mid-game can change which finger/thumb
+       corresponds to the same key (e.g. 8-finger physical → mobile). */
     if (game && game.type === 'seq') actualizarGuia();
     if (game && game.type === 'reto') reaplicarReto();
   }
@@ -189,7 +189,7 @@
     teclasDe(ch).forEach(function (t) { t.classList.add('objetivo'); });
   }
 
-  /* ---------- Guía de manos ---------- */
+  /* ---------- Hand guide ---------- */
   function manosSVG(activo) {
     function dedo(f, x, y, h) {
       var act = (activo === f) ? ' activo' : '';
@@ -262,11 +262,12 @@
     $$('.tarjeta-modo').forEach(function (t) {
       var badge = t.querySelector('.hecho');
       var m = t.dataset.modo;
-      /* "Coloca los dedos" enseña a encontrar F y J por su marca táctil:
-         una pantalla lisa no tiene esa marca, no aplica en modo móvil. */
+      /* "Find the finger position" teaches finding F and J by their
+         tactile bump: a flat screen has no such bump, so it doesn't
+         apply in mobile mode. */
       if (m === 'posicion') { t.classList.toggle('oculto', esMovil()); return; }
-      /* La disposición móvil no contiene números: este juego requiere un
-        teclado físico con teclado numérico. */
+      /* The mobile layout has no numbers: this game requires a
+        physical keyboard with a number pad. */
       if (m === 'numeros') { t.classList.toggle('oculto', esMovil()); return; }
       if (m === 'lecciones') badge.textContent = hechas > 0 ? App.i18n.t('deTexto').replace('{hechas}', hechas).replace('{total}', todasLecciones.length) : '';
       else badge.textContent = state.completado[m] ? '⭐' : '';
@@ -419,7 +420,7 @@
   function jugarPalabras() {
     var pasos = [];
     if (state.nombre) {
-      /* sin tildes: el ejercicio usa las teclas básicas */
+      /* no accents: the exercise uses the basic keys */
       var plano = state.nombre.toLowerCase();
       if (plano.normalize) plano = plano.normalize('NFD').replace(/[̀-ͯ]/g, '');
       pasos.push({ text: App.i18n.t('escribeTuNombre'), seq: plano });
@@ -492,7 +493,7 @@
     }
   }
 
-  /* ---------- Teclado físico ---------- */
+  /* ---------- Physical keyboard ---------- */
   function normalizarTecla(k) {
     if (k === 'Spacebar') k = ' ';
     if (typeof k !== 'string' || k.length !== 1) return null;
@@ -518,7 +519,7 @@
     if (ch) flashTecla(ch, false);
   });
 
-  /* ---------- Teclado de móvil: único tipo que se puede tocar ---------- */
+  /* ---------- Mobile keyboard: the only type that can be tapped ---------- */
   document.addEventListener('click', function (e) {
     if (!esMovil()) return;
     var tecla = e.target.closest('.teclado.tocable .tecla[data-ch]');
@@ -531,7 +532,7 @@
     else teclaJuego(ch);
   });
 
-  /* ---------- Opciones del teclado (delegación: hay varios paneles) ---------- */
+  /* ---------- Keyboard options (delegation: there are several panels) ---------- */
   document.addEventListener('click', function (e) {
     var bt = e.target.closest('.btn-teclado');
     if (bt) {
@@ -554,7 +555,7 @@
     var v = $('#inputNombre').value.trim().slice(0, 20);
     state.nombre = v;
     guardar();
-    /* El audio solo se reproduce si el usuario pulsa el botón "Escuchar" (btnLeerNombre) */
+    /* Audio only plays if the user taps the "Listen" button (btnLeerNombre) */
     irMenu();
   }
 
@@ -597,7 +598,7 @@
     actualizarEstrellas();
   });
 
-  /* ---------- Menú y navegación ---------- */
+  /* ---------- Menu and navigation ---------- */
   $('#menuJuegos').addEventListener('click', function (e) {
     var t = e.target.closest('.tarjeta-modo');
     if (!t) return;

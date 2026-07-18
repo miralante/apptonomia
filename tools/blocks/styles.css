@@ -1,4 +1,4 @@
-/* Los Bloques — estilos específicos. Lo común está en assets/css/.
+/* The Blocks — tool-specific styles. Shared styles live in assets/css/.
    Acento del módulo Memoria y atención (naranja --mod-memoria).
    Colores de bloque (c-R/c-B/c-Y) con contraste alto sobre fondo claro. */
 
@@ -48,7 +48,7 @@
 
 .grid-modelo { border-color: var(--mod-memoria); }
 
-/* El modelo es solo visual (no interactivo): celdas más pequeñas */
+/* The model is display-only (not interactive): smaller cells */
 .celda-modelo {
   width: 34px;
   height: 34px;

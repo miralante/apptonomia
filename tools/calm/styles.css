@@ -1,4 +1,4 @@
-/* Calma — estilos específicos. Lo común está en assets/css/. */
+/* Calm — tool-specific styles. Shared styles live in assets/css/. */
 
 .tool-header h1 { color: var(--mod-emocional); }
 
@@ -18,7 +18,7 @@
   opacity: 0.9;
 }
 
-/* Respiración: círculo que crece y decrece (4 s por fase) */
+/* Breathing: circle that grows and shrinks (4 s per phase) */
 #circuloRespiracion {
   width: 120px;
   height: 120px;

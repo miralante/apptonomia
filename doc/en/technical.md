@@ -10,7 +10,7 @@
 | `doc/<en\|es>/technical.md` (this) | Architecture, core APIs, contracts and development recipes | When developing or modifying modules |
 | Project history | Lives in Git (`git log`); no external roadmap is maintained. |
 | `README.md` | Brief intro, how to run and deploy | First contact with the repo |
-| `equipo/index.html` | Guide for families/professionals (hidden route, see §8) | When adding activities: keep it up to date |
+| `team/index.html` | Guide for families/professionals (hidden route, see §8) | When adding activities: keep it up to date |
 | `agent.md` | Compatibility pointer to `CLAUDE.md` | Don't use as source |
 
 Each subject has one canonical source: product in `SPEC.md`, technical matters
@@ -110,13 +110,13 @@ no code per module:
 > language and writing). In the landing it appears **once**, under its
 > **main module**: the one that best represents its primary goal. The
 > therapeutic modules exist for navigation; cross-area work is reflected
-> in the description of each activity in `equipo/index.html`. The global
+> in the description of each activity in `team/index.html`. The global
 > catalog is rebuilt from the actual slugs in `tools/` (checked by
 > `scripts/check.js`).
 
 Each token has its soft pair: `--mod-<x>` and `--mod-<x>-suave` (backgrounds).
 The functional catalog is in [`activities.md`](activities.md), and therapeutic
-purpose is in [`team.md`](team.md) and `equipo/index.html`.
+purpose is in [`team.md`](team.md) and `team/index.html`.
 
 ### 2.3 Level 3 — Activities (`tools/<slug>/`)
 
@@ -176,7 +176,7 @@ Each `strings.<locale>.js` registers `{ title, instruccion, … }` with its loca
 and `strings.es.js` / `strings.en.js` must keep exactly the same keys.
 `scripts/check.js` checks that parity. Brace placeholders (`'{n} times'`) are
 substituted in `app.js` with `.replace('{n}', value)`. Translatable data patterns
-and rules for numbers and dates are documented in [`doc/en/I18N.md`](../I18N.md).
+and rules for numbers and dates are documented in [`doc/en/I18N.md`](I18N.md).
 
 ### 3.4 `window.App.storage` (`storage.js`)
 
@@ -189,7 +189,7 @@ Internal key: `apptonomia:<toolId>`. All functions are failure-tolerant
 | `set` | `(toolId, data) → boolean` | Saves JSON. `false` if failed |
 | `remove` | `(toolId) → boolean` | Deletes the tool's progress |
 | `estrellasTotales` | `() → number` | Sums `datos.estrellas` of all `apptonomia:*` keys (used by landing) |
-| `listaToolIds` | `() → string[]` | Ids of tools with something saved, without `'locale'` (used by `ajustes/`) |
+| `listaToolIds` | `() → string[]` | Ids of tools with something saved, without `'locale'` (used by `settings/`) |
 
 **Progress contract**: the saved object should include `estrellas` (number) if the
 activity gives stars — that's what the landing sums. The rest of the object is free
@@ -494,7 +494,7 @@ Detailed recipe and considerations (numbers, hours, cultural content) in
   showing them as pressure isn't.
 - **UI texts**: Spain's Spanish and English, Easy Reading in both, no clinical
   language ("patient", "therapy", "disability"). Clinical language is only
-  allowed in `equipo/` and in repo documentation. All text lives in
+  allowed in `team/` and in repo documentation. All text lives in
   `strings.<locale>.js` (never hardcoded in `app.js` nor as sole content of an HTML node
   without `data-i18n`).
 - **Case bank for simulations**: a simulation or training activity must provide
@@ -515,16 +515,19 @@ Detailed recipe and considerations (numbers, hours, cultural content) in
 Pages for adults (family/teachers/AI agent) who manage the device, not for the
 end user. Common rules to all: **never link them** from `site/index.html` or
 from activities (access only by known URL), they carry
-`<meta name="robots" content="noindex, nofollow">`, and they're the only product
-pages where clinical or device-administration language is allowed.
+`<meta name="robots" content="noindex, nofollow">`, they're the only product
+pages where clinical or device-administration language is allowed, and they
+follow the same multi-language pattern as the rest of the site
+(`strings.es.js` / `strings.en.js`, `data-i18n`, language selector) — checked
+by `scripts/check.js` the same way as `tools/`.
 
-### 8.1 `/equipo/`
+### 8.1 `/team/`
 
 Guide for families, therapists and teachers + technical note for AI agents
-about the project, design and activity catalog. Keep it up to date when adding
-activities or modules.
+about the project, design and activity catalog. Keep it up to date, in both
+languages, when adding activities or modules.
 
-### 8.2 `/ajustes/`
+### 8.2 `/settings/`
 
 View and delete what's saved in this browser's `localStorage`. Two actions,
 each with two-step confirmation (one click asks for confirmation, the second
@@ -532,17 +535,16 @@ deletes):
 
 - **Reset person data**: `App.storage.remove('locale')` +
   empty the `nombre` field of tools that ask for it (currently
-  `keyboard-typing` and `piano-teclas` — keep this list in
-  `ajustes/app.js` if a new tool requires a name).
+  `keyboard-typing` and `piano-keys` — keep this list in
+  `settings/app.js` if a new tool requires a name).
 - **Reset entire application**: deletes all `apptonomia:*` keys
   (`App.storage.listaToolIds()` + `remove('locale')`). Equivalent to a first use.
 
-### 8.3 `/presentacion/`
+### 8.3 `/about/`
 
-Public-facing presentation of the project. Single static page, Spanish only,
-no scripts. Aimed at journalists, funders, new contributors and anyone arriving
-from the repository or the site who wants to understand what Apptonomia is
-without opening the source code.
+Public-facing presentation of the project, aimed at journalists, funders, new
+contributors and anyone arriving from the repository or the site who wants to
+understand what Apptonomia is without opening the source code.
 
 Six sections: the project's origin, the six non-negotiable principles
 (autonomy, no pressure, privacy, Easy Reading, accessibility, sober
@@ -553,9 +555,9 @@ ways to help (testing, proposing, reviewing, contributing code, spreading
 the word). The footer links to the activity menu and to the team guide,
 but no public link points at it: it is only reached by typing the URL.
 
-Keep it up to date when modules are added or when the total activity
-count changes. Do not add text aimed at the end user here: that page is
-not for them.
+Keep it up to date, in both languages, when modules are added or when the
+total activity count changes. Do not add text aimed at the end user here:
+that page is not for them.
 
 ---
 
@@ -582,7 +584,7 @@ not for them.
    - Card in `site/index.html` and matching keys in
      `site/strings.es.js` / `site/strings.en.js`.
    - All 6 activity files in `sw.js`'s `ARCHIVOS`, and bump `VERSION` (§11).
-   - Row in `equipo/index.html` and bilingual entry in `activities.md`.
+   - Row in `team/index.html` and bilingual entry in `activities.md`.
 9. **Verify** with §12 commands and criteria: structure, both languages,
    persistence, audio, keyboard, touch targets and responsive view.
 10. **Create a small, coherent commit** with an English message.
@@ -600,7 +602,7 @@ Only if the area does not fit the 6 existing modules (check coverage in
 2. Add the `<section class="modulo">` in `site/index.html` with
    `style="--acento: var(--mod-<name>); --acento-suave: var(--mod-<name>-suave);"`,
    an `<h2>` with emoji + name in Easy Reading, and its `grid-tarjetas`.
-3. Document the module in `activities.md`, `team.md`, `equipo/index.html` and
+3. Document the module in `activities.md`, `team.md`, `team/index.html` and
    §2.2 of this document.
 4. Create the first activity of the module (recipe §9).
 

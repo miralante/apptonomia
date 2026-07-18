@@ -28,22 +28,22 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
 
-  /* Estado de la ronda */
+  /* Round state */
   var nivel = null;
   var idxPuzzle = 0;        /* sudoku actual dentro de la ronda */
   var aciertosRonda = 0;
-  var solucion = [];        /* 16 índices 0-3 */
+  var solucion = [];        /* 16 indices 0-3 */
   var tema = [];            /* 4 pictos */
-  var celdas = [];          /* índice 0-3 colocado, o null si es hueco */
+  var celdas = [];          /* index 0-3 placed, or null if it's a gap */
   var botonesCelda = [];
   var huecoActivo = -1;
   var intentosHueco = {};   /* idx celda -> nº de fallos (regla 12) */
-  var ayudaPaso = 0;        /* ayuda a demanda: 1ª pulsación pregunta, 2ª dice el picto */
+  var ayudaPaso = 0;        /* on-demand hint: 1st tap asks, 2nd tap says the picto */
 
   function guardar() { App.storage.set(TOOL_ID, progreso); }
   function pintarEstrellas() { starsEl.textContent = '⭐ ' + progreso.estrellas; }
@@ -87,7 +87,7 @@
     solucion = App.utils.shuffle(b.soluciones)[0];
     tema = App.utils.shuffle(b.temas)[0];
     celdas = solucion.slice();
-    /* Vaciar 'huecos' casillas al azar (regla 13: única variable por nivel) */
+    /* Empty out 'huecos' cells at random (rule 13: only one variable per level) */
     var posiciones = App.utils.shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
       .slice(0, nivel.huecos);
     posiciones.forEach(function (p) { celdas[p] = null; });
@@ -156,7 +156,7 @@
     });
   }
 
-  /* ---- Interacción: hueco y después picto ---- */
+  /* ---- Interaction: gap first, then picto ---- */
   function elegirHueco(i) {
     if (celdas[i] !== null) return;
     huecoActivo = i;
@@ -168,12 +168,12 @@
     limpiarAviso();
   }
 
-  /* ---- Ayuda a demanda (método socrático en dos pasos) ----
-     1ª pulsación: marca el hueco más fácil de razonar y pregunta qué
-     dibujo falta en su fila/columna/caja, sin decirlo. 2ª pulsación:
-     dice el picto y el porqué; colocarlo sigue siendo cosa de la
-     persona (toca la paleta). Se reinicia al colocar o al elegir
-     otro hueco a mano. */
+  /* ---- On-demand hint (two-step Socratic method) ----
+     1st tap: marks the easiest gap to reason about and asks which
+     picture is missing from its row/column/box, without saying it.
+     2nd tap: says the picto and why; placing it is still up to the
+     person (they tap the palette). Resets when placing a piece or
+     picking another gap by hand. */
   function huecoMasFacil() {
     var mejor = -1;
     var mejorCandidatos = 5;

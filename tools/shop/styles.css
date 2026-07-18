@@ -1,6 +1,6 @@
-/* La Tienda — estilos específicos. Lo común está en assets/css/
-   (el dinero visual vive en components.css + assets/js/dinero.js).
-   Acento del módulo Autonomía/hogar (verde --mod-secuencia). */
+/* The Shop — tool-specific styles. Shared styles live in assets/css/
+   (visual money lives in components.css + assets/js/dinero.js).
+   Autonomy/home module accent (green --mod-secuencia). */
 
 .tool-header h1 { color: var(--mod-secuencia); }
 
@@ -22,7 +22,7 @@
 
 .progress-bar { margin-top: var(--espacio); }
 
-/* Tarjetas del menú (mismo patrón que La Compra) */
+/* Menu cards (same pattern as The Shop) */
 .tarjeta-actividad {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 8px; min-height: 160px; padding: var(--espacio-grande);
@@ -40,7 +40,7 @@
   font-weight: 700;
 }
 
-/* La mesa con el tinte del módulo */
+/* The table with the module's tint */
 .mesa-dinero { background: var(--mod-secuencia-suave); }
 
 /* El mostrador (paso de pagar) se distingue de tu monedero */

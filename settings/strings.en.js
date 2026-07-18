@@ -1,0 +1,110 @@
+/* ============================================================
+   Apptonomia — Settings text (EN)
+   Language-specific file. Loaded conditionally from index.html
+   based on App.i18n.locale().
+   ============================================================ */
+(function () {
+  'use strict';
+
+  App.i18n.register({
+    title: '⚙️ Apptonomia — Settings',
+    routeNotice: 'Settings page. It does not appear in the app menu: the only way here is typing this address.',
+    intro: 'This is where whatever is saved in this browser can be deleted. Meant for whoever manages the device (family, teachers), not for the person using the app.',
+
+    stateTitle: 'Current state of this browser',
+    currentLanguage: 'Current language: {lang}',
+    languageNameEs: 'Spanish',
+    languageNameEn: 'English',
+    activitiesWithProgress: 'Activities with saved progress: {n}',
+    totalStars: 'Total stars: {n}',
+
+    progressTitle: 'Progress by activity',
+    progressIntro: 'Stars ⭐ saved in this browser, activity by activity. "Not started" means the person has not played that activity on this device yet.',
+    notStarted: 'Not started',
+    colActivity: 'Activity',
+    colProgress: 'Progress',
+
+    module1: '🎯 Aiming and hands',
+    module2: '📋 My day to day',
+    module3: '🧠 Memory and attention',
+    module4: '🔢 Thinking and counting',
+    module5: '💬 Language and words',
+    module6: '💜 Emotions',
+
+    activity: {
+      'catch': 'Catch It', 'keyboard-typing': 'Keyboard', 'piano-keys': 'Piano',
+      'tracing': 'Traces', 'coloring': 'Coloring', 'builders': 'Builders',
+      'routines': 'My Routines', 'house': 'The House', 'situations': 'Situations',
+      'safe-chat': 'Safe Chat', 'bullying-chat': 'Bullying Chat', 'post-or-not': 'Should I Post It?',
+      'social-safety': 'Social Media, Privacy and the Law', 'signs': 'Signs', 'times-of-day': 'Times of Day',
+      'what-first': 'What Do I Do First?', 'what-do-i-need': 'What Do I Need?', 'where-to-store': 'Where Do I Keep It?',
+      'task-list': 'Task List', 'my-agenda': 'My Schedule', 'what-to-wear': 'What Do I Wear?',
+      'street': 'The Street', 'emergencies': 'Emergencies', 'phone-numbers': 'Important Phone Numbers',
+      'shopping': 'The Shopping', 'shop': 'The Shop',
+      'pairs': 'Pairs', 'differences': 'Spot the Difference', 'whats-missing': 'What Is Missing?',
+      'ecos': 'Echoes', 'turns-mirrors': 'Turns and Mirrors', 'blocks': 'The Blocks',
+      'where-is': 'Where Is It?', 'path': 'The Path', 'fit': 'Fit the Piece', 'theatre': 'The Theatre',
+      'riddles': 'Riddles', 'patterns': 'Patterns', 'numbers': 'Numbers', 'quantities': 'Quantities',
+      'roman-numerals': 'Roman Numerals', 'wallet': 'The Coin Purse', 'clock': 'The Clock', 'stories': 'Stories',
+      'odd-one-out': 'Which One Doesn’t Belong?', 'puzzle': 'Puzzle', 'oca': 'The Goose Game', 'tic-tac-toe': 'Tic-Tac-Toe',
+      'visual-sudoku': 'Visual Sudoku', 'domino': 'Dominoes', 'checkers': 'Checkers', 'chess': 'Chess',
+      'connect-four': 'Four in a Row',
+      'comedy-club': 'Comedy Club', 'idioms': 'Idioms', 'double-meaning': 'Double Meaning', 'categories': 'Categories',
+      'sentence': 'The Sentence', 'words': 'Words', 'dictionary': 'Dictionary', 'spelling': 'Complete the Word',
+      'word-search': 'Word Search',
+      'emotions': 'How Do I Feel?', 'calm': 'Calm', 'friends': 'Among Friends', 'my-body': 'My Body Tells Me'
+    },
+
+    backupTitle: 'Back up my progress',
+    backupIntro: 'Progress is only saved in this browser. If it is deleted by accident (clearing browser data, switching devices…) it is lost for good. Here you can save a backup to a file and restore it later.',
+    btnExport: '💾 Save backup',
+    feedbackExportDone: 'Done. Check the browser’s downloads folder.',
+    retrieveLabel: 'Restore a backup from a file:',
+    btnImport: '📂 Restore backup',
+    confirmImport: 'Are you sure? Tap again to replace the current progress.',
+    importWarning1: 'Restoring a backup ',
+    importWarningStrong: 'replaces',
+    importWarning2: ' the current progress of any activity found in the file.',
+    feedbackReadError: 'The file could not be read. Try again.',
+    feedbackInvalidFile: 'That file is not a valid backup (it cannot be read). Nothing was changed.',
+    feedbackInvalidBackup: 'That file is not a valid Apptonomia backup. Nothing was changed.',
+    feedbackImportDone: 'Done. The progress saved in the file has been restored.',
+
+    prefsTitle: 'Preferences for the person using the app',
+    prefsIntro: 'These settings apply to every activity. Whoever manages the device changes them; the person using the app does not need to come to this page.',
+    fontSizeLabel: 'Text size',
+    fontNormal: 'Normal',
+    fontLarge: 'Large',
+    fontExtraLarge: 'Extra large',
+    soundsLabel: 'Success and encouragement sounds',
+    soundsOn: '🔊 On',
+    soundsOff: '🔇 Off',
+    soundsNote: 'This does not affect the voice that reads the text out loud (🔊 on each screen), only the short success and encouragement chimes.',
+
+    resetPersonTitle: 'Reset the person’s data',
+    resetPersonIntro1: 'Deletes the ',
+    resetPersonIntroStrong1: 'chosen language',
+    resetPersonIntro2: ' (next time it is detected again or falls back to Spanish) and the ',
+    resetPersonIntroStrong2: 'name',
+    resetPersonIntro3: ' typed into Keyboard and Piano.',
+    resetPersonNote1: 'Progress (stars, levels and saved songs) in every activity ',
+    resetPersonNoteStrong: 'is NOT deleted',
+    resetPersonNote2: '.',
+    btnResetPerson: '🧑 Reset the person’s data',
+    confirmResetPerson: 'Are you sure? Tap again to delete language and names.',
+    feedbackResetPersonDone: 'Done. Language and names deleted. Progress was kept.',
+
+    resetAppTitle: 'Reset the whole app',
+    resetAppIntro1: 'Deletes ',
+    resetAppIntroStrong: 'everything',
+    resetAppIntro2: ' saved in this browser: language, names, stars, completed levels and saved songs in every activity.',
+    resetAppNoteStrong: 'This cannot be undone.',
+    resetAppNote2: ' It is the same as opening the app for the very first time.',
+    btnResetApp: '🗑️ Reset the whole app',
+    confirmResetApp: 'Are you sure? Tap again to delete EVERYTHING. This cannot be undone.',
+    feedbackResetAppDone: 'Done. Everything has been deleted. The app is back to how it was on first install.',
+
+    footerActivities: 'Go to the activities',
+    footerTeamGuide: 'Guide for the support team'
+  }, 'en');
+})();

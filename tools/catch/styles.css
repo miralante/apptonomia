@@ -1,4 +1,4 @@
-/* Atrapa — estilos específicos. Lo común está en assets/css/. */
+/* Catch — tool-specific styles. Shared styles live in assets/css/. */
 
 .tool-header h1 { color: var(--mod-coordinacion); }
 

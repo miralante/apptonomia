@@ -29,12 +29,12 @@
   var progressText = $('#progressText');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
 
-  /* Estado de la ronda */
+  /* Round state */
   var nivel = null;
   var items = [];
   var idx = 0;
@@ -65,9 +65,9 @@
     });
   }
 
-  /* Construye las 3 columnas vacías (encabezado + lista) una vez por
-     ronda; se van llenando con cada acierto, sin reiniciarse entre
-     tareas (a diferencia del resto de la pantalla de juego). */
+  /* Builds the 3 empty columns (header + list) once per
+     round; they fill in with each correct answer, without resetting
+     between tasks (unlike the rest of the game screen). */
   function pintarColumnasVacias() {
     listasDiaEl.innerHTML = '';
     listasEl = {};
@@ -153,9 +153,9 @@
     explicacionWrap.classList.remove('oculto');
   }
 
-  /* Método socrático: en el primer fallo no se da la respuesta, se
-     anima a pensar otra vez. Solo en el segundo fallo se dice el
-     momento correcto (mostrarExplicacion). */
+  /* Socratic method: on the first mistake the answer isn't given,
+     the person is encouraged to think again. Only on the second
+     mistake is the correct time of day stated (mostrarExplicacion). */
   function mostrarPista() {
     explicacionEl.textContent = App.i18n.t('pista');
     explicacionWrap.classList.remove('oculto');
@@ -215,7 +215,7 @@
     App.feedback.celebrar(App.i18n.t('core.rondaCompletada'));
   }
 
-  /* Eventos */
+  /* Events */
   btnEscuchar.addEventListener('click', function () {
     App.tts.speak(items[idx].tarea);
   });

@@ -12,8 +12,8 @@
   var $$ = App.utils.$$;
   var SLUG = 'piano-teclas';
 
-  /* Relaciona el id de cada melodía/canción de data.js con su clave de
-     texto en strings.js (los nombres no viven en data.js: son idioma). */
+  /* Maps the id of each melody/song in data.js to its text key
+     in strings.js (the names don't live in data.js: they're language content). */
   var MELODIA_KEYS = {
     ascendente: 'melodiaAscendente', descendente: 'melodiaDescendente',
     doremi: 'melodiaDoReMi', arcoiris: 'melodiaArcoiris', ondina: 'melodiaOndina'
@@ -24,7 +24,7 @@
   };
   var DIFICULTAD_KEYS = { facil: 'dificultadFacil', media: 'dificultadMedia' };
 
-  /* ---------- Estado y persistencia ---------- */
+  /* ---------- State and persistence ---------- */
   var state = App.storage.get(SLUG);
   state.nombre = typeof state.nombre === 'string' ? state.nombre : '';
   state.estrellas = state.estrellas || 0;
@@ -77,7 +77,7 @@
     var gain = audioCtx.createGain();
     var now = audioCtx.currentTime;
 
-    // Sonido de piano: combinación de ondas
+    // Piano sound: combination of waves
     osc.type = 'triangle';
     osc.frequency.setValueAtTime(freq, now);
 
@@ -117,12 +117,12 @@
     });
   }
 
-  /* ---------- Feedback visual ---------- */
-  /* Bug preexistente: recibía el id sin '#' y $(id) (querySelector) nunca
-     encontraba el elemento, lanzando una excepción silenciosa cada vez
-     que se llamaba (grabación, Simón, seguir melodía, canciones, compositor
-     nunca mostraban su mensaje de feedback). Se detectó al probar la
-     herramienta real con Playwright, no por lectura del código. */
+  /* ---------- Visual feedback ---------- */
+  /* Pre-existing bug: received the id without '#' and $(id) (querySelector)
+     never found the element, silently throwing an exception every time
+     it was called (recording, Simon, follow melody, songs, composer
+     never showed their feedback message). Found by testing the
+     real tool with Playwright, not by reading the code. */
   function mostrarFeedback(id, texto, tipo) {
     var el = $('#' + id);
     el.textContent = texto;
@@ -256,7 +256,7 @@
     App.tts.speak(App.i18n.t('octavaMenosTTS'));
   });
 
-  /* ---------- Grabación ---------- */
+  /* ---------- Recording ---------- */
   function actualizarBotonGrabacion() {
     var btnReproducirGrabacion = $('#btnReproducirGrabacion');
     btnReproducirGrabacion.classList.toggle('oculto', state.grabacion.length === 0 || state.grabando);
@@ -288,7 +288,7 @@
     App.tts.speak(App.i18n.t('explicarLibreTTS'));
   });
 
-  /* ---------- Simón dice ---------- */
+  /* ---------- Simon says ---------- */
   var simon = { secuencia: [], nivel: 1, puntos: 0, turnoJugador: false, idxJugador: 0 };
 
   function irSimon() {
@@ -382,7 +382,7 @@
 
   $('#btnSalirSimon').addEventListener('click', irMenu);
 
-  /* ---------- Seguir melodía ---------- */
+  /* ---------- Follow the melody ---------- */
   var seguir = { melodia: null, idx: 0, esperando: true };
 
   function irSeguir() {
@@ -450,7 +450,7 @@
     var nombreCancion = App.i18n.t(CANCION_KEYS[cancion.id]);
     $('#instruccionLibre').textContent = App.i18n.t('cancionInstruccion').replace('{nombre}', nombreCancion);
 
-    // Reproducir la canción
+    // Play the song
     var seq = cancion.secuencia.map(function (n) { return { nota: n, duracion: 0.35 }; });
     mostrarFeedback('feedbackLibre', App.i18n.t('escuchando'), '');
     reproducirMelodia(seq, function () {
@@ -571,8 +571,8 @@
     mostrarFeedback('feedbackComp', App.i18n.t('borrado'), '');
   });
 
-  /* Guardar canción: input propio en pantalla en vez de prompt() nativo
-     (sin audio, sin Lectura Fácil, rompe el estilo de toda la app). */
+  /* Save song: own on-screen input instead of native prompt()
+     (no audio, no Easy Read, breaks the app's whole style). */
   $('#btnGuardarComp').addEventListener('click', function () {
     if (compositor.secuencia.length === 0) {
       mostrarFeedback('feedbackComp', App.i18n.t('tocaNotasPrimero'), 'animo');
@@ -611,7 +611,7 @@
 
   $('#btnSalirCompositor').addEventListener('click', irMenu);
 
-  /* ---------- Teclado físico ---------- */
+  /* ---------- Physical keyboard ---------- */
   document.addEventListener('keydown', function (e) {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
@@ -620,7 +620,7 @@
     initAudio();
     var key = e.key.toLowerCase();
 
-    // Si estamos en el compositor, añadir nota
+    // If we're in the composer, add a note
     if (!document.getElementById('pantallaCompositor').classList.contains('oculto')) {
       var nota = TECLAS_NOTAS[key];
       if (nota) {
@@ -631,7 +631,7 @@
       }
     }
 
-    // Simón - usando las teclas ASDF
+    // Simon - using the ASDF keys
     if (!document.getElementById('pantallaSimon').classList.contains('oculto')) {
       var mapaSimon = { 'a': 'C', 's': 'E', 'd': 'G', 'f': 'B' };
       if (mapaSimon[key]) {
@@ -640,7 +640,7 @@
       }
     }
 
-    // Seguir melodía
+    // Follow the melody
     if (!document.getElementById('pantallaSeguir').classList.contains('oculto') && !seguir.esperando) {
       var notaSeguir = TECLAS_NOTAS[key];
       if (notaSeguir) {
@@ -696,7 +696,7 @@
     var v = $('#inputNombre').value.trim().slice(0, 15);
     state.nombre = v;
     guardar();
-    /* El audio solo se reproduce si el usuario pulsa el botón "Escuchar" (btnLeerNombre) */
+    /* Audio only plays if the user taps the "Listen" button (btnLeerNombre) */
     irMenu();
   }
 
@@ -709,7 +709,7 @@
     App.tts.speak(App.i18n.t('escribeNombreTTS'));
   });
 
-  /* ---------- Menú ---------- */
+  /* ---------- Menu ---------- */
   $('#menuJuegos').addEventListener('click', function (e) {
     var t = e.target.closest('.tarjeta-modo');
     if (!t) return;

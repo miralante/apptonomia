@@ -1,0 +1,52 @@
+/* Dictionary — tool-specific styles. Shared styles live in assets/css/.
+   Acento del módulo Lenguaje y palabras (frambuesa --mod-lenguaje). */
+
+.tool-header h1 { color: var(--mod-lenguaje); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-lenguaje);
+}
+
+.instruction { font-size: var(--texto-base); }
+
+.center-row { justify-content: center; }
+
+.btn-level { min-width: 300px; align-self: center; }
+
+.level-info {
+  display: block;
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+/* ---- Fichas ---- */
+.card { border-color: var(--mod-lenguaje-suave); margin-top: var(--espacio-grande); }
+
+.word-display {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--mod-lenguaje);
+  text-transform: capitalize;
+}
+
+.definition-text,
+.example-text {
+  font-size: var(--texto-base);
+  text-align: center;
+  max-width: 520px;
+  margin: 0;
+}
+
+.example-text { color: var(--color-texto-suave); font-style: italic; }
+
+/* ---- Test ---- */
+.question { color: var(--color-texto-suave); }
+
+.big-emoji { font-size: 96px; }
+
+#endScreen { padding-top: 48px; }
+
+#endScreen .btn { align-self: center; min-width: 280px; }

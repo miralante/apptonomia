@@ -1,9 +1,9 @@
 /* ============================================================
-   Apptonomia — Calma (respiración y relajación guiadas)
-   Datos en data.js (DATA.niveles). Módulos compartidos en assets/js/.
-   Mecánica: un círculo crece y decrece marcando el ritmo de la
-   respiración, con texto y voz. Sin cronómetro visible ni
-   posibilidad de fallar: cada sesión terminada da una estrella.
+   Apptonomia — Calm (guided breathing and relaxation)
+   Data in data.js (DATA.niveles). Shared modules in assets/js/.
+   Mechanic: a circle grows and shrinks marking the breathing
+   rhythm, with text and voice. No visible timer and no way to
+   fail: every finished session earns a star.
    ============================================================ */
 (function () {
   'use strict';
@@ -19,7 +19,7 @@
   var ciclosEl = $('#ciclosRespiracion');
   var starsEl = $('#stars');
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
@@ -104,7 +104,7 @@
     pantallaInicio.classList.remove('oculto');
   }
 
-  /* Eventos */
+  /* Events */
   $('#btnTerminarSesion').addEventListener('click', terminarAntes);
   $('#btnRepetir').addEventListener('click', function () { iniciarSesion(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {

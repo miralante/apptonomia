@@ -28,7 +28,7 @@
   var crearFicha = App.dinero.crearFicha;
   var descomponer = App.dinero.descomponer;
 
-  /* Progreso persistente */
+  /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   ['completadosTienda', 'completadosQuedame', 'completadosMucho', 'completadosPaga', 'completadosFiar']
@@ -182,15 +182,15 @@
   }
 
   /* ============================================================
-     Configuración de las actividades quiz
+     Quiz activities configuration
      ============================================================ */
-  var saldoQ = 0;      /* ¿Qué me queda?: saldo vivo de la secuencia */
+  var saldoQ = 0;      /* "What's left?": running balance of the sequence */
   var gastoIdxQ = 0;
-  var semana = null;   /* La paga de la semana: {saldo, objetivo, dia} */
+  var semana = null;   /* Weekly allowance: {saldo, objetivo, dia} */
 
   var ACTIVIDADES = {
 
-    /* --- ¿Qué me queda? — resta encadenada de gastos reales --- */
+    /* --- "What's left?" — chained subtraction of real expenses --- */
     quedame: {
       esQuiz: true,
       instruccion: 'instruccionQuedame',
@@ -199,7 +199,7 @@
       niveles: function () { return datos().importe.niveles; },
       alIniciar: function () { saldoQ = 0; gastoIdxQ = 0; },
       generar: function (nivel) {
-        /* Cada 3 gastos empieza una secuencia nueva con un billete. */
+        /* Every 3 expenses a new sequence starts with a bill. */
         var candidatos = [];
         var filtrar = function () {
           return datos().productos.filter(function (p) {
@@ -209,7 +209,7 @@
         if (gastoIdxQ % 3 === 0) saldoQ = azar([1000, 2000]);
         candidatos = filtrar();
         if (!candidatos.length) {
-          /* Queda menos que el producto más barato: billete nuevo. */
+          /* Less left than the cheapest product: new bill. */
           saldoQ = azar([1000, 2000]);
           candidatos = filtrar();
         }
@@ -274,7 +274,7 @@
           .replace('{mostrado}', formatear(caso.mostrado));
       },
       mesa: function () { return null; },
-      /* Dos opciones en orden fijo (regla 11: máx 3). */
+      /* Two options in fixed order (rule 11: max 3). */
       opciones: function (caso) {
         return [
           { texto: App.i18n.t('estaBien'), correcta: caso.esBien },
@@ -292,7 +292,7 @@
       }
     },
 
-    /* --- La paga de la semana — presupuesto con objetivo --- */
+    /* --- Weekly allowance — budgeting with a goal --- */
     paga: {
       esQuiz: true,
       instruccion: 'instruccionPaga',
@@ -302,8 +302,8 @@
       alIniciar: function () { semana = null; },
       generar: function (nivel) {
         if (!semana || semana.dia >= 6) {
-          /* Semana nueva: paga de 20 € y objetivo del sábado del
-             bucket del nivel (así los cálculos respetan la regla 13). */
+          /* New week: 20 € allowance and Saturday's goal from the
+             level's bucket (so the calculations respect rule 13). */
           var objetivos = datos().productos.filter(function (p) {
             return p.bucket === nivel.id && p.precioCent >= 300 && p.precioCent <= 1000;
           });
@@ -312,8 +312,8 @@
         semana.dia += 1;
         var caso;
         if (semana.dia === 6) {
-          /* Sábado: la recompensa. Siempre llega por construcción
-             (solo se compra si sigue llegando para el objetivo). */
+          /* Saturday: the reward. It always fits by construction
+             (only bought if there's still enough for the goal). */
           caso = {
             dia: semana.dia,
             saldo: semana.saldo,
@@ -342,8 +342,8 @@
             sePuede: sePuede,
             quedaria: semana.saldo - producto.precioCent
           };
-          /* El saldo evoluciona SIEMPRE según la acción correcta:
-             fallar nunca arruina la semana (regla 5). */
+          /* The balance ALWAYS evolves based on the correct action:
+             failing never ruins the week (rule 5). */
           if (sePuede) semana.saldo -= producto.precioCent;
         }
         return caso;
@@ -502,9 +502,9 @@
   var nivelT = null;
   var compraIdx = 0;
   var aciertosT = 0;
-  var compra = null;         /* estado de la compra en curso */
+  var compra = null;         /* state of the purchase in progress */
   var intentosPaso = 0;
-  var alContinuar = null;    /* qué hacer al pulsar Continuar */
+  var alContinuar = null;    /* what to do when Continue is tapped */
 
   function generarCompra(nivel) {
     var bucket = datos().productos.filter(function (p) { return p.bucket === nivel.id; });
@@ -515,15 +515,15 @@
       alternativo = null;
       total = producto.precioCent + azar([0, 100, 200, 500]);
     } else {
-      /* El monedero no llega para 'producto', pero sí para uno
-         más barato (resolución sin frustración). */
+      /* The wallet isn't enough for 'producto', but is enough for a
+         cheaper one (frustration-free resolution). */
       var ordenados = bucket.slice().sort(function (a, b) { return a.precioCent - b.precioCent; });
       producto = azar(ordenados.slice(1));
       var baratos = ordenados.filter(function (x) { return x.precioCent < producto.precioCent; });
       alternativo = azar(baratos);
       var hueco = producto.precioCent - alternativo.precioCent;
-      /* Mejor con algo de sobra: así el paso del cambio también se
-         practica en la rama de "no te llega". */
+      /* Better with some leftover: this way the change step is
+         also practiced in the "not enough" branch. */
       var extras = [nivel.paso, 100, 200].filter(function (e) { return e < hueco; });
       total = alternativo.precioCent + (extras.length ? azar(extras) : 0);
     }
@@ -732,7 +732,7 @@
     montarPaso3();
   }
 
-  /* ---- Paso 3: ¿está bien el cambio? ---- */
+  /* ---- Step 3: is the change correct? ---- */
   function montarPaso3() {
     limpiarPasoTienda();
     $('#cartelProducto').classList.add('oculto');

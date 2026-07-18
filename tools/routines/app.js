@@ -46,7 +46,7 @@
     return hechosDe(rutina).filter(Boolean).length;
   }
 
-  /* ---- Menú de rutinas ---- */
+  /* ---- Routine menu ---- */
   function pintarMenu() {
     pantallaRutina.classList.add('oculto');
     pantallaFinal.classList.add('oculto');
@@ -142,13 +142,13 @@
     pintarEstrellas();
   }
 
-  /* Eventos */
+  /* Events */
   $('#btnOtraRutina').addEventListener('click', pintarMenu);
   $('#btnInstruccion').addEventListener('click', function () {
     App.tts.speak($('#instruccion').textContent);
   });
   $('#btnVolver').addEventListener('click', function (e) {
-    /* Si estamos dentro de una rutina, volver al menú de rutinas */
+    /* If we're inside a routine, go back to the routine menu */
     if (!pantallaRutina.classList.contains('oculto')) {
       e.preventDefault();
       App.tts.stop();

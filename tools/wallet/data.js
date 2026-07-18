@@ -38,8 +38,8 @@
    flotante. app.js usa DATA[App.i18n.locale()] || DATA.es.
    ============================================================ */
 
-/* ---- ¿Cuánto hay? — denominaciones por nivel (regla 13: cada
-   nivel solo AÑADE tipos de dinero; el nº de piezas no cambia). */
+/* ---- How much is there? — denominations per level (rule 13: each
+   level only ADDS money types; the number of pieces doesn't change). */
 const CONTAR_BASE = [
   { id: 1, cents: [100, 200] },
   { id: 2, cents: [100, 200, 500, 1000] },
@@ -47,20 +47,20 @@ const CONTAR_BASE = [
   { id: 4, cents: [10, 20, 50, 100, 200, 500, 1000, 2000, 5000] }
 ];
 
-/* ---- Escalera de importes compartida por ¿Con qué pago?, ¿Está
-   bien el cambio? y La Hucha (regla 13: única variable = la finura
-   de los importes; 'paso' es el múltiplo en céntimos y los importes
-   de cada nivel NO caen en el nivel anterior — bucket, como en
-   Paga justo). */
+/* ---- Amounts ladder shared by "What do I pay with?", "Is the
+   change correct?", and The Piggy Bank (rule 13: the only variable
+   is the granularity of the amounts; 'paso' is the multiple in cents
+   and each level's amounts do NOT fall into the previous level —
+   bucket, like in Paga justo). */
 const NIVELES_IMPORTE = [
   { id: 1, paso: 100 },
   { id: 2, paso: 50 },
   { id: 3, paso: 10 }
 ];
 
-/* ---- Más o menos — deltas posibles respecto al euro objetivo
-   (regla 13: única variable = la distancia al euro; el nivel 3
-   introduce el ,50 y su regla "el 50 sube"). */
+/* ---- More or less — possible deltas from the target euro
+   (rule 13: the only variable is the distance to the euro; level 3
+   introduces ,50 and its "the 50 rounds up" rule). */
 const REDONDEO_BASE = [
   { id: 1, deltas: [10, 20] },
   { id: 2, deltas: [30, 40] },
@@ -79,12 +79,12 @@ const PAGAR_CENTS = {
 function nivelDePrecio(cent) {
   if (cent % 100 === 0) return 1;   /* euros enteros */
   if (cent % 50 === 0) return 2;    /* acaba en ,50 */
-  if (cent % 10 === 0) return 3;    /* acaba en ,10 … ,90 */
-  return 4;                         /* múltiplos de 5 céntimos */
+  if (cent % 10 === 0) return 3;    /* ends in ,10 … ,90 */
+  return 4;                         /* multiples of 5 cents */
 }
 
-/* ▶ Banco de productos. Para añadir un caso: UNA línea aquí
-   (precio en euros, múltiplo de 0.05) + nombre en NOMBRES.es/en. */
+/* ▶ Product bank. To add a case: ONE line here
+   (price in euros, multiple of 0.05) + name in NOMBRES.es/en. */
 const PRODUCTOS = [
   /* Nivel 1 — precios enteros */
   { picto: '🍞', clave: 'pan', precio: 2 },
@@ -113,7 +113,7 @@ const PRODUCTOS = [
   { picto: '🍫', clave: 'chocolatina', precio: 1.80 },
   { picto: '🧀', clave: 'trozoQueso', precio: 3.40 },
   { picto: '🔋', clave: 'pilas', precio: 2.60 },
-  /* Nivel 4 — precios con céntimos de 5 */
+  /* Level 4 — prices with 5-cent amounts */
   { picto: '🍬', clave: 'chicle', precio: 0.35 },
   { picto: '✉️', clave: 'sello', precio: 0.85 },
   { picto: '⭐', clave: 'pegatinas', precio: 1.15 },
@@ -152,7 +152,7 @@ const NOMBRES = {
   }
 };
 
-/* Nombre y descripción de cada nivel, por idioma. */
+/* Name and description of each level, per language. */
 const NIVELES_TXT = {
   es: {
     contar: { 1: 'Monedas de euro', 2: 'También billetes', 3: 'También céntimos', 4: 'Billetes grandes' },

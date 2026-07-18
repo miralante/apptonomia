@@ -1,4 +1,4 @@
-/* Señales — estilos específicos. Lo común está en assets/css/. */
+/* Signs — tool-specific styles. Shared styles live in assets/css/. */
 
 .tool-header h1 { color: var(--mod-secuencia); }
 
@@ -52,7 +52,7 @@
 
 #pantallaFinal .btn { align-self: center; min-width: 280px; }
 
-/* Colores de señales */
+/* Sign colors */
 .senal-peligro { background: #FFEBEE; }
 .senal-prohibicion { background: #FFF3E0; }
 .senal-obligacion { background: #FFF8E1; }
