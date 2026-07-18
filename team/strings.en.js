@@ -309,8 +309,8 @@
       },
       "math-tables": {
         "name": 'Math Tables',
-        "does": 'Four steps with colored dots: add and subtract 1, 2 or 3 in your head, addition tables, breaking numbers apart by making 10 first (7 + 5 = 7 + 3 + 2), and multiplication tables, where each addend or repeated group has its own color.',
-        "works": 'Progressive mental arithmetic, addition as joining, additive decomposition (bridging through 10) and multiplication as repetition, with visual counting support.',
+        "does": 'Five steps with colored dots: add and subtract 1, 2, 3, 5 or 10 in your head (fives and tens are counted in rows), addition tables, breaking numbers apart by making 10 first (7 + 5 = 7 + 3 + 2), multiplication tables, and dividing by 10 by counting rows.',
+        "works": 'Progressive mental arithmetic, counting in fives and tens, addition as joining, additive decomposition (bridging through 10), multiplication as repetition and division as sharing into rows, with visual counting support.',
         "daily": 'Group real objects (chickpeas, buttons) by color and count together: "3 groups of 4, how many are there?".'
       },
       "roman-numerals": {

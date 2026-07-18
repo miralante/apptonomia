@@ -103,7 +103,7 @@
     "quantities_nombre": "Quantities",
     "quantities_detalle": "Practise little, much and rounding.",
     "mathtables_nombre": "Math Tables",
-    "mathtables_detalle": "Count in your head, add and multiply with colors.",
+    "mathtables_detalle": "Count, add, multiply and divide with colors.",
     "romannumerals_nombre": "Roman Numerals",
     "romannumerals_detalle": "Learn to recognize centuries.",
     "wallet_nombre": "The Wallet",

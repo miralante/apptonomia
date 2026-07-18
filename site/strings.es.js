@@ -103,7 +103,7 @@
     "quantities_nombre": "Cantidades",
     "quantities_detalle": "Practica poco, mucho y aproximar.",
     "mathtables_nombre": "Las Tablas",
-    "mathtables_detalle": "Cuenta de cabeza, suma y multiplica con colores.",
+    "mathtables_detalle": "Cuenta, suma, multiplica y divide con colores.",
     "romannumerals_nombre": "Números Romanos",
     "romannumerals_detalle": "Aprende a reconocer los siglos.",
     "wallet_nombre": "El Monedero",

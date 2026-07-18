@@ -4,9 +4,9 @@
   var TOOL_ID = 'math-tables';
   var $ = App.utils.$;
   var progress = App.storage.get(TOOL_ID);
-  var mode = null;    // 'steps' | 'add' | 'decompose' | 'multiply'
+  var mode = null;    // 'steps' | 'add' | 'decompose' | 'multiply' | 'divide'
   var table = null;   // chosen table (add/multiply) or step size (steps)
-  var round = [];     // items: { a, b, sym } with sym '+', '−' or '×'
+  var round = [];     // items: { a, b, sym } with sym '+', '−', '×' or '÷'
   var index = 0;
   var attempts = 0;
 
@@ -28,19 +28,28 @@
   function itemResult(item) {
     if (item.sym === '+') return item.a + item.b;
     if (item.sym === '−') return item.a - item.b;
+    if (item.sym === '÷') return item.a / item.b;
     return item.a * item.b;
   }
 
   function symWord(sym) {
     if (sym === '+') return App.i18n.t('addWord');
     if (sym === '−') return App.i18n.t('subtractWord');
+    if (sym === '÷') return App.i18n.t('divideWord');
     return App.i18n.t('multiplyWord');
   }
 
+  /* Steps of 5 and 10 are drawn and counted in rows instead of one by one. */
+  function stepsInRows(item) { return mode === 'steps' && item.b >= 5; }
+
   /* i18n key suffix for the hint/explanation of the current question. */
   function keySuffix(item) {
-    if (mode === 'steps') return item.sym === '+' ? 'StepsAdd' : 'StepsSubtract';
+    if (mode === 'steps') {
+      var base = item.sym === '+' ? 'StepsAdd' : 'StepsSubtract';
+      return stepsInRows(item) ? base + 'Row' : base;
+    }
     if (mode === 'decompose') return 'Decompose';
+    if (mode === 'divide') return 'Divide';
     return mode === 'add' ? 'Add' : 'Multiply';
   }
 
@@ -121,6 +130,54 @@
     container.appendChild(groups);
   }
 
+  /* Division by 10: the dots are laid out in rows of 10, one color per row,
+     so the quotient is simply the number of rows. */
+  function renderDivideVisual(container, item) {
+    var groups = document.createElement('div');
+    groups.className = 'group-stack';
+    var rows = item.a / item.b;
+    for (var i = 0; i < rows; i += 1) {
+      groups.appendChild(dotRow(item.b, DATA.dotColors[i % DATA.dotColors.length]));
+    }
+    container.appendChild(groups);
+  }
+
+  function fullRows(count, chunk, color) {
+    var stack = document.createElement('div');
+    stack.className = 'group-stack';
+    for (var i = 0; i < count / chunk; i += 1) {
+      stack.appendChild(dotRow(chunk, color));
+    }
+    return stack;
+  }
+
+  /* Steps of 5/10 (bases are multiples of the step): the base is drawn as
+     full rows of the step size, and the added or removed amount is exactly
+     one more row in the second color, so counting goes in fives or tens. */
+  function renderStepsRowVisual(container, item, showTotal) {
+    var line = document.createElement('div');
+    line.className = 'visual-line';
+    if (item.sym === '−') {
+      var stack = fullRows(item.a - item.b, item.b, DATA.dotColors[0]);
+      stack.appendChild(dotRow(item.b, DATA.dotColors[1], true));
+      line.appendChild(stack);
+      container.appendChild(line);
+      return;
+    }
+    line.appendChild(fullRows(item.a, item.b, DATA.dotColors[0]));
+    line.appendChild(sign('+'));
+    line.appendChild(dotRow(item.b, DATA.dotColors[1]));
+    container.appendChild(line);
+    if (!showTotal) return;
+    var total = document.createElement('div');
+    total.className = 'visual-line';
+    total.appendChild(sign('='));
+    var combined = fullRows(item.a, item.b, DATA.dotColors[0]);
+    combined.appendChild(dotRow(item.b, DATA.dotColors[1]));
+    total.appendChild(combined);
+    container.appendChild(total);
+  }
+
   /* Decompose (make ten first): the second addend is split from the start —
      the part that completes ten in color 1, the rest in color 2. When the
      total is revealed, the ten regroups into a framed row of 10. */
@@ -149,7 +206,9 @@
     container.innerHTML = '';
     container.setAttribute('aria-label', fill('visual' + keySuffix(item), itemValues(item)));
     if (mode === 'multiply') renderMultiplyVisual(container, item);
+    else if (mode === 'divide') renderDivideVisual(container, item);
     else if (mode === 'decompose') renderDecomposeVisual(container, item, showTotal);
+    else if (stepsInRows(item)) renderStepsRowVisual(container, item, showTotal);
     else if (item.sym === '−') renderSubtractVisual(container, item);
     else renderAddVisual(container, item, showTotal);
   }
@@ -159,7 +218,10 @@
   }
 
   function speakFact(item) {
-    var key = item.sym === '−' ? 'speakSubtract' : (item.sym === '×' ? 'speakMultiply' : 'speakAdd');
+    var key = 'speakAdd';
+    if (item.sym === '−') key = 'speakSubtract';
+    else if (item.sym === '×') key = 'speakMultiply';
+    else if (item.sym === '÷') key = 'speakDivide';
     App.tts.speak(fill(key, itemValues(item)));
   }
 
@@ -175,13 +237,23 @@
 
   function stepsRound() {
     var items = [];
+    var inRows = table >= 5;
     for (var i = 0; i < DATA.perRound; i += 1) {
       var subtract = i % 2 === 1;
-      items.push(subtract
-        ? { a: randInt(table, DATA.stepBaseMax), b: table, sym: '−' }
-        : { a: randInt(1, DATA.stepBaseMax), b: table, sym: '+' });
+      var base;
+      if (inRows) base = table * randInt(1, DATA.stepMultipleMax);
+      else base = subtract ? randInt(table, DATA.stepBaseMax) : randInt(1, DATA.stepBaseMax);
+      items.push({ a: base, b: table, sym: subtract ? '−' : '+' });
     }
     return App.utils.shuffle(items);
+  }
+
+  function divideRound() {
+    var items = [];
+    for (var n = 1; n <= DATA.divide.maxQuotient; n += 1) {
+      items.push({ a: n * DATA.divide.divisor, b: DATA.divide.divisor, sym: '÷' });
+    }
+    return App.utils.shuffle(items).slice(0, DATA.perRound);
   }
 
   function decomposeRound() {
@@ -223,7 +295,9 @@
 
   function answerOptions(item) {
     var correct = itemResult(item);
-    var step = mode === 'multiply' ? item.a : 1;
+    var step = 1;
+    if (mode === 'multiply') step = item.a;
+    else if (stepsInRows(item)) step = item.b;
     var candidates = [correct - step, correct + step, correct - 1, correct + 1, correct - 2, correct + 2];
     var options = [correct];
     candidates.forEach(function (value) {
@@ -287,7 +361,7 @@
     hide($('#screenQuiz'));
     show($('#screenFinish'));
     var pickAnother = $('#anotherTable');
-    if (mode === 'decompose') hide(pickAnother);
+    if (mode === 'decompose' || mode === 'divide') hide(pickAnother);
     else {
       show(pickAnother);
       pickAnother.textContent = App.i18n.t(mode === 'steps' ? 'chooseAnotherLevel' : 'chooseAnotherTable');
@@ -308,14 +382,19 @@
   function startPractice() {
     if (mode === 'steps') round = stepsRound();
     else if (mode === 'decompose') round = decomposeRound();
+    else if (mode === 'divide') round = divideRound();
     else round = tablesRound();
+    if (mode === 'decompose' || mode === 'divide') {
+      $('#quizBack').textContent = App.i18n.t('core.backToMenu');
+    }
     index = 0;
     showOnly('#screenQuiz');
     renderQuiz();
   }
 
   function backFromQuiz() {
-    showOnly(mode === 'decompose' ? '#screenMenu' : '#screenTables');
+    var noPicker = mode === 'decompose' || mode === 'divide';
+    showOnly(noPicker ? '#screenMenu' : '#screenTables');
   }
 
   /* The picker screen holds the table buttons (add/multiply) or the
@@ -353,7 +432,7 @@
         App.i18n.t(entry.id + 'Name') + '</span><small>' + App.i18n.t(entry.id + 'Detail') + '</small>';
       button.addEventListener('click', function () {
         mode = entry.id;
-        if (entry.id === 'decompose') startPractice();
+        if (entry.id === 'decompose' || entry.id === 'divide') startPractice();
         else openPicker();
       });
       grid.appendChild(button);

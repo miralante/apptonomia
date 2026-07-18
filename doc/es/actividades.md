@@ -109,7 +109,7 @@ Apptonomia tiene **67 actividades** organizadas en **6 módulos** según el tipo
 |-----------|-------------|
 | **Números** | Contar, valor de las cifras, fracciones, decimales, operaciones |
 | **Cantidades** | Practica poco y mucho, subir y bajar, aproximar y encontrar el número de en medio con una barra |
-| **Las Tablas** | Cuenta de cabeza (±1 a ±3), tablas de sumar, descomposición llegando al 10 (7 + 5 = 7 + 3 + 2) y tablas de multiplicar, con puntos de colores |
+| **Las Tablas** | Cuenta de cabeza (±1, ±2, ±3, ±5, ±10), tablas de sumar, descomposición llegando al 10 (7 + 5 = 7 + 3 + 2), tablas de multiplicar y división entre 10, con puntos de colores |
 | **Números Romanos** | Lee números romanos y reconoce en qué siglo estás |
 
 ---

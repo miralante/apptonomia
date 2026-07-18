@@ -109,7 +109,7 @@ Apptonomia has **67 activities** organized into **6 modules** according to the t
 |----------|-------------|
 | **Numbers** | Counting, place value, fractions, decimals, operations |
 | **Quantities** | Practise little and much, increasing and decreasing, rounding, and finding the middle number with a slider |
-| **Math Tables** | Count in your head (±1 to ±3), addition tables, decomposition by making 10 (7 + 5 = 7 + 3 + 2) and multiplication tables, with colored dots |
+| **Math Tables** | Count in your head (±1, ±2, ±3, ±5, ±10), addition tables, decomposition by making 10 (7 + 5 = 7 + 3 + 2), multiplication tables and division by 10, with colored dots |
 | **Roman Numerals** | Read Roman numerals and recognize which century you're in |
 
 ---

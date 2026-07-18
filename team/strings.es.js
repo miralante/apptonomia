@@ -309,8 +309,8 @@
       },
       "math-tables": {
         "name": 'Las Tablas',
-        "does": 'Cuatro pasos con puntos de colores: sumar y restar 1, 2 o 3 de cabeza, tablas de sumar, descomponer llegando primero a 10 (7 + 5 = 7 + 3 + 2) y tablas de multiplicar, donde cada sumando o grupo repetido tiene su color.',
-        "works": 'Cálculo mental progresivo, suma como unión, descomposición aditiva (puente al 10) y multiplicación como repetición, con conteo de apoyo visual.',
+        "does": 'Cinco pasos con puntos de colores: sumar y restar 1, 2, 3, 5 o 10 de cabeza (los cincos y dieces se cuentan en filas), tablas de sumar, descomponer llegando primero a 10 (7 + 5 = 7 + 3 + 2), tablas de multiplicar y dividir entre 10 contando filas.',
+        "works": 'Cálculo mental progresivo, conteo de 5 en 5 y de 10 en 10, suma como unión, descomposición aditiva (puente al 10), multiplicación como repetición y división como reparto en filas, con conteo de apoyo visual.',
         "daily": 'Agrupad objetos reales (garbanzos, botones) por colores y contad juntos: "3 grupos de 4, ¿cuántos hay?".'
       },
       "roman-numerals": {
