@@ -1,6 +1,6 @@
 # Catálogo de actividades
 
-Apptonomia tiene **66 actividades** organizadas en **6 módulos** según el tipo de habilidad que trabajan.
+Apptonomia tiene **67 actividades** organizadas en **6 módulos** según el tipo de habilidad que trabajan.
 
 ---
 
@@ -109,6 +109,7 @@ Apptonomia tiene **66 actividades** organizadas en **6 módulos** según el tipo
 |-----------|-------------|
 | **Números** | Contar, valor de las cifras, fracciones, decimales, operaciones |
 | **Cantidades** | Practica poco y mucho, subir y bajar, aproximar y encontrar el número de en medio con una barra |
+| **Las Tablas** | Cuenta de cabeza (±1 a ±3), tablas de sumar, descomposición llegando al 10 (7 + 5 = 7 + 3 + 2) y tablas de multiplicar, con puntos de colores |
 | **Números Romanos** | Lee números romanos y reconoce en qué siglo estás |
 
 ---
@@ -155,11 +156,11 @@ Apptonomia tiene **66 actividades** organizadas en **6 módulos** según el tipo
 | 🎯 Puntería y manos | 6 | Azul |
 | 📋 Mi día a día | 20 | Verde |
 | 🧠 Memoria y atención | 10 | Naranja |
-| 🔢 Pensar y contar | 17 | Teal |
+| 🔢 Pensar y contar | 18 | Teal |
 | 💬 Lenguaje y palabras | 9 | Frambuesa |
 | 💜 Emociones | 4 | Morado |
 
-**Total: 66 actividades**
+**Total: 67 actividades**
 
 ---
 
@@ -226,7 +227,7 @@ Apptonomia incluye varios juegos de mesa clásicos adaptados:
 → **Módulo 3**: Parejas, ¿Qué falta?, Ecos, Los Bloques
 
 ### Si quieres practicar matemáticas
-→ **Módulo 4**: El Monedero, El Reloj, Números, Cantidades, Números Romanos, La Oca
+→ **Módulo 4**: El Monedero, El Reloj, Números, Cantidades, Las Tablas, Números Romanos, La Oca
 
 ### Si quieres aprender más palabras
 → **Módulo 5**: Categorías, Palabras, Diccionario, Completa la Palabra, Sopa de Letras, Dichos, Doble Sentido, Chistes

@@ -1,6 +1,6 @@
 # Activity catalog
 
-Apptonomia has **66 activities** organized into **6 modules** according to the type of skill they work on.
+Apptonomia has **67 activities** organized into **6 modules** according to the type of skill they work on.
 
 ---
 
@@ -109,6 +109,7 @@ Apptonomia has **66 activities** organized into **6 modules** according to the t
 |----------|-------------|
 | **Numbers** | Counting, place value, fractions, decimals, operations |
 | **Quantities** | Practise little and much, increasing and decreasing, rounding, and finding the middle number with a slider |
+| **Math Tables** | Count in your head (±1 to ±3), addition tables, decomposition by making 10 (7 + 5 = 7 + 3 + 2) and multiplication tables, with colored dots |
 | **Roman Numerals** | Read Roman numerals and recognize which century you're in |
 
 ---
@@ -155,11 +156,11 @@ Apptonomia has **66 activities** organized into **6 modules** according to the t
 | 🎯 Coordination and motor skills | 6 | Blue |
 | 📋 Autonomy and home | 20 | Green |
 | 🧠 Memory and attention | 10 | Orange |
-| 🔢 Thinking and counting | 17 | Teal |
+| 🔢 Thinking and counting | 18 | Teal |
 | 💬 Language and words | 9 | Raspberry |
 | 💜 Emotions | 4 | Purple |
 
-**Total: 66 activities**
+**Total: 67 activities**
 
 ---
 
@@ -226,7 +227,7 @@ Apptonomia includes several classic board games adapted:
 → **Module 3**: Pairs, What's missing?, Echoes, The Blocks
 
 ### If you want to practice mathematics
-→ **Module 4**: The Purse, The Clock, Numbers, Quantities, Roman Numerals, The Goose
+→ **Module 4**: The Purse, The Clock, Numbers, Quantities, Math Tables, Roman Numerals, The Goose
 
 ### If you want to learn more words
 → **Module 5**: Categories, Words, Dictionary, Complete the Word, Word Search, Sayings, Double Meaning, Jokes

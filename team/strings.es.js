@@ -307,6 +307,12 @@
         "works": 'Sentido de cantidad, comparación, estimación, redondeo y relación espacial en la recta numérica.',
         "daily": 'Usad una regla, una jarra medidora o precios reales y preguntad: "¿es poco o mucho?", "¿cuánto falta?" o "¿qué queda en medio?".'
       },
+      "math-tables": {
+        "name": 'Las Tablas',
+        "does": 'Cuatro pasos con puntos de colores: sumar y restar 1, 2 o 3 de cabeza, tablas de sumar, descomponer llegando primero a 10 (7 + 5 = 7 + 3 + 2) y tablas de multiplicar, donde cada sumando o grupo repetido tiene su color.',
+        "works": 'Cálculo mental progresivo, suma como unión, descomposición aditiva (puente al 10) y multiplicación como repetición, con conteo de apoyo visual.',
+        "daily": 'Agrupad objetos reales (garbanzos, botones) por colores y contad juntos: "3 grupos de 4, ¿cuántos hay?".'
+      },
       "roman-numerals": {
         "name": 'Números Romanos',
         "does": 'Cuatro niveles: aprende los símbolos I, V, X y los números del 1 al 21, y usa esos números para leer y escribir en qué siglo está algo ("Siglo XV" → 15).',

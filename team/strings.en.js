@@ -307,6 +307,12 @@
         "works": 'Sense of quantity, comparison, estimation, rounding and spatial relations on the number line.',
         "daily": 'Use a ruler, a measuring jug or real prices and ask: "is that a little or a lot?", "how much is left?" or "what number is in between?"'
       },
+      "math-tables": {
+        "name": 'Math Tables',
+        "does": 'Four steps with colored dots: add and subtract 1, 2 or 3 in your head, addition tables, breaking numbers apart by making 10 first (7 + 5 = 7 + 3 + 2), and multiplication tables, where each addend or repeated group has its own color.',
+        "works": 'Progressive mental arithmetic, addition as joining, additive decomposition (bridging through 10) and multiplication as repetition, with visual counting support.',
+        "daily": 'Group real objects (chickpeas, buttons) by color and count together: "3 groups of 4, how many are there?".'
+      },
       "roman-numerals": {
         "name": 'Roman Numerals',
         "does": 'Four levels: learns the symbols I, V, X and the numbers 1 to 21, then uses those numbers to read and write which century something is from ("15th century" → XV).',

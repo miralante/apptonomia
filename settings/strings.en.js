@@ -44,7 +44,7 @@
       'pairs': 'Pairs', 'differences': 'Spot the Difference', 'whats-missing': 'What Is Missing?',
       'ecos': 'Echoes', 'turns-mirrors': 'Turns and Mirrors', 'blocks': 'The Blocks',
       'where-is': 'Where Is It?', 'path': 'The Path', 'fit': 'Fit the Piece', 'theatre': 'The Theatre',
-      'riddles': 'Riddles', 'patterns': 'Patterns', 'numbers': 'Numbers', 'quantities': 'Quantities',
+      'riddles': 'Riddles', 'patterns': 'Patterns', 'numbers': 'Numbers', 'quantities': 'Quantities', 'math-tables': 'Math Tables',
       'roman-numerals': 'Roman Numerals', 'wallet': 'The Coin Purse', 'clock': 'The Clock', 'stories': 'Stories',
       'odd-one-out': 'Which One Doesn’t Belong?', 'puzzle': 'Puzzle', 'oca': 'The Goose Game', 'tic-tac-toe': 'Tic-Tac-Toe',
       'visual-sudoku': 'Visual Sudoku', 'domino': 'Dominoes', 'checkers': 'Checkers', 'chess': 'Chess',

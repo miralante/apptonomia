@@ -44,7 +44,7 @@
       'pairs': 'Parejas', 'differences': 'Diferencias', 'whats-missing': '¿Qué falta?',
       'ecos': 'Ecos', 'turns-mirrors': 'Giros y Espejos', 'blocks': 'Los Bloques',
       'where-is': '¿Dónde está?', 'path': 'El Camino', 'fit': 'Encaja la Pieza', 'theatre': 'El Teatro',
-      'riddles': 'Adivinanzas', 'patterns': 'Patrones', 'numbers': 'Los Números', 'quantities': 'Cantidades',
+      'riddles': 'Adivinanzas', 'patterns': 'Patrones', 'numbers': 'Los Números', 'quantities': 'Cantidades', 'math-tables': 'Las Tablas',
       'roman-numerals': 'Números Romanos', 'wallet': 'El Monedero', 'clock': 'El Reloj', 'stories': 'Historias',
       'odd-one-out': '¿Qué no encaja?', 'puzzle': 'Puzzle', 'oca': 'La Oca', 'tic-tac-toe': 'Tres en Raya',
       'visual-sudoku': 'Sudoku Visual', 'domino': 'Dominó', 'checkers': 'Las Damas', 'chess': 'El Ajedrez',

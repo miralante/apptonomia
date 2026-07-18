@@ -80,13 +80,13 @@
     "semantic_hash": "6f22edff4f5fea8e42673f34e1934622"
   },
   "site/strings.en.js": {
-    "mtime": 1784386402.83499,
-    "ast_hash": "61b63d4fa94029cc1dd1c1a324fc0aae",
+    "mtime": 1784385576.383718,
+    "ast_hash": "85eed3d33a7b123d7a5b09270c588e5b",
     "semantic_hash": ""
   },
   "site/strings.es.js": {
-    "mtime": 1784386401.6596417,
-    "ast_hash": "e99603664f5e3ba456f6594c3df5bf0c",
+    "mtime": 1784385574.177523,
+    "ast_hash": "02305a39ab10d0c3616d167c1280ace0",
     "semantic_hash": ""
   },
   "sw.js": {
@@ -1475,8 +1475,8 @@
     "semantic_hash": ""
   },
   "doc/en/activities.md": {
-    "mtime": 1784386423.4948754,
-    "ast_hash": "883681e5c8a755cc1878c1fb16921131",
+    "mtime": 1784385735.3925393,
+    "ast_hash": "ab34fc3b49456250ba7e4a33a47353ae",
     "semantic_hash": ""
   },
   "doc/en/index.md": {
@@ -1520,8 +1520,8 @@
     "semantic_hash": ""
   },
   "doc/es/actividades.md": {
-    "mtime": 1784386421.6352944,
-    "ast_hash": "38f5c6c949e6d0cb8cfaf89dfc5a4431",
+    "mtime": 1784385734.0034907,
+    "ast_hash": "a7e0d8caef851f487ad981b8757831ec",
     "semantic_hash": ""
   },
   "doc/es/equipo.md": {
@@ -1555,8 +1555,8 @@
     "semantic_hash": "ced7b979069a02bd94bba86de2e23699"
   },
   "site/index.html": {
-    "mtime": 1784386400.4241922,
-    "ast_hash": "5ad5340dcf058aefd007f8c4f0795385",
+    "mtime": 1784385571.8052812,
+    "ast_hash": "f5a0b1cc02061090b81feed6072a147a",
     "semantic_hash": ""
   },
   "tools/blocks/index.html": {
@@ -1930,33 +1930,33 @@
     "semantic_hash": ""
   },
   "team/strings.en.js": {
-    "mtime": 1784386419.309917,
-    "ast_hash": "68e349708642b607714822d2dfb78981",
+    "mtime": 1784385616.1159146,
+    "ast_hash": "78e577952e0c8955d7d3c5fed9def15f",
     "semantic_hash": ""
   },
   "team/strings.es.js": {
-    "mtime": 1784386415.9989343,
-    "ast_hash": "79a49676e17f4316d0748963a864e380",
+    "mtime": 1784385612.7497282,
+    "ast_hash": "5c1d3b26dafe325cffc679e111799a8c",
     "semantic_hash": ""
   },
   "tools/math-tables/app.js": {
-    "mtime": 1784386277.4561384,
-    "ast_hash": "964317dbb04943630bd327336a57eb76",
+    "mtime": 1784385533.3260472,
+    "ast_hash": "2c50f8a3b846afb1c79d72e8c9f1720b",
     "semantic_hash": ""
   },
   "tools/math-tables/data.js": {
-    "mtime": 1784386224.785239,
-    "ast_hash": "de086f086ea881b8e2241a0ac3106b32",
+    "mtime": 1784385432.2162848,
+    "ast_hash": "49de54fb5b61f0acf85c19ed158a30a4",
     "semantic_hash": ""
   },
   "tools/math-tables/strings.en.js": {
-    "mtime": 1784386306.041856,
-    "ast_hash": "c135b6e8da5d31f63a2945d8e49136a6",
+    "mtime": 1784385521.2331257,
+    "ast_hash": "afd6d01f2ddd2c5e5a8796dac7552496",
     "semantic_hash": ""
   },
   "tools/math-tables/strings.es.js": {
-    "mtime": 1784386296.2204442,
-    "ast_hash": "6d6c1f2bace3f62adb96de2ec0c414d2",
+    "mtime": 1784385519.4981408,
+    "ast_hash": "ed9f4c741254224378a84a9694b4f8fb",
     "semantic_hash": ""
   },
   "about/index.html": {
@@ -1970,13 +1970,13 @@
     "semantic_hash": ""
   },
   "team/index.html": {
-    "mtime": 1784386412.731899,
-    "ast_hash": "cb7ea000ea17515df89e825aff96c689",
+    "mtime": 1784385597.6641483,
+    "ast_hash": "cbc4724ecd0dfcc1105a237fc21e2a24",
     "semantic_hash": ""
   },
   "tools/math-tables/index.html": {
-    "mtime": 1784386397.7321541,
-    "ast_hash": "45790200e26b7e02e6ef7cbcffa2c990",
+    "mtime": 1784385987.6354277,
+    "ast_hash": "e5f0d0ebb70072a2b82632ce64234cef",
     "semantic_hash": ""
   }
 }
