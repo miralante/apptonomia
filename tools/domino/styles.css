@@ -138,4 +138,11 @@
 @media (max-width: 480px) {
   .mitad { width: 36px; height: 36px; }
   .mano .ficha.jugable .mitad { width: 56px; height: 56px; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
 }

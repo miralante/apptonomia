@@ -301,6 +301,7 @@
     guardar();
     pintarEstrellas();
     $('#resumenFinal').textContent = App.i18n.t('resumenPiezas').replace('{n}', resueltos);
+$('#transferencia').textContent = App.i18n.t('transferencia');
     mostrar('pantallaFinal');
     App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }

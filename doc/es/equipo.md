@@ -164,9 +164,9 @@ Algunas actividades tratan temas delicados:
 |-----------|------|---------------|
 | **Emergencias** | 112, situaciones de peligro | Revisar primero, acompañar si es necesario |
 | **Teléfonos Importantes** | 112, situaciones de peligro | Revisar primero, acompañar si es necesario |
-| **Chat Seguro** | Manipulación online | Adecuado para mayores de edad o con supervisión |
+| **Chat Seguro** | Manipulación online | Requiere supervisión de la persona de apoyo |
 | **Chat Acoso** | Acoso entre iguales | Siempre con supervisión profesional |
-| **¿Lo público?** | Redes sociales | Adecuado para mayores de edad o con supervisión |
+| **¿Lo público?** | Redes sociales | Requiere supervisión de la persona de apoyo |
 | **Redes, intimidad y ley** | Manipulación sexual, intimidad digital y consecuencias legales | Siempre con supervisión profesional o familiar |
 
 ---
@@ -191,7 +191,7 @@ actividad está en [`actividades.md`](actividades.md).
 | Memoria auditiva y verbal | ✔ | Ecos |
 | Vocabulario y categorías | ✔ | Categorías, Palabras, Sopa de Letras |
 | Vocabulario avanzado y aprendizaje significativo | ✔ | Diccionario |
-| Ortografía | ✔ | Completa la Palabra |
+| Ortografía | ✔ | Completa la Palabra, Ortografía en Colores |
 | Comprensión del lenguaje | ✔ | La Frase |
 | Frases hechas, refranes y chistes | ✔ | Dichos, Chistes |
 | Ambigüedad léxica y comprensión del contexto | ✔ | Doble Sentido |
@@ -286,7 +286,7 @@ Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 ## Más información
 
 - [Guía rápida de uso](guia-rapida.md) — Explicación para usuarios
-- [Catálogo de actividades](actividades.md) — Descripción de las 66 actividades
+- [Catálogo de actividades](actividades.md) — Descripción de las 68 actividades
 - [Información técnica](tecnico.md) — Para desarrolladores
 - [Página del equipo](../../team/index.html) — Versión web interactiva
 

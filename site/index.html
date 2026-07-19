@@ -57,6 +57,11 @@
             <span class="nombre" data-i18n="catch_nombre">Atrapa</span>
             <span class="detalle" data-i18n="catch_detalle">Toca el dibujo que se mueve.</span>
           </a>
+          <a href="../tools/connect-dots/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🔢</span>
+            <span class="nombre" data-i18n="connectdots_nombre">Une los Puntos</span>
+            <span class="detalle" data-i18n="connectdots_detalle">Une los números en orden.</span>
+          </a>
           <a href="../tools/keyboard-typing/index.html" class="tarjeta">
             <span class="picto" aria-hidden="true">⌨️</span>
             <span class="nombre" data-i18n="teclado_nombre">Teclado</span>
@@ -385,10 +390,20 @@
             <span class="nombre" data-i18n="dictionary_nombre">Diccionario</span>
             <span class="detalle" data-i18n="dictionary_detalle">Palabras difíciles, fácil de entender.</span>
           </a>
+          <a href="../tools/vocabulary/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🗂️</span>
+            <span class="nombre" data-i18n="vocabulary_nombre">Vocabulario por tema</span>
+            <span class="detalle" data-i18n="vocabulary_detalle">Elige un bloque y un nivel.</span>
+          </a>
           <a href="../tools/spelling/index.html" class="tarjeta">
             <span class="picto" aria-hidden="true">🔡</span>
             <span class="nombre" data-i18n="spelling_nombre">Completa la Palabra</span>
             <span class="detalle" data-i18n="spelling_detalle">Elige la letra que falta.</span>
+          </a>
+          <a href="../tools/colored-spelling/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🖍️</span>
+            <span class="nombre" data-i18n="coloredspelling_nombre">Ortografía en Colores</span>
+            <span class="detalle" data-i18n="coloredspelling_detalle">Escribe y mira los colores.</span>
           </a>
           <a href="../tools/word-search/index.html" class="tarjeta">
             <span class="picto" aria-hidden="true">🔍</span>
@@ -422,6 +437,11 @@
             <span class="nombre" data-i18n="mybody_nombre">Mi Cuerpo Me Avisa</span>
             <span class="detalle" data-i18n="mybody_detalle">Nota lo que sientes y cuida de ti.</span>
           </a>
+          <a href="../tools/good-manners/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🤝</span>
+            <span class="nombre" data-i18n="goodmanners_nombre">Buenos Modales</span>
+            <span class="detalle" data-i18n="goodmanners_detalle">Aprende a ser amable: gracias, por favor, adiós.</span>
+          </a>
         </div>
       </section>
 
@@ -436,7 +456,7 @@
   /* Carga condicional del archivo de idioma activo (es|en). */
   (function () {
     var loc = window.App.i18n.locale();
-    document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
+    document.write('<script src="strings.' + loc + '.js"><\/script>');
   })();
 </script>
   <script>

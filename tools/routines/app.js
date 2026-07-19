@@ -138,6 +138,7 @@
     pantallaRutina.classList.add('oculto');
     pantallaFinal.classList.remove('oculto');
     $('#resumenFinal').textContent = App.i18n.t('resumenFinal').replace('{nombre}', rutinaActual.nombre);
+$('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.celebrate(App.i18n.t('rutinaCompletadaTitulo'));
     pintarEstrellas();
   }

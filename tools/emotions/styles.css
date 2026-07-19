@@ -79,4 +79,11 @@ body { transition: background 0.5s ease; }
 .dia-semana .picto { font-size: 40px; }
 .dia-semana .nombre { color: var(--color-texto-suave); }
 
-#pantallaSemana .btn { align-self: center; min-width: 280px; }
+#pantallaSemana .btn { align-self: center; min-width: 280px; 
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
+}

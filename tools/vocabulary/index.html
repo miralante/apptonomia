@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="title">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vocabulario por tema | Apptonomia</title>
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="tool-header">
+      <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Volver</a>
+      <h1 data-i18n="title">📚 Vocabulario por tema</h1>
+      <span class="stars" id="stars">⭐ 0</span>
+    </header>
+
+    <!-- Pantalla 1: elegir bloque + tier -->
+    <section id="startScreen" class="pila centrado">
+      <div class="fila center-row">
+        <p class="instruction" id="instructionText" data-i18n="instruction">Elige un bloque y un nivel de dificultad. Cada ronda te enseña 8 palabras nuevas con su significado y un ejemplo.</p>
+        <button type="button" class="btn btn-audio" id="instructionBtn" data-i18n-aria="core.listenInstructions" aria-label="Escuchar las instrucciones">🔊</button>
+      </div>
+
+      <h2 data-i18n="chooseBlock">Elige un bloque</h2>
+      <div class="bloques-grid" id="bloques"></div>
+
+      <h2 data-i18n="chooseTier">Elige un nivel (más bajo = más fácil)</h2>
+      <div class="tier-row" id="tiers"></div>
+
+      <h2 data-i18n="chooseLevel" id="rondasTitle" class="oculto">Elige una ronda</h2>
+      <div class="pila" id="rondas"></div>
+    </section>
+
+    <!-- Pantalla 2: fichas -->
+    <section id="cardsScreen" class="oculto pila centrado">
+      <div class="fila">
+        <button type="button" class="btn btn-secundario" id="backLevelsBtnCards" data-i18n="core.back">← Volver</button>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="cardsProgressFill"></div>
+        <span class="progress-text" id="cardsProgressText">1 / 8</span>
+      </div>
+      <div class="card centrado pila">
+        <div class="word-display" id="wordDisplay"></div>
+        <p class="definition-text"><span data-i18n="definitionLabel">Significa:</span> <span id="definitionText"></span></p>
+        <p class="example-text"><span data-i18n="exampleLabel">Por ejemplo:</span> <span id="exampleText"></span></p>
+        <p class="meta-info"><span data-i18n="categoryLabel">Categoría:</span> <span id="categoryDisplay"></span> · <span data-i18n="tierLabel">Nivel:</span> <span id="tierDisplay"></span></p>
+        <button type="button" class="btn btn-audio" id="cardListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar la ficha"><span data-i18n="core.listen">🔊 Escuchar</span></button>
+      </div>
+      <button type="button" class="btn" id="nextCardBtn" data-i18n="core.next">Siguiente →</button>
+    </section>
+
+    <!-- Pantalla 3: test -->
+    <section id="quizScreen" class="oculto pila">
+      <div class="fila">
+        <button type="button" class="btn btn-secundario" id="backLevelsBtnQuiz" data-i18n="core.back">← Volver</button>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="quizProgressFill"></div>
+        <span class="progress-text" id="quizProgressText">0 / 8</span>
+      </div>
+      <div class="card centrado pila">
+        <div class="word-display" id="quizWordDisplay"></div>
+        <button type="button" class="btn btn-audio" id="quizListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar la palabra">🔊</button>
+      </div>
+      <h2 class="question centrado" data-i18n="quizQuestion">¿Qué significa esta palabra?</h2>
+      <div class="pila" id="quizOptions"></div>
+      <div class="feedback" id="quizFeedback" aria-live="polite"></div>
+      <div class="fila explicacion oculto" id="quizExplanationWrap">
+        <p id="quizExplanation" aria-live="polite"></p>
+        <button type="button" class="btn btn-audio" id="quizExplanationListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar el texto">🔊</button>
+      </div>
+      <button type="button" class="btn oculto" id="quizNextBtn" data-i18n="core.next">Siguiente →</button>
+    </section>
+
+    <!-- Pantalla final -->
+    <section id="endScreen" class="oculto centrado pila" aria-live="polite">
+      <div class="emoji-grande" aria-hidden="true">🎉</div>
+      <h2 data-i18n="core.roundComplete">¡Ronda completada!</h2>
+      <p id="finalSummary"></p>
+      <p id="transferencia" class="transferencia" data-i18n="transferencia"></p>
+      <button type="button" class="btn" id="replayBtn" data-i18n="core.playAgain">Jugar otra vez</button>
+      <button type="button" class="btn btn-secundario" id="otherBlockBtn" data-i18n="chooseAnotherBlock">Elegir otro bloque</button>
+      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backToMenu">Volver al menú</a>
+    </section>
+  </div>
+
+  <script src="../../assets/js/utils.js"></script>
+  <script src="../../assets/js/i18n.js"></script>
+  <script src="../../assets/js/tts.js"></script>
+  <script src="../../assets/js/storage.js"></script>
+  <script src="../../assets/js/feedback.js"></script>
+  <script>
+  /* Carga condicional del archivo de idioma activo (es|en). */
+  (function () {
+    var loc = window.App.i18n.locale();
+    document.write('<script src="strings.' + loc + '.js"><\/script>');
+  })();
+  </script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../../sw.js').catch(function () {});
+    }
+  </script>
+</body>
+</html>

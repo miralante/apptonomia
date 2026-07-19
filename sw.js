@@ -3,7 +3,7 @@
    Cache-first strategy for the app shell (works offline).
    When adding new files: add them to ARCHIVOS and bump VERSION.
    ============================================================ */
-var VERSION = 'apptonomia-v82';
+var VERSION = 'apptonomia-v88';
 
 var ARCHIVOS = [
   './',
@@ -59,6 +59,12 @@ var ARCHIVOS = [
   './tools/catch/strings.es.js',
   './tools/catch/strings.en.js',
   './tools/catch/styles.css',
+  './tools/connect-dots/index.html',
+  './tools/connect-dots/app.js',
+  './tools/connect-dots/data.js',
+  './tools/connect-dots/strings.es.js',
+  './tools/connect-dots/strings.en.js',
+  './tools/connect-dots/styles.css',
   './tools/calm/index.html',
   './tools/calm/app.js',
   './tools/calm/data.js',
@@ -281,6 +287,12 @@ var ARCHIVOS = [
   './tools/my-body/strings.es.js',
   './tools/my-body/strings.en.js',
   './tools/my-body/styles.css',
+  './tools/good-manners/index.html',
+  './tools/good-manners/app.js',
+  './tools/good-manners/data.js',
+  './tools/good-manners/strings.es.js',
+  './tools/good-manners/strings.en.js',
+  './tools/good-manners/styles.css',
   './tools/wallet/index.html',
   './tools/wallet/app.js',
   './tools/wallet/data.js',
@@ -347,6 +359,12 @@ var ARCHIVOS = [
   './tools/word-search/strings.es.js',
   './tools/word-search/strings.en.js',
   './tools/word-search/styles.css',
+  './tools/vocabulary/index.html',
+  './tools/vocabulary/app.js',
+  './tools/vocabulary/data.js',
+  './tools/vocabulary/strings.es.js',
+  './tools/vocabulary/strings.en.js',
+  './tools/vocabulary/styles.css',
   './tools/pairs/index.html',
   './tools/pairs/app.js',
   './tools/pairs/data.js',

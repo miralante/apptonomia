@@ -1,0 +1,227 @@
+/* Apptonomia — Vocabulario por tema.
+   Estilos específicos solo de esta actividad; toda la base
+   visual viene de assets/css/{tokens,base,components}.css.
+   Sigue los estilos de tools/dictionary/words: la paleta del
+   modulo lenguaje (frambuesa/raspberry) se aplica desde la landing
+   mediante --acento; aqui asumimos que el body viene sin esa
+   variable y usamos el color institucional por defecto. */
+
+.tool-header h1 {
+  margin: 0 0 var(--space-2);
+}
+
+.bloques-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.btn-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: var(--space-4);
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radius-lg);
+  background: var(--color-superficie);
+  cursor: pointer;
+  gap: var(--space-2);
+  transition: transform 0.1s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.btn-block:hover,
+.btn-block:focus-visible {
+  border-color: var(--mod-lenguaje);
+}
+
+.btn-block.selected,
+.btn-block[aria-pressed="true"] {
+  border-color: var(--mod-lenguaje);
+  background: var(--mod-lenguaje-suave, var(--color-superficie-alternativa));
+}
+
+.bloque-id {
+  font-size: var(--fs-3);
+  font-weight: 700;
+  color: var(--mod-lenguaje);
+  letter-spacing: 0.05em;
+}
+
+.bloque-nombre {
+  font-size: var(--fs-2);
+  font-weight: 600;
+}
+
+.bloque-meta {
+  font-size: var(--fs-1);
+  color: var(--color-texto-secundario);
+}
+
+.tier-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-bottom: var(--space-5);
+}
+
+.btn-tier {
+  border: 2px solid var(--color-borde);
+  background: var(--color-superficie);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+  font-size: var(--fs-2);
+  font-weight: 600;
+}
+
+.btn-tier:hover,
+.btn-tier:focus-visible {
+  border-color: var(--mod-lenguaje);
+}
+
+.btn-tier.selected,
+.btn-tier[aria-pressed="true"] {
+  border-color: var(--mod-lenguaje);
+  background: var(--mod-lenguaje-suave, var(--color-superficie-alternativa));
+}
+
+.word-display {
+  font-size: var(--fs-5);
+  font-weight: 700;
+  margin: var(--space-3) 0;
+  text-align: center;
+  word-break: break-word;
+}
+
+.definition-text,
+.example-text {
+  font-size: var(--fs-2);
+  line-height: 1.4;
+  margin: var(--space-2) 0;
+}
+
+.meta-info {
+  font-size: var(--fs-1);
+  color: var(--color-texto-secundario);
+  margin: var(--space-2) 0;
+  text-align: center;
+}
+
+.btn-opcion {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: var(--space-3);
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radius-md);
+  background: var(--color-superficie);
+  cursor: pointer;
+  font-size: var(--fs-2);
+  margin-bottom: var(--space-2);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-opcion:hover,
+.btn-opcion:focus-visible {
+  border-color: var(--mod-lenguaje);
+}
+
+.btn-opcion.correcta {
+  border-color: var(--color-exito, #2e7d32);
+  background: rgba(46, 125, 50, 0.12);
+}
+
+.btn-opcion.animo {
+  border-color: var(--color-animo, #f9a825);
+  background: rgba(249, 168, 37, 0.12);
+}
+
+.btn-opcion:disabled {
+  cursor: not-allowed;
+}
+
+.feedback {
+  min-height: 1.5em;
+  margin: var(--space-3) 0;
+  font-size: var(--fs-2);
+}
+
+.explicacion {
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+
+.explicacion p {
+  margin: 0;
+  flex: 1;
+  font-size: var(--fs-2);
+}
+
+.oculto {
+  display: none !important;
+}
+
+.btn-level {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+}
+
+.level-info {
+  font-size: var(--fs-1);
+  color: var(--color-texto-secundario);
+  margin-top: var(--space-1);
+}
+
+.emoji-grande {
+  font-size: 3rem;
+  margin-bottom: var(--space-3);
+}
+
+.card {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin: var(--space-3) 0;
+}
+
+.progress-bar {
+  position: relative;
+  width: 100%;
+  height: 0.75rem;
+  background: var(--color-borde);
+  border-radius: var(--radius-pill, 999px);
+  overflow: hidden;
+  margin: var(--space-3) 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--mod-lenguaje);
+  width: 0;
+  transition: width 0.2s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--fs-1);
+  font-weight: 600;
+  color: var(--color-texto);
+}
+
+#endScreen .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}

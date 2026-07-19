@@ -132,8 +132,10 @@
     hide($('#screenTask'));
     show($('#screenFinish'));
     $('#finishText').textContent = App.i18n.t('roundSummary')
+
       .replace('{count}', round.length)
       .replace('{stars}', progress.estrellas);
+    $("#transferencia").textContent = App.i18n.t("transferencia");
     App.feedback.celebrate(App.i18n.t('roundComplete'));
   }
 

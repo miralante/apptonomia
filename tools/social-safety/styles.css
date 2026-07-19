@@ -16,4 +16,11 @@
 .emoji-grande { font-size: 96px; }
 #endScreen { padding-top: 48px; }
 #endScreen .btn { align-self: center; min-width: 280px; }
-@media (max-width: 640px) { .btn-nivel, #endScreen .btn { min-width: 100%; } }
+@media (max-width: 640px) { .btn-nivel, #endScreen .btn { min-width: 100%; } 
+#endScreen .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
+}

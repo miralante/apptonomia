@@ -398,6 +398,7 @@
     game = null;
     premiar(cfg.claveEstrella);
     App.feedback.celebrate(mensajeFinal(), cfg.alTerminar);
+$('#transferencia').textContent = App.i18n.t('transferencia');
   }
 
   /* ---------- Modos de juego ---------- */

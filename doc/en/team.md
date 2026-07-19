@@ -164,9 +164,9 @@ Some activities deal with sensitive topics:
 |----------|-------|---------------|
 | **Emergencies** | 112, dangerous situations | Review first, accompany if necessary |
 | **Important Phone Numbers** | 112, dangerous situations | Review first, accompany if necessary |
-| **Safe Chat** | Online manipulation | Suitable for adults or with supervision |
+| **Safe Chat** | Online manipulation | Requires support from a support person |
 | **Bullying Chat** | Peer bullying | Always with professional supervision |
-| **What to Post?** | Social media | Suitable for adults or with supervision |
+| **What to Post?** | Social media | Requires support from a support person |
 | **Social media, intimacy and law** | Sexual manipulation, digital intimacy and legal consequences | Always with professional or family supervision |
 
 ---
@@ -191,7 +191,7 @@ identify gaps and choose an activity for a support goal. See
 | Auditory and verbal memory | ✔ | Echoes |
 | Vocabulary and categories | ✔ | Categories, Words, Word Search |
 | Advanced vocabulary and meaningful learning | ✔ | Dictionary |
-| Spelling | ✔ | Complete the Word |
+| Spelling | ✔ | Complete the Word, Colored Spelling |
 | Language comprehension | ✔ | The Sentence |
 | Idioms, sayings and jokes | ✔ | Sayings, Jokes |
 | Lexical ambiguity and context comprehension | ✔ | Double Meaning |
@@ -286,7 +286,7 @@ defined in [`SPEC.md`](SPEC.md) §6.
 ## More information
 
 - [Quick guide](quick-guide.md) — Explanation for users
-- [Activity catalog](activities.md) — Description of all 66 activities
+- [Activity catalog](activities.md) — Description of all 68 activities
 - [Technical information](technical.md) — For developers
 - [Team page](../../team/index.html) — Interactive web version
 

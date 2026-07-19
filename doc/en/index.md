@@ -27,8 +27,7 @@ doc/
     ├── roles.md      ← Project roles
     ├── SPEC.md
     ├── README.md
-    ├── quick-guide.md
-    ├── activities.md
+    ├── quick-guide.md│   ├── creating-activities-guide.md    ├── activities.md
     ├── team.md
     ├── technical.md
     └── I18N.md
@@ -39,3 +38,16 @@ doc/
 How to contribute and other repository-root documents (`CLAUDE.md`,
 license…) live in the root [`README.md`](../../README.md) and
 [`CONTRIBUTING.md`](../../CONTRIBUTING.md).
+
+---
+
+## 🧭 Where to start by profile
+
+| If you want to… | Start with |
+|---|---|
+| Understand what Apptonomia is and who it is for | [`SPEC.md`](SPEC.md) |
+| See the architecture and technical recipes | [`technical.md`](technical.md) |
+| **Create a new activity (design + didactic, gamification and neuromarketing techniques)** | [`creating-activities-guide.md`](creating-activities-guide.md) |
+| Browse the activity catalogue | [`activities.md`](activities.md) |
+| Support an end user (family/therapist) | [`team.md`](team.md) and [`team/`](../team/index.html) |
+| Add a language | [`I18N.md`](I18N.md) |

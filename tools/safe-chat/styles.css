@@ -108,4 +108,11 @@
 @media (max-width: 640px) {
   .burbuja { max-width: 90%; }
   .chat-marco { min-height: 160px; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
 }

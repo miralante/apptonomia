@@ -99,4 +99,11 @@
   .tablero { gap: 4px; padding: 6px; }
   .columna { min-width: 48px; gap: 4px; }
   .hueco { width: 40px; height: 40px; font-size: 26px; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="title">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apptonomia</title>
+    <link rel="stylesheet" href="../../assets/css/tokens.css">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Back</a>
+    <h1 data-i18n="title">Good Manners</h1>
+    <div id="app"></div>
+    <script src="../../assets/js/utils.js"></script>
+    <script src="../../assets/js/i18n.js"></script>
+    <script src="../../assets/js/tts.js"></script>
+    <script src="../../assets/js/storage.js"></script>
+    <script src="../../assets/js/feedback.js"></script>
+    <script>
+      (function () {
+        var loc = window.App.i18n.locale();
+        document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
+      })();
+    </script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

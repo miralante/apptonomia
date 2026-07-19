@@ -141,6 +141,7 @@
     $('#resumenFinal').textContent = nivel.estrellas === 1
       ? App.i18n.t('resumenFinalUna')
       : App.i18n.t('resumenFinalVarias').replace('{n}', nivel.estrellas);
+$('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.celebrate(App.i18n.t('celebrarTexto'));
   }
 

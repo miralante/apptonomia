@@ -93,4 +93,11 @@
   .sitio { width: 64px; height: 64px; }
   .banda.fondo .sitio { font-size: 28px; }
   .banda.delante .sitio { font-size: 40px; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
 }

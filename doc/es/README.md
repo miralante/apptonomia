@@ -8,7 +8,7 @@
 
 Apptonomia es una herramienta digital pensada para que personas con discapacidad intelectual puedan practicar habilidades de la vida diaria de forma **autónoma**, sin necesidad de que un profesional esté a su lado en todo momento.
 
-La aplicación ofrece **66 actividades** organizadas en **6 módulos**. Ver la
+La aplicación ofrece **68 actividades** organizadas en **6 módulos**. Ver la
 tabla completa de módulos y sus objetivos terapéuticos en
 [`SPEC.md`](SPEC.md) §2.1, y el catálogo completo actividad por actividad en
 [`actividades.md`](actividades.md).
@@ -98,7 +98,7 @@ Si aciertas, aparecerá una celebración breve. Si no, recibirá un mensaje de �
 ## Más información
 
 - [Guía rápida de uso](guia-rapida.md) — Explicación paso a paso
-- [Catálogo de actividades](actividades.md) — Lista completa de las 66 actividades
+- [Catálogo de actividades](actividades.md) — Lista completa de las 68 actividades
 - [Guía para profesionales](equipo.md) — Cómo usar Apptonomia en terapia
 - [Información técnica](tecnico.md) — Para desarrolladores
 

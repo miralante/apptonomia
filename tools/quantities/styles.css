@@ -16,4 +16,11 @@
   .practice-grid { grid-template-columns: 1fr; }
   .task-card { padding: var(--espacio); }
   .value-display { min-width: 0; width: 100%; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
 }

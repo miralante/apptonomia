@@ -111,6 +111,7 @@
     pantallaFinal.classList.remove('oculto');
     resumenFinal.textContent =
       'Has atrapado ' + DATA.toquesPorRonda + ' dibujos. ¡Muy bien!';
+$('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.celebrate('¡Ronda completada!');
   }
 

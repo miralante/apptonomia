@@ -1,6 +1,6 @@
 # Activity catalog
 
-Apptonomia has **67 activities** organized into **6 modules** according to the type of skill they work on.
+Apptonomia has **72 activities** organized into **6 modules** according to the type of skill they work on.
 
 ---
 
@@ -13,6 +13,7 @@ Apptonomia has **67 activities** organized into **6 modules** according to the t
 | Activity | Description |
 |----------|-------------|
 | **Catch** | Tap the target that changes position on the screen |
+| **Connect the Dots** | Join the numbers in order to draw a shape |
 | **Keyboard** | Learn to type on the computer keyboard letter by letter |
 | **Tracing** | Trace shapes, letters and numbers with your finger or mouse |
 | **Coloring** | Paint drawings by filling areas with colors |
@@ -107,7 +108,7 @@ Apptonomia has **67 activities** organized into **6 modules** according to the t
 
 | Activity | Description |
 |----------|-------------|
-| **Numbers** | Counting, place value, changing places (10 units → 1 ten… up to one trillion), fractions, decimals, operations |
+| **Numbers** | Counting, place value, changing places (10 units → 1 ten… up to one trillion), fractions, decimals, the four operations (with division as fair sharing) |
 | **Quantities** | Practise little and much, increasing and decreasing, rounding, and finding the middle number with a slider |
 | **Math Tables** | Count in your head (±1, ±2, ±3, ±5, ±10), addition tables, decomposition by making 10 (7 + 5 = 7 + 3 + 2), multiplication tables and division by 10, with colored dots |
 | **Roman Numerals** | Read Roman numerals and recognize which century you're in |
@@ -130,6 +131,7 @@ Apptonomia has **67 activities** organized into **6 modules** according to the t
 | **Words** | Learn thematic vocabulary (colors, animals, professions...) |
 | **Dictionary** | Learn hard words with a simple meaning and an example |
 | **Complete the Word** | Choose the missing letter to spell the word correctly |
+| **Colored Spelling** | Type the full sentence and watch each letter turn green, pink, or underlined depending on whether it is correct, misspelled, or missing |
 | **Word Search** | Find themed words hidden on a letter board, with levels and painted-letter hints |
 
 ---
@@ -146,6 +148,7 @@ Apptonomia has **67 activities** organized into **6 modules** according to the t
 | **Calm** | Breathing and guided relaxation exercises |
 | **Among Friends** | Solve social situations with friends |
 | **My Body Tells Me** | Learn to notice your body's signals when you feel something |
+| **Good Manners** | Practice courtesy phrases: thank you, please, good morning, goodbye, giving way |
 
 ---
 
@@ -153,14 +156,14 @@ Apptonomia has **67 activities** organized into **6 modules** according to the t
 
 | Module | Nº activities | Color |
 |--------|---------------|-------|
-| 🎯 Coordination and motor skills | 6 | Blue |
+| 🎯 Coordination and motor skills | 7 | Blue |
 | 📋 Autonomy and home | 20 | Green |
 | 🧠 Memory and attention | 10 | Orange |
 | 🔢 Thinking and counting | 18 | Teal |
-| 💬 Language and words | 9 | Raspberry |
-| 💜 Emotions | 4 | Purple |
+| 💬 Language and words | 10 | Raspberry |
+| 💜 Emotions | 5 | Purple |
 
-**Total: 67 activities**
+**Total: 70 activities**
 
 ---
 
@@ -218,7 +221,7 @@ Apptonomia includes several classic board games adapted:
 ## How to choose the right activity
 
 ### If you want to practice hand movements
-→ **Module 1**: Catch, Tracing, Coloring, Piano, Builders
+→ **Module 1**: Catch, Connect the Dots, Tracing, Coloring, Piano, Builders
 
 ### If you want to be more independent at home
 → **Module 2**: Routines, The House, My Schedule, Emergencies, Important Phone Numbers, Shopping, The Store

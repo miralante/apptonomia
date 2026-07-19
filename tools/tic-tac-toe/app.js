@@ -244,6 +244,7 @@
       guardar();
       pintarEstrellas();
       App.feedback.celebrate(App.i18n.t('hasGanado'));
+$('#transferencia').textContent = App.i18n.t('transferencia');
     } else if (resultado === 'empate') {
       estadoEl.textContent = App.i18n.t('empate');
       App.feedback.success(feedbackEl);

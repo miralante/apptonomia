@@ -1,0 +1,191 @@
+#!/usr/bin/env node
+/* ============================================================
+   Apptonomia — scripts/i18n-keys-smoke.js
+   UI key parity smoke: extracts every App.i18n.t('key') call from
+   tools/<slug>/app.js and verifies each key is registered in BOTH
+   strings.es.js and strings.en.js. Fails if any UI text referenced
+   from app.js is missing in any locale.
+
+   Run over all tools by default:
+     node scripts/i18n-keys-smoke.js
+   Or a single tool:
+     node scripts/i18n-keys-smoke.js bullying-chat
+
+   Detected key forms:
+     App.i18n.t('foo')
+     App.i18n.t('a.b.c')
+     App.i18n.t('foo', ...)        // extra args ignored
+     t('foo')                       // inside the IIFE, $ is App.utils.$
+
+   Also picks up data-i18n attributes from index.html for the same
+   parity check (the I18N contract says every visible text has a
+   matching key in both locales).
+   ============================================================ */
+'use strict';
+
+var fs = require('fs');
+var path = require('path');
+var vm = require('vm');
+
+var RAIZ = path.resolve(__dirname, '..');
+
+function loadAppKeys(slug) {
+  var app = path.join(RAIZ, 'tools', slug, 'app.js');
+  if (!fs.existsSync(app)) return [];
+  var src = fs.readFileSync(app, 'utf8');
+  var keys = new Set();
+  /* App.i18n.t('foo') and t('foo') in either single or double quotes. */
+  var re = /\bApp\.i18n\.t\(\s*(['"])([^'"]+)\1|\bt\(\s*(['"])([^'"]+)\3/g;
+  var m;
+  while ((m = re.exec(src)) !== null) {
+    var key = m[2] || m[4];
+    if (key) keys.add(key);
+  }
+  return Array.from(keys);
+}
+
+function loadHtmlKeys(slug) {
+  var html = path.join(RAIZ, 'tools', slug, 'index.html');
+  if (!fs.existsSync(html)) return [];
+  var src = fs.readFileSync(html, 'utf8');
+  var keys = new Set();
+  var reData = /data-i18n="([^"]+)"/g;
+  var reAria = /data-i18n-aria="([^"]+)"/g;
+  var reTitle = /data-i18n-title="([^"]+)"/g;
+  var m;
+  while ((m = reData.exec(src)) !== null) keys.add(m[1]);
+  while ((m = reAria.exec(src)) !== null) keys.add(m[1]);
+  while ((m = reTitle.exec(src)) !== null) keys.add(m[1]);
+  return Array.from(keys);
+}
+
+function extractRegisteredKeys(slug, loc) {
+  var file = path.join(RAIZ, 'tools', slug, 'strings.' + loc + '.js');
+  if (!fs.existsSync(file)) return null;
+  var src = fs.readFileSync(file, 'utf8');
+  var captured = null;
+  var sandbox = {
+    App: { i18n: { register: function (dict, l) { if (l === loc) captured = dict; } } },
+    window: {},
+    console: console
+  };
+  sandbox.window = sandbox;
+  vm.createContext(sandbox);
+  try {
+    vm.runInContext(src, sandbox, { filename: file });
+  } catch (e) {
+    return null;
+  }
+  if (!captured) return null;
+  /* Walk the registered dict and collect every leaf key. */
+  var out = new Set();
+  (function walk(obj, prefix) {
+    if (obj == null) return;
+    if (typeof obj !== 'object') {
+      out.add(prefix);
+      return;
+    }
+    if (Array.isArray(obj)) {
+      out.add(prefix);
+      return;
+    }
+    Object.keys(obj).forEach(function (k) {
+      var child = obj[k];
+      var fullKey = prefix ? prefix + '.' + k : k;
+      if (child && typeof child === 'object' && !Array.isArray(child)) {
+        walk(child, fullKey);
+      } else {
+        out.add(fullKey);
+      }
+    });
+  })(captured, '');
+  return Array.from(out);
+}
+
+function clavesEnUso(slug) {
+  var fromApp = loadAppKeys(slug);
+  var fromHtml = loadHtmlKeys(slug);
+  var combined = new Set();
+  fromApp.forEach(function (k) { combined.add(k); });
+  fromHtml.forEach(function (k) { combined.add(k); });
+  /* Always-available core keys (registered globally in i18n.js). */
+  var core = ['core.back', 'core.backToMenu', 'core.playAgain', 'core.next',
+              'core.listen', 'core.listenInstructions', 'core.listenText',
+              'core.loading', 'core.roundComplete', 'core.rest'];
+  /* feedback.* keys: arrays of strings, so they're picked() not t(). */
+  core.forEach(function (k) { combined.add(k); });
+  return Array.from(combined);
+}
+
+function diff(setA, setB) {
+  var a = new Set(setA), b = new Set(setB);
+  var soloEnA = [], soloEnB = [];
+  a.forEach(function (k) { if (!b.has(k)) soloEnA.push(k); });
+  b.forEach(function (k) { if (!a.has(k)) soloEnB.push(k); });
+  return { soloEnA: soloEnA.sort(), soloEnB: soloEnB.sort() };
+}
+
+function validar(slug) {
+  var fallos = [];
+  var usadas = clavesEnUso(slug);
+  var clavesEs = extractRegisteredKeys(slug, 'es');
+  var clavesEn = extractRegisteredKeys(slug, 'en');
+  if (!clavesEs || !clavesEn) {
+    fallos.push('no se pudieron cargar los strings (es/en)');
+    return fallos;
+  }
+  ['es', 'en'].forEach(function (loc) {
+    var set = new Set(loc === 'es' ? clavesEs : clavesEn);
+    var faltan = usadas.filter(function (k) { return !set.has(k); });
+    if (faltan.length) {
+      /* Tolerate data-tree keys (which live under `data.*` in strings
+         and aren't simple leaves). We can't tell apart "missing UI
+         key" from "registered inside a complex object that didn't
+         flatten cleanly", so we report only keys that look like UI
+         keys (no `data.` prefix and dot-path ≤ 3 levels). */
+      var reales = faltan.filter(function (k) {
+        if (k.indexOf('data.') === 0) return false;
+        return k.split('.').length <= 3;
+      });
+      if (reales.length) {
+        reales.slice(0, 12).forEach(function (k) {
+          fallos.push('[' + loc + '] falta clave UI: ' + k);
+        });
+        if (reales.length > 12) fallos.push('[' + loc + '] ... ' + (reales.length - 12) + ' más');
+      }
+    }
+  });
+  return fallos;
+}
+
+var args = process.argv.slice(2);
+var targets;
+if (args.length) {
+  targets = args;
+} else {
+  var d = path.join(RAIZ, 'tools');
+  targets = fs.readdirSync(d, { withFileTypes: true })
+    .filter(function (e) { return e.isDirectory(); })
+    .map(function (e) { return e.name; })
+    .sort();
+}
+
+var ok = 0, fail = 0, failed = [];
+targets.forEach(function (slug) {
+  var f = validar(slug);
+  if (f.length) {
+    fail++;
+    failed.push({ slug: slug, fallos: f });
+  } else {
+    ok++;
+    console.log('OK  tools/' + slug);
+  }
+});
+console.log('\nResumen: ' + ok + ' OK, ' + fail + ' con fallos de paridad UI');
+if (failed.length) {
+  failed.forEach(function (f) {
+    console.log('\n  tools/' + f.slug + ':');
+    f.fallos.forEach(function (e) { console.log('    - ' + e); });
+  });
+  process.exit(1);
+}

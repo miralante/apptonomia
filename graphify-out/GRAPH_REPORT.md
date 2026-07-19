@@ -1,16 +1,16 @@
-# Graph Report - apptonomia  (2026-07-18)
+# Graph Report - apptonomia  (2026-07-19)
 
 ## Corpus Check
-- 320 files · ~305,312 words
+- 348 files · ~370,087 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1886 nodes · 3413 edges · 323 communities (264 shown, 59 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 91 edges (avg confidence: 0.69)
+- 2075 nodes · 3770 edges · 352 communities (329 shown, 23 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 93 edges (avg confidence: 0.69)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f41d93e6`
+- Built from commit: `3463cd5e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -82,10 +82,8 @@
 - My Agenda Activity Logic
 - Oca Activity Logic
 - Riddles Activity Logic
-- Wallet Activity Data
 - Js (Assets)
 - Routines Activity Logic
-- Shop Activity Data
 - Social Safety Activity Logic
 - Js (Assets)
 - Catch Activity Logic
@@ -94,67 +92,32 @@
 - Coloring Activity Logic
 - Pairs Activity Logic
 - Shop Activity Page
+- 4. Diseño paso a paso
 - Piano Keys Activity Page
 - Js (Assets)
-- Patterns Activity Data
+- app.js
 - Tools Files
 - Rename Tool Slugs.js (Scripts)
 - Tools Files
-- Ecos Activity Data
 - Tools Files
-- Pairs Activity Data
-- Whats Missing Activity Data
 - Img (Assets)
 - Tools Files
-- Differences Activity Data
 - Keyboard Typing Activity Data
 - Tools Files
-- Odd One Out Activity Data
 - Tools Files
-- Bullying Chat Activity Data
-- Calm Activity Data
 - Catch Activity Data
-- Categories Activity Data
-- Checkers Activity Data
-- Chess Activity Data
 - Clock Activity Data
 - Coloring Activity Data
 - Comedy Club Activity Data
 - Comedy Club Activity Page
-- Connect Four Activity Data
-- Domino Activity Data
-- Emergencies Activity Data
-- Emotions Activity Data
-- Friends Activity Data
-- House Activity Data
 - Idioms Activity Data
-- My Body Activity Data
-- Oca Activity Data
-- Path Activity Data
 - Piano Keys Activity Data
-- Post Or Not Activity Data
-- Puzzle Activity Data
-- Riddles Activity Data
 - Roman Numerals Activity Page
-- Routines Activity Data
-- Safe Chat Activity Data
-- Sentence Activity Data
-- Shopping Activity Data
-- Signs Activity Data
-- Situations Activity Data
 - Stories Activity Data
-- Street Activity Data
-- Task List Activity Data
-- Theatre Activity Data
-- Tic Tac Toe Activity Data
-- Times Of Day Activity Data
-- Tracing Activity Data
-- What Do I Need Activity
-- What First Activity Data
-- What To Wear Activity Data
-- Where Is Activity Data
-- Where To Store Activity Data
-- Words Activity Data
+- Apptonomia
+- Apptonomia
+- Documentación de Apptonomia
+- Roles del proyecto
 - Clock Activity Page
 - Coloring Activity Page
 - Differences Activity Page
@@ -169,7 +132,14 @@
 - Technical information
 - Guide for professionals and families
 - app.js
+- app.js
+- app.js
+- i18n-split.js
+- app.js
+- i18n-keys-smoke.js
 - Guía rápida de uso
+- i18n-safe-chat-fix.js
+- i18n-repair-ui-keys.js
 - Apptonomia
 - equipo.md
 - manifest.json
@@ -187,7 +157,7 @@
 7. `Guía rápida de uso` - 15 edges
 8. `Hidden route /equipo/ — Guía para el equipo de apoyo` - 15 edges
 9. `pintarTodo()` - 14 edges
-10. `Technical information` - 14 edges
+10. `renderVisual()` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `AGENTS.md (compatibility pointer)` --semantically_similar_to--> `agent.md (compatibility pointer)`  [INFERRED] [semantically similar]
@@ -218,7 +188,7 @@
 - **El Monedero (Wallet) tool bundles six money-literacy activities behind one shared menu/level/end-screen shell** — tools_wallet_index_contar, tools_wallet_index_pagar, tools_wallet_index_conquepago, tools_wallet_index_cambio, tools_wallet_index_hucha, tools_wallet_index_redondeo [EXTRACTED 1.00]
 - **Apptonomia PWA icon set: SVG source plus 192px and 512px PNG exports, rounded-square badge with blue ring and green checkmark** — assets_img_icono_svg_icon, assets_img_icono_192_icon, assets_img_icono_512_icon [INFERRED 0.85]
 
-## Communities (323 total, 59 thin omitted)
+## Communities (352 total, 23 thin omitted)
 
 ### Community 0 - "Keyboard Typing Activity Logic"
 Cohesion: 0.10
@@ -226,7 +196,7 @@ Nodes (49): actualizarEstrellas(), actualizarGuia(), actualizarOpcionesUI(), act
 
 ### Community 1 - "Es Docs"
 Cohesion: 0.17
-Nodes (21): Therapeutic objective coverage taxonomy, 🎯 Puntería y manos — Coordinación y motricidad module, 📋 Mi día a día — Autonomía y hogar module, 💜 Emociones module, 💬 Lenguaje y palabras module, 🧠 Memoria y atención module, No-pressure / error-never-punishes principle, Six Therapeutic Modules system (+13 more)
+Nodes (26): Multi-file per-locale i18n system (strings.<locale>.js), 🎯 Puntería y manos — Coordinación y motricidad module, 📋 Mi día a día — Autonomía y hogar module, 💜 Emociones module, 💬 Lenguaje y palabras module, 🧠 Memoria y atención module, No-pressure / error-never-punishes principle, Six Therapeutic Modules system (+18 more)
 
 ### Community 2 - "En Docs"
 Cohesion: 0.15
@@ -325,8 +295,8 @@ Cohesion: 0.20
 Nodes (16): cadenaDesdePuntos(), comprobar(), continuarTrazo(), coordenadas(), distancia(), guardar(), iniciarRonda(), iniciarTrazo() (+8 more)
 
 ### Community 26 - "Js (Assets)"
-Cohesion: 0.20
-Nodes (14): apply(), buscar(), detectar(), inicio(), lang(), locale(), pick(), t() (+6 more)
+Cohesion: 0.09
+Nodes (29): apply(), buscar(), data(), datos(), detectar(), inicio(), lang(), locale() (+21 more)
 
 ### Community 27 - "Path Activity Logic"
 Cohesion: 0.33
@@ -445,8 +415,8 @@ Cohesion: 0.36
 Nodes (12): banco(), guardar(), iniciarRonda(), mostrarExplicacion(), mostrarPista(), pintarEstrellas(), pintarNiveles(), pintarProgreso() (+4 more)
 
 ### Community 56 - "Cross Browser.js (Scripts)"
-Cohesion: 0.26
-Nodes (8): combosSegunArgs(), crearServidor(), ejecutar(), listarSlugs(), main(), nombreNavegador(), parseArgs(), probarUnaCombinacion()
+Cohesion: 0.18
+Nodes (29): bank(), distractorsFor(), finishRound(), goStart(), locale(), nameInLocale(), nextCard(), nextQuiz() (+21 more)
 
 ### Community 57 - "House Activity Logic"
 Cohesion: 0.36
@@ -465,8 +435,8 @@ Cohesion: 0.25
 Nodes (8): tools/dictionary activity (as consumer of word bank), Dictionary Word Bank (content/dictionary), App.i18n core module, es/en binary spots to generalize, Cultural content non-literal translation rule, I18N.md (EN) — Multilingual Architecture, Multi-file strings.<locale>.js system, Number/money/time format rule (long vs short scale, separators)
 
 ### Community 61 - "Manifest"
-Cohesion: 0.43
-Nodes (8): Multi-file per-locale i18n system (strings.<locale>.js), Standard activity anatomy (index.html/app.js/data.js/strings.<locale>.js/styles.css), Los Bloques (Blocks) activity page, Constructores (Builders) activity page, Chat Acoso (Bullying Chat) activity page, Calma (Calm) activity page, Atrapa (Catch) activity page, Categorías (Categories) activity page
+Cohesion: 0.05
+Nodes (43): 10. Cross references, 1. Principles that are never broken, 2.1 Mandatory traits, 2.2 What the activity **must not** do, 2. How an activity should be, 3. Quick checklist of the 13 accessibility rules, 4. Step-by-step design, 5.1 Be very didactic (+35 more)
 
 ### Community 62 - "Comedy Club Activity Logic"
 Cohesion: 0.40
@@ -488,10 +458,6 @@ Nodes (10): banco(), especialesDe(), guardar(), iniciarPartida(), llegar(), pint
 Cohesion: 0.40
 Nodes (10): guardar(), iniciarRonda(), mostrarExplicacion(), mostrarPista(), pintarEstrellas(), pintarProgreso(), render(), responder() (+2 more)
 
-### Community 67 - "Wallet Activity Data"
-Cohesion: 0.20
-Nodes (10): construirMonedero(), CONTAR_BASE, DATA, nivelDePrecio(), NIVELES_IMPORTE, NIVELES_TXT, NOMBRES, PAGAR_CENTS (+2 more)
-
 ### Community 68 - "Js (Assets)"
 Cohesion: 0.38
 Nodes (7): aria(), crearFicha(), desglose(), etiqueta(), hablado(), info(), pintarFichas()
@@ -499,10 +465,6 @@ Nodes (7): aria(), crearFicha(), desglose(), etiqueta(), hablado(), info(), pint
 ### Community 69 - "Routines Activity Logic"
 Cohesion: 0.51
 Nodes (9): abrirRutina(), contarHechos(), guardar(), hechosDe(), marcarHecho(), pintarEstrellas(), pintarMenu(), pintarPasos() (+1 more)
-
-### Community 70 - "Shop Activity Data"
-Cohesion: 0.22
-Nodes (9): construirTienda(), DATA, FIAR_BASE, MUCHO_BASE, nivelDePrecio(), NIVELES_IMPORTE, NIVELES_TXT, NOMBRES (+1 more)
 
 ### Community 71 - "Social Safety Activity Logic"
 Cohesion: 0.40
@@ -513,8 +475,8 @@ Cohesion: 0.44
 Nodes (8): alAzar(), celebrate(), encourage(), sonidoAcierto(), sonidoAnimo(), sonidosActivados(), success(), tono()
 
 ### Community 73 - "Catch Activity Logic"
-Cohesion: 0.47
-Nodes (8): acierto(), empezar(), guardar(), moverObjetivo(), pintarEstrellas(), pintarNiveles(), pintarProgreso(), terminarRonda()
+Cohesion: 0.20
+Nodes (24): clearHint(), createTargetEl(), currentStage(), fill(), finishRound(), hide(), onSequenceMiss(), onSequenceTap() (+16 more)
 
 ### Community 74 - "Emotions Activity Logic"
 Cohesion: 0.42
@@ -536,6 +498,10 @@ Nodes (7): destapar(), empezar(), guardar(), pintarContador(), pintarEstrellas()
 Cohesion: 0.25
 Nodes (8): Mis Rutinas (tool), La Tienda (tool), Shop: ¿Mucho o poco? activity, Shop: ¿Qué me queda? activity, Shop: Una compra activity, La Compra (tool), Shopping: Mi lista de la compra activity, Shopping: ¿En qué sección? activity
 
+### Community 79 - "4. Diseño paso a paso"
+Cohesion: 0.05
+Nodes (43): 10. Referencias cruzadas, 1. Principios que nunca se rompen, 2.1 Rasgos obligatorios, 2.2 Lo que la actividad **no** debe hacer, 2. Cómo debe ser una actividad, 3. Checklist rápido de las 13 reglas de accesibilidad, 4. Diseño paso a paso, 5.1 Ser muy didáctico (+35 more)
+
 ### Community 80 - "Piano Keys Activity Page"
 Cohesion: 0.29
 Nodes (7): Parejas (tool), Piano (tool), Piano: Canciones mode, Piano: Compositor mode, Piano: Toca libre mode, Piano: Sigue la melodía mode, Piano: Simón dice mode
@@ -544,9 +510,9 @@ Nodes (7): Parejas (tool), Piano (tool), Piano: Canciones mode, Piano: Composito
 Cohesion: 0.53
 Nodes (3): elegirVoz(), idiomaActivo(), speak()
 
-### Community 85 - "Patterns Activity Data"
-Cohesion: 0.40
-Nodes (3): DATA, NIVELES_BASE, NOMBRES_NIVEL
+### Community 84 - "app.js"
+Cohesion: 0.24
+Nodes (18): bank(), buildHint(), check(), clearInput(), escapeHtml(), finish(), goStart(), init() (+10 more)
 
 ### Community 86 - "Tools Files"
 Cohesion: 0.60
@@ -556,21 +522,9 @@ Nodes (5): ¿Lo publico? (tool), Chat Seguro (tool), Señales (tool), Situacione
 Cohesion: 1.00
 Nodes (4): Las Damas (Checkers) Game Page, El Ajedrez (Chess) Game Page, Cuatro en Raya (Connect Four) Game Page, Dominó (Domino) Game Page
 
-### Community 89 - "Ecos Activity Data"
-Cohesion: 0.50
-Nodes (3): COLORES, DATA, NIVELES
-
 ### Community 90 - "Tools Files"
 Cohesion: 0.67
 Nodes (4): Emergencias (Emergencies) Activity Page, Entre Amigos (Friends) Social Scenarios Quiz Page, La Casa (House) Sequencing Activity Page, Mi Cuerpo Me Avisa (My Body) Interoception Quiz Page
-
-### Community 91 - "Pairs Activity Data"
-Cohesion: 0.50
-Nodes (3): DATA, NIVELES, SIMBOLOS
-
-### Community 92 - "Whats Missing Activity Data"
-Cohesion: 0.50
-Nodes (3): DATA, NIVELES, POOL
 
 ### Community 93 - "Img (Assets)"
 Cohesion: 0.67
@@ -588,6 +542,22 @@ Nodes (3): La Oca (tool), El Camino (tool), Puzzle (tool)
 Cohesion: 1.00
 Nodes (3): ¿Qué no encaja? (tool), Patrones (tool), Adivinanzas (tool)
 
+### Community 145 - "Apptonomia"
+Cohesion: 0.50
+Nodes (4): Apptonomia, 📚 Documentation, 📄 Other repo documents, 👥 Roles in the project
+
+### Community 146 - "Apptonomia"
+Cohesion: 0.50
+Nodes (4): Apptonomia, 📚 Documentación, 📄 Otros documentos del repo, 👥 Roles en el proyecto
+
+### Community 147 - "Documentación de Apptonomia"
+Cohesion: 0.67
+Nodes (3): Documentación de Apptonomia, 📂 Estructura de la documentación, 🧭 Por dónde empezar según tu perfil
+
+### Community 148 - "Roles del proyecto"
+Cohesion: 0.67
+Nodes (3): 🗺️ Por dónde empezar, según tu perfil, 🤝 Proyecto multidisciplinar, Roles del proyecto
+
 ### Community 312 - "Technical information"
 Cohesion: 0.05
 Nodes (42): 10. Recipe: adding a new therapeutic module (area), 11. PWA and service worker, 12.1 Local server, 12.2 Syntax and structure checks, 12.3 Smoke test, 12.4 Cross-browser and cross-device test, 12.5 Deployment, 12. Execution, verification and deployment (+34 more)
@@ -596,21 +566,45 @@ Nodes (42): 10. Recipe: adding a new therapeutic module (area), 11. PWA and serv
 Cohesion: 0.06
 Nodes (33): Activities by therapeutic goal, Activity selection, Adaptations, Audio doesn't work, Credits, Data, Developing fine motor skills, Difficulty level (+25 more)
 
+### Community 316 - "app.js"
+Cohesion: 0.23
+Nodes (20): bank(), clearHint(), drawSegment(), fill(), fillShape(), finish(), goStart(), init() (+12 more)
+
+### Community 317 - "app.js"
+Cohesion: 0.36
+Nodes (12): banco(), claveTipo(), construirOpciones(), guardar(), iniciarRonda(), pintarEstrellas(), pintarNiveles(), pintarProgreso() (+4 more)
+
 ### Community 318 - "app.js"
-Cohesion: 0.18
-Nodes (32): answerOptions(), backFromQuiz(), checkAnswer(), decomposeRound(), dotRow(), equationText(), fill(), hide() (+24 more)
+Cohesion: 0.16
+Nodes (37): answerOptions(), backFromQuiz(), checkAnswer(), decomposeRound(), divideRound(), dotRow(), equationText(), fill() (+29 more)
+
+### Community 319 - "i18n-split.js"
+Cohesion: 0.36
+Nodes (9): compareShapes(), escString(), indent(), loadData(), refactor(), renderNeutral(), renderStrings(), shape() (+1 more)
+
+### Community 320 - "app.js"
+Cohesion: 0.50
+Nodes (8): cargarProgreso(), empezarRonda(), guardarProgreso(), init(), mostrarComplecion(), mostrarSelectorNiveles(), mostrarSituacion(), seleccionarOpcion()
+
+### Community 321 - "i18n-keys-smoke.js"
+Cohesion: 0.48
+Nodes (5): clavesEnUso(), extractRegisteredKeys(), loadAppKeys(), loadHtmlKeys(), validar()
 
 ### Community 322 - "Guía rápida de uso"
 Cohesion: 0.09
 Nodes (23): 1. Entrar en la aplicación, Cambiar el idioma, Configuración personal, ✅ Cuando aciertas, 🔶 Cuando no es correcto, Cómo funciona el audio, Elegir una actividad, En actividades con niveles (+15 more)
+
+### Community 323 - "i18n-safe-chat-fix.js"
+Cohesion: 0.70
+Nodes (4): applySufijos(), loadData(), main(), renderData()
 
 ### Community 328 - "Apptonomia"
 Cohesion: 0.12
 Nodes (17): 1. Abrir la aplicación, 2. Elegir una actividad, 3. Cambiar el idioma, ✅ Accesible para todos, Actividades destacadas, Apptonomia, Características principales, Créditos y licencia (+9 more)
 
 ### Community 330 - "equipo.md"
-Cohesion: 0.18
-Nodes (10): Documentación de Apptonomia, 📂 Estructura de la documentación, 🗺️ Por dónde empezar, según tu perfil, 🤝 Proyecto multidisciplinar, Roles del proyecto, Local progress/storage contract (estrellas, completado, localStorage only), Apptonomia, 📚 Documentación (+2 more)
+Cohesion: 0.26
+Nodes (4): Therapeutic objective coverage taxonomy, Local progress/storage contract (estrellas, completado, localStorage only), 13 mandatory accessibility rules for new activities, PWA update notice (controllerchange detection)
 
 ### Community 332 - "manifest.json"
 Cohesion: 0.18
@@ -629,19 +623,19 @@ Cohesion: 0.67
 Nodes (3): 🔢 Pensar y contar — Razonamiento y matemáticas module, Pairs/Parejas as the canonical activity code example, Parejas / Pairs (therapeutic activity, canonical code example)
 
 ## Knowledge Gaps
-- **253 isolated node(s):** `name`, `short_name`, `description`, `lang`, `start_url` (+248 more)
+- **264 isolated node(s):** `name`, `short_name`, `description`, `lang`, `start_url` (+259 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **59 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Technical information` connect `Technical information` to `Es Docs`?**
-  _High betweenness centrality (0.005) - this node is a cross-community bridge._
-- **Why does `Guía rápida de uso` connect `Guía rápida de uso` to `equipo.md`?**
-  _High betweenness centrality (0.002) - this node is a cross-community bridge._
+- **Why does `Guide to creating activities / tools` connect `Manifest` to `equipo.md`?**
+  _High betweenness centrality (0.007) - this node is a cross-community bridge._
+- **Why does `Guía para crear actividades / herramientas` connect `4. Diseño paso a paso` to `equipo.md`?**
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **What connects `name`, `short_name`, `description` to the rest of the system?**
-  _253 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _264 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Keyboard Typing Activity Logic` be split into smaller, more focused modules?**
   _Cohesion score 0.1003921568627451 - nodes in this community are weakly interconnected._
 - **Should `Chess Activity Logic` be split into smaller, more focused modules?**

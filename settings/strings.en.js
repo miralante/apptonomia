@@ -32,7 +32,7 @@
     module6: '💜 Emotions',
 
     activity: {
-      'catch': 'Catch It', 'keyboard-typing': 'Keyboard', 'piano-keys': 'Piano',
+      'catch': 'Catch It', 'connect-dots': 'Connect the Dots', 'keyboard-typing': 'Keyboard', 'piano-keys': 'Piano',
       'tracing': 'Traces', 'coloring': 'Coloring', 'builders': 'Builders',
       'routines': 'My Routines', 'house': 'The House', 'situations': 'Situations',
       'safe-chat': 'Safe Chat', 'bullying-chat': 'Bullying Chat', 'post-or-not': 'Should I Post It?',
@@ -42,7 +42,7 @@
       'street': 'The Street', 'emergencies': 'Emergencies', 'phone-numbers': 'Important Phone Numbers',
       'shopping': 'The Shopping', 'shop': 'The Shop',
       'pairs': 'Pairs', 'differences': 'Spot the Difference', 'whats-missing': 'What Is Missing?',
-      'ecos': 'Echoes', 'turns-mirrors': 'Turns and Mirrors', 'blocks': 'The Blocks',
+      'ecos': 'Echoes', 'turns-mirrors': 'Turns and Mirrors', 'colored-spelling': 'Colored Spelling', 'vocabulary': 'Topic Vocabulary', 'blocks': 'The Blocks',
       'where-is': 'Where Is It?', 'path': 'The Path', 'fit': 'Fit the Piece', 'theatre': 'The Theatre',
       'riddles': 'Riddles', 'patterns': 'Patterns', 'numbers': 'Numbers', 'quantities': 'Quantities', 'math-tables': 'Math Tables',
       'roman-numerals': 'Roman Numerals', 'wallet': 'The Coin Purse', 'clock': 'The Clock', 'stories': 'Stories',

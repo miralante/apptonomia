@@ -219,6 +219,7 @@
     $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
       .replace('{n}', aciertosRonda)
       .replace('{total}', progreso.estrellas);
+$('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }
 

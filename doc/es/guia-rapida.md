@@ -199,7 +199,7 @@ Puedes tener Apptonomia como si fuera una app en tu teléfono:
 
 Si necesitas más información:
 
-- [Catálogo de actividades](actividades.md) — Lista completa de las 66 actividades
+- [Catálogo de actividades](actividades.md) — Lista completa de las 68 actividades
 - [Información técnica](tecnico.md) — Para desarrolladores y profesionales
 - [Página del equipo](../team/index.html) — Guía para familias y profesionales
 

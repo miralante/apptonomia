@@ -1,0 +1,98 @@
+/* Connect the Dots — tool-specific styles. Shared styles live in assets/css/.
+   Coordination module accent (blue --mod-coordinacion). */
+
+.tool-header h1 { color: var(--mod-coordinacion); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-coordinacion);
+}
+
+.instruction { font-size: var(--texto-base); }
+
+.center-row { justify-content: center; }
+
+.btn-level { min-width: 300px; align-self: center; }
+
+.progress-bar { margin-top: var(--espacio); }
+
+#playArea {
+  position: relative;
+  height: min(60vh, 520px);
+  min-height: 320px;
+  background: var(--mod-coordinacion-suave);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+#linesSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dot-line {
+  stroke: var(--mod-coordinacion);
+  stroke-width: 0.8;
+  stroke-linecap: round;
+}
+
+.dot-fill {
+  fill: var(--mod-coordinacion);
+  opacity: 0.25;
+  stroke: none;
+}
+
+.dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 64px;
+  min-height: 64px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid var(--mod-coordinacion);
+  background: var(--color-superficie);
+  color: var(--mod-coordinacion);
+  font-size: 22px;
+  font-weight: 800;
+  box-shadow: var(--sombra);
+  transition: transform 0.15s ease;
+}
+
+.dot:hover { transform: translate(-50%, -50%) scale(1.1); }
+.dot:active { transform: translate(-50%, -50%) scale(0.92); }
+
+.dot-done {
+  background: var(--mod-coordinacion);
+  color: var(--color-superficie);
+  opacity: 0.6;
+}
+
+/* Second mistake on the same number (rule 12: explanation step) —
+   a slow, soft glow, never a harsh flash. */
+@keyframes connectDotsHintGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.5); }
+  50% { box-shadow: 0 0 0 10px rgba(184, 134, 11, 0); }
+}
+
+.dot-hint { animation: connectDotsHintGlow 1.6s ease-in-out infinite; }
+
+.big-emoji { font-size: 96px; }
+
+#finishScreen { padding-top: 48px; }
+
+#finishScreen .btn { align-self: center; min-width: 280px; }
+
+#finishScreen .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}

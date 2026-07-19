@@ -101,4 +101,11 @@
   .tablero { grid-template-columns: repeat(6, minmax(44px, 1fr)); gap: 3px; }
   .celda { min-height: 44px; font-size: 22px; }
   .corona { top: -10px; font-size: 12px; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
 }

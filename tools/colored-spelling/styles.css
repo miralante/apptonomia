@@ -1,0 +1,155 @@
+/* Ortografía en Colores — tool-specific styles. Shared styles live in assets/css/.
+   Acento del módulo Lenguaje y palabras (frambuesa --mod-lenguaje).
+   Paleta para los tres estados del diff:
+     - verde  (acierto, ya en tokens como --color-acierto)
+     - rosa suave (error concreto: letra escrita que no coincide)
+     - gris con subrayado (letra que falta en la oración)
+   Nunca se usa rojo agresivo: SPEC §3.1 ("el error nunca castiga"). */
+
+.tool-header h1 { color: var(--mod-lenguaje); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-lenguaje);
+}
+
+.instruction { font-size: var(--texto-base); }
+.center-row { justify-content: center; }
+
+.btn-level { min-width: 300px; align-self: center; }
+
+.level-info {
+  display: block;
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.card { border-color: var(--mod-lenguaje-suave); margin-top: var(--espacio); }
+
+.word-picto { font-size: 56px; line-height: 1.1; }
+
+/* Pista visible (1ª letra de cada palabra, resto '_') y, tras
+   Comprobar, azulejos coloreados carácter a carácter. */
+.hint-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+  max-width: 100%;
+  margin-top: var(--espacio);
+}
+
+.hint-char {
+  display: inline-block;
+  min-width: 18px;
+  padding: 4px 2px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  font-family: 'Atkinson Hyperlegible', monospace;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-texto);
+  letter-spacing: 1px;
+}
+
+.diff-tile {
+  display: inline-block;
+  min-width: 22px;
+  padding: 6px 4px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  font-family: 'Atkinson Hyperlegible', monospace;
+  border-radius: 6px;
+  margin: 1px;
+  letter-spacing: 1px;
+}
+
+.diff-ok {
+  background: var(--color-acierto-suave);
+  color: var(--color-texto);
+  border: 2px solid var(--color-acierto);
+}
+
+.diff-bad {
+  /* rosa suave, no rojo agresivo */
+  background: #FCE4EC;
+  color: var(--color-texto);
+  border: 2px solid #E57399;
+}
+
+.diff-missing {
+  background: var(--color-superficie);
+  color: var(--color-texto-suave);
+  border: 2px dashed var(--color-texto-suave);
+  text-decoration: underline wavy var(--color-texto-suave);
+}
+
+/* Caja de entrada de texto (≥64px para accesibilidad §5 regla 2) */
+.text-input {
+  width: 100%;
+  min-height: var(--boton-min);
+  padding: 12px 16px;
+  font-size: var(--texto-grande);
+  font-family: 'Atkinson Hyperlegible', monospace;
+  letter-spacing: 1px;
+  text-align: center;
+  border: 3px solid var(--mod-lenguaje);
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  margin-top: var(--espacio);
+  box-sizing: border-box;
+}
+
+.text-input:focus {
+  outline: 4px solid var(--color-foco);
+  outline-offset: 2px;
+}
+
+.action-row {
+  display: flex;
+  gap: var(--espacio);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--espacio);
+}
+
+.action-row .btn { min-width: 200px; }
+
+.explicacion {
+  margin-top: var(--espacio);
+  background: var(--mod-lenguaje-suave);
+  border-radius: var(--radio);
+  padding: var(--espacio);
+}
+
+#legendText {
+  font-size: var(--texto-base);
+  margin: 0;
+}
+
+.big-emoji { font-size: 96px; }
+#endScreen { padding-top: 48px; }
+#endScreen .btn { align-self: center; min-width: 280px; }
+
+#endScreen .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
+
+#endScreen .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
+
+@media (max-width: 520px) {
+  .diff-tile,
+  .hint-char { font-size: 18px; min-width: 18px; padding: 4px 2px; }
+  .text-input { font-size: var(--texto-base); }
+}

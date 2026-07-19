@@ -112,4 +112,11 @@
   .opcion-figura { min-width: 88px; min-height: 88px; }
   .figura { font-size: 48px; }
   .figura.letra { font-size: 56px; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
 }

@@ -876,6 +876,7 @@
       .replace('{n}', aciertosRonda)
       .replace('{actividad}', App.i18n.t('actividad.' + actividad.id + '.nombre'))
       .replace('{estrellas}', progreso.estrellas);
+$('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.celebrate(App.i18n.t('core.roundComplete'));
 
     var idxNivel = actividad.niveles.indexOf(nivel);

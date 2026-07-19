@@ -64,4 +64,11 @@
   .case-card { padding: var(--espacio); }
   .case-text { font-size: var(--texto-base); }
   .centered-row { align-items: stretch; }
+
+#endScreen .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
 }

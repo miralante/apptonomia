@@ -102,4 +102,11 @@
 @media (max-width: 480px) {
   .tablero-ajedrez { grid-template-columns: repeat(5, minmax(52px, 1fr)); gap: 3px; }
   .tablero-ajedrez .celda { min-height: 52px; font-size: 30px; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
 }

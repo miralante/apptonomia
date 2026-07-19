@@ -523,6 +523,7 @@
     $('#resumenFinal').textContent = App.i18n.t(cfg.resumen)
       .replace('{n}', aciertos)
       .replace('{t}', datos().porRonda);
+$('#transferencia').textContent = App.i18n.t('transferencia');
     mostrar('pantallaFinal');
     App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }

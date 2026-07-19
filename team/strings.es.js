@@ -69,9 +69,15 @@
     activity: {
       "catch": {
         "name": 'Atrapa',
-        "does": 'Toca un objetivo que cambia de posición.',
+        "does": 'Toca un objetivo que cambia de posición. La dificultad sube sola y sin avisar: primero un objetivo, luego varios a la vez y, más adelante, tocarlos en el orden de sus números.',
         "works": 'Coordinación oculomanual, precisión, tiempo de respuesta (sin mostrarlo).',
         "daily": 'Practicad juegos de puntería reales (lanzar una pelota a un cesto, dardos de velcro).'
+      },
+      "connect-dots": {
+        "name": 'Une los Puntos',
+        "does": 'Toca los números en orden (5, 7 o 9 según el nivel); cada acierto traza una línea hasta el siguiente punto y, al terminar, aparece una figura cerrada (casa, barco, estrella, flecha, pez, cohete...).',
+        "works": 'Precisión del gesto, seguimiento de una secuencia numérica, planificación motora.',
+        "daily": 'Dejadle unir puntos en libros de pasatiempos reales o dibujar siguiendo números en papel.'
       },
       "keyboard-typing": {
         "name": 'Teclado',
@@ -433,11 +439,29 @@
         "works": 'Vocabulario avanzado con aprendizaje significativo (Ausubel): la palabra nueva se ancla a un ejemplo de la vida real, no se memoriza suelta. La pista del primer fallo en el test reutiliza ese mismo ejemplo.',
         "daily": 'Cuando salga una palabra difícil en una conversación o un libro, parad y buscad juntos un ejemplo de la vida real que la explique.'
       },
+      "vocabulary": {
+        "name": 'Vocabulario por tema',
+        "does": 'Por cada ronda de 8 palabras: elige un bloque (general, vida autónoma, salud, mundo social) y un nivel (1=fácil a 4=difícil); después una ficha por palabra con su significado en Lectura Fácil, ejemplo real y categoría visible, y un test de 3 opciones con distractor tomado del mismo bloque.',
+        "works": 'Vocabulario adulto explicado en Lectura Fácil, organizado por bloque temático y por nivel de dificultad. Permite itinerarios terapéuticos concretos (vida autónoma, salud, social) en una sola actividad.',
+        "daily": 'Elegid juntos un bloque que sea útil ahora (por ejemplo, salud o contratos) y empezad por el nivel más bajo; sumad un nivel cuando la persona se sienta cómoda.'
+      },
       "spelling": {
         "name": 'Completa la Palabra',
         "does": 'Por cada grupo de 8 palabras: ve la palabra con una letra tapada y elige entre 3 letras cuál la completa bien escrita (vocales, letras que se confunden por sonar igual, h muda y letras dobles).',
         "works": 'Ortografía dirigida a los errores reales del idioma, no genéricos: en español, b/v, c/z, g/j, ll/y y la h muda; en inglés, sus propios pares y letras mudas equivalentes. La pista del primer fallo repite la palabra en voz alta.',
         "daily": 'Cuando escriba una palabra mal, señalad juntos qué letra falla y por qué (cómo suena, si es una letra muda o una doble).'
+      },
+      "mirror-letters": {
+        "name": 'Letras Espejo',
+        "does": 'Ve una letra minúscula grande (b, d, p o q) y toca cuál de 3 letras es igual, sin girar. Nivel 1 trabaja solo b/d, nivel 2 solo p/q, nivel 3 las mezcla las cuatro.',
+        "works": 'Discriminación visual de letras espejo, típica de la dislexia visual: distinguir formas que solo cambian de orientación, paso previo a leer sin invertir letras.',
+        "daily": 'Cuando confunda una b con una d (o una p con una q) al leer o escribir, señalad juntos hacia qué lado mira cada una.'
+      },
+      "colored-spelling": {
+        "name": 'Ortografía en Colores',
+        "does": 'Por cada nivel de 6 oraciones: lee la oración completa (con pictograma y pista de la primera letra de cada palabra), la escribe entera y, al pulsar Comprobar, ve cada letra coloreada según esté bien (verde), mal escrita (rosa) o falta (subrayado).',
+        "works": 'Autocorrección visual y producción escrita: la persona ve de un vistazo sus errores exactos sin que la app los "castigue" — solo los señala con colores para que pueda corregirlos y reintentar sin presión. Trabaja los mismos errores que Completa la Palabra pero desde la escritura libre, no desde la elección múltiple, y permite ver patrones repetidos en sus propios fallos.',
+        "daily": 'Usad la app mientras escribís la lista de la compra, una nota o un email: dejad que la persona escriba primero y luego revisad juntos las letras rosa y subrayadas.'
       },
       "word-search": {
         "name": 'Sopa de Letras',
@@ -468,6 +492,12 @@
         "does": 'Ante una señal del cuerpo (hambre, sed, sueño, dolor, nervios…), elige qué hacer para cuidarse.',
         "works": 'Interocepción: notar las señales del propio cuerpo y actuar, el puente entre ¿Cómo me siento? y Calma que faltaba. Base de la autonomía en salud.',
         "daily": 'Ayudadle a poner nombre a lo que nota en el cuerpo cuando algo le pasa de verdad.'
+      },
+      "goodmanners": {
+        "name": 'Buenos Modales',
+        "does": 'Practica fórmulas de cortesía en situaciones cotidianas: dar las gracias, pedir por favor, saludar, despedirse, ceder el paso.',
+        "works": 'Normas sociales básicas, habilidades sociales, interacción respetuosa.',
+        "daily": 'Reforzad estas fórmulas en la vida real: celebrad cuando las use espontáneamente.'
       }
     },
     "scopeNote1": 'Fuera del alcance',

@@ -32,7 +32,7 @@
     module6: '💜 Emociones',
 
     activity: {
-      'catch': 'Atrapa', 'keyboard-typing': 'Teclado', 'piano-keys': 'Piano',
+      'catch': 'Atrapa', 'connect-dots': 'Une los Puntos', 'keyboard-typing': 'Teclado', 'piano-keys': 'Piano',
       'tracing': 'Trazos', 'coloring': 'Colorear', 'builders': 'Constructores',
       'routines': 'Mis Rutinas', 'house': 'La Casa', 'situations': 'Situaciones',
       'safe-chat': 'Chat Seguro', 'bullying-chat': 'Chat Acoso', 'post-or-not': '¿Lo publico?',
@@ -42,7 +42,7 @@
       'street': 'La Calle', 'emergencies': 'Emergencias', 'phone-numbers': 'Teléfonos Importantes',
       'shopping': 'La Compra', 'shop': 'La Tienda',
       'pairs': 'Parejas', 'differences': 'Diferencias', 'whats-missing': '¿Qué falta?',
-      'ecos': 'Ecos', 'turns-mirrors': 'Giros y Espejos', 'blocks': 'Los Bloques',
+      'ecos': 'Ecos', 'turns-mirrors': 'Giros y Espejos', 'colored-spelling': 'Ortografía en Colores', 'vocabulary': 'Vocabulario por tema', 'blocks': 'Los Bloques',
       'where-is': '¿Dónde está?', 'path': 'El Camino', 'fit': 'Encaja la Pieza', 'theatre': 'El Teatro',
       'riddles': 'Adivinanzas', 'patterns': 'Patrones', 'numbers': 'Los Números', 'quantities': 'Cantidades', 'math-tables': 'Las Tablas',
       'roman-numerals': 'Números Romanos', 'wallet': 'El Monedero', 'clock': 'El Reloj', 'stories': 'Historias',

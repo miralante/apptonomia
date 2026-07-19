@@ -5,5 +5,9 @@ Thumbs.db
 node_modules/
 .firebase/
 temp_*
-"**/graphify-out/" 
-".graphify*" 
+**/graphify-out/
+.graphify*
+.sw-cache/
+# one-shot migration helpers (do not keep in repo)
+scripts/_fix-*.js
+scripts/.smoke.out

@@ -368,6 +368,7 @@
     }
     $('#finishText').textContent = fill('roundSummary', { count: round.length, stars: progress.estrellas });
     App.feedback.celebrate(App.i18n.t('core.roundComplete'));
+$('#transferencia').textContent = App.i18n.t('transferencia');
   }
 
   /* ---- Navigation ---- */

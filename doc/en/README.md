@@ -8,7 +8,7 @@
 
 Apptonomia is a digital tool designed for people with intellectual disability to practice daily living skills **independently**, without needing a professional by their side at all times.
 
-The app offers **66 activities** organized into **6 modules**. See the full
+The app offers **68 activities** organized into **6 modules**. See the full
 table of modules and their therapeutic goals in [`SPEC.md`](SPEC.md) §2.1,
 and the complete activity-by-activity catalog in
 [`activities.md`](activities.md).
@@ -98,7 +98,7 @@ If you get it right, a brief celebration appears. If not, you'll receive an enco
 ## More information
 
 - [Quick guide](quick-guide.md) — Step by step explanation
-- [Activity catalog](activities.md) — Complete list of all 66 activities
+- [Activity catalog](activities.md) — Complete list of all 68 activities
 - [Guide for professionals](team.md) — How to use Apptonomia in therapy
 - [Technical information](technical.md) — For developers
 

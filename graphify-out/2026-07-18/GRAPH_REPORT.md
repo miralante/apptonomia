@@ -1,16 +1,16 @@
 # Graph Report - apptonomia  (2026-07-18)
 
 ## Corpus Check
-- 320 files · ~304,224 words
+- 327 files · ~330,498 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2285 nodes · 3924 edges · 350 communities (291 shown, 59 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 97 edges (avg confidence: 0.71)
+- 2009 nodes · 3570 edges · 333 communities (274 shown, 59 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 90 edges (avg confidence: 0.69)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f41d93e6`
+- Built from commit: `45621647`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -94,10 +94,10 @@
 - Coloring Activity Logic
 - Pairs Activity Logic
 - Shop Activity Page
-- Rules (.cline)
+- 4. Diseño paso a paso
 - Piano Keys Activity Page
 - Js (Assets)
-- Rules (.cline)
+- app.js
 - Patterns Activity Data
 - Tools Files
 - Rename Tool Slugs.js (Scripts)
@@ -157,6 +157,10 @@
 - Where Is Activity Data
 - Where To Store Activity Data
 - Words Activity Data
+- Apptonomia
+- Apptonomia
+- Documentación de Apptonomia
+- Roles del proyecto
 - Clock Activity Page
 - Coloring Activity Page
 - Differences Activity Page
@@ -169,33 +173,14 @@
 - Quantities Activity Page
 - Sentence Activity Page
 - Technical information
-- Información técnica
 - Guide for professionals and families
-- Guía para profesionales y familias
-- 5. Recipe: adding a new language (example: French, `fr`)
-- 5. Receta: añadir un idioma nuevo (ejemplo: francés, `fr`)
 - app.js
-- Activity catalog
-- Quick guide
-- Catálogo de actividades
 - Guía rápida de uso
-- Contributing to Apptonomia
-- Contribuir a Apptonomia
-- CONTRIBUTING.md
 - Apptonomia
-- SPEC.md — Product definition
-- Apptonomia
-- SPEC.md — Definición del producto
 - equipo.md
-- CLAUDE.md — Flujo para agentes IA
 - manifest.json
 - app.js
-- Banco de palabras — Diccionario
-- Apptonomia
-- Apptonomia
 - Los tres roles del proyecto (ES)
-- Project roles
-- Roles del proyecto
 - 🔢 Pensar y contar — Razonamiento y matemáticas module
 
 ## God Nodes (most connected - your core abstractions)
@@ -205,10 +190,10 @@
 4. `App.storage shared script module` - 18 edges
 5. `App.feedback shared script module` - 18 edges
 6. `Service worker (sw.js) registration target` - 18 edges
-7. `Hidden route /equipo/ — Guía para el equipo de apoyo` - 16 edges
-8. `Quick guide` - 15 edges
-9. `Guía rápida de uso` - 15 edges
-10. `pintarTodo()` - 14 edges
+7. `Guía rápida de uso` - 15 edges
+8. `Hidden route /equipo/ — Guía para el equipo de apoyo` - 15 edges
+9. `pintarTodo()` - 14 edges
+10. `renderVisual()` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `AGENTS.md (compatibility pointer)` --semantically_similar_to--> `agent.md (compatibility pointer)`  [INFERRED] [semantically similar]
@@ -219,18 +204,15 @@
   CONTRIBUTING.md → CONTRIBUTING.es.md
 - `The three project roles (EN)` --semantically_similar_to--> `Three project roles (End user, Support, Construction)`  [INFERRED] [semantically similar]
   CONTRIBUTING.md → doc/en/roles.md
-- `Fase 2: progreso local útil y no punitivo` --semantically_similar_to--> `Local progress contract (localStorage limits)`  [INFERRED] [semantically similar]
-  PLAN.md → doc/en/SPEC.md
+- `nuevaEscena()` --indirect_call--> `rel()`  [INFERRED]
+  tools/theatre/app.js → scripts/check.js
 
 ## Import Cycles
 - None detected.
 
 ## Hyperedges (group relationships)
-- **Cline Memory Bank core file structure** — cline_rules_memory_bank_rule_memorybank, cline_rules_memory_bank_rule_projectbrief, cline_rules_memory_bank_rule_productcontext, cline_rules_memory_bank_rule_activecontext, cline_rules_memory_bank_rule_systempatterns, cline_rules_memory_bank_rule_techcontext, cline_rules_memory_bank_rule_progress [EXTRACTED 1.00]
 - **Six-module therapeutic taxonomy shared across product spec, catalog and settings progress view** — doc_en_spec_spec, doc_en_activities_activities, ajustes_index_ajustespage [INFERRED 0.85]
-- **Three-role project model (end user, support, construction) restated across roles and contributing docs** — doc_en_roles_roles, contributing, contributing_es [EXTRACTED 1.00]
 - **Multi-file locale loading implemented across pages** — doc_es_i18n_multifile_system, site_index, equipo_index, presentacion_index [INFERRED 0.85]
-- **Six therapeutic modules structure shared across product/docs/UI** — doc_es_spec_six_therapeutic_modules, site_index, equipo_index, presentacion_index, doc_es_tecnico [INFERRED 0.80]
 - **Hidden routes family (equipo/, presentacion/)** — doc_es_tecnico_hidden_routes, equipo_index, presentacion_index [EXTRACTED 1.00]
 - **Shared board-game shell (tablero + level select + rival + help)** — tools_checkers_index_page, tools_chess_index_page, tools_connect_four_index_page, tools_domino_index_page [INFERRED 0.85]
 - **Situational judgment quiz shell (situacion picto/texto + pregunta + opciones + explicacion)** — tools_friends_index_page, tools_my_body_index_page, tools_emergencies_index_page [INFERRED 0.85]
@@ -242,19 +224,19 @@
 - **El Monedero (Wallet) tool bundles six money-literacy activities behind one shared menu/level/end-screen shell** — tools_wallet_index_contar, tools_wallet_index_pagar, tools_wallet_index_conquepago, tools_wallet_index_cambio, tools_wallet_index_hucha, tools_wallet_index_redondeo [EXTRACTED 1.00]
 - **Apptonomia PWA icon set: SVG source plus 192px and 512px PNG exports, rounded-square badge with blue ring and green checkmark** — assets_img_icono_svg_icon, assets_img_icono_192_icon, assets_img_icono_512_icon [INFERRED 0.85]
 
-## Communities (350 total, 59 thin omitted)
+## Communities (333 total, 59 thin omitted)
 
 ### Community 0 - "Keyboard Typing Activity Logic"
 Cohesion: 0.10
 Nodes (49): actualizarEstrellas(), actualizarGuia(), actualizarOpcionesUI(), actualizarReto(), bonito(), cargarPaso(), charEsperado(), clavesTipeables() (+41 more)
 
 ### Community 1 - "Es Docs"
-Cohesion: 0.16
-Nodes (27): Multi-file per-locale i18n system (strings.<locale>.js), 🎯 Puntería y manos — Coordinación y motricidad module, 📋 Mi día a día — Autonomía y hogar module, 💜 Emociones module, 💬 Lenguaje y palabras module, 🧠 Memoria y atención module, No-pressure / error-never-punishes principle, Six Therapeutic Modules system (+19 more)
+Cohesion: 0.17
+Nodes (26): Multi-file per-locale i18n system (strings.<locale>.js), 🎯 Puntería y manos — Coordinación y motricidad module, 📋 Mi día a día — Autonomía y hogar module, 💜 Emociones module, 💬 Lenguaje y palabras module, 🧠 Memoria y atención module, No-pressure / error-never-punishes principle, Six Therapeutic Modules system (+18 more)
 
 ### Community 2 - "En Docs"
-Cohesion: 0.09
-Nodes (36): agent.md (compatibility pointer), AGENTS.md (compatibility pointer), Ajustes (Settings) hidden-route page, CLAUDE.md — AI Agent Workflow, graphify usage rules, tools/dictionary activity (as consumer of word bank), Dictionary Word Bank (content/dictionary), activities.md (EN) — Activity Catalog (+28 more)
+Cohesion: 0.15
+Nodes (21): agent.md (compatibility pointer), AGENTS.md (compatibility pointer), Ajustes (Settings) hidden-route page, CLAUDE.md — AI Agent Workflow, graphify usage rules, activities.md (EN) — Activity Catalog, Module 1: Coordination and motor skills, Module 2: Autonomy and home (+13 more)
 
 ### Community 3 - "Chess Activity Logic"
 Cohesion: 0.14
@@ -281,8 +263,8 @@ Cohesion: 0.25
 Nodes (31): App.dinero (money) shared script module, App.feedback shared script module, App.i18n shared script module, App.storage shared script module, App.tts shared script module, App.utils shared script module, Service worker (sw.js) registration target, Historias (Stories) tool page (+23 more)
 
 ### Community 9 - "Package"
-Cohesion: 0.04
-Nodes (47): author, description, devDependencies, firebase-tools, playwright, keywords, license, name (+39 more)
+Cohesion: 0.07
+Nodes (26): author, description, devDependencies, firebase-tools, playwright, keywords, license, name (+18 more)
 
 ### Community 10 - "Checkers Activity Logic"
 Cohesion: 0.22
@@ -485,12 +467,12 @@ Cohesion: 0.36
 Nodes (11): guardar(), iniciarRonda(), pintarEstrellas(), pintarNiveles(), pintarProgreso(), pintarSlots(), render(), siguiente() (+3 more)
 
 ### Community 60 - "App.js (Ajustes)"
-Cohesion: 0.33
-Nodes (8): importProgress(), renderActivityProgress(), renderPreferences(), renderState(), resetApp(), resetPerson(), savePreference(), validateBackup()
+Cohesion: 0.25
+Nodes (8): tools/dictionary activity (as consumer of word bank), Dictionary Word Bank (content/dictionary), App.i18n core module, es/en binary spots to generalize, Cultural content non-literal translation rule, I18N.md (EN) — Multilingual Architecture, Multi-file strings.<locale>.js system, Number/money/time format rule (long vs short scale, separators)
 
 ### Community 61 - "Manifest"
-Cohesion: 0.18
-Nodes (10): background_color, description, display, icons, lang, name, scope, short_name (+2 more)
+Cohesion: 0.05
+Nodes (43): 10. Cross references, 1. Principles that are never broken, 2.1 Mandatory traits, 2.2 What the activity **must not** do, 2. How an activity should be, 3. Quick checklist of the 13 accessibility rules, 4. Step-by-step design, 5.1 Be very didactic (+35 more)
 
 ### Community 62 - "Comedy Club Activity Logic"
 Cohesion: 0.40
@@ -560,9 +542,9 @@ Nodes (7): destapar(), empezar(), guardar(), pintarContador(), pintarEstrellas()
 Cohesion: 0.25
 Nodes (8): Mis Rutinas (tool), La Tienda (tool), Shop: ¿Mucho o poco? activity, Shop: ¿Qué me queda? activity, Shop: Una compra activity, La Compra (tool), Shopping: Mi lista de la compra activity, Shopping: ¿En qué sección? activity
 
-### Community 79 - "Rules (.cline)"
-Cohesion: 0.29
-Nodes (7): activeContext.md, Cline Memory Bank, productContext.md, progress.md, projectbrief.md, systemPatterns.md, techContext.md
+### Community 79 - "4. Diseño paso a paso"
+Cohesion: 0.05
+Nodes (43): 10. Referencias cruzadas, 1. Principios que nunca se rompen, 2.1 Rasgos obligatorios, 2.2 Lo que la actividad **no** debe hacer, 2. Cómo debe ser una actividad, 3. Checklist rápido de las 13 reglas de accesibilidad, 4. Diseño paso a paso, 5.1 Ser muy didáctico (+35 more)
 
 ### Community 80 - "Piano Keys Activity Page"
 Cohesion: 0.29
@@ -572,9 +554,9 @@ Nodes (7): Parejas (tool), Piano (tool), Piano: Canciones mode, Piano: Composito
 Cohesion: 0.53
 Nodes (3): elegirVoz(), idiomaActivo(), speak()
 
-### Community 84 - "Rules (.cline)"
-Cohesion: 0.40
-Nodes (5): Style Response Rule, token-efficiency (referenced rule), BAML format, Thinking Delivery Rule, TOON format
+### Community 84 - "app.js"
+Cohesion: 0.24
+Nodes (18): bank(), buildHint(), check(), clearInput(), escapeHtml(), finish(), goStart(), init() (+10 more)
 
 ### Community 85 - "Patterns Activity Data"
 Cohesion: 0.40
@@ -620,85 +602,45 @@ Nodes (3): La Oca (tool), El Camino (tool), Puzzle (tool)
 Cohesion: 1.00
 Nodes (3): ¿Qué no encaja? (tool), Patrones (tool), Adivinanzas (tool)
 
+### Community 145 - "Apptonomia"
+Cohesion: 0.50
+Nodes (4): Apptonomia, 📚 Documentation, 📄 Other repo documents, 👥 Roles in the project
+
+### Community 146 - "Apptonomia"
+Cohesion: 0.50
+Nodes (4): Apptonomia, 📚 Documentación, 📄 Otros documentos del repo, 👥 Roles en el proyecto
+
+### Community 147 - "Documentación de Apptonomia"
+Cohesion: 0.67
+Nodes (3): Documentación de Apptonomia, 📂 Estructura de la documentación, 🧭 Por dónde empezar según tu perfil
+
+### Community 148 - "Roles del proyecto"
+Cohesion: 0.67
+Nodes (3): 🗺️ Por dónde empezar, según tu perfil, 🤝 Proyecto multidisciplinar, Roles del proyecto
+
 ### Community 312 - "Technical information"
 Cohesion: 0.05
 Nodes (42): 10. Recipe: adding a new therapeutic module (area), 11. PWA and service worker, 12.1 Local server, 12.2 Syntax and structure checks, 12.3 Smoke test, 12.4 Cross-browser and cross-device test, 12.5 Deployment, 12. Execution, verification and deployment (+34 more)
-
-### Community 313 - "Información técnica"
-Cohesion: 0.05
-Nodes (42): 10. Receta: añadir un módulo terapéutico nuevo, 11. PWA y service worker, 12.1 Servidor local, 12.2 Comprobaciones de sintaxis y estructura, 12.3 Smoke test, 12.4 Test cross-browser y cross-device, 12.5 Despliegue, 12. Ejecución, verificación y despliegue (+34 more)
 
 ### Community 314 - "Guide for professionals and families"
 Cohesion: 0.06
 Nodes (33): Activities by therapeutic goal, Activity selection, Adaptations, Audio doesn't work, Credits, Data, Developing fine motor skills, Difficulty level (+25 more)
 
-### Community 315 - "Guía para profesionales y familias"
-Cohesion: 0.06
-Nodes (33): Actividades según objetivo terapéutico, Adaptaciones, Cobertura de objetivos terapéuticos, Contenido sensible, Créditos, Cómo usar Apptonomia en terapia, Datos, Desarrollar motricidad fina (+25 more)
-
-### Community 316 - "5. Recipe: adding a new language (example: French, `fr`)"
-Cohesion: 0.07
-Nodes (27): 0. Multi-file system (recent change), 1.1 `assets/js/i18n.js` — core, 1.2 Common keys (`core.*`, `feedback.*`), 1.3 `strings.<locale>.js` per tool, 1.4 Where the text lives: three `data.js` patterns, 1.5 HTML: `data-i18n*` attributes, 1.6 Mandatory script load order, 1.7 Language selector (landing) (+19 more)
-
-### Community 317 - "5. Receta: añadir un idioma nuevo (ejemplo: francés, `fr`)"
-Cohesion: 0.07
-Nodes (27): 0. Sistema multi-archivo (cambio reciente), 1.1 `assets/js/i18n.js` — núcleo, 1.2 Claves comunes (`core.*`, `feedback.*`), 1.3 `strings.<locale>.js` de cada herramienta, 1.4 Dónde vive el texto: tres patrones de `data.js`, 1.5 HTML: atributos `data-i18n*`, 1.6 Orden de carga de scripts (obligatorio), 1.7 Selector de idioma (landing) (+19 more)
-
 ### Community 318 - "app.js"
-Cohesion: 0.23
-Nodes (25): answerOptions(), checkAnswer(), dotRow(), equationText(), fill(), hide(), init(), nextFact() (+17 more)
-
-### Community 319 - "Activity catalog"
-Cohesion: 0.09
-Nodes (23): Activities by difficulty level, Activities to start with, Activity catalog, Advanced activities, Board game activities, Board games, How to choose the right activity, If you want to be more independent at home (+15 more)
-
-### Community 320 - "Quick guide"
-Cohesion: 0.09
-Nodes (23): 1. Enter the app, Audio doesn't play, Buttons in each activity, Changing language, Choosing an activity, Earning stars, Getting started, How audio works (+15 more)
-
-### Community 321 - "Catálogo de actividades"
-Cohesion: 0.09
-Nodes (23): Actividades avanzadas, Actividades de juegos de mesa, Actividades intermedias, Actividades para empezar, Actividades por nivel de dificultad, Catálogo de actividades, Cómo elegir la actividad adecuada, Juegos de mesa (+15 more)
+Cohesion: 0.16
+Nodes (37): answerOptions(), backFromQuiz(), checkAnswer(), decomposeRound(), divideRound(), dotRow(), equationText(), fill() (+29 more)
 
 ### Community 322 - "Guía rápida de uso"
 Cohesion: 0.09
 Nodes (23): 1. Entrar en la aplicación, Cambiar el idioma, Configuración personal, ✅ Cuando aciertas, 🔶 Cuando no es correcto, Cómo funciona el audio, Elegir una actividad, En actividades con niveles (+15 more)
 
-### Community 323 - "Contributing to Apptonomia"
-Cohesion: 0.10
-Nodes (20): Branch conventions, Checklist before opening a PR, Commits, 📞 Communication, Contributing to Apptonomia, For any participating profile, 🔀 GitHub workflow, 💻 Guide for construction people (developers) (+12 more)
-
-### Community 324 - "Contribuir a Apptonomia"
-Cohesion: 0.10
-Nodes (20): 🙏 Agradecimientos, Checklist antes de abrir PR, Commits, 📞 Comunicación, Contribuir a Apptonomia, Convenciones de ramas, Cómo empezar, Cómo empezar (+12 more)
-
-### Community 325 - "CONTRIBUTING.md"
-Cohesion: 0.33
-Nodes (4): Agent Configuration, Agent Configuration, Apptonomia documentation, 📂 Documentation structure
-
-### Community 326 - "Apptonomia"
-Cohesion: 0.12
-Nodes (17): 1. Open the app, 2. Choose an activity, 3. Change language, ✅ Accessible to everyone, Apptonomia, Credits and license, ✅ Designed for independence, Example of use (+9 more)
-
-### Community 327 - "SPEC.md — Product definition"
-Cohesion: 0.12
-Nodes (17): 1.1 What it is and what it isn't, 1.2 Target audience, 1. Product, 2.1 Therapeutic objectives, 2.2 UX goals, 2. Product goals, 3.1 Error never punishes, 3.2 No time pressure (+9 more)
-
 ### Community 328 - "Apptonomia"
 Cohesion: 0.12
 Nodes (17): 1. Abrir la aplicación, 2. Elegir una actividad, 3. Cambiar el idioma, ✅ Accesible para todos, Actividades destacadas, Apptonomia, Características principales, Créditos y licencia (+9 more)
 
-### Community 329 - "SPEC.md — Definición del producto"
-Cohesion: 0.12
-Nodes (17): 1.1 Qué es y qué no es, 1.2 Público objetivo, 1. Producto, 2.1 Objetivos terapéuticos, 2.2 Objetivos de UX, 2. Objetivos del producto, 3.1 El error nunca castiga, 3.2 Sin presión temporal (+9 more)
-
 ### Community 330 - "equipo.md"
-Cohesion: 0.46
-Nodes (5): Therapeutic objective coverage taxonomy, Documentación de Apptonomia, 📂 Estructura de la documentación, Local progress/storage contract (estrellas, completado, localStorage only), 13 mandatory accessibility rules for new activities
-
-### Community 331 - "CLAUDE.md — Flujo para agentes IA"
-Cohesion: 0.18
-Nodes (11): 1. Fuentes canónicas, 2.1 Al empezar una sesión, 2.2 Antes de editar, 2.3 Durante el cambio, 2.4 Antes de terminar, 2. Flujo obligatorio de trabajo, 3. Operaciones externas y destructivas, 4. Qué no debe volver a este archivo (+3 more)
+Cohesion: 0.26
+Nodes (4): Therapeutic objective coverage taxonomy, Local progress/storage contract (estrellas, completado, localStorage only), 13 mandatory accessibility rules for new activities, PWA update notice (controllerchange detection)
 
 ### Community 332 - "manifest.json"
 Cohesion: 0.18
@@ -708,57 +650,33 @@ Nodes (10): background_color, description, display, icons, lang, name, scope, sh
 Cohesion: 0.33
 Nodes (8): importProgress(), renderActivityProgress(), renderPreferences(), renderState(), resetApp(), resetPerson(), savePreference(), validateBackup()
 
-### Community 334 - "Banco de palabras — Diccionario"
-Cohesion: 0.33
-Nodes (5): Banco de palabras — Diccionario, Estado, Formato, Origen del contenido, Siguiente paso si se quiere usar
-
-### Community 335 - "Apptonomia"
-Cohesion: 0.50
-Nodes (4): Apptonomia, 📚 Documentation, 📄 Other repo documents, 👥 Roles in the project
-
-### Community 336 - "Apptonomia"
-Cohesion: 0.50
-Nodes (4): Apptonomia, 📚 Documentación, 📄 Otros documentos del repo, 👥 Roles en el proyecto
-
 ### Community 337 - "Los tres roles del proyecto (ES)"
 Cohesion: 1.00
 Nodes (3): Los tres roles del proyecto (ES), The three project roles (EN), Three project roles (End user, Support, Construction)
-
-### Community 338 - "Project roles"
-Cohesion: 0.67
-Nodes (3): 🤝 Multidisciplinary project, Project roles, 🗺️ Where to start, by profile
-
-### Community 339 - "Roles del proyecto"
-Cohesion: 0.67
-Nodes (3): 🗺️ Por dónde empezar, según tu perfil, 🤝 Proyecto multidisciplinar, Roles del proyecto
 
 ### Community 340 - "🔢 Pensar y contar — Razonamiento y matemáticas module"
 Cohesion: 0.67
 Nodes (3): 🔢 Pensar y contar — Razonamiento y matemáticas module, Pairs/Parejas as the canonical activity code example, Parejas / Pairs (therapeutic activity, canonical code example)
 
-## Ambiguous Edges - Review These
-- `Style Response Rule` → `token-efficiency (referenced rule)`  [AMBIGUOUS]
-  .cline/rules/style-response.rule.md · relation: references
-
 ## Knowledge Gaps
-- **533 isolated node(s):** `name`, `short_name`, `description`, `lang`, `start_url` (+528 more)
+- **330 isolated node(s):** `name`, `short_name`, `description`, `lang`, `start_url` (+325 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **59 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **What is the exact relationship between `Style Response Rule` and `token-efficiency (referenced rule)`?**
-  _Edge tagged AMBIGUOUS (relation: references) - confidence is low._
-- **Why does `I18N.md — Arquitectura multiidioma de Apptonomia` connect `5. Receta: añadir un idioma nuevo (ejemplo: francés, `fr`)` to `equipo.md`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
-- **Why does `Technical information` connect `Technical information` to `CONTRIBUTING.md`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **Why does `Contributing to Apptonomia` connect `Contributing to Apptonomia` to `CONTRIBUTING.md`?**
+- **Why does `Guide to creating activities / tools` connect `Manifest` to `equipo.md`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
+- **Why does `Technical information` connect `Technical information` to `equipo.md`?**
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **Why does `Guide for professionals and families` connect `Guide for professionals and families` to `equipo.md`?**
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **What connects `name`, `short_name`, `description` to the rest of the system?**
-  _533 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _330 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Keyboard Typing Activity Logic` be split into smaller, more focused modules?**
   _Cohesion score 0.1003921568627451 - nodes in this community are weakly interconnected._
-- **Should `En Docs` be split into smaller, more focused modules?**
-  _Cohesion score 0.08858858858858859 - nodes in this community are weakly interconnected._
+- **Should `Chess Activity Logic` be split into smaller, more focused modules?**
+  _Cohesion score 0.140534262485482 - nodes in this community are weakly interconnected._
+- **Should `Shop Activity Logic` be split into smaller, more focused modules?**
+  _Cohesion score 0.13658536585365855 - nodes in this community are weakly interconnected._

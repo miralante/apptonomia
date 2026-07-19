@@ -358,6 +358,7 @@
       ? t('finalSummary').replace('{n}', earned).replace('{total}', progress.estrellas)
       : t('repeatedSummary');
     finalSummaryEl.textContent = summary;
+$('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.celebrate(App.i18n.pick('feedback.success'), function () {
       show(endScreen);
       App.tts.speak(t('core.roundComplete') + ' ' + summary);

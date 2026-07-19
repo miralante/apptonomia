@@ -77,4 +77,11 @@
 @media (max-width: 480px) {
   .tablero { grid-template-columns: repeat(3, minmax(72px, 1fr)); gap: 8px; }
   .celda { min-height: 72px; font-size: 36px; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
 }

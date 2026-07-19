@@ -111,4 +111,11 @@
   .zona-grids { gap: var(--espacio); }
   .celda-modelo { width: 26px; height: 26px; }
   .celda-tuya { width: 64px; height: 64px; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
 }

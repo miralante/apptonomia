@@ -357,6 +357,7 @@
       progreso.victorias[nivel.id] = (progreso.victorias[nivel.id] || 0) + 1;
       guardar();
       App.feedback.celebrate(t(clave));
+$('#transferencia').textContent = App.i18n.t('transferencia');
     } else if (tipo === 'cerradoEmpate') {
       App.feedback.success(feedbackEl);
       App.tts.speak(t(clave));

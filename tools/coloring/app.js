@@ -115,6 +115,7 @@
       ? App.i18n.t('estrellasUna')
       : App.i18n.t('estrellasVarias').replace('{n}', progreso.estrellas);
     $('#resumenFinal').textContent = partePintados + parteEstrellas;
+$('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.celebrate(App.i18n.t('finalTitulo'));
   }
 

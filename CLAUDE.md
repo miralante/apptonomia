@@ -1,38 +1,35 @@
-# CLAUDE.md — Flujo para agentes IA
+﻿# CLAUDE.md — AI agent workflow
 
-## Idioma del proyecto
+## Language policy
 
-- **Interfaz de usuario**: multilingüe. Idiomas activos por defecto: **español (`es`)** e **inglés (`en`)**, con `es` como idioma por defecto y fallback cuando una clave falta o el idioma detectado no está soportado.
-- **Código técnico**: **siempre en inglés** — variables, funciones, identificadores, comentarios y mensajes de commit. Los textos de UI van en `strings.<locale>.js`, pero las **claves** de esos diccionarios son código y van en inglés.
-- Fuente canónica de la política completa (núcleo `App.i18n`, formato de números/horas, selector de la landing, receta para añadir un idioma): [`doc/es/I18N.md`](doc/es/I18N.md) · [`doc/en/I18N.md`](doc/en/I18N.md) y [`doc/es/tecnico.md`](doc/es/tecnico.md) §1.
+- **UI**: multilingual. Default locales: **Spanish (`es`)** and **English (`en`)**; `es` is the default and fallback when a key is missing or the detected locale is unsupported.
+- **Technical code**: **always English** — variables, functions, identifiers, comments, and commit messages. UI text lives in `strings.<locale>.js`, but dictionary **keys** are code and must be English.
+- Full policy (App.i18n core, number/time formatting, landing selector, recipe to add a locale): [`doc/en/I18N.md`](doc/en/I18N.md) · [`doc/es/I18N.md`](doc/es/I18N.md) and [`doc/en/technical.md`](doc/en/technical.md) §1.
 
-## 1. Fuentes canónicas
+## 1. Canonical sources
 
-Antes de actuar, identifica la
-materia del cambio y lee su fuente canónica:
+The canonical source for each topic prevails on that topic. If two documents conflict, do not turn `CLAUDE.md` into a copy of both: cross-check the code and fix the outdated doc in its canonical location.
 
-| Tema | Fuente canónica |
+| Topic | Canonical source |
 |---|---|
-| Qué es el producto, para quién y principios no negociables | [`doc/es/SPEC.md`](doc/es/SPEC.md) · [`doc/en/SPEC.md`](doc/en/SPEC.md) |
-| Roles del proyecto (persona usuaria, apoyo, construcción) y quién mira cada documento primero | [`doc/es/roles.md`](doc/es/roles.md) · [`doc/en/roles.md`](doc/en/roles.md) |
-| Arquitectura, estructura, anatomía, APIs, contratos, pruebas y despliegue | [`doc/es/tecnico.md`](doc/es/tecnico.md) · [`doc/en/technical.md`](doc/en/technical.md) |
-| Internacionalización | [`doc/es/I18N.md`](doc/es/I18N.md) · [`doc/en/I18N.md`](doc/en/I18N.md) |
-| Catálogo de actividades | [`doc/es/actividades.md`](doc/es/actividades.md) · [`doc/en/activities.md`](doc/en/activities.md) |
-| Cobertura y orientación terapéutica | [`doc/es/equipo.md`](doc/es/equipo.md) · [`doc/en/team.md`](doc/en/team.md) |
-| Roadmap y decisiones de producto cerradas | Sigue en Git: cada PR deja su mensaje y la sesión actual puede usar `git log` para reconstruir el camino. |
-| Flujo de contribución humana | [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) · [`CONTRIBUTING.md`](CONTRIBUTING.md) |
-| Flujo operativo de agentes IA | `CLAUDE.md` (este archivo) |
+| Product, audience, non-negotiable principles | [`doc/en/SPEC.md`](doc/en/SPEC.md) · [`doc/es/SPEC.md`](doc/es/SPEC.md) |
+| Project roles (user, support, build) and who reads what first | [`doc/en/roles.md`](doc/en/roles.md) · [`doc/es/roles.md`](doc/es/roles.md) |
+| Architecture, structure, activity anatomy, APIs, contracts, tests, deploy | [`doc/en/technical.md`](doc/en/technical.md) · [`doc/es/tecnico.md`](doc/es/tecnico.md) |
+| Internationalization | [`doc/en/I18N.md`](doc/en/I18N.md) · [`doc/es/I18N.md`](doc/es/I18N.md) |
+| Activity catalog | [`doc/en/activities.md`](doc/en/activities.md) · [`doc/es/actividades.md`](doc/es/actividades.md) |
+| Activity creation guide (didactic, gamification, persuasion, neuromarketing) | [`doc/en/creating-activities-guide.md`](doc/en/creating-activities-guide.md) · [`doc/es/guia-crear-actividades.md`](doc/es/guia-crear-actividades.md) |
+| Coverage and therapeutic guidance | [`doc/en/team.md`](doc/en/team.md) · [`doc/es/equipo.md`](doc/es/equipo.md) |
+| Roadmap and closed product decisions | Git only: every PR leaves a message; reconstruct with `git log`. |
+| Human contribution flow | [`CONTRIBUTING.md`](CONTRIBUTING.md) · [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) |
+| AI agent operational flow | `CLAUDE.md` (this file) |
 
-La fuente canónica de cada materia prevalece para esa materia. Si dos documentos
-se contradicen, no conviertas `CLAUDE.md` en una copia de ambos: contrasta el
-código y corrige el documento desactualizado en su ubicación canónica.
+## 2. Mandatory workflow
 
-## 2. Flujo obligatorio de trabajo
+This repo may receive changes from the user and from several parallel sessions. Read the affected source files before editing; never overwrite in-flight work — re-read the file and reconcile if it changed since your last read. Update the canonical source for the topic, not a copy in `CLAUDE.md`. Keep `i18n` parity per the I18N docs. For activity changes, follow `technical.md` §9 **and read [`creating-activities-guide.md`](doc/en/creating-activities-guide.md) first** (didactic, gamification, persuasion and neuromarketing techniques for our audience); if a guide rule conflicts with `technical.md`, `technical.md` wins. Update the catalogs and guides it names. Keep changes minimal and on-target; do not bundle unrelated refactors.
 
-### 2.1 Al empezar una sesión
+### 2.1 Session start
 
-Este repositorio puede recibir cambios del usuario y de varias sesiones en
-paralelo. Ejecuta antes de modificar nada:
+Run before any modification:
 
 ```bash
 git status --short
@@ -40,71 +37,37 @@ git log --oneline -3
 node scripts/check.js
 ```
 
-- Lee y conserva cualquier cambio sin confirmar que no sea tuyo.
-- No uses `git reset --hard`, `git clean`, `git checkout -- <archivo>` ni otra
-  operación que descarte trabajo para «arreglar» el estado inicial.
-- Si `check.js` ya falla, averigua si el fallo pertenece al trabajo en curso antes
-  de añadir cambios nuevos.
+Keep uncommitted changes that are not yours. Never use `git reset --hard`, `git clean`, `git checkout -- <file>`, or any other operation that discards work to "fix" the initial state. If `check.js` already fails, find out whether the failure belongs to the in-flight work before adding new changes.
 
-### 2.2 Antes de editar
+### 2.2 Before editing
 
-1. Clasifica la tarea con la tabla de fuentes canónicas.
-2. Lee las secciones relevantes y los archivos de código afectados.
-3. Para UI, contenido o actividades, revisa siempre `SPEC.md` §3–§4 y
-   `tecnico.md` §5.
-4. El plan de proyecto cerrado vive en `git log`. La materia y el documento
-   canónico a usar dependen del tema, no de una hoja de ruta externa.
+1. Classify the task with the canonical-sources table above.
+2. Read the relevant sections and the affected code files.
+3. For UI, content, or activities, always check `SPEC.md` §3–§4 and `technical.md` §5.
+4. Closed project plan lives in `git log`. The canonical doc to use depends on the topic, not on an external roadmap.
 
-### 2.3 Durante el cambio
+### 2.3 Before finishing
 
-- Haz el cambio mínimo y coherente que resuelva la tarea; no mezcles refactors
-  ajenos al objetivo.
-- No sobrescribas trabajo paralelo. Si el archivo cambió desde la última lectura,
-  vuelve a leerlo y reconcilia las dos intenciones.
-- Actualiza la fuente canónica correspondiente, no una copia en `CLAUDE.md`.
-- Si cambia texto de interfaz, conserva la paridad de idiomas definida en
-  `doc/es/I18N.md` y `doc/en/I18N.md`.
-- Si cambia una actividad, sigue la receta de `tecnico.md` §9 y actualiza los
-  catálogos y guías que esa receta indica (actividades, equipo).
+1. Always run `node scripts/check.js`.
+2. Run the relevant tests described in `technical.md` §12.
+3. Check links if you modified documentation.
+4. Report only verifications you actually ran; clearly flag any remaining manual tests.
 
-### 2.4 Antes de terminar
+## 3. External and destructive operations
 
-1. Ejecuta siempre `node scripts/check.js`.
-2. Ejecuta las pruebas relevantes descritas en `tecnico.md` §12.
-3. Comprueba los enlaces si modificaste documentación.
-4. Informa solo de verificaciones realmente ejecutadas; indica con claridad las
-   pruebas manuales que queden pendientes.
+- A deploy — even to a temporary Firebase channel — is a network operation: request explicit approval before running it. Commands are in `technical.md` §12.5.
+- Never publish, push, or open/close external resources without an explicit request or authorization.
+- Never delete or revert changes from the user or another session to simplify your task; integrate them or explain the conflict.
 
-## 3. Operaciones externas y destructivas
+## 4. Out of scope for this file
 
-- Un despliegue, incluso a un canal temporal de Firebase, realiza una operación
-  de red: solicita aprobación explícita antes de ejecutarlo. Los comandos están
-  en `tecnico.md` §12.5.
-- No publiques, hagas `push` ni abras/cierres recursos externos sin petición o
-  autorización explícita.
-- No elimines ni reviertas cambios del usuario o de otra sesión para simplificar
-  tu tarea; intégralos o explica el conflicto.
-
-## 4. Qué no debe volver a este archivo
-
-No añadas aquí:
-
-- principios de producto o reglas de accesibilidad;
-- estructura del proyecto, anatomía de actividades, APIs o recetas;
-- catálogo o taxonomía terapéutica;
-- hojas de ruta, fases, backlog o estado actual;
-- crónicas de implementaciones y bugs ya resueltos.
-
-Esos contenidos pertenecen a las fuentes de §1. El historial detallado de cambios
-vive en Git; `CLAUDE.md` debe seguir siendo breve, operativo y estable.
+Do not add here: product principles, accessibility rules, project structure or activity anatomy, APIs/recipes, catalog or therapeutic taxonomy, roadmaps/phases/backlog, or chronicles of resolved bugs/implementations. Those belong to the §1 sources. Detailed change history lives in Git; `CLAUDE.md` must stay brief, operational, and stable.
 
 ## graphify
 
-This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+This project has a knowledge graph at `graphify-out/` with god nodes, community structure, and cross-file relationships.
 
-Rules:
-- For codebase questions, first run `graphify query "<question>"` when graphify-out/graph.json exists. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
-- If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
-- Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
+- For codebase questions, first run `graphify query "<question>"` when `graphify-out/graph.json` exists. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than `GRAPH_REPORT.md` or raw grep output.
+- If `graphify-out/wiki/index.md` exists, use it for broad navigation instead of raw source browsing.
+- Read `graphify-out/GRAPH_REPORT.md` only for broad architecture review or when `query`/`path`/`explain` do not surface enough context.
 - After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
-

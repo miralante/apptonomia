@@ -192,6 +192,7 @@
     show(endScreen);
     $('#finalSummary').textContent = t('finalSummary')
       .replace('{n}', correctCount).replace('{total}', progress.estrellas);
+$('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }
 

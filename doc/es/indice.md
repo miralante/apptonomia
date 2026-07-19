@@ -18,6 +18,7 @@ doc/
 │   ├── SPEC.md
 │   ├── README.md
 │   ├── guia-rapida.md
+│   ├── guia-crear-actividades.md
 │   ├── actividades.md
 │   ├── equipo.md
 │   ├── tecnico.md
@@ -28,6 +29,7 @@ doc/
     ├── SPEC.md
     ├── README.md
     ├── quick-guide.md
+    ├── creating-activities-guide.md
     ├── activities.md
     ├── team.md
     ├── technical.md
@@ -39,3 +41,16 @@ doc/
 Cómo contribuir y el resto de documentos de la raíz (`CLAUDE.md`, licencia…)
 están en el [`README.md`](../../README.md) y
 [`CONTRIBUTING.es.md`](../../CONTRIBUTING.es.md) del repositorio.
+
+---
+
+## 🧭 Por dónde empezar según tu perfil
+
+| Si quieres… | Empieza por |
+|---|---|
+| Entender qué es Apptonomia y para quién | [`SPEC.md`](SPEC.md) |
+| Ver la arquitectura y recetas técnicas | [`tecnico.md`](tecnico.md) |
+| **Crear una actividad nueva (diseño + técnicas didácticas, gamificación, neuromarketing)** | [`guia-crear-actividades.md`](guia-crear-actividades.md) |
+| Ver el catálogo de actividades | [`actividades.md`](actividades.md) |
+| Acompañar a una persona usuaria (familia/terapeuta) | [`equipo.md`](equipo.md) y [`team/`](../team/index.html) |
+| Añadir un idioma | [`I18N.md`](I18N.md) |

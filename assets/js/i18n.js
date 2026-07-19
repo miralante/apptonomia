@@ -159,6 +159,117 @@
     return valor[Math.floor(Math.random() * valor.length)];
   }
 
+  /**
+   * Returns a sub-tree (object/array) for the given key in the active
+   * language, falling back to the default locale. Unlike t(), it does
+   * NOT flatten arrays — it returns the structure as-is so data trees
+   * (escenarios, variantes, pasos...) can be accessed after registering
+   * them with App.i18n.register({data: {...}}, locale).
+   *
+   * Example:
+   *   // strings.es.js
+   *   App.i18n.register({ data: { escenarios: [{titulo: 'Acoso', ...}] } }, 'es');
+   *   // app.js
+   *   var DATOS = App.i18n.data('data');
+   */
+  function data(key) {
+    var loc = locale();
+    var valor = buscar(DICT[loc], key);
+    if (valor === undefined && loc !== POR_DEFECTO) {
+      valor = buscar(DICT[POR_DEFECTO], key);
+    }
+    return valor;
+  }
+
+  /**
+   * Returns the per-locale data tree, split by language: { es: {...}, en: {...} }.
+   *
+   * Background: legacy tools/<slug>/data.js had the form
+   *   const DATA = { es: { escenarios: [...] }, en: { escenarios: [...] } }
+   * and app.js accessed `DATA[App.i18n.locale()] || DATA.es` directly.
+   *
+   * After the i18n refactor, data.js is locale-neutral (only ids/types/flags)
+   * and the translated content lives in strings.<locale>.js registered as
+   * { data: { escenarios: [...] } }. This function rebuilds the legacy shape
+   * on demand by deep-merging the structure (registered via registerStructure,
+   * see below) with each locale's text tree, so existing app.js keeps working
+   * unchanged.
+   *
+   * If a tool never called registerStructure, the result is just the
+   * registered `data` trees in the legacy {es, en} shape.
+   */
+  function datos() {
+    var out = {};
+    SOPORTADOS.forEach(function (loc) {
+      var texto = (DICT[loc] && DICT[loc].data) || null;
+      var estructura = DICT[loc] && DICT[loc].__structure__;
+      out[loc] = mergeEstructuraTextos(estructura, texto);
+    });
+    return out;
+  }
+
+  /**
+   * Registers a locale-neutral structure tree (typically loaded from
+   * data.js). The structure has ids/types/booleans and no text. The
+   * text lives in strings.<locale>.js as a parallel tree registered
+   * with register({data: ...}, locale). Together they form the legacy
+   * {es, en} shape returned by datos().
+   */
+  function registerStructure(structure) {
+    /* Bind to every supported locale so datos() can find it for any of them. */
+    SOPORTADOS.forEach(function (loc) {
+      DICT[loc] = DICT[loc] || {};
+      DICT[loc].__structure__ = structure;
+    });
+  }
+
+  /**
+   * Deep-merges two parallel trees: structure (ids/types) + text (strings).
+   * For each key:
+   *   - if the value is an object/array in both, recurse
+   *   - if the key is in TEXT_FIELDS for the structure or appears in
+   *     text only, the text value wins
+   *   - everything else stays in the structure side
+   * Fields registered as text-only (titulo, texto, aviso, avisoSeguro,
+   * confirmacion, regla, contacto, relacion) are sourced from the text
+   * tree when present, otherwise kept from the structure.
+   */
+  var TEXT_FIELDS = {
+    titulo: 1, texto: 1, aviso: 1, avisoSeguro: 1,
+    confirmacion: 1, regla: 1, contacto: 1, relacion: 1
+  };
+  function mergeEstructuraTextos(estructura, texto) {
+    if (!estructura && !texto) return null;
+    if (!texto) return estructura;
+    if (!estructura) return texto;
+    if (Array.isArray(estructura)) {
+      return estructura.map(function (item, i) {
+        return mergeEstructuraTextos(item, Array.isArray(texto) ? texto[i] : null);
+      });
+    }
+    if (typeof estructura === 'object') {
+      var out = {};
+      var keys = new Set();
+      Object.keys(estructura).forEach(function (k) { keys.add(k); });
+      Object.keys(texto).forEach(function (k) { keys.add(k); });
+      keys.forEach(function (k) {
+        var sVal = estructura[k];
+        var tVal = texto[k];
+        if (TEXT_FIELDS[k]) {
+          out[k] = (tVal !== undefined) ? tVal : sVal;
+        } else if (Array.isArray(sVal) || Array.isArray(tVal)) {
+          out[k] = mergeEstructuraTextos(sVal, tVal);
+        } else if (sVal && typeof sVal === 'object') {
+          out[k] = mergeEstructuraTextos(sVal, tVal);
+        } else {
+          out[k] = (tVal !== undefined) ? tVal : sVal;
+        }
+      });
+      return out;
+    }
+    return texto !== undefined ? texto : estructura;
+  }
+
   function apply(root) {
     root = root || document;
     var nodos = root.querySelectorAll('[data-i18n]');
@@ -193,8 +304,11 @@
     setLocale: setLocale,
     lang: lang,
     register: register,
+    registerStructure: registerStructure,
     t: t,
     pick: pick,
+    data: data,
+    datos: datos,
     apply: apply
   };
 })();

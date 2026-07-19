@@ -108,4 +108,11 @@
 @media (max-width: 480px) {
   .tablero-sudoku { grid-template-columns: repeat(4, minmax(56px, 1fr)); gap: 4px; }
   .celda { min-height: 64px; font-size: 28px; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
 }

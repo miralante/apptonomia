@@ -199,7 +199,7 @@ You can have Apptonomia as if it were an app on your phone:
 
 If you need more information:
 
-- [Activity catalog](activities.md) — Complete list of 66 activities
+- [Activity catalog](activities.md) — Complete list of 68 activities
 - [Technical information](technical.md) — For developers and professionals
 - [Team page](../team/index.html) — Guide for families and professionals
 

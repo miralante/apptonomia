@@ -69,9 +69,15 @@
     activity: {
       "catch": {
         "name": 'Catch It',
-        "does": 'Taps a target that keeps changing position.',
+        "does": 'Taps a target that keeps changing position. Difficulty rises on its own, unannounced: first one target, then several at once, and later tapping them in the order of their numbers.',
         "works": 'Eye-hand coordination, precision, reaction time (never shown as a score).',
         "daily": 'Practice real aiming games together (throwing a ball into a basket, velcro darts).'
+      },
+      "connect-dots": {
+        "name": 'Connect the Dots',
+        "does": 'Touches numbers in order (5, 7 or 9 depending on the level); each correct tap draws a line to the next dot and, once finished, a closed shape appears (house, boat, star, arrow, fish, rocket...).',
+        "works": 'Gesture precision, following a numeric sequence, motor planning.',
+        "daily": 'Let them connect the dots in real puzzle books or draw by following numbers on paper.'
       },
       "keyboard-typing": {
         "name": 'Keyboard',
@@ -433,11 +439,29 @@
         "works": 'Advanced vocabulary with meaningful learning (Ausubel): the new word is anchored to a real-life example instead of memorized on its own. The hint on the first test mistake reuses that same example.',
         "daily": 'When a hard word comes up in a conversation or a book, pause and find a real-life example that explains it together.'
       },
+      "vocabulary": {
+        "name": 'Topic Vocabulary',
+        "does": 'For each round of 8 words: pick a block (general, autonomous life, health, social world) and a level (1=easy to 4=hard); then a card per word with its Plain Language meaning, a real-life example and the visible category, plus a 3-option test with distractors taken from the same block.',
+        "works": 'Adult vocabulary explained in Plain Language, organised by thematic block and difficulty level. It enables concrete therapeutic pathways (autonomous life, health, social) in a single activity.',
+        "daily": 'Pick together a block that is useful right now (for example, health or contracts) and start at the lowest level; move up when the person feels comfortable.'
+      },
       "spelling": {
         "name": 'Complete the Word',
         "does": 'For each group of 8 words: sees the word with one letter hidden and picks which of 3 letters spells it correctly (vowels, letters confused because they sound alike, silent letters and double letters).',
         "works": 'Spelling aimed at the language’s real errors, not generic ones: in English, homophones and silent letters; in Spanish, its own equivalent pairs. The hint on the first mistake reads the word out loud.',
         "daily": 'When they misspell a word, point out together which letter is wrong and why (how it sounds, whether it is silent, or a double letter).'
+      },
+      "mirror-letters": {
+        "name": 'Mirror Letters',
+        "does": 'Sees a big lowercase letter (b, d, p or q) and touches which of 3 letters matches it, not turned around. Level 1 trains only b/d, level 2 only p/q, level 3 mixes all four.',
+        "works": 'Visual discrimination of mirror-image letters, typical of visual dyslexia: telling apart shapes that only differ in orientation, a step before reading without reversing letters.',
+        "daily": 'When they mix up a b with a d (or a p with a q) while reading or writing, point out together which way each one faces.'
+      },
+      "colored-spelling": {
+        "name": 'Colored Spelling',
+        "does": 'For each level of 6 sentences: reads the full sentence (with a pictogram and a first-letter hint), types it in full and, on Check, sees each letter coloured according to whether it is correct (green), misspelled (pink), or missing (underlined).',
+        "works": 'Visual self-correction and free written production: the person sees their own exact mistakes at a glance without the app "punishing" them — it only marks them with colour so they can fix them and retry without pressure. It targets the same real errors as Complete the Word but from free writing instead of multiple choice, and makes repeated patterns in their own mistakes visible.',
+        "daily": 'Use the app while writing the shopping list, a note or an email: let the person write first and then go over the pink and underlined letters together.'
       },
       "word-search": {
         "name": 'Word Search',
@@ -467,8 +491,12 @@
         "name": 'My Body Tells Me',
         "does": 'Given a signal from the body (hunger, thirst, tiredness, pain, nerves…), chooses what to do to take care of themselves.',
         "works": 'Interoception: noticing the body’s own signals and acting on them, the missing bridge between How Do I Feel? and Calm. The basis of health-related autonomy.',
-        "daily": 'Help them put a name to what they notice in their body when something really happens to them.'
-      }
+        "daily": 'Help them put a name to what they notice in their body when something really happens to them.'      },
+      "goodmanners": {
+        "name": 'Good Manners',
+        "does": 'Practice courtesy phrases in everyday situations: saying thank you, asking politely, greeting, saying goodbye, giving way to others.',
+        "works": 'Basic social norms, social skills, respectful interaction.',
+        "daily": 'Reinforce these phrases in real life: celebrate when they use them spontaneously.'      }
     },
     "scopeNote1": 'Out of scope',
     "scopeNote2": ' for a self-guided website: gross motor skills and whole-body coordination (need physical space and a companion), teamwork (the app is for one person at a time), and evaluated spoken expression (the browser’s speech recognition is not reliable).',

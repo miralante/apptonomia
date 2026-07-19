@@ -1,6 +1,6 @@
 # Catálogo de actividades
 
-Apptonomia tiene **67 actividades** organizadas en **6 módulos** según el tipo de habilidad que trabajan.
+Apptonomia tiene **72 actividades** organizadas en **6 módulos** según el tipo de habilidad que trabajan.
 
 ---
 
@@ -13,6 +13,7 @@ Apptonomia tiene **67 actividades** organizadas en **6 módulos** según el tipo
 | Actividad | Descripción |
 |-----------|-------------|
 | **Atrapa** | Pulsa el objetivo que cambia de posición en la pantalla |
+| **Une los Puntos** | Une los números en orden para dibujar una figura |
 | **Teclado** | Aprende a escribir en el teclado del ordenador letra a letra |
 | **Trazos** | Repasa formas, letras y números con el dedo o el ratón |
 | **Colorear** | Pinta dibujos dividiendo las zonas con colores |
@@ -107,7 +108,7 @@ Apptonomia tiene **67 actividades** organizadas en **6 módulos** según el tipo
 
 | Actividad | Descripción |
 |-----------|-------------|
-| **Números** | Contar, valor de las cifras, cambio de posición (10 unidades → 1 decena… hasta el billón), fracciones, decimales, operaciones |
+| **Números** | Contar, valor de las cifras, cambio de posición (10 unidades → 1 decena… hasta el billón), fracciones, decimales, las cuatro operaciones (con la división como reparto) |
 | **Cantidades** | Practica poco y mucho, subir y bajar, aproximar y encontrar el número de en medio con una barra |
 | **Las Tablas** | Cuenta de cabeza (±1, ±2, ±3, ±5, ±10), tablas de sumar, descomposición llegando al 10 (7 + 5 = 7 + 3 + 2), tablas de multiplicar y división entre 10, con puntos de colores |
 | **Números Romanos** | Lee números romanos y reconoce en qué siglo estás |
@@ -130,6 +131,7 @@ Apptonomia tiene **67 actividades** organizadas en **6 módulos** según el tipo
 | **Palabras** | Aprende vocabulario temático (colores, animales, profesiones...) |
 | **Diccionario** | Aprende palabras difíciles con un significado sencillo y un ejemplo |
 | **Completa la Palabra** | Elige la letra que falta para escribir bien la palabra |
+| **Ortografía en Colores** | Escribe la oración entera y mira cada letra coloreada: verde si está bien, rosa si está mal, subrayado si falta |
 | **Sopa de Letras** | Busca palabras temáticas escondidas en un tablero, con niveles y pistas que pintan letras |
 
 ---
@@ -146,6 +148,8 @@ Apptonomia tiene **67 actividades** organizadas en **6 módulos** según el tipo
 | **Calma** | Ejercicios de respiración y relajación guiada |
 | **Entre Amigos** | Resuelve situaciones sociales con amigos |
 | **Mi Cuerpo Me Avisa** | Aprende a notar las señales de tu cuerpo cuando sientes algo |
+| **Buenos Modales** | Practica fórmulas de cortesía: gracias, por favor, buenos días, adiós, ceder el paso |
+| **Buenos Modales** | Practica fórmulas de cortesía: gracias, por favor, buenos días, adiós, ceder el paso |
 
 ---
 
@@ -153,14 +157,14 @@ Apptonomia tiene **67 actividades** organizadas en **6 módulos** según el tipo
 
 | Módulo | Nº actividades | Color |
 |--------|----------------|-------|
-| 🎯 Puntería y manos | 6 | Azul |
+| 🎯 Puntería y manos | 7 | Azul |
 | 📋 Mi día a día | 20 | Verde |
 | 🧠 Memoria y atención | 10 | Naranja |
 | 🔢 Pensar y contar | 18 | Teal |
-| 💬 Lenguaje y palabras | 9 | Frambuesa |
+| 💬 Lenguaje y palabras | 10 | Frambuesa |
 | 💜 Emociones | 4 | Morado |
 
-**Total: 67 actividades**
+**Total: 69 actividades**
 
 ---
 
@@ -218,7 +222,7 @@ Apptonomia incluye varios juegos de mesa clásicos adaptados:
 ## Cómo elegir la actividad adecuada
 
 ### Si quieres practicar movimientos con las manos
-→ **Módulo 1**: Atrapa, Trazos, Colorear, Piano, Constructores
+→ **Módulo 1**: Atrapa, Une los Puntos, Trazos, Colorear, Piano, Constructores
 
 ### Si quieres ser más independiente en casa
 → **Módulo 2**: Rutinas, La Casa, Mi agenda, Emergencias, Teléfonos Importantes, La Compra, La Tienda

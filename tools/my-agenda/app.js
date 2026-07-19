@@ -128,6 +128,7 @@
     showScreen('endScreen');
     $('#endHeading').focus();
     App.feedback.celebrate(App.i18n.t('core.roundComplete'));
+$('#transferencia').textContent = App.i18n.t('transferencia');
   }
 
   function nextCase() {

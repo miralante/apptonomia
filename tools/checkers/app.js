@@ -377,6 +377,7 @@
       guardar();
       pintarEstrellas();
       App.feedback.celebrate(App.i18n.t(clave));
+$('#transferencia').textContent = App.i18n.t('transferencia');
     } else if (tipo === 'cerradoEmpate') {
       estadoEl.textContent = App.i18n.t(clave);
       App.feedback.success(feedbackEl);
