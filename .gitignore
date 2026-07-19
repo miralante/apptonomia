@@ -7,7 +7,27 @@ node_modules/
 temp_*
 **/graphify-out/
 .graphify*
+.graphifyignore
+.check_out.txt
 .sw-cache/
 # one-shot migration helpers (do not keep in repo)
 scripts/_fix-*.js
 scripts/.smoke.out
+
+# Secrets and credentials — never commit
+.env
+.env.*
+*.pem
+*.p12
+*.pfx
+*.key
+*.keystore
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+**/credentials.json
+**/service-account*.json
+**/firebase-adminsdk*.json
+**/gha-creds-*.json
+.netrc
