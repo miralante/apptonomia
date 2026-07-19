@@ -146,14 +146,19 @@ function scanPrePush() {
   // Range: from origin/<branch> to HEAD.
   var branch = cp.execSync('git rev-parse --abbrev-ref HEAD', { cwd: ROOT }).toString().trim();
   var range = 'origin/' + branch + '..HEAD';
-  var out = cp.execSync('git diff --name-only ' + range, { cwd: ROOT }).toString();
+  // --diff-filter=ACMR = Added/Copied/Modified/Renamed, skip deletions.
+  var out = cp.execSync('git diff --name-only --diff-filter=ACMR ' + range, { cwd: ROOT }).toString();
   var files = out.split(/\r?\n/).filter(function (f) { return f && !shouldSkipPath(f); });
   var all = [];
   for (var i = 0; i < files.length; i++) {
     var rel = files[i];
-    // Scan the version at HEAD.
-    var showOut = cp.execSync('git show HEAD:' + rel.replace(/"/g, '\\"'), { cwd: ROOT });
-    var buf = showOut;
+    var buf;
+    try {
+      buf = cp.execSync('git show HEAD:' + rel.replace(/"/g, '\\"'), { cwd: ROOT });
+    } catch (e) {
+      // Path does not exist at HEAD (e.g. rename or added file with odd name): skip.
+      continue;
+    }
     if (!isLikelyText(buf)) continue;
     var text = buf.toString('utf8');
     for (var j = 0; j < PATTERNS.length; j++) {
