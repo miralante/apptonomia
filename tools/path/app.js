@@ -231,9 +231,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     pintarNiveles();
     pantallaInicio.classList.remove('oculto');
   });
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent + App.i18n.t('instruccionNivel'));
-  });
   $('#btnEstado').addEventListener('click', function () {
     App.tts.speak(estadoEl.textContent);
   });
@@ -241,3 +238,4 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   pintarNiveles();
   pintarEstrellas();
 })();
+

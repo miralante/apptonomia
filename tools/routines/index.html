@@ -38,6 +38,19 @@
       <div class="feedback" id="feedback" aria-live="polite"></div>
     </section>
 
+    <!-- Ordenar pasos de una rutina -->
+    <section id="pantallaOrdenar" class="oculto pila">
+      <h2 id="tituloOrdenar" class="centrado"></h2>
+      <p class="instruccion centrado" id="instruccionOrdenar" data-i18n="instruccionOrdenar">Pon los pasos en orden. Toca las flechas para moverlos.</p>
+      <ol id="listaOrdenar" class="pila lista-ordenable"></ol>
+      <div class="fila centrado">
+        <button type="button" class="btn" id="btnComprobar" data-i18n="btnComprobar">Comprobar</button>
+        <button type="button" class="btn btn-secundario" id="btnPistaOrdenar" data-i18n="btnPista">💡 Pista</button>
+        <button type="button" class="btn btn-secundario" id="btnResolverOrdenar" data-i18n="btnResolver">Ver solución</button>
+      </div>
+      <div class="feedback" id="feedbackOrdenar" aria-live="polite"></div>
+    </section>
+
     <!-- Rutina completada -->
     <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
       <div class="emoji-grande" aria-hidden="true">🎉</div>
@@ -47,6 +60,9 @@
       <button type="button" class="btn" id="btnOtraRutina" data-i18n="btnOtraRutina">Ver mis rutinas</button>
       <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backToMenu">Volver al menú</a>
     </section>
+    <footer class="pie-app">
+      <a href="../../legal/index.html" class="enlace-legal" data-i18n="core.dataProtection">Protección de datos</a>
+    </footer>
   </div>
 
   <script src="../../assets/js/utils.js"></script>

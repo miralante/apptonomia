@@ -308,12 +308,10 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     else iniciarLlamada();
   });
   $('#btnVolverMenuFinal').addEventListener('click', irMenu);
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
   $('#btnInstruccionLlamada').addEventListener('click', function () {
     App.tts.speak($('#instruccionLlamada').textContent);
   });
 
   irMenu();
 })();
+

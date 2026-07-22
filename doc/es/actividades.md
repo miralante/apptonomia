@@ -1,28 +1,10 @@
 # Catálogo de actividades
 
-Apptonomia tiene **72 actividades** organizadas en **6 módulos** según el tipo de habilidad que trabajan.
+Apptonomia tiene **74 actividades** organizadas en **7 módulos** según el tipo de habilidad que trabajan. El orden de los módulos va de lo más ligado a la terapia ocupacional (autonomía, emociones) a lo más académico (memoria, razonamiento, lenguaje), sigue con el módulo específico de dificultades motoras y termina con el módulo de educación afectivo-sexual, añadido después por requerir siempre supervisión profesional o familiar.
 
 ---
 
-## Módulo 1: 🎯 Puntería y manos
-
-**Área:** Coordinación y motricidad · **Color del módulo:** Azul
-
-**¿Qué trabaja?** Movimientos precisos con las manos, coordinación ojo-mano, motricidad fina.
-
-| Actividad | Descripción |
-|-----------|-------------|
-| **Atrapa** | Pulsa el objetivo que cambia de posición en la pantalla |
-| **Une los Puntos** | Une los números en orden para dibujar una figura |
-| **Teclado** | Aprende a escribir en el teclado del ordenador letra a letra |
-| **Trazos** | Repasa formas, letras y números con el dedo o el ratón |
-| **Colorear** | Pinta dibujos dividiendo las zonas con colores |
-| **Piano** | Toca el teclado del ordenador como si fuera un piano |
-| **Constructores** | Construye libremente con bloques de colores |
-
----
-
-## Módulo 2: 📋 Mi día a día
+## Módulo 1: 📋 Mi día a día
 
 **Área:** Autonomía y hogar · **Color del módulo:** Verde
 
@@ -35,7 +17,7 @@ Apptonomia tiene **72 actividades** organizadas en **6 módulos** según el tipo
 | **Situaciones** | ¿Qué haces si pasa algo? Aprende a responder ante problemas cotidianos |
 | **Chat Seguro** | Practica cómo responder si alguien te manipula por internet |
 | **Chat Acoso** | Reconoce situaciones de acoso entre compañeros y cómo actuar |
-| **¿Lo público?** | Decide qué es seguro publicar en redes sociales |
+| **¿Lo publico?** | Decide qué es seguro publicar en redes sociales |
 | **Redes, intimidad y ley** | Practica ante manipulación sexual, imágenes íntimas, pornografía, amenazas y consecuencias legales |
 | **Señales** | Reconoce señales de peligro, baño, prohibido, salidas... |
 | **Partes del Día** | Clasifica actividades según sean de mañana, tarde o noche |
@@ -48,8 +30,26 @@ Apptonomia tiene **72 actividades** organizadas en **6 módulos** según el tipo
 | **La Calle** | Cruzar la calle, transporte público, qué hacer si te pierdes |
 | **Emergencias** | Reconoce emergencias reales y practica llamar al 112 |
 | **Teléfonos Importantes** | Aprende que el 112 sirve para policía, bomberos y emergencia médica |
+| **Mis Datos** | Repasa tu dirección y tu teléfono, y los de tu familia (configurados antes por quien te ayuda) |
 | **La Compra** | Aprende las secciones del supermercado y la lista de la compra |
 | **La Tienda** | Usa dinero real en una compra: pagar, recibir cambio, controlar gastos |
+| **Comida Sana** | Clasifica alimentos en "cada día" o "de vez en cuando" y descubre cómo te sientan |
+
+---
+
+## Módulo 2: 💜 Emociones
+
+**Color del módulo:** Morado
+
+**¿Qué trabaja?** Reconocimiento emocional, regulación emocional, habilidades sociales.
+
+| Actividad | Descripción |
+|-----------|-------------|
+| **¿Cómo me siento?** | Aprende a identificar y nombrar las emociones básicas |
+| **Calma** | Ejercicios de respiración y relajación guiada |
+| **Entre Amigos** | Resuelve situaciones sociales con amigos |
+| **Mi Cuerpo Me Avisa** | Aprende a notar las señales de tu cuerpo cuando sientes algo |
+| **Buenos Modales** | Practica fórmulas de cortesía: gracias, por favor, buenos días, adiós, ceder el paso |
 
 ---
 
@@ -108,7 +108,7 @@ Apptonomia tiene **72 actividades** organizadas en **6 módulos** según el tipo
 
 | Actividad | Descripción |
 |-----------|-------------|
-| **Números** | Contar, valor de las cifras, cambio de posición (10 unidades → 1 decena… hasta el billón), fracciones, decimales, las cuatro operaciones (con la división como reparto) |
+| **Los Números** | Contar, números pares e impares, números negativos (ascensor: pisos bajo tierra), valor de las cifras, cambio de posición (10 unidades → 1 decena… hasta el billón), fracciones, decimales, las cuatro operaciones (con la división como reparto) |
 | **Cantidades** | Practica poco y mucho, subir y bajar, aproximar y encontrar el número de en medio con una barra |
 | **Las Tablas** | Cuenta de cabeza (±1, ±2, ±3, ±5, ±10), tablas de sumar, descomposición llegando al 10 (7 + 5 = 7 + 3 + 2), tablas de multiplicar y división entre 10, con puntos de colores |
 | **Números Romanos** | Lee números romanos y reconoce en qué siglo estás |
@@ -129,6 +129,7 @@ Apptonomia tiene **72 actividades** organizadas en **6 módulos** según el tipo
 | **Categorías** | Clasifica palabras en grupos (animales, frutas...) |
 | **La Frase** | Completa frases diciendo quién, qué o dónde |
 | **Palabras** | Aprende vocabulario temático (colores, animales, profesiones...) |
+| **Vocabulario por tema** | Aprende vocabulario adulto por bloques (vida autónoma, salud, social) y niveles de dificultad |
 | **Diccionario** | Aprende palabras difíciles con un significado sencillo y un ejemplo |
 | **Completa la Palabra** | Elige la letra que falta para escribir bien la palabra |
 | **Ortografía en Colores** | Escribe la oración entera y mira cada letra coloreada: verde si está bien, rosa si está mal, subrayado si falta |
@@ -136,20 +137,33 @@ Apptonomia tiene **72 actividades** organizadas en **6 módulos** según el tipo
 
 ---
 
-## Módulo 6: 💜 Emociones
+## Módulo 6: 🎯 Puntería y manos
 
-**Color del módulo:** Morado
+**Área:** Coordinación y motricidad · **Color del módulo:** Azul
 
-**¿Qué trabaja?** Reconocimiento emocional, regulación emocional, habilidades sociales.
+**¿Qué trabaja?** Movimientos precisos con las manos, coordinación ojo-mano, motricidad fina.
 
 | Actividad | Descripción |
 |-----------|-------------|
-| **¿Cómo me siento?** | Aprende a identificar y nombrar las emociones básicas |
-| **Calma** | Ejercicios de respiración y relajación guiada |
-| **Entre Amigos** | Resuelve situaciones sociales con amigos |
-| **Mi Cuerpo Me Avisa** | Aprende a notar las señales de tu cuerpo cuando sientes algo |
-| **Buenos Modales** | Practica fórmulas de cortesía: gracias, por favor, buenos días, adiós, ceder el paso |
-| **Buenos Modales** | Practica fórmulas de cortesía: gracias, por favor, buenos días, adiós, ceder el paso |
+| **Atrapa** | Pulsa el objetivo que cambia de posición en la pantalla |
+| **Une los Puntos** | Une entre 5 y 10 números en orden, elegidos al azar en cada ronda, para dibujar una figura |
+| **Teclado** | Aprende a escribir en el teclado del ordenador letra a letra |
+| **Trazos** | Repasa líneas, ángulos, curvas y letras del abecedario en ES/EN con el dedo o el ratón. Modo libre con selección de letras (mayúsculas y minúsculas) |
+| **Colorear** | Pinta dibujos dividiendo las zonas con colores |
+| **Piano** | Toca el teclado del ordenador como si fuera un piano |
+| **Constructores** | Construye libremente con bloques de colores |
+
+---
+
+## Módulo 7: 💗 Cuerpo y relaciones
+
+**Área:** Educación afectivo-sexual · **Color del módulo:** Terracota
+
+**¿Qué trabaja?** Cuerpo, consentimiento, relaciones sanas, anticoncepción e higiene y salud sexual. Contenido no gráfico que siempre deriva a una persona adulta de confianza o a un profesional de la salud — nunca da instrucciones clínicas. **Usar siempre con supervisión profesional o familiar.**
+
+| Actividad | Descripción |
+|-----------|-------------|
+| **Mi Cuerpo, Mis Decisiones** | Practica 32 casos no gráficos sobre consentimiento, relaciones sanas, anticoncepción e higiene y salud sexual |
 
 ---
 
@@ -157,14 +171,15 @@ Apptonomia tiene **72 actividades** organizadas en **6 módulos** según el tipo
 
 | Módulo | Nº actividades | Color |
 |--------|----------------|-------|
-| 🎯 Puntería y manos | 7 | Azul |
-| 📋 Mi día a día | 20 | Verde |
+| 📋 Mi día a día | 22 | Verde |
+| 💜 Emociones | 5 | Morado |
 | 🧠 Memoria y atención | 10 | Naranja |
 | 🔢 Pensar y contar | 18 | Teal |
-| 💬 Lenguaje y palabras | 10 | Frambuesa |
-| 💜 Emociones | 4 | Morado |
+| 💬 Lenguaje y palabras | 11 | Frambuesa |
+| 🎯 Puntería y manos | 7 | Azul |
+| 💗 Cuerpo y relaciones | 1 | Terracota |
 
-**Total: 69 actividades**
+**Total: 74 actividades**
 
 ---
 
@@ -190,6 +205,7 @@ Apptonomia tiene **72 actividades** organizadas en **6 módulos** según el tipo
 - Chat Seguro
 - Calma
 - El Monedero
+- Mis Datos
 
 ### Actividades avanzadas
 
@@ -221,20 +237,23 @@ Apptonomia incluye varios juegos de mesa clásicos adaptados:
 
 ## Cómo elegir la actividad adecuada
 
-### Si quieres practicar movimientos con las manos
-→ **Módulo 1**: Atrapa, Une los Puntos, Trazos, Colorear, Piano, Constructores
-
 ### Si quieres ser más independiente en casa
-→ **Módulo 2**: Rutinas, La Casa, Mi agenda, Emergencias, Teléfonos Importantes, La Compra, La Tienda
+→ **Módulo 1**: Rutinas, La Casa, Mi agenda, Emergencias, Teléfonos Importantes, Mis Datos, La Compra, La Tienda, Comida Sana
+
+### Si quieres entender mejor las emociones
+→ **Módulo 2**: ¿Cómo me siento?, Calma, Entre Amigos, Mi Cuerpo Me Avisa
 
 ### Si quieres mejorar la memoria
 → **Módulo 3**: Parejas, ¿Qué falta?, Ecos, Los Bloques
 
 ### Si quieres practicar matemáticas
-→ **Módulo 4**: El Monedero, El Reloj, Números, Cantidades, Las Tablas, Números Romanos, La Oca
+→ **Módulo 4**: El Monedero, El Reloj, Los Números, Cantidades, Las Tablas, Números Romanos, La Oca
 
 ### Si quieres aprender más palabras
-→ **Módulo 5**: Categorías, Palabras, Diccionario, Completa la Palabra, Sopa de Letras, Dichos, Doble Sentido, Chistes
+→ **Módulo 5**: Categorías, Palabras, Vocabulario por tema, Diccionario, Completa la Palabra, Sopa de Letras, Dichos, Doble Sentido, Chistes
 
-### Si quieres entender mejor las emociones
-→ **Módulo 6**: ¿Cómo me siento?, Calma, Entre Amigos, Mi Cuerpo Me Avisa
+### Si quieres practicar movimientos con las manos
+→ **Módulo 6**: Atrapa, Une los Puntos, Trazos, Colorear, Piano, Constructores
+
+### Si quieres trabajar cuerpo, relaciones y salud sexual (con supervisión)
+→ **Módulo 7**: Mi Cuerpo, Mis Decisiones

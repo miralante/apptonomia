@@ -176,7 +176,5 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     App.tts.speak(explicacionEl.textContent);
   });
   $('#btnRepetir').addEventListener('click', iniciarRonda);
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
 })();
+

@@ -66,6 +66,8 @@
     "module5Intro": 'Vocabulario, categorías, comprensión lectora, lenguaje figurado y humor.',
     "module6Title": '💜 Emociones — Emociones y relaciones',
     "module6Intro": 'Reconocimiento y expresión de emociones, autorregulación, respiración y resolución de conflictos.',
+    "module7Title": '💗 Cuerpo y relaciones — Educación afectivo-sexual',
+    "module7Intro": 'Cuerpo, consentimiento, relaciones sanas y salud sexual y reproductiva, siempre derivando a personas adultas de confianza o profesionales de la salud.',
     activity: {
       "catch": {
         "name": 'Atrapa',
@@ -217,6 +219,12 @@
         "works": 'Memoria a largo plazo de un dato de seguridad: que el 112 es el mismo número para policía, bomberos y una emergencia médica, sea cual sea la situación concreta.',
         "daily": 'Preguntadle de vez en cuando "¿a qué número llamas si...?" con situaciones reales de casa o del barrio.'
       },
+      "my-details": {
+        "name": 'Mis Datos',
+        "does": 'Repasa dirección y teléfono propios y de la familia (configurados antes en Ajustes): primero unas fichas, luego un test de opciones con señuelos y por último lo mismo tecleado, sin pistas en pantalla.',
+        "works": 'Memoria autobiográfica de datos de seguridad. Los datos reales solo se guardan en este dispositivo (nunca se piden desde la propia actividad ni se envían a ningún sitio); hace falta configurarlos antes en Ajustes.',
+        "daily": 'Aprovechad para repasar en voz alta la dirección y el teléfono de casa antes de una salida.'
+      },
       "shopping": {
         "name": 'La Compra',
         "does": 'Dos partes: en qué sección del súper está cada producto, y para qué comida del día lo necesitas (construyendo una lista visual).',
@@ -228,6 +236,12 @@
         "does": 'Usar el dinero como en la vida real, con las monedas y billetes visuales de la app. "Una compra": simulación completa en 3 pasos — ¿te llega? (si no, se elige algo más barato), pagar con un monedero finito (cada moneda se usa una vez) y revisar el cambio (a veces viene mal y hay que detectarlo). "¿Qué me queda?": resta encadenada de gastos reales sobre lo que va quedando. "¿Mucho o poco?": sentido del precio — decidir si un precio está bien o es demasiado, comparándolo con lo que las cosas cuestan normalmente.',
         "works": 'Generalización del manejo del dinero a situaciones reales: decisión de compra, pago con dinero limitado, verificación del cambio, control del gasto y sentido del precio (protección frente a abusos).',
         "daily": 'Dadle un presupuesto pequeño real (su paga) y acompañadle a gastarlo: que decida, pague y compruebe el cambio él mismo.'
+      },
+      "healthy-food": {
+        "name": 'Comida Sana',
+        "does": 'Clasifica alimentos en dos cajas: "Cada día" o "De vez en cuando". Al acertar, una frase corta explica cómo te sienta ese alimento en el cuerpo.',
+        "works": 'Alimentación saludable con enfoque de moderación (nunca "alimento malo"): conecta con La Compra y La Casa dentro de la cadena de autonomía en el hogar.',
+        "daily": 'Al hacer la compra o el menú de la semana, preguntadle si lo que elige es de cada día o de vez en cuando.'
       },
       "pairs": {
         "name": 'Parejas',
@@ -304,7 +318,7 @@
       "numbers": {
         "name": 'Los Números',
         "does": 'Cuenta, lee números grandes, suma, resta, multiplica y mide, con cifras coloreadas por posición.',
-        "works": 'Numeración, valor posicional (con canjes de 10 y la escalera del ×10 hasta el billón), fracciones, decimales, cálculo mental, medidas.',
+        "works": 'Numeración, pares e impares, números negativos (con el ascensor), valor posicional (con canjes de 10 y la escalera del ×10 hasta el billón), fracciones, decimales, cálculo mental, medidas.',
         "daily": 'Dejad que cuente y pague cosas reales usando números grandes.'
       },
       "quantities": {
@@ -498,6 +512,12 @@
         "does": 'Practica fórmulas de cortesía en situaciones cotidianas: dar las gracias, pedir por favor, saludar, despedirse, ceder el paso.',
         "works": 'Normas sociales básicas, habilidades sociales, interacción respetuosa.',
         "daily": 'Reforzad estas fórmulas en la vida real: celebrad cuando las use espontáneamente.'
+      },
+      "sexual-health": {
+        "name": 'Mi Cuerpo, Mis Decisiones',
+        "does": 'Practica 32 casos no gráficos sobre consentimiento, relaciones sanas, anticoncepción e higiene y salud sexual.',
+        "works": 'Autonomía corporal, reconocimiento del consentimiento, señales de relaciones dañinas, y saber pedir ayuda a un profesional de la salud en vez de recibir instrucciones clínicas de la app.',
+        "daily": 'Usadla siempre con supervisión profesional o familiar. Recordad que pedir ayuda nunca implica culpa y acordad quiénes son las personas adultas o profesionales de confianza.'
       }
     },
     "scopeNote1": 'Fuera del alcance',

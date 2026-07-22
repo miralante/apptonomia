@@ -247,7 +247,6 @@
     if (!eraDama && celdas[mov.a].dama) mensajes.push(App.i18n.t('coronaTuya'));
     if (mensajes.length) {
       estadoEl.textContent = mensajes.join(' ');
-      App.tts.speak(mensajes.join(' '));
     }
     pintarTablero();
 
@@ -381,11 +380,9 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     } else if (tipo === 'cerradoEmpate') {
       estadoEl.textContent = App.i18n.t(clave);
       App.feedback.success(feedbackEl);
-      App.tts.speak(App.i18n.t(clave));
     } else {
       estadoEl.textContent = App.i18n.t(clave);
       App.feedback.encourage(feedbackEl);
-      App.tts.speak(App.i18n.t(clave));
     }
     btnOtraPartida.classList.remove('oculto');
     btnOtraPartida.focus();
@@ -404,9 +401,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     pintarNiveles();
     pantallaInicio.classList.remove('oculto');
   });
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent + App.i18n.t('instruccionNivel'));
-  });
   $('#btnEstado').addEventListener('click', function () {
     App.tts.speak(estadoEl.textContent);
   });
@@ -414,3 +408,4 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   pintarNiveles();
   pintarEstrellas();
 })();
+

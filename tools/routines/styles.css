@@ -65,7 +65,72 @@
 
 #pantallaFinal { padding-top: 48px; }
 
-#pantallaFinal .btn { align-self: center; min-width: 280px; 
+#pantallaFinal .btn { align-self: center; min-width: 280px;
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}
+
+/* Botón "Ordena la rutina" dentro de cada tarjeta del menú */
+.btn-ordenar-rutina {
+  margin-top: 8px;
+  min-width: 200px;
+  background: var(--mod-secuencia-suave);
+  color: var(--mod-secuencia);
+  border: 2px solid var(--mod-secuencia);
+}
+.btn-ordenar-rutina:hover { background: var(--mod-secuencia); color: var(--color-superficie); }
+
+/* Lista reordenable de pasos (accesible: flechas ↑/↓ en vez de drag-and-drop) */
+.lista-ordenable { list-style: none; padding: 0; margin: 0; }
+
+.paso-ordenable {
+  display: grid;
+  grid-template-columns: 48px 56px 1fr auto auto;
+  align-items: center;
+  gap: var(--espacio);
+  padding: var(--espacio);
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  min-height: 80px;
+}
+
+.paso-ordenable .posicion {
+  font-size: var(--texto-grande);
+  font-weight: 800;
+  color: var(--mod-secuencia);
+  text-align: center;
+}
+
+.paso-ordenable .picto { font-size: 44px; text-align: center; }
+.paso-ordenable .texto { font-weight: 600; font-size: var(--texto-base); }
+
+.btn-flecha {
+  min-width: 64px;
+  min-height: 64px;
+  border-radius: var(--radio);
+  border: 2px solid var(--mod-secuencia);
+  background: var(--color-superficie);
+  color: var(--mod-secuencia);
+  font-size: 32px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.btn-flecha:hover:not(:disabled) { background: var(--mod-secuencia-suave); }
+.btn-flecha:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn-flecha:focus-visible { outline: 3px solid var(--mod-secuencia); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-flecha, .btn-ordenar-rutina { transition: none; }
+}
+
+@media (max-width: 480px) {
+  .paso-ordenable { grid-template-columns: 40px 48px 1fr auto auto; }
+}
+
 #pantallaFinal .transferencia {
   margin: 8px auto 24px;
   font-size: 1.1rem;

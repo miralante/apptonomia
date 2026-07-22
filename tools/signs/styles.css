@@ -62,11 +62,12 @@
 .senal-prohibicion-picto { background: #E53935; color: white; }
 .senal-obligacion-picto { background: #FDD835; color: #333; }
 .senal-informacion-picto { background: #1976D2; color: white; }
-.senal-salida-picto { background: #388E3C; color: white; 
+.senal-salida-picto { background: #388E3C; color: white; }
+.senal-siglas-picto { background: #5E35B1; color: white; font-size: 32px; font-weight: 800; }
+
 #pantallaFinal .transferencia {
   margin: 8px auto 24px;
   font-size: 1.1rem;
   color: var(--color-texto-secundario, #555);
   max-width: 480px;
-}
 }

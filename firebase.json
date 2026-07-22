@@ -15,7 +15,8 @@
       "package-lock.json",
       "README.md",
       "CLAUDE.md",
-      "agent.md"
+      "agent.md",
+      "AGENTS.md"      
     ],
     "rewrites": [
       {

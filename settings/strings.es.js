@@ -30,6 +30,7 @@
     module4: '🔢 Pensar y contar',
     module5: '💬 Lenguaje y palabras',
     module6: '💜 Emociones',
+    module7: '💗 Cuerpo y relaciones',
 
     activity: {
       'catch': 'Atrapa', 'connect-dots': 'Une los Puntos', 'keyboard-typing': 'Teclado', 'piano-keys': 'Piano',
@@ -40,7 +41,8 @@
       'what-first': '¿Qué hago primero?', 'what-do-i-need': '¿Qué necesito?', 'where-to-store': '¿Dónde lo guardo?',
       'task-list': 'Lista de Tareas', 'my-agenda': 'Mi agenda', 'what-to-wear': '¿Qué me pongo?',
       'street': 'La Calle', 'emergencies': 'Emergencias', 'phone-numbers': 'Teléfonos Importantes',
-      'shopping': 'La Compra', 'shop': 'La Tienda',
+      'my-details': 'Mis Datos',
+      'shopping': 'La Compra', 'shop': 'La Tienda', 'healthy-food': 'Comida Sana',
       'pairs': 'Parejas', 'differences': 'Diferencias', 'whats-missing': '¿Qué falta?',
       'ecos': 'Ecos', 'turns-mirrors': 'Giros y Espejos', 'colored-spelling': 'Ortografía en Colores', 'vocabulary': 'Vocabulario por tema', 'blocks': 'Los Bloques',
       'where-is': '¿Dónde está?', 'path': 'El Camino', 'fit': 'Encaja la Pieza', 'theatre': 'El Teatro',
@@ -52,7 +54,8 @@
       'comedy-club': 'Chistes', 'idioms': 'Dichos', 'double-meaning': 'Doble Sentido', 'categories': 'Categorías',
       'sentence': 'La Frase', 'words': 'Palabras', 'dictionary': 'Diccionario', 'spelling': 'Completa la Palabra',
       'word-search': 'Sopa de Letras',
-      'emotions': '¿Cómo me siento?', 'calm': 'Calma', 'friends': 'Entre Amigos', 'my-body': 'Mi Cuerpo Me Avisa'
+      'emotions': '¿Cómo me siento?', 'calm': 'Calma', 'friends': 'Entre Amigos', 'my-body': 'Mi Cuerpo Me Avisa', 'good-manners': 'Buenos Modales',
+      'sexual-health': 'Mi Cuerpo, Mis Decisiones'
     },
 
     backupTitle: 'Copia de mi progreso',
@@ -70,6 +73,17 @@
     feedbackInvalidBackup: 'Ese archivo no es una copia de Apptonomia válida. No se ha tocado nada.',
     feedbackImportDone: 'Hecho. Se ha recuperado el progreso guardado en el archivo.',
 
+    myDetailsTitle: 'Mis Datos: dirección y teléfonos',
+    myDetailsIntro: 'Esto alimenta la actividad "Mis Datos". Se guarda solo en este navegador y nunca se envía a internet; se puede borrar en cualquier momento con "Restablecer los datos de la persona" más abajo.',
+    ownAddressLabel: 'Dirección de la persona',
+    familyAddressLabel: 'Dirección de la familia (solo si es diferente)',
+    ownPhoneLabel: 'Teléfono de la persona',
+    familyContactsLabel: 'Teléfonos de la familia (hasta 4, opcionales)',
+    contactLabelPlaceholder: 'Nombre (p. ej. Mamá)',
+    contactPhonePlaceholder: 'Teléfono',
+    btnSaveMyDetails: '💾 Guardar datos',
+    feedbackMyDetailsSaved: 'Hecho. Datos guardados en este navegador.',
+
     prefsTitle: 'Preferencias de la persona usuaria',
     prefsIntro: 'Estos ajustes se aplican en todas las actividades. Los cambia quien gestiona el dispositivo; la persona usuaria no necesita venir a esta página.',
     fontSizeLabel: 'Tamaño de letra',
@@ -86,7 +100,9 @@
     resetPersonIntroStrong1: 'idioma elegido',
     resetPersonIntro2: ' (la próxima vez se detecta de nuevo o se vuelve a español) y el ',
     resetPersonIntroStrong2: 'nombre',
-    resetPersonIntro3: ' escrito en Teclado y en Piano.',
+    resetPersonIntro3: ' escrito en Teclado y en Piano, y ',
+    resetPersonIntroStrong3: 'la dirección y los teléfonos',
+    resetPersonIntro4: ' de Mis Datos.',
     resetPersonNote1: 'El progreso (estrellas, niveles y canciones guardadas) de todas las actividades ',
     resetPersonNoteStrong: 'NO se borra',
     resetPersonNote2: '.',

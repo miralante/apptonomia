@@ -30,6 +30,7 @@
     module4: '🔢 Thinking and counting',
     module5: '💬 Language and words',
     module6: '💜 Emotions',
+    module7: '💗 Body and relationships',
 
     activity: {
       'catch': 'Catch It', 'connect-dots': 'Connect the Dots', 'keyboard-typing': 'Keyboard', 'piano-keys': 'Piano',
@@ -40,7 +41,8 @@
       'what-first': 'What Do I Do First?', 'what-do-i-need': 'What Do I Need?', 'where-to-store': 'Where Do I Keep It?',
       'task-list': 'Task List', 'my-agenda': 'My Schedule', 'what-to-wear': 'What Do I Wear?',
       'street': 'The Street', 'emergencies': 'Emergencies', 'phone-numbers': 'Important Phone Numbers',
-      'shopping': 'The Shopping', 'shop': 'The Shop',
+      'my-details': 'My Details',
+      'shopping': 'The Shopping', 'shop': 'The Shop', 'healthy-food': 'Healthy Food',
       'pairs': 'Pairs', 'differences': 'Spot the Difference', 'whats-missing': 'What Is Missing?',
       'ecos': 'Echoes', 'turns-mirrors': 'Turns and Mirrors', 'colored-spelling': 'Colored Spelling', 'vocabulary': 'Topic Vocabulary', 'blocks': 'The Blocks',
       'where-is': 'Where Is It?', 'path': 'The Path', 'fit': 'Fit the Piece', 'theatre': 'The Theatre',
@@ -52,7 +54,8 @@
       'comedy-club': 'Comedy Club', 'idioms': 'Idioms', 'double-meaning': 'Double Meaning', 'categories': 'Categories',
       'sentence': 'The Sentence', 'words': 'Words', 'dictionary': 'Dictionary', 'spelling': 'Complete the Word',
       'word-search': 'Word Search',
-      'emotions': 'How Do I Feel?', 'calm': 'Calm', 'friends': 'Among Friends', 'my-body': 'My Body Tells Me'
+      'emotions': 'How Do I Feel?', 'calm': 'Calm', 'friends': 'Among Friends', 'my-body': 'My Body Tells Me', 'good-manners': 'Good Manners',
+      'sexual-health': 'My Body, My Choices'
     },
 
     backupTitle: 'Back up my progress',
@@ -70,6 +73,17 @@
     feedbackInvalidBackup: 'That file is not a valid Apptonomia backup. Nothing was changed.',
     feedbackImportDone: 'Done. The progress saved in the file has been restored.',
 
+    myDetailsTitle: 'My Details: address and phone numbers',
+    myDetailsIntro: 'This feeds the "My Details" activity. It is only saved in this browser and never sent to the internet; it can be deleted at any time with "Reset the person’s data" below.',
+    ownAddressLabel: 'The person’s address',
+    familyAddressLabel: 'Family address (only if different)',
+    ownPhoneLabel: 'The person’s phone',
+    familyContactsLabel: 'Family phone numbers (up to 4, optional)',
+    contactLabelPlaceholder: 'Name (e.g. Mum)',
+    contactPhonePlaceholder: 'Phone',
+    btnSaveMyDetails: '💾 Save details',
+    feedbackMyDetailsSaved: 'Done. Details saved in this browser.',
+
     prefsTitle: 'Preferences for the person using the app',
     prefsIntro: 'These settings apply to every activity. Whoever manages the device changes them; the person using the app does not need to come to this page.',
     fontSizeLabel: 'Text size',
@@ -86,7 +100,9 @@
     resetPersonIntroStrong1: 'chosen language',
     resetPersonIntro2: ' (next time it is detected again or falls back to Spanish) and the ',
     resetPersonIntroStrong2: 'name',
-    resetPersonIntro3: ' typed into Keyboard and Piano.',
+    resetPersonIntro3: ' typed into Keyboard and Piano, and the ',
+    resetPersonIntroStrong3: 'address and phone numbers',
+    resetPersonIntro4: ' from My Details.',
     resetPersonNote1: 'Progress (stars, levels and saved songs) in every activity ',
     resetPersonNoteStrong: 'is NOT deleted',
     resetPersonNote2: '.',

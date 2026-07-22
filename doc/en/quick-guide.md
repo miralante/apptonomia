@@ -136,16 +136,6 @@ Tap the language you want. The page will reload in that language.
 
 ---
 
-## If the app says "Update"
-
-Sometimes the app needs to update. If you see a message that says:
-
-> "A new version is available"
-
-You can tap **"Update now"** to get the latest version.
-
----
-
 ## Personal settings
 
 Tap the **settings** button (⚙️) if you want to:

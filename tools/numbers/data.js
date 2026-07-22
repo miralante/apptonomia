@@ -28,20 +28,42 @@ var DATA = {
   porRonda: 6,
 
   grupos: [
-    { id: 'numeros', ids: ['contar', 'unidades', 'placevalue', 'fracciones', 'decimales'] },
+    { id: 'numeros', ids: ['contar', 'enteros', 'unidades', 'placevalue', 'fracciones', 'decimales'] },
     { id: 'calcular', ids: ['sumar', 'restar', 'multiplicar', 'cabeza', 'llega', 'cambio', 'medidas'] }
   ],
 
   actividades: {
     contar: {
-      /* Progression (rule 13): the only variable is 'paso'. 'max' (the
-         available number range) is derived from 'paso' in app.js. */
+      /* Progression (rule 13): c1→c2→c5→c10 only change 'paso'. 'max'
+         (the available number range) is derived from 'paso' in app.js.
+         c2→c2p keeps the exact same 'paso' (2) and range: it doesn't add
+         a new number range to learn, only a new skill (classify a number
+         already reached by counting in twos as even/odd). */
       picto: '🔢',
       niveles: [
         { id: 'c1', tipo: 'contar', paso: 1 },
         { id: 'c2', tipo: 'contar', paso: 2 },
+        { id: 'c2p', tipo: 'paresImpares', paso: 2, max: 24 },
         { id: 'c5', tipo: 'contar', paso: 5 },
         { id: 'c10', tipo: 'contar', paso: 10 }
+      ]
+    },
+
+    enteros: {
+      /* Negative numbers via an elevator (floors below ground = negative).
+         Progression (rule 13): en1→en2 keeps the same reading skill and
+         adds movement (only variable: gains a start+delta instead of a
+         fixed floor). en2→en3 introduces comparing two floors instead of
+         one. en3→en4 introduces locating a GIVEN floor number among
+         candidate spots (the "place it in its spot" skill) instead of
+         reading one shown floor. The range (min/max) stays fixed across
+         all 4 levels so the only real change each step is the skill. */
+      picto: '🛗',
+      niveles: [
+        { id: 'en1', tipo: 'ascensorLeer', min: -5, max: 5 },
+        { id: 'en2', tipo: 'ascensorMover', min: -5, max: 5 },
+        { id: 'en3', tipo: 'ascensorComparar', min: -5, max: 5 },
+        { id: 'en4', tipo: 'ascensorColocar', min: -5, max: 5 }
       ]
     },
 

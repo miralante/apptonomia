@@ -80,8 +80,10 @@
               <tr><td data-i18n="activity.street">La Calle</td><td data-tool="street">—</td></tr>
               <tr><td data-i18n="activity.emergencies">Emergencias</td><td data-tool="emergencies">—</td></tr>
               <tr><td data-i18n="activity.phone-numbers">Teléfonos Importantes</td><td data-tool="phone-numbers">—</td></tr>
+              <tr><td data-i18n="activity.my-details">Mis Datos</td><td data-tool="my-details">—</td></tr>
               <tr><td data-i18n="activity.shopping">La Compra</td><td data-tool="shopping">—</td></tr>
               <tr><td data-i18n="activity.shop">La Tienda</td><td data-tool="shop">—</td></tr>
+              <tr><td data-i18n="activity.healthy-food">Comida Sana</td><td data-tool="healthy-food">—</td></tr>
             </tbody>
           </table>
         </article>
@@ -165,6 +167,16 @@
             </tbody>
           </table>
         </article>
+
+        <article class="card modulo-guia" style="--acento: var(--mod-cuerpo);">
+          <h3 data-i18n="module7">💗 Cuerpo y relaciones</h3>
+          <table>
+            <thead><tr><th data-i18n="colActivity">Actividad</th><th data-i18n="colProgress">Progreso</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="activity.sexual-health">Mi Cuerpo, Mis Decisiones</td><td data-tool="sexual-health">—</td></tr>
+            </tbody>
+          </table>
+        </article>
       </section>
 
       <section id="copia-progreso" class="card">
@@ -204,9 +216,53 @@
           solo a los pitidos cortos de acierto y ánimo.</p>
       </section>
 
+      <section id="mis-datos-personales" class="card">
+        <h2 data-i18n="myDetailsTitle">Mis Datos: dirección y teléfonos</h2>
+        <p data-i18n="myDetailsIntro">Esto alimenta la actividad "Mis Datos". Se guarda solo en este navegador y nunca se
+          envía a internet; se puede borrar en cualquier momento con "Restablecer los datos de la persona" más abajo.</p>
+
+        <label class="etiqueta-campo" for="inputOwnAddress" data-i18n="ownAddressLabel">Dirección de la persona</label>
+        <input type="text" id="inputOwnAddress" class="campo-texto">
+
+        <label class="etiqueta-campo" for="inputFamilyAddress" data-i18n="familyAddressLabel">Dirección de la familia (solo si es diferente)</label>
+        <input type="text" id="inputFamilyAddress" class="campo-texto">
+
+        <label class="etiqueta-campo" for="inputOwnPhone" data-i18n="ownPhoneLabel">Teléfono de la persona</label>
+        <input type="tel" id="inputOwnPhone" class="campo-texto">
+
+        <p class="etiqueta-pref" data-i18n="familyContactsLabel">Teléfonos de la familia (hasta 4, opcionales)</p>
+        <div class="fila-contacto">
+          <label class="etiqueta-campo" for="inputContact1Label" data-i18n="contactLabelPlaceholder">Nombre (p. ej. Mamá)</label>
+          <input type="text" id="inputContact1Label" class="campo-texto campo-contacto-nombre">
+          <label class="etiqueta-campo" for="inputContact1Phone" data-i18n="contactPhonePlaceholder">Teléfono</label>
+          <input type="tel" id="inputContact1Phone" class="campo-texto campo-contacto-telefono">
+        </div>
+        <div class="fila-contacto">
+          <label class="etiqueta-campo" for="inputContact2Label" data-i18n="contactLabelPlaceholder">Nombre (p. ej. Mamá)</label>
+          <input type="text" id="inputContact2Label" class="campo-texto campo-contacto-nombre">
+          <label class="etiqueta-campo" for="inputContact2Phone" data-i18n="contactPhonePlaceholder">Teléfono</label>
+          <input type="tel" id="inputContact2Phone" class="campo-texto campo-contacto-telefono">
+        </div>
+        <div class="fila-contacto">
+          <label class="etiqueta-campo" for="inputContact3Label" data-i18n="contactLabelPlaceholder">Nombre (p. ej. Mamá)</label>
+          <input type="text" id="inputContact3Label" class="campo-texto campo-contacto-nombre">
+          <label class="etiqueta-campo" for="inputContact3Phone" data-i18n="contactPhonePlaceholder">Teléfono</label>
+          <input type="tel" id="inputContact3Phone" class="campo-texto campo-contacto-telefono">
+        </div>
+        <div class="fila-contacto">
+          <label class="etiqueta-campo" for="inputContact4Label" data-i18n="contactLabelPlaceholder">Nombre (p. ej. Mamá)</label>
+          <input type="text" id="inputContact4Label" class="campo-texto campo-contacto-nombre">
+          <label class="etiqueta-campo" for="inputContact4Phone" data-i18n="contactPhonePlaceholder">Teléfono</label>
+          <input type="tel" id="inputContact4Phone" class="campo-texto campo-contacto-telefono">
+        </div>
+
+        <button type="button" class="btn btn-secundario" id="btnSaveMyDetails" data-i18n="btnSaveMyDetails">💾 Guardar datos</button>
+        <p class="feedback" id="feedbackMyDetails" aria-live="polite"></p>
+      </section>
+
       <section id="reset-persona" class="card tarjeta-reset">
         <h2 data-i18n="resetPersonTitle">Restablecer los datos de la persona</h2>
-        <p><span data-i18n="resetPersonIntro1">Borra el </span><strong data-i18n="resetPersonIntroStrong1">idioma elegido</strong><span data-i18n="resetPersonIntro2"> (la próxima vez se detecta de nuevo o se vuelve a español) y el </span><strong data-i18n="resetPersonIntroStrong2">nombre</strong><span data-i18n="resetPersonIntro3"> escrito en Teclado y en Piano.</span></p>
+        <p><span data-i18n="resetPersonIntro1">Borra el </span><strong data-i18n="resetPersonIntroStrong1">idioma elegido</strong><span data-i18n="resetPersonIntro2"> (la próxima vez se detecta de nuevo o se vuelve a español) y el </span><strong data-i18n="resetPersonIntroStrong2">nombre</strong><span data-i18n="resetPersonIntro3"> escrito en Teclado y en Piano, y </span><strong data-i18n="resetPersonIntroStrong3">la dirección y los teléfonos</strong><span data-i18n="resetPersonIntro4"> de Mis Datos.</span></p>
         <p class="nota-reset"><span data-i18n="resetPersonNote1">El progreso (estrellas, niveles y canciones guardadas) de todas las actividades </span><strong data-i18n="resetPersonNoteStrong">NO se borra</strong><span data-i18n="resetPersonNote2">.</span></p>
         <button type="button" class="btn btn-secundario" id="btnResetPersona" data-i18n="btnResetPerson">🧑 Restablecer datos de la persona</button>
         <p class="feedback" id="feedbackPersona" aria-live="polite"></p>
@@ -223,6 +279,7 @@
       <footer class="pie-settings">
         <a class="btn btn-secundario" href="../site/index.html" data-i18n="footerActivities">Ir a las actividades</a>
         <a class="btn btn-secundario" href="../team/index.html" data-i18n="footerTeamGuide">Guía para el equipo de apoyo</a>
+        <a class="btn btn-secundario" href="../legal/index.html" data-i18n="core.dataProtection">Protección de datos</a>
       </footer>
 
     </main>

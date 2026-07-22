@@ -64,7 +64,6 @@
     }
 
     App.i18n.apply(app);
-    App.tts.speak(App.i18n.t('instruction'));
   }
 
   function empezarRonda() {
@@ -192,7 +191,6 @@
       // Correct answer
       boton.classList.add('correcta');
       App.feedback.acierto(feedbackZone);
-      App.tts.speak('Muy bien. Esa es la respuesta correcta.');
 
       setTimeout(function () {
         state.rondasCompletas++;
@@ -214,7 +212,6 @@
       App.feedback.animo(feedbackZone);
       var pista = 'Piensa: ¿qué frase usa la gente para ser amable en esta situación?';
       feedbackZone.textContent = pista;
-      App.tts.speak(pista);
 
       setTimeout(function () {
         state.mostrandoFeedback = false;
@@ -225,7 +222,6 @@
       var explicacion = 'La respuesta correcta es: ' + App.i18n.t(state.situacionActual.correcta);
       feedbackZone.textContent = explicacion;
       App.feedback.animo(feedbackZone);
-      App.tts.speak(explicacion);
 
       setTimeout(function () {
         state.rondasCompletas++;

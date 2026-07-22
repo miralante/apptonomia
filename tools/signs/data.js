@@ -12,19 +12,21 @@ const DATA = {
       {
         id: 1,
         nombre: 'Nivel 1',
-        descripcion: 'Señales básicas de peligro',
+        descripcion: 'Señales de peligro y avisos',
         estrellas: 1,
         items: [
           { senal: '⚠️', nombre: 'Peligro', tipo: 'senal-peligro-picto', opciones: ['Cuidado, hay peligro', 'Pasa rápido', 'Zona segura'], correcta: 0 },
           { senal: '🚫', nombre: 'Prohibido', tipo: 'senal-prohibicion-picto', opciones: ['Se puede hacer', 'No está permitido', 'Obligatorio'], correcta: 1 },
           { senal: '🔥', nombre: 'Fuego', tipo: 'senal-peligro-picto', opciones: ['Puedes tocarlo', 'Cuidado con el fuego', 'Es seguro'], correcta: 1 },
-          { senal: '⚡', nombre: 'Electricidad', tipo: 'senal-peligro-picto', opciones: ['Es seguro', 'Cuidado con la electricidad', 'Puedes tocarlo'], correcta: 1 },
+          { senal: '⚡', nombre: 'Peligro de electrocución', tipo: 'senal-peligro-picto', opciones: ['Es seguro tocarlo', 'Riesgo de electrocución, no lo toques', 'Es un juguete'], correcta: 1 },
           { senal: '☣️', nombre: 'Radiactivo', tipo: 'senal-peligro-picto', opciones: ['Es seguro tocarlo', 'No te acerques', 'Puedes jugar'], correcta: 1 },
           { senal: '☠️', nombre: 'Veneno', tipo: 'senal-peligro-picto', opciones: ['Es comida', 'No tocar ni comer', 'Puedes probarlo'], correcta: 1 },
           { senal: '⚠️', nombre: 'Precaución', tipo: 'senal-peligro-picto', opciones: ['Pasa sin mirar', 'Ten cuidado', 'Es una zona de juego'], correcta: 1 },
           { senal: '🔴', nombre: 'Alto', tipo: 'senal-peligro-picto', opciones: ['Sigue adelante', 'Para y espera', 'Corre rápido'], correcta: 1 },
           { senal: '💀', nombre: 'Peligro de muerte', tipo: 'senal-peligro-picto', opciones: ['Zona segura', 'Extremadamente peligroso', 'Puedes entrar'], correcta: 1 },
-          { senal: '🛑', nombre: 'Pare', tipo: 'senal-peligro-picto', opciones: ['Sigue andando', 'Detente completamente', 'Corre'], correcta: 1 }
+          { senal: '🛑', nombre: 'Pare', tipo: 'senal-peligro-picto', opciones: ['Sigue andando', 'Detente completamente', 'Corre'], correcta: 1 },
+          { senal: '🚧', nombre: 'Obras', tipo: 'senal-peligro-picto', opciones: ['Puedes pasar tranquilo', 'Aviso de obras, ten cuidado', 'Es una tienda'], correcta: 1 },
+          { senal: '💦', nombre: 'Suelo mojado', tipo: 'senal-peligro-picto', opciones: ['El suelo está seco', 'Aviso: el suelo está mojado', 'Puedes correr'], correcta: 1 }
         ]
       },
       {
@@ -34,6 +36,8 @@ const DATA = {
         estrellas: 2,
         items: [
           { senal: '🚽', nombre: 'Baño / WC', tipo: 'senal-informacion-picto', opciones: ['Es una cocina', 'Para ir al baño', 'Es un dormitorio'], correcta: 1 },
+          { senal: '🚹', nombre: 'Baño de hombres', tipo: 'senal-informacion-picto', opciones: ['Baño de mujeres', 'Baño para hombres', 'Es la salida'], correcta: 1 },
+          { senal: '🚺', nombre: 'Baño de mujeres', tipo: 'senal-informacion-picto', opciones: ['Baño de hombres', 'Baño para mujeres', 'Es la entrada'], correcta: 1 },
           { senal: '🚿', nombre: 'Ducha', tipo: 'senal-informacion-picto', opciones: ['Para comer', 'Para ducharse', 'Para dormir'], correcta: 1 },
           { senal: '🛁', nombre: 'Bañera', tipo: 'senal-informacion-picto', opciones: ['Para jugar', 'Para bañarse', 'Para trabajar'], correcta: 1 },
           { senal: '🚰', nombre: 'Agua potable', tipo: 'senal-informacion-picto', opciones: ['No potable', 'Agua que puedes beber', 'Es de colores'], correcta: 1 },
@@ -89,12 +93,12 @@ const DATA = {
         items: [
           { senal: '🚑', nombre: 'Ambulancia / Socorro', tipo: 'senal-salida-picto', opciones: ['Para el coche', 'Emergencia médica', 'Es un taxi'], correcta: 1 },
           { senal: '🚒', nombre: 'Bomberos', tipo: 'senal-peligro-picto', opciones: ['Para la comida', 'Emergencia de fuego', 'Es la policía'], correcta: 1 },
-          { senal: '🚓', nombre: 'Policía', tipo: 'senal-informacion-picto', opciones: ['Para jugar', 'Seguridad y秩序', 'Es una ambulancia'], correcta: 1 },
+          { senal: '🚓', nombre: 'Policía', tipo: 'senal-informacion-picto', opciones: ['Para jugar', 'Seguridad y orden', 'Es una ambulancia'], correcta: 1 },
           { senal: '🆘', nombre: 'Socorro', tipo: 'senal-peligro-picto', opciones: ['Todo bien', 'Necesito ayuda', 'No pasa nada'], correcta: 1 },
           { senal: '🆗', nombre: 'Vale / OK', tipo: 'senal-informacion-picto', opciones: ['No está bien', 'Está bien / correcto', 'Hay un problema'], correcta: 1 },
           { senal: '🩹', nombre: 'Tirita / Apósito', tipo: 'senal-informacion-picto', opciones: ['Para cortar', 'Para curar heridas', 'Para jugar'], correcta: 1 },
           { senal: '💊', nombre: 'Medicina', tipo: 'senal-informacion-picto', opciones: ['Es comida', 'Medicamentos', 'Es veneno'], correcta: 1 },
-          { senal: '🩺', nombre: 'Estetoscopio', tipo: 'senal-informacion-picto', opciones: ['Para escuchar el corazón', 'Es un juguete', 'Para decorate'], correcta: 0 },
+          { senal: '🩺', nombre: 'Estetoscopio', tipo: 'senal-informacion-picto', opciones: ['Para escuchar el corazón', 'Es un juguete', 'Para decorar'], correcta: 0 },
           { senal: '🏥', nombre: 'Hospital', tipo: 'senal-informacion-picto', opciones: ['Para comprar', 'Centro de salud', 'Es una tienda'], correcta: 1 },
           { senal: '🧯', nombre: 'Extintor', tipo: 'senal-peligro-picto', opciones: ['Para encender fuego', 'Para apagar fuego', 'Es decoración'], correcta: 1 }
         ]
@@ -116,6 +120,23 @@ const DATA = {
           { senal: '🛤️', nombre: 'Vías del tren', tipo: 'senal-peligro-picto', opciones: ['Zona segura', 'Peligro, vías de tren', 'Zona de paso'], correcta: 1 },
           { senal: '⚓', nombre: 'Puerto', tipo: 'senal-informacion-picto', opciones: ['Aeropuerto', 'Puerto marítimo', 'Estación de tren'], correcta: 1 }
         ]
+      },
+      {
+        id: 7,
+        nombre: 'Nivel 7',
+        descripcion: 'Siglas importantes',
+        estrellas: 3,
+        items: [
+          { senal: 'WC', nombre: 'Baño', tipo: 'senal-siglas-picto', opciones: ['Es un restaurante', 'Baño / aseo público', 'Es una tienda'], correcta: 1 },
+          { senal: 'DNI', nombre: 'Documento de identidad', tipo: 'senal-siglas-picto', opciones: ['El documento que dice quién eres', 'Un tipo de coche', 'Un billete de tren'], correcta: 0 },
+          { senal: 'ITV', nombre: 'Revisión del coche', tipo: 'senal-siglas-picto', opciones: ['Un canal de televisión', 'Revisión obligatoria del coche', 'Un tipo de gasolina'], correcta: 1 },
+          { senal: 'IVA', nombre: 'Impuesto', tipo: 'senal-siglas-picto', opciones: ['Impuesto que pagas al comprar', 'El nombre de una tienda', 'Un tipo de pan'], correcta: 0 },
+          { senal: 'ONG', nombre: 'Organización solidaria', tipo: 'senal-siglas-picto', opciones: ['Una organización que ayuda sin ánimo de lucro', 'Un banco', 'Una marca de coches'], correcta: 0 },
+          { senal: 'SOS', nombre: 'Pide ayuda', tipo: 'senal-siglas-picto', opciones: ['Todo va bien', 'Pide ayuda urgente', 'Es un saludo'], correcta: 1 },
+          { senal: 'PVP', nombre: 'Precio', tipo: 'senal-siglas-picto', opciones: ['El precio que pagas por el producto', 'El nombre del producto', 'La fecha de caducidad'], correcta: 0 },
+          { senal: 'CP', nombre: 'Código postal', tipo: 'senal-siglas-picto', opciones: ['El número de tu calle', 'El código para las cartas y paquetes', 'Tu número de teléfono'], correcta: 1 },
+          { senal: 'UCI', nombre: 'Parte del hospital', tipo: 'senal-siglas-picto', opciones: ['Zona del hospital para casos muy graves', 'La entrada del hospital', 'La cafetería del hospital'], correcta: 0 }
+        ]
       }
     ]
   },
@@ -126,19 +147,21 @@ const DATA = {
       {
         id: 1,
         nombre: 'Level 1',
-        descripcion: 'Basic danger signs',
+        descripcion: 'Danger signs and warnings',
         estrellas: 1,
         items: [
           { senal: '⚠️', nombre: 'Danger', tipo: 'senal-peligro-picto', opciones: ['Be careful, there is danger', 'Go fast', 'Safe zone'], correcta: 0 },
           { senal: '🚫', nombre: 'Prohibited', tipo: 'senal-prohibicion-picto', opciones: ['You can do it', 'Not allowed', 'Mandatory'], correcta: 1 },
           { senal: '🔥', nombre: 'Fire', tipo: 'senal-peligro-picto', opciones: ['You can touch it', 'Be careful with fire', 'It is safe'], correcta: 1 },
-          { senal: '⚡', nombre: 'Electricity', tipo: 'senal-peligro-picto', opciones: ['It is safe', 'Be careful with electricity', 'You can touch it'], correcta: 1 },
+          { senal: '⚡', nombre: 'Electrocution hazard', tipo: 'senal-peligro-picto', opciones: ['It is safe to touch', 'Risk of electric shock, do not touch', 'It is a toy'], correcta: 1 },
           { senal: '☣️', nombre: 'Radioactive', tipo: 'senal-peligro-picto', opciones: ['Safe to touch', 'Do not get close', 'You can play'], correcta: 1 },
           { senal: '☠️', nombre: 'Poison', tipo: 'senal-peligro-picto', opciones: ['It is food', 'Do not touch or eat', 'You can try it'], correcta: 1 },
           { senal: '⚠️', nombre: 'Caution', tipo: 'senal-peligro-picto', opciones: ['Pass without looking', 'Be careful', 'It is a play area'], correcta: 1 },
           { senal: '🔴', nombre: 'Stop', tipo: 'senal-peligro-picto', opciones: ['Keep going', 'Stop and wait', 'Run fast'], correcta: 1 },
           { senal: '💀', nombre: 'Danger of death', tipo: 'senal-peligro-picto', opciones: ['Safe zone', 'Extremely dangerous', 'You can enter'], correcta: 1 },
-          { senal: '🛑', nombre: 'Stop', tipo: 'senal-peligro-picto', opciones: ['Keep walking', 'Stop completely', 'Run'], correcta: 1 }
+          { senal: '🛑', nombre: 'Stop', tipo: 'senal-peligro-picto', opciones: ['Keep walking', 'Stop completely', 'Run'], correcta: 1 },
+          { senal: '🚧', nombre: 'Roadworks', tipo: 'senal-peligro-picto', opciones: ['You can pass without worry', 'Roadworks warning, be careful', 'It is a shop'], correcta: 1 },
+          { senal: '💦', nombre: 'Wet floor', tipo: 'senal-peligro-picto', opciones: ['The floor is dry', 'Warning: the floor is wet', 'You can run'], correcta: 1 }
         ]
       },
       {
@@ -148,6 +171,8 @@ const DATA = {
         estrellas: 2,
         items: [
           { senal: '🚽', nombre: 'Toilet / WC', tipo: 'senal-informacion-picto', opciones: ['It is a kitchen', 'To go to the bathroom', 'It is a bedroom'], correcta: 1 },
+          { senal: '🚹', nombre: 'Men’s restroom', tipo: 'senal-informacion-picto', opciones: ['Women’s restroom', 'Restroom for men', 'It is the exit'], correcta: 1 },
+          { senal: '🚺', nombre: 'Women’s restroom', tipo: 'senal-informacion-picto', opciones: ['Men’s restroom', 'Restroom for women', 'It is the entrance'], correcta: 1 },
           { senal: '🚿', nombre: 'Shower', tipo: 'senal-informacion-picto', opciones: ['To eat', 'To shower', 'To sleep'], correcta: 1 },
           { senal: '🛁', nombre: 'Bathtub', tipo: 'senal-informacion-picto', opciones: ['To play', 'To take a bath', 'To work'], correcta: 1 },
           { senal: '🚰', nombre: 'Drinking water', tipo: 'senal-informacion-picto', opciones: ['Not drinkable', 'Water you can drink', 'It is colorful'], correcta: 1 },
@@ -229,6 +254,23 @@ const DATA = {
           { senal: '🚗', nombre: 'Parking', tipo: 'senal-informacion-picto', opciones: ['Green zone', 'Parking area', 'Play zone'], correcta: 1 },
           { senal: '🛤️', nombre: 'Railway tracks', tipo: 'senal-peligro-picto', opciones: ['Safe zone', 'Danger, railway tracks', 'Walking area'], correcta: 1 },
           { senal: '⚓', nombre: 'Port', tipo: 'senal-informacion-picto', opciones: ['Airport', 'Seaport', 'Train station'], correcta: 1 }
+        ]
+      },
+      {
+        id: 7,
+        nombre: 'Level 7',
+        descripcion: 'Important abbreviations',
+        estrellas: 3,
+        items: [
+          { senal: 'WC', nombre: 'Restroom', tipo: 'senal-siglas-picto', opciones: ['It is a restaurant', 'Toilet / restroom', 'It is a shop'], correcta: 1 },
+          { senal: 'ID', nombre: 'Identity document', tipo: 'senal-siglas-picto', opciones: ['The document that says who you are', 'A type of car', 'A train ticket'], correcta: 0 },
+          { senal: 'ATM', nombre: 'Cash machine', tipo: 'senal-siglas-picto', opciones: ['A machine to get cash', 'A type of shop', 'A bus stop'], correcta: 0 },
+          { senal: 'VIP', nombre: 'Very important person', tipo: 'senal-siglas-picto', opciones: ['A special area for important guests', 'A type of food', 'A parking fine'], correcta: 0 },
+          { senal: 'SOS', nombre: 'Call for help', tipo: 'senal-siglas-picto', opciones: ['Everything is fine', 'Call for urgent help', 'It is a greeting'], correcta: 1 },
+          { senal: 'FAQ', nombre: 'Common questions', tipo: 'senal-siglas-picto', opciones: ['Common questions and answers', 'A type of ticket', 'A closing time'], correcta: 0 },
+          { senal: 'RIP', nombre: 'On a gravestone', tipo: 'senal-siglas-picto', opciones: ['Words seen on a gravestone', 'A type of sandwich', 'A road sign'], correcta: 0 },
+          { senal: 'ASAP', nombre: 'As soon as possible', tipo: 'senal-siglas-picto', opciones: ['As soon as possible', 'Never again', 'Once a year'], correcta: 0 },
+          { senal: 'ICU', nombre: 'Hospital area', tipo: 'senal-siglas-picto', opciones: ['Hospital area for very serious cases', 'The hospital entrance', 'The hospital cafeteria'], correcta: 0 }
         ]
       }
     ]

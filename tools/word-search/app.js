@@ -268,7 +268,6 @@
     if (!cells) {
       feedbackEl.textContent = t('notAligned');
       feedbackEl.className = 'feedback encourage';
-      App.tts.speak(t('notAligned'));
       clearSelection();
       return;
     }

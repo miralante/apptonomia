@@ -222,9 +222,6 @@
   }
 
   /* ---------- Events ---------- */
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
   $('#btnNormas').addEventListener('click', function () {
     pintarNormas();
     mostrarPantalla('pantallaNormas');
@@ -245,3 +242,4 @@
   /* ---------- Startup ---------- */
   pintarMenu();
 })();
+

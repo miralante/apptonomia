@@ -63,11 +63,90 @@
 
 #pantallaFinal { padding-top: 48px; }
 
-#pantallaFinal .btn { align-self: center; min-width: 280px; 
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
+
 #pantallaFinal .transferencia {
   margin: 8px auto 24px;
   font-size: 1.1rem;
   color: var(--color-texto-secundario, #555);
   max-width: 480px;
 }
+
+/* ---- Modo libre: selección de letras ---- */
+
+.btn-modo-libre {
+  align-self: center;
+  min-width: 300px;
+}
+
+.seleccion-atajos {
+  flex-wrap: wrap;
+  gap: var(--espacio);
+}
+
+.btn-atajo {
+  min-width: 0;
+  font-size: var(--texto-pequeno);
+  padding: 12px 16px;
+}
+
+.grupo-letras {
+  border: 2px solid var(--mod-coordinacion-suave);
+  border-radius: var(--radio);
+  padding: var(--espacio);
+  margin: 0;
+  width: 100%;
+  max-width: 560px;
+}
+
+.grupo-letras legend {
+  font-weight: 700;
+  color: var(--mod-coordinacion);
+  padding: 0 8px;
+  font-size: var(--texto-base);
+}
+
+.rejilla-letras {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .rejilla-letras { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+
+.btn-letra {
+  min-width: 0;
+  min-height: var(--boton-min);
+  aspect-ratio: 1;
+  padding: 0;
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radio);
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-letra:hover { background: var(--mod-coordinacion-suave); }
+
+.btn-letra.seleccionada {
+  background: var(--mod-coordinacion);
+  color: #fff;
+  border-color: var(--mod-coordinacion);
+}
+
+.btn-letra:focus-visible {
+  outline: 3px solid var(--mod-coordinacion);
+  outline-offset: 2px;
+}
+
+.seleccion-resumen {
+  font-size: var(--texto-base);
+  color: var(--color-texto-secundario, #555);
+  min-height: 1.5em;
 }

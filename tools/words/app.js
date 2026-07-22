@@ -193,10 +193,8 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     pintarTemas();
     pantallaInicio.classList.remove('oculto');
   });
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak(App.i18n.t('instruccionCompleta'));
-  });
 
   pintarTemas();
   pintarEstrellas();
 })();
+

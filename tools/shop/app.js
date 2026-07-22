@@ -810,12 +810,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   });
   $('#btnVolverMenuNiveles').addEventListener('click', function () { App.tts.stop(); mostrar('pantallaMenu'); });
   $('#btnVolverMenuFinal').addEventListener('click', function () { App.tts.stop(); mostrar('pantallaMenu'); });
-  $('#btnInstruccionActividad').addEventListener('click', function () {
-    App.tts.speak($('#instruccionActividad').textContent);
-  });
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
 
   btnSiguienteQuiz.addEventListener('click', siguienteQuiz);
   $('#btnEnunciadoQuiz').addEventListener('click', function () {
@@ -845,3 +839,4 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
 
   pintarEstrellas();
 })();
+

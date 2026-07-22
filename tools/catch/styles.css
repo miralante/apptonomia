@@ -10,17 +10,6 @@
 
 .centrado-fila { justify-content: center; }
 
-.btn-nivel {
-  min-width: 280px;
-  align-self: center;
-}
-
-.nivel-info {
-  font-weight: 400;
-  font-size: var(--texto-pequeno);
-  opacity: 0.9;
-}
-
 .progress-bar { margin-bottom: var(--espacio); }
 
 #areaJuego {
@@ -55,11 +44,11 @@
 
 #pantallaFinal { padding-top: 48px; }
 
-#pantallaFinal .btn { align-self: center; min-width: 280px; 
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
+
 #pantallaFinal .transferencia {
   margin: 8px auto 24px;
   font-size: 1.1rem;
   color: var(--color-texto-secundario, #555);
   max-width: 480px;
-}
 }

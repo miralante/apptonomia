@@ -81,14 +81,6 @@
 
 .centrado-fila { justify-content: center; }
 
-.aviso-actualizacion {
-  display: flex; flex-direction: column; gap: 8px; align-items: center;
-  max-width: 480px; margin: 0 auto var(--espacio); padding: var(--espacio);
-  background: var(--color-acierto-suave); border: 3px solid var(--color-acierto);
-  border-radius: var(--radio);
-}
-.aviso-actualizacion p { font-weight: 700; margin: 0; }
-
 .modulos { gap: 40px; margin-top: var(--espacio); }
 
 /* Cada módulo define --acento y --acento-suave en su style="" */

@@ -9,16 +9,10 @@
   App.i18n.register({
     "title": "⚽ Atrapa",
     "instruccion": "Toca el dibujo. Se mueve cuando lo tocas.",
-    "instruccionExtra": " Primero elige el tamaño.",
-    "tituloNiveles": "Elige el tamaño",
-    "nivelGrande": "Grande",
-    "nivelMediano": "Mediano",
-    "nivelPequeno": "Pequeño",
-    "rondas": "{n} rondas",
     "areaJuegoAria": "Zona de juego. Toca el dibujo.",
     "objetivoAria": "Objetivo. Tócalo.",
-    "otroTamano": "Elegir otro tamaño",
     "rondaCompletadaTitulo": "¡Ronda completada!",
-    "resumenFinal": "Has atrapado {n} dibujos. ¡Muy bien!"
+    "resumenFinal": "Has atrapado {n} dibujos. ¡Muy bien!",
+    "transfer": "Esto entrena tu coordinación ojo-mano. Te servirá para atrapar cosas, jugar y moverte con más seguridad."
   }, 'es');
 })();

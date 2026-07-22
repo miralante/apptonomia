@@ -19,8 +19,9 @@
     "estrellasUna": "Now you have 1 star.",
     "estrellasVarias": "Now you have {n} stars.",
     "zonaAria": "Part: {nombre}",
+    "transfer": "Painting with precision trains your finger grip. It will help you hold a pencil, button your clothes and handle small things.",
     "color": {"rojo":"Red","azul":"Blue","verde":"Green","amarillo":"Yellow","morado":"Purple","naranja":"Orange"},
-    "dibujo": {"casa":"The house","flor":"The flower","pez":"The fish","coche":"The car"},
-    "zona": {"techo":"Roof","pared":"Wall","puerta":"Door","ventana":"Window","sol":"Sun","petalos":"Petals","centro":"Center","tallo":"Stem","hoja":"Leaf","cuerpo":"Body","cola":"Tail","aleta":"Fin","ojo":"Eye","cabina":"Cabin","rueda1":"Wheel 1","rueda2":"Wheel 2"}
+    "dibujo": {"casa":"The house","flor":"The flower","pez":"The fish","coche":"The car","taza":"The mug","camiseta":"The t-shirt","reloj":"The clock","cepillo":"The toothbrush","paraguas":"The umbrella","zapato":"The shoe"},
+    "zona": {"techo":"Roof","pared":"Wall","puerta":"Door","ventana":"Window","sol":"Sun","petalos":"Petals","centro":"Center","tallo":"Stem","hoja":"Leaf","cuerpo":"Body","cola":"Tail","aleta":"Fin","ojo":"Eye","cabina":"Cabin","rueda1":"Wheel 1","rueda2":"Wheel 2","cafe":"Coffee","asa":"Handle","platillo":"Saucer","mangaIzquierda":"Left sleeve","mangaDerecha":"Right sleeve","cuello":"Collar","esfera":"Face","manecillaHora":"Hour hand","manecillaMinuto":"Minute hand","mango":"Handle","cabezal":"Head","cerdas":"Bristles","tela":"Canopy","puntera":"Tip","cordones":"Laces","suela":"Sole"}
   }, 'en');
 })();

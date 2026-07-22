@@ -9,16 +9,10 @@
   App.i18n.register({
     "title": "⚽ Catch It",
     "instruccion": "Touch the picture. It moves when you touch it.",
-    "instruccionExtra": " First, choose a size.",
-    "tituloNiveles": "Choose a size",
-    "nivelGrande": "Big",
-    "nivelMediano": "Medium",
-    "nivelPequeno": "Small",
-    "rondas": "{n} rounds",
     "areaJuegoAria": "Play area. Touch the picture.",
     "objetivoAria": "Target. Touch it.",
-    "otroTamano": "Choose another size",
     "rondaCompletadaTitulo": "Round complete!",
-    "resumenFinal": "You caught {n} pictures. Well done!"
+    "resumenFinal": "You caught {n} pictures. Well done!",
+    "transfer": "This trains your eye-hand coordination. It will help you catch things, play and move around more safely."
   }, 'en');
 })();

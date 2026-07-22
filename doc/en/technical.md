@@ -54,7 +54,7 @@ The project has **three levels of modularity**:
 ```
 apptonomia/
 ├── index.html             # Level 0: redirect to site/index.html
-├── site/index.html        # Level 0: landing = activity menu (6 modules)
+├── site/index.html        # Level 0: landing = activity menu (7 modules)
 ├── assets/                # Level 1: SHARED CORE
 │   ├── css/tokens.css     #   design variables (colors, typography, touch)
 │   ├── css/base.css       #   reset, visible focus, prefers-reduced-motion
@@ -65,8 +65,8 @@ apptonomia/
 │   ├── js/storage.js      #   window.App.storage
 │   ├── js/feedback.js     #   window.App.feedback
 │   ├── js/dinero.js       #   window.App.dinero (euro activities)
-│   └── img/               #   SVG pictograms and PWA icons
-├── tools/<slug>/          # Level 2: one folder per ACTIVITY (71 current)
+│   └── img/               #   SVG pictograms and PWA icons; the UI uses system icons and emojis first for simple graphical elements; if more is needed, use free images downloaded locally from CC0/public-domain sources
+├── tools/<slug>/          # Level 2: one folder per ACTIVITY (74 current)
 │   ├── index.html         #   structure and asset loading
 │   ├── app.js             #   logic only
 │   ├── data.js            #   data only
@@ -92,18 +92,19 @@ anatomy in §4.
 
 ### 2.2 Level 2 — Therapeutic modules (landing grouping)
 
-Activities are grouped in **6 modules** (therapeutic areas). Each module is just
+Activities are grouped in **7 modules** (therapeutic areas). Each module is just
 a `<section class="modulo">` in `site/index.html` with two CSS accent variables —
 no code per module:
 
 | Module | Area | Color token | Activities |
 |---|---|---|---|
-| 🎯 Aiming and hands | Coordination and motor skills | `--mod-coordinacion` (blue) | catch, keyboard-typing, tracing, coloring, piano-keys, builders |
-| 📋 My daily routine | Autonomy and home | `--mod-secuencia` (green) | routines, house, situations, safe-chat, bullying-chat, post-or-not, social-safety, signs, times-of-day, what-first, what-do-i-need, where-to-store, task-list, my-agenda, what-to-wear, street, emergencies, phone-numbers, shopping, shop |
+| 🎯 Aiming and hands | Coordination and motor skills | `--mod-coordinacion` (blue) | catch, connect-dots, keyboard-typing, tracing, coloring, piano-keys, builders |
+| 📋 My daily routine | Autonomy and home | `--mod-secuencia` (green) | routines, house, situations, safe-chat, bullying-chat, post-or-not, social-safety, signs, times-of-day, what-first, what-do-i-need, where-to-store, task-list, my-agenda, what-to-wear, street, emergencies, phone-numbers, my-details, shopping, shop, healthy-food |
 | 🧠 Memory and attention | Memory and attention | `--mod-memoria` (orange) | pairs, differences, whats-missing, ecos, turns-mirrors, blocks, where-is, path, fit, theatre |
-| 🔢 Thinking and counting | Reasoning and math | `--mod-razonamiento` (teal) | riddles, patterns, numbers, quantities, roman-numerals, wallet, clock, stories, odd-one-out, puzzle, oca, tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
-| 💬 Language and words | Language and communication | `--mod-lenguaje` (raspberry) | comedy-club, idioms, double-meaning, categories, sentence, words, dictionary, spelling, word-search |
-| 💜 Emotions | Emotions and relationships | `--mod-emocional` (purple) | emotions, calm, friends, my-body |
+| 🔢 Thinking and counting | Reasoning and math | `--mod-razonamiento` (teal) | riddles, patterns, numbers, quantities, math-tables, roman-numerals, wallet, clock, stories, odd-one-out, puzzle, oca, tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
+| 💬 Language and words | Language and communication | `--mod-lenguaje` (raspberry) | comedy-club, idioms, double-meaning, categories, sentence, words, vocabulary, dictionary, spelling, colored-spelling, word-search |
+| 💜 Emotions | Emotions and relationships | `--mod-emocional` (purple) | emotions, calm, friends, my-body, good-manners |
+| 💗 Body and relationships | Affective-sexual education | `--mod-cuerpo` (terracotta) | sexual-health |
 
 > **Multi-area note**: an activity may work on more than one therapeutic
 > area (for example, `keyboard-typing` works on coordination but also on
@@ -559,6 +560,24 @@ Keep it up to date, in both languages, when modules are added or when the
 total activity count changes. Do not add text aimed at the end user here:
 that page is not for them.
 
+### 8.4 `/legal/`
+
+Data protection page: what Apptonomia stores (`localStorage` only — see
+§3.4/SPEC.md), where, why, how to see or delete it (link to `/settings/`),
+and how to raise a question (the public GitHub repository). It is the one
+exception to the "hidden route" rules above: it **is** linked from every
+other page's footer (`site/`, `settings/`, `team/`, `about/` and all
+`tools/<slug>/`, via the shared `core.dataProtection` i18n key in
+`assets/js/i18n.js` and the `.pie-app`/`.enlace-legal` styles in
+`assets/css/components.css`), it carries no `noindex` meta, and its
+language stays plain and accessible rather than clinical, since anyone —
+including the end user — may land on it. Still follows the
+`strings.es.js`/`strings.en.js` pattern checked by `scripts/check.js`.
+
+Keep it up to date, in both languages, whenever what the app stores
+locally changes (new tool asking for a name/personal data, new `settings/`
+reset action, etc.).
+
 ---
 
 ## 9. Recipe: developing a new activity
@@ -593,7 +612,7 @@ that page is not for them.
 
 ## 10. Recipe: adding a new therapeutic module (area)
 
-Only if the area does not fit the 6 existing modules (check coverage in
+Only if the area does not fit the 7 existing modules (check coverage in
 [`team.md`](team.md)):
 
 1. Add the token pair in `assets/css/tokens.css`:
@@ -616,12 +635,9 @@ Only if the area does not fit the 6 existing modules (check coverage in
      otherwise users with the installed PWA won't receive the change.
 - The fetch handler also caches new same-origin resources on demand and
   falls back to `site/index.html` offline.
-- **Update notice** (`site/index.html`): since the SW does `skipWaiting()` +
-  `clients.claim()` without asking, the landing detects the controller change
-  (`navigator.serviceWorker.oncontrollerchange`) and shows a notice with
-  "Update now" button (reloads the page). It distinguishes the first install
-  (no previous controller: no notice) from a real update (there was one).
-  Only on the landing, not on each tool.
+- No update notice: the SW does `skipWaiting()` + `clients.claim()` without
+  asking, and new resources are served transparently on the next navigation,
+  without interrupting the person with a dialog.
 - `manifest.json`: `display: standalone`, `start_url` in `site/index.html`,
   192/512 icons in `assets/img/`.
 - To check installability objectively: DevTools → Lighthouse → "PWA" category.

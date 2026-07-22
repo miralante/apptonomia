@@ -74,6 +74,16 @@
   border-color: var(--color-foco); background: var(--mod-coordinacion-suave);
 }
 
+.etiqueta-campo { display: block; font-weight: 700; margin-top: var(--espacio); margin-bottom: 6px; }
+.campo-texto {
+  width: 100%; min-height: var(--boton-min); padding: 10px 12px; box-sizing: border-box;
+  font-size: var(--texto-base); font-family: inherit;
+  border: 2px solid var(--color-borde); border-radius: var(--radio);
+  background: var(--color-superficie); color: var(--color-texto);
+}
+.fila-contacto { border-top: 1px dashed var(--color-borde); padding-top: 8px; margin-top: 8px; }
+#mis-datos-personales .btn { margin-top: var(--espacio); width: 100%; }
+
 .tarjeta-reset h2 { margin-bottom: 8px; }
 .tarjeta-reset .nota-reset { color: var(--color-texto-suave); font-size: var(--texto-pequeno); }
 .tarjeta-reset .btn { margin-top: var(--espacio); width: 100%; }

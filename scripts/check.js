@@ -64,7 +64,8 @@ var archivosJs = []
   .concat(listarJs(path.join(RAIZ, 'assets', 'js')))
   .concat(listarJs(path.join(RAIZ, 'settings')))
   .concat(listarJs(path.join(RAIZ, 'about')))
-  .concat(listarJs(path.join(RAIZ, 'team')));
+  .concat(listarJs(path.join(RAIZ, 'team')))
+  .concat(listarJs(path.join(RAIZ, 'legal')));
 
 archivosJs.forEach(function (archivo) {
   checks += 1;
@@ -208,8 +209,8 @@ slugs.forEach(function (slug) {
 });
 
 /* --- 4b. es/en key parity for the hidden routes (settings/, about/,
-   team/), which follow the same strings.<locale>.js pattern as tools/. --- */
-['settings', 'about', 'team'].forEach(function (ruta) {
+   team/, legal/), which follow the same strings.<locale>.js pattern as tools/. --- */
+['settings', 'about', 'team', 'legal'].forEach(function (ruta) {
   var archivoEs = path.join(RAIZ, ruta, 'strings.es.js');
   var archivoEn = path.join(RAIZ, ruta, 'strings.en.js');
   if (!fs.existsSync(archivoEs) || !fs.existsSync(archivoEn)) return;

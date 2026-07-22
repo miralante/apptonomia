@@ -230,10 +230,8 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     pintarNiveles();
     pantallaInicio.classList.remove('oculto');
   });
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
 
   pintarNiveles();
   pintarEstrellas();
 })();
+

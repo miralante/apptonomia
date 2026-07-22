@@ -29,70 +29,21 @@
       <p class="stars" id="estrellasTotales">⭐ 0</p>
     </header>
 
-    <div id="avisoActualizacion" class="aviso-actualizacion oculto centrado" role="status" aria-live="polite">
-      <div class="fila centrado-fila">
-        <p data-i18n="avisoActualizacionTexto">🎉 Hay una versión nueva de la app.</p>
-        <button type="button" class="btn btn-audio" id="btnLeerActualizacion" data-i18n-aria="core.listenText" aria-label="Escuchar el texto">🔊</button>
-      </div>
-      <button type="button" class="btn btn-secundario" id="btnActualizar" data-i18n="btnActualizar">🔄 Actualizar ahora</button>
-    </div>
-
     <nav class="anclas-modulo" aria-label="Ir a un módulo">
-      <a href="#mod-1" class="ancla-modulo" style="--acento: var(--mod-coordinacion);"><span data-i18n="mod1">🎯 Puntería y manos</span></a>
-      <a href="#mod-2" class="ancla-modulo" style="--acento: var(--mod-secuencia);"><span data-i18n="mod2">📋 Mi día a día</span></a>
-      <a href="#mod-3" class="ancla-modulo" style="--acento: var(--mod-memoria);"><span data-i18n="mod3">🧠 Memoria y atención</span></a>
-      <a href="#mod-4" class="ancla-modulo" style="--acento: var(--mod-razonamiento);"><span data-i18n="mod4">🔢 Pensar y contar</span></a>
-      <a href="#mod-5" class="ancla-modulo" style="--acento: var(--mod-lenguaje);"><span data-i18n="mod5">💬 Lenguaje y palabras</span></a>
-      <a href="#mod-6" class="ancla-modulo" style="--acento: var(--mod-emocional);"><span data-i18n="mod6">💜 Emociones</span></a>
+      <a href="#mod-secuencia" class="ancla-modulo" style="--acento: var(--mod-secuencia);"><span data-i18n="modSecuencia">📋 Mi día a día</span></a>
+      <a href="#mod-emocional" class="ancla-modulo" style="--acento: var(--mod-emocional);"><span data-i18n="modEmocional">💜 Emociones</span></a>
+      <a href="#mod-memoria" class="ancla-modulo" style="--acento: var(--mod-memoria);"><span data-i18n="modMemoria">🧠 Memoria y atención</span></a>
+      <a href="#mod-razonamiento" class="ancla-modulo" style="--acento: var(--mod-razonamiento);"><span data-i18n="modRazonamiento">🔢 Pensar y contar</span></a>
+      <a href="#mod-lenguaje" class="ancla-modulo" style="--acento: var(--mod-lenguaje);"><span data-i18n="modLenguaje">💬 Lenguaje y palabras</span></a>
+      <a href="#mod-coordinacion" class="ancla-modulo" style="--acento: var(--mod-coordinacion);"><span data-i18n="modCoordinacion">🎯 Puntería y manos</span></a>
+      <a href="#mod-cuerpo" class="ancla-modulo" style="--acento: var(--mod-cuerpo);"><span data-i18n="modCuerpo">💗 Cuerpo y relaciones</span></a>
     </nav>
 
     <main class="pila modulos">
 
-      <!-- Módulo 1: Coordinación -->
-      <section class="modulo" id="mod-1" style="--acento: var(--mod-coordinacion); --acento-suave: var(--mod-coordinacion-suave);">
-        <h2><span aria-hidden="true" data-i18n="mod1">🎯 Puntería y manos</span></h2>
-        <div class="grid-tarjetas">
-          <a href="../tools/catch/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">⚽</span>
-            <span class="nombre" data-i18n="catch_nombre">Atrapa</span>
-            <span class="detalle" data-i18n="catch_detalle">Toca el dibujo que se mueve.</span>
-          </a>
-          <a href="../tools/connect-dots/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🔢</span>
-            <span class="nombre" data-i18n="connectdots_nombre">Une los Puntos</span>
-            <span class="detalle" data-i18n="connectdots_detalle">Une los números en orden.</span>
-          </a>
-          <a href="../tools/keyboard-typing/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">⌨️</span>
-            <span class="nombre" data-i18n="teclado_nombre">Teclado</span>
-            <span class="detalle" data-i18n="teclado_detalle">Aprende a escribir.</span>
-          </a>
-          <a href="../tools/piano-keys/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🎹</span>
-            <span class="nombre" data-i18n="piano_nombre">Piano</span>
-            <span class="detalle" data-i18n="piano_detalle">Toca música con el teclado.</span>
-          </a>
-          <a href="../tools/tracing/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">✏️</span>
-            <span class="nombre" data-i18n="tracing_nombre">Trazos</span>
-            <span class="detalle" data-i18n="tracing_detalle">Repasa la línea de puntos.</span>
-          </a>
-          <a href="../tools/coloring/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🎨</span>
-            <span class="nombre" data-i18n="coloring_nombre">Colorear</span>
-            <span class="detalle" data-i18n="coloring_detalle">Pinta el dibujo a tu gusto.</span>
-          </a>
-          <a href="../tools/builders/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🏗️</span>
-            <span class="nombre" data-i18n="builders_nombre">Constructores</span>
-            <span class="detalle" data-i18n="builders_detalle">Pon bloques de colores. ¡Construye lo que quieras!</span>
-          </a>
-        </div>
-      </section>
-
-      <!-- Módulo 2: Secuenciación -->
-      <section class="modulo" id="mod-2" style="--acento: var(--mod-secuencia); --acento-suave: var(--mod-secuencia-suave);">
-        <h2><span aria-hidden="true" data-i18n="mod2">📋 Mi día a día</span></h2>
+      <!-- Módulo: Autonomía y hogar (terapia ocupacional) -->
+      <section class="modulo" id="mod-secuencia" style="--acento: var(--mod-secuencia); --acento-suave: var(--mod-secuencia-suave);">
+        <h2><span aria-hidden="true" data-i18n="modSecuencia">📋 Mi día a día</span></h2>
         <div class="grid-tarjetas">
           <a href="../tools/routines/index.html" class="tarjeta">
             <span class="picto" aria-hidden="true">🌅</span>
@@ -184,6 +135,11 @@
             <span class="nombre" data-i18n="phonenumbers_nombre">Teléfonos Importantes</span>
             <span class="detalle" data-i18n="phonenumbers_detalle">Aprende el número de policía, bomberos y emergencias.</span>
           </a>
+          <a href="../tools/my-details/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🏠</span>
+            <span class="nombre" data-i18n="mydetails_nombre">Mis Datos</span>
+            <span class="detalle" data-i18n="mydetails_detalle">Repasa tu dirección y tu teléfono, y los de tu familia.</span>
+          </a>
           <a href="../tools/shopping/index.html" class="tarjeta">
             <span class="picto" aria-hidden="true">🛒</span>
             <span class="nombre" data-i18n="shopping_nombre">La Compra</span>
@@ -194,12 +150,49 @@
             <span class="nombre" data-i18n="shop_nombre">La Tienda</span>
             <span class="detalle" data-i18n="shop_detalle">Compra de verdad con tu dinero.</span>
           </a>
+          <a href="../tools/healthy-food/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🥗</span>
+            <span class="nombre" data-i18n="healthyfood_nombre">Comida Sana</span>
+            <span class="detalle" data-i18n="healthyfood_detalle">Elige entre comer cada día o de vez en cuando.</span>
+          </a>
         </div>
       </section>
 
-      <!-- Módulo 3: Memoria y atención -->
-      <section class="modulo" id="mod-3" style="--acento: var(--mod-memoria); --acento-suave: var(--mod-memoria-suave);">
-        <h2><span aria-hidden="true" data-i18n="mod3">🧠 Memoria y atención</span></h2>
+      <!-- Módulo: Emociones (terapia ocupacional) -->
+      <section class="modulo" id="mod-emocional" style="--acento: var(--mod-emocional); --acento-suave: var(--mod-emocional-suave);">
+        <h2><span aria-hidden="true" data-i18n="modEmocional">💜 Emociones</span></h2>
+        <div class="grid-tarjetas">
+          <a href="../tools/emotions/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">😊</span>
+            <span class="nombre" data-i18n="emotions_nombre">¿Cómo me siento?</span>
+            <span class="detalle" data-i18n="emotions_detalle">Elige tu emoción de hoy.</span>
+          </a>
+          <a href="../tools/calm/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🧘</span>
+            <span class="nombre" data-i18n="calm_nombre">Calma</span>
+            <span class="detalle" data-i18n="calm_detalle">Respira despacio.</span>
+          </a>
+          <a href="../tools/friends/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🧑‍🤝‍🧑</span>
+            <span class="nombre" data-i18n="friends_nombre">Entre Amigos</span>
+            <span class="detalle" data-i18n="friends_detalle">Emociones y conflictos.</span>
+          </a>
+          <a href="../tools/my-body/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">💗</span>
+            <span class="nombre" data-i18n="mybody_nombre">Mi Cuerpo Me Avisa</span>
+            <span class="detalle" data-i18n="mybody_detalle">Nota lo que sientes y cuida de ti.</span>
+          </a>
+          <a href="../tools/good-manners/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🤝</span>
+            <span class="nombre" data-i18n="goodmanners_nombre">Buenos Modales</span>
+            <span class="detalle" data-i18n="goodmanners_detalle">Aprende a ser amable: gracias, por favor, adiós.</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Módulo: Memoria y atención (académico) -->
+      <section class="modulo" id="mod-memoria" style="--acento: var(--mod-memoria); --acento-suave: var(--mod-memoria-suave);">
+        <h2><span aria-hidden="true" data-i18n="modMemoria">🧠 Memoria y atención</span></h2>
         <div class="grid-tarjetas">
           <a href="../tools/pairs/index.html" class="tarjeta">
             <span class="picto" aria-hidden="true">🃏</span>
@@ -254,9 +247,9 @@
         </div>
       </section>
 
-      <!-- Módulo 4: Razonamiento y matemáticas -->
-      <section class="modulo" id="mod-4" style="--acento: var(--mod-razonamiento); --acento-suave: var(--mod-razonamiento-suave);">
-        <h2><span aria-hidden="true" data-i18n="mod4">🔢 Pensar y contar</span></h2>
+      <!-- Módulo: Razonamiento y matemáticas (académico) -->
+      <section class="modulo" id="mod-razonamiento" style="--acento: var(--mod-razonamiento); --acento-suave: var(--mod-razonamiento-suave);">
+        <h2><span aria-hidden="true" data-i18n="modRazonamiento">🔢 Pensar y contar</span></h2>
         <div class="grid-tarjetas">
           <a href="../tools/riddles/index.html" class="tarjeta">
             <span class="picto" aria-hidden="true">🧩</span>
@@ -351,9 +344,9 @@
         </div>
       </section>
 
-      <!-- Módulo 5: Lenguaje y comunicación -->
-      <section class="modulo" id="mod-5" style="--acento: var(--mod-lenguaje); --acento-suave: var(--mod-lenguaje-suave);">
-        <h2><span aria-hidden="true" data-i18n="mod5">💬 Lenguaje y palabras</span></h2>
+      <!-- Módulo: Lenguaje y comunicación (académico) -->
+      <section class="modulo" id="mod-lenguaje" style="--acento: var(--mod-lenguaje); --acento-suave: var(--mod-lenguaje-suave);">
+        <h2><span aria-hidden="true" data-i18n="modLenguaje">💬 Lenguaje y palabras</span></h2>
         <div class="grid-tarjetas">
           <a href="../tools/comedy-club/index.html" class="tarjeta">
             <span class="picto" aria-hidden="true">🎭</span>
@@ -413,39 +406,65 @@
         </div>
       </section>
 
-      <!-- Módulo 6: Emociones y relaciones -->
-      <section class="modulo" id="mod-6" style="--acento: var(--mod-emocional); --acento-suave: var(--mod-emocional-suave);">
-        <h2><span aria-hidden="true" data-i18n="mod6">💜 Emociones</span></h2>
+      <!-- Módulo: Coordinación y motricidad (dificultades motoras) -->
+      <section class="modulo" id="mod-coordinacion" style="--acento: var(--mod-coordinacion); --acento-suave: var(--mod-coordinacion-suave);">
+        <h2><span aria-hidden="true" data-i18n="modCoordinacion">🎯 Puntería y manos</span></h2>
         <div class="grid-tarjetas">
-          <a href="../tools/emotions/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">😊</span>
-            <span class="nombre" data-i18n="emotions_nombre">¿Cómo me siento?</span>
-            <span class="detalle" data-i18n="emotions_detalle">Elige tu emoción de hoy.</span>
+          <a href="../tools/catch/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">⚽</span>
+            <span class="nombre" data-i18n="catch_nombre">Atrapa</span>
+            <span class="detalle" data-i18n="catch_detalle">Toca el dibujo que se mueve.</span>
           </a>
-          <a href="../tools/calm/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🧘</span>
-            <span class="nombre" data-i18n="calm_nombre">Calma</span>
-            <span class="detalle" data-i18n="calm_detalle">Respira despacio.</span>
+          <a href="../tools/connect-dots/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🔢</span>
+            <span class="nombre" data-i18n="connectdots_nombre">Une los Puntos</span>
+            <span class="detalle" data-i18n="connectdots_detalle">Une los números en orden.</span>
           </a>
-          <a href="../tools/friends/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🧑‍🤝‍🧑</span>
-            <span class="nombre" data-i18n="friends_nombre">Entre Amigos</span>
-            <span class="detalle" data-i18n="friends_detalle">Emociones y conflictos.</span>
+          <a href="../tools/keyboard-typing/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">⌨️</span>
+            <span class="nombre" data-i18n="teclado_nombre">Teclado</span>
+            <span class="detalle" data-i18n="teclado_detalle">Aprende a escribir.</span>
           </a>
-          <a href="../tools/my-body/index.html" class="tarjeta">
+          <a href="../tools/piano-keys/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🎹</span>
+            <span class="nombre" data-i18n="piano_nombre">Piano</span>
+            <span class="detalle" data-i18n="piano_detalle">Toca música con el teclado.</span>
+          </a>
+          <a href="../tools/tracing/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">✏️</span>
+            <span class="nombre" data-i18n="tracing_nombre">Trazos</span>
+            <span class="detalle" data-i18n="tracing_detalle">Repasa la línea de puntos.</span>
+          </a>
+          <a href="../tools/coloring/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🎨</span>
+            <span class="nombre" data-i18n="coloring_nombre">Colorear</span>
+            <span class="detalle" data-i18n="coloring_detalle">Pinta el dibujo a tu gusto.</span>
+          </a>
+          <a href="../tools/builders/index.html" class="tarjeta">
+            <span class="picto" aria-hidden="true">🏗️</span>
+            <span class="nombre" data-i18n="builders_nombre">Constructores</span>
+            <span class="detalle" data-i18n="builders_detalle">Pon bloques de colores. ¡Construye lo que quieras!</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Módulo: Cuerpo y relaciones (educación afectivo-sexual) -->
+      <section class="modulo" id="mod-cuerpo" style="--acento: var(--mod-cuerpo); --acento-suave: var(--mod-cuerpo-suave);">
+        <h2><span aria-hidden="true" data-i18n="modCuerpo">💗 Cuerpo y relaciones</span></h2>
+        <div class="grid-tarjetas">
+          <a href="../tools/sexual-health/index.html" class="tarjeta">
             <span class="picto" aria-hidden="true">💗</span>
-            <span class="nombre" data-i18n="mybody_nombre">Mi Cuerpo Me Avisa</span>
-            <span class="detalle" data-i18n="mybody_detalle">Nota lo que sientes y cuida de ti.</span>
-          </a>
-          <a href="../tools/good-manners/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🤝</span>
-            <span class="nombre" data-i18n="goodmanners_nombre">Buenos Modales</span>
-            <span class="detalle" data-i18n="goodmanners_detalle">Aprende a ser amable: gracias, por favor, adiós.</span>
+            <span class="nombre" data-i18n="sexualhealth_nombre">Mi Cuerpo, Mis Decisiones</span>
+            <span class="detalle" data-i18n="sexualhealth_detalle">Cuerpo, relaciones y salud, con apoyo.</span>
           </a>
         </div>
       </section>
 
     </main>
+
+    <footer class="pie-app">
+      <a href="../legal/index.html" class="enlace-legal" data-i18n="core.dataProtection">Protección de datos</a>
+    </footer>
   </div>
 
   <script src="../assets/js/utils.js"></script>
@@ -485,30 +504,8 @@
       });
       pintarSelectorIdioma();
 
-      /* Aviso de actualización: cuando el Service Worker de una visita
-         anterior es sustituido por uno nuevo (versión distinta de sw.js),
-         se ofrece recargar. 'controladorInicial' distingue la primera
-         instalación (sin controlador todavía: no es una actualización real)
-         de un cambio de versión posterior (si ya había uno, sí lo es). */
       if ('serviceWorker' in navigator) {
-        var controladorInicial = navigator.serviceWorker.controller;
-        navigator.serviceWorker.addEventListener('controllerchange', function () {
-          if (controladorInicial) {
-            document.getElementById('avisoActualizacion').classList.remove('oculto');
-          }
-          controladorInicial = navigator.serviceWorker.controller;
-        });
-
-        navigator.serviceWorker.register('../sw.js').then(function (reg) {
-          if (reg.update) reg.update();
-        }).catch(function () {});
-
-        document.getElementById('btnActualizar').addEventListener('click', function () {
-          window.location.reload();
-        });
-        document.getElementById('btnLeerActualizacion').addEventListener('click', function () {
-          App.tts.speak(App.i18n.t('avisoActualizacionTexto'));
-        });
+        navigator.serviceWorker.register('../sw.js').catch(function () {});
       }
     })();
   </script>

@@ -1,16 +1,11 @@
 /* ============================================================
-   Data: Catch — level configuration.
-   Format: niveles[] = { id, nombre, tamano (px, never < 64) }
-   toquesPorRonda: taps needed to complete a round.
-   To extend: add new levels to the array.
+   Data: Catch — round configuration.
+   Format: { toquesPorRonda, tamano (px, the accessibility minimum
+   of 64 — small enough to keep the exercise meaningful for
+   eye-hand coordination), objetivos (emoji variety = motivation) }
    ============================================================ */
 const DATA = {
   toquesPorRonda: 10,
-  niveles: [
-    { id: 'grande', nombre: 'Grande', tamano: 120, estrellas: 1 },
-    { id: 'mediano', nombre: 'Mediano', tamano: 90, estrellas: 2 },
-    { id: 'pequeno', nombre: 'Pequeño', tamano: 64, estrellas: 3 }
-  ],
-  /* Emojis shown by the target (variety = motivation) */
+  tamano: 64,
   objetivos: ['⚽', '🎈', '⭐', '🍎', '🐥', '🌸', '🚗', '🐟', '🎁', '🦋']
 };

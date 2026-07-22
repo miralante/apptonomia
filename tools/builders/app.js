@@ -369,7 +369,6 @@
        instrucción genérica, aunque haya 0 bloques. */
     if (numBloques === 0 && modoActual !== 'plantilla') {
       App.feedback.encourage(feedbackEl);
-      App.tts.speak(App.i18n.t('instruccion'));
       return;
     }
 
@@ -457,9 +456,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   /* ------------------------------------------------------------
      INSTRUCCIONES CON AUDIO
      ------------------------------------------------------------ */
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
 
   /* ------------------------------------------------------------
      INICIALIZACIÓN
@@ -467,3 +463,4 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   pintarEstrellas();
   App.i18n.apply();
 })();
+

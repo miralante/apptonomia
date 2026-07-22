@@ -1,9 +1,14 @@
 /* ============================================================
    Apptonomia — Trazos (motricidad fina)
-   Datos en data.js (DATA.niveles). Módulos compartidos en assets/js/.
-   Mecánica: repasar con el dedo/ratón una guía de puntos. Se
-   comprueba cuánta guía se ha cubierto (sin exigir perfección).
-   Sin límite de intentos: "Borrar" permite volver a empezar.
+   Datos en data.js (DATA.niveles + FORMAS_COMUNES). Módulos
+   compartidos en assets/js/. Mecánica: repasar con el dedo o el
+   ratón una guía de puntos. Se comprueba cuánta guía se ha
+   cubierto (sin exigir perfección). Sin límite de intentos:
+   "Borrar" permite volver a empezar.
+
+   Cada forma se compone por referencia ('ref') al catálogo
+   FORMAS_COMUNES. Esto evita duplicar geometría entre ES y EN y
+   mantiene una sola fuente de verdad para cada letra.
    ============================================================ */
 (function () {
   'use strict';
@@ -14,6 +19,7 @@
   var pantallaInicio = $('#pantallaInicio');
   var pantallaJuego = $('#pantallaJuego');
   var pantallaFinal = $('#pantallaFinal');
+  var pantallaSeleccion = $('#pantallaSeleccion');
   var formaTituloEl = $('#formaTitulo');
   var lienzo = $('#lienzo');
   var guiaPath = $('#guia');
@@ -25,6 +31,9 @@
   var progressFill = $('#progressFill');
   var progressText = $('#progressText');
   var starsEl = $('#stars');
+  var rejillaMayus = $('#rejillaMayus');
+  var rejillaMinus = $('#rejillaMinus');
+  var seleccionResumen = $('#seleccionResumen');
 
   /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
@@ -33,17 +42,123 @@
 
   /* Round state */
   var nivel = null;
+  var modo = 'guiado';      /* 'guiado' (niveles 1-5) o 'libre' (abecedario) */
   var formas = [];
   var idx = 0;
   var aciertosRonda = 0;
+  var totalRonda = 0;       /* dinámico: porRonda o porRondaLibre */
   var resuelto = false;
   var trazos = [];       /* array de trazos; cada uno, array de [x,y] */
   var dibujando = false;
   var DATOS = DATA[App.i18n.locale()] || DATA.es;
 
+  /* Letras elegidas en modo libre. Cada entrada es { id, ref }. */
+  var letrasSeleccionadas = [];
+
+  /* Resuelve la geometría (puntos) de una forma: admite tanto
+     el nuevo formato { ref } como el antiguo { puntos } directo,
+     para que scripts anteriores o ampliaciones no rompan. */
+  function puntosDeForma(forma) {
+    if (Array.isArray(forma.puntos)) return forma.puntos;
+    if (forma.ref && FORMAS_COMUNES && FORMAS_COMUNES[forma.ref]) {
+      return FORMAS_COMUNES[forma.ref].puntos;
+    }
+    return [];
+  }
+
   function guardar() { App.storage.set(TOOL_ID, progreso); }
 
   function pintarEstrellas() { starsEl.textContent = '⭐ ' + progreso.estrellas; }
+
+  /* ---- Modo libre: selección de letras ---- */
+
+  /* Pinta las dos rejillas (mayúsculas y minúsculas). Cada letra
+     es un botón con estado presionado/no-presionado. La etiqueta
+     accesible anuncia el nombre de la letra y si está elegida. */
+  function pintarRejillaLetras() {
+    rejillaMayus.innerHTML = '';
+    rejillaMinus.innerHTML = '';
+    pintarGrupoLetras(rejillaMayus, DATOS.alfabeto.mayusculas, 'Mayúscula');
+    pintarGrupoLetras(rejillaMinus, DATOS.alfabeto.minusculas, 'Minúscula');
+    /* Restaura selección visual al volver a abrir la pantalla. */
+    marcarSeleccionActual();
+  }
+
+  function pintarGrupoLetras(contenedor, grupo, etiquetaGrupo) {
+    grupo.forEach(function (letra) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn-letra';
+      btn.textContent = letra.id;
+      btn.dataset.id = letra.id;
+      btn.dataset.ref = letra.ref;
+      btn.dataset.grupo = etiquetaGrupo;
+      btn.setAttribute('aria-pressed', 'false');
+      btn.setAttribute('aria-label',
+        etiquetaGrupo + ' ' + letra.id +
+        '. ' + (App.i18n.t('ariaNoSeleccionada') || ''));
+      btn.addEventListener('click', function () { toggleLetra(letra, btn); });
+      contenedor.appendChild(btn);
+    });
+  }
+
+  function toggleLetra(letra, btn) {
+    var i = letrasSeleccionadas.findIndex(function (l) {
+      return l.id === letra.id && l.ref === letra.ref;
+    });
+    if (i === -1) {
+      letrasSeleccionadas.push(letra);
+      btn.classList.add('seleccionada');
+      btn.setAttribute('aria-pressed', 'true');
+    } else {
+      letrasSeleccionadas.splice(i, 1);
+      btn.classList.remove('seleccionada');
+      btn.setAttribute('aria-pressed', 'false');
+    }
+    pintarResumenSeleccion();
+  }
+
+  function seleccionarGrupo(grupo, valor) {
+    var cont = grupo === 'mayusculas' ? rejillaMayus : rejillaMinus;
+    var items = grupo === 'mayusculas'
+      ? DATOS.alfabeto.mayusculas
+      : DATOS.alfabeto.minusculas;
+    items.forEach(function (letra) {
+      var idx2 = letrasSeleccionadas.findIndex(function (l) {
+        return l.id === letra.id && l.ref === letra.ref;
+      });
+      if (valor && idx2 === -1) letrasSeleccionadas.push(letra);
+      if (!valor && idx2 !== -1) letrasSeleccionadas.splice(idx2, 1);
+    });
+    /* Refresca marcas visuales */
+    Array.prototype.forEach.call(cont.children, function (btn) {
+      var on = letrasSeleccionadas.some(function (l) {
+        return l.id === btn.dataset.id && l.ref === btn.dataset.ref;
+      });
+      btn.classList.toggle('seleccionada', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  function marcarSeleccionActual() {
+    [['mayusculas', rejillaMayus], ['minusculas', rejillaMinus]].forEach(
+      function (par) {
+        Array.prototype.forEach.call(par[1].children, function (btn) {
+          var on = letrasSeleccionadas.some(function (l) {
+            return l.id === btn.dataset.id && l.ref === btn.dataset.ref;
+          });
+          btn.classList.toggle('seleccionada', on);
+          btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      }
+    );
+  }
+
+  function pintarResumenSeleccion() {
+    var n = letrasSeleccionadas.length;
+    var plantilla = App.i18n.t('seleccionResumen') || '{n} letras';
+    seleccionResumen.textContent = plantilla.replace('{n}', n);
+  }
 
   function pintarNiveles() {
     var cont = $('#niveles');
@@ -62,18 +177,42 @@
 
   function iniciarRonda(n) {
     nivel = n;
+    modo = 'guiado';
     formas = App.utils.shuffle(nivel.formas).slice(0, DATOS.porRonda);
+    totalRonda = DATOS.porRonda;
     idx = 0;
     aciertosRonda = 0;
     pantallaInicio.classList.add('oculto');
+    pantallaFinal.classList.add('oculto');
+    pantallaSeleccion.classList.add('oculto');
+    pantallaJuego.classList.remove('oculto');
+    render();
+  }
+
+  function iniciarPracticaLibre(seleccion) {
+    if (!seleccion || !seleccion.length) return;
+    nivel = null;
+    modo = 'libre';
+    /* Construimos formas a partir de las letras elegidas. Como
+       pueden repetirse entre ronda y ronda, las barajamos y nos
+       quedamos con porRondaLibre (o menos si hay pocas letras). */
+    var tam = Math.min(DATOS.porRondaLibre, seleccion.length);
+    formas = App.utils.shuffle(seleccion).slice(0, tam).map(function (it) {
+      return { nombre: it.id, ref: it.ref };
+    });
+    totalRonda = formas.length;
+    idx = 0;
+    aciertosRonda = 0;
+    pantallaInicio.classList.add('oculto');
+    pantallaSeleccion.classList.add('oculto');
     pantallaFinal.classList.add('oculto');
     pantallaJuego.classList.remove('oculto');
     render();
   }
 
   function pintarProgreso() {
-    progressFill.style.width = ((idx / DATOS.porRonda) * 100) + '%';
-    progressText.textContent = idx + ' / ' + DATOS.porRonda;
+    progressFill.style.width = ((idx / totalRonda) * 100) + '%';
+    progressText.textContent = idx + ' / ' + totalRonda;
   }
 
   function cadenaDesdePuntos(puntos) {
@@ -88,7 +227,7 @@
     feedbackEl.className = 'feedback';
     btnSiguiente.classList.add('oculto');
     formaTituloEl.textContent = forma.nombre;
-    guiaPath.setAttribute('d', cadenaDesdePuntos(forma.puntos));
+    guiaPath.setAttribute('d', cadenaDesdePuntos(puntosDeForma(forma)));
     trazoPath.setAttribute('d', '');
 
     pintarProgreso();
@@ -152,7 +291,7 @@
   function comprobar() {
     if (resuelto) return;
     var forma = formas[idx];
-    var objetivo = puntosFinos(forma.puntos, 6);
+    var objetivo = puntosFinos(puntosDeForma(forma), 6);
     var dibujados = trazos.reduce(function (acc, t) { return acc.concat(t); }, []);
 
     if (!dibujados.length) {
@@ -190,7 +329,7 @@
   function siguiente() {
     idx += 1;
     App.tts.stop();
-    if (idx >= DATOS.porRonda) {
+    if (idx >= totalRonda) {
       terminarRonda();
     } else {
       render();
@@ -198,14 +337,17 @@
   }
 
   function terminarRonda() {
-    progreso.completados[nivel.id] = (progreso.completados[nivel.id] || 0) + 1;
+    if (nivel && nivel.id) {
+      progreso.completados[nivel.id] = (progreso.completados[nivel.id] || 0) + 1;
+    }
     guardar();
     pantallaJuego.classList.add('oculto');
     pantallaFinal.classList.remove('oculto');
-    $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
+    var plantilla = App.i18n.t('resumenFinal');
+    $('#resumenFinal').textContent = plantilla
       .replace('{n}', aciertosRonda)
       .replace('{total}', progreso.estrellas);
-$('#transferencia').textContent = App.i18n.t('transferencia');
+    $('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.celebrate(App.i18n.t('finalTitulo'));
   }
 
@@ -217,11 +359,56 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   btnBorrar.addEventListener('click', borrar);
   btnComprobar.addEventListener('click', comprobar);
   btnSiguiente.addEventListener('click', siguiente);
-  $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
+  $('#btnRepetir').addEventListener('click', function () {
+    if (modo === 'libre') {
+      iniciarPracticaLibre(letrasSeleccionadas);
+    } else if (nivel) {
+      iniciarRonda(nivel);
+    }
+  });
   $('#btnOtroNivel').addEventListener('click', function () {
     pantallaFinal.classList.add('oculto');
     pintarNiveles();
     pantallaInicio.classList.remove('oculto');
+  });
+  $('#btnModoLibre').addEventListener('click', function () {
+    pantallaInicio.classList.add('oculto');
+    pintarRejillaLetras();
+    pintarResumenSeleccion();
+    pantallaSeleccion.classList.remove('oculto');
+  });
+  $('#btnVolverInicio').addEventListener('click', function () {
+    pantallaSeleccion.classList.add('oculto');
+    pintarNiveles();
+    pantallaInicio.classList.remove('oculto');
+  });
+  $('#btnSeleccionarMayus').addEventListener('click', function () {
+    seleccionarGrupo('mayusculas', true);
+    pintarResumenSeleccion();
+  });
+  $('#btnSeleccionarMinus').addEventListener('click', function () {
+    seleccionarGrupo('minusculas', true);
+    pintarResumenSeleccion();
+  });
+  $('#btnSeleccionarTodo').addEventListener('click', function () {
+    seleccionarGrupo('mayusculas', true);
+    seleccionarGrupo('minusculas', true);
+    pintarResumenSeleccion();
+  });
+  $('#btnSeleccionarNada').addEventListener('click', function () {
+    seleccionarGrupo('mayusculas', false);
+    seleccionarGrupo('minusculas', false);
+    pintarResumenSeleccion();
+  });
+  $('#btnIniciarPractica').addEventListener('click', function () {
+    var seleccion = letrasSeleccionadas.filter(function (l) {
+      return FORMAS_COMUNES && FORMAS_COMUNES[l.ref];
+    });
+    if (!seleccion.length) {
+      App.feedback.encourage(feedbackEl);
+      return;
+    }
+    iniciarPracticaLibre(seleccion);
   });
   $('#btnInstruccion').addEventListener('click', function () {
     App.tts.speak(App.i18n.t('instruccionCompleta'));

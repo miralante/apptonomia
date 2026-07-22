@@ -121,6 +121,48 @@
 
   function signo(s) { return '<span class="signo">' + s + '</span>'; }
 
+  /* ---- Ascensor (negative numbers) ---- */
+
+  function pisoHTML(n) {
+    return n < 0 ? signo('−') + numero(Math.abs(n)) : numero(n);
+  }
+
+  /* Plain-text floor label (for 'hablar'/'enunciado', which are set via
+     textContent, not innerHTML — no markup allowed there). */
+  function pisoPlano(n) {
+    return (n < 0 ? '−' : '') + Math.abs(n);
+  }
+
+  function leyendaAscensor() {
+    return '<span class="cifra-u">' + App.i18n.t('leyendaPlantaBajaTxt') + '</span> · ' +
+      '<span class="cifra-coma">' + App.i18n.t('leyendaBajoTierraTxt') + '</span>';
+  }
+
+  /* Vertical shaft visual (decorative, aria-hidden — the accessible
+     description lives in 'hablar', not here, same as the dot visuals
+     below). markers: [{ floor, icon, clase }], one row per floor. */
+  function shaftHTML(min, max, markers) {
+    var porPiso = {};
+    markers.forEach(function (m) {
+      (porPiso[m.floor] = porPiso[m.floor] || []).push(m);
+    });
+    var filas = '';
+    for (var n = max; n >= min; n--) {
+      var clases = 'piso-fila';
+      var contenido = '';
+      if (n === 0) {
+        clases += ' piso-suelo';
+        contenido += '<span class="piso-icono">🏠</span>';
+      }
+      (porPiso[n] || []).forEach(function (m) {
+        clases += ' ' + (m.clase || 'piso-marca');
+        contenido += '<span class="piso-icono">' + m.icon + '</span>';
+      });
+      filas += '<div class="' + clases + '">' + contenido + '</div>';
+    }
+    return '<div class="ascensor-shaft" aria-hidden="true">' + filas + '</div>';
+  }
+
   function precioHTML(cent) {
     var e = Math.floor(cent / 100);
     var c = cent % 100;
@@ -189,6 +231,15 @@
     return '<span class="grupo-puntos">' + repetir('<span class="punto ' + clase + '"></span>', n) + '</span>';
   }
 
+  /* Dots grouped two by two, counting by twos: a lone dot at the end
+     means the number is odd. */
+  function grupoPuntosPares(n) {
+    var pares = Math.floor(n / 2);
+    var s = repetir('<span class="par-puntos"><span class="punto"></span><span class="punto"></span></span>', pares);
+    if (n % 2) s += '<span class="par-puntos suelto"><span class="punto"></span></span>';
+    return s;
+  }
+
   /* Dots to subtract: the last "quitar" ones get an X. */
   function grupoPuntosResta(total, quitar) {
     var s = '';
@@ -226,6 +277,131 @@
         opciones: construirOpciones(correcto,
           [correcto - nv.paso, correcto + nv.paso, correcto + 1],
           function (v) { return numero(v); })
+      };
+    },
+
+    /* Builds on counting in twos (same 'paso'): group the number's dots
+       two by two and classify it into the even or odd row. */
+    paresImpares: function (nv) {
+      var n = ri(0, nv.max);
+      var esPar = n % 2 === 0;
+      return {
+        enunciado: App.i18n.t('gen.paresImparesEnunciado'),
+        hablar: App.i18n.t('gen.paresImparesHablar'),
+        visual: '<div class="expresion">' + numero(n) + '</div>' +
+          '<div class="grupos-pares" aria-hidden="true">' + grupoPuntosPares(n) + '</div>',
+        opciones: [
+          { html: '<span class="op-fila">🟦 ' + App.i18n.t('gen.filaPares') + '</span>', correcta: esPar },
+          { html: '<span class="op-fila">🟥 ' + App.i18n.t('gen.filaImpares') + '</span>', correcta: !esPar }
+        ],
+        enFila: true
+      };
+    },
+
+    /* Read the elevator's floor, including floors below ground (negative
+       numbers). The visual (shaft) is decorative; 'hablar' states the
+       same fact in words ("N floors up/down from the ground floor") so
+       the question is answerable without seeing the shaft. */
+    ascensorLeer: function (nv) {
+      var piso = ri(nv.min, nv.max);
+      var situacion = piso === 0 ? App.i18n.t('gen.ascensorLeerSituacionSuelo') :
+        (piso > 0 ? App.i18n.t('gen.ascensorLeerSituacionArriba').replace('{n}', piso) :
+          App.i18n.t('gen.ascensorLeerSituacionAbajo').replace('{n}', Math.abs(piso)));
+      var candidatos = App.utils.shuffle([piso - 1, piso + 1, piso - 2, piso + 2]
+        .filter(function (v) { return v !== piso; }));
+      var valores = [piso];
+      for (var i = 0; i < candidatos.length && valores.length < 3; i++) {
+        if (valores.indexOf(candidatos[i]) === -1) valores.push(candidatos[i]);
+      }
+      return {
+        enunciado: App.i18n.t('gen.ascensorLeerEnunciado'),
+        hablar: App.i18n.t('gen.ascensorLeerHablar').replace('{situacion}', situacion),
+        visual: shaftHTML(nv.min, nv.max, [{ floor: piso, icon: '🛗', clase: 'piso-actual' }]),
+        leyenda: leyendaAscensor(),
+        opciones: App.utils.shuffle(valores).map(function (v) {
+          return { html: pisoHTML(v), correcta: v === piso };
+        })
+      };
+    },
+
+    /* Start floor + move up/down N floors = end floor. 'inicio' is kept
+       away from both edges so there's always room to move in either
+       direction (rule 13: only 'delta'/direction vary per question,
+       not the range). */
+    ascensorMover: function (nv) {
+      var inicio = ri(nv.min + 1, nv.max - 1);
+      var subir = Math.random() < 0.5;
+      var disponible = subir ? (nv.max - inicio) : (inicio - nv.min);
+      var delta = ri(1, Math.max(1, Math.min(4, disponible)));
+      var final = subir ? inicio + delta : inicio - delta;
+      var clavePrefijo = subir ? 'gen.ascensorMoverSube' : 'gen.ascensorMoverBaja';
+      var candidatos = App.utils.shuffle([final - 1, final + 1, inicio]
+        .filter(function (v) { return v !== final; }));
+      var valores = [final];
+      for (var i = 0; i < candidatos.length && valores.length < 3; i++) {
+        if (valores.indexOf(candidatos[i]) === -1) valores.push(candidatos[i]);
+      }
+      return {
+        enunciado: App.i18n.t(clavePrefijo + 'Enunciado').replace('{inicio}', pisoPlano(inicio)).replace('{delta}', delta),
+        hablar: App.i18n.t(clavePrefijo + 'Hablar').replace('{inicio}', pisoPlano(inicio)).replace('{delta}', delta),
+        visual: shaftHTML(nv.min, nv.max, [{ floor: inicio, icon: '🛗', clase: 'piso-actual' }]) +
+          '<p class="pista-flecha" aria-hidden="true">' + (subir ? '⬆️' : '⬇️') + ' ' + delta + '</p>',
+        leyenda: leyendaAscensor(),
+        opciones: App.utils.shuffle(valores).map(function (v) {
+          return { html: pisoHTML(v), correcta: v === final };
+        })
+      };
+    },
+
+    /* Compare two floors: which is lower/higher. Only 2 real candidates
+       exist, so opciones has 2 (accessibility rule 11 sets a maximum of
+       3, not a fixed count). */
+    ascensorComparar: function (nv) {
+      var a = ri(nv.min, nv.max);
+      var b;
+      do { b = ri(nv.min, nv.max); } while (b === a);
+      var abajo = Math.random() < 0.5;
+      var correcto = abajo ? Math.min(a, b) : Math.max(a, b);
+      var clavePrefijo = abajo ? 'gen.ascensorCompararAbajo' : 'gen.ascensorCompararArriba';
+      return {
+        enunciado: App.i18n.t(clavePrefijo + 'Enunciado'),
+        hablar: App.i18n.t(clavePrefijo + 'Hablar').replace('{a}', pisoPlano(a)).replace('{b}', pisoPlano(b)),
+        visual: shaftHTML(nv.min, nv.max, [
+          { floor: a, icon: '🛗', clase: 'piso-actual' },
+          { floor: b, icon: '🚩', clase: 'piso-marca' }
+        ]),
+        leyenda: leyendaAscensor(),
+        opciones: [
+          { html: pisoHTML(a), correcta: a === correcto },
+          { html: pisoHTML(b), correcta: b === correcto }
+        ]
+      };
+    },
+
+    /* "Place it in its spot": given a floor NUMBER, find which lettered
+       spot on the shaft matches it, among 2 nearby decoys. This is the
+       inverse of ascensorLeer (there the shaft is given and the number
+       is guessed; here the number is given and the spot is guessed). */
+    ascensorColocar: function (nv) {
+      var piso = ri(nv.min, nv.max);
+      var candidatos = App.utils.shuffle([piso - 2, piso - 1, piso + 1, piso + 2]
+        .filter(function (v) { return v >= nv.min && v <= nv.max && v !== piso; })).slice(0, 2);
+      var letras = ['A', 'B', 'C'];
+      var markers = App.utils.shuffle([piso].concat(candidatos)).map(function (floor, i) {
+        return { floor: floor, icon: letras[i], clase: 'piso-opcion' };
+      });
+      return {
+        enunciado: App.i18n.t('gen.ascensorColocarEnunciado').replace('{piso}', pisoPlano(piso)),
+        hablar: App.i18n.t('gen.ascensorColocarHablar').replace('{piso}', pisoPlano(piso)),
+        visual: shaftHTML(nv.min, nv.max, markers),
+        leyenda: leyendaAscensor(),
+        opciones: markers.map(function (m) {
+          return {
+            html: m.icon,
+            aria: App.i18n.t('gen.ascensorColocarOpcionAria').replace('{l}', m.icon),
+            correcta: m.floor === piso
+          };
+        })
       };
     },
 

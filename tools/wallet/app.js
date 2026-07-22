@@ -751,9 +751,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     else iniciarRondaPagar(nivelP);
   });
   $('#btnOtroNivelFinal').addEventListener('click', function () { abrirActividad(actividadActual); });
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
 
   pintarEstrellas();
 })();
+

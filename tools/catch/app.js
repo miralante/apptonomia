@@ -2,7 +2,8 @@
    Apptonomia — Catch (eye-hand coordination)
    The target appears at random positions. Tapping it triggers
    positive reinforcement and it moves again (at least 30% away).
-   10 taps = round completed. No visible timer.
+   10 taps = round completed. No visible timer, no size choice —
+   a single, small target keeps every round meaningful.
    ============================================================ */
 (function () {
   'use strict';
@@ -16,18 +17,15 @@
   var progressFill = $('#progressFill');
   var progressText = $('#progressText');
   var starsEl = $('#stars');
-  var pantallaInicio = $('#pantallaInicio');
-  var pantallaJuego = $('#pantallaJuego');
   var pantallaFinal = $('#pantallaFinal');
   var resumenFinal = $('#resumenFinal');
 
   /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
-  if (!progreso.rondas) progreso.rondas = {};
+  if (typeof progreso.rondas !== 'number') progreso.rondas = 0;
 
   /* State */
-  var nivel = null;
   var toques = 0;
   var posAnterior = { x: 0.5, y: 0.5 };
 
@@ -40,33 +38,14 @@
     progressText.textContent = toques + ' / ' + DATA.toquesPorRonda;
   }
 
-  /* Start screen: level buttons */
-  function pintarNiveles() {
-    var cont = $('#niveles');
-    cont.innerHTML = '';
-    DATA.niveles.forEach(function (n) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'btn btn-nivel';
-      var completadas = progreso.rondas[n.id] || 0;
-      btn.innerHTML = n.nombre +
-        ' <span class="nivel-info">(' + completadas + ' rondas)</span>';
-      btn.addEventListener('click', function () { empezar(n); });
-      cont.appendChild(btn);
-    });
-  }
-
-  function empezar(n) {
-    nivel = n;
+  function empezar() {
     toques = 0;
-    pantallaInicio.classList.add('oculto');
     pantallaFinal.classList.add('oculto');
-    pantallaJuego.classList.remove('oculto');
     feedbackEl.textContent = '';
     feedbackEl.className = 'feedback';
-    objetivoEl.style.width = nivel.tamano + 'px';
-    objetivoEl.style.height = nivel.tamano + 'px';
-    objetivoEl.style.fontSize = Math.round(nivel.tamano * 0.55) + 'px';
+    objetivoEl.style.width = DATA.tamano + 'px';
+    objetivoEl.style.height = DATA.tamano + 'px';
+    objetivoEl.style.fontSize = Math.round(DATA.tamano * 0.55) + 'px';
     pintarProgreso();
     moverObjetivo();
   }
@@ -82,8 +61,8 @@
     } while (dist < 0.3 && intentos < 20);
     posAnterior = { x: x, y: y };
 
-    var maxX = areaEl.clientWidth - nivel.tamano;
-    var maxY = areaEl.clientHeight - nivel.tamano;
+    var maxX = areaEl.clientWidth - DATA.tamano;
+    var maxY = areaEl.clientHeight - DATA.tamano;
     objetivoEl.style.left = Math.round(x * maxX) + 'px';
     objetivoEl.style.top = Math.round(y * maxY) + 'px';
     objetivoEl.textContent =
@@ -105,33 +84,28 @@
   }
 
   function terminarRonda() {
-    progreso.rondas[nivel.id] = (progreso.rondas[nivel.id] || 0) + 1;
+    progreso.rondas += 1;
     guardar();
-    pantallaJuego.classList.add('oculto');
     pantallaFinal.classList.remove('oculto');
     resumenFinal.textContent =
-      'Has atrapado ' + DATA.toquesPorRonda + ' dibujos. ¡Muy bien!';
-$('#transferencia').textContent = App.i18n.t('transferencia');
-    App.feedback.celebrate('¡Ronda completada!');
+      App.i18n.t('resumenFinal').replace('{n}', DATA.toquesPorRonda);
+    $('#transfer').textContent = App.i18n.t('transfer');
+    App.feedback.celebrate(App.i18n.t('rondaCompletadaTitulo'));
   }
 
   /* Events */
   objetivoEl.addEventListener('click', acierto);
-  $('#btnRepetir').addEventListener('click', function () { empezar(nivel); });
-  $('#btnOtroNivel').addEventListener('click', function () {
-    pantallaFinal.classList.add('oculto');
-    pintarNiveles();
-    pantallaInicio.classList.remove('oculto');
-  });
+  $('#btnRepetir').addEventListener('click', empezar);
   $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent + ' Primero elige el tamaño.');
+    App.tts.speak($('#instruccion').textContent);
   });
 
   /* Reposition the target if the window size changes */
   window.addEventListener('resize', function () {
-    if (nivel && !pantallaJuego.classList.contains('oculto')) moverObjetivo();
+    if (!pantallaFinal.classList.contains('oculto')) return;
+    moverObjetivo();
   });
 
-  pintarNiveles();
   pintarEstrellas();
+  empezar();
 })();

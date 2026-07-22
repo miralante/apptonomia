@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="title">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Cuerpo, Mis Decisiones | Apptonomia</title>
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="tool-header">
+      <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Volver</a>
+      <h1 data-i18n="title">💗 Mi Cuerpo, Mis Decisiones</h1>
+      <span class="stars" id="stars">⭐ 0</span>
+    </header>
+
+    <section id="startScreen" class="pila centrado">
+      <div class="fila centrado-fila">
+        <p class="instruccion" id="instruction" data-i18n="instruction">Practica decisiones sobre tu cuerpo, tus relaciones y tu salud.</p>
+        <button type="button" class="btn btn-audio" id="instructionAudio" data-i18n-aria="core.listenInstructions" aria-label="Escuchar las instrucciones">🔊</button>
+      </div>
+      <div class="safety-note" role="note">
+        <span aria-hidden="true">🛟</span>
+        <p data-i18n="safetyNote">Si algo de esto te preocupa, no es tu culpa. Puedes hablarlo con una persona adulta de confianza o un profesional de la salud.</p>
+      </div>
+      <h2 data-i18n="chooseTopic">Elige un tema</h2>
+      <div class="pila" id="levels"></div>
+    </section>
+
+    <section id="caseScreen" class="oculto pila">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div><span class="progress-text" id="progressText">1 / 5</span></div>
+      <div class="card centrado pila">
+        <div class="case-icon" id="caseIcon" aria-hidden="true"></div>
+        <p class="texto-principal" id="caseText"></p>
+        <button type="button" class="btn btn-audio" id="caseAudio" data-i18n-aria="listenCase" aria-label="Escuchar la situación">🔊</button>
+      </div>
+      <h2 class="pregunta centrado" data-i18n="question">¿Qué haces?</h2>
+      <div class="pila" id="options"></div>
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+      <div class="fila explicacion oculto" id="explanationWrap">
+        <p id="explanation" aria-live="polite"></p>
+        <button type="button" class="btn btn-audio" id="explanationAudio" data-i18n-aria="listenExplanation" aria-label="Escuchar la explicación">🔊</button>
+      </div>
+      <button type="button" class="btn oculto" id="nextButton" data-i18n="core.next">Siguiente →</button>
+    </section>
+
+    <section id="endScreen" class="oculto centrado pila" aria-live="polite">
+      <div class="emoji-grande" aria-hidden="true">💗</div>
+      <h2 data-i18n="roundComplete">Tema completado</h2>
+      <p id="endText"></p>
+      <p id="transferencia" class="transferencia" data-i18n="transferencia"></p>
+      <button type="button" class="btn" id="repeatButton" data-i18n="repeat">Practicar otra vez</button>
+      <button type="button" class="btn btn-secundario" id="levelsButton" data-i18n="anotherTopic">Elegir otro tema</button>
+      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backToMenu">Volver al menú</a>
+    </section>
+    <footer class="pie-app">
+      <a href="../../legal/index.html" class="enlace-legal" data-i18n="core.dataProtection">Protección de datos</a>
+    </footer>
+  </div>
+
+  <script src="../../assets/js/utils.js"></script>
+  <script src="../../assets/js/i18n.js"></script>
+  <script src="../../assets/js/tts.js"></script>
+  <script src="../../assets/js/storage.js"></script>
+  <script src="../../assets/js/feedback.js"></script>
+  <script>
+    (function () {
+      var loc = window.App.i18n.locale();
+      document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
+    })();
+  </script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

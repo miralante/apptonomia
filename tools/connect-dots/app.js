@@ -1,24 +1,26 @@
 /* ============================================================
    Apptonomia — Connect the Dots (eye-hand coordination)
-   Data in data.js (DATA.es/DATA.en, 3 levels of 2-3 shapes each,
-   dots as {x, y} percentages of the play area). Numbered dots are
-   always visible; tapping them in order draws a line to the
-   previous one and, after the last dot, closes the outline back
-   to the first. A mistake is never punished: a hint comes on the
-   first wrong tap, the correct dot is highlighted on the second —
-   the person still has to tap it themselves to keep going.
+   Data in data.js (SHAPES, dots as {x, y} percentages of the
+   play area). Each round picks a random dot count between 5 and
+   10, then a random shape with that count — no level selection.
+   Numbered dots are always visible; tapping them in order draws
+   a line to the previous one and, after the last dot, closes the
+   outline back to the first. A mistake is never punished: a hint
+   comes on the first wrong tap, the correct dot is highlighted on
+   the second — the person still has to tap it themselves to keep
+   going.
    ============================================================ */
 (function () {
   'use strict';
 
   var TOOL_ID = 'connect-dots';
+  var MIN_DOTS = 5;
+  var MAX_DOTS = 10;
   var $ = App.utils.$;
   var SVG_NS = 'http://www.w3.org/2000/svg';
 
-  var startScreen = $('#startScreen');
   var playScreen = $('#playScreen');
   var finishScreen = $('#finishScreen');
-  var levelsEl = $('#levels');
   var starsEl = $('#stars');
 
   var progressFill = $('#progressFill');
@@ -32,12 +34,11 @@
   /* Persistent progress */
   var progress = App.storage.get(TOOL_ID);
   if (typeof progress.estrellas !== 'number') progress.estrellas = 0;
-  if (!progress.completed) progress.completed = {};
+  if (typeof progress.rondas !== 'number') progress.rondas = 0;
 
   function save() { App.storage.set(TOOL_ID, progress); }
   function paintStars() { starsEl.textContent = '⭐ ' + progress.estrellas; }
   function t(key) { return App.i18n.t(key); }
-  function bank() { return DATA[App.i18n.locale()] || DATA.es; }
 
   function fill(key, values) {
     var text = t(key);
@@ -48,42 +49,26 @@
   }
 
   function show(screen) {
-    [startScreen, playScreen, finishScreen].forEach(function (s) {
+    [playScreen, finishScreen].forEach(function (s) {
       s.classList.toggle('oculto', s !== screen);
     });
   }
 
-  /* ---------- Start screen: choose level ---------- */
-
-  function paintLevels() {
-    levelsEl.innerHTML = '';
-    bank().forEach(function (level) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'btn btn-level';
-      var done = progress.completed[level.id] ? ' ' + t('done') : '';
-      btn.innerHTML = level.name + done;
-      btn.addEventListener('click', function () { startLevel(level); });
-      levelsEl.appendChild(btn);
-    });
-  }
-
-  function goStart() {
-    paintLevels();
-    show(startScreen);
-  }
-
   /* ---------- Round state ---------- */
-  var currentLevel = null;
   var currentShape = null;
   var dots = [];
   var nextNumber = 1;
   var mistakes = 0;
   var hintShown = false;
 
-  function startLevel(level) {
-    currentLevel = level;
-    currentShape = level.shapes[Math.floor(Math.random() * level.shapes.length)];
+  function pickShape() {
+    var count = MIN_DOTS + Math.floor(Math.random() * (MAX_DOTS - MIN_DOTS + 1));
+    var candidates = SHAPES.filter(function (s) { return s.dots.length === count; });
+    return candidates[Math.floor(Math.random() * candidates.length)];
+  }
+
+  function startRound() {
+    currentShape = pickShape();
     nextNumber = 1;
     mistakes = 0;
     hintShown = false;
@@ -94,7 +79,7 @@
   }
 
   function paintProgress() {
-    var total = currentLevel.count;
+    var total = currentShape.dots.length;
     progressFill.style.width = (((nextNumber - 1) / total) * 100) + '%';
     progressText.textContent = (nextNumber - 1) + ' / ' + total;
   }
@@ -166,7 +151,7 @@
     paintStars();
     nextNumber += 1;
     paintProgress();
-    if (nextNumber > currentLevel.count) {
+    if (nextNumber > currentShape.dots.length) {
       drawSegment(dots[dots.length - 1], dots[0]);
       fillShape();
       finish();
@@ -187,7 +172,7 @@
   }
 
   function finish() {
-    progress.completed[currentLevel.id] = (progress.completed[currentLevel.id] || 0) + 1;
+    progress.rondas += 1;
     save();
     show(finishScreen);
     finishEmoji.textContent = currentShape.emoji;
@@ -200,14 +185,12 @@
   $('#instructionBtn').addEventListener('click', function () {
     App.tts.speak($('#instructionText').textContent);
   });
-  $('#backLevelsBtn').addEventListener('click', goStart);
-  $('#playAgainBtn').addEventListener('click', function () { startLevel(currentLevel); });
-  $('#otherLevelBtn').addEventListener('click', goStart);
+  $('#playAgainBtn').addEventListener('click', startRound);
 
   function init() {
     App.i18n.apply();
     paintStars();
-    paintLevels();
+    startRound();
   }
 
   document.addEventListener('DOMContentLoaded', init);

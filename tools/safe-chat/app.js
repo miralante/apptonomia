@@ -220,9 +220,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   }
 
   /* ---------- Eventos ---------- */
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
   $('#btnNormas').addEventListener('click', function () {
     pintarNormas();
     mostrarPantalla('pantallaNormas');
@@ -243,3 +240,4 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   /* ---------- Arranque ---------- */
   pintarMenu();
 })();
+

@@ -26,6 +26,36 @@
       </div>
       <h2 data-i18n="elegirNivel">Elige el nivel</h2>
       <div class="pila" id="niveles"></div>
+      <button type="button" class="btn btn-secundario btn-modo-libre" id="btnModoLibre" data-i18n="modoLibre">🔤 Practicar con el abecedario</button>
+    </section>
+
+    <!-- Letter selection screen (free mode) -->
+    <section id="pantallaSeleccion" class="oculto pila centrado">
+      <h2 data-i18n="seleccionTitulo">Elige las letras a practicar</h2>
+
+      <div class="fila centrado-fila seleccion-atajos" role="group" aria-label="Atajos de selección">
+        <button type="button" class="btn btn-secundario btn-atajo" id="btnSeleccionarMayus" data-i18n="seleccionarMayus">Mayúsculas</button>
+        <button type="button" class="btn btn-secundario btn-atajo" id="btnSeleccionarMinus" data-i18n="seleccionarMinus">Minúsculas</button>
+        <button type="button" class="btn btn-secundario btn-atajo" id="btnSeleccionarTodo" data-i18n="seleccionarTodo">Todas</button>
+        <button type="button" class="btn btn-secundario btn-atajo" id="btnSeleccionarNada" data-i18n="seleccionarNada">Ninguna</button>
+      </div>
+
+      <fieldset class="grupo-letras">
+        <legend data-i18n="mayusculas">Mayúsculas</legend>
+        <div class="rejilla-letras" id="rejillaMayus" role="group" aria-label="Letras mayúsculas"></div>
+      </fieldset>
+
+      <fieldset class="grupo-letras">
+        <legend data-i18n="minusculas">Minúsculas</legend>
+        <div class="rejilla-letras" id="rejillaMinus" role="group" aria-label="Letras minúsculas"></div>
+      </fieldset>
+
+      <p class="seleccion-resumen" id="seleccionResumen" aria-live="polite"></p>
+
+      <div class="fila centrado-fila acciones">
+        <button type="button" class="btn btn-secundario" id="btnVolverInicio" data-i18n="core.back">← Volver</button>
+        <button type="button" class="btn" id="btnIniciarPractica" data-i18n="iniciarPractica">Practicar →</button>
+      </div>
     </section>
 
     <!-- Game screen -->
@@ -63,6 +93,9 @@
       <button type="button" class="btn btn-secundario" id="btnOtroNivel" data-i18n="otroNivel">Elegir otro nivel</button>
       <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backToMenu">Volver al menú</a>
     </section>
+    <footer class="pie-app">
+      <a href="../../legal/index.html" class="enlace-legal" data-i18n="core.dataProtection">Protección de datos</a>
+    </footer>
   </div>
 
   <script src="../../assets/js/utils.js"></script>

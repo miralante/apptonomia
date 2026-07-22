@@ -164,10 +164,12 @@ Algunas actividades tratan temas delicados:
 |-----------|------|---------------|
 | **Emergencias** | 112, situaciones de peligro | Revisar primero, acompañar si es necesario |
 | **Teléfonos Importantes** | 112, situaciones de peligro | Revisar primero, acompañar si es necesario |
+| **Mis Datos** | Dirección y teléfonos reales de la persona y su familia | Requiere configurarla antes en `/settings/` (dirección y teléfonos); sin eso la actividad muestra solo un aviso |
 | **Chat Seguro** | Manipulación online | Requiere supervisión de la persona de apoyo |
 | **Chat Acoso** | Acoso entre iguales | Siempre con supervisión profesional |
-| **¿Lo público?** | Redes sociales | Requiere supervisión de la persona de apoyo |
+| **¿Lo publico?** | Redes sociales | Requiere supervisión de la persona de apoyo |
 | **Redes, intimidad y ley** | Manipulación sexual, intimidad digital y consecuencias legales | Siempre con supervisión profesional o familiar |
+| **Mi Cuerpo, Mis Decisiones** | Consentimiento, relaciones, anticoncepción, higiene y salud sexual | Siempre con supervisión profesional o familiar |
 
 ---
 
@@ -190,14 +192,14 @@ actividad está en [`actividades.md`](actividades.md).
 | Memoria visual y a corto plazo | ✔ | Parejas, ¿Qué falta? |
 | Memoria auditiva y verbal | ✔ | Ecos |
 | Vocabulario y categorías | ✔ | Categorías, Palabras, Sopa de Letras |
-| Vocabulario avanzado y aprendizaje significativo | ✔ | Diccionario |
+| Vocabulario avanzado y aprendizaje significativo | ✔ | Diccionario, Vocabulario por tema |
 | Ortografía | ✔ | Completa la Palabra, Ortografía en Colores |
 | Comprensión del lenguaje | ✔ | La Frase |
 | Frases hechas, refranes y chistes | ✔ | Dichos, Chistes |
 | Ambigüedad léxica y comprensión del contexto | ✔ | Doble Sentido |
 | Ortografía y escritura | ✔ | Teclado, Trazos |
 | Sentimientos y conflictos sociales | ✔ | ¿Cómo me siento?, Situaciones, Entre Amigos |
-| Seguridad en internet | ✔ | Chat Seguro, Chat Acoso, ¿Lo público?, Redes, intimidad y ley |
+| Seguridad en internet | ✔ | Chat Seguro, Chat Acoso, ¿Lo publico?, Redes, intimidad y ley |
 | Operaciones matemáticas y dinero | ✔ | El Monedero, Números |
 | Lectura de números romanos y siglos | ✔ | Números Romanos |
 | Tiempo y horas | ✔ | El Reloj, Mi agenda |
@@ -209,8 +211,11 @@ actividad está en [`actividades.md`](actividades.md).
 | Coordinación ojo-mano y motricidad fina | ✔ | Atrapa, Teclado, Trazos |
 | Juegos de mesa | ✔ | La Oca, Tres en Raya, Dominó, Las Damas, El Ajedrez, Cuatro en Raya |
 | Movilidad comunitaria | ✔ | La Calle |
-| Autonomía en salud | ✔ | Emergencias, Teléfonos Importantes, Mi Cuerpo Me Avisa |
+| Autonomía en salud | ✔ | Emergencias, Teléfonos Importantes, Mis Datos, Mi Cuerpo Me Avisa |
 | Compra y dinero en contexto real | ✔ | La Compra, La Tienda, El Monedero |
+| Alimentación saludable | ✔ | Comida Sana |
+| Educación afectivo-sexual: cuerpo, consentimiento y relaciones sanas | ✔ | Mi Cuerpo, Mis Decisiones |
+| Anticoncepción e higiene y salud sexual (derivando a profesional sanitario) | ✔ | Mi Cuerpo, Mis Decisiones |
 
 Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 [`SPEC.md`](SPEC.md) §6.
@@ -221,16 +226,18 @@ Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 
 ### Mejorar la autonomía en el hogar
 
-→ **Módulo 2: Autonomía y hogar**
+→ **Módulo 1: Autonomía y hogar**
 - Mis Rutinas
 - La Casa
 - Mi agenda
 - La Tienda
 - Emergencias
 - Teléfonos Importantes
+- Mis Datos
 - La Compra
 - ¿Dónde lo guardo?
 - Partes del Día
+- Comida Sana
 
 ### Trabajar la memoria
 
@@ -243,7 +250,7 @@ Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 
 ### Desarrollar motricidad fina
 
-→ **Módulo 1: Coordinación y motricidad**
+→ **Módulo 6: Coordinación y motricidad**
 - Atrapa
 - Trazos
 - Colorear
@@ -252,11 +259,16 @@ Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 
 ### Trabajar emociones y habilidades sociales
 
-→ **Módulo 6: Emociones**
+→ **Módulo 2: Emociones**
 - ¿Cómo me siento?
 - Calma
 - Entre Amigos
 - Mi Cuerpo Me Avisa
+
+### Trabajar cuerpo, relaciones y salud sexual (siempre con supervisión)
+
+→ **Módulo 7: Cuerpo y relaciones**
+- Mi Cuerpo, Mis Decisiones
 
 ---
 

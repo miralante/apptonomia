@@ -33,7 +33,8 @@
         listenText: 'Escuchar el texto',
         loading: 'Cargando…',
         roundComplete: '¡Ronda completada!',
-        rest: '¡Llevas un buen rato! Puedes descansar si quieres.'
+        rest: '¡Llevas un buen rato! Puedes descansar si quieres.',
+        dataProtection: 'Protección de datos'
       },
       feedback: {
         success: ['¡Muy bien!', '¡Genial!', '¡Lo has conseguido!', '¡Estupendo!', '¡Sigue así!'],
@@ -51,7 +52,8 @@
         listenText: 'Listen to the text',
         loading: 'Loading…',
         roundComplete: 'Round complete!',
-        rest: 'You have been playing a while! You can rest if you want.'
+        rest: 'You have been playing a while! You can rest if you want.',
+        dataProtection: 'Data protection'
       },
       feedback: {
         success: ['Well done!', 'Great!', 'You got it!', 'Fantastic!', 'Keep it up!'],

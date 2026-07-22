@@ -409,9 +409,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     else irNivelesLista();
   });
   $('#btnVolverMenuFinal').addEventListener('click', irMenu);
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
 
   irMenu();
 })();
+

@@ -193,9 +193,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   btnSiguiente.addEventListener('click', siguienteEscena);
   $('#btnEmpezar').addEventListener('click', empezarRonda);
   $('#btnRepetir').addEventListener('click', empezarRonda);
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
 
   pintarEstrellas();
 })();
+

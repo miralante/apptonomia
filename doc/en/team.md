@@ -38,9 +38,9 @@ Before using the application, observe the user with these questions:
 | Activity | Skill worked |
 |----------|--------------|
 | **Pairs** | Visual memory, attention |
-| **Catch** | Eye-hand coordination |
+| **Catch It** | Eye-hand coordination |
 | **Coloring** | Fine motor skills |
-| **Tracing** | Movement precision |
+| **Traces** | Movement precision |
 | **How do I feel?** | Emotional recognition |
 | **My Routines** | Temporal sequencing |
 
@@ -49,7 +49,7 @@ Before using the application, observe the user with these questions:
 | Activity | Skill worked |
 |----------|--------------|
 | **Riddles** | Verbal reasoning |
-| **Differences** | Attention to detail |
+| **Spot the Difference** | Attention to detail |
 | **Patterns** | Logic and sequencing |
 | **The House** | Household task sequencing |
 | **The Clock** | Time management |
@@ -61,9 +61,9 @@ Before using the application, observe the user with these questions:
 | Activity | Skill worked |
 |----------|--------------|
 | **Dominoes** | Strategy, counting |
-| **The Store** | Money use, calculation |
+| **The Shop** | Money use, calculation |
 | **Emergencies** | Crisis decision-making |
-| **The Theater** | Spatiality, complex instructions |
+| **The Theatre** | Spatiality, complex instructions |
 | **Among Friends** | Social skills |
 | **Visual Sudoku** | Logical reasoning |
 
@@ -164,10 +164,12 @@ Some activities deal with sensitive topics:
 |----------|-------|---------------|
 | **Emergencies** | 112, dangerous situations | Review first, accompany if necessary |
 | **Important Phone Numbers** | 112, dangerous situations | Review first, accompany if necessary |
+| **My Details** | The person's and family's real address and phone numbers | Needs to be set up beforehand in `/settings/` (address and phone numbers); without that the activity only shows a notice |
 | **Safe Chat** | Online manipulation | Requires support from a support person |
 | **Bullying Chat** | Peer bullying | Always with professional supervision |
-| **What to Post?** | Social media | Requires support from a support person |
+| **Should I Post It?** | Social media | Requires support from a support person |
 | **Social media, intimacy and law** | Sexual manipulation, digital intimacy and legal consequences | Always with professional or family supervision |
+| **My Body, My Choices** | Consent, relationships, contraception, hygiene and sexual health | Always with professional or family supervision |
 
 ---
 
@@ -182,35 +184,38 @@ identify gaps and choose an activity for a support goal. See
 | Assembling pieces and puzzles | ✔ | Puzzle |
 | Patterns and sequences | ✔ | Patterns |
 | Deduction and inference | ✔ | Riddles |
-| Ordering and prioritization | ✔ | Stories, The House, What do I do first?, My Schedule |
+| Ordering and prioritization | ✔ | Stories, The House, What Do I Do First?, My Schedule |
 | Thematic coherence | ✔ | What doesn't fit? |
 | Encoding and decoding | ✔ | Patterns (level 4) |
-| Attention | ✔ | Differences, What's missing? |
+| Attention | ✔ | Spot the Difference, What's missing? |
 | Space, time and spatial orientation | ✔ | The Clock, Stories, Puzzle |
 | Visual and short-term memory | ✔ | Pairs, What's missing? |
 | Auditory and verbal memory | ✔ | Echoes |
 | Vocabulary and categories | ✔ | Categories, Words, Word Search |
-| Advanced vocabulary and meaningful learning | ✔ | Dictionary |
+| Advanced vocabulary and meaningful learning | ✔ | Dictionary, Topic Vocabulary |
 | Spelling | ✔ | Complete the Word, Colored Spelling |
 | Language comprehension | ✔ | The Sentence |
-| Idioms, sayings and jokes | ✔ | Sayings, Jokes |
+| Idioms, sayings and jokes | ✔ | Idioms, Comedy Club |
 | Lexical ambiguity and context comprehension | ✔ | Double Meaning |
-| Spelling and writing | ✔ | Keyboard, Tracing |
+| Spelling and writing | ✔ | Keyboard, Traces |
 | Feelings and social conflicts | ✔ | How do I feel?, Situations, Among Friends |
-| Internet safety | ✔ | Safe Chat, Bullying Chat, What to Post?, Social media, intimacy and law |
-| Mathematical operations and money | ✔ | The Purse, Numbers |
+| Internet safety | ✔ | Safe Chat, Bullying Chat, Should I Post It?, Social media, intimacy and law |
+| Mathematical operations and money | ✔ | The Coin Purse, Numbers |
 | Reading Roman numerals and centuries | ✔ | Roman Numerals |
 | Time and clock reading | ✔ | The Clock, My Schedule |
 | Musicality and rhythm | ✔ | Echoes, Piano |
 | Personal care, household tasks and organization | ✔ | My Routines, The House, My Schedule, Emergencies |
-| Creativity, drawing and coloring | ✔ | Coloring, Tracing |
-| Global and detailed perception | ✔ | Differences |
+| Creativity, drawing and coloring | ✔ | Coloring, Traces |
+| Global and detailed perception | ✔ | Spot the Difference |
 | Breathing and body awareness | ✔ | How do I feel?, Calm, My Body Tells Me |
-| Eye-hand coordination and fine motor skills | ✔ | Catch, Keyboard, Tracing |
-| Board games | ✔ | The Goose, Tic Tac Toe, Dominoes, Checkers, Chess, Connect 4 |
+| Eye-hand coordination and fine motor skills | ✔ | Catch It, Keyboard, Traces |
+| Board games | ✔ | The Goose Game, Tic-Tac-Toe, Dominoes, Checkers, Chess, Four in a Row |
 | Community mobility | ✔ | The Street |
-| Health autonomy | ✔ | Emergencies, Important Phone Numbers, My Body Tells Me |
-| Shopping and money in real contexts | ✔ | Shopping, The Store, The Purse |
+| Health autonomy | ✔ | Emergencies, Important Phone Numbers, My Details, My Body Tells Me |
+| Shopping and money in real contexts | ✔ | The Shopping, The Shop, The Coin Purse |
+| Healthy eating | ✔ | Healthy Food |
+| Affective-sexual education: body, consent and healthy relationships | ✔ | My Body, My Choices |
+| Contraception and hygiene and sexual health (pointing to a health professional) | ✔ | My Body, My Choices |
 
 Capabilities the product does not intend to cover, and the reasons why, are
 defined in [`SPEC.md`](SPEC.md) §6.
@@ -221,16 +226,18 @@ defined in [`SPEC.md`](SPEC.md) §6.
 
 ### Improving autonomy at home
 
-→ **Module 2: Autonomy and home**
+→ **Module 1: Autonomy and home**
 - My Routines
 - The House
 - My Schedule
-- The Store
+- The Shop
 - Emergencies
 - Important Phone Numbers
-- Shopping
-- Where do I put it?
-- Parts of the Day
+- My Details
+- The Shopping
+- Where Do I Keep It?
+- Times of Day
+- Healthy Food
 
 ### Working on memory
 
@@ -239,24 +246,29 @@ defined in [`SPEC.md`](SPEC.md) §6.
 - What's missing?
 - Echoes
 - The Blocks
-- Differences
+- Spot the Difference
 
 ### Developing fine motor skills
 
-→ **Module 1: Coordination and motor skills**
-- Catch
-- Tracing
+→ **Module 6: Coordination and motor skills**
+- Catch It
+- Traces
 - Coloring
 - Piano
 - Keyboard
 
 ### Working on emotions and social skills
 
-→ **Module 6: Emotions**
+→ **Module 2: Emotions**
 - How do I feel?
 - Calm
 - Among Friends
 - My Body Tells Me
+
+### Working on body, relationships and sexual health (always with supervision)
+
+→ **Module 7: Body and relationships**
+- My Body, My Choices
 
 ---
 

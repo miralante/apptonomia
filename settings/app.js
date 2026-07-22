@@ -19,6 +19,13 @@
      new tool asks for a name. */
   var TOOLS_WITH_NAME = ['keyboard-typing', 'piano-keys'];
 
+  /* 'my-details' stores address/phone fields for the "Mis Datos"
+     activity, same personal-data-by-exception status as a first
+     name. Keep this in sync if another tool starts asking for
+     comparable personal data. */
+  var MY_DETAILS_TOOL_ID = 'my-details';
+  var MAX_FAMILY_CONTACTS = 4;
+
   var PREFIX = 'apptonomia:';
 
   /* --- Backup of my progress (F1): export/import every
@@ -155,6 +162,43 @@
   });
   renderPreferences();
 
+  /* --- Mis Datos: address/phone config for the "my-details"
+     activity. Read-modify-write so estrellas/completedRounds
+     (owned by the activity itself) are never touched here. --- */
+  function renderMyDetails() {
+    var data = App.storage.get(MY_DETAILS_TOOL_ID);
+    $('#inputOwnAddress').value = data.ownAddress || '';
+    $('#inputFamilyAddress').value = data.familyAddress || '';
+    $('#inputOwnPhone').value = data.ownPhone || '';
+    var contacts = Array.isArray(data.familyContacts) ? data.familyContacts : [];
+    for (var i = 0; i < MAX_FAMILY_CONTACTS; i++) {
+      var contact = contacts[i] || {};
+      $('#inputContact' + (i + 1) + 'Label').value = contact.label || '';
+      $('#inputContact' + (i + 1) + 'Phone').value = contact.phone || '';
+    }
+  }
+
+  function saveMyDetails() {
+    var data = App.storage.get(MY_DETAILS_TOOL_ID);
+    data.ownAddress = $('#inputOwnAddress').value.trim();
+    data.familyAddress = $('#inputFamilyAddress').value.trim();
+    data.ownPhone = $('#inputOwnPhone').value.trim();
+    var contacts = [];
+    for (var i = 0; i < MAX_FAMILY_CONTACTS; i++) {
+      var label = $('#inputContact' + (i + 1) + 'Label').value.trim();
+      var phone = $('#inputContact' + (i + 1) + 'Phone').value.trim();
+      if (phone) contacts.push({ label: label, phone: phone });
+    }
+    data.familyContacts = contacts;
+    App.storage.set(MY_DETAILS_TOOL_ID, data);
+    var f = $('#feedbackMyDetails');
+    f.textContent = App.i18n.t('feedbackMyDetailsSaved');
+    f.className = 'feedback acierto';
+  }
+
+  $('#btnSaveMyDetails').addEventListener('click', saveMyDetails);
+  renderMyDetails();
+
   /* Two-step confirmation on the same button. */
   function confirmTwice(btn, normalKey, confirmKey, onConfirm) {
     var confirming = false;
@@ -185,6 +229,13 @@
         App.storage.set(id, state);
       }
     });
+    var myDetails = App.storage.get(MY_DETAILS_TOOL_ID);
+    myDetails.ownAddress = '';
+    myDetails.familyAddress = '';
+    myDetails.ownPhone = '';
+    myDetails.familyContacts = [];
+    App.storage.set(MY_DETAILS_TOOL_ID, myDetails);
+    renderMyDetails();
     var f = $('#feedbackPersona');
     f.textContent = App.i18n.t('feedbackResetPersonDone');
     f.className = 'feedback acierto';

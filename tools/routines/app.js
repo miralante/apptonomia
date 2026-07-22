@@ -13,12 +13,16 @@
   var pantallaMenu = $('#pantallaMenu');
   var pantallaRutina = $('#pantallaRutina');
   var pantallaFinal = $('#pantallaFinal');
+  var pantallaOrdenar = $('#pantallaOrdenar');
   var listaRutinas = $('#listaRutinas');
   var listaPasos = $('#listaPasos');
+  var listaOrdenar = $('#listaOrdenar');
   var tituloRutina = $('#tituloRutina');
+  var tituloOrdenar = $('#tituloOrdenar');
   var progressFill = $('#progressFill');
   var progressText = $('#progressText');
   var feedbackEl = $('#feedback');
+  var feedbackOrdenar = $('#feedbackOrdenar');
   var starsEl = $('#stars');
 
   /* Progreso persistente. Si la fecha guardada no es hoy, se reinicia. */
@@ -28,6 +32,10 @@
     progreso.fecha = App.utils.hoy();
     progreso.hechos = {}; /* { idRutina: [true, false, ...] } */
   }
+  /* Estado de la pantalla "Ordena la rutina". No se reinicia cada día:
+     el progreso de ordenación es aprendizaje a largo plazo. */
+  if (!progreso.orden || typeof progreso.orden !== 'object') progreso.orden = {};
+  /* intentos: { idRutina: number } - contador Socrático (1ª pista, 2ª solución). */
 
   var rutinaActual = null;
 
@@ -50,6 +58,7 @@
   function pintarMenu() {
     pantallaRutina.classList.add('oculto');
     pantallaFinal.classList.add('oculto');
+    pantallaOrdenar.classList.add('oculto');
     pantallaMenu.classList.remove('oculto');
     listaRutinas.innerHTML = '';
     DATOS.forEach(function (rutina) {
@@ -65,6 +74,16 @@
         (hechos === total ? App.i18n.t('completadaHoy') : App.i18n.t('pasosDe').replace('{n}', hechos).replace('{total}', total)) +
         '</span>';
       btn.addEventListener('click', function () { abrirRutina(rutina); });
+      var btnOrdenar = document.createElement('button');
+      btnOrdenar.type = 'button';
+      btnOrdenar.className = 'btn btn-ordenar-rutina';
+      btnOrdenar.textContent = App.i18n.t('btnOrdenar');
+      btnOrdenar.setAttribute('aria-label', App.i18n.t('btnOrdenar') + ': ' + rutina.nombre);
+      btnOrdenar.addEventListener('click', function (e) {
+        e.stopPropagation();
+        abrirOrdenar(rutina);
+      });
+      btn.appendChild(btnOrdenar);
       listaRutinas.appendChild(btn);
     });
     pintarEstrellas();
@@ -143,14 +162,127 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     pintarEstrellas();
   }
 
+  /* ---- Pantalla "Ordena la rutina" ----
+     Aprendizaje de secuencias. Los pasos aparecen mezclados y la persona
+     los reordena con flechas ↑/↓ (accesible por teclado y sin arrastre).
+     Patrón Socrático: 1.er error → pista (di el primer paso);
+                        2.º error → botón "Ver solución" se ofrece explícito.
+     Reglas: nunca castigo (App.feedback.encourage), +1⭐ al acertar,
+     progreso persistente de orden (no se reinicia cada día). */
+  var ordenActual = null; /* { rutina, mezcla: number[], intentos: number } */
+
+  function barajar(arr) {
+    /* Barajado Fisher-Yates, sin mutar el original. */
+    var copia = arr.slice();
+    for (var i = copia.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = copia[i]; copia[i] = copia[j]; copia[j] = tmp;
+    }
+    /* Si por azar queda ya ordenado, vuelve a barajar (no trampa al usuario). */
+    var esOrden = copia.every(function (v, idx) { return v === idx; });
+    if (esOrden && copia.length > 1) return barajar(arr);
+    return copia;
+  }
+
+  function abrirOrdenar(rutina) {
+    ordenActual = { rutina: rutina, mezcla: barajar(rutina.pasos.map(function (_, i) { return i; })), intentos: 0 };
+    pantallaMenu.classList.add('oculto');
+    pantallaRutina.classList.add('oculto');
+    pantallaFinal.classList.add('oculto');
+    pantallaOrdenar.classList.remove('oculto');
+    tituloOrdenar.textContent = App.i18n.t('ordenTitulo').replace('{nombre}', rutina.nombre);
+    feedbackOrdenar.textContent = '';
+    feedbackOrdenar.className = 'feedback';
+    pintarOrdenar();
+  }
+
+  function pintarOrdenar() {
+    var rutina = ordenActual.rutina;
+    listaOrdenar.innerHTML = '';
+    ordenActual.mezcla.forEach(function (idxOriginal, i) {
+      var paso = rutina.pasos[idxOriginal];
+      var li = document.createElement('li');
+      li.className = 'paso-ordenable';
+      var esPrimero = i === 0;
+      var esUltimo = i === ordenActual.mezcla.length - 1;
+      li.innerHTML =
+        '<span class="posicion" aria-hidden="true">' + (i + 1) + '</span>' +
+        '<span class="picto" aria-hidden="true">' + paso.picto + '</span>' +
+        '<span class="texto">' + paso.texto + '</span>' +
+        '<button type="button" class="btn-flecha btn-subir"' +
+        (esPrimero ? ' disabled' : '') +
+        ' aria-label="' + App.i18n.t('ariaSubir') + '">↑</button>' +
+        '<button type="button" class="btn-flecha btn-bajar"' +
+        (esUltimo ? ' disabled' : '') +
+        ' aria-label="' + App.i18n.t('ariaBajar') + '">↓</button>';
+      li.querySelector('.btn-subir').addEventListener('click', function () { moverPaso(i, -1); });
+      li.querySelector('.btn-bajar').addEventListener('click', function () { moverPaso(i, 1); });
+      listaOrdenar.appendChild(li);
+    });
+  }
+
+  function moverPaso(i, dir) {
+    var j = i + dir;
+    if (j < 0 || j >= ordenActual.mezcla.length) return;
+    var arr = ordenActual.mezcla;
+    var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+    pintarOrdenar();
+  }
+
+  function contarBienColocados() {
+    var n = 0;
+    ordenActual.mezcla.forEach(function (idx, i) { if (idx === i) n++; });
+    return n;
+  }
+
+  function comprobarOrden() {
+    var total = ordenActual.mezcla.length;
+    var bien = contarBienColocados();
+    var todoBien = bien === total;
+    if (todoBien) {
+      /* Éxito: +1⭐. Nunca restamos. */
+      progreso.estrellas += 1;
+      guardar();
+      App.feedback.success(feedbackOrdenar);
+      feedbackOrdenar.textContent = App.i18n.t('ordenCorrecto');
+      App.feedback.celebrate(App.i18n.t('ordenCorrecto'));
+      pintarEstrellas();
+    } else {
+      ordenActual.intentos++;
+      guardar();
+      App.feedback.encourage(feedbackOrdenar);
+      feedbackOrdenar.textContent = App.i18n.t('ordenFeedback').replace('{n}', bien).replace('{total}', total) +
+        ' ' + App.i18n.t('ordenIncorrecto');
+    }
+  }
+
+  function pistaOrdenar() {
+    /* Socrático: orientamos sin dar la solución completa. Decimos el primer paso. */
+    var primeroCorrecto = ordenActual.rutina.pasos[0];
+    feedbackOrdenar.textContent = App.i18n.t('pistaOrdenar').replace('{primero}', primeroCorrecto.texto);
+    App.tts.speak(feedbackOrdenar.textContent);
+  }
+
+  function resolverOrdenar() {
+    /* Socrático paso 2: mostramos la solución para que nadie se quede atascado. */
+    ordenActual.mezcla = ordenActual.rutina.pasos.map(function (_, i) { return i; });
+    pintarOrdenar();
+    feedbackOrdenar.textContent = App.i18n.t('resolverOrdenar');
+    App.tts.speak(feedbackOrdenar.textContent);
+  }
+
   /* Events */
   $('#btnOtraRutina').addEventListener('click', pintarMenu);
+  $('#btnComprobar').addEventListener('click', comprobarOrden);
+  $('#btnPistaOrdenar').addEventListener('click', pistaOrdenar);
+  $('#btnResolverOrdenar').addEventListener('click', resolverOrdenar);
   $('#btnInstruccion').addEventListener('click', function () {
     App.tts.speak($('#instruccion').textContent);
   });
   $('#btnVolver').addEventListener('click', function (e) {
     /* If we're inside a routine, go back to the routine menu */
-    if (!pantallaRutina.classList.contains('oculto')) {
+    if (!pantallaRutina.classList.contains('oculto') ||
+        !pantallaOrdenar.classList.contains('oculto')) {
       e.preventDefault();
       App.tts.stop();
       pintarMenu();

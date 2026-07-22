@@ -3,7 +3,7 @@
    Cache-first strategy for the app shell (works offline).
    When adding new files: add them to ARCHIVOS and bump VERSION.
    ============================================================ */
-var VERSION = 'apptonomia-v88';
+var VERSION = 'apptonomia-v94';
 
 var ARCHIVOS = [
   './',
@@ -26,6 +26,10 @@ var ARCHIVOS = [
   './about/styles.css',
   './about/strings.es.js',
   './about/strings.en.js',
+  './legal/index.html',
+  './legal/styles.css',
+  './legal/strings.es.js',
+  './legal/strings.en.js',
   './assets/css/tokens.css',
   './assets/css/base.css',
   './assets/css/components.css',
@@ -191,6 +195,12 @@ var ARCHIVOS = [
   './tools/phone-numbers/strings.es.js',
   './tools/phone-numbers/strings.en.js',
   './tools/phone-numbers/styles.css',
+  './tools/my-details/index.html',
+  './tools/my-details/app.js',
+  './tools/my-details/data.js',
+  './tools/my-details/strings.es.js',
+  './tools/my-details/strings.en.js',
+  './tools/my-details/styles.css',
   './tools/fit/index.html',
   './tools/fit/app.js',
   './tools/fit/data.js',
@@ -239,6 +249,12 @@ var ARCHIVOS = [
   './tools/shopping/strings.es.js',
   './tools/shopping/strings.en.js',
   './tools/shopping/styles.css',
+  './tools/healthy-food/index.html',
+  './tools/healthy-food/app.js',
+  './tools/healthy-food/data.js',
+  './tools/healthy-food/strings.es.js',
+  './tools/healthy-food/strings.en.js',
+  './tools/healthy-food/styles.css',
   './tools/sentence/index.html',
   './tools/sentence/app.js',
   './tools/sentence/data.js',
@@ -275,6 +291,12 @@ var ARCHIVOS = [
   './tools/social-safety/strings.es.js',
   './tools/social-safety/strings.en.js',
   './tools/social-safety/styles.css',
+  './tools/sexual-health/index.html',
+  './tools/sexual-health/app.js',
+  './tools/sexual-health/data.js',
+  './tools/sexual-health/strings.es.js',
+  './tools/sexual-health/strings.en.js',
+  './tools/sexual-health/styles.css',
   './tools/blocks/index.html',
   './tools/blocks/app.js',
   './tools/blocks/data.js',

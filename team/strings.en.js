@@ -66,6 +66,8 @@
     "module5Intro": 'Vocabulary, categories, reading comprehension, figurative language and humor.',
     "module6Title": '💜 Emotions — Emotions and relationships',
     "module6Intro": 'Recognizing and expressing emotions, self-regulation, breathing and conflict resolution.',
+    "module7Title": '💗 Body and relationships — Affective-sexual education',
+    "module7Intro": 'Body, consent, healthy relationships and sexual and reproductive health, always pointing to trusted adults or health professionals.',
     activity: {
       "catch": {
         "name": 'Catch It',
@@ -217,6 +219,12 @@
         "works": 'Long-term memory of a safety fact: that 911 is the same number for police, fire and a medical emergency, whatever the specific situation.',
         "daily": 'Ask them from time to time "which number do you call if…?" using real situations from home or the neighborhood.'
       },
+      "my-details": {
+        "name": 'My Details',
+        "does": 'Reviews their own and their family\'s address and phone (set up beforehand in Settings): first some cards, then a multiple-choice test with decoys, and finally the same thing typed, with no hints on screen.',
+        "works": 'Autobiographical memory of safety-related information. The real details are only ever saved on this device (never asked for from within the activity itself, never sent anywhere); they need to be set up beforehand in Settings.',
+        "daily": 'Use the moment to say the home address and phone number out loud together before going out.'
+      },
       "shopping": {
         "name": 'The Shopping',
         "does": 'Two parts: which supermarket section each product is in, and which meal of the day it is needed for (building a visual list).',
@@ -228,6 +236,12 @@
         "does": 'Uses money like in real life, with the app’s realistic-looking coins and bills. "A Purchase": a full 3-step simulation — can you afford it? (if not, pick something cheaper), pay with a limited purse (each coin used once), and check the change (sometimes it is wrong and needs catching). "What Do I Have Left?": chained subtraction of real expenses from what remains. "A Lot or a Little?": sense of price — deciding whether a price is fair or too much, compared with what things normally cost.',
         "works": 'Generalizing money management to real situations: purchase decisions, paying with limited money, checking change, spending control and price sense (protection against being cheated).',
         "daily": 'Let them pay cash for small real purchases, check the change, and save toward something specific with a real piggy bank.'
+      },
+      "healthy-food": {
+        "name": 'Healthy Food',
+        "does": 'Sorts foods into two boxes: "Every day" or "Now and then". A short sentence on each correct answer explains how that food makes your body feel.',
+        "works": 'Healthy eating with a moderation approach (never labelling a food as "bad"): links to The Shopping and The House within the home-autonomy chain.',
+        "daily": 'While doing the shopping or planning the week’s menu, ask them whether what they pick is an every-day food or a now-and-then one.'
       },
       "pairs": {
         "name": 'Pairs',
@@ -304,7 +318,7 @@
       "numbers": {
         "name": 'Numbers',
         "does": 'Counts, reads large numbers, adds, subtracts, multiplies and measures, with digits colored by place value.',
-        "works": 'Numeracy, place value (with trades of 10 and the ×10 ladder up to one trillion), fractions, decimals, mental math, measurement.',
+        "works": 'Numeracy, even/odd numbers, negative numbers (with the elevator), place value (with trades of 10 and the ×10 ladder up to one trillion), fractions, decimals, mental math, measurement.',
         "daily": 'Let them count and pay for real things using large numbers.'
       },
       "quantities": {
@@ -496,7 +510,13 @@
         "name": 'Good Manners',
         "does": 'Practice courtesy phrases in everyday situations: saying thank you, asking politely, greeting, saying goodbye, giving way to others.',
         "works": 'Basic social norms, social skills, respectful interaction.',
-        "daily": 'Reinforce these phrases in real life: celebrate when they use them spontaneously.'      }
+        "daily": 'Reinforce these phrases in real life: celebrate when they use them spontaneously.'      },
+      "sexual-health": {
+        "name": 'My Body, My Choices',
+        "does": 'Practises 32 non-graphic cases about consent, healthy relationships, contraception, and hygiene and sexual health.',
+        "works": 'Body autonomy, recognizing consent, warning signs of harmful relationships, and knowing when to ask a health professional for help instead of getting clinical instructions from the app.',
+        "daily": 'Always use it with professional or family supervision. Remember that asking for help never implies blame, and agree together on who the trusted adults or professionals are.'
+      }
     },
     "scopeNote1": 'Out of scope',
     "scopeNote2": ' for a self-guided website: gross motor skills and whole-body coordination (need physical space and a companion), teamwork (the app is for one person at a time), and evaluated spoken expression (the browser’s speech recognition is not reliable).',

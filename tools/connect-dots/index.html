@@ -18,20 +18,11 @@
       <span class="stars" id="stars">⭐ 0</span>
     </header>
 
-    <!-- Start screen: choose level -->
-    <section id="startScreen" class="pila centrado">
+    <!-- Game screen -->
+    <section id="playScreen" class="pila">
       <div class="fila center-row">
         <p class="instruction" id="instructionText" data-i18n="instruction">Toca los números en orden, del 1 hasta el final, para dibujar la figura.</p>
         <button type="button" class="btn btn-audio" id="instructionBtn" data-i18n-aria="core.listenInstructions" aria-label="Escuchar las instrucciones">🔊</button>
-      </div>
-      <h2 data-i18n="chooseLevel">Elige un nivel</h2>
-      <div class="pila" id="levels"></div>
-    </section>
-
-    <!-- Game screen -->
-    <section id="playScreen" class="oculto">
-      <div class="fila">
-        <button type="button" class="btn btn-secundario" id="backLevelsBtn" data-i18n="core.back">← Volver</button>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill"></div>
@@ -48,12 +39,13 @@
       <div class="big-emoji" id="finishEmoji" aria-hidden="true">🎉</div>
       <h2 data-i18n="core.roundComplete">¡Ronda completada!</h2>
       <p id="finishText"></p>
-      <p id="transferencia" class="transferencia" data-i18n="transferencia"></p>
       <p id="transfer" class="transferencia" data-i18n="transfer"></p>
       <button type="button" class="btn" id="playAgainBtn" data-i18n="core.playAgain">Jugar otra vez</button>
-      <button type="button" class="btn btn-secundario" id="otherLevelBtn" data-i18n="chooseAnotherLevel">Elegir otro nivel</button>
       <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backToMenu">Volver al menú</a>
     </section>
+    <footer class="pie-app">
+      <a href="../../legal/index.html" class="enlace-legal" data-i18n="core.dataProtection">Protección de datos</a>
+    </footer>
   </div>
 
   <script src="../../assets/js/utils.js"></script>

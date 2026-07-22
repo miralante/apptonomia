@@ -136,16 +136,6 @@ Toca el idioma que quieras. La página se recargará en ese idioma.
 
 ---
 
-## Si la aplicación dice "Actualización"
-
-A veces la aplicación necesita actualizarse. Si ves un mensaje que dice:
-
-> "Hay una nueva versión"
-
-Puedes tocar **"Actualizar ahora"** para tener la última versión.
-
----
-
 ## Configuración personal
 
 Toca el botón de **settings** (⚙️) si quieres:

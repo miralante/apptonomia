@@ -603,10 +603,8 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
       App.feedback.celebrate(App.i18n.t(clave));
     } else if (tipo === 'cerradoEmpate') {
       App.feedback.success(feedbackPartidaEl);
-      App.tts.speak(App.i18n.t(clave));
     } else {
       App.feedback.encourage(feedbackPartidaEl);
-      App.tts.speak(App.i18n.t(clave));
     }
     btnOtraPartida.classList.remove('oculto');
     btnOtraPartida.focus();
@@ -648,12 +646,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     mostrar('pantallaNivelesPartida');
   });
 
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
-  $('#btnInstruccionPartida').addEventListener('click', function () {
-    App.tts.speak(App.i18n.t('instruccionPartida'));
-  });
   $('#btnEstadoPiezas').addEventListener('click', function () {
     App.tts.speak(estadoPiezasEl.textContent);
   });
@@ -663,3 +655,4 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
 
   pintarEstrellas();
 })();
+

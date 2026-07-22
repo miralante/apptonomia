@@ -1,0 +1,64 @@
+/* Healthy Food — tool-specific styles. Shared styles live in assets/css/.
+   Acento del módulo Autonomía y hogar (verde --mod-secuencia). */
+
+.tool-header h1 { color: var(--mod-secuencia); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-secuencia);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.card { border-color: var(--mod-secuencia-suave); margin-top: var(--espacio-grande); }
+
+.item-picto { font-size: 72px; }
+
+.item-palabra {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+}
+
+.fila-caja {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio);
+}
+
+.caja {
+  flex: 1;
+  min-height: 88px;
+  font-size: var(--texto-grande);
+}
+
+.caja.correcta {
+  background: var(--color-acierto);
+}
+
+.caja.animo {
+  background: var(--color-animo);
+}
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+}

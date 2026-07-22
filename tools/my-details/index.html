@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="title">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Datos | Apptonomia</title>
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="tool-header">
+      <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Volver</a>
+      <h1 data-i18n="title">🏠 Mis Datos</h1>
+      <span class="stars" id="stars">⭐ 0</span>
+    </header>
+
+    <!-- Pantalla: sin datos configurados -->
+    <section id="emptyScreen" class="oculto pila centrado">
+      <div class="big-emoji" aria-hidden="true">🏠</div>
+      <h2 data-i18n="emptyTitle">Todavía no hay datos</h2>
+      <p data-i18n="emptyText">Pide a la persona que te ayuda que escriba tu dirección y tu teléfono en Ajustes.</p>
+      <button type="button" class="btn btn-audio" id="emptyListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar el texto">🔊</button>
+      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backToMenu">Volver al menú</a>
+    </section>
+
+    <!-- Pantalla 1: fichas -->
+    <section id="cardsScreen" class="oculto pila centrado">
+      <div class="fila center-row">
+        <p class="instruction" data-i18n="instruction">Repasa tu dirección y tu teléfono, y los de tu familia.</p>
+        <button type="button" class="btn btn-audio" id="instructionBtn" data-i18n-aria="core.listenInstructions" aria-label="Escuchar las instrucciones">🔊</button>
+      </div>
+      <p class="privacy-note" id="privacyNote" data-i18n="privacyNote">🔒 Estos datos solo se guardan en este dispositivo. No se envían a internet.</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="cardsProgressFill"></div>
+        <span class="progress-text" id="cardsProgressText">1 / 3</span>
+      </div>
+      <div class="card centrado pila">
+        <div class="card-picto" id="cardPicto" aria-hidden="true"></div>
+        <h2 id="cardLabel"></h2>
+        <p class="card-value" id="cardValue"></p>
+        <button type="button" class="btn btn-audio" id="cardListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar la ficha"><span data-i18n="core.listen">🔊 Escuchar</span></button>
+      </div>
+      <button type="button" class="btn" id="nextCardBtn" data-i18n="core.next">Siguiente →</button>
+    </section>
+
+    <!-- Pantalla 2: test de opciones (con señuelos) -->
+    <section id="choiceScreen" class="oculto pila">
+      <p class="instruction" data-i18n="choiceInstruction">Elige la respuesta correcta.</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="choiceProgressFill"></div>
+        <span class="progress-text" id="choiceProgressText">0 / 3</span>
+      </div>
+      <div class="card centrado pila">
+        <div class="situation-picto" id="choicePicto" aria-hidden="true"></div>
+        <p class="quiz-text" id="choiceQuestion" data-i18n="core.loading">Cargando…</p>
+        <button type="button" class="btn btn-audio" id="choiceListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar la pregunta">🔊</button>
+      </div>
+      <div class="pila" id="choiceOptions"></div>
+      <div class="feedback" id="choiceFeedback" aria-live="polite"></div>
+      <div class="fila explicacion oculto" id="choiceExplanationWrap">
+        <p id="choiceExplanation" aria-live="polite"></p>
+        <button type="button" class="btn btn-audio" id="choiceExplanationListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar el texto">🔊</button>
+      </div>
+      <button type="button" class="btn oculto" id="choiceNextBtn" data-i18n="core.next">Siguiente →</button>
+    </section>
+
+    <!-- Pantalla 3: test escrito con teclado -->
+    <section id="typedScreen" class="oculto pila">
+      <p class="instruction" data-i18n="typedInstruction">Ahora escríbelo tú, sin pistas en la pantalla.</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="typedProgressFill"></div>
+        <span class="progress-text" id="typedProgressText">0 / 3</span>
+      </div>
+      <div class="card centrado pila">
+        <div class="situation-picto" id="typedPicto" aria-hidden="true"></div>
+        <p class="quiz-text" id="typedQuestion" data-i18n="core.loading">Cargando…</p>
+        <button type="button" class="btn btn-audio" id="typedListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar la pregunta">🔊</button>
+      </div>
+      <label class="oculto" for="typedInput" data-i18n="typedInputLabel">Escribe tu respuesta</label>
+      <input
+        id="typedInput"
+        class="text-input"
+        type="text"
+        autocomplete="off"
+        data-i18n-aria="typedInputLabel"
+        aria-label="Escribe tu respuesta"
+      />
+      <button type="button" class="btn" id="typedCheckBtn" data-i18n="typedCheck">Comprobar</button>
+      <div class="feedback" id="typedFeedback" aria-live="polite"></div>
+      <div class="fila explicacion oculto" id="typedExplanationWrap">
+        <p id="typedExplanation" aria-live="polite"></p>
+        <button type="button" class="btn btn-audio" id="typedExplanationListenBtn" data-i18n-aria="core.listenText" aria-label="Escuchar el texto">🔊</button>
+      </div>
+      <button type="button" class="btn oculto" id="typedNextBtn" data-i18n="core.next">Siguiente →</button>
+    </section>
+
+    <!-- End screen -->
+    <section id="endScreen" class="oculto centrado pila" aria-live="polite">
+      <div class="big-emoji" aria-hidden="true">🎉</div>
+      <h2 data-i18n="core.roundComplete">¡Ronda completada!</h2>
+      <p id="finalSummary"></p>
+      <p id="transferencia" class="transferencia" data-i18n="transferencia"></p>
+      <button type="button" class="btn" id="replayBtn" data-i18n="core.playAgain">Jugar otra vez</button>
+      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backToMenu">Volver al menú</a>
+    </section>
+    <footer class="pie-app">
+      <a href="../../legal/index.html" class="enlace-legal" data-i18n="core.dataProtection">Protección de datos</a>
+    </footer>
+  </div>
+
+  <script src="../../assets/js/utils.js"></script>
+  <script src="../../assets/js/i18n.js"></script>
+  <script src="../../assets/js/tts.js"></script>
+  <script src="../../assets/js/storage.js"></script>
+  <script src="../../assets/js/feedback.js"></script>
+  <script>
+  /* Conditional load of the active language file (es|en). */
+  (function () {
+    var loc = window.App.i18n.locale();
+    document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
+  })();
+</script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../../sw.js').catch(function () {});
+    }
+  </script>
+</body>
+</html>
