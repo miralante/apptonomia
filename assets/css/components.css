@@ -176,6 +176,16 @@
 }
 .explicacion p { margin: 0; flex: 1; }
 
+/* ---- "Entendido" gate: reading pause after a wrong answer (rule 12) ---- */
+.btn-entendido {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+button.bloqueada {
+  opacity: 0.6;
+}
+
 /* ---- Celebration (brief, <= 2 s) ---- */
 .celebration {
   position: fixed;

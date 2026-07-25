@@ -1,6 +1,7 @@
 /* ==========================================================================
    Apptonomia — Positive reinforcement and encouragement messages
-   Exposes window.App.feedback.success(zona) / .encourage(zona) / .celebrate(msg)
+   Exposes window.App.feedback.success(zona) / .encourage(zona) / .celebrate(msg) /
+   .lockUntilAck(botones, zona, alConfirmar)
    Rules 5 and 6 of CLAUDE.md: mistakes are never punished; feedback <= 2 s.
    Messages follow the active language (App.i18n.pick). Requires utils.js and i18n.js.
    ========================================================================== */
@@ -125,9 +126,51 @@
     }, duracion);
   }
 
+  function textoEntendido() {
+    return window.App.i18n ? App.i18n.t('core.understood') : 'Entendido';
+  }
+
+  /**
+   * Locks every not-yet-tried option button after a wrong answer (rule 12:
+   * a reading pause, never a punishment). Buttons already disabled from an
+   * earlier wrong try in this round are left as-is. Shows/reuses an
+   * "Entendido" button inside `zona`, focuses it; clicking it re-enables
+   * the buttons this call locked. Retries stay unlimited.
+   * @param {Element[]|NodeList} botones - option buttons of the current round
+   * @param {Element} zona - wrap holding the pista/explicacion (or consejo) text
+   * @param {function} [alConfirmar] - called after the person taps Entendido
+   */
+  function lockUntilAck(botones, zona, alConfirmar) {
+    var pendientes = Array.prototype.filter.call(botones || [], function (b) { return !b.disabled; });
+    pendientes.forEach(function (b) {
+      b.disabled = true;
+      b.classList.add('bloqueada');
+    });
+    if (!zona) return;
+    var boton = zona.querySelector('.btn-entendido');
+    if (!boton) {
+      boton = document.createElement('button');
+      boton.type = 'button';
+      boton.className = 'btn btn-entendido';
+      zona.appendChild(boton);
+    }
+    boton.textContent = textoEntendido();
+    boton.classList.remove('oculto');
+    boton.onclick = function () {
+      pendientes.forEach(function (b) {
+        b.disabled = false;
+        b.classList.remove('bloqueada');
+      });
+      boton.classList.add('oculto');
+      if (alConfirmar) alConfirmar();
+    };
+    boton.focus();
+  }
+
   window.App.feedback = {
     success: success,
     encourage: encourage,
-    celebrate: celebrate
+    celebrate: celebrate,
+    lockUntilAck: lockUntilAck
   };
 })();

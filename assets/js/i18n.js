@@ -28,13 +28,14 @@
         backToMenu: 'Volver al menú',
         playAgain: 'Jugar otra vez',
         next: 'Siguiente →',
+        understood: 'Entendido',
         listen: '🔊 Escuchar',
         listenInstructions: 'Escuchar las instrucciones',
         listenText: 'Escuchar el texto',
         loading: 'Cargando…',
         roundComplete: '¡Ronda completada!',
         rest: '¡Llevas un buen rato! Puedes descansar si quieres.',
-        dataProtection: 'Protección de datos'
+        dataProtection: 'Apptonomia no recolecta datos'
       },
       feedback: {
         success: ['¡Muy bien!', '¡Genial!', '¡Lo has conseguido!', '¡Estupendo!', '¡Sigue así!'],
@@ -47,13 +48,14 @@
         backToMenu: 'Back to menu',
         playAgain: 'Play again',
         next: 'Next →',
+        understood: 'Got it',
         listen: '🔊 Listen',
         listenInstructions: 'Listen to the instructions',
         listenText: 'Listen to the text',
         loading: 'Loading…',
         roundComplete: 'Round complete!',
         rest: 'You have been playing a while! You can rest if you want.',
-        dataProtection: 'Data protection'
+        dataProtection: 'Apptonomia does not collect data'
       },
       feedback: {
         success: ['Well done!', 'Great!', 'You got it!', 'Fantastic!', 'Keep it up!'],
