@@ -8,6 +8,7 @@ free of charge and without personal data.
 
 - 🌐 **App**: [apptonomia.web.app](https://apptonomia.web.app)
 - 📦 **Repository**: [github.com/thenkdframe/apptonomia](https://github.com/thenkdframe/apptonomia)
+- 💻 **Run locally**: see [`doc/en/quick-guide.md`](doc/en/quick-guide.md) §1 — download the ZIP and double-click `site/index.html`, or use `python -m http.server 8080` for the full PWA experience.
 
 ---
 

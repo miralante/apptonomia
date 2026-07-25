@@ -8,6 +8,7 @@ navegador, sin coste y sin datos personales.
 
 - 🌐 **Aplicación**: [apptonomia.web.app](https://apptonomia.web.app)
 - 📦 **Repositorio**: [github.com/thenkdframe/apptonomia](https://github.com/thenkdframe/apptonomia)
+- 💻 **Usar en tu propio ordenador**: consulta [`doc/es/guia-rapida.md`](doc/es/guia-rapida.md) §1 — descarga el ZIP y haz doble clic en `site/index.html`, o usa `python -m http.server 8080` para la experiencia PWA completa.
 
 ---
 

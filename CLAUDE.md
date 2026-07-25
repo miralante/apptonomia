@@ -4,6 +4,7 @@
 
 - **UI**: multilingual. Default locales: **Spanish (`es`)** and **English (`en`)**; `es` is the default and fallback when a key is missing or the detected locale is unsupported.
 - **Technical code**: **always English** — variables, functions, identifiers, comments, and commit messages. UI text lives in `strings.<locale>.js`, but dictionary **keys** are code and must be English.
+- **Product changes apply to all locales by default**: any change to product content (UI strings, labels, copy, dates, activities, catalog entries, documentation aimed at end users or support staff, etc.) **must be applied to every supported locale** — at minimum `es` and `en`. Spanish (`es`) is the source of truth when not dictated otherwise; English (`en`) must keep parity. If a new locale is added, the same change applies there too. Never ship a product change that exists only in one language.
 - Full policy (App.i18n core, number/time formatting, landing selector, recipe to add a locale): [`doc/en/I18N.md`](doc/en/I18N.md) · [`doc/es/I18N.md`](doc/es/I18N.md) and [`doc/en/technical.md`](doc/en/technical.md) §1.
 
 ## 1. Canonical sources
