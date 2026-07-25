@@ -28,7 +28,7 @@ tabla completa de módulos y sus objetivos terapéuticos en
 - **Botones grandes**: mínimo 64×64 píxeles
 - **Texto grande**: letra clara y legible (Atkinson Hyperlegible)
 - **Alto contraste**: colores claros sobre fondo blanco
-- **Audio disponible**: cada texto importante se puede escuchar con un botón 🔊
+- **Audio solo cuando aporta valor**: aparece un botón 🔊 únicamente cuando la gamificación o el diseño de la actividad lo requiere (p. ej. escuchar lo escrito con el teclado, lectura de secuencias)
 
 ### ✅ En dos idiomas
 

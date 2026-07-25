@@ -27,7 +27,9 @@ doc/
     ├── roles.md      ← Project roles
     ├── SPEC.md
     ├── README.md
-    ├── quick-guide.md│   ├── creating-activities-guide.md    ├── activities.md
+    ├── quick-guide.md        ← How to open the app (4 methods) and use it
+    ├── creating-activities-guide.md
+    ├── activities.md
     ├── team.md
     ├── technical.md
     └── I18N.md
@@ -46,6 +48,7 @@ license…) live in the root [`README.md`](../../README.md) and
 | If you want to… | Start with |
 |---|---|
 | Understand what Apptonomia is and who it is for | [`SPEC.md`](SPEC.md) |
+| **Open the app and use it (4 methods: internet, ZIP, Python, Node)** | [`quick-guide.md`](quick-guide.md) |
 | See the architecture and technical recipes | [`technical.md`](technical.md) |
 | **Create a new activity (design + didactic, gamification and neuromarketing techniques)** | [`creating-activities-guide.md`](creating-activities-guide.md) |
 | Browse the activity catalogue | [`activities.md`](activities.md) |

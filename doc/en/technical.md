@@ -66,7 +66,7 @@ apptonomia/
 │   ├── js/feedback.js     #   window.App.feedback
 │   ├── js/dinero.js       #   window.App.dinero (euro activities)
 │   └── img/               #   SVG pictograms and PWA icons; the UI uses system icons and emojis first for simple graphical elements; if more is needed, use free images downloaded locally from CC0/public-domain sources
-├── tools/<slug>/          # Level 2: one folder per ACTIVITY (74 current)
+├── tools/<slug>/          # Level 2: one folder per ACTIVITY (81 current)
 │   ├── index.html         #   structure and asset loading
 │   ├── app.js             #   logic only
 │   ├── data.js            #   data only
@@ -103,7 +103,7 @@ no code per module:
 | 🧠 Memory and attention | Memory and attention | `--mod-memoria` (orange) | pairs, differences, whats-missing, ecos, turns-mirrors, blocks, where-is, path, fit, theatre |
 | 🔢 Thinking and counting | Reasoning and math | `--mod-razonamiento` (teal) | riddles, patterns, numbers, quantities, math-tables, roman-numerals, wallet, clock, stories, odd-one-out, puzzle, oca, tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
 | 💬 Language and words | Language and communication | `--mod-lenguaje` (raspberry) | comedy-club, idioms, double-meaning, categories, sentence, words, vocabulary, dictionary, spelling, colored-spelling, word-search |
-| 💜 Emotions | Emotions and relationships | `--mod-emocional` (purple) | emotions, calm, friends, my-body, good-manners |
+| 💜 Emotions | Emotions and relationships | `--mod-emocional` (purple) | emotions, calm, friends, my-body, good-manners, self-esteem, resilience, trust-circle |
 | 💗 Body and relationships | Affective-sexual education | `--mod-cuerpo` (terracotta) | sexual-health |
 
 > **Multi-area note**: an activity may work on more than one therapeutic
@@ -203,6 +203,7 @@ per activity. Typical example: `{ estrellas: 3, completado: { nivel1: true }, op
 | `acierto` | `([zone]) → string` | Random positive message + soft sound. Writes to `zone` (element with `aria-live="polite"`) and adds `.acierto` class |
 | `animo` | `([zone]) → string` | Encouragement message after failure (never punitive) + neutral tone. Class `.animo` |
 | `celebrar` | `(message, [after])` | Fullscreen celebration layer ≤ 2s (1.2s with reduced motion); calls `after` when hidden |
+| `lockUntilAck` | `(buttons, zone, [onConfirm])` | After a wrong answer, locks the round's not-yet-tried option buttons and shows a "Got it" button (auto-focused) inside `zone` that re-enables them when tapped — a Socratic reading pause (rule 12), never a retry cap |
 
 Sounds: generated with Web Audio (no files), fail silently.
 
@@ -382,7 +383,7 @@ When creating new activities, follow these **13 mandatory rules**:
 1. **Easy Reading**: short sentences, one idea per sentence
 2. **Buttons ≥ 64×64 px**, spacing ≥ 16 px
 3. **High contrast** (WCAG AA minimum)
-4. **Audio on all important text**: 🔊 button with `App.tts.speak()`
+4. **Audio only when gamification or the activity design requires it** (e.g. hearing what is typed on the keyboard, listening to a sequence): use the 🔊 button with `App.tts.speak()` only where the activity calls for it. It is not a blanket rule for every important text.
 5. **No pressure**: no timers, negative scoring or "game over"
 6. **Positive reinforcement** when correct: `App.feedback.acierto()`
 7. **Respect `prefers-reduced-motion`**
@@ -464,6 +465,7 @@ Already defined in `assets/js/i18n.js` (don't redefine in `strings.<locale>.js`)
 | `core.backToMenu` | Volver al menú | Back to menu |
 | `core.playAgain` | Jugar otra vez | Play again |
 | `core.next` | Siguiente → | Next → |
+| `core.understood` | Entendido | Got it |
 | `core.listen` | 🔊 Escuchar | 🔊 Listen |
 | `feedback.success` | [array] | [array] |
 | `feedback.encourage` | [array] | [array] |
@@ -491,6 +493,14 @@ Detailed recipe and considerations (numbers, hours, cultural content) in
   allowed coupling is `estrellasTotales()` from the landing.
 - **Error never punishes**: don't subtract stars or progress; failure produces
   `animo()` and can be retried without limit.
+- **Reading pause after a mistake**: in every multiple-choice activity, a wrong
+  answer must lock the remaining untried options for that round with
+  `App.feedback.lockUntilAck()` until the person taps "Got it"; already-tried
+  options stay disabled as today. Retries remain unlimited — this is a Socratic
+  reading pause (rule 12), never a punishment or a progress block. Documented
+  exception: `safe-chat` and `bullying-chat` apply the lock but don't yet have a
+  two-stage hint/explanation (only a single warning) — a content gap, not a gap
+  in this contract.
 - **No visible timers**: measuring times internally is allowed (data in storage),
   showing them as pressure isn't.
 - **UI texts**: Spain's Spanish and English, Easy Reading in both, no clinical
@@ -498,9 +508,67 @@ Detailed recipe and considerations (numbers, hours, cultural content) in
   allowed in `team/` and in repo documentation. All text lives in
   `strings.<locale>.js` (never hardcoded in `app.js` nor as sole content of an HTML node
   without `data-i18n`).
+- **No labels on the end user**: the person must never read anything in the app
+  that labels them as "disabled", "with a disability" or similar. The
+  therapeutic goal is trained through everyday-life situations without putting
+  that label on the reader. The same applies to a classmate or third party
+  mentioned in a situation. Activities may speak about differences and everyday
+  supports without using the clinical term (see [`SPEC.md` §3.3](SPEC.md)).
 - **Case bank for simulations**: a simulation or training activity must provide
   at least **25 cases** so rounds cannot simply be memorized. Chats may use
   variants of thematic cards, while still respecting §5's maximum visible options.
+- **Daily-life simulation contract**: any activity whose therapeutic goal can
+  be contextualised must be built as a daily-life simulation (per
+  [`SPEC.md` §3.6](SPEC.md) and principle 11): a recognisable scene, a
+  decision, immediate consequence with feedback, Socratic help and a
+  `transferencia` closing line. Mechanically the activity **must** expose the
+  i18n keys `contexto`, `instruccion` (already in the standard anatomy) and
+  `transferencia` on the closing screen, and **must** keep the Socratic
+  pattern (`mostrarPista()` on first mistake, `mostrarExplicacion()` on
+  second). When the therapeutic goal is to train a pure skill (memory, fine
+  motor, logic, puzzles, perception) the activity follows the
+  **pure-skill vehicle** (per [`SPEC.md` §3.6.b](SPEC.md)): `contexto` and
+  `transferencia` are required when they add value, `pista` / `explicacion`
+  are required when they add value, `App.feedback.success` and
+  `App.feedback.encourage` are **always** required, and the decision is
+  documented in `team/index.html` as a **prioritised design decision**, not
+  as an exception. The four mechanical patterns the contract recognises
+  today are: **scene + decision**, **safe dialogue / chat**, **step-by-step
+  routine** (see [`creating-activities-guide.md` §2.3](creating-activities-guide.md)),
+  and **pure-skill training** (see §3.6.b).
+- **Meaningful-learning anchors contract**: simulation is the preferred vehicle;
+  meaningful learning (Ausubel–Novak) is what makes a round — simulated or
+  pure-skill — actually stick. In addition to the simulation contract above
+  (or to the pure-skill vehicle, see §3.6.b), each activity's content **must**
+  honour the four meaningful-learning anchors defined in [`SPEC.md` §3.6](SPEC.md)
+  and [`creating-activities-guide.md` §5.8](creating-activities-guide.md):
+  **(a)** everyday vocabulary the person already uses at home, never clinical
+  or taxonomic terms; **(b)** stimuli drawn from the person's own environment
+  (nearby shop, real morning routine, not abstract examples); **(c)** light
+  personalisation where appropriate (stable avatar, name field — see
+  `tools/piano-keys/`, `tools/keyboard-typing/`); **(d)** spaced practice via
+  `localStorage` (saved level) so the landing can resume the person at the
+  level reached, not at a random one. Activities that satisfy the simulation
+  contract but skip these anchors are considered "simulation only" and the
+  omission is documented in `team/index.html` as a prioritised design
+  decision, not as an exception.
+- **Persuasive-communication contract**: every activity must communicate well,
+  in service of learning, as elevated to a product principle in
+  [`SPEC.md` §3.7 and principle 12](SPEC.md). Concretely, each activity **must**
+  be didactic (visible goal + modelled example + permanent hint), apply art
+  effects with care (slow ≥ 300 ms, single-element, no flashing, respects
+  `prefers-reduced-motion`), use a warm micro-narrative and good copy,
+  offer one clear CTA per screen, and use gamification in moderation
+  (progressive stars added, never subtracted, no leaderboards). The full
+  operational details live in [`creating-activities-guide.md` §5 and §6](creating-activities-guide.md).
+  Equally important, the activity **must not** ship any of the forbidden
+  marketing patterns listed in `SPEC.md §3.7`: scarcity ("only 1 left"),
+  false urgency ("hurry", countdowns), social-proof pressure (ranks,
+  "others already did it"), sunk-cost / FOMO ("don't lose your streak"),
+  manipulative reciprocity / dark patterns (forced signups, pre-checked
+  boxes, hidden costs, fake alerts), or exploitative loss aversion
+  ("you had 5 ⭐, you lost 2"). Pressure is not a persuasion technique in
+  Apptonomia.
 - **Decorative on-screen keyboards** (`keyboard-typing`): visual elements with
   `pointer-events: none`; the real input is the physical keyboard. **Deliberate
   exception**: the `movil` keyboard type (`DATA.layouts.movil`, CSS class

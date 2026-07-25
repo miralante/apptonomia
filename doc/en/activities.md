@@ -1,6 +1,6 @@
 # Activity catalog
 
-Apptonomia has **74 activities** organized into **7 modules** according to the type of skill they work on. Modules are ordered from most tied to occupational therapy (autonomy, emotions) to most academic (memory, reasoning, language), then the module specific to motor difficulties, and end with the affective-sexual education module, added last because it always requires professional or family supervision.
+Apptonomia has **76 activities** organized into **7 modules** according to the type of skill they work on. Modules are ordered from most tied to occupational therapy (autonomy, emotions) to most academic (memory, reasoning, language), then the module specific to motor difficulties, and end with the affective-sexual education module, added last because it always requires professional or family supervision.
 
 ---
 
@@ -12,8 +12,8 @@ Apptonomia has **74 activities** organized into **7 modules** according to the t
 
 | Activity | Description |
 |----------|-------------|
-| **My Routines** | Review daily routines: wake up, get dressed, have breakfast... |
-| **The House** | Put in order the steps for household tasks (cooking, cleaning...) |
+| **My Routines** | Reviews the typical routines of a home: morning, personal care, meals, household tasks, pets, afternoon, leaving home and night. Also lets the person build and save their own free-form lists to practise list-making |
+| **The House** | Orders the steps of household tasks: setting the table, sweeping, mopping, making the bed, taking out the trash, watering plants, caring for pets… |
 | **Situations** | What do you do if something happens? Learn to respond to everyday problems |
 | **Safe Chat** | Practice how to respond if someone manipulates you online |
 | **Bullying Chat** | Recognize bullying situations among peers and how to act |
@@ -29,11 +29,15 @@ Apptonomia has **74 activities** organized into **7 modules** according to the t
 | **What Do I Wear?** | Choose appropriate clothing based on the weather |
 | **The Street** | Crossing the street, public transport, what to do if you get lost |
 | **Emergencies** | Recognize real emergencies and practice calling 112 |
+| **While Help Is on Its Way** | What to do after calling 112, while waiting for the ambulance, firefighters or police: leave, do not move the injured, press the wound, recovery position |
+| **Before the Emergency** | Prepare at home with the family what to have ready: 112 written down, address visible, smoke detector, pills out of reach, gas and electricity shut-off |
 | **Important Phone Numbers** | Learn that 112 is the number for police, firefighters and medical emergencies |
 | **My Details** | Review your address and phone number, and your family's (set up beforehand by whoever helps you) |
 | **The Shopping** | Learn supermarket sections and the shopping list |
 | **The Shop** | Use real money in shopping: pay, receive change, manage expenses |
 | **Healthy Food** | Sort foods into "every day" or "now and then" and discover how they make you feel |
+| **I Tell the Doctor** | Practise putting a body symptom into simple first-person words so a doctor can understand (location, type, since when) |
+| **My First-Aid Kit** | Practise everyday self-care at home (washing, cold, plaster, rest) and learn when to ask a trusted adult or call 112 |
 
 ---
 
@@ -50,6 +54,9 @@ Apptonomia has **74 activities** organized into **7 modules** according to the t
 | **Among Friends** | Solve social situations with friends |
 | **My Body Tells Me** | Learn to notice your body's signals when you feel something |
 | **Good Manners** | Practice courtesy phrases: thank you, please, good morning, goodbye, giving way |
+| **This Is Me** | Accept who you are and respond to disability, discrimination and insensitive people |
+| **When It's Hard** | Tolerate frustration and learn to ask for help without shame |
+| **Circle of Trust** | Tell friend, companion and acquaintance apart, and recognize manipulation (including requests for money) |
 
 ---
 
@@ -163,7 +170,7 @@ Apptonomia has **74 activities** organized into **7 modules** according to the t
 
 | Activity | Description |
 |----------|-------------|
-| **My Body, My Choices** | Practise 32 non-graphic cases about consent, healthy relationships, contraception, and hygiene and sexual health |
+| **My Body, My Choices** | Practise 48 non-graphic cases about consent, healthy relationships, contraception, hygiene and sexual health, pressure and blackmail, and protection and infections |
 
 ---
 
@@ -171,15 +178,15 @@ Apptonomia has **74 activities** organized into **7 modules** according to the t
 
 | Module | Nº activities | Color |
 |--------|---------------|-------|
-| 📋 Autonomy and home | 22 | Green |
-| 💜 Emotions | 5 | Purple |
+| 📋 Autonomy and home | 24 | Green |
+| 💜 Emotions | 8 | Purple |
 | 🧠 Memory and attention | 10 | Orange |
 | 🔢 Thinking and counting | 18 | Teal |
 | 💬 Language and words | 11 | Raspberry |
 | 🎯 Coordination and motor skills | 7 | Blue |
 | 💗 Body and relationships | 1 | Terracotta |
 
-**Total: 74 activities**
+**Total: 79 activities**
 
 ---
 
@@ -213,6 +220,8 @@ Apptonomia has **74 activities** organized into **7 modules** according to the t
 - Chess
 - The Shop
 - The Theatre
+- While Help Is on Its Way
+- Before the Emergency
 - Among Friends
 - Emergencies
 - Visual Sudoku
@@ -236,12 +245,12 @@ Apptonomia includes several classic board games adapted:
 ---
 
 ## How to choose the right activity
-
+While Help Is on Its Way, Before the Emergency, 
 ### If you want to be more independent at home
-→ **Module 1**: Routines, The House, My Schedule, Emergencies, Important Phone Numbers, My Details, The Shopping, The Shop, Healthy Food
+→ **Module 1**: Routines, The House, My Schedule, Emergencies, Important Phone Numbers, My Details, The Shopping, The Shop, Healthy Food, I Tell the Doctor, My First-Aid Kit
 
 ### If you want to better understand emotions
-→ **Module 2**: How do I feel?, Calm, Among Friends, My Body Tells Me
+→ **Module 2**: How do I feel?, Calm, Among Friends, My Body Tells Me, This Is Me, When It's Hard, Circle of Trust
 
 ### If you want to improve memory
 → **Module 3**: Pairs, What's missing?, Echoes, The Blocks

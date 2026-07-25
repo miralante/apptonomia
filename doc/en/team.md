@@ -169,7 +169,10 @@ Some activities deal with sensitive topics:
 | **Bullying Chat** | Peer bullying | Always with professional supervision |
 | **Should I Post It?** | Social media | Requires support from a support person |
 | **Social media, intimacy and law** | Sexual manipulation, digital intimacy and legal consequences | Always with professional or family supervision |
-| **My Body, My Choices** | Consent, relationships, contraception, hygiene and sexual health | Always with professional or family supervision |
+| **My Body, My Choices** | Consent, relationships, contraception, hygiene and sexual health, pressure and blackmail, protection and infections | Always with professional or family supervision |
+| **I Tell the Doctor** | Putting a body symptom into words for a health professional | Review first; pairs well with **My Body Tells Me** |
+| **My First-Aid Kit** | Everyday self-care at home, knowing when to ask for help or call 112 | Review first; level 2 explicitly trains asking a trusted adult or 112 |
+| **Circle of Trust** | In-person manipulation in friendships and requests for money | Requires support from a support person |
 
 ---
 
@@ -199,6 +202,9 @@ identify gaps and choose an activity for a support goal. See
 | Lexical ambiguity and context comprehension | ✔ | Double Meaning |
 | Spelling and writing | ✔ | Keyboard, Traces |
 | Feelings and social conflicts | ✔ | How do I feel?, Situations, Among Friends |
+| Self-esteem, self-acceptance and response to discrimination | ✔ | This Is Me |
+| Frustration tolerance, vulnerability and asking for help | ✔ | When It's Hard |
+| Friend, companion or acquaintance; recognizing manipulation and fake friendships (including requests for money) | ✔ | Circle of Trust, Among Friends (level 5), Safe Chat ("They ask me for money" scenario) |
 | Internet safety | ✔ | Safe Chat, Bullying Chat, Should I Post It?, Social media, intimacy and law |
 | Mathematical operations and money | ✔ | The Coin Purse, Numbers |
 | Reading Roman numerals and centuries | ✔ | Roman Numerals |
@@ -210,8 +216,8 @@ identify gaps and choose an activity for a support goal. See
 | Breathing and body awareness | ✔ | How do I feel?, Calm, My Body Tells Me |
 | Eye-hand coordination and fine motor skills | ✔ | Catch It, Keyboard, Traces |
 | Board games | ✔ | The Goose Game, Tic-Tac-Toe, Dominoes, Checkers, Chess, Four in a Row |
-| Community mobility | ✔ | The Street |
-| Health autonomy | ✔ | Emergencies, Important Phone Numbers, My Details, My Body Tells Me |
+| Community mobility | ✔ | The Street |, My First-Aid Kit
+| Health autonomy | ✔ | Emergencies, Important Phone Numbers, My Details, My Body Tells Me, I Tell the Doctor |
 | Shopping and money in real contexts | ✔ | The Shopping, The Shop, The Coin Purse |
 | Healthy eating | ✔ | Healthy Food |
 | Affective-sexual education: body, consent and healthy relationships | ✔ | My Body, My Choices |
@@ -236,6 +242,8 @@ defined in [`SPEC.md`](SPEC.md) §6.
 - My Details
 - The Shopping
 - Where Do I Keep It?
+- I Tell the Doctor
+- My First-Aid Kit
 - Times of Day
 - Healthy Food
 
@@ -264,6 +272,8 @@ defined in [`SPEC.md`](SPEC.md) §6.
 - Calm
 - Among Friends
 - My Body Tells Me
+- This Is Me
+- When It's Hard
 
 ### Working on body, relationships and sexual health (always with supervision)
 
@@ -287,7 +297,14 @@ defined in [`SPEC.md`](SPEC.md) §6.
 2. Introduce a new activity
 3. Let them decide when to repeat or switch activities
 
-### Audio doesn't work
+### Audio doesn't work in an activity that should have it
+
+Remember: only some activities use audio (gamification or design
+needs, e.g. hearing what is typed on the keyboard or listening to a
+sequence). If a 🔊 button is missing from an activity, that is
+expected — audio is not applied by default.
+
+When the 🔊 button is present and audio doesn't work:
 
 1. Check the device volume
 2. Check browser permissions

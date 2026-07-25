@@ -63,6 +63,100 @@ Una actividad de Apptonomia debe ser **autónoma** (usable sin profesional),
 - Saturar la pantalla: máximo 4–6 opciones (§5 regla 10) y 3 opciones en
   un quiz (regla 11).
 
+### 2.3 La actividad es una simulación de la vida diaria siempre que se pueda
+
+Según [`SPEC.md` §3.6 y el principio 11](SPEC.md), una actividad de
+Apptonomia no es un ejercicio abstracto: es **entrenamiento mediante
+simulación**. En la medida en que el objetivo terapéutico lo permita,
+cada actividad se construye alrededor de una escena reconocible en la
+que la persona toma una decisión y ve su consecuencia en el espacio
+seguro de la app.
+
+La simulación es el **vehículo**; el principio pedagógico que convierte
+una ronda simulada en algo que la persona retiene y usa fuera de la app
+es el **aprendizaje significativo** (Ausubel–Novak), detallado en §5.8
+de esta guía. En concreto, el contrato de simulación (contexto →
+decisión → consecuencia → ayuda socrática → transferencia) se vuelve
+aprendizaje significativo cuando la actividad cumple además los cuatro
+**anclajes del aprendizaje significativo**: vocabulario cotidiano,
+estímulos conectados con la vida de la persona, personalización ligera
+cuando proceda y práctica espaciada vía `localStorage`. Esos cuatro
+anclajes están desarrollados en [`SPEC.md` §3.6](SPEC.md).
+
+Los **cuatro** patrones mecánicos que el producto reconoce —y que cualquier
+actividad nueva debería elegir— son:
+
+| Patrón | Cuándo usarlo | Ejemplo en el catálogo |
+|---|---|---|
+| **Escena + decisión** | El objetivo terapéutico es elegir bien en un momento de la vida diaria. | `situations`, `what-first`, `what-do-i-need`, `where-to-store`, `emergencies`, `street` |
+| **Diálogo o chat seguro** | El objetivo es qué decir o escribir en un contexto social o digital. | `safe-chat`, `post-or-not`, `bullying-chat` |
+| **Rutina paso a paso** | El objetivo es el orden de una tarea real (mañana, cocina, compra, salir a la calle). | `routines`, `house`, `task-list`, `my-agenda` |
+| **Entrenamiento de habilidad pura** | El objetivo terapéutico **es** la habilidad (memoria secuencial, motricidad fina, lógica, puzzles, percepción). El estímulo ya es el contexto: el piano, la cuadrícula, las piezas, la secuencia. | `piano-keys`, `tracing`, `puzzle`, `fit`, `visual-sudoku`, `tic-tac-toe`, `pairs`, `connect-dots` |
+
+La simulación (los tres primeros patrones) es el **vehículo preferente**
+cuando el objetivo lo permite. El cuarto patrón — **entrenamiento de
+habilidad pura** — es una decisión de diseño priorizada del producto (ver
+[`SPEC.md` §3.6.b](SPEC.md)): no es una excepción a justificar caso por
+caso. Forzar una escena cuando el estímulo ya es contexto satura la
+pantalla y rompe la regla 10 de las 13 de accesibilidad.
+
+Cada ronda — sea de simulación o de habilidad pura — debe respetar, cuando
+aporten, los puntos 1-5 de la anatomía que sigue; el contrato del Caso B
+relaja `pista` y `explicacion` solo cuando la actividad no tiene una
+"respuesta correcta" que explicar (p. ej. `builders` o `piano-keys` en
+modo libre).
+
+Cada ronda debe seguir esta anatomía de 5 pasos:
+
+1. **Contexto** — un pictograma o imagen de fondo + una frase corta en
+   `instruccion` que dice dónde estamos y conecta con lo que la
+   persona ya sabe ("Estás en el supermercado. Toca lo que necesitas
+   primero").
+2. **Decisión** — 3–6 opciones grandes sobre las que la persona puede
+   actuar (reglas 10/11).
+3. **Consecuencia con feedback** — `App.feedback.success()` ante la
+   buena elección; `App.feedback.encourage()` ante la mala. Nunca se
+   puntúa la mala como un error.
+4. **Ayuda socrática** — primer fallo → `mostrarPista()`; segundo
+   fallo → `mostrarExplicacion()` (regla 12).
+5. **Transferencia** — la ronda termina con una línea `transferencia`
+   que ancla lo practicado a un momento del día en el que será útil
+   ("Esto te servirá la próxima vez que vayas a comprar").
+
+Los ejercicios puramente abstractos (sin escena, sin `transferencia` ni
+los cuatro anclajes) solo se permiten cuando el objetivo hace la
+contextualización imposible o confusa. En ese caso la actividad sigue el
+**vehículo de habilidad pura** declarado en [`SPEC.md` §3.6.b](SPEC.md) y
+se documenta como **decisión de diseño priorizada** en `team/index.html`
+(no como excepción).
+
+### 2.4 La actividad comunica persuasivamente al servicio del aprendizaje
+
+Más allá del vehículo de simulación (§2.3) y de los anclajes del
+aprendizaje significativo (en [`SPEC.md` §3.6](SPEC.md) y §5.8 de esta
+guía), cada actividad debe además **comunicar bien**. Es la tercera
+capa innegociable, elevada a principio de producto en
+[`SPEC.md` §3.7 y principio 12](SPEC.md). El detalle operativo vive en
+§5 y §6 de esta guía (didáctica, art effects, storytelling, buen copy,
+CTAs, gamificación, neuromarketing ético). El resumen que cada
+actividad debe cumplir:
+
+| Disciplina | Regla en una línea | Sección de la guía |
+|---|---|---|
+| Muy didáctica | Objetivo visible + ejemplo modelado + botón permanente "ver pista". | §5.1 |
+| Art effects con cuidado | Lentos (≥ 300 ms), de un solo elemento, sin destellos, respetuosos con `prefers-reduced-motion`. | §5.4 |
+| Storytelling | Micro-relato cercano; una frase final conecta el aprendizaje con un momento del día. | §5.6 |
+| Buen copy | ≤ 12 palabras, voz activa, segunda persona, positivo, amigable con TTS. | §5.5 |
+| CTA clara | Un único CTA visible por pantalla; los CTAs finales invitan a jugar otra vez / volver al menú, **nunca** a compartir puntuación ni desbloquear. | §5.7 |
+| Gamificación con moderación | Estrellas progresivas (1 → 2 → 3), sumadas nunca restadas, sin leaderboards. | §5.3 |
+| Neuromarketing ético | Las siete claves usadas para anclar atención y conceptos, nunca para vender. | §6.1, §6.2 |
+
+**Prohibidos por [`SPEC.md` §3.7](SPEC.md)**: escasez, falsa urgencia,
+prueba social como presión, coste irrecuperable / FOMO, reciprocidad
+manipuladora / dark patterns, aversión explotadora a la pérdida. En
+Apptonomia la presión no es una técnica de persuasión — lo es el
+enganche.
+
 ---
 
 ## 3. Checklist rápido de las 13 reglas de accesibilidad
@@ -74,7 +168,7 @@ Resumen operativo (fuente completa: [`tecnico.md` §5](tecnico.md)):
 | 1 | Lectura Fácil | Frases cortas; una idea por frase; sin tecnicismos. |
 | 2 | Botones ≥ 64×64 px, separación ≥ 16 px | Medir con DevTools el `.btn` de la actividad. |
 | 3 | Alto contraste WCAG AA | Comprobar el color del módulo sobre `--color-superficie`. |
-| 4 | Audio en todo texto importante | Botón 🔊 con `App.tts.speak()` en cada `data-i18n`. |
+| 4 | Audio solo cuando la gamificación o el diseño de la actividad lo requiera | Botón 🔊 con `App.tts.speak()` **solo** donde la actividad lo pida (p. ej. escuchar lo escrito con el teclado, lectura de secuencias). No se aplica a cada `data-i18n`. |
 | 5 | Sin presión | Cero cronómetros; cero "game over". |
 | 6 | Refuerzo positivo | `App.feedback.success()` al acertar. |
 | 7 | `prefers-reduced-motion` | Animaciones se reducen o eliminan en ese modo. |
@@ -180,9 +274,44 @@ correcta en el primer fallo.
 
 ### Paso 8 · Audio y feedback
 
-- `App.tts.speak(App.i18n.t('instruccion'))` al entrar en cada pantalla.
+- Usa `App.tts.speak(...)` **solo** cuando la gamificación o el
+  diseño de la actividad lo requieran (p. ej. escuchar lo escrito
+  con el teclado, lectura de secuencias). **No** lo añadas en cada
+  pantalla por defecto.
+  - **Usa audio para** contenido que el usuario no puede percibir
+    de otro modo: palabras nuevas que la actividad enseña a
+    pronunciar (`vocabulary`, `dictionary`, `spelling`,
+    `colored-spelling`), un estímulo sonoro al que debe reaccionar
+    (una secuencia a recordar, el caso sobre el que decidir, lo
+    que acaba de escribir o tocar), y guías habladas no visibles
+    (el ritmo de respiración en `calm` / `emotions`, la etiqueta
+    de octava en `piano-keys`).
+  - **No reproduzcas audio automáticamente** para textos ya
+    visibles en pantalla: feedback de acierto/ánimo, la
+    explicación tras un ejercicio, el texto de la solución de
+    una rutina, el estado del juego en pantalla. Si la persona
+    quiere oír ese texto, expone un botón 🔊 junto al bloque
+    concreto, **nunca** disparado por defecto, porque leer y
+    escuchar a la vez cansa y ralentiza la actividad.
 - `App.feedback.success(el)` al acertar.
 - `App.feedback.encourage(el)` al fallar (mensaje de **ánimo**, no de error).
+
+> **Excepciones canónicas** — actividades cuyo diseño justifica un
+> botón 🔊 en la pantalla de instrucciones o de casos. Las nuevas
+> actividades **no** deben añadir un 🔊 genérico de "escuchar
+> instrucciones"; solo se añade a esta lista con un PR justificado
+> (abre un issue con la etiqueta `UX`):
+>
+> - `keyboard-typing` — escucha lo escrito con el teclado
+> - `piano-keys` — escucha lo tocado en el piano
+> - `math-tables` — escucha la operación (p. ej. "dos más dos")
+> - `my-agenda` — escucha las tareas planificadas
+> - `sexual-health` — escucha el caso sobre el que decidir
+> - `social-safety` — escucha la situación sobre la que decidir
+> - `colored-spelling` — escucha la palabra a deletrear
+>
+> `routines` **no** tiene 🔊 en la pantalla de pasos (el texto en
+> pantalla es suficiente) ni en la pantalla del menú.
 
 ### Paso 9 · Persistencia y registro
 
@@ -235,6 +364,12 @@ El método socrático en Apptonomia tiene tres niveles:
 > "incorrecto". Formula en positivo lo que la persona tiene que buscar
 > ("Mira el dibujo; ¿a qué grupo pertenece?" en vez de "Esa no es la
 > caja correcta").
+
+> Mecánica obligatoria: cualquier fallo bloquea el resto de opciones sin probar
+> con `App.feedback.lockUntilAck(botones, zona)` hasta que la persona pulse
+> "Entendido". Esto obliga a leer la pista o la explicación antes de volver a
+> intentarlo — sin limitar los reintentos — y evita que se acierte por
+> eliminación en vez de pensando.
 
 ### 5.3 Gamificación
 
@@ -318,14 +453,25 @@ En Apptonomia el CTA es **la propia acción** ("Toca", "Busca",
 
 ### 5.8 Aprendizaje significativo
 
+Esta sección es el **"cómo"** que sostiene el contrato de simulación
+de §2.3 y [`SPEC.md` §3.6](SPEC.md). La simulación es el
+**vehículo**; el **aprendizaje significativo** (Ausubel–Novak) es lo
+que hace que una ronda simulada se quede y se transfiera a la vida
+diaria de la persona: lo nuevo se ancla en lo que la persona ya sabe y
+cada ronda termina con una transferencia explícita a un momento del
+día en el que será útil. Sin esta capa, la simulación es solo
+decoración.
+
 Ausubel y Novak hablan de **anclar lo nuevo en lo que la persona ya
-sabe**. En la práctica:
+sabe**. En la práctica, cada actividad de Apptonomia debería respetar
+estos cuatro **anclajes del aprendizaje significativo**:
 
 - **Usa vocabulario cotidiano** que la persona ya maneja en casa
-  (perro, camiseta, pan), no taxonomías técnicas (canino, prenda
- 纺织品, cereal).
+  (perro, camiseta, pan), no taxonomías técnicas (canino, prenda,
+  cereal). Esto cumple además SPEC §3.3.
 - **Conecta con su vida**: si la actividad es sobre dinero, usa
-  precios reales de un supermercado cercano al usuario.
+  precios reales de un supermercado cercano al usuario; si es sobre
+  la rutina matutina, usa los pasos que la persona sigue en casa.
 - **Permite personalización ligera**: dejar que la persona escriba su
   nombre o elija un avatar estable aumenta la **propiedad** sobre lo
   aprendido (ver `tools/piano-keys/`, `tools/keyboard-typing/`).
@@ -492,6 +638,45 @@ Ejemplos buenos:
 - 🗂️ "Mira la palabra. Toca la caja del grupo correcto."
 - 🧮 "Suma los números. Toca el resultado."
 
+### 7.6 Plantilla de ronda de simulación de la vida diaria
+
+Usa esta plantilla cuando la actividad se construya como simulación de
+la vida diaria (según [`SPEC.md` §3.6](SPEC.md) y §2.3 de esta guía):
+
+```js
+// 1) Contexto (claves i18n: contexto, instruccion)
+App.tts.speak(App.i18n.t('contexto') + ' ' + App.i18n.t('instruccion'));
+
+// 2) Decisión: 3–6 opciones renderizadas como .btn-opcion
+opciones.forEach(function (op) { /* render del botón */ });
+
+// 3) Consecuencia con feedback
+boton.addEventListener('click', function () {
+  if (correcto) {
+    App.feedback.success(el);
+  } else {
+    intentos++;
+    if (intentos === 1) mostrarPista();        // regla 12
+    else if (intentos >= 2) mostrarExplicacion();
+    App.feedback.lockUntilAck(opciones, explicacionWrap); // pausa de lectura
+  }
+});
+
+// 5) Transferencia (pantalla final, ambos locales)
+$('#transferencia').textContent = App.i18n.t('transferencia');
+```
+
+Claves i18n obligatorias (una cadena por idioma):
+
+| Clave | Para qué sirve | Ejemplo (ES) |
+|---|---|---|
+| `contexto` | Una frase que sitúa a la persona en la escena. | "Estás en el supermercado." |
+| `instruccion` | La acción que tiene que hacer en esa escena. | "Toca lo que necesitas primero." |
+| `transferencia` | Frase final que ancla la práctica en la vida real. | "Esto te servirá la próxima vez que vayas a comprar." |
+
+Buenos ejemplos en el catálogo: `tools/situations/`, `tools/emergencies/`,
+`tools/safe-chat/`, `tools/routines/`.
+
 ---
 
 ## 8. Errores frecuentes
@@ -500,6 +685,7 @@ Ejemplos buenos:
 |---|---|---|
 | Decir "incorrecto" | Choca con `SPEC.md` §3.1 | Usar `App.feedback.encourage()`. |
 | Dar la respuesta en el primer fallo | Rompe la regla 12 y el método socrático | Mostrar `pista` primero. |
+| Dejar activas las demás opciones tras un fallo | Permite adivinar por eliminación en vez de pensar | Llamar a `App.feedback.lockUntilAck()` en cada fallo. |
 | Cambiar dos variables entre niveles | Rompe la regla 13 y frustra | Cambiar **una sola**. |
 | Tono condescendiente ("¡Muy bien, campeón!") | Infantiliza | Tono cercano pero digno: "¡Lo has hecho muy bien!". |
 | Saturar la pantalla | Cansancio visual, peor aprendizaje | 3–6 elementos, una idea. |
@@ -519,10 +705,40 @@ Checklist final (combina [`tecnico.md` §9](tecnico.md) con esta guía):
 - [ ] La mecánica se entiende escrita antes de ver la pantalla (Paso 3).
 - [ ] Cada nivel cambia **una sola** variable (regla 13).
 - [ ] Banco de datos ≥ 25 casos si es simulación (`tecnico.md` §7).
+- [ ] La actividad se construye como simulación de la vida diaria
+      siempre que el objetivo terapéutico lo permita: una escena
+      reconocible, una decisión, consecuencia inmediata con feedback,
+      ayuda socrática y una línea `transferencia` al cierre
+      ([`SPEC.md` §3.6](SPEC.md), §2.3 de esta guía). Si la actividad
+      es de habilidad pura (memoria, motricidad fina, lógica,
+      puzzles, percepción), está declarada en `team/index.html`
+      como **decisión de diseño priorizada** del producto, no como
+      excepción ([`SPEC.md` §3.6.b](SPEC.md)).
+- [ ] La actividad también entrena **significativamente**: usa
+      vocabulario cotidiano del entorno de la persona, estímulos
+      conectados con su vida real, personalización ligera cuando
+      proceda (nombre, avatar estable) y práctica espaciada vía
+      `localStorage` ([`SPEC.md` §3.6](SPEC.md), §5.8 de esta guía).
+      El vehículo de simulación sin estos anclajes no produce
+      aprendizaje.
+- [ ] La actividad **comunica persuasivamente al servicio del
+      aprendizaje**: objetivo didáctico visible, ejemplo modelado,
+      "ver pista" permanente; art effects con cuidado (lentos, de un
+      solo elemento, sin destellos, respetuosos con
+      `prefers-reduced-motion`); micro-relato cercano; buen copy; un
+      único CTA claro por pantalla; gamificación con moderación
+      ([`SPEC.md` §3.7](SPEC.md), §2.4 de esta guía).
+- [ ] **Ningún patrón de mercado prohibido** aparece en la actividad:
+      ni escasez, ni falsa urgencia, ni prueba social como presión,
+      ni FOMO / "no pierdas tu racha", ni dark patterns, ni aversión
+      explotadora a la pérdida (lista en [`SPEC.md` §3.7](SPEC.md)).
+      El enganche nace del diseño, no de la presión.
 - [ ] `pista` y `explicacion` existen en `strings.es.js` **y** `strings.en.js`.
 - [ ] `App.tts.speak()` se llama al entrar en cada pantalla de juego.
 - [ ] `App.feedback.success()` y `App.feedback.encourage()` están conectados.
 - [ ] Primer fallo → `mostrarPista()`; segundo → `mostrarExplicacion()`.
+- [ ] Cada fallo llama a `App.feedback.lockUntilAck()` (bloquea las opciones sin
+      probar hasta pulsar "Entendido").
 - [ ] Persistencia: solo `estrellas` y `completados` en `localStorage`.
 - [ ] Botones ≥ 64×64 px, separación ≥ 16 px (regla 2).
 - [ ] ≤ 6 opciones por pantalla; ≤ 3 en quiz (reglas 10–11).

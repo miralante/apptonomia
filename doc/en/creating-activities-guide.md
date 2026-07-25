@@ -68,6 +68,94 @@ daily life).
 - Saturate the screen: maximum 4–6 options (§5 rule 10) and 3 options
   in a quiz (rule 11).
 
+### 2.3 The activity is a daily-life simulation whenever possible
+
+Per [`SPEC.md` §3.6 and principle 11](SPEC.md), an Apptonomia activity is
+not an abstract drill: it is **training through simulation**. As far as
+the therapeutic goal allows, every activity is built around a
+recognisable scene in which the person makes a decision and sees its
+consequence in the safe space of the app.
+
+Simulation is the **vehicle**; the pedagogical principle that turns a
+simulated round into something the person actually retains and uses
+outside the app is **meaningful learning** (Ausubel–Novak), detailed in
+§5.8 of this guide. Concretely, the simulation contract (context →
+decision → consequence → socratic help → transfer) becomes meaningful
+learning when the activity also obeys the four **meaningful-learning
+anchors**: everyday vocabulary, stimuli connected to the person's life,
+light personalisation when appropriate, and spaced practice via
+`localStorage`. Those four anchors are spelled out in [`SPEC.md` §3.6](SPEC.md).
+
+The **four** mechanical patterns the product recognises — and which any new
+activity should pick from — are:
+
+| Pattern | When to use it | Example in the catalogue |
+|---|---|---|
+| **Scene + decision** | The therapeutic goal is choosing well in a moment of daily life. | `situations`, `what-first`, `what-do-i-need`, `where-to-store`, `emergencies`, `street` |
+| **Safe dialogue / chat** | The therapeutic goal is what to say or write in a social or digital context. | `safe-chat`, `post-or-not`, `bullying-chat` |
+| **Step-by-step routine** | The therapeutic goal is the order of a real task (morning, kitchen, shopping, going out). | `routines`, `house`, `task-list`, `my-agenda` |
+| **Pure-skill training** | The therapeutic goal **is** the skill (sequential memory, fine motor, logic, puzzles, perception). The stimulus is already the context: the piano, the grid, the pieces, the sequence. | `piano-keys`, `tracing`, `puzzle`, `fit`, `visual-sudoku`, `tic-tac-toe`, `pairs`, `connect-dots` |
+
+Simulation (the first three patterns) is the **preferred vehicle** when
+the goal allows it. The fourth pattern — **pure-skill training** — is a
+prioritised design decision of the product (see
+[`SPEC.md` §3.6.b](SPEC.md)): it is not an exception to justify case by
+case. Forcing a scene where the stimulus is already the context saturates
+the screen and breaks accessibility rule 10 (maximum visible options).
+
+Every round — whether simulation or pure skill — must honour, when they
+add value, the 1-5 points of the anatomy below. The Case B contract only
+relaxes `pista` and `explicacion` when the activity has no "correct
+answer" to explain (e.g. `builders` or `piano-keys` in free mode).
+
+Every round must follow this 5-step anatomy:
+
+1. **Context** — a pictogram or background image + a short `instruccion`
+   sentence that says where we are and connects with what the person
+   already knows ("You are at the supermarket. Pick what you need
+   first.").
+2. **Decision** — 3–6 large options the person can act on (rule 10/11).
+3. **Consequence with feedback** — `App.feedback.success()` on the good
+   choice; `App.feedback.encourage()` on the bad one. Never score the
+   bad choice as an error.
+4. **Socratic help** — first mistake → `mostrarPista()`; second
+   mistake → `mostrarExplicacion()` (rule 12).
+5. **Transfer** — the round ends with a `transferencia` line that
+   anchors what was practised to a moment of the day it will be useful
+   in ("This will help you the next time you go shopping.").
+
+Pure abstract drills (no scene, no `transferencia`, none of the four
+anchors) are allowed only when the goal makes contextualisation
+impossible or confusing. In that case the activity follows the
+**pure-skill vehicle** declared in [`SPEC.md` §3.6.b](SPEC.md) and is
+documented in `team/index.html` as a **prioritised design decision**, not
+as an exception.
+
+### 2.4 The activity communicates persuasively in service of learning
+
+Beyond the simulation vehicle (§2.3) and the meaningful-learning anchors
+(in [`SPEC.md` §3.6](SPEC.md) and §5.8 of this guide), every activity
+must also communicate well. This is the third non-negotiable layer,
+elevated to a product principle in [`SPEC.md` §3.7 and principle 12](SPEC.md).
+The full operational details live in §5 and §6 of this guide
+(didactic, art effects, storytelling, good copy, CTAs, gamification,
+ethical neuromarketing). The summary that every activity must satisfy:
+
+| Discipline | One-line rule | Guide section |
+|---|---|---|
+| Didactic | Visible goal + modelled example + permanent "see hint" button. | §5.1 |
+| Art effects with care | Slow (≥ 300 ms), single-element, no flashing, respects `prefers-reduced-motion`. | §5.4 |
+| Storytelling | Warm micro-narrative; closing line connects learning to a moment of the day. | §5.6 |
+| Good copy | ≤ 12 words, active voice, second person, positive, TTS-friendly. | §5.5 |
+| Clear CTA | One visible CTA per screen; closing CTAs invite to play again / back to menu, **never** share score or unlock the next. | §5.7 |
+| Gamification in moderation | Progressive stars (1 → 2 → 3), added never subtracted, no leaderboards. | §5.3 |
+| Ethical neuromarketing | The seven keys used to anchor attention and concepts, never to sell. | §6.1, §6.2 |
+
+**Forbidden by [`SPEC.md` §3.7](SPEC.md)**: scarcity, false urgency,
+social-proof pressure, sunk-cost / FOMO, manipulative reciprocity /
+dark patterns, exploitative loss aversion. Pressure is not a
+persuasion technique in Apptonomia — engagement is.
+
 ---
 
 ## 3. Quick checklist of the 13 accessibility rules
@@ -79,7 +167,7 @@ Operational summary (full source: [`technical.md` §5](technical.md)):
 | 1 | Easy Reading | Short sentences; one idea per sentence; no jargon. |
 | 2 | Buttons ≥ 64×64 px, gap ≥ 16 px | Measure the `.btn` in the activity with DevTools. |
 | 3 | High contrast WCAG AA | Check the module colour against `--color-superficie`. |
-| 4 | Audio on every key text | 🔊 button with `App.tts.speak()` on each `data-i18n`. |
+| 4 | Audio only when gamification or the activity design requires it | 🔊 button with `App.tts.speak()` **only** where the activity calls for it (e.g. hearing what is typed on the keyboard, listening to a sequence). Not applied to every `data-i18n`. |
 | 5 | No pressure | Zero timers; zero "game over". |
 | 6 | Positive reinforcement | `App.feedback.success()` on a correct answer. |
 | 7 | `prefers-reduced-motion` | Animations are reduced or removed in that mode. |
@@ -186,11 +274,43 @@ correct answer on the first mistake.
 
 ### Step 8 · Audio and feedback
 
-- `App.tts.speak(App.i18n.t('instruccion'))` when entering each
-  screen.
+- Use `App.tts.speak(...)` **only** when gamification or the
+  activity design requires it (e.g. hearing what is typed on the
+  keyboard, listening to a sequence). Do **not** add it to every
+  screen by default.
+  - **Use audio for** content the user can't otherwise perceive:
+    new words the activity is teaching to pronounce
+    (`vocabulary`, `dictionary`, `spelling`, `colored-spelling`),
+    an audio prompt the user must act on (a sequence to
+    remember, the case to decide on, what was just typed or
+    played), and non-visible spoken cues (breathing rhythm in
+    `calm` / `emotions`, an octave label in `piano-keys`).
+  - **Don't auto-play audio for** text that is already visible on
+    screen: success / encouragement feedback, the explanation
+    shown after an exercise, the solution text of a routine,
+    the on-screen game status. If the user wants that text read
+    out, expose a 🔊 button next to the specific block — never
+    trigger it by default, because simultaneous reading +
+    listening tires the user and slows the activity down.
 - `App.feedback.success(el)` on a correct answer.
 - `App.feedback.encourage(el)` on a mistake (an **encouragement**
   message, not an error one).
+
+> **Canonical exceptions** — activities whose design justifies a 🔊
+> button on the instructions / cases screen. New activities should
+> **not** add a generic "listen to instructions" 🔊; only join this
+> list with a justified PR (open an issue with the `UX` label):
+>
+> - `keyboard-typing` — hears what the user types
+> - `piano-keys` — hears what the user plays
+> - `math-tables` — hears the operation (e.g. "two plus two")
+> - `my-agenda` — hears the planned tasks
+> - `sexual-health` — hears the case to decide on
+> - `social-safety` — hears the situation to decide on
+> - `colored-spelling` — hears the word to spell
+>
+> `routines` does **not** have a 🔊 on the step screen (the step
+> text on screen is enough) nor on the menu screen.
 
 ### Step 9 · Persistence and registration
 
@@ -243,6 +363,11 @@ The Socratic method in Apptonomia has three levels:
 > "incorrect". Phrase positively what the person has to look for
 > ("Look at the picture; which group does it belong to?" instead
 > of "That is not the right box").
+
+> Mandatory mechanic: any mistake locks the remaining untried options with
+> `App.feedback.lockUntilAck(buttons, zone)` until the person taps "Got it".
+> This forces reading the hint or explanation before trying again — without
+> limiting retries — and prevents guessing by elimination instead of thinking.
 
 ### 5.3 Gamification
 
@@ -327,14 +452,24 @@ In Apptonomia the CTA **is** the action itself ("Tap", "Find",
 
 ### 5.8 Meaningful learning
 
+This section is the **"how"** behind the simulation contract in §2.3
+and [`SPEC.md` §3.6](SPEC.md). The simulation is the **vehicle**;
+**meaningful learning** (Ausubel–Novak) is what makes a simulated
+round actually stick and transfer to the person's daily life: the new
+content is anchored on what the person already knows, and each round
+ends with an explicit transfer to a moment of the day it will be
+useful in. Without this layer, simulation is just decoration.
+
 Ausubel and Novak talk about **anchoring the new on what the
-person already knows**. In practice:
+person already knows**. In practice, every Apptonomia activity should
+honour these four **meaningful-learning anchors**:
 
 - **Use everyday vocabulary** that the person already uses at home
   (dog, t-shirt, bread), not technical taxonomies (canine, garment,
-  cereal).
+  cereal). This also satisfies SPEC §3.3.
 - **Connect with their life**: if the activity is about money, use
-  real prices from a nearby supermarket.
+  real prices from a nearby supermarket; if it is about morning
+  routine, use the steps the person actually follows.
 - **Allow light personalisation**: letting the person write their
   name or pick a stable avatar increases **ownership** of what was
   learned (see `tools/piano-keys/`, `tools/keyboard-typing/`).
@@ -501,6 +636,45 @@ Good examples:
 - 🗂️ "Look at the word. Tap the box of the correct group."
 - 🧮 "Add the numbers. Tap the result."
 
+### 7.6 Daily-life simulation round template
+
+Use this template whenever the activity is built as a daily-life
+simulation (per [`SPEC.md` §3.6](SPEC.md) and §2.3 of this guide):
+
+```js
+// 1) Context (i18n keys: contexto, instruccion)
+App.tts.speak(App.i18n.t('contexto') + ' ' + App.i18n.t('instruccion'));
+
+// 2) Decision: 3–6 options rendered as .btn-opcion
+opciones.forEach(function (op) { /* render button */ });
+
+// 3) Consequence with feedback
+boton.addEventListener('click', function () {
+  if (correcto) {
+    App.feedback.success(el);
+  } else {
+    intentos++;
+    if (intentos === 1) mostrarPista();        // rule 12
+    else if (intentos >= 2) mostrarExplicacion();
+    App.feedback.lockUntilAck(opciones, explicacionWrap); // reading pause
+  }
+});
+
+// 5) Transfer (closing screen, both locales)
+$('#transferencia').textContent = App.i18n.t('transferencia');
+```
+
+Required i18n keys (one string per locale):
+
+| Key | Purpose | Example (EN) |
+|---|---|---|
+| `contexto` | One sentence that places the person in the scene. | "You are at the supermarket." |
+| `instruccion` | The action to take in that scene. | "Tap what you need first." |
+| `transferencia` | Closing line that anchors practice to real life. | "This will help you the next time you go shopping." |
+
+Good examples in the catalogue: `tools/situations/`, `tools/emergencies/`,
+`tools/safe-chat/`, `tools/routines/`.
+
 ---
 
 ## 8. Frequent mistakes
@@ -509,6 +683,7 @@ Good examples:
 |---|---|---|
 | Saying "incorrect" | Clashes with `SPEC.md` §3.1 | Use `App.feedback.encourage()`. |
 | Giving the answer on the first mistake | Breaks rule 12 and the Socratic method | Show `pista` first. |
+| Leaving the other options active after a mistake | Lets people guess by elimination instead of thinking | Call `App.feedback.lockUntilAck()` on every mistake. |
 | Changing two variables between levels | Breaks rule 13 and frustrates | Change **only one**. |
 | Condescending tone ("Great job, champ!") | Infantalises | Close but dignified tone: "You did very well!". |
 | Saturating the screen | Visual fatigue, worse learning | 3–6 elements, one idea. |
@@ -531,6 +706,32 @@ guide):
 - [ ] Each level changes **one single** variable (rule 13).
 - [ ] Data bank ≥ 25 cases if it is a simulation
       (`technical.md` §7).
+- [ ] The activity is built as a daily-life simulation whenever the
+      therapeutic goal allows it: a recognisable scene, a decision,
+      immediate consequence with feedback, Socratic help and a
+      `transferencia` closing line ([`SPEC.md` §3.6](SPEC.md), §2.3 of
+      this guide). If the activity is a pure-skill activity (memory,
+      fine motor, logic, puzzles, perception), it is documented in
+      `team/index.html` as a **prioritised design decision** of the
+      product, not as an exception ([`SPEC.md` §3.6.b](SPEC.md)).
+- [ ] The activity also trains **meaningfully**: it uses everyday
+      vocabulary from the person's environment, stimuli connected to
+      their real life, light personalisation when appropriate (name,
+      stable avatar) and spaced practice via `localStorage`
+      ([`SPEC.md` §3.6](SPEC.md), §5.8 of this guide). The simulation
+      vehicle without these anchors does not produce learning.
+- [ ] The activity **communicates persuasively at the service of
+      learning**: didactic goal, modelled example, permanent "see
+      hint"; art effects with care (slow, single-element, no flashing,
+      respects `prefers-reduced-motion`); warm micro-narrative; good
+      copy; one clear CTA per screen; gamification in moderation
+      ([`SPEC.md` §3.7](SPEC.md), §2.4 of this guide).
+- [ ] **No forbidden marketing patterns** appear anywhere in the
+      activity: no scarcity, no false urgency, no social-proof
+      pressure, no FOMO / "don't lose your streak", no dark patterns,
+      no exploitative loss aversion (forbidden list in
+      [`SPEC.md` §3.7](SPEC.md)). Engagement comes from the design,
+      not from pressure.
 - [ ] `pista` and `explicacion` exist in `strings.es.js` **and**
       `strings.en.js`.
 - [ ] `App.tts.speak()` is called when entering each game screen.
@@ -538,6 +739,8 @@ guide):
       wired.
 - [ ] First mistake → `mostrarPista()`; second →
       `mostrarExplicacion()`.
+- [ ] Every mistake calls `App.feedback.lockUntilAck()` (locks the
+      untried options until "Got it" is tapped).
 - [ ] Persistence: only `estrellas` and `completados` in
       `localStorage`.
 - [ ] Buttons ≥ 64×64 px, gap ≥ 16 px (rule 2).

@@ -17,7 +17,7 @@ doc/
 │   ├── roles.md      ← Roles del proyecto
 │   ├── SPEC.md
 │   ├── README.md
-│   ├── guia-rapida.md
+│   ├── guia-rapida.md      ← Cómo abrir la app (4 métodos) y cómo usarla
 │   ├── guia-crear-actividades.md
 │   ├── actividades.md
 │   ├── equipo.md
@@ -49,6 +49,7 @@ están en el [`README.md`](../../README.md) y
 | Si quieres… | Empieza por |
 |---|---|
 | Entender qué es Apptonomia y para quién | [`SPEC.md`](SPEC.md) |
+| **Abrir la app y usarla (4 métodos: internet, ZIP, Python, Node)** | [`guia-rapida.md`](guia-rapida.md) |
 | Ver la arquitectura y recetas técnicas | [`tecnico.md`](tecnico.md) |
 | **Crear una actividad nueva (diseño + técnicas didácticas, gamificación, neuromarketing)** | [`guia-crear-actividades.md`](guia-crear-actividades.md) |
 | Ver el catálogo de actividades | [`actividades.md`](actividades.md) |

@@ -28,7 +28,7 @@ and the complete activity-by-activity catalog in
 - **Large buttons**: minimum 64×64 pixels
 - **Large text**: clear readable font (Atkinson Hyperlegible)
 - **High contrast**: light colors on white background
-- **Audio available**: every important text can be heard with a 🔊 button
+- **Audio only where it adds value**: a 🔊 button appears only when gamification or the activity design requires it (e.g. hearing what is typed on the keyboard, listening to a sequence)
 
 ### ✅ In two languages
 

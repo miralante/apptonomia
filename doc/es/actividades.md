@@ -1,6 +1,6 @@
 # Catálogo de actividades
 
-Apptonomia tiene **74 actividades** organizadas en **7 módulos** según el tipo de habilidad que trabajan. El orden de los módulos va de lo más ligado a la terapia ocupacional (autonomía, emociones) a lo más académico (memoria, razonamiento, lenguaje), sigue con el módulo específico de dificultades motoras y termina con el módulo de educación afectivo-sexual, añadido después por requerir siempre supervisión profesional o familiar.
+Apptonomia tiene **76 actividades** organizadas en **7 módulos** según el tipo de habilidad que trabajan. El orden de los módulos va de lo más ligado a la terapia ocupacional (autonomía, emociones) a lo más académico (memoria, razonamiento, lenguaje), sigue con el módulo específico de dificultades motoras y termina con el módulo de educación afectivo-sexual, añadido después por requerir siempre supervisión profesional o familiar.
 
 ---
 
@@ -12,8 +12,8 @@ Apptonomia tiene **74 actividades** organizadas en **7 módulos** según el tipo
 
 | Actividad | Descripción |
 |-----------|-------------|
-| **Mis Rutinas** | Repasa las rutinas del día: despertar, vestirse, desayunar... |
-| **La Casa** | Ordena los pasos para hacer tareas del hogar (cocinar, limpiar...) |
+| **Mis Rutinas** | Repasa las rutinas típicas de la casa: mañana, cuidado personal, comidas, tareas del hogar, mascotas, tarde, salida y noche. También permite crear y guardar listas libres propias para practicar a hacer listas |
+| **La Casa** | Ordena los pasos de tareas del hogar: poner la mesa, barrer, fregar, hacer la cama, sacar la basura, regar, cuidar mascotas… |
 | **Situaciones** | ¿Qué haces si pasa algo? Aprende a responder ante problemas cotidianos |
 | **Chat Seguro** | Practica cómo responder si alguien te manipula por internet |
 | **Chat Acoso** | Reconoce situaciones de acoso entre compañeros y cómo actuar |
@@ -29,11 +29,15 @@ Apptonomia tiene **74 actividades** organizadas en **7 módulos** según el tipo
 | **¿Qué me pongo?** | Elige la ropa adecuada según el tiempo que hace |
 | **La Calle** | Cruzar la calle, transporte público, qué hacer si te pierdes |
 | **Emergencias** | Reconoce emergencias reales y practica llamar al 112 |
+| **Mientras Llega la Ayuda** | Qué hacer tras llamar al 112 mientras llega la ambulancia, los bomberos o la policía: salir, no mover al herido, presionar la herida, posición lateral |
+| **Antes de la Emergencia** | Prepara en casa con la familia lo que tiene que estar listo: 112 escrito, dirección visible, detector de humo, pastillas fuera de alcance, llaves de luz y gas |
 | **Teléfonos Importantes** | Aprende que el 112 sirve para policía, bomberos y emergencia médica |
 | **Mis Datos** | Repasa tu dirección y tu teléfono, y los de tu familia (configurados antes por quien te ayuda) |
 | **La Compra** | Aprende las secciones del supermercado y la lista de la compra |
 | **La Tienda** | Usa dinero real en una compra: pagar, recibir cambio, controlar gastos |
 | **Comida Sana** | Clasifica alimentos en "cada día" o "de vez en cuando" y descubre cómo te sientan |
+| **Se lo Cuento al Médico** | Practica poner en palabras sencillas en primera persona un síntoma del cuerpo (dónde, qué, desde cuándo) para que el médico lo entienda |
+| **Mi Botiquín** | Practica el cuidado cotidiano en casa (lavar, frío, tirita, descansar) y aprende cuándo pedir ayuda a un adulto de confianza o llamar al 112 |
 
 ---
 
@@ -50,6 +54,9 @@ Apptonomia tiene **74 actividades** organizadas en **7 módulos** según el tipo
 | **Entre Amigos** | Resuelve situaciones sociales con amigos |
 | **Mi Cuerpo Me Avisa** | Aprende a notar las señales de tu cuerpo cuando sientes algo |
 | **Buenos Modales** | Practica fórmulas de cortesía: gracias, por favor, buenos días, adiós, ceder el paso |
+| **Así Soy Yo** | Acepta cómo eres y responde ante la discapacidad, la discriminación y la gente insensible |
+| **Cuando Algo Me Cuesta** | Tolera la frustración y aprende a pedir ayuda sin vergüenza |
+| **Círculo de Confianza** | Distingue amigo, compañero y conocido, y reconoce la manipulación (incluida la petición de dinero) |
 
 ---
 
@@ -163,7 +170,7 @@ Apptonomia tiene **74 actividades** organizadas en **7 módulos** según el tipo
 
 | Actividad | Descripción |
 |-----------|-------------|
-| **Mi Cuerpo, Mis Decisiones** | Practica 32 casos no gráficos sobre consentimiento, relaciones sanas, anticoncepción e higiene y salud sexual |
+| **Mi Cuerpo, Mis Decisiones** | Practica 48 casos no gráficos sobre consentimiento, relaciones sanas, anticoncepción, higiene y salud sexual, presión y chantaje, y protección e infecciones |
 
 ---
 
@@ -171,15 +178,15 @@ Apptonomia tiene **74 actividades** organizadas en **7 módulos** según el tipo
 
 | Módulo | Nº actividades | Color |
 |--------|----------------|-------|
-| 📋 Mi día a día | 22 | Verde |
-| 💜 Emociones | 5 | Morado |
+| 📋 Mi día a día | 24 | Verde |
+| 💜 Emociones | 8 | Morado |
 | 🧠 Memoria y atención | 10 | Naranja |
 | 🔢 Pensar y contar | 18 | Teal |
 | 💬 Lenguaje y palabras | 11 | Frambuesa |
 | 🎯 Puntería y manos | 7 | Azul |
 | 💗 Cuerpo y relaciones | 1 | Terracota |
 
-**Total: 74 actividades**
+**Total: 79 actividades**
 
 ---
 
@@ -238,10 +245,10 @@ Apptonomia incluye varios juegos de mesa clásicos adaptados:
 ## Cómo elegir la actividad adecuada
 
 ### Si quieres ser más independiente en casa
-→ **Módulo 1**: Rutinas, La Casa, Mi agenda, Emergencias, Teléfonos Importantes, Mis Datos, La Compra, La Tienda, Comida Sana
+→ **Módulo 1**: Rutinas, La Casa, Mi agenda, Emergencias, Teléfonos Importantes, Mis Datos, La Compra, La Tienda, Comida Sana, Se lo Cuento al Médico, Mi Botiquín
 
 ### Si quieres entender mejor las emociones
-→ **Módulo 2**: ¿Cómo me siento?, Calma, Entre Amigos, Mi Cuerpo Me Avisa
+→ **Módulo 2**: ¿Cómo me siento?, Calma, Entre Amigos, Mi Cuerpo Me Avisa, Así Soy Yo, Cuando Algo Me Cuesta, Círculo de Confianza
 
 ### Si quieres mejorar la memoria
 → **Módulo 3**: Parejas, ¿Qué falta?, Ecos, Los Bloques

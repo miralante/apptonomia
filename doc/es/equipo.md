@@ -169,7 +169,10 @@ Algunas actividades tratan temas delicados:
 | **Chat Acoso** | Acoso entre iguales | Siempre con supervisión profesional |
 | **¿Lo publico?** | Redes sociales | Requiere supervisión de la persona de apoyo |
 | **Redes, intimidad y ley** | Manipulación sexual, intimidad digital y consecuencias legales | Siempre con supervisión profesional o familiar |
-| **Mi Cuerpo, Mis Decisiones** | Consentimiento, relaciones, anticoncepción, higiene y salud sexual | Siempre con supervisión profesional o familiar |
+| **Mi Cuerpo, Mis Decisiones** | Consentimiento, relaciones, anticoncepción, higiene y salud sexual, presión y chantaje, protección e infecciones | Siempre con supervisión profesional o familiar |
+| **Se lo Cuento al Médico** | Poner en palabras un síntoma del cuerpo para un profesional sanitario | Revisar antes; se complementa bien con **Mi Cuerpo Me Avisa** |
+| **Mi Botiquín** | Cuidado cotidiano en casa; saber cuándo pedir ayuda o llamar al 112 | Revisar antes; el nivel 2 entrena explícitamente pedir ayuda a un adulto de confianza o al 112 |
+| **Círculo de Confianza** | Manipulación presencial en amistades y petición de dinero | Requiere supervisión de la persona de apoyo |
 
 ---
 
@@ -199,6 +202,9 @@ actividad está en [`actividades.md`](actividades.md).
 | Ambigüedad léxica y comprensión del contexto | ✔ | Doble Sentido |
 | Ortografía y escritura | ✔ | Teclado, Trazos |
 | Sentimientos y conflictos sociales | ✔ | ¿Cómo me siento?, Situaciones, Entre Amigos |
+| Autoestima, autoaceptación y respuesta a la discriminación | ✔ | Así Soy Yo |
+| Tolerancia a la frustración, vulnerabilidad y pedir ayuda | ✔ | Cuando Algo Me Cuesta |
+| Amigo, compañero o conocido; reconocer manipulación y falsas amistades (incluida la petición de dinero) | ✔ | Círculo de Confianza, Entre Amigos (nivel 5), Chat Seguro (escenario "Me piden dinero") |
 | Seguridad en internet | ✔ | Chat Seguro, Chat Acoso, ¿Lo publico?, Redes, intimidad y ley |
 | Operaciones matemáticas y dinero | ✔ | El Monedero, Números |
 | Lectura de números romanos y siglos | ✔ | Números Romanos |
@@ -211,7 +217,7 @@ actividad está en [`actividades.md`](actividades.md).
 | Coordinación ojo-mano y motricidad fina | ✔ | Atrapa, Teclado, Trazos |
 | Juegos de mesa | ✔ | La Oca, Tres en Raya, Dominó, Las Damas, El Ajedrez, Cuatro en Raya |
 | Movilidad comunitaria | ✔ | La Calle |
-| Autonomía en salud | ✔ | Emergencias, Teléfonos Importantes, Mis Datos, Mi Cuerpo Me Avisa |
+| Autonomía en salud | ✔ | Emergencias, Teléfonos Importantes, Mis Datos, Mi Cuerpo Me Avisa, Se lo Cuento al Médico, Mi Botiquín |
 | Compra y dinero en contexto real | ✔ | La Compra, La Tienda, El Monedero |
 | Alimentación saludable | ✔ | Comida Sana |
 | Educación afectivo-sexual: cuerpo, consentimiento y relaciones sanas | ✔ | Mi Cuerpo, Mis Decisiones |
@@ -236,6 +242,8 @@ Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 - Mis Datos
 - La Compra
 - ¿Dónde lo guardo?
+- Se lo Cuento al Médico
+- Mi Botiquín
 - Partes del Día
 - Comida Sana
 
@@ -264,6 +272,8 @@ Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 - Calma
 - Entre Amigos
 - Mi Cuerpo Me Avisa
+- Así Soy Yo
+- Cuando Algo Me Cuesta
 
 ### Trabajar cuerpo, relaciones y salud sexual (siempre con supervisión)
 
@@ -287,7 +297,14 @@ Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 2. Introduce una actividad nueva
 3. Deja que decida cuándo repetir o cambiar de actividad
 
-### No funciona el audio
+### No funciona el audio en una actividad que debería tenerlo
+
+Recuerda: solo algunas actividades usan audio (gamificación o por
+diseño, p. ej. escuchar lo escrito con el teclado o una secuencia).
+Si una actividad no tiene botón 🔊, es lo esperado: el audio no se
+aplica por defecto.
+
+Cuando sí hay botón 🔊 y el audio no se oye:
 
 1. Comprueba el volumen del dispositivo
 2. Comprueba los permisos del navegador

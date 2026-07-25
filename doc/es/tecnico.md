@@ -65,7 +65,7 @@ apptonomia/
 │   ├── js/feedback.js     #   window.App.feedback
 │   ├── js/dinero.js       #   window.App.dinero (actividades de euros)
 │   └── img/               #   pictogramas SVG e iconos PWA; la interfaz usa primero iconos del sistema y emojis para gráficos simples; si hace falta algo más, usar imágenes libres descargadas localmente desde fuentes CC0/domino público
-├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (74 actuales)
+├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (81 actuales)
 │   ├── index.html         #   estructura y carga de assets
 │   ├── app.js             #   solo lógica
 │   ├── data.js            #   solo datos
@@ -102,7 +102,7 @@ no hay código por módulo:
 | 🧠 Memoria y atención | Memoria y atención | `--mod-memoria` (naranja) | pairs, differences, whats-missing, ecos, turns-mirrors, blocks, where-is, path, fit, theatre |
 | 🔢 Pensar y contar | Razonamiento y matemáticas | `--mod-razonamiento` (teal) | riddles, patterns, numbers, quantities, math-tables, roman-numerals, wallet, clock, stories, odd-one-out, puzzle, oca, tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
 | 💬 Lenguaje y palabras | Lenguaje y comunicación | `--mod-lenguaje` (frambuesa) | comedy-club, idioms, double-meaning, categories, sentence, words, vocabulary, dictionary, spelling, colored-spelling, word-search |
-| 💜 Emociones | Emociones y relaciones | `--mod-emocional` (morado) | emotions, calm, friends, my-body, good-manners |
+| 💜 Emociones | Emociones y relaciones | `--mod-emocional` (morado) | emotions, calm, friends, my-body, good-manners, self-esteem, resilience, trust-circle |
 | 💗 Cuerpo y relaciones | Educación afectivo-sexual | `--mod-cuerpo` (terracota) | sexual-health |
 
 > **Nota multi-área**: una actividad puede trabajar más de un área terapéutica
@@ -203,6 +203,7 @@ actividad. Ejemplo típico: `{ estrellas: 3, completado: { nivel1: true }, opcio
 | `acierto` | `([zona]) → string` | Mensaje positivo aleatorio + sonido suave. Escribe en `zona` (elemento con `aria-live="polite"`) y le pone clase `.acierto` |
 | `animo` | `([zona]) → string` | Mensaje de ánimo tras fallo (nunca punitivo) + tono neutro. Clase `.animo` |
 | `celebrar` | `(mensaje, [despues])` | Capa de celebración a pantalla completa ≤ 2 s (1,2 s con reduced motion); llama a `despues` al ocultarse |
+| `lockUntilAck` | `(botones, zona, [alConfirmar])` | Tras un fallo, bloquea las opciones de la ronda sin probar y muestra un botón "Entendido" (con foco automático) dentro de `zona` que las reactiva al pulsarlo — pausa de lectura del método socrático (regla 12), nunca limita los reintentos |
 
 Sonidos: generados con Web Audio (sin archivos), fallan en silencio.
 
@@ -383,7 +384,9 @@ Al crear actividades nuevas, seguir estas **13 reglas obligatorias**:
 1. **Lectura Fácil**: frases cortas, una idea por frase
 2. **Botones ≥ 64×64 px**, separación ≥ 16 px
 3. **Alto contraste** (WCAG AA mínimo)
-4. **Audio en todo texto importante**: botón 🔊 con `App.tts.speak()`
+4. **Audio solo cuando la gamificación o el diseño de la actividad lo requiera** (p. ej. escuchar lo escrito con el teclado, lectura de secuencias): usa el botón 🔊 con `App.tts.speak()` únicamente donde la actividad lo pida. No es una regla general para todo texto importante.
+   - **Sí, cuando el audio aporta algo que el usuario no puede obtener de otro modo**: una palabra o expresión nueva que está aprendiendo a pronunciar (vocabulario, spelling, diccionario, palabra del día); un estímulo sonoro al que tiene que reaccionar (una secuencia a recordar, lo que acaba de escribir o tocar, la operación a calcular, el caso sobre el que decidir); una guía hablada no visible (el ritmo de respiración en un ejercicio de calma, la etiqueta de una octava al explorar el piano).
+   - **No, cuando el audio repite un texto ya en pantalla**: no se reproduce automáticamente el feedback ("muy bien / casi"), la explicación visible tras un ejercicio, el texto de la solución de una rutina ni el estado del juego en pantalla. Si la persona quiere oír ese texto, se ofrece un botón 🔊 al lado del bloque concreto, **nunca** por defecto: leer y escuchar a la vez cansa y ralentiza la actividad.
 5. **Sin presión**: sin cronómetros, puntuación negativa ni "game over"
 6. **Refuerzo positivo** al acertar: `App.feedback.acierto()`
 7. **Respetar `prefers-reduced-motion`**
@@ -466,6 +469,7 @@ Ya están definidas en `assets/js/i18n.js` (no redefinir en `strings.<locale>.js
 | `core.backToMenu` | Volver al menú | Back to menu |
 | `core.playAgain` | Jugar otra vez | Play again |
 | `core.next` | Siguiente → | Next → |
+| `core.understood` | Entendido | Got it |
 | `core.listen` | 🔊 Escuchar | 🔊 Listen |
 | `feedback.success` | [array] | [array] |
 | `feedback.encourage` | [array] | [array] |
@@ -493,6 +497,14 @@ Receta detallada y consideraciones (números, horas, contenido cultural) en
   acoplamiento permitido es `estrellasTotales()` desde la landing.
 - **El error nunca castiga**: no restar estrellas ni progreso; el fallo produce
   `animo()` y se puede reintentar sin límite.
+- **Pausa de lectura tras un fallo**: en toda actividad de opción múltiple, un fallo
+  debe bloquear las demás opciones sin probar de esa ronda con
+  `App.feedback.lockUntilAck()` hasta que la persona pulse "Entendido"; las
+  opciones ya probadas siguen deshabilitadas como hoy. El reintento sigue siendo
+  ilimitado — es una pausa de lectura del método socrático (regla 12), nunca un
+  castigo ni un bloqueo del progreso. Excepción documentada: `safe-chat` y
+  `bullying-chat` aplican el bloqueo pero aún no tienen pista/explicación en dos
+  fases (solo un aviso), una brecha pendiente de contenido, no de este contrato.
 - **Sin cronómetros visibles**: medir tiempos internamente está permitido (dato en
   storage), mostrarlos como presión no.
 - **Textos de la UI**: español de España e inglés, Lectura Fácil en los dos, sin
@@ -500,10 +512,73 @@ Receta detallada y consideraciones (números, horas, contenido cultural) en
   se permite en `team/` y en la documentación del repo. Todo texto vive en
   `strings.<locale>.js` (nunca hardcodeado en `app.js` ni como único contenido de un nodo HTML
   sin `data-i18n`).
+- **Sin etiquetas sobre la persona usuaria**: la persona nunca debe leer en la
+  app nada que la etiquete como "discapacitada", "con discapacidad" o similar.
+  El objetivo terapéutico se entrena con situaciones de la vida cotidiana sin
+  ponerle esa etiqueta. Lo mismo se aplica a compañeros o terceros
+  mencionados en una situación. Las actividades pueden hablar de diferencias y
+  de apoyos sin usar el término clínico (ver [`SPEC.md` §3.3](SPEC.md)).
 - **Banco de casos en simulaciones**: una actividad de simulación o entrenamiento
   debe ofrecer al menos **25 casos** para evitar que las rondas se memoricen. En
   chats pueden ser variantes de tarjetas temáticas, siempre sin superar el máximo
   de opciones visibles de §5.
+- **Contrato de simulación de la vida diaria**: toda actividad cuyo objetivo
+  terapéutico pueda contextualizarse debe construirse como una simulación
+  de la vida diaria (según [`SPEC.md` §3.6](SPEC.md) y el principio 11): una
+  escena reconocible, una decisión, consecuencia inmediata con feedback,
+  ayuda socrática y una línea `transferencia` al cierre. Mecánicamente la
+  actividad **debe** exponer las claves i18n `contexto`, `instruccion`
+  (ya parte de la anatomía estándar) y `transferencia` en la pantalla
+  final, y **debe** mantener el patrón socrático (`mostrarPista()` en el
+  primer fallo, `mostrarExplicacion()` en el segundo). Cuando el objetivo
+  terapéutico es entrenar una habilidad pura (memoria, motricidad fina,
+  lógica, puzzles, percepción), la actividad sigue el **vehículo de
+  habilidad pura** (según [`SPEC.md` §3.6.b](SPEC.md)): `contexto` y
+  `transferencia` se exigen cuando aporten, `pista` / `explicacion` se
+  exigen cuando aporten, `App.feedback.success` y `App.feedback.encourage`
+  se exigen **siempre**, y la decisión se documenta en `team/index.html`
+  como **decisión de diseño priorizada**, no como excepción. Los cuatro
+  patrones mecánicos que el contrato reconoce hoy son: **escena +
+  decisión**, **diálogo o chat seguro**, **rutina paso a paso** (ver
+  [`guia-crear-actividades.md` §2.3](guia-crear-actividades.md)) y
+  **entrenamiento de habilidad pura** (ver §3.6.b).
+- **Contrato de anclajes del aprendizaje significativo**: la simulación es
+  el vehículo preferente; el aprendizaje significativo (Ausubel–Novak) es
+  lo que hace que una ronda — simulada o de habilidad pura — se quede.
+  Además del contrato de simulación o del vehículo de habilidad pura
+  ([`SPEC.md` §3.6 y §3.6.b](SPEC.md)), el contenido de cada actividad
+  **debe** respetar los cuatro anclajes definidos en
+  [`guia-crear-actividades.md` §5.8](guia-crear-actividades.md):
+  **(a)** vocabulario cotidiano que la persona ya usa en casa, nunca
+  términos clínicos o taxonómicos; **(b)** estímulos tomados del entorno
+  real de la persona (tienda cercana, su rutina matutina real, no
+  ejemplos abstractos); **(c)** personalización ligera cuando proceda
+  (avatar estable, campo de nombre — ver `tools/piano-keys/`,
+  `tools/keyboard-typing/`); **(d)** práctica espaciada vía `localStorage`
+  (nivel guardado) para que la landing reanude a la persona en el nivel
+  alcanzado y no en uno aleatorio. Una actividad que cumple el contrato
+  de simulación pero omite estos anclajes se considera "solo simulación"
+  y la omisión se documenta en `team/index.html` como decisión de diseño
+  priorizada, no como excepción.
+- **Contrato de comunicación persuasiva**: cada actividad debe comunicar
+  bien, al servicio del aprendizaje, elevado a principio de producto en
+  [`SPEC.md` §3.7 y principio 12](SPEC.md). En concreto, cada actividad
+  **debe** ser didáctica (objetivo visible + ejemplo modelado + pista
+  permanente), aplicar art effects con cuidado (lentos ≥ 300 ms, de un
+  solo elemento, sin destellos, respetando `prefers-reduced-motion`),
+  usar un micro-relato cercano y buen copy, ofrecer un único CTA claro
+  por pantalla y gamificación con moderación (estrellas progresivas que
+  se suman, nunca se restan, sin leaderboards). El detalle operativo vive
+  en [`guia-crear-actividades.md` §5 y §6](guia-crear-actividades.md).
+  Igual de importante, la actividad **no debe** incluir ninguno de los
+  patrones de mercado prohibidos listados en `SPEC.md §3.7`: escasez
+  ("solo te queda 1"), falsa urgencia ("date prisa", cuentas atrás),
+  prueba social como presión (rankings, "otros ya lo han hecho"),
+  coste irrecuperable / FOMO ("no pierdas tu racha"), reciprocidad
+  manipuladora / dark patterns (registros forzados, casillas
+  premarcadas, costes ocultos, alertas falsas), ni aversión explotadora
+  a la pérdida ("tenías 5 ⭐, has perdido 2"). La presión no es una
+  técnica de persuasión en Apptonomia.
 - **Teclados en pantalla decorativos** (`keyboard-typing`): elementos visuales con
   `pointer-events: none`; la entrada real es el teclado físico. **Excepción
   deliberada**: el tipo de teclado `movil` (`DATA.layouts.movil`, clase CSS
