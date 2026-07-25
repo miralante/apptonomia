@@ -41,6 +41,8 @@
       'what-first': 'What Do I Do First?', 'what-do-i-need': 'What Do I Need?', 'where-to-store': 'Where Do I Keep It?',
       'task-list': 'Task List', 'my-agenda': 'My Schedule', 'what-to-wear': 'What Do I Wear?',
       'street': 'The Street', 'emergencies': 'Emergencies', 'phone-numbers': 'Important Phone Numbers',
+      'doctor-visit': 'Telling the Doctor',
+      'first-aid-kit': 'My First-Aid Kit',
       'my-details': 'My Details',
       'shopping': 'The Shopping', 'shop': 'The Shop', 'healthy-food': 'Healthy Food',
       'pairs': 'Pairs', 'differences': 'Spot the Difference', 'whats-missing': 'What Is Missing?',
@@ -55,6 +57,9 @@
       'sentence': 'The Sentence', 'words': 'Words', 'dictionary': 'Dictionary', 'spelling': 'Complete the Word',
       'word-search': 'Word Search',
       'emotions': 'How Do I Feel?', 'calm': 'Calm', 'friends': 'Among Friends', 'my-body': 'My Body Tells Me', 'good-manners': 'Good Manners',
+      'self-esteem': 'This Is Me',
+      'resilience': "When It's Hard",
+      'trust-circle': 'Circle of Trust',
       'sexual-health': 'My Body, My Choices'
     },
 

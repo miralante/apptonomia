@@ -41,6 +41,8 @@
       'what-first': '¿Qué hago primero?', 'what-do-i-need': '¿Qué necesito?', 'where-to-store': '¿Dónde lo guardo?',
       'task-list': 'Lista de Tareas', 'my-agenda': 'Mi agenda', 'what-to-wear': '¿Qué me pongo?',
       'street': 'La Calle', 'emergencies': 'Emergencias', 'phone-numbers': 'Teléfonos Importantes',
+      'doctor-visit': 'Se lo Cuento al Médico',
+      'first-aid-kit': 'Mi Botiquín',
       'my-details': 'Mis Datos',
       'shopping': 'La Compra', 'shop': 'La Tienda', 'healthy-food': 'Comida Sana',
       'pairs': 'Parejas', 'differences': 'Diferencias', 'whats-missing': '¿Qué falta?',
@@ -55,6 +57,9 @@
       'sentence': 'La Frase', 'words': 'Palabras', 'dictionary': 'Diccionario', 'spelling': 'Completa la Palabra',
       'word-search': 'Sopa de Letras',
       'emotions': '¿Cómo me siento?', 'calm': 'Calma', 'friends': 'Entre Amigos', 'my-body': 'Mi Cuerpo Me Avisa', 'good-manners': 'Buenos Modales',
+      'self-esteem': 'Así Soy Yo',
+      'resilience': 'Cuando Algo Me Cuesta',
+      'trust-circle': 'Círculo de Confianza',
       'sexual-health': 'Mi Cuerpo, Mis Decisiones'
     },
 
