@@ -1,0 +1,51 @@
+/* Circle of Trust — tool-specific styles. Shared styles live in assets/css/. */
+
+.tool-header h1 { color: var(--mod-emocional); }
+
+.btn:not(.btn-secundario):not(.btn-audio) {
+  background: var(--mod-emocional);
+}
+
+.contexto {
+  font-size: var(--texto-pequeno);
+  color: var(--color-texto-suave);
+}
+
+.instruccion { font-size: var(--texto-base); }
+
+.centrado-fila { justify-content: center; }
+
+.btn-nivel { min-width: 300px; align-self: center; }
+
+.nivel-info {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  opacity: 0.9;
+}
+
+.progress-bar { margin-top: var(--espacio); }
+
+.card { border-color: var(--mod-emocional-suave); margin-top: var(--espacio-grande); }
+
+.situacion-picto { font-size: 64px; }
+
+.texto-principal {
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  margin: 0 auto;
+}
+
+.pregunta { color: var(--color-texto-suave); }
+
+.emoji-grande { font-size: 96px; }
+
+#pantallaFinal { padding-top: 48px; }
+
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
+
+#pantallaFinal .transferencia {
+  margin: 8px auto 24px;
+  font-size: 1.1rem;
+  color: var(--color-texto-suave);
+  max-width: 480px;
+}

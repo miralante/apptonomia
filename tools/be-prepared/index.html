@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="title">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antes de la Emergencia | Apptonomia</title>
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="stylesheet" href="../../assets/css/tokens.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="tool-header">
+      <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Volver</a>
+      <h1 data-i18n="title">🛟 Antes de la Emergencia</h1>
+      <span class="stars" id="stars">⭐ 0</span>
+    </header>
+
+    <!-- Screen: menu of the 2 activities -->
+    <section id="pantallaMenu" class="pila">
+      <div class="fila centrado-fila">
+        <p class="instruccion" id="instruccion" data-i18n="instruccion">La mejor emergencia es la que no pasa. Aquí se trabaja lo que se puede preparar en casa con la familia, antes de que algo ocurra.</p>
+      </div>
+      <div class="grid-tarjetas">
+        <button type="button" class="tarjeta-actividad" id="tarjetaSaber">
+          <span class="picto" aria-hidden="true">📍</span>
+          <span class="nombre" data-i18n="menuSaber">¿Lo tengo ya?</span>
+          <span class="detalle" data-i18n="menuSaberDetalle">Mira qué cosas importantes están en su sitio.</span>
+          <span class="marca" id="marcaSaber"></span>
+        </button>
+        <button type="button" class="tarjeta-actividad" id="tarjetaChecklist">
+          <span class="picto" aria-hidden="true">✅</span>
+          <span class="nombre" data-i18n="menuChecklist">Mi lista en casa</span>
+          <span class="detalle" data-i18n="menuChecklistDetalle">Comprueba con tu familia lo que ya está listo.</span>
+          <span class="marca" id="marcaChecklist"></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Pantalla: ¿Lo tengo ya? (quiz de 3 opciones) -->
+    <section id="pantallaSaber" class="oculto pila">
+      <div class="fila">
+        <button type="button" class="btn btn-secundario" id="btnVolverSaber" data-i18n="volverMenu">← Volver</button>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressSaberFill"></div>
+        <span class="progress-text" id="progressSaberText">0 / 8</span>
+      </div>
+
+      <div class="card centrado pila">
+        <div class="situacion-picto" id="saberPicto"></div>
+        <p class="texto-principal" id="saberTexto" data-i18n="core.loading">Cargando…</p>
+        <button type="button" class="btn btn-audio" id="btnEscucharSaber" data-i18n-aria="core.listenText" aria-label="Escuchar la pregunta"><span data-i18n="core.listen">🔊 Escuchar</span></button>
+      </div>
+      <h2 class="pregunta centrado" data-i18n="preguntaSaber">¿Dónde tiene que estar?</h2>
+      <div class="pila" id="opcionesSaber"></div>
+      <div class="feedback" id="feedbackSaber" aria-live="polite"></div>
+      <div class="fila explicacion oculto" id="explicacionSaberWrap">
+        <p id="explicacionSaber" aria-live="polite"></p>
+        <button type="button" class="btn btn-audio" id="btnEscucharExplicacionSaber" data-i18n-aria="core.listenText" aria-label="Escuchar el texto">🔊</button>
+      </div>
+      <button type="button" class="btn oculto" id="btnSiguienteSaber" data-i18n="core.next">Siguiente →</button>
+    </section>
+
+    <!-- Pantalla: mi lista en casa (checklist con motor de task-list) -->
+    <section id="pantallaChecklist" class="oculto pila">
+      <div class="fila">
+        <button type="button" class="btn btn-secundario" id="btnVolverChecklist" data-i18n="volverMenu">← Volver</button>
+      </div>
+      <div class="fila centrado-fila">
+        <p class="instruccion" id="instruccionChecklist" data-i18n="instruccionChecklist">Marca lo que ya está en tu casa. Lo que no, lo apuntas para hacerlo con tu familia esta semana.</p>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressChecklistFill"></div>
+        <span class="progress-text" id="progressChecklistText">0 / 8</span>
+      </div>
+
+      <p class="lista-titulo centrado" id="checklistTitulo"></p>
+
+      <div class="pila-checklist" id="checklist"></div>
+
+      <div class="feedback" id="feedbackChecklist" aria-live="polite"></div>
+    </section>
+
+    <!-- Pantalla final (compartida por las 2 actividades) -->
+    <section id="pantallaFinal" class="oculto centrado pila" aria-live="polite">
+      <div class="emoji-grande" aria-hidden="true">🎉</div>
+      <h2 data-i18n="core.roundComplete">¡Ronda completada!</h2>
+      <p id="resumenFinal"></p>
+      <p id="transferencia" class="transferencia" data-i18n="transferencia"></p>
+      <button type="button" class="btn" id="btnRepetir" data-i18n="core.playAgain">Jugar otra vez</button>
+      <button type="button" class="btn btn-secundario" id="btnVolverMenuFinal" data-i18n="volverMenu">← Volver</button>
+    </section>
+    <footer class="pie-app">
+      <a href="../../legal/index.html" class="enlace-legal" data-i18n="core.dataProtection">Protección de datos</a>
+    </footer>
+  </div>
+
+  <script src="../../assets/js/utils.js"></script>
+  <script src="../../assets/js/i18n.js"></script>
+  <script src="../../assets/js/tts.js"></script>
+  <script src="../../assets/js/storage.js"></script>
+  <script src="../../assets/js/feedback.js"></script>
+  <script>
+  /* Conditional load of the active language file (es|en). */
+  (function () {
+    var loc = window.App.i18n.locale();
+    document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
+  })();
+</script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../../sw.js').catch(function () {});
+    }
+  </script>
+</body>
+</html>
