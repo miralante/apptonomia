@@ -62,6 +62,10 @@
     roundSummary: 'You solved {count} operations. Now you have {stars} stars.',
     chooseAnotherTable: 'Choose another table',
     chooseAnotherLevel: 'Choose another level',
-    changeOperation: 'Change activity'
+    changeOperation: 'Change activity',
+  "contexto": "You are doing sums in your head. You will add, subtract, multiply or divide with visual help.",
+  "pista": "🤔 Count the dots slowly. How many are there in total?",
+  "explicacion": "✅ That is how to count in your head. Next time you add or subtract, try with fingers or dots.",
+  "transferencia": "This will help you with everyday sums: at the shop, sharing things out, counting change or at school.",
   }, 'en');
 })();

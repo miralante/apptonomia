@@ -25,5 +25,7 @@
     "shape_star9": "una estrella grande",
     "shape_star10": "una estrella brillante",
     "transfer": "Ahora tu mano sigue una secuencia de números con precisión. Te servirá para escribir, dibujar y seguir instrucciones paso a paso."
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a seguir una secuencia de números y trazos en papel."
+}, 'es');
 })();

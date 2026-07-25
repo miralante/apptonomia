@@ -30,5 +30,7 @@
     "otroNivel": "Choose another level",
     "rondaCompletadaTitulo": "Round complete!",
     "resumenFinal": "You won {n} stars. You now have {total} stars."
-  }, 'en');
+  ,
+  "transferencia": "This helps you remember sound sequences in your day."
+}, 'en');
 })();

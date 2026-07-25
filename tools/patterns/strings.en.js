@@ -19,6 +19,7 @@
     "queSigueAudio": "and now, what comes next?",
     "explicacionCorrecta": "✅ Correct! Next in the series comes: ",
     "explicacionIncorrectaA": "❌ That doesn't follow the pattern. What comes next is: ",
-    "pista": "🤔 Try again. Look calmly at the series."
+    "pista": "🤔 Try again. Look calmly at the series.",
+  "transferencia": "This will help you notice patterns in everyday life: the days of the week, the order of your routine, the stripes on your pyjamas or the tiles in the bathroom.",
   }, 'en');
 })();

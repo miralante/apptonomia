@@ -32,5 +32,7 @@
     "iniciarPractica": "Practicar →",
     "seleccionResumen": "Has elegido {n} letras. Toca una para quitarla.",
     "ariaNoSeleccionada": "Toca para elegirla."
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a escribir mejor en tu cuaderno."
+}, 'es');
 })();

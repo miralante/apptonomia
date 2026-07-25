@@ -26,6 +26,9 @@
     "malRelacion": "❌ {Rel} {ref} is {objeto}. It is marked: touch it.",
     "resumenFinal": "You won {n} stars. You now have {total} stars.",
     "btnOtroNivel": "Choose another level",
-    "ariaObjeto": "Touch {objeto}"
+    "ariaObjeto": "Touch {objeto}",
+  "contexto": "You are looking at a scene with several objects or people. You have to say where each one is: to the left, to the right, above or below another.",
+  "explicacion": "✅ You can place things in space. That helps you describe where a lost object is or follow directions like 'on your left'.",
+  "transferencia": "This will help you find things at home, follow directions in the street and understand simple maps."
   }, 'en');
 })();

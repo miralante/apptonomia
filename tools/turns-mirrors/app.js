@@ -180,6 +180,7 @@
         if (botonCorrecto) botonCorrecto.classList.add('sugerida');
       }
       explicacionWrap.classList.remove('oculto');
+      App.feedback.lockUntilAck(App.utils.$$('#opciones .opcion-figura'), explicacionWrap);
     }
   }
 
@@ -216,7 +217,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     App.tts.speak(preguntaEl.textContent);
   });
   $('#btnEscucharExplicacion').addEventListener('click', function () {
-    App.tts.speak(explicacionEl.textContent);
   });
 
   pintarNiveles();

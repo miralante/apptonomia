@@ -15,6 +15,7 @@
     "explicacionCorrecta": "✅ ¡Correcto! Eso es lo que significa.",
     "explicacionIncorrectaA": "❌ Eso no es lo que significa. El significado es: ",
     "explicacionIncorrectaB": "",
-    "pista": "🤔 Prueba otra vez. Vuelve a leer el dicho: "
+    "pista": "🤔 Prueba otra vez. Vuelve a leer el dicho: ",
+  "transferencia": "Esto te servirá para entender mejor a tus mayores, las canciones y las películas, porque muchos dichos salen en conversaciones de cada día.",
   }, 'es');
 })();

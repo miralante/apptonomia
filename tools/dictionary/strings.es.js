@@ -20,6 +20,10 @@
     "correctExplanation": "✅ ¡Correcto!",
     "wrongExplanationPrefix": "❌ Eso no es. El significado es: ",
     "hint": "🤔 Prueba otra vez. Piensa en el ejemplo: ",
-    "finalSummary": "Has ganado {n} estrellas. Ahora tienes {total} estrellas."
+    "finalSummary": "Has ganado {n} estrellas. Ahora tienes {total} estrellas.",
+  "contexto": "Estás aprendiendo palabras nuevas. Primero las ves con su significado y un ejemplo, después las pones a prueba.",
+  "pista": "🤔 Mira otra vez el ejemplo del significado. ¿Cuál encaja con la palabra?",
+  "explicacion": "✅ Ahora ya sabes esa palabra para usarla en una conversación real.",
+  "transferencia": "Esto te servirá para entender mejor las palabras nuevas que salen en conversaciones, en libros o en el cole.",
   }, 'es');
 })();

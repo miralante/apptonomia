@@ -16,6 +16,7 @@
     "elegirOtroNivel": "Elegir otro nivel",
     "explicacionCorrecta": "✅ ¡Correcto! Va en ese sitio.",
     "explicacionIncorrectaA": "❌ Ese no es el sitio. Va en: ",
-    "pista": "🤔 Prueba otra vez. Piensa para qué sirve ese objeto."
+    "pista": "🤔 Prueba otra vez. Piensa para qué sirve ese objeto.",
+  "transferencia": "Esto te servirá para encontrar las cosas en casa: saber dónde va cada objeto te ayuda a ser más autónomo/a y a no preguntar a cada momento.",
   }, 'es');
 })();

@@ -82,6 +82,10 @@
     "ayudaPagar2": "Toca el dinero marcado: cabe sin pasarte del precio.",
     "ayudaQuita1": "Mira tu total. ¿Has puesto más dinero que el precio?",
     "ayudaQuita2": "Toca el botón marcado para quitar dinero.",
-    "ayudaComprobar": "Tu total es igual al precio. ¡Toca Comprobar!"
+    "ayudaComprobar": "Tu total es igual al precio. ¡Toca Comprobar!",
+  "contexto": "Tienes dinero en la mesa. Vas a contarlo, pagar, comprobar el cambio y ahorrar para algo que quieres.",
+  "pista": "🤔 Cuenta el dinero despacio. ¿Cuánto hay en total?",
+  "explicacion": "✅ Así se usa el dinero. La próxima vez que tengas monedas, prueba a contarlas así.",
+  "transferencia": "Esto te servirá para manejarte con dinero de verdad: contar, pagar, comprobar el cambio y ahorrar.",
   }, 'es');
 })();

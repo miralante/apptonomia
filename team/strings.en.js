@@ -18,6 +18,7 @@
     "navAreas": 'Areas and activities',
     "navProgress": 'Progress and privacy',
     "navSupport": 'How to support without taking over',
+    "navExceptions": 'Pure-skill training',
     "navAgentAI": 'Technical note (AI)',
     "projectTitle": 'The project',
     "projectP1a": 'Apptonomia is an ',
@@ -45,7 +46,7 @@
     "designLi4Label": 'No comparing people',
     "designLi4Text": 'no rankings and no competition.',
     "designLi5Label": 'Accessibility',
-    "designLi5Text": 'large buttons (64 pixels minimum), large text, high contrast, audio 🔊 on important text, full keyboard navigation, and animations that turn off if the system asks for it.',
+    "designLi5Text": 'large buttons (64 pixels minimum), large text, high contrast, audio 🔊 only when gamification or the activity design requires it (e.g. hearing what is typed on the keyboard, listening to a sequence), full keyboard navigation, and animations that turn off if the system asks for it.',
     "designLi6Label": 'Few options at once',
     "designLi6Text": 'a maximum of 4–6 visible options and one main action per screen.',
     "areasTitle": 'The six areas of work and their activities',
@@ -113,15 +114,15 @@
       },
       "routines": {
         "name": 'My Routines',
-        "does": 'Follows daily routines step by step and checks off each step as it is done.',
-        "works": 'Sequencing, self-care habits, autonomy. Resets every day.',
-        "daily": 'Print or copy the routine and hang it where it happens (bathroom, kitchen).'
+        "does": 'Follows step by step the typical routines of a home: morning, personal care, meals, household tasks, pets, afternoon, leaving home and night.',
+        "works": 'Sequencing, self-care habits, personal and domestic autonomy. Resets every day.',
+        "daily": 'Print or copy the routine and hang it where it happens (bathroom, kitchen). After practicing it, do it together for real.'
       },
       "house": {
         "name": 'The House',
-        "does": 'Orders the steps of a household task (making the bed, doing laundry…).',
-        "works": 'Planning, prioritizing, household tasks.',
-        "daily": 'Do the real task right after practicing it in the app.'
+        "does": 'Orders the steps of household tasks: setting the table, sweeping, mopping, making the bed, taking out the trash, watering plants, caring for pets…',
+        "works": 'Planning, prioritizing, logical sequence of everyday household tasks.',
+        "daily": 'Pick a real household task and do it together following the ordered steps.'
       },
       "situations": {
         "name": 'Situations',
@@ -213,6 +214,18 @@
         "works": 'Recognizing real emergencies vs. false alarms; the structure of a call for help. Makes clear that 911 is only for real emergencies.',
         "daily": 'Agree with the person on their exact address and practice saying it out loud.'
       },
+      "while-help-arrives": {
+        "name": 'While Help Is on Its Way',
+        "does": 'Two parts: a 3-option quiz on what to do after calling 112 while waiting for the ambulance, firefighters or police (leave, do not move the injured person, press the wound, recovery position, do not give anything by mouth); and ordering the immediate steps for a specific emergency.',
+        "works": 'Safe behaviour in the minutes after calling 112: the part that the Emergencies activity did not cover. Teaches basic (non-clinical) first-aid actions that avoid making things worse while waiting for help.',
+        "daily": 'After doing it, repeat at home with the family what each person would do if something really happened: leave and close the door, do not move, press the wound, etc.'
+      },
+      "be-prepared": {
+        "name": 'Before the Emergency',
+        "does": 'Two parts: a 3-option quiz on prevention (where 112 should be, the address, the smoke detector, pills); and a family checklist to check with the family what is already ready at home.',
+        "works": 'Prevention: the best emergency is the one that never happens. Covers the "before" that the Emergencies activity did not work on. Designed to be done at home with the family.',
+        "daily": 'Go through the list together at home: is 112 written down? Is the address visible? Are pills out of a small child\'s reach? Anything missing, write it down to do this week.'
+      },
       "phone-numbers": {
         "name": 'Important Phone Numbers',
         "does": 'Three steps in order: looks at one card per service (police, fire, medical emergency) with its situation and number; reads a summary that brings the three together; and takes a test on which number to call in each situation.',
@@ -242,6 +255,12 @@
         "does": 'Sorts foods into two boxes: "Every day" or "Now and then". A short sentence on each correct answer explains how that food makes your body feel.',
         "works": 'Healthy eating with a moderation approach (never labelling a food as "bad"): links to The Shopping and The House within the home-autonomy chain.',
         "daily": 'While doing the shopping or planning the week’s menu, ask them whether what they pick is an every-day food or a now-and-then one.'
+      },
+      "first-aid-kit": {
+        "name": 'My First-Aid Kit',
+        "does": 'Reads an everyday health situation (small cut, burn, fever, strong pain…) and chooses what to do: take care of themselves following what they have practised, or — if the situation is urgent — ask a trusted adult or call 112.',
+        "works": 'Closes the health-autonomy cycle between noticing the signal (My Body Tells Me) and putting it into words (I Tell the Doctor). Level 2 explicitly trains the safety net: ask for help or call 112, never self-medicate or hold the pain in.',
+        "daily": 'When a small cut or a minor burn happens at home, review together what to do and, in doubt, who to ask for help.'
       },
       "pairs": {
         "name": 'Pairs',
@@ -497,8 +516,8 @@
       },
       "friends": {
         "name": 'Among Friends',
-        "does": 'Recognizes emotions in other people and resolves simple conflicts.',
-        "works": 'Empathy, social interaction, conflict management.',
+        "does": 'Recognizes emotions in other people, resolves simple conflicts, and, in level 5, recognizes when a "friend" is manipulating.',
+        "works": 'Empathy, social interaction, conflict management, and signs of manipulation in friendship (secrecy, emotional blackmail, isolation).',
         "daily": 'Talk about real conflicts with friends using what was practiced in the app.'
       },
       "my-body": {
@@ -511,9 +530,27 @@
         "does": 'Practice courtesy phrases in everyday situations: saying thank you, asking politely, greeting, saying goodbye, giving way to others.',
         "works": 'Basic social norms, social skills, respectful interaction.',
         "daily": 'Reinforce these phrases in real life: celebrate when they use them spontaneously.'      },
+      "self-esteem": {
+        "name": 'This Is Me',
+        "does": 'Reads situations about disability, differences, comparison and insensitive people, and chooses the response that reflects healthy self-esteem.',
+        "works": 'Self-acceptance, personal strengths and weaknesses, responding to discrimination and insensitive people, not depending on others’ recognition.',
+        "daily": 'Remind them of their strengths when something goes wrong, and celebrate when they follow their own path.'
+      },
+      "resilience": {
+        "name": "When It's Hard",
+        "does": 'Reads situations about frustration or needing help, and chooses the response that helps them calm down or ask for support.',
+        "works": 'Frustration tolerance, emotional regulation after a setback, vulnerability and asking for help without shame, honest expression of feelings.',
+        "daily": 'Stay with them when something truly frustrates them, and celebrate when they ask for help instead of hiding how they feel.'
+      },
+      "trust-circle": {
+        "name": 'Circle of Trust',
+        "does": 'Classifies relationships (friend, companion, acquaintance) and chooses the healthy response to manipulation attempts, including requests for money.',
+        "works": "Distinguishing closeness levels in relationships, spotting manipulation signs (isolation, secrecy, emotional blackmail, group pressure), and the money boundary: someone who truly cares about you doesn't ask for it.",
+        "daily": "Talk with them about the people they really know, and remind them to never give money or personal details without checking with family first."
+      },
       "sexual-health": {
         "name": 'My Body, My Choices',
-        "does": 'Practises 32 non-graphic cases about consent, healthy relationships, contraception, and hygiene and sexual health.',
+        "does": 'Practises 48 non-graphic cases about consent, healthy relationships, contraception, hygiene and sexual health, pressure and blackmail, and protection and infections.',
         "works": 'Body autonomy, recognizing consent, warning signs of harmful relationships, and knowing when to ask a health professional for help instead of getting clinical instructions from the app.',
         "daily": 'Always use it with professional or family supervision. Remember that asking for help never implies blame, and agree together on who the trusted adults or professionals are.'
       }
@@ -539,6 +576,33 @@
     "supportLi3": 'Do not correct the mistake before the app does: the encouragement message and the retry are part of the training.',
     "supportLi4": 'The weekly "How Do I Feel?" log can be a good conversation starter, always without judging the emotion they picked.',
     "supportLi5": 'Every activity has levels or modes: start with the easiest one even if it looks simple; finishing successfully builds more confidence than "living up to" a harder level.',
+    "exceptionsTitle": 'Pure-skill training: prioritised design decision',
+    "exceptionsIntro": "Most Apptonomia activities follow the daily-life simulation contract (a recognisable scene, a decision, Socratic feedback and a closing transfer to the real world, see SPEC §3.6). The activities below use the other vehicle the product recognises — pure-skill training — which is a prioritised design decision, not an exception to justify (see SPEC §3.6.b). The stimulus is the context (the piano, the grid, the pieces, the sequence): adding an everyday scene here would confuse the therapeutic goal and saturate the screen. These activities keep the rest of the product principles (no pressure, no punishment, positive reinforcement) and, when they add value, expose a verbal context and a transfer line.",
+    "exceptionBlocks": 'Blocks · copy the model with coloured pieces (fine motor skills, spatial perception).',
+    "exceptionBuilders": 'Builders · free composition with blocks and pieces (creativity and fine motor).',
+    "exceptionCatch": 'Catch It · hand-eye coordination and reflexes.',
+    "exceptionCheckers": 'Checkers · strategy and anticipation.',
+    "exceptionChess": 'Chess · strategy, planning and respect for turns.',
+    "exceptionColoring": 'Colouring · free creativity and fine motor skills.',
+    "exceptionConnectDots": 'Connect the Dots · number sequence and stroke precision.',
+    "exceptionConnectFour": 'Connect Four · strategy and sustained attention.',
+    "exceptionDifferences": 'Spot the Difference · attention to detail and visual comparison.',
+    "exceptionDomino": 'Dominoes · counting and matching.',
+    "exceptionEcos": 'Echoes · auditory memory.',
+    "exceptionFit": 'Fit It · shape perception and fine motor skills.',
+    "exceptionKeyboardTyping": 'Keyboard · guided typing one key at a time.',
+    "exceptionOca": 'Goose · board route and counting.',
+    "exceptionPairs": 'Pairs · visual memory.',
+    "exceptionPath": 'Path · spatial orientation in a maze.',
+    "exceptionPianoKeys": 'Piano Keys · free musical exploration.',
+    "exceptionPuzzle": 'Puzzle · piece fitting and global shape perception.',
+    "exceptionTicTacToe": 'Tic-Tac-Toe · simple strategy.',
+    "exceptionTracing": 'Traces · graphomotor skills.',
+    "exceptionTurnsMirrors": 'Turns and Mirrors · spatial perception and orientation.',
+    "exceptionVisualSudoku": 'Visual Sudoku · logical reasoning with pictograms.',
+    "exceptionCalm": 'Calm · guided breathing (no decision, no right/wrong).',
+    "exceptionEmotions": 'Emotions · emotional recognition with no single right answer.',
+    "exceptionsNote": "Daily-life simulation remains the product's preferred vehicle (SPEC §3.6): any new activity that represents a real-life decision must include the full contract. This list declares which activities are built, by prioritised design decision, on the pure-skill vehicle (SPEC §3.6.b). It is reviewed and updated alongside the repository (git log keeps the history of every inclusion and exclusion).",
     "agentTitle": 'Technical note for the AI agent that codes the app',
     "agentP1a": 'If you are a coding agent working in this repository, the sources of truth are',
     "agentP1code": 'CLAUDE.md',

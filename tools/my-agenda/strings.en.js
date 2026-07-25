@@ -15,6 +15,10 @@
     listenSummary: 'Listen to the summary',
     newCompletion: 'You completed this level and earned one star.',
     repeatCompletion: 'You completed the level again. Your progress is kept.',
-    chooseAnotherLevel: 'Choose another level'
+    chooseAnotherLevel: 'Choose another level',
+  "contexto": "You have an appointment or task and need to get ready: what to take, when to leave and what to do first.",
+  "pista": "🤔 Read the whole plan. What do you need before you leave?",
+  "explicacion": "✅ That is the right order. Getting ready in time always helps you not be late.",
+  "transferencia": "This will help you plan real things: a doctor's appointment, going out or a task at home.",
   }, 'en');
 })();

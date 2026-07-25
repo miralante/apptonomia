@@ -30,5 +30,7 @@
     "otroNivel": "Elegir otro nivel",
     "rondaCompletadaTitulo": "¡Ronda completada!",
     "resumenFinal": "Has ganado {n} estrellas. Ahora tienes {total} estrellas."
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a recordar secuencias de sonidos en tu día a día."
+}, 'es');
 })();

@@ -36,7 +36,9 @@ const DATA = {
           { picto: '🚇', situacion: 'El metro llega y se abren las puertas.', opciones: ['Dejar salir a la gente y después entrar', 'Entrar empujando antes de que salgan', 'Poner el pie en la puerta para que no se cierre'], correcta: 0 },
           { picto: '🚶', situacion: 'La acera está llena de gente que viene de frente.', opciones: ['Caminar despacio por tu lado sin empujar', 'Empujar para pasar primero', 'Bajarte a la calzada para adelantar'], correcta: 0 },
           { picto: '🚲', situacion: 'En la acera hay un carril para bicicletas pintado en el suelo.', opciones: ['Caminar fuera del carril de las bicis', 'Caminar por el medio del carril bici', 'Pararte dentro del carril a mirar el móvil'], correcta: 0 },
-          { picto: '🐕', situacion: 'Un perro que no conoces está atado en la puerta de una tienda.', opciones: ['Pasar de largo sin tocarlo', 'Acariciarlo aunque no lo conozcas', 'Darle comida de tu bolsillo'], correcta: 0 }
+          { picto: '🐕', situacion: 'Un perro que no conoces está atado en la puerta de una tienda.', opciones: ['Pasar de largo sin tocarlo', 'Acariciarlo aunque no lo conozcas', 'Darle comida de tu bolsillo'], correcta: 0 },
+          { picto: '📱', situacion: 'Vas caminando por la calle mirando la pantalla del móvil en vez de mirar por dónde vas.', opciones: ['Guardar el móvil y mirar por dónde caminas', 'Seguir caminando mirando la pantalla', 'Caminar con el móvil bien visible en la mano'], correcta: 0 },
+          { picto: '☕', situacion: 'Estás en una cafetería y vas al baño. Dejas el móvil solo encima de la mesa.', opciones: ['Llevarte el móvil contigo o dárselo a alguien de confianza', 'Dejarlo en la mesa, total vuelves enseguida', 'Pedirle a la persona de la mesa de al lado que lo vigile'], correcta: 0 }
         ]
       },
       {
@@ -83,7 +85,9 @@ const DATA = {
           { picto: '🚇', situacion: 'The metro arrives and the doors open.', opciones: ['Let people get off first and then get on', 'Push your way in before they get off', 'Put your foot in the door so it cannot close'], correcta: 0 },
           { picto: '🚶', situacion: 'The pavement is full of people walking towards you.', opciones: ['Walk slowly on your side without pushing', 'Push through to get past first', 'Step onto the road to overtake'], correcta: 0 },
           { picto: '🚲', situacion: 'There is a bike lane painted on the pavement.', opciones: ['Walk outside the bike lane', 'Walk in the middle of the bike lane', 'Stand in the lane looking at your phone'], correcta: 0 },
-          { picto: '🐕', situacion: 'A dog you do not know is tied up outside a shop.', opciones: ['Walk past without touching it', 'Pet it even though you do not know it', 'Give it food from your pocket'], correcta: 0 }
+          { picto: '🐕', situacion: 'A dog you do not know is tied up outside a shop.', opciones: ['Walk past without touching it', 'Pet it even though you do not know it', 'Give it food from your pocket'], correcta: 0 },
+          { picto: '📱', situacion: 'You are walking down the street looking at your phone screen instead of watching where you are going.', opciones: ['Put the phone away and watch where you are walking', 'Keep walking while staring at the screen', 'Walk holding the phone clearly visible in your hand'], correcta: 0 },
+          { picto: '☕', situacion: 'You are at a cafe and go to the bathroom. You leave your phone alone on the table.', opciones: ['Take the phone with you or give it to someone you trust', 'Leave it on the table, you will be right back', 'Ask the person at the next table to watch it'], correcta: 0 }
         ]
       },
       {

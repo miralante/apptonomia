@@ -10,7 +10,12 @@
    respuesta ante un conflicto), empezando por los conflictos más
    simples y concretos — la única novedad real es la tarea, no
    también la dificultad dentro de ella. Nivel 3→4 se mantiene en
-   "conflictos" y solo sube la sutileza emocional.
+   "conflictos" y solo sube la sutileza emocional. Nivel 4→5 vuelve
+   a cambiar de tarea (conflictos entre iguales → reconocer cuando
+   un "amigo" manipula: secretismo, chantaje emocional, aislamiento,
+   comparación). Complementa a tools/trust-circle (que además cubre
+   amigo/compañero/conocido y la petición de dinero) y a
+   tools/safe-chat (manipulación online).
    Para ampliar: añadir items al array del nivel correspondiente, en
    los dos idiomas. app.js usa DATA[App.i18n.locale()] || DATA.es.
    ============================================================ */
@@ -109,6 +114,29 @@ const DATA = {
           { picto: '😟', situacion: 'Un amigo está muy nervioso porque sus padres discuten en casa.', opciones: ['Le escuchas y le acompañas sin juzgar', 'Le dices que no es tu problema', 'Se lo cuentas a otros sin que él lo sepa'], correcta: 0 },
           { picto: '🤗', situacion: 'Dos amigos se disculpan después de una pelea y quieren seguir siendo amigos.', opciones: ['Os dais una segunda oportunidad y seguís jugando juntos', 'Decides que ya no puede ser tu amigo nunca más', 'Sigues recordándole la pelea todo el tiempo'], correcta: 0 }
         ]
+      },
+      {
+        id: 5,
+        nombre: 'Nivel 5',
+        descripcion: 'Amistad y manipulación',
+        estrellas: 5,
+        items: [
+          { picto: '🤫', situacion: 'Un amigo te pide que le guardes un secreto que te hace sentir mal.', opciones: ['Le digo que ese secreto me preocupa y busco ayuda', 'Lo guardo aunque me sienta mal', 'Se lo cuento a todo el mundo para no cargar yo solo'], correcta: 0 },
+          { picto: '😢', situacion: 'Un amigo dice que estará triste para siempre si no haces lo que él quiere.', opciones: ['Le digo que sus sentimientos no dependen solo de mí', 'Hago lo que quiere para que no esté triste', 'Le digo que deje de estar triste'], correcta: 0 },
+          { picto: '🎭', situacion: 'Delante de otros te trata genial, pero cuando estáis solos te insulta.', opciones: ['Le digo que esa forma de tratarme no está bien', 'Pienso que en el fondo es buena persona y lo dejo pasar', 'Le insulto también cuando estamos solos'], correcta: 0 },
+          { picto: '🎁', situacion: 'Un compañero te regala cosas caras y después te pide que le des tu paga cada semana.', opciones: ['Le digo que no acepto ese trato', 'Le doy la paga porque me hizo regalos primero', 'Le doy solo la mitad de la paga'], correcta: 0 },
+          { picto: '👥', situacion: 'Un grupo de compañeros solo te invita cuando necesitan que hagas sus tareas.', opciones: ['Me doy cuenta y busco amistades donde también me valoren a mí', 'Sigo haciendo sus tareas para que me sigan invitando', 'Dejo de hacer sus tareas sin decir nada y me voy sin explicar'], correcta: 0 },
+          { picto: '😠', situacion: 'Un amigo se enfada mucho si hablas con otras personas y te pide que dejes de hacerlo.', opciones: ['Le digo que puedo tener más de un amigo', 'Dejo de hablar con otras personas', 'Hablo con otras personas a escondidas'], correcta: 0 },
+          { picto: '🙄', situacion: 'Cada vez que consigues algo bueno, un compañero le quita importancia o dice que él lo hace mejor.', opciones: ['Sigo alegrándome de mis logros aunque él los reste importancia', 'Dejo de contarle las cosas buenas que me pasan', 'Le quito importancia a sus logros también'], correcta: 0 },
+          { picto: '🕵️', situacion: 'Un amigo lee tus mensajes sin permiso porque dice que “los amigos no tienen secretos”.', opciones: ['Le digo que mis mensajes son privados, sea quien sea', 'Le dejo leerlos para que no se enfade', 'Le leo los suyos también sin pedirle permiso'], correcta: 0 },
+          { picto: '📵', situacion: 'Un amigo te dice que si tuvieras un móvil de verdad se lo dejarías cuando te lo pide.', opciones: ['Le digo que un móvil se puede prestar o no, según yo decida', 'Se lo dejo para que no piense que soy tacaño/a', 'Le presto el móvil solo si me presta algo suyo'], correcta: 0 },
+          { picto: '😞', situacion: 'Un compañero te dice que sin él no tendrías ningún otro amigo.', opciones: ['Sé que puedo tener otras amistades, eso no depende de él', 'Le creo y me alejo de otras personas', 'Le digo lo mismo para que no se sienta mejor que yo'], correcta: 0 },
+          { picto: '🎯', situacion: 'Un amigo te compara todo el rato con otras personas para que te sientas peor.', opciones: ['Le digo que no me gusta que me compare así', 'Me esfuerzo por ser como él quiere', 'Comparo yo también a otras personas'], correcta: 0 },
+          { picto: '🤐', situacion: 'Un compañero amenaza con dejar de ser tu amigo si cuentas a tu familia lo que hacéis juntos.', opciones: ['Se lo cuento a mi familia de todas formas', 'No lo cuento por miedo a perder su amistad', 'Se lo cuento a otra persona pero no a mi familia'], correcta: 0 },
+          { picto: '🧩', situacion: 'Un amigo solo quiere hacer siempre lo que él decide y nunca lo que tú propones.', opciones: ['Le digo que a veces me gustaría decidir yo también', 'Acepto siempre lo que él decide para no discutir', 'Dejo de proponer nada, aunque me moleste'], correcta: 0 },
+          { picto: '💭', situacion: 'Un compañero te hace sentir culpable por pasar tiempo con tu familia en vez de con él.', opciones: ['Le digo que puedo estar con mi familia y seguir siendo su amigo', 'Dejo de ver a mi familia para no sentirme culpable', 'Le hago sentir culpable a él también'], correcta: 0 },
+          { picto: '🌱', situacion: 'No sabes si un compañero es un verdadero amigo o solo se aprovecha de ti, y te preocupa.', opciones: ['Hablo con una persona de confianza para verlo con más claridad', 'Decido cortar la amistad sin hablarlo con nadie', 'Sigo igual, esperando que la situación mejore sola'], correcta: 0 }
+        ]
       }
     ]
   },
@@ -205,6 +233,29 @@ const DATA = {
           { picto: '🤝', situacion: "You have a conflict with a friend and neither of you knows how to solve it alone.", opciones: ['You ask a trusted adult for help', 'You stay angry and never talk about it again', 'You let the problem grow without saying anything'], correcta: 0 },
           { picto: '😟', situacion: 'A friend is very nervous because his parents argue at home.', opciones: ['You listen to him and stay by his side without judging', 'You tell him it is not your problem', 'You tell others without him knowing'], correcta: 0 },
           { picto: '🤗', situacion: 'Two friends apologize after a fight and want to stay friends.', opciones: ['You give each other a second chance and keep playing together', 'You decide he can never be your friend again', 'You keep bringing up the fight all the time'], correcta: 0 }
+        ]
+      },
+      {
+        id: 5,
+        nombre: 'Level 5',
+        descripcion: 'Friendship and manipulation',
+        estrellas: 5,
+        items: [
+          { picto: '🤫', situacion: 'A friend asks you to keep a secret that makes you feel bad.', opciones: ['I tell them the secret worries me and I look for help', 'I keep it even though it makes me feel bad', 'I tell everyone so I do not carry it alone'], correcta: 0 },
+          { picto: '😢', situacion: 'A friend says he will be sad forever if you do not do what he wants.', opciones: ['I tell him his feelings do not depend only on me', 'I do what he wants so he is not sad', 'I tell him to stop being sad'], correcta: 0 },
+          { picto: '🎭', situacion: 'In front of others they treat you great, but when you are alone they insult you.', opciones: ['I tell them that way of treating me is not okay', 'I think deep down they are a good person and let it go', 'I insult them too when we are alone'], correcta: 0 },
+          { picto: '🎁', situacion: 'A companion gives you expensive gifts and then asks you to give them your allowance every week.', opciones: ["I tell them I don't accept that deal", 'I give them my allowance because they gave me gifts first', 'I give half of my allowance'], correcta: 0 },
+          { picto: '👥', situacion: 'A group of classmates only invites you when they need you to do their homework.', opciones: ['I notice it and look for friendships where I am valued too', 'I keep doing their homework so they keep inviting me', 'I stop doing their homework without saying anything and leave without explaining'], correcta: 0 },
+          { picto: '😠', situacion: 'A friend gets very angry if you talk to other people and asks you to stop.', opciones: ['I tell them I can have more than one friend', 'I stop talking to other people', 'I talk to other people in secret'], correcta: 0 },
+          { picto: '🙄', situacion: 'Every time you achieve something good, a companion downplays it or says they do it better.', opciones: ['I keep enjoying my achievements even if they downplay them', 'I stop telling them the good things that happen to me', 'I downplay their achievements too'], correcta: 0 },
+          { picto: '🕵️', situacion: 'A friend reads your messages without permission because "friends have no secrets."', opciones: ['I tell them my messages are private, no matter who it is', 'I let them read them so they do not get angry', 'I read theirs too without asking permission'], correcta: 0 },
+          { picto: '📵', situacion: 'A friend tells you that if you had a real phone you would lend it to them whenever they ask.', opciones: ['I tell them a phone can be lent or not, it is my choice', 'I lend it so they do not think I am stingy', 'I only lend the phone if they lend me something of theirs'], correcta: 0 },
+          { picto: '😞', situacion: 'A companion tells you that without him you would have no other friends.', opciones: ['I know I can have other friendships, that does not depend on him', 'I believe him and stay away from other people', 'I tell him the same thing so he does not feel better than me'], correcta: 0 },
+          { picto: '🎯', situacion: 'A friend keeps comparing you to other people to make you feel worse.', opciones: ['I tell them I do not like being compared like that', 'I try hard to be how they want', 'I compare other people too'], correcta: 0 },
+          { picto: '🤐', situacion: 'A companion threatens to stop being your friend if you tell your family what you do together.', opciones: ['I tell my family anyway', 'I do not tell them, afraid of losing the friendship', 'I tell someone else, but not my family'], correcta: 0 },
+          { picto: '🧩', situacion: 'A friend only ever wants to do what he decides and never what you suggest.', opciones: ['I tell him I would sometimes like to decide too', 'I always go along with what he decides to avoid arguing', 'I stop suggesting anything, even though it bothers me'], correcta: 0 },
+          { picto: '💭', situacion: 'A companion makes you feel guilty for spending time with your family instead of with them.', opciones: ['I tell them I can be with my family and still be their friend', 'I stop seeing my family so I do not feel guilty', 'I make them feel guilty too'], correcta: 0 },
+          { picto: '🌱', situacion: 'You are not sure if a companion is a true friend or is just taking advantage of you, and it worries you.', opciones: ['I talk to someone I trust to see it more clearly', 'I decide to end the friendship without talking to anyone about it', 'I keep going as usual, hoping the situation improves on its own'], correcta: 0 }
         ]
       }
     ]

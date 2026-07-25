@@ -185,12 +185,14 @@
     state.mostrandoFeedback = true;
 
     var feedbackZone = App.utils.$('#feedback');
+    var opcionesBtns = App.utils.$$('.opcion-btn', App.utils.$('#app'));
     var esCorrecta = opcionKey === state.situacionActual.correcta;
 
     if (esCorrecta) {
       // Correct answer
       boton.classList.add('correcta');
-      App.feedback.acierto(feedbackZone);
+      App.feedback.success(feedbackZone);
+      opcionesBtns.forEach(function (b) { b.disabled = true; });
 
       setTimeout(function () {
         state.rondasCompletas++;
@@ -198,32 +200,29 @@
 
         var nivel = DATA.niveles[state.nivelActual];
         if (state.rondasCompletas >= nivel.maxSituaciones) {
-          // Level completed
           mostrarComplecion();
         } else {
-          // Next scenario
           state.mostrandoFeedback = false;
           empezarRonda();
         }
       }, 2000);
     } else if (state.intentos === 1) {
-      // First attempt: show hint
+      // First attempt: show hint (Socratic rule 12)
       boton.classList.add('error');
-      App.feedback.animo(feedbackZone);
-      var pista = 'Piensa: ¿qué frase usa la gente para ser amable en esta situación?';
-      feedbackZone.textContent = pista;
-
-      setTimeout(function () {
+      boton.disabled = true;
+      App.feedback.encourage(feedbackZone);
+      feedbackZone.textContent = App.i18n.t('pista');
+      App.feedback.lockUntilAck(opcionesBtns, feedbackZone, function () {
         state.mostrandoFeedback = false;
-      }, 2000);
+      });
     } else {
       // Second attempt: show explanation and correct answer
       boton.classList.add('error');
+      App.feedback.encourage(feedbackZone);
       var explicacion = 'La respuesta correcta es: ' + App.i18n.t(state.situacionActual.correcta);
       feedbackZone.textContent = explicacion;
-      App.feedback.animo(feedbackZone);
-
-      setTimeout(function () {
+      opcionesBtns.forEach(function (b) { b.disabled = true; });
+      App.feedback.lockUntilAck(opcionesBtns, feedbackZone, function () {
         state.rondasCompletas++;
         guardarProgreso();
 
@@ -236,7 +235,7 @@
           state.mostrandoFeedback = false;
           empezarRonda();
         }
-      }, 3000);
+      });
     }
   }
 
@@ -287,9 +286,7 @@
     app.appendChild(botones);
 
     guardarProgreso();
-    App.feedback.celebrar('¡Excelente!', function () {
-      App.tts.speak('Has completado la ronda. ¡Muy bien!');
-    });
+    App.feedback.celebrar('¡Excelente!');
   }
 
   function guardarProgreso() {

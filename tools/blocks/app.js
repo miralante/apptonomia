@@ -250,7 +250,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     pantallaInicio.classList.remove('oculto');
   });
   $('#btnEscucharExplicacion').addEventListener('click', function () {
-    App.tts.speak(explicacionEl.textContent);
   });
 
   pintarNiveles();

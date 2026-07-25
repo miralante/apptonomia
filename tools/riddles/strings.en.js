@@ -14,6 +14,7 @@
     "explicacionCorrecta": "✅ Correct! The answer is: ",
     "explicacionIncorrectaA": "❌ ",
     "explicacionIncorrectaB": " is not right. The correct answer is: ",
-    "pista": "🤔 Try again. Read the clue again: "
+    "pista": "🤔 Try again. Read the clue again: ",
+  "transferencia": "This will help you think cleverly in everyday life: when a problem has a simple solution you did not expect.",
   }, 'en');
 })();

@@ -17,6 +17,7 @@
     "btnOtroNivel": "Elegir otro nivel",
     "explicacionCorrecta": "✅ ¡Correcto! Ante esta situación, eso es lo mejor.",
     "explicacionIncorrectaA": "❌ Eso no es lo mejor en esta situación. Lo mejor es: ",
-    "pista": "🤔 Prueba otra vez. Vuelve a pensar en la situación: "
+    "pista": "🤔 Prueba otra vez. Vuelve a pensar en la situación: ",
+  "transferencia": "Esto te servirá para pensar antes de actuar en el día a día: en el súper, en el cole o cuando algo nuevo te pilla desprevenido/a.",
   }, 'es');
 })();

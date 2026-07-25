@@ -162,7 +162,7 @@
     App.i18n.apply();
     $('#stars').textContent = '⭐ ' + progress.estrellas;
     renderMenu();
-    $('#listenInstruction').addEventListener('click', function () { App.tts.speak(App.i18n.t('instruction')); });
+
     $('#amountSlider').addEventListener('input', updateValue);
     $('#decrease').addEventListener('click', function () { moveSlider(-1); });
     $('#increase').addEventListener('click', function () { moveSlider(1); });

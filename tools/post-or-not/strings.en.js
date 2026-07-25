@@ -17,6 +17,7 @@
     "btnOtroNivel": "Choose another level",
     "explicacionCorrecta": "✅ Correct! That is the safest thing to do.",
     "explicacionIncorrectaA": "❌ That is not the safest thing. The safest thing is: ",
-    "pista": "🤔 Try again. Think about the situation again: "
+    "pista": "🤔 Try again. Think about the situation again: ",
+  "transferencia": "This will help you decide before posting anything on your phone or social media, and to ask for help if something makes you feel bad.",
   }, 'en');
 })();

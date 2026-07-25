@@ -67,5 +67,7 @@
     "derechaEtiqueta": "Right",
     "dedo": {"lp":{"mano":"left","nombre":"little"},"lr":{"mano":"left","nombre":"ring"},"lm":{"mano":"left","nombre":"middle"},"li":{"mano":"left","nombre":"index"},"ri":{"mano":"right","nombre":"index"},"rm":{"mano":"right","nombre":"middle"},"rr":{"mano":"right","nombre":"ring"},"rp":{"mano":"right","nombre":"little"},"th":{"mano":"both","nombre":"thumb"},"lt":{"mano":"left","nombre":"thumb"},"rt":{"mano":"right","nombre":"thumb"}},
     "teclaLabel": {"espacio":"space","tab":"Tab","mayus":"Shift","intro":"Enter","borrar":"Backspace"}
-  }, 'en');
+  ,
+  "transferencia": "This helps you write real messages to family on the computer."
+}, 'en');
 })();

@@ -33,5 +33,7 @@
     "ayudaCentro2": "Touch the marked column, in the centre: from there, there are more ways to make four.",
     "ayudaLibre1": "Look at the free columns. Which one helps you join your pieces in a line?",
     "ayudaLibre2": "Touch the marked column and keep joining your pieces in a line."
-  }, 'en');
+  ,
+  "transferencia": "This trains your strategy to anticipate your opponent's move."
+}, 'en');
 })();

@@ -94,5 +94,9 @@
     // Completion
     'fin_ronda': 'Round finished. Very good.',
     'siguiente_nivel': 'You are ready for the next level.',
+  "contexto": "You are in a situation with another person. You have to choose what to say or do so they feel good.",
+  "pista": "🤔 Think how you would like people to talk to you. What would you say?",
+  "explicacion": "✅ That is polite. People feel comfortable when you treat them this way.",
+  "transferencia": "This will help you get along with family, friends and at school: kind words always help.",
   }, 'en');
 })();

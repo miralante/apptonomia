@@ -125,9 +125,6 @@
     pantallaFinal.classList.add('oculto');
     pantallaInicio.classList.remove('oculto');
   });
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
 
   pintarTarjetasDibujos();
   pintarEstrellas();

@@ -17,6 +17,7 @@
     "btnOtroNivel": "Elegir otro nivel",
     "explicacionCorrecta": "✅ ¡Correcto! Eso es lo que significa esta señal.",
     "explicacionIncorrectaA": "❌ No es eso. Esta señal significa: ",
-    "pista": "🤔 Prueba otra vez. Piensa bien qué indica esta señal: "
+    "pista": "🤔 Prueba otra vez. Piensa bien qué indica esta señal: ",
+  "transferencia": "Esto te servirá para moverte seguro por tu barrio: reconocer el baño, la salida, el paso de cebra o la señal de peligro cuando salgas a la calle.",
   }, 'es');
 })();

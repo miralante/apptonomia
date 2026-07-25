@@ -24,5 +24,7 @@
     "ariaGirar": "Turn the piece",
     "ariaBajar": "Drop the piece",
     "ariaTablero": "Pieces board"
-  }, 'en');
+  ,
+  "transferencia": "This helps you fit pieces and sort things by shape."
+}, 'en');
 })();

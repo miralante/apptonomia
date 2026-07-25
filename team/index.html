@@ -32,6 +32,7 @@
         <a href="#areas" data-i18n="navAreas">Áreas y actividades</a>
         <a href="#progreso" data-i18n="navProgress">Progreso y privacidad</a>
         <a href="#acompanar" data-i18n="navSupport">Cómo acompañar</a>
+        <a href="#excepciones" data-i18n="navExceptions">Habilidad pura</a>
         <a href="#agente-ia" data-i18n="navAgentAI">Nota técnica (IA)</a>
       </nav>
     </header>
@@ -68,8 +69,9 @@
           <li><strong data-i18n="designLi3Label">Refuerzo positivo</strong> <span data-i18n="designLi3Text">inmediato y breve al acertar. Las estrellas ⭐ solo suman.</span></li>
           <li><strong data-i18n="designLi4Label">Sin comparación entre personas</strong>: <span data-i18n="designLi4Text">no hay rankings ni competición.</span></li>
           <li><strong data-i18n="designLi5Label">Accesibilidad</strong>: <span data-i18n="designLi5Text">botones grandes (mínimo 64 píxeles), texto grande, alto
-            contraste, audio 🔊 en los textos importantes, navegable con teclado, animaciones que se
-            desactivan si el sistema lo pide.</span></li>
+            contraste, audio 🔊 solo cuando la gamificación o el diseño de la actividad lo requiera
+            (p. ej. escuchar lo escrito con el teclado o una secuencia), navegable con teclado,
+            animaciones que se desactivan si el sistema lo pide.</span></li>
           <li><strong data-i18n="designLi6Label">Pocas opciones a la vez</strong>: <span data-i18n="designLi6Text">máximo 4–6 opciones visibles y una acción
             principal por pantalla.</span></li>
         </ul>
@@ -205,6 +207,23 @@
                 <td data-i18n="activity.emergencies.works">Reconocimiento de emergencias reales vs. falsas alarmas; estructura de una llamada
                   de ayuda. Deja claro que el 112 es solo para emergencias de verdad.</td>
                 <td data-i18n="activity.emergencies.daily">Acordad con la persona cuál es su dirección exacta y practicad decirla en voz alta.</td></tr>
+              <tr><td data-i18n="activity.while-help-arrives.name">Mientras Llega la Ayuda</td><td data-i18n="activity.while-help-arrives.does">Dos partes: un quiz de 3 opciones sobre qué
+                hacer después de llamar al 112 mientras llega la ambulancia, los bomberos o la policía
+                (salir, no mover al herido, presionar la herida, posición lateral, no dar nada por boca);
+                y ordenar los pasos inmediatos para una emergencia concreta.</td>
+                <td data-i18n="activity.while-help-arrives.works">Conducta segura en los minutos posteriores al 112: la parte que la actividad
+                  Emergencias no cubría. Enseña acciones básicas de primeros auxilios (no clínicas)
+                  que evitan causar más daño mientras se espera la ayuda.</td>
+                <td data-i18n="activity.while-help-arrives.daily">Después de hacerla, repetid en casa con la familia qué haría cada uno
+                  si pasa algo de verdad: salir y cerrar la puerta, no mover, presionar la herida, etc.</td></tr>
+              <tr><td data-i18n="activity.be-prepared.name">Antes de la Emergencia</td><td data-i18n="activity.be-prepared.does">Dos partes: un quiz de 3 opciones sobre prevención
+                (dónde tiene que estar el 112, la dirección, el detector de humo, las pastillas); y un
+                checklist familiar para comprobar con la familia qué cosas ya están listas en casa.</td>
+                <td data-i18n="activity.be-prepared.works">Prevención: la mejor emergencia es la que no pasa. Cubre el "antes" que la
+                  actividad Emergencias no trabajaba. Pensada para hacerse en casa con la familia.</td>
+                <td data-i18n="activity.be-prepared.daily">Haced juntos la lista en casa: ¿está el 112 escrito? ¿la dirección visible?
+                  ¿las pastillas fuera del alcance de un niño pequeño? Lo que falte, lo apuntáis
+                  para hacerlo esta semana.</td></tr>
               <tr><td data-i18n="activity.phone-numbers.name">Teléfonos Importantes</td><td data-i18n="activity.phone-numbers.does">Tres pasos en orden: mira una ficha por servicio
                 (policía, bomberos, emergencia médica) con su situación y el número; lee un resumen
                 que junta las tres; y hace un test de recordar a qué número llama en cada situación.</td>
@@ -212,6 +231,13 @@
                   policía, bomberos y una emergencia médica, sea cual sea la situación concreta.</td>
                 <td data-i18n="activity.phone-numbers.daily">Preguntadle de vez en cuando "¿a qué número llamas si...?" con situaciones reales
                   de casa o del barrio.</td></tr>
+              <tr><td data-i18n="activity.doctor-visit.name">Se lo Cuento al Médico</td><td data-i18n="activity.doctor-visit.does">Lee una escena con un síntoma corporal y elige,
+                entre 3 frases, la que mejor se lo describe a un médico (parte del cuerpo, tipo de
+                molestia y desde cuándo).</td>
+                <td data-i18n="activity.doctor-visit.works">Comunicación verbal de síntomas: poner en palabras lo que nota el cuerpo para
+                  otra persona, el paso que falta entre notar la señal (Mi Cuerpo Me Avisa) y saber
+                  actuar en consulta.</td>
+                <td data-i18n="activity.doctor-visit.daily">Antes de una cita real, practicad en voz alta cómo describiría lo que le duele.</td></tr>
               <tr><td data-i18n="activity.my-details.name">Mis Datos</td><td data-i18n="activity.my-details.does">Repasa dirección y teléfono propios y de la familia (configurados antes en
                 Ajustes): primero unas fichas, luego un test de opciones con señuelos y por
                 último lo mismo tecleado, sin pistas en pantalla.</td>
@@ -243,6 +269,9 @@
                   malo"): conecta con La Compra y La Casa dentro de la cadena de autonomía en el hogar.</td>
                 <td data-i18n="activity.healthy-food.daily">Al hacer la compra o el menú de la semana, preguntadle si lo que elige
                   es de cada día o de vez en cuando.</td></tr>
+              <tr><td data-i18n="activity.first-aid-kit.name">Mi Botiquín</td><td data-i18n="activity.first-aid-kit.does">Lee una situación cotidiana de salud (raspadura, quemadura, fiebre, dolor fuerte…) y elige qué hacer: cuidarse uno mismo siguiendo lo aprendido o, si la situación es urgente, pedir ayuda a un adulto de confianza o al 112.</td>
+                <td data-i18n="activity.first-aid-kit.works">Cierre del ciclo de autonomía en salud entre notar la señal (Mi Cuerpo Me Avisa) y ponerla en palabras (Se lo Cuento al Médico). El nivel 2 entrena explícitamente la red de seguridad: pedir ayuda o llamar al 112, nunca automedicar ni aguantar.</td>
+                <td data-i18n="activity.first-aid-kit.daily">Cuando se haga un raspones o una pequeña quemadura en casa, repasad juntos qué hacer y, ante la duda, a quién pedir ayuda.</td></tr>
             </tbody>
           </table>
         </article>
@@ -496,8 +525,8 @@
               <tr><td data-i18n="activity.calm.name">Calma</td><td data-i18n="activity.calm.does">Sigue sesiones guiadas de respiración y relajación.</td>
                 <td data-i18n="activity.calm.works">Autorregulación, gestión del estrés, conciencia corporal.</td>
                 <td data-i18n="activity.calm.daily">Practicad juntos la misma respiración cuando esté nervioso de verdad.</td></tr>
-              <tr><td data-i18n="activity.friends.name">Entre Amigos</td><td data-i18n="activity.friends.does">Reconoce emociones en otras personas y resuelve conflictos sencillos.</td>
-                <td data-i18n="activity.friends.works">Empatía, interacción social, gestión de conflictos.</td>
+              <tr><td data-i18n="activity.friends.name">Entre Amigos</td><td data-i18n="activity.friends.does">Reconoce emociones en otras personas, resuelve conflictos sencillos y, en el nivel 5, reconoce cuando un "amigo" manipula.</td>
+                <td data-i18n="activity.friends.works">Empatía, interacción social, gestión de conflictos, y señales de manipulación en la amistad (secretismo, chantaje emocional, aislamiento).</td>
                 <td data-i18n="activity.friends.daily">Hablad de conflictos reales con amigos usando lo practicado en la app.</td></tr>
               <tr><td data-i18n="activity.my-body.name">Mi Cuerpo Me Avisa</td><td data-i18n="activity.my-body.does">Ante una señal del cuerpo (hambre, sed, sueño, dolor,
                 nervios…), elige qué hacer para cuidarse.</td>
@@ -507,6 +536,15 @@
               <tr><td data-i18n="activity.goodmanners.name">Buenos Modales</td><td data-i18n="activity.goodmanners.does">Practica fórmulas de cortesía en situaciones cotidianas: dar las gracias, pedir por favor, saludar, despedirse, ceder el paso.</td>
                 <td data-i18n="activity.goodmanners.works">Normas sociales básicas, habilidades sociales, interacción respetuosa.</td>
                 <td data-i18n="activity.goodmanners.daily">Reforzad estas fórmulas en la vida real: celebrad cuando las use espontáneamente.</td></tr>
+              <tr><td data-i18n="activity.self-esteem.name">Así Soy Yo</td><td data-i18n="activity.self-esteem.does">Lee situaciones sobre discapacidad, diferencias, comparación e insensibilidad ajena y elige la respuesta que refleja una autoestima sana.</td>
+                <td data-i18n="activity.self-esteem.works">Autoaceptación, fortalezas y debilidades propias, respuesta ante la discriminación y las personas insensibles, no depender del reconocimiento ajeno.</td>
+                <td data-i18n="activity.self-esteem.daily">Recordadle sus fortalezas cuando algo le salga mal y celebrad que siga su propio camino.</td></tr>
+              <tr><td data-i18n="activity.resilience.name">Cuando Algo Me Cuesta</td><td data-i18n="activity.resilience.does">Lee situaciones de frustración o de necesitar ayuda y elige la respuesta que le ayuda a calmarse o a pedir apoyo.</td>
+                <td data-i18n="activity.resilience.works">Tolerancia a la frustración, regulación emocional ante el fallo, vulnerabilidad y pedir ayuda sin vergüenza, expresión honesta de los sentimientos.</td>
+                <td data-i18n="activity.resilience.daily">Acompañadle cuando algo le frustre de verdad y celebrad cuando pida ayuda en vez de esconder cómo se siente.</td></tr>
+              <tr><td data-i18n="activity.trust-circle.name">Círculo de Confianza</td><td data-i18n="activity.trust-circle.does">Clasifica relaciones (amigo, compañero, conocido) y elige la respuesta sana ante intentos de manipulación, incluida la petición de dinero.</td>
+                <td data-i18n="activity.trust-circle.works">Distinción de niveles de cercanía en las relaciones, detección de señales de manipulación (aislamiento, secretismo, chantaje emocional, presión de grupo) y el límite del dinero: quien te quiere de verdad no lo pide.</td>
+                <td data-i18n="activity.trust-circle.daily">Habladle de las personas que conoce de verdad y recordadle que nunca debe dar dinero ni datos personales sin consultarlo antes con la familia.</td></tr>
             </tbody>
           </table>
         </article>
@@ -517,8 +555,8 @@
           <table>
             <thead><tr><th data-i18n="colActivity">Actividad</th><th data-i18n="colDoes">Qué hace la persona</th><th data-i18n="colWorks">Qué se trabaja</th><th data-i18n="colDaily">En el día a día</th></tr></thead>
             <tbody>
-              <tr><td data-i18n="activity.sexual-health.name">Mi Cuerpo, Mis Decisiones</td><td data-i18n="activity.sexual-health.does">Practica 32 casos no gráficos sobre consentimiento,
-                relaciones sanas, anticoncepción e higiene y salud sexual.</td>
+              <tr><td data-i18n="activity.sexual-health.name">Mi Cuerpo, Mis Decisiones</td><td data-i18n="activity.sexual-health.does">Practica 48 casos no gráficos sobre consentimiento,
+                relaciones sanas, anticoncepción, higiene y salud sexual, presión y chantaje, y protección e infecciones.</td>
                 <td data-i18n="activity.sexual-health.works">Autonomía corporal, reconocimiento del consentimiento, señales de relaciones dañinas,
                   y saber pedir ayuda a un profesional de la salud en vez de recibir instrucciones clínicas de la app.</td>
                 <td data-i18n="activity.sexual-health.daily">Usadla siempre con supervisión profesional o familiar. Recordad que pedir ayuda
@@ -567,6 +605,38 @@
           <li data-i18n="supportLi5">Cada actividad tiene niveles o modos: empezad por el más fácil aunque parezca sencillo;
             terminar con éxito refuerza más que "estar a la altura".</li>
         </ul>
+      </section>
+
+      <section id="excepciones" class="card">
+        <h2 data-i18n="exceptionsTitle">Habilidad pura: decisión de diseño priorizada</h2>
+        <p data-i18n="exceptionsIntro">La mayoría de actividades de Apptonomia siguen el contrato de simulación de la vida diaria (escena reconocible, decisión, feedback socrático y cierre con transferencia a la realidad). Las siguientes actividades son una excepción documentada: son juegos perceptivos, motrices o de habilidad pura donde convertir el ejercicio en una escena cotidiana confundía el objetivo terapéutico. Mantienen el resto de principios del producto (sin presión, sin castigo, con refuerzo positivo), pero no exponen las claves <code>contexto</code>, <code>instruccion</code>, <code>pista</code>, <code>explicacion</code> ni <code>transferencia</code>.</p>
+        <ul class="lista-excepciones">
+          <li data-i18n="exceptionBlocks"><strong>Bloques</strong> · copia de modelos con piezas de colores (motricidad fina, percepción espacial).</li>
+          <li data-i18n="exceptionBuilders"><strong>Constructores</strong> · composición libre con bloques y piezas (creatividad y motricidad).</li>
+          <li data-i18n="exceptionCatch"><strong>Atrapa</strong> · coordinación ojo-mano y reflejos.</li>
+          <li data-i18n="exceptionCheckers"><strong>Damas</strong> · estrategia y anticipación.</li>
+          <li data-i18n="exceptionChess"><strong>Ajedrez</strong> · estrategia, planificación y respeto de turnos.</li>
+          <li data-i18n="exceptionColoring"><strong>Colorear</strong> · creatividad libre y motricidad fina.</li>
+          <li data-i18n="exceptionConnectDots"><strong>Une los puntos</strong> · secuencia numérica y precisión del trazo.</li>
+          <li data-i18n="exceptionConnectFour"><strong>Cuatro en raya</strong> · estrategia y atención sostenida.</li>
+          <li data-i18n="exceptionDifferences"><strong>Diferencias</strong> · atención al detalle y comparación visual.</li>
+          <li data-i18n="exceptionDomino"><strong>Dominó</strong> · conteo y emparejamiento.</li>
+          <li data-i18n="exceptionEcos"><strong>Ecos</strong> · memoria auditiva.</li>
+          <li data-i18n="exceptionFit"><strong>Encajar</strong> · percepción de formas y motricidad fina.</li>
+          <li data-i18n="exceptionKeyboardTyping"><strong>Teclado</strong> · mecanografía guiada letra a letra.</li>
+          <li data-i18n="exceptionOca"><strong>Oca</strong> · recorrido de tablero y conteo.</li>
+          <li data-i18n="exceptionPairs"><strong>Parejas</strong> · memoria visual.</li>
+          <li data-i18n="exceptionPath"><strong>Camino</strong> · orientación espacial en un laberinto.</li>
+          <li data-i18n="exceptionPianoKeys"><strong>Teclas de piano</strong> · exploración musical libre.</li>
+          <li data-i18n="exceptionPuzzle"><strong>Puzle</strong> · encaje de piezas y percepción de la forma global.</li>
+          <li data-i18n="exceptionTicTacToe"><strong>Tres en raya</strong> · estrategia simple.</li>
+          <li data-i18n="exceptionTracing"><strong>Trazos</strong> · grafomotricidad.</li>
+          <li data-i18n="exceptionTurnsMirrors"><strong>Giros y espejos</strong> · percepción espacial y orientación.</li>
+          <li data-i18n="exceptionVisualSudoku"><strong>Sudoku visual</strong> · razonamiento lógico con pictogramas.</li>
+          <li data-i18n="exceptionCalm"><strong>Calma</strong> · respiración guiada (sin decisión, sin acierto/error).</li>
+          <li data-i18n="exceptionEmotions"><strong>Emociones</strong> · reconocimiento emocional sin respuesta correcta única.</li>
+        </ul>
+        <p data-i18n="exceptionsNote">La regla general sigue siendo la simulación: cualquier actividad nueva que represente una decisión de la vida cotidiana debe incorporar el contrato completo. Esta lista se revisa y actualiza junto con el repositorio (<code>git log</code> contiene el histórico de cada inclusión y exclusión).</p>
       </section>
 
       <section id="agente-ia" class="card">

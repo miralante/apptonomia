@@ -84,7 +84,6 @@
   function mostrarTextoQuiz(texto) {
     explicacionQuizEl.textContent = texto;
     explicacionQuizWrap.classList.remove('oculto');
-    App.tts.speak(texto);
   }
 
   function pintarMesaQuiz(piezas) {
@@ -169,6 +168,7 @@
     App.feedback.encourage(feedbackQuizEl);
     if (intentosQ === 1) {
       mostrarTextoQuiz(cfgActual().pista(casoQ));
+      App.feedback.lockUntilAck(opcionBotones.map(function (p) { return p.btn; }), explicacionQuizWrap);
     } else {
       resolverQuiz(false);
     }
@@ -575,7 +575,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   function mostrarTextoTienda(texto) {
     explicacionTiendaEl.textContent = texto;
     explicacionTiendaWrap.classList.remove('oculto');
-    App.tts.speak(texto);
   }
 
   function ofrecerContinuar(fn) {
@@ -658,6 +657,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.encourage(feedbackTiendaEl);
     if (intentosPaso === 1) {
       mostrarTextoTienda(App.i18n.t('pistaPaso1'));
+      App.feedback.lockUntilAck(App.utils.$$('.btn-opcion', accionesTiendaEl), explicacionTiendaWrap);
     } else {
       resolverPaso1();
     }
@@ -786,6 +786,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.encourage(feedbackTiendaEl);
     if (intentosPaso === 1) {
       mostrarTextoTienda(App.i18n.t('pistaPaso3'));
+      App.feedback.lockUntilAck(App.utils.$$('.btn-opcion', accionesTiendaEl), explicacionTiendaWrap);
     } else {
       resolverPaso3();
     }
@@ -816,7 +817,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     App.tts.speak(enunciadoQuizEl.textContent);
   });
   $('#btnEscucharExplicacionQuiz').addEventListener('click', function () {
-    App.tts.speak(explicacionQuizEl.textContent);
   });
 
   btnContinuarTienda.addEventListener('click', function () {
@@ -828,7 +828,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     App.tts.speak(enunciadoTiendaEl.textContent);
   });
   $('#btnEscucharExplicacionTienda').addEventListener('click', function () {
-    App.tts.speak(explicacionTiendaEl.textContent);
   });
 
   $('#btnRepetir').addEventListener('click', function () {

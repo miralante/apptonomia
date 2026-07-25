@@ -26,5 +26,7 @@
     "btnAyuda": "💡 Ayuda",
     "ayudaPaso1": "Mira el hueco marcado. Fíjate en su fila, su columna y su caja: ¿qué dibujo no está todavía?",
     "ayudaPaso2": "Ahí va {picto}. Es el que falta: no está en su fila, ni en su columna, ni en su caja. Tócalo en la paleta."
-  }, 'es');
+  ,
+  "transferencia": "Esto entrena tu lógica para resolver problemas de cada día."
+}, 'es');
 })();

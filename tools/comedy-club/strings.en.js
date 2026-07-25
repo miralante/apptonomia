@@ -14,6 +14,7 @@
     "explicacionCorrecta": "✅ Correct! That is why it is funny.",
     "explicacionIncorrectaA": "❌ That is not the reason. The reason is: ",
     "explicacionIncorrectaB": "",
-    "pista": "🤔 Try again. Read the joke again: "
+    "pista": "🤔 Try again. Read the joke again: ",
+  "transferencia": "This will help you understand jokes better with family, friends or on TV, and enjoy the laugh more.",
   }, 'en');
 })();

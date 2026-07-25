@@ -37,7 +37,8 @@ const DATA = {
           { picto: '🔒', situacion: 'Tienes que decidir la contraseña de tu cuenta de un juego online.', opciones: ['La guardo solo para mí', 'Se la digo a todos mis amigos', 'La escribo en mi perfil público'], correcta: 0 },
           { picto: '🪪', situacion: 'Un formulario de un juego gratis te pide una foto de tu DNI.', opciones: ['No la mando y aviso a un adulto', 'Mando la foto del DNI', 'Mando solo la parte de delante'], correcta: 0 },
           { picto: '🤳', situacion: 'Quieres publicar una foto tuya en bañador en la piscina.', opciones: ['No la publico: es demasiado privada', 'La publico, es verano', 'La mando solo a un desconocido que me la pide'], correcta: 0 },
-          { picto: '🎂', situacion: 'Una web te pide tu fecha de nacimiento completa y tu dirección para "felicitarte".', opciones: ['No relleno esos datos', 'Los escribo todos', 'Escribo solo la dirección'], correcta: 0 }
+          { picto: '🎂', situacion: 'Una web te pide tu fecha de nacimiento completa y tu dirección para "felicitarte".', opciones: ['No relleno esos datos', 'Los escribo todos', 'Escribo solo la dirección'], correcta: 0 },
+          { picto: '💵', situacion: 'Te han regalado dinero o algo caro y quieres publicar una foto enseñándolo a todo el mundo.', opciones: ['No lo enseño a todo el mundo, solo a quien conozco de verdad', 'Publico la foto para que la vea todo el mundo', 'Publico la foto y digo cuánto cuesta'], correcta: 0 }
         ]
       },
       {
@@ -85,7 +86,8 @@ const DATA = {
           { picto: '🔒', situacion: 'You need to choose a password for your online game account.', opciones: ['I keep it only for myself', 'I tell it to all my friends', 'I write it on my public profile'], correcta: 0 },
           { picto: '🪪', situacion: 'A free game form asks for a photo of your ID card.', opciones: ['I do not send it and tell an adult', 'I send the ID photo', 'I send just the front side'], correcta: 0 },
           { picto: '🤳', situacion: 'You want to post a photo of yourself in a swimsuit at the pool.', opciones: ['I do not post it: it is too private', 'I post it, it is summer', 'I send it only to a stranger who asks for it'], correcta: 0 },
-          { picto: '🎂', situacion: 'A website asks for your full birth date and your address to "wish you happy birthday".', opciones: ['I do not fill in those details', 'I write them all', 'I write just the address'], correcta: 0 }
+          { picto: '🎂', situacion: 'A website asks for your full birth date and your address to "wish you happy birthday".', opciones: ['I do not fill in those details', 'I write them all', 'I write just the address'], correcta: 0 },
+          { picto: '💵', situacion: 'You were given money or something expensive as a gift and want to post a photo showing it to everyone.', opciones: ['I do not show it to everyone, only people I really know', 'I post the photo so everyone can see it', 'I post the photo and say how much it costs'], correcta: 0 }
         ]
       },
       {

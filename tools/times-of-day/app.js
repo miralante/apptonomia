@@ -140,7 +140,6 @@
       b.classList.remove('animo', 'correcta');
     });
 
-    App.tts.speak(item.tarea);
     pintarProgreso();
     pintarEstrellas();
   }
@@ -192,6 +191,7 @@
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(feedbackEl);
+      App.feedback.lockUntilAck(App.utils.$$('.btn.caja', listasDiaEl), explicacionWrap);
     }
   }
 
@@ -222,7 +222,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   });
   btnSiguiente.addEventListener('click', siguiente);
   btnEscucharExplicacion.addEventListener('click', function () {
-    App.tts.speak(explicacionEl.textContent);
   });
   $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {

@@ -24,5 +24,7 @@
     "ariaGirar": "Girar la pieza",
     "ariaBajar": "Bajar la pieza",
     "ariaTablero": "Tablero de las piezas"
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a encajar piezas y a organizar cosas por su forma."
+}, 'es');
 })();

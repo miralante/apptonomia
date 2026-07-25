@@ -23,6 +23,7 @@
     "instruccionLlamada": "Toca los pasos en el orden correcto para pedir ayuda: primero quién eres, luego qué pasa, luego dónde estás.",
     "etiquetaOrden": "Tu llamada",
     "etiquetaPasos": "Pasos",
-    "ariaPaso": "Paso de la llamada"
+    "ariaPaso": "Paso de la llamada",
+    "transferencia": "Lo que practicas aquí también vale para el día a día: reconocer una emergencia real, llamar al 112 con los datos claros y mantener la calma son cosas que pueden hacer falta en casa, en el cole o en la calle."
   }, 'es');
 })();

@@ -23,5 +23,7 @@
     "color": {"rojo":"Rojo","azul":"Azul","verde":"Verde","amarillo":"Amarillo","morado":"Morado","naranja":"Naranja"},
     "dibujo": {"casa":"La casa","flor":"La flor","pez":"El pez","coche":"El coche","taza":"La taza","camiseta":"La camiseta","reloj":"El reloj","cepillo":"El cepillo de dientes","paraguas":"El paraguas","zapato":"El zapato"},
     "zona": {"techo":"Techo","pared":"Pared","puerta":"Puerta","ventana":"Ventana","sol":"Sol","petalos":"Pétalos","centro":"Centro","tallo":"Tallo","hoja":"Hoja","cuerpo":"Cuerpo","cola":"Cola","aleta":"Aleta","ojo":"Ojo","cabina":"Cabina","rueda1":"Rueda 1","rueda2":"Rueda 2","cafe":"Café","asa":"Asa","platillo":"Platillo","mangaIzquierda":"Manga izquierda","mangaDerecha":"Manga derecha","cuello":"Cuello","esfera":"Esfera","manecillaHora":"Aguja de las horas","manecillaMinuto":"Aguja de los minutos","mango":"Mango","cabezal":"Cabezal","cerdas":"Cerdas","tela":"Tela","puntera":"Puntera","cordones":"Cordones","suela":"Suela"}
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a elegir y a mantenerte concentrado/a mientras pintas."
+}, 'es');
 })();

@@ -167,9 +167,7 @@
     intentos = 0;
     var o = ordenes[idxOrden];
     personajeEl.textContent = o.personaje.picto;
-    var texto = textoConsigna();
-    consignaEl.textContent = texto;
-    App.tts.speak(texto);
+    consignaEl.textContent = textoConsigna();
   }
 
   function tocarSitio(i) {
@@ -258,7 +256,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     App.tts.speak(consignaEl.textContent);
   });
   $('#btnEscucharExplicacion').addEventListener('click', function () {
-    App.tts.speak(explicacionEl.textContent);
   });
 
   pintarNiveles();

@@ -8,23 +8,131 @@
 
 .instruccion { flex: 1; min-width: 200px; }
 
-/* Routine menu cards */
-.tarjeta-rutina {
+/* Routine menu sections */
+.lista-rutinas {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  min-height: 160px;
-  cursor: pointer;
-  text-align: center;
+  gap: var(--espacio-grande);
+}
+
+.seccion-rutinas { display: flex; flex-direction: column; gap: var(--espacio); }
+.seccion-rutinas-titulo {
+  margin: 0;
+  font-size: var(--texto-grande);
+  font-weight: 800;
+  color: var(--mod-secuencia);
+}
+
+/* Subsecciones dentro de cada momento (Pasos / Ordenar).
+   La segunda (Ordenar) se diferencia con un borde lateral y un
+   espaciado para que se lea como un nivel subordinado, no como un
+   grupo nuevo equivalente al momento del día. */
+.subseccion-rutinas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio);
+  padding-left: var(--espacio);
+  border-left: 3px solid var(--color-borde);
+}
+.subseccion-rutinas + .subseccion-rutinas { margin-top: var(--espacio); }
+.subseccion-rutinas-titulo {
+  margin: 0;
+  font-size: var(--texto-base);
+  font-weight: 700;
+  color: var(--color-texto);
+  text-transform: none;
+}
+
+.tarjeta-rutina-ordenar { background: var(--color-superficie-2, #f7f4ef); }
+.tarjeta-rutina-ordenar .tarjeta-rutina-media {
+  background: var(--mod-secuencia-suave);
+  opacity: 0.85;
+}
+
+/* Routine menu cards */
+.tarjeta-rutina {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: var(--espacio);
+  align-items: stretch;
+  cursor: default;
+  text-align: left;
   font-family: inherit;
+  padding: 0;
+  overflow: hidden;
 }
 
 .tarjeta-rutina:hover { border-color: var(--mod-secuencia); }
 
-.tarjeta-rutina .picto { font-size: 56px; }
-.tarjeta-rutina .nombre { font-size: var(--texto-base); font-weight: 700; }
+.tarjeta-completada { border-color: var(--color-acierto); background: #f0faf2; }
+
+.tarjeta-rutina-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mod-secuencia-suave);
+  font-size: 56px;
+}
+.tarjeta-completada .tarjeta-rutina-media { background: #e0f4e6; }
+
+.tarjeta-rutina-cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: var(--espacio);
+  min-width: 0;
+}
+
+.tarjeta-rutina .nombre {
+  font-size: var(--texto-base);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.tarjeta-rutina-progreso {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tarjeta-rutina-barra {
+  width: 100%;
+  height: 8px;
+  background: var(--color-borde);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.tarjeta-rutina-barra-fill {
+  display: block;
+  height: 100%;
+  background: var(--mod-secuencia);
+  transition: width 0.25s ease-out;
+}
+.tarjeta-completada .tarjeta-rutina-barra-fill { background: var(--color-acierto); }
 .tarjeta-rutina .estado { font-size: var(--texto-pequeno); color: var(--color-texto-suave); }
+
+.tarjeta-rutina-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+  align-items: center;
+}
+.tarjeta-rutina-acciones .btn-empezar,
+.tarjeta-rutina-acciones .btn-ordenar-rutina {
+  min-height: 48px;
+  padding: 8px 20px;
+}
+
+@media (max-width: 480px) {
+  .tarjeta-rutina { grid-template-columns: 72px 1fr; }
+  .tarjeta-rutina-media { font-size: 40px; }
+  .tarjeta-rutina-acciones .btn-empezar,
+  .tarjeta-rutina-acciones .btn-ordenar-rutina { flex: 1 1 auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta-rutina-barra-fill { transition: none; }
+}
 
 /* Lista de pasos */
 #listaPasos { list-style: none; }
@@ -49,6 +157,7 @@
 .paso.hecho { opacity: 0.8; }
 
 .paso .picto { font-size: 44px; }
+.paso .picto { width: 44px; height: 44px; object-fit: contain; }
 .paso .texto { flex: 1; font-weight: 600; }
 
 .paso .check {
@@ -65,76 +174,332 @@
 
 #pantallaFinal { padding-top: 48px; }
 
-#pantallaFinal .btn { align-self: center; min-width: 280px;
-#pantallaFinal .transferencia {
-  margin: 8px auto 24px;
-  font-size: 1.1rem;
-  color: var(--color-texto-secundario, #555);
-  max-width: 480px;
-}
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
 
-/* Botón "Ordena la rutina" dentro de cada tarjeta del menú */
-.btn-ordenar-rutina {
-  margin-top: 8px;
-  min-width: 200px;
-  background: var(--mod-secuencia-suave);
-  color: var(--mod-secuencia);
-  border: 2px solid var(--mod-secuencia);
-}
-.btn-ordenar-rutina:hover { background: var(--mod-secuencia); color: var(--color-superficie); }
+/* Botón "Ordena la rutina" — estilo unificado (definido arriba, en la tarjeta). */
 
-/* Lista reordenable de pasos (accesible: flechas ↑/↓ en vez de drag-and-drop) */
-.lista-ordenable { list-style: none; padding: 0; margin: 0; }
-
-.paso-ordenable {
+/* Pantalla "Ordena la rutina" — patrón La Casa.
+   Dos columnas: izquierda = tu orden (slots), derecha = pasos disponibles. */
+.orden-dos-columnas {
   display: grid;
-  grid-template-columns: 48px 56px 1fr auto auto;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espacio);
+  align-items: start;
+}
+
+.orden-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio);
+  min-width: 0;
+}
+
+.orden-col-tu { border-right: 3px solid var(--color-borde); padding-right: var(--espacio); }
+
+.etiqueta {
+  font-weight: 700;
+  color: var(--color-texto-suave);
+  margin: 0;
+}
+
+/* Slots de la columna izquierda */
+.pila-slots {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio);
+}
+
+.slot-orden {
+  display: grid;
+  grid-template-columns: 40px 56px 1fr;
   align-items: center;
   gap: var(--espacio);
+  min-height: 80px;
   padding: var(--espacio);
   background: var(--color-superficie);
-  border: 3px solid var(--color-borde);
+  border: 3px dashed var(--color-borde);
   border-radius: var(--radio);
-  min-height: 80px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  width: 100%;
 }
 
-.paso-ordenable .posicion {
+.slot-orden.lleno {
+  border-style: solid;
+  border-color: var(--mod-secuencia);
+  background: var(--mod-secuencia-suave);
+}
+
+.slot-orden.lleno.seleccionado {
+  background: var(--mod-secuencia);
+  color: #FFFFFF;
+  box-shadow: 0 0 0 4px var(--mod-secuencia-suave);
+}
+
+.slot-orden.seleccionado .slot-texto,
+.slot-orden.seleccionado .slot-picto { color: #FFFFFF; }
+
+.slot-orden.pista {
+  border-color: var(--mod-secuencia);
+  background: #FFF6D6;
+  box-shadow: 0 0 0 4px rgba(245, 188, 66, 0.55);
+  animation: pista-pulso 1.1s ease-in-out infinite;
+}
+
+@keyframes pista-pulso {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(245, 188, 66, 0.55); }
+  50%      { box-shadow: 0 0 0 10px rgba(245, 188, 66, 0.15); }
+}
+
+.slot-orden:focus-visible {
+  outline: 3px solid var(--mod-secuencia);
+  outline-offset: 2px;
+}
+
+.slot-posicion {
   font-size: var(--texto-grande);
   font-weight: 800;
   color: var(--mod-secuencia);
   text-align: center;
 }
 
-.paso-ordenable .picto { font-size: 44px; text-align: center; }
-.paso-ordenable .texto { font-weight: 600; font-size: var(--texto-base); }
+.slot-picto { font-size: 36px; text-align: center; }
+.slot-texto { font-weight: 600; font-size: var(--texto-base); }
 
-.btn-flecha {
+.slot-vacio-hint {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--color-borde);
+  text-align: center;
+  grid-column: 2 / 4;
+}
+
+/* Pasos disponibles de la columna derecha */
+.pila-disponibles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio);
+  align-items: stretch;
+}
+
+.paso-disponible {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: center;
+  gap: var(--espacio);
+  min-height: 80px;
+  padding: var(--espacio);
+  background: var(--color-superficie);
+  border: 3px solid var(--mod-secuencia);
+  border-radius: var(--radio);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--texto-base);
+  font-weight: 600;
+  text-align: left;
+  color: var(--color-texto);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.paso-disponible:hover {
+  background: var(--mod-secuencia-suave);
+  transform: translateY(-1px);
+}
+
+.paso-disponible:focus-visible {
+  outline: 3px solid var(--mod-secuencia);
+  outline-offset: 2px;
+}
+
+.paso-disponible-picto { font-size: 36px; text-align: center; }
+
+/* Barra de flechas ↑/↓ para mover el slot seleccionado */
+.barra-mover-slot {
+  display: flex;
+  justify-content: center;
+  gap: var(--espacio);
+  margin-top: var(--espacio);
+}
+
+.btn-flecha-slot {
   min-width: 64px;
   min-height: 64px;
   border-radius: var(--radio);
-  border: 2px solid var(--mod-secuencia);
-  background: var(--color-superficie);
-  color: var(--mod-secuencia);
+  border: 3px solid var(--mod-secuencia);
+  background: var(--mod-secuencia);
+  color: #FFFFFF;
   font-size: 32px;
   font-weight: 800;
   cursor: pointer;
 }
-.btn-flecha:hover:not(:disabled) { background: var(--mod-secuencia-suave); }
-.btn-flecha:disabled { opacity: 0.35; cursor: not-allowed; }
-.btn-flecha:focus-visible { outline: 3px solid var(--mod-secuencia); outline-offset: 2px; }
+.btn-flecha-slot:hover:not(:disabled) { background: var(--mod-secuencia-suave); color: var(--mod-secuencia); }
+.btn-flecha-slot:disabled { opacity: 0.35; cursor: not-allowed; background: var(--color-superficie); color: var(--mod-secuencia); border-color: var(--color-borde); }
+.btn-flecha-slot:focus-visible { outline: 3px solid var(--mod-secuencia); outline-offset: 2px; }
+
+#btnPistaOrdenar:disabled,
+#btnResolverOrdenar:disabled,
+#btnComprobar:disabled { opacity: 0.45; cursor: not-allowed; }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn-flecha, .btn-ordenar-rutina { transition: none; }
+  .slot-orden,
+  .paso-disponible { transition: none; }
+  .slot-orden.pista { animation: none; }
 }
 
-@media (max-width: 480px) {
-  .paso-ordenable { grid-template-columns: 40px 48px 1fr auto auto; }
+@media (max-width: 760px) {
+  .orden-dos-columnas { grid-template-columns: 1fr; }
+  .orden-col-tu { border-right: none; border-bottom: 3px solid var(--color-borde); padding-right: 0; padding-bottom: var(--espacio); }
 }
 
-#pantallaFinal .transferencia {
-  margin: 8px auto 24px;
-  font-size: 1.1rem;
-  color: var(--color-texto-secundario, #555);
-  max-width: 480px;
+/* ---- Crea tu lista libre ---- */
+.lista-items-actual {
+  list-style: none;
+  margin: 0;
+  padding: var(--espacio);
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--mod-secuencia-suave);
+  border-radius: var(--radio);
 }
+
+.lista-items-actual .placeholder {
+  margin: 0;
+  color: var(--color-texto-suave);
+  font-style: italic;
+  text-align: center;
 }
+
+.item-lista-actual {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio);
+  padding: 10px 12px;
+  background: var(--color-superficie);
+  border-radius: 10px;
+}
+
+.item-lista-actual .texto { flex: 1; font-weight: 600; }
+
+.item-lista-actual .btn-quitar-item {
+  min-width: 44px;
+  min-height: 44px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-texto-suave);
+  font-size: 20px;
+  cursor: pointer;
+}
+.item-lista-actual .btn-quitar-item:hover { background: var(--color-borde); }
+
+.fila-anadir-item {
+  display: flex;
+  gap: var(--espacio);
+  margin: var(--espacio) 0;
+  flex-wrap: wrap;
+}
+
+.input-lista {
+  flex: 1;
+  min-width: 200px;
+  min-height: var(--boton-min);
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: var(--texto-base);
+  color: var(--color-texto);
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+#btnGuardarLista:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.nombrar-lista { gap: var(--espacio); margin: var(--espacio) 0; }
+
+.input-nombre-lista {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  min-height: var(--boton-min);
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-texto);
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+.listas-guardadas { margin-top: var(--espacio-grande); }
+
+.listas-guardadas h3 {
+  margin: 0 0 var(--espacio) 0;
+  font-size: var(--texto-base);
+  color: var(--color-texto);
+}
+
+.lista-guardada {
+  background: var(--mod-secuencia-suave);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.lista-guardada-fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px;
+}
+
+.lista-guardada-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.lista-guardada-info .nombre { font-weight: 700; color: var(--color-texto); }
+.lista-guardada-info .cantidad { font-size: var(--texto-pequeno); color: var(--color-texto-suave); }
+
+.lista-guardada-acciones { display: flex; gap: 8px; flex-shrink: 0; }
+
+.lista-guardada-acciones button {
+  min-width: var(--boton-min);
+  min-height: var(--boton-min);
+  font-size: 22px;
+  background: var(--color-superficie);
+  border: 2px solid var(--color-borde);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.lista-guardada-acciones button:hover { background: var(--color-superficie-2, #f7f4ef); }
+
+.lista-guardada-items {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--espacio) var(--espacio) var(--espacio);
+}
+.lista-guardada-items li {
+  padding: 4px 0;
+  color: var(--color-texto);
+  border-top: 1px solid var(--color-borde);
+}
+.lista-guardada-items li:first-child { border-top: none; }

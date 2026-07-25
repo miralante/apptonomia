@@ -44,5 +44,7 @@
     "ayudaSegura2": "Touch the marked piece and move it to the marked square: your rival cannot capture it there.",
     "ayudaLibre1": "Look at your red pieces. Which one can move forward diagonally?",
     "ayudaLibre2": "Touch the marked piece and move it to the marked square to advance."
-  }, 'en');
+  ,
+  "transferencia": "This trains your strategy to anticipate plays and moves."
+}, 'en');
 })();

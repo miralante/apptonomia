@@ -19,6 +19,7 @@
     "queSigueAudio": "y ahora, ¿qué sigue?",
     "explicacionCorrecta": "✅ ¡Correcto! Después de la serie viene: ",
     "explicacionIncorrectaA": "❌ Eso no sigue el patrón. Lo que sigue es: ",
-    "pista": "🤔 Prueba otra vez. Mira la serie con calma."
+    "pista": "🤔 Prueba otra vez. Mira la serie con calma.",
+  "transferencia": "Esto te servirá para reconocer patrones del día a día: los días de la semana, el orden de la rutina, las rayas del pijama o los azulejos del baño.",
   }, 'es');
 })();

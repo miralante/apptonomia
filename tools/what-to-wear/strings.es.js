@@ -17,6 +17,7 @@
     "btnOtroNivel": "Elegir otro nivel",
     "explicacionCorrecta": "✅ ¡Correcto! Esa ropa es la adecuada para ese tiempo.",
     "explicacionIncorrectaA": "❌ Esa ropa no es la adecuada. Lo correcto es: ",
-    "pista": "🤔 Prueba otra vez. Piensa en el tiempo que hace: "
+    "pista": "🤔 Prueba otra vez. Piensa en el tiempo que hace: ",
+  "transferencia": "Esto te servirá para vestirte solo/a cada día: mirar por la ventana, ver qué tiempo hace y elegir la ropa que mejor te viene.",
   }, 'es');
 })();

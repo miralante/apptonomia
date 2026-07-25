@@ -24,5 +24,7 @@
     "escenaDormitorio": "The bedroom",
     "rondaCompletadaTitulo": "Round complete!",
     "resumenFinal": "You found {n} differences. You now have {total} stars."
-  }, 'en');
+  ,
+  "transferencia": "This helps you notice details when you tidy your room."
+}, 'en');
 })();

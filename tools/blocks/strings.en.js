@@ -26,5 +26,7 @@
     "ariaColor": "Choose colour {color}",
     "ariaCeldaVacia": "Unpainted square, row {f}, column {c}",
     "ariaCeldaPintada": "{color} square, row {f}, column {c}"
-  }, 'en');
+  ,
+  "transferencia": "This helps you notice how pieces fit when you tidy or build things at home."
+}, 'en');
 })();

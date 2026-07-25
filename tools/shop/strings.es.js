@@ -57,6 +57,10 @@
     "pistaMucho": "Piensa: ¿cuánto cuesta {nombre} normalmente? ¿Mucho más o mucho menos?",
     "explicacionMuchoBien": "Normalmente, {nombre} cuesta unos {ref}. {mostrado} es un precio normal.",
     "explicacionMuchoMal": "Normalmente, {nombre} cuesta unos {ref}. {mostrado} es demasiado dinero.",
-    "resumenMucho": "Has pensado bien {n} de {t} precios."
+    "resumenMucho": "Has pensado bien {n} de {t} precios.",
+  "contexto": "Estás en una tienda con dinero en la mano. Vas a decidir si algo te llega, a pagar y a comprobar el cambio.",
+  "pista": "🤔 Cuenta el dinero despacio. ¿Te llega o no te llega?",
+  "explicacion": "✅ Así se usa el dinero de verdad. La próxima vez que pagues, hazlo con calma y comprueba el cambio.",
+  "transferencia": "Esto te servirá para hacer compras reales: saber si te llega, pagar justo y comprobar que el cambio está bien.",
   }, 'es');
 })();

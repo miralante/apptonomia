@@ -28,5 +28,7 @@
     "resumenFinal": "You won {n} stars. You now have {total} stars.",
     "btnOtroNivel": "Choose another level",
     "ariaOpcion": "Option {n}"
-  }, 'en');
+  ,
+  "transferencia": "This helps you orient yourself and understand maps and directions."
+}, 'en');
 })();

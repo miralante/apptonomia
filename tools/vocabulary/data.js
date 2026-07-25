@@ -795,7 +795,7 @@
           {
             "word": "├®tica",
             "definition": "Lo que se considera bueno o malo hacer.",
-            "example": "Por ├®tica, un m├®dico no debe mentir a su paciente.",
+            "example": "Por ├®tica, un m├®dico debe decir la verdad sobre tu salud.",
             "category": "ciencia, ideas y mundo",
             "tier": 4
           },
@@ -1627,7 +1627,7 @@
       "en": "Autonomous adult life"
     },
     "categorias": [
-      "discapacidad y apoyos",
+      "vida cotidiana y apoyos",
       "derechos y autodefensa",
       "salud, citas y consentimiento",
       "servicios sociales y ayudas",
@@ -1646,67 +1646,67 @@
     ],
     "rondas": [
       {
-        "id": "B-discapacidad-y-apoyos",
+        "id": "B-vida-cotidiana-y-apoyos",
         "bloqueId": "B",
-        "category": "discapacidad y apoyos",
+        "category": "vida cotidiana y apoyos",
         "chunkIndex": 0,
         "chunkCount": 1,
         "tier": 2,
         "words": [
           {
-            "word": "discapacidad",
-            "definition": "Una condici├│n del cuerpo o de la mente que hace que algunas cosas cuesten m├ís.",
-            "example": "Tiene una discapacidad intelectual: tarda m├ís en aprender algunas cosas.",
-            "category": "discapacidad y apoyos",
+            "word": "derecho",
+            "definition": "Algo que toda persona puede pedir o hacer porque la ley lo reconoce.",
+            "example": "Tienes derecho a que te escuchen y a que te traten con respeto.",
+            "category": "vida cotidiana y apoyos",
             "tier": 2
           },
           {
-            "word": "discapacidad intelectual",
-            "definition": "Cuando la mente tarda m├ís en aprender y en resolver problemas de la vida diaria.",
-            "example": "La persona con discapacidad intelectual necesita m├ís tiempo para hacer algunas tareas.",
-            "category": "discapacidad y apoyos",
+            "word": "intimidad",
+            "definition": "Lo privado de cada persona: su cuerpo, sus cosas y sus mensajes.",
+            "example": "No abras mis mensajes sin permiso: respeta mi intimidad.",
+            "category": "vida cotidiana y apoyos",
             "tier": 2
           },
           {
-            "word": "apoyo",
-            "definition": "Una ayuda que recibe una persona para hacer cosas que no puede hacer sola.",
-            "example": "Tiene un apoyo personal en el trabajo para las tareas m├ís dif├¡ciles.",
-            "category": "discapacidad y apoyos",
+            "word": "asociaci├│n de vecinos",
+            "definition": "Un grupo de personas del barrio que se unen para cuidar los asuntos comunes.",
+            "example": "La asociaci├│n de vecinos organiza la fiesta del barrio cada a├▒o.",
+            "category": "vida cotidiana y apoyos",
             "tier": 2
           },
           {
-            "word": "asistente personal",
-            "definition": "Una persona que ayuda a otra en su vida diaria, en casa o en el trabajo.",
-            "example": "Su asistente personal le ayuda a ir a la compra cada semana.",
-            "category": "discapacidad y apoyos",
+            "word": "servicio de atenci├│n",
+            "definition": "Un lugar al que se llama para preguntar o pedir una ayuda concreta.",
+            "example": "Llam├│ al servicio de atenci├│n al cliente para resolver su duda.",
+            "category": "vida cotidiana y apoyos",
             "tier": 2
           },
           {
-            "word": "cuidador",
-            "definition": "La persona que cuida y acompa├▒a a otra que lo necesita.",
-            "example": "Su cuidador le prepara la comida y le lleva al m├®dico.",
-            "category": "discapacidad y apoyos",
+            "word": "cita previa",
+            "definition": "Un acuerdo para ir a un sitio a una hora y d├¡a concretos.",
+            "example": "Pidi├│ cita previa en el m├®dico para el martes por la tarde.",
+            "category": "vida cotidiana y apoyos",
             "tier": 2
           },
           {
-            "word": "centro de d├¡a",
-            "definition": "Un sitio al que se va durante el d├¡a para hacer actividades y estar con otras personas.",
-            "example": "Va al centro de d├¡a de lunes a viernes y vuelve a casa por la tarde.",
-            "category": "discapacidad y apoyos",
+            "word": "queja",
+            "definition": "Lo que dices cuando algo no te ha gustado o no se ha hecho bien.",
+            "example": "Puso una queja porque la factura vino con un cargo que no esperaba.",
+            "category": "vida cotidiana y apoyos",
             "tier": 2
           },
           {
-            "word": "residencia",
-            "definition": "Un lugar donde vive una persona cuando no puede vivir sola o necesita cuidados.",
-            "example": "Vive en una residencia desde el a├▒o pasado.",
-            "category": "discapacidad y apoyos",
+            "word": "presupuesto",
+            "definition": "Una lista previa de lo que cuesta algo antes de hacerlo.",
+            "example": "Pidi├│ un presupuesto antes de empezar la obra en casa.",
+            "category": "vida cotidiana y apoyos",
             "tier": 2
           },
           {
-            "word": "asociaci├│n",
-            "definition": "Un grupo de personas unidas para ayudarse unas a otras y defender sus derechos.",
-            "example": "Pertenece a una asociaci├│n de personas con discapacidad de su ciudad.",
-            "category": "discapacidad y apoyos",
+            "word": "recibo",
+            "definition": "Un papel que demuestra que has pagado algo.",
+            "example": "Guarda el recibo por si luego tienes que reclamar.",
+            "category": "vida cotidiana y apoyos",
             "tier": 2
           }
         ]
@@ -3437,7 +3437,7 @@
           },
           {
             "word": "educaci├│n especial",
-            "definition": "Una ense├▒anza pensada para personas con discapacidad o necesidades distintas.",
+            "definition": "Una ense├▒anza con apoyos extra para quien lo necesite, en clase o en un aula aparte.",
             "example": "Asisti├│ a educaci├│n especial hasta los veinte a├▒os.",
             "category": "educaci├│n y formaci├│n",
             "tier": 3

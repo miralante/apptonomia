@@ -36,5 +36,7 @@
     "ayudaEsquina2": "Touch the marked corner: it is part of three possible lines.",
     "ayudaLibre1": "Look at the free squares. Which one helps you join your pieces in a line?",
     "ayudaLibre2": "Touch the marked square and keep joining your pieces in a line."
-  }, 'en');
+  ,
+  "transferencia": "This trains your strategy to anticipate your opponent's move."
+}, 'en');
 })();

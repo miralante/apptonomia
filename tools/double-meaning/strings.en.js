@@ -19,6 +19,10 @@
     "doubleExplanation": "✅ Correct! It can be: {m1}, or it can be: {m2}.",
     "singleExplanation": "✅ Correct! It only means: {m1}.",
     "hint": "🤔 Try again. Listen to the phrase carefully.",
-    "finalSummary": "You earned {n} stars. Now you have {total} stars."
+    "finalSummary": "You earned {n} stars. Now you have {total} stars.",
+  "contexto": "You are listening to a sentence. Some words have two meanings: pay attention to the rest of the sentence to know which one it is.",
+  "pista": "🤔 Read the whole sentence. Which meaning fits here?",
+  "explicacion": "✅ That word has two meanings: now you know both and when to use each one.",
+  "transferencia": "This will help you understand jokes and conversations better and avoid confusion with words that sound the same.",
   }, 'en');
 })();

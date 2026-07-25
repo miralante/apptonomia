@@ -17,6 +17,7 @@
     "elegirOtroTema": "Elegir otro tema",
     "explicacionCorrecta": "✅ ¡Correcto! Así se llama.",
     "explicacionIncorrectaA": "❌ No es esa palabra. Así se llama: ",
-    "pista": "🤔 Prueba otra vez. Escucha otra vez y mira bien el dibujo."
+    "pista": "🤔 Prueba otra vez. Escucha otra vez y mira bien el dibujo.",
+  "transferencia": "Esto te servirá para usar mejor las palabras nuevas en conversaciones reales, en el cole o cuando cuentes algo que te ha pasado.",
   }, 'es');
 })();

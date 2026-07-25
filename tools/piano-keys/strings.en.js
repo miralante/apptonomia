@@ -101,5 +101,7 @@
     "melodiaArcoiris": "Rainbow",
     "melodiaOndina": "Water song",
     "nota": {"C":"C","C#":"C sharp","D":"D","D#":"D sharp","E":"E","F":"F","F#":"F sharp","G":"G","G#":"G sharp","A":"A","A#":"A sharp","B":"B"}
-  }, 'en');
+  ,
+  "transferencia": "This helps you enjoy music and play with more confidence."
+}, 'en');
 })();

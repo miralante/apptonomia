@@ -111,7 +111,7 @@ const DATA = {
         text: "-Doctor, doctor, me duele aquí. -No es nada, es el codo. -¡Vaya, creía que era el pie!",
         options: [
             "Confusión humorística entre partes del cuerpo mencionadas",
-            "Los pacientes son tontos",
+            "Los doctores exageran sus respuestas",
             "Los doctores no escuchan"
         ],
         correct: 0
@@ -183,8 +183,8 @@ const DATA = {
         text: "-Doctor, doctor, ¿puedo operarme yo mismo? -¡Ni se le ocurra! -¿Por qué? -Porque me quedaré sin trabajo.",
         options: [
             "Humor negro: el doctor prioriza su trabajo",
-            "Los pacientes son irresponsables",
-            "Los doctores son egoístas"
+            "Los doctores son egoístas",
+            "Los doctores exageran"
         ],
         correct: 0
     },
@@ -675,11 +675,11 @@ const DATA = {
         correct: 0
     },
     {
-        text: "¿Qué hace un gato en la enfermería? Pide una gatoterapia.",
+        text: "¿Qué le dice un gato a otro gato? ¡Miau-presentes!",
         options: [
-            "Juego con 'gato', 'cat' (inglés) y 'terapia'",
-            "Los gatos van al médico",
-            "Los gatos necesitan tratamiento"
+            "Juego con 'mis presentes' y el sonido 'miau' (suena a 'miau-presentes')",
+            "Los gatos se llaman por su nombre",
+            "Los gatos van al colegio"
         ],
         correct: 0
     },

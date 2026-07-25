@@ -44,5 +44,7 @@
     "ayudaSegura2": "Toca la ficha marcada y muévela a la casilla marcada: ahí el rival no puede comerla.",
     "ayudaLibre1": "Mira tus fichas rojas. ¿Cuál puede avanzar en diagonal?",
     "ayudaLibre2": "Toca la ficha marcada y muévela a la casilla marcada para avanzar."
-  }, 'es');
+  ,
+  "transferencia": "Esto entrena tu estrategia para anticipar jugadas y movimientos."
+}, 'es');
 })();

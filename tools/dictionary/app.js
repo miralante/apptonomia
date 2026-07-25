@@ -111,7 +111,6 @@
     definitionText.textContent = item.definition;
     exampleText.textContent = item.example;
     paintCardProgress();
-    App.tts.speak(cardSpeech(item));
   }
 
   function nextCard() {
@@ -172,7 +171,6 @@
       quizOptions.appendChild(btn);
     });
 
-    App.tts.speak(item.word + '. ' + t('quizQuestion'));
     paintQuizProgress();
     paintStars();
   }
@@ -204,6 +202,7 @@
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(quizFeedback);
+      App.feedback.lockUntilAck(App.utils.$$('#quizOptions .btn-opcion'), quizExplanationWrap);
     }
   }
 
@@ -228,9 +227,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   }
 
   /* ---------- Eventos ---------- */
-  $('#instructionBtn').addEventListener('click', function () {
-    App.tts.speak($('#instructionText').textContent);
-  });
+
   $('#backLevelsBtnCards').addEventListener('click', goStart);
   $('#backLevelsBtnQuiz').addEventListener('click', goStart);
   nextCardBtn.addEventListener('click', nextCard);

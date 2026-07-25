@@ -126,7 +126,6 @@
       escenaEl.appendChild(btn);
     });
 
-    App.tts.speak(consigna);
     pintarProgreso();
     pintarEstrellas();
   }
@@ -168,6 +167,7 @@
         if (botonObjetivo) botonObjetivo.classList.add('sugerida');
       }
       explicacionWrap.classList.remove('oculto');
+      App.feedback.lockUntilAck(App.utils.$$('.objeto', escenaEl), explicacionWrap);
     }
   }
 
@@ -204,7 +204,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     App.tts.speak(consignaEl.textContent);
   });
   $('#btnEscucharExplicacion').addEventListener('click', function () {
-    App.tts.speak(explicacionEl.textContent);
   });
 
   pintarNiveles();

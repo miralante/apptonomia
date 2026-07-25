@@ -144,6 +144,7 @@
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(feedbackEl);
+      App.feedback.lockUntilAck(App.utils.$$('#grupo .btn-opcion'), explicacionWrap);
     }
   }
 
@@ -171,7 +172,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   /* Events */
   btnSiguiente.addEventListener('click', siguiente);
   btnEscucharExplicacion.addEventListener('click', function () {
-    App.tts.speak(explicacionEl.textContent);
   });
   $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {

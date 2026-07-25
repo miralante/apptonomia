@@ -17,6 +17,7 @@
     "btnOtroNivel": "Choose another level",
     "explicacionCorrecta": "✅ Correct! That is what you should do first.",
     "explicacionIncorrectaA": "❌ That is not first. The first thing is: ",
-    "pista": "🤔 Try again. Think about the situation again: "
+    "pista": "🤔 Try again. Think about the situation again: ",
+  "transferencia": "This will help you decide what to do first when several things pile up: at home, at school or when it is time to go out.",
   }, 'en');
 })();

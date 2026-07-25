@@ -17,6 +17,7 @@
     "btnOtroNivel": "Choose another level",
     "explicacionCorrecta": "✅ Correct! That is what you need.",
     "explicacionIncorrectaA": "❌ That is not what you need. You need: ",
-    "pista": "🤔 Try again. Read the task again: "
+    "pista": "🤔 Try again. Read the task again: ",
+  "transferencia": "This will help you get ready before starting a task at home: the school bag, the day's clothes or the ingredients for a recipe.",
   }, 'en');
 })();

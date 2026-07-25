@@ -67,5 +67,7 @@
     "casillaEstrella": "Star",
     "casillaDestino": "You can move here",
     "fila": "row {f}, column {c}"
-  }, 'en');
+  ,
+  "transferencia": "This trains your strategy and patience to think before acting."
+}, 'en');
 })();

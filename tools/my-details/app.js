@@ -247,7 +247,6 @@
     cardValue.textContent = card.value;
     paintCardProgress();
     nextCardBtn.textContent = (cardIdx === cards.length - 1) ? t('startTest') : t('core.next');
-    App.tts.speak(card.label + '. ' + card.value);
   }
 
   function startCards() {
@@ -304,7 +303,6 @@
       choiceOptions.appendChild(btn);
     });
 
-    App.tts.speak(t(item.questionKey));
     paintChoiceProgress();
     paintStars();
   }
@@ -339,6 +337,7 @@
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(choiceFeedback);
+      App.feedback.lockUntilAck(App.utils.$$('#choiceOptions .btn-opcion'), choiceExplanationWrap);
     }
   }
 
@@ -390,7 +389,6 @@
     typedCheckBtn.classList.remove('oculto');
 
     App.tts.speak(t(item.questionKey));
-    paintTypedProgress();
     paintStars();
     setTimeout(function () { typedInput.focus(); }, 50);
   }
@@ -488,9 +486,6 @@
     var card = cards[cardIdx];
     App.tts.speak(card.label + '. ' + card.value);
   });
-  $('#instructionBtn').addEventListener('click', function () {
-    App.tts.speak($('#cardsScreen .instruction').textContent);
-  });
 
   choiceListenBtn.addEventListener('click', function () {
     App.tts.speak(t(choiceItems[choiceIdx].questionKey));
@@ -528,8 +523,7 @@
       show(emptyScreen);
       App.tts.speak(t('emptyTitle') + '. ' + t('emptyText'));
       return;
-    }
-    startCards();
+    }artCards();
   }
 
   document.addEventListener('DOMContentLoaded', init);

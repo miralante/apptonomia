@@ -18,5 +18,7 @@
     "otroNivel": "Elegir otro nivel",
     "veces": "{n} veces",
     "resumenFinal": "Has completado {n} puzles. Ahora tienes {total} estrellas."
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a fijarte en la imagen completa cuando ordenas o montas."
+}, 'es');
 })();

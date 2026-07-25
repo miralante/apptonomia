@@ -139,7 +139,6 @@
       optionsEl.appendChild(btn);
     });
 
-    App.tts.speak(item.word);
     paintProgress();
     paintStars();
   }
@@ -165,7 +164,6 @@
       if (attempts === 1) {
         explanationEl.textContent = t('hint') + '"' + maskedWord(item) + '"';
         explanationWrap.classList.remove('oculto');
-        App.tts.speak(item.word);
       } else {
         explanationEl.textContent = t('wrongExplanationPrefix') + item.word;
         explanationWrap.classList.remove('oculto');
@@ -173,6 +171,7 @@
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(feedbackEl);
+      App.feedback.lockUntilAck(App.utils.$$('#options .btn-opcion'), explanationWrap);
     }
   }
 
@@ -197,9 +196,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   }
 
   /* ---------- Eventos ---------- */
-  $('#instructionBtn').addEventListener('click', function () {
-    App.tts.speak($('#instructionText').textContent);
-  });
+
   $('#backLevelsBtn').addEventListener('click', goStart);
   listenBtn.addEventListener('click', function () {
     App.tts.speak(items[idx].word);

@@ -16,6 +16,10 @@
     "ariaTarea": "Task",
     "veces": "times",
     "resumenFinal": "You won {n} stars. You now have {total} stars.",
-    "btnOtroNivel": "Choose another level"
+    "btnOtroNivel": "Choose another level",
+  "contexto": "You have several tasks to do during the day. Put them in a good order.",
+  "pista": "🤔 Think: what do you have to do first today?",
+  "explicacion": "✅ That is how to plan a day. Starting with the important things makes everything easier.",
+  "transferencia": "This will help you organise your real day: at home, at school or when there is a lot to do.",
   }, 'en');
 })();

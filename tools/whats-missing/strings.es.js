@@ -27,6 +27,7 @@
     "resumenFinal": "Has ganado {n} estrellas. Ahora tienes {total} estrellas.",
     "explicacionCorrecta": "✅ ¡Correcto! Eso era lo que faltaba.",
     "explicacionIncorrectaA": "❌ Eso no faltaba. Lo que faltaba era: ",
-    "pista": "🤔 Prueba otra vez. Piensa en los objetos que viste."
+    "pista": "🤔 Prueba otra vez. Piensa en los objetos que viste.",
+  "transferencia": "Esto te servirá para fijarte en los detalles del día a día: al poner la mesa, al preparar la mochila o al recoger la compra.",
   }, 'es');
 })();

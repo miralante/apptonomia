@@ -15,6 +15,7 @@
     "explicacionCorrecta": "✅ Correct! That is what it means.",
     "explicacionIncorrectaA": "❌ That is not what it means. It means: ",
     "explicacionIncorrectaB": "",
-    "pista": "🤔 Try again. Read the idiom again: "
+    "pista": "🤔 Try again. Read the idiom again: ",
+  "transferencia": "This will help you understand older people, songs and films better, because many idioms come up in everyday talk.",
   }, 'en');
 })();

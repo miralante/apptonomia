@@ -207,17 +207,13 @@
       if (i === -1) return;
       elegirHueco(i);          /* marca el hueco (clase .activa) y reinicia ayudaPaso */
       ayudaPaso = 1;
-      var texto1 = App.i18n.t('ayudaPaso1');
-      explicacionEl.textContent = texto1;
+      explicacionEl.textContent = App.i18n.t('ayudaPaso1');
       explicacionWrap.classList.remove('oculto');
-      App.tts.speak(texto1);
     } else {
       ayudaPaso = 2;
       var picto = tema[solucion[huecoActivo]];
-      var texto2 = App.i18n.t('ayudaPaso2').replace('{picto}', picto);
-      explicacionEl.textContent = texto2;
+      explicacionEl.textContent = App.i18n.t('ayudaPaso2').replace('{picto}', picto);
       explicacionWrap.classList.remove('oculto');
-      App.tts.speak(texto2);
     }
   }
 
@@ -318,14 +314,10 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     pintarNiveles();
     pantallaInicio.classList.remove('oculto');
   });
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent + App.i18n.t('instruccionNivel'));
-  });
+
   $('#btnEstado').addEventListener('click', function () {
-    App.tts.speak(estadoEl.textContent);
   });
   $('#btnEscucharExplicacion').addEventListener('click', function () {
-    App.tts.speak(explicacionEl.textContent);
   });
 
   pintarNiveles();

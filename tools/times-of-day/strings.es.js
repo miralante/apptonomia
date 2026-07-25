@@ -16,6 +16,7 @@
     "elegirOtroNivel": "Elegir otro nivel",
     "explicacionCorrecta": "✅ ¡Correcto! Va en ese momento del día.",
     "explicacionIncorrectaA": "❌ Ese no es el momento. Va en: ",
-    "pista": "🤔 Prueba otra vez. Piensa cuándo se hace esa tarea normalmente."
+    "pista": "🤔 Prueba otra vez. Piensa cuándo se hace esa tarea normalmente.",
+  "transferencia": "Esto te servirá para organizar mejor tu día: saber si lo que toca es de mañana, de tarde o de noche ayuda a no perderte entre tantas cosas.",
   }, 'es');
 })();

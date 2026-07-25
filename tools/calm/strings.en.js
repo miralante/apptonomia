@@ -21,6 +21,10 @@
     "veces": "times",
     "estrellaSingular": "star",
     "estrellaPlural": "stars",
-    "resumenFinal": "You now have {n} {palabra}."
+    "resumenFinal": "You now have {n} {palabra}.",
+  "contexto": "You are in a quiet place. You will breathe following a circle that grows and shrinks, at your own pace.",
+  "pista": "🤔 Just follow the circle's rhythm. It is fine if you lose the beat.",
+  "explicacion": "✅ This is how to breathe to calm down. Next time you feel nervous, try it at your own pace.",
+  "transferencia": "This will help you relax when you feel nervous, angry or have to wait for a long time.",
   }, 'en');
 })();

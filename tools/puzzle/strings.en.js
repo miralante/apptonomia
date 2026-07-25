@@ -18,5 +18,7 @@
     "otroNivel": "Choose another level",
     "veces": "{n} times",
     "resumenFinal": "You completed {n} puzzles. You now have {total} stars."
-  }, 'en');
+  ,
+  "transferencia": "This helps you see the whole picture when you tidy or build."
+}, 'en');
 })();

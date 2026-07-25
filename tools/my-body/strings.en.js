@@ -8,6 +8,7 @@
 
   App.i18n.register({
     "title": "💗 My Body Tells Me",
+    "contexto": "You are in a real-life situation. You feel something in your body: hunger, sleepiness, pain, heat, cold, tiredness or a strong emotion. You have to decide what to do.",
     "instruccion": "Read what you notice in your body. Choose what you do.",
     "instruccionNivel": " First, choose the level.",
     "elegirNivel": "Choose the level",
@@ -17,6 +18,7 @@
     "btnOtroNivel": "Choose another level",
     "explicacionCorrecta": "✅ Correct! That takes care of your body.",
     "explicacionIncorrectaA": "❌ That does not take care of your body. The right answer is: ",
-    "pista": "🤔 Try again. Think about what you notice: "
+    "pista": "🤔 Try again. Think about what you notice: ",
+  "transferencia": "This will help you read what your body is telling you: if something hurts, itches or bothers you, you can explain it better to the person who looks after you.",
   }, 'en');
 })();

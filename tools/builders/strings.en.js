@@ -49,5 +49,7 @@
     "plantillaRio": "River with bridges",
     "resumenLibre": "You placed {n} blocks. Great!",
     "resumenPlantilla": "You completed the model with {n} blocks."
-  }, 'en');
+  ,
+  "transferencia": "This helps you imagine and build things on your own."
+}, 'en');
 })();

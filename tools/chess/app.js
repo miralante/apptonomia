@@ -335,7 +335,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     var texto = App.i18n.t('ayudaPuzzle' + ayudaPasoP);
     ayudaPiezasTextoEl.textContent = texto;
     ayudaPiezasWrap.classList.remove('oculto');
-    if (ayudaPasoP === 2) botonesP[mejorDestinoPuzzle()].classList.add('sugerida');
     App.tts.speak(texto);
   }
 
@@ -647,10 +646,8 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   });
 
   $('#btnEstadoPiezas').addEventListener('click', function () {
-    App.tts.speak(estadoPiezasEl.textContent);
   });
   $('#btnEstadoPartida').addEventListener('click', function () {
-    App.tts.speak(estadoPartidaEl.textContent);
   });
 
   pintarEstrellas();

@@ -17,6 +17,7 @@
     "btnOtroNivel": "Choose another level",
     "explicacionCorrecta": "✅ Correct! That is the best thing to do here.",
     "explicacionIncorrectaA": "❌ That is not the best choice here. The best choice is: ",
-    "pista": "🤔 Try again. Think about the situation again: "
+    "pista": "🤔 Try again. Think about the situation again: ",
+  "transferencia": "This will help you think before acting in everyday life: at the shop, at school or when something new catches you off guard.",
   }, 'en');
 })();

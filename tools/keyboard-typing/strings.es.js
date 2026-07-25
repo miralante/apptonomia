@@ -67,5 +67,7 @@
     "derechaEtiqueta": "Derecha",
     "dedo": {"lp":{"mano":"izquierda","nombre":"meñique"},"lr":{"mano":"izquierda","nombre":"anular"},"lm":{"mano":"izquierda","nombre":"medio"},"li":{"mano":"izquierda","nombre":"índice"},"ri":{"mano":"derecha","nombre":"índice"},"rm":{"mano":"derecha","nombre":"medio"},"rr":{"mano":"derecha","nombre":"anular"},"rp":{"mano":"derecha","nombre":"meñique"},"th":{"mano":"las dos","nombre":"pulgar"},"lt":{"mano":"izquierda","nombre":"pulgar"},"rt":{"mano":"derecha","nombre":"pulgar"}},
     "teclaLabel": {"espacio":"espacio","tab":"Tab","mayus":"Mayús","intro":"Intro","borrar":"Borrar"}
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a escribir mensajes reales a la familia en el ordenador."
+}, 'es');
 })();

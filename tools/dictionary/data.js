@@ -218,7 +218,7 @@ var DATA = {
         { word: 'patrimonio', definition: 'Todo lo importante de un lugar que viene del pasado, como monumentos o costumbres.', example: 'La catedral es parte del patrimonio de la ciudad.' },
         { word: 'civilización', definition: 'Un grupo grande de personas que vive de forma organizada, con normas y cultura.', example: 'Los romanos fueron una gran civilización.' },
         { word: 'filosofía', definition: 'La forma de pensar sobre la vida y sus grandes preguntas.', example: 'La filosofía intenta responder qué es la felicidad.' },
-        { word: 'ética', definition: 'Lo que se considera bueno o malo hacer.', example: 'Por ética, un médico no debe mentir a su paciente.' },
+        { word: 'ética', definition: 'Lo que se considera bueno o malo hacer.', example: 'Por ética, un médico debe decir la verdad sobre tu salud.' },
         { word: 'empírico', definition: 'Que se sabe porque se ha comprobado, no porque se imagina.', example: 'El resultado es empírico: se comprobó varias veces en el laboratorio.' },
         { word: 'objetivo', definition: 'Que se basa en hechos reales, no en lo que uno siente.', example: 'El árbitro debe ser objetivo y no favorecer a ningún equipo.' }
       ]
@@ -430,7 +430,7 @@ var DATA = {
         { word: 'heritage', definition: 'Everything important from the past that belongs to a place, like buildings or customs.', example: "The cathedral is part of the city's heritage." },
         { word: 'civilization', definition: 'A large group of people living in an organized way, with rules and culture.', example: 'The Romans were a great civilization.' },
         { word: 'philosophy', definition: 'A way of thinking about life and its big questions.', example: 'Philosophy tries to answer what happiness is.' },
-        { word: 'ethics', definition: 'What is thought to be right or wrong to do.', example: 'For ethics, a doctor should never lie to a patient.' },
+        { word: 'ethics', definition: 'What is thought to be right or wrong to do.', example: 'For ethics, a doctor should tell the truth about your health.' },
         { word: 'empirical', definition: 'Known because it has been tested, not just imagined.', example: 'The result is empirical: it was checked several times in the lab.' },
         { word: 'objective', definition: 'Based on real facts, not on what someone feels.', example: 'The referee must be objective and not favour any team.' }
       ]

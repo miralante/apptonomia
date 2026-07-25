@@ -40,6 +40,10 @@
     increase: 'Increase one amount',
     euro: '{value} euros',
     meter: '{value} metres',
-    liter: '{value} litres'
+    liter: '{value} litres',
+  "contexto": "You are measuring or comparing everyday amounts: little or a lot, more or less, how many are missing.",
+  "pista": "🤔 Look at the picture calmly. Is it a little or a lot?",
+  "explicacion": "✅ That is how to estimate. Next time, try thinking about it before you measure.",
+  "transferencia": "This will help you calculate real amounts: at the shop, in the kitchen, sharing things out or measuring.",
   }, 'en');
 })();

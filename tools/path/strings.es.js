@@ -23,5 +23,7 @@
     "ariaIzquierda": "Mover a la izquierda",
     "ariaDerecha": "Mover a la derecha",
     "ariaTablero": "Tablero del camino"
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a seguir indicaciones y llegar a un sitio por ti mismo/a."
+}, 'es');
 })();

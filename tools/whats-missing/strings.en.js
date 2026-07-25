@@ -27,6 +27,7 @@
     "resumenFinal": "You won {n} stars. You now have {total} stars.",
     "explicacionCorrecta": "✅ Correct! That is what was missing.",
     "explicacionIncorrectaA": "❌ That was not missing. What was missing was: ",
-    "pista": "🤔 Try again. Think about the objects you saw."
+    "pista": "🤔 Try again. Think about the objects you saw.",
+  "transferencia": "This will help you notice small details in everyday life: setting the table, packing the school bag or putting the shopping away.",
   }, 'en');
 })();

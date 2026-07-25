@@ -16,6 +16,7 @@
     "elegirOtroNivel": "Choose another level",
     "explicacionCorrecta": "✅ Correct! The sentence says: ",
     "explicacionIncorrectaA": "❌ No. The correct answer is: ",
-    "pista": "🤔 Try again. Read the sentence again: "
+    "pista": "🤔 Try again. Read the sentence again: ",
+  "transferencia": "This will help you understand the sentences you read: signs, phone messages, the school menu or the rules of a game.",
   }, 'en');
 })();

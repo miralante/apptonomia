@@ -1,7 +1,7 @@
 /* ============================================================
    Apptonomia — Constructores (lógica)
-   Minecraft simplificado para visión-espacial y discapacidad
-   intelectual. Dos modos:
+   Spatial-visual sandbox inspired by block-building games.
+   Two modes:
    - Libre: la persona elige el tamaño del mundo (pequeño/mediano/
      grande, DATA.tamanos) y construye lo que quiera. Sin acierto/
      fallo; estrella al pulsar "¡Listo!" con al menos 1 bloque.
@@ -414,6 +414,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     pantallaJuego.classList.add('oculto');
     pantallaFinal.classList.remove('oculto');
 
+    App.feedback.success(feedbackEl);
     App.feedback.celebrate(App.i18n.t('finalTitulo'));
   }
 

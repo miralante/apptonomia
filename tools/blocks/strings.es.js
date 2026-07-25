@@ -26,5 +26,7 @@
     "ariaColor": "Elegir color {color}",
     "ariaCeldaVacia": "Casilla sin pintar, fila {f}, columna {c}",
     "ariaCeldaPintada": "Casilla {color}, fila {f}, columna {c}"
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a fijarte en cómo encajan las piezas cuando ordenas o montas cosas."
+}, 'es');
 })();

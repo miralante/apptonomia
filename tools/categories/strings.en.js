@@ -16,6 +16,7 @@
     "elegirOtroNivel": "Choose another level",
     "explicacionCorrecta": "✅ Correct! That is the right group.",
     "explicacionIncorrectaA": "❌ That is not the group. It goes in: ",
-    "pista": "🤔 Try again. Think carefully about what the word is."
+    "pista": "🤔 Try again. Think carefully about what the word is.",
+  "transferencia": "This will help you sort everyday things: laundry by colour, the shopping by aisle, the cutlery when clearing the table.",
   }, 'en');
 })();

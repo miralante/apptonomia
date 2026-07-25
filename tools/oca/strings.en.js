@@ -19,5 +19,7 @@
     "regalo": "🎁 Gift! One more star.",
     "meta": "Finish!",
     "resumenFinal": "You reached the finish. You now have {total} stars."
-  }, 'en');
+  ,
+  "transferencia": "This helps you count squares and wait your turn in games."
+}, 'en');
 })();

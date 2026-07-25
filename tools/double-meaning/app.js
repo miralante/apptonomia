@@ -81,6 +81,7 @@
   var idx = 0;
   var correctCount = 0;
   var resolved = false;
+  var attempts = 0;   /* Socratic counter per item (rule 12) */
 
   function startLevel(level) {
     currentLevel = level;
@@ -101,6 +102,7 @@
   function render() {
     var item = items[idx];
     resolved = false;
+    attempts = 0;
     sentenceText.textContent = item.sentence;
     feedbackEl.textContent = '';
     feedbackEl.className = 'feedback';
@@ -121,7 +123,6 @@
       optionsEl.appendChild(btn);
     });
 
-    App.tts.speak(item.sentence);
     paintProgress();
     paintStars();
   }
@@ -142,12 +143,18 @@
       nextBtn.classList.remove('oculto');
       nextBtn.focus();
     } else {
-      explanationEl.textContent = t('hint');
+      attempts += 1;
+      if (attempts === 1) {
+        explanationEl.textContent = t('hint');
+      } else {
+        explanationEl.textContent = explanationFor(item);
+      }
       explanationWrap.classList.remove('oculto');
       App.tts.speak(item.sentence);
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(feedbackEl);
+      App.feedback.lockUntilAck(App.utils.$$('#options .btn-opcion'), explanationWrap);
     }
   }
 
@@ -172,9 +179,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   }
 
   /* ---------- Eventos ---------- */
-  $('#instructionBtn').addEventListener('click', function () {
-    App.tts.speak($('#instructionText').textContent);
-  });
+
   $('#backLevelsBtn').addEventListener('click', goStart);
   listenBtn.addEventListener('click', function () {
     App.tts.speak(items[idx].sentence);

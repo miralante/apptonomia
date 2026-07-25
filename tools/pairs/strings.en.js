@@ -25,5 +25,7 @@
     "resumenFinalVarias": "You found all the pairs. You win {n} stars.",
     "celebrarTexto": "All the pairs!",
     "otroNivel": "Choose another level"
-  }, 'en');
+  ,
+  "transferencia": "This helps you remember where each thing is at home."
+}, 'en');
 })();

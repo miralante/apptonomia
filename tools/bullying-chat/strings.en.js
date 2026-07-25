@@ -21,7 +21,11 @@
     "reglaFinalTitulo": "⭐ Remember this",
     "volverAChats": "Back to the chats",
     "chatSuperado": "Chat completed!",
-    "paraRecordarHablado": "Remember this."
+    "paraRecordarHablado": "Remember this.",
+  "contexto": "You are in a chat with someone from school. That person insults you, leaves you out or makes you feel bad.",
+  "pista": "🤔 Read the message again. How would you feel if someone said that to you?",
+  "explicacion": "✅ That is not your fault: telling a trusted adult is always the best choice.",
+  "transferencia": "This will help you know what to do if someone makes you feel bad over chat, at school or anywhere.",
   }, 'en');
 
 })();

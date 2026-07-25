@@ -173,7 +173,6 @@
     paintWords();
     paintBoard();
     show(gameScreen);
-    App.tts.speak(t('howToPlay'));
   }
 
   function paintWords() {
@@ -226,7 +225,6 @@
     if (firstSel === -1) {
       firstSel = idx;
       e.currentTarget.classList.add('sel');
-      App.tts.speak(letters[idx]);
       return;
     }
     if (firstSel === idx) { /* tapping the same letter releases it */
@@ -290,7 +288,6 @@
     }
     paintWords();
     App.feedback.success(feedbackEl);
-    App.tts.speak(t('wordFound').replace('{word}', match.text));
     var pending = words.some(function (w) { return !w.found; });
     if (!pending) finish();
   }
@@ -318,7 +315,6 @@
     var msg = t(isFirst ? 'hintMessage' : 'hintAnotherLetter').replace('{word}', w.text);
     feedbackEl.textContent = msg;
     feedbackEl.className = 'feedback';
-    App.tts.speak(msg);
   }
 
   /* ---------- Keyboard navigation on the board ---------- */
@@ -360,7 +356,6 @@
 $('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.celebrate(App.i18n.pick('feedback.success'), function () {
       show(endScreen);
-      App.tts.speak(t('core.roundComplete') + ' ' + summary);
     });
   }
 
@@ -370,12 +365,8 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     App.i18n.apply();
     paintStars();
     paintTopics();
-    $('#instructionBtn').addEventListener('click', function () {
-      App.tts.speak(t('fullInstruction'));
-    });
-    $('#howToPlayBtn').addEventListener('click', function () {
-      App.tts.speak(t('howToPlay'));
-    });
+
+
     hintBtn.addEventListener('click', giveHint);
     boardEl.addEventListener('keydown', onBoardKeydown);
     $('#backTopicsBtn').addEventListener('click', function () { show(startScreen); });

@@ -40,5 +40,7 @@
     "etiquetaCadena": "La mesa",
     "etiquetaMano": "Tus fichas",
     "fichasRival": "Fichas del rival: {n}"
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a emparejar y contar fichas en juegos de mesa."
+}, 'es');
 })();

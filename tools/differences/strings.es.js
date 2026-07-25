@@ -24,5 +24,7 @@
     "escenaDormitorio": "El dormitorio",
     "rondaCompletadaTitulo": "¡Ronda completada!",
     "resumenFinal": "Has encontrado {n} diferencias. Ahora tienes {total} estrellas."
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a fijarte en los detalles cuando ordenas tu cuarto."
+}, 'es');
 })();

@@ -24,6 +24,7 @@
   /* Chat en curso */
   var escenario = null;
   var idx = 0;
+  var intentos = 0;   /* Socratic counter per option (rule 12) */
 
   function guardar() { App.storage.set(TOOL_ID, progreso); }
   function pintarEstrellas() { $('#stars').textContent = '⭐ ' + progreso.estrellas; }
@@ -151,6 +152,7 @@
 
   function pintarEleccion(paso) {
     limpiarZonaRespuesta();
+    intentos = 0;
     $('#chatPregunta').classList.remove('oculto');
     var cont = $('#chatOpciones');
     App.utils.shuffle(paso.opciones).forEach(function (op) {
@@ -178,11 +180,13 @@
         siguientePaso();
       }, DELAY + 2600);
     } else {
+      intentos += 1;
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage($('#feedback'));
-      $('#consejoTexto').textContent = op.aviso;
+      $('#consejoTexto').textContent = (intentos === 1 && op.pista) ? op.pista : op.aviso;
       $('#consejo').classList.remove('oculto');
+      App.feedback.lockUntilAck($$('#chatOpciones .btn-opcion'), $('#consejo'));
     }
   }
 
@@ -228,10 +232,8 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   $('#btnSalirChat').addEventListener('click', irMenu);
   $('#btnVolverMenu').addEventListener('click', irMenu);
   $('#btnConsejo').addEventListener('click', function () {
-    App.tts.speak($('#consejoTexto').textContent);
   });
   $('#btnConsejoSeguro').addEventListener('click', function () {
-    App.tts.speak($('#consejoSeguroTexto').textContent);
   });
   $('#btnRegla').addEventListener('click', function () {
     App.tts.speak(App.i18n.t('paraRecordarHablado') + ' ' + $('#reglaTexto').textContent);

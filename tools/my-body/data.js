@@ -62,6 +62,26 @@ const DATA = {
           { text: 'Por la noche no puedes dormir porque no paras de pensar.', options: ['Respirar despacio y contárselo a alguien al día siguiente', 'Quedarte con el móvil hasta muy tarde', 'No contárselo nunca a nadie'], correct: 0 },
           { text: 'Notas que el ruido fuerte te molesta mucho y te pone nervioso.', options: ['Ir a un sitio más tranquilo o pedir bajar el volumen', 'Quedarte aunque lo pases mal', 'Gritar más fuerte que el ruido'], correct: 0 }
         ]
+      },
+      {
+        id: 3,
+        nombre: 'Nivel 3',
+        descripcion: 'Las señales previas al bajón',
+        estrellas: 3,
+        items: [
+          { text: 'Llevas mucho rato con la mirada fija y notas la vista cansada.', options: ['Parar, mirar lejos unos segundos y descansar los ojos', 'Seguir mirando lo mismo sin parar', 'Frotarte los ojos muy fuerte'], correct: 0 },
+          { text: 'Aprietas la mandíbula sin darte cuenta.', options: ['Soltar la mandíbula, bostezar suave y respirar', 'Apretar más fuerte los dientes', 'No decir nada y aguantar'], correct: 0 },
+          { text: 'Sientes el cuerpo rígido, como si te hubieras quedado "congelado".', options: ['Mover un poco los dedos y los pies y respirar despacio', 'Quedarte muy quieto sin respirar', 'Empujar algo con fuerza'], correct: 0 },
+          { text: 'Notas la respiración muy corta, como si solo usaras el pecho.', options: ['Hacer una respiración lenta hasta la tripa, como en Calma', 'Respirar más rápido y por la boca', 'Aguantar el aire hasta que se pase'], correct: 0 },
+          { text: 'Te pican las manos y necesitas moverlas todo el rato.', options: ['Levantarte y estirar las manos un momento', 'Quedarte sentado sin moverte', 'Golpear la mesa'], correct: 0 },
+          { text: 'Notas el corazón muy rápido sin haber corrido.', options: ['Parar, respirar despacio y decir cómo te sientes', 'Seguir igual sin decir nada', 'Tomar una medicina tú solo'], correct: 0 },
+          { text: 'Llevas un rato con una postura encorvada y notas el cuello rígido.', options: ['Enderezarte despacio y mover el cuello con cuidado', 'Seguir encorvado hasta que duela más', 'Girar el cuello de golpe'], correct: 0 },
+          { text: 'Notas calor en la cara y las orejas antes de un momento difícil.', options: ['Alejarte un momento, beber agua y respirar', 'Esconderte bajo la manta sin decir nada', 'Gritar lo primero que se te ocurra'], correct: 0 },
+          { text: 'Tienes la tripa revuelta antes de algo que te pone nervioso.', options: ['Respirar despacio y contárselo a alguien de confianza', 'Comer mucho para "que se pase"', 'Aguantar sin decir nada'], correct: 0 },
+          { text: 'Te sientes muy irritable por todo y cualquier cosa te molesta.', options: ['Parar un momento, respirar y decir que necesitas un descanso', 'Gritar a quien tengas al lado', 'Esconderte y no hablar con nadie en todo el día'], correct: 0 },
+          { text: 'Te cuesta entender lo que te dicen porque la cabeza va muy rápido.', options: ['Pedir que te lo repitan más despacio y respirar', 'Decir que sí sin entender', 'Irte sin decir nada'], correct: 0 },
+          { text: 'Tienes los hombros muy altos, casi tocando las orejas.', options: ['Bajar los hombros despacio y soltar el aire', 'Subirlos más todavía', 'No darte cuenta y seguir tenso'], correct: 0 }
+        ]
       }
     ]
   },
@@ -108,6 +128,26 @@ const DATA = {
           { text: 'You have been sitting a while and your body feels restless, legs moving non-stop.', options: ['Get up for a moment to stretch or walk', 'Force yourself to stay still', 'Kick the chair in front of you'], correct: 0 },
           { text: 'At night you cannot sleep because your mind will not stop.', options: ['Breathe slowly and tell someone the next day', 'Stay on your phone until very late', 'Never tell anyone'], correct: 0 },
           { text: 'Loud noise bothers you a lot and makes you nervous.', options: ['Go somewhere quieter or ask to lower the volume', 'Stay even though you feel bad', 'Shout louder than the noise'], correct: 0 }
+        ]
+      },
+      {
+        id: 3,
+        nombre: 'Level 3',
+        descripcion: 'Early-warning signals before a crash',
+        estrellas: 3,
+        items: [
+          { text: 'You have been staring for a long time and your eyes feel tired.', options: ['Stop, look far away for a few seconds and rest your eyes', 'Keep staring without stopping', 'Rub your eyes very hard'], correct: 0 },
+          { text: 'You clench your jaw without noticing.', options: ['Let your jaw go, yawn softly and breathe', 'Clench your teeth harder', 'Say nothing and hold it in'], correct: 0 },
+          { text: 'Your body feels stiff, as if you had frozen in place.', options: ['Move your fingers and toes a little and breathe slowly', 'Stay very still without breathing', 'Push something hard'], correct: 0 },
+          { text: 'Your breathing is very short, as if you only used your chest.', options: ['Take a slow breath down to your tummy, like in Calm', 'Breathe faster through your mouth', 'Hold your breath until it passes'], correct: 0 },
+          { text: 'Your hands feel restless and you need to move them all the time.', options: ['Get up and stretch your hands for a moment', 'Stay seated without moving', 'Hit the table'], correct: 0 },
+          { text: 'Your heart beats very fast without having run.', options: ['Stop, breathe slowly and say how you feel', 'Carry on without saying anything', 'Take medicine by yourself'], correct: 0 },
+          { text: 'You have been slouched for a while and your neck feels stiff.', options: ['Sit up slowly and move your neck carefully', 'Stay slouched until it hurts more', 'Twist your neck suddenly'], correct: 0 },
+          { text: 'Your face and ears feel hot before a difficult moment.', options: ['Step away for a moment, drink water and breathe', 'Hide under a blanket without telling anyone', 'Shout the first thing that comes to mind'], correct: 0 },
+          { text: 'Your tummy feels upset before something that makes you nervous.', options: ['Breathe slowly and tell someone you trust', 'Eat a lot to "make it go away"', 'Hold it in without telling anyone'], correct: 0 },
+          { text: 'You feel very irritable and anything bothers you.', options: ['Pause for a moment, breathe and say you need a break', 'Shout at whoever is nearby', 'Hide and not talk to anyone all day'], correct: 0 },
+          { text: 'It is hard to understand what people say because your head is going too fast.', options: ['Ask them to repeat it slowly and breathe', 'Say yes without understanding', 'Leave without saying anything'], correct: 0 },
+          { text: 'Your shoulders are very high, almost touching your ears.', options: ['Lower your shoulders slowly and let the air out', 'Raise them even higher', 'Do not notice and stay tense'], correct: 0 }
         ]
       }
     ]

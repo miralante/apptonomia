@@ -19,5 +19,7 @@
     "regalo": "🎁 ¡Regalo! Una estrella más.",
     "meta": "¡Meta!",
     "resumenFinal": "Has llegado a la meta. Ahora tienes {total} estrellas."
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a contar casillas y a esperar tu turno en juegos."
+}, 'es');
 })();

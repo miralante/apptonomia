@@ -23,6 +23,7 @@
     "instruccionLlamada": "Touch the steps in the right order to ask for help: first who you are, then what is happening, then where you are.",
     "etiquetaOrden": "Your call",
     "etiquetaPasos": "Steps",
-    "ariaPaso": "Call step"
+    "ariaPaso": "Call step",
+    "transferencia": "What you practice here also works in everyday life: spotting a real emergency, calling 112 with clear information and staying calm are things that may be needed at home, at school or on the street."
   }, 'en');
 })();

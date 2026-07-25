@@ -22,6 +22,10 @@
     "correctExplanation": "✅ Correct! The number is 112.",
     "wrongExplanationPrefix": "❌ That is not right. The right thing is: ",
     "hint": "🤔 Try again. Think about the situation: ",
-    "finalSummary": "You earned {n} stars. Now you have {total} stars."
+    "finalSummary": "You earned {n} stars. Now you have {total} stars.",
+  "contexto": "You are in a situation where you need help. You have to know which number to call and what to say.",
+  "pista": "🤔 Think: is it police, fire or a medical emergency?",
+  "explicacion": "✅ 112 works for any real emergency. Knowing it by heart can help you a lot.",
+  "transferencia": "This will help you call for help quickly if something happens at home, in the street or with someone who is unwell.",
   }, 'en');
 })();

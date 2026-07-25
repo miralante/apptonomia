@@ -16,6 +16,7 @@
     "elegirOtroNivel": "Choose another level",
     "explicacionCorrecta": "✅ Correct! That is the right place.",
     "explicacionIncorrectaA": "❌ That is not the place. It goes in: ",
-    "pista": "🤔 Try again. Think about what that object is used for."
+    "pista": "🤔 Try again. Think about what that object is used for.",
+  "transferencia": "This will help you find things at home: knowing where each object goes makes you more independent and stops you from asking all the time.",
   }, 'en');
 })();

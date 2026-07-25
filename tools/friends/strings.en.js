@@ -17,6 +17,7 @@
     "btnOtroNivel": "Choose another level",
     "explicacionCorrecta": "✅ Correct!",
     "explicacionIncorrectaA": "❌ That is not it. The correct answer is: ",
-    "pista": "🤔 Try again. Think about the situation again: "
+    "pista": "🤔 Try again. Think about the situation again: ",
+  "transferencia": "This will help you react when a friend is sad, angry or needs you, and handle small conflicts better.",
   }, 'en');
 })();

@@ -24,6 +24,10 @@
     "btnOtroNivel": "Elegir otro nivel",
     "ariaSitioFondo": "Sitio del fondo, columna {c}",
     "ariaSitioDelante": "Sitio de delante, columna {c}",
-    "ariaOcupado": "{nombre}, columna {c}"
+    "ariaOcupado": "{nombre}, columna {c}",
+  "contexto": "Estás montando una escena: tienes que colocar cada personaje en su sitio para que la frase tenga sentido.",
+  "pista": "🤔 Lee la frase. ¿Quién va delante y quién va detrás?",
+  "explicacion": "✅ Así se entiende la escena. Saber colocar las cosas en el sitio es útil en la vida de cada día.",
+  "transferencia": "Esto te servirá para entender mejor las instrucciones de lugar (delante, detrás) en la vida real y en los cuentos.",
   }, 'es');
 })();

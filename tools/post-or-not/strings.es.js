@@ -17,6 +17,7 @@
     "btnOtroNivel": "Elegir otro nivel",
     "explicacionCorrecta": "✅ ¡Correcto! Eso es lo más seguro.",
     "explicacionIncorrectaA": "❌ Eso no es lo más seguro. Lo más seguro es: ",
-    "pista": "🤔 Prueba otra vez. Vuelve a pensar en la situación: "
+    "pista": "🤔 Prueba otra vez. Vuelve a pensar en la situación: ",
+  "transferencia": "Esto te servirá para decidir antes de publicar cualquier cosa en tu móvil o en redes, y para pedir ayuda si algo te hace sentir mal.",
   }, 'es');
 })();

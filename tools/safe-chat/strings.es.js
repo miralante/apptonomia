@@ -23,6 +23,10 @@
     "reglaFinalTitulo": "⭐ Para recordar",
     "volverAChats": "Volver a los chats",
     "chatSuperado": "¡Chat superado!",
-    "paraRecordarHablado": "Para recordar."
+    "paraRecordarHablado": "Para recordar.",
+  "contexto": "Estás hablando por chat con alguien que no conoces. Esa persona te pide algo: una foto, un secreto o quedar.",
+  "pista": "🤔 ¿Te parece normal lo que pide? ¿Lo harías con alguien que no conoces?",
+  "explicacion": "✅ En internet nunca se comparte algo así con desconocidos. Contar a una persona adulta de confianza es lo correcto.",
+  "transferencia": "Esto te servirá para protegerte en chats y redes: si alguien te pide algo raro, sabrás qué hacer.",
   }, 'es');
 })();

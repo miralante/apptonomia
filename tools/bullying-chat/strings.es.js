@@ -21,7 +21,11 @@
     "reglaFinalTitulo": "⭐ Para recordar",
     "volverAChats": "Volver a los chats",
     "chatSuperado": "¡Chat superado!",
-    "paraRecordarHablado": "Para recordar."
+    "paraRecordarHablado": "Para recordar.",
+  "contexto": "Estás en un chat con alguien del colegio o de tu clase. Esta persona te insulta, te deja de lado o te hace sentir mal.",
+  "pista": "🤔 Vuelve a leer el mensaje. ¿Cómo te sentirías tú si te lo dijeran a ti?",
+  "explicacion": "✅ Eso no es cosa tuya: contárselo a una persona adulta de confianza es siempre la mejor opción.",
+  "transferencia": "Esto te servirá para saber qué hacer si alguien te hace sentir mal por chat, en el cole o en cualquier sitio.",
   }, 'es');
 
 })();

@@ -1,8 +1,11 @@
 /* ============================================================
-   Apptonomia — La Casa (autonomía: ordenar tareas del hogar)
-   Datos en data.js (DATA.niveles). Módulos compartidos en assets/js/.
-   Mecánica: tocar los pasos en el orden correcto. Un toque fuera
-   de orden no penaliza: solo anima a seguir intentando.
+   Apptonomia — La Casa (autonomía: ordenar tareas del hogar).
+   Datos en data.js (DATA.tareas). Módulos compartidos en assets/js/.
+   Sin niveles: la persona entra y ordena las tareas del hogar
+   directamente. Cada partida muestra 'porRonda' tareas elegidas
+   al azar; en cada una se tocan los pasos en el orden correcto.
+   Un toque fuera de orden no penaliza: solo anima a seguir
+   intentando (regla socrática: nunca se castiga el error).
    ============================================================ */
 (function () {
   'use strict';
@@ -11,10 +14,10 @@
   var $ = App.utils.$;
   var DATOS = DATA[App.i18n.locale()] || DATA.es;
 
-  var pantallaInicio = $('#pantallaInicio');
   var pantallaJuego = $('#pantallaJuego');
   var pantallaFinal = $('#pantallaFinal');
   var tareaTituloEl = $('#tareaTitulo');
+  var tareaPictoEl = $('#tareaPicto');
   var secuenciaEl = $('#secuencia');
   var disponiblesEl = $('#disponibles');
   var feedbackEl = $('#feedback');
@@ -26,10 +29,9 @@
   /* Persistent progress */
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
-  if (!progreso.completados) progreso.completados = {};
+  if (!progreso.hechos) progreso.hechos = {};
 
   /* Round state */
-  var nivel = null;
   var tareas = [];
   var idx = 0;
   var aciertosRonda = 0;
@@ -40,27 +42,10 @@
 
   function pintarEstrellas() { starsEl.textContent = '⭐ ' + progreso.estrellas; }
 
-  function pintarNiveles() {
-    var cont = $('#niveles');
-    cont.innerHTML = '';
-    DATOS.niveles.forEach(function (n) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'btn btn-nivel';
-      var veces = progreso.completados[n.id] || 0;
-      btn.innerHTML = n.nombre + ' — ' + n.descripcion +
-        ' <span class="nivel-info">(' + veces + ' ' + App.i18n.t('veces') + ')</span>';
-      btn.addEventListener('click', function () { iniciarRonda(n); });
-      cont.appendChild(btn);
-    });
-  }
-
-  function iniciarRonda(n) {
-    nivel = n;
-    tareas = App.utils.shuffle(nivel.tareas).slice(0, DATOS.porRonda);
+  function iniciarRonda() {
+    tareas = App.utils.shuffle(DATOS.tareas).slice(0, DATOS.porRonda);
     idx = 0;
     aciertosRonda = 0;
-    pantallaInicio.classList.add('oculto');
     pantallaFinal.classList.add('oculto');
     pantallaJuego.classList.remove('oculto');
     render();
@@ -79,6 +64,7 @@
     feedbackEl.className = 'feedback';
     btnSiguiente.classList.add('oculto');
     tareaTituloEl.textContent = tarea.nombre;
+    if (tareaPictoEl) tareaPictoEl.textContent = tarea.picto || '';
 
     pintarSlots();
 
@@ -128,6 +114,7 @@
 
   function terminarTarea() {
     progreso.estrellas += 1;
+    progreso.hechos[tareas[idx].id] = true;
     aciertosRonda += 1;
     guardar();
     pintarEstrellas();
@@ -146,27 +133,22 @@
   }
 
   function terminarRonda() {
-    progreso.completados[nivel.id] = (progreso.completados[nivel.id] || 0) + 1;
-    guardar();
     pantallaJuego.classList.add('oculto');
     pantallaFinal.classList.remove('oculto');
     $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
       .replace('{n}', aciertosRonda)
       .replace('{total}', progreso.estrellas);
-$('#transferencia').textContent = App.i18n.t('transferencia');
+    $('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.celebrate(App.i18n.t('core.roundComplete'));
   }
 
   /* Events */
   btnSiguiente.addEventListener('click', siguiente);
-  $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
-  $('#btnOtroNivel').addEventListener('click', function () {
-    pantallaFinal.classList.add('oculto');
-    pintarNiveles();
-    pantallaInicio.classList.remove('oculto');
+  $('#btnRepetir').addEventListener('click', iniciarRonda);
+  $('#btnVolverMenu').addEventListener('click', function () {
+    window.location.href = '../../site/index.html';
   });
 
-  pintarNiveles();
   pintarEstrellas();
+  iniciarRonda();
 })();
-

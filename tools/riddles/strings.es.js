@@ -14,6 +14,7 @@
     "explicacionCorrecta": "✅ ¡Correcto! La respuesta es: ",
     "explicacionIncorrectaA": "❌ ",
     "explicacionIncorrectaB": " no es correcto. La respuesta correcta es: ",
-    "pista": "🤔 Prueba otra vez. Vuelve a leer la pista: "
+    "pista": "🤔 Prueba otra vez. Vuelve a leer la pista: ",
+  "transferencia": "Esto te servirá para pensar con ingenio en la vida de cada día: cuando un problema tenga una solución sencilla que no esperabas.",
   }, 'es');
 })();

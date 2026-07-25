@@ -29,6 +29,10 @@
     "correctExplanation": "✅ Correct!",
     "wrongExplanationPrefix": "❌ That is not right. The right answer is: ",
     "hint": "🤔 Try again. Think about: ",
-    "finalSummary": "You earned {n} stars. Now you have {total} stars."
+    "finalSummary": "You earned {n} stars. Now you have {total} stars.",
+  "contexto": "You are reading Roman numerals. You will see them in real places: books, monuments or clocks.",
+  "pista": "🤔 Remember the value of each letter. How much is that one?",
+  "explicacion": "✅ That is how to read Roman numerals. You can now read centuries and chapters.",
+  "transferencia": "This will help you read real Roman numerals: on a plaque, in a book or on the century of a painting.",
   }, 'en');
 })();

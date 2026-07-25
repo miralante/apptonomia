@@ -21,6 +21,10 @@
     "veces": "veces",
     "estrellaSingular": "estrella",
     "estrellaPlural": "estrellas",
-    "resumenFinal": "Ahora tienes {n} {palabra}."
+    "resumenFinal": "Ahora tienes {n} {palabra}.",
+  "contexto": "Estás en un lugar tranquilo. Vas a respirar siguiendo un círculo que crece y se encoge, a tu ritmo.",
+  "pista": "🤔 Solo tienes que seguir el ritmo del círculo. No pasa nada si pierdes el compás.",
+  "explicacion": "✅ Así se respira para calmarse. La próxima vez que estés nervioso/a, prueba con tu propio ritmo.",
+  "transferencia": "Esto te servirá para relajarte cuando estés nervioso/a, enfadado/a o tengas que esperar mucho rato.",
   }, 'es');
 })();

@@ -22,6 +22,10 @@
     "correctExplanation": "✅ ¡Correcto! El número es el 112.",
     "wrongExplanationPrefix": "❌ Eso no es lo correcto. Lo correcto es: ",
     "hint": "🤔 Prueba otra vez. Piensa en la situación: ",
-    "finalSummary": "Has ganado {n} estrellas. Ahora tienes {total} estrellas."
+    "finalSummary": "Has ganado {n} estrellas. Ahora tienes {total} estrellas.",
+  "contexto": "Estás en una situación en la que necesitas ayuda. Tienes que saber a qué número llamar y qué decir.",
+  "pista": "🤔 Piensa: ¿es un policía, un bombero o una emergencia médica?",
+  "explicacion": "✅ El 112 sirve para cualquier emergencia real. Saberlo de memoria puede ayudarte mucho.",
+  "transferencia": "Esto te servirá para pedir ayuda rápido si pasa algo en casa, en la calle o con alguien que está mal.",
   }, 'es');
 })();

@@ -25,5 +25,7 @@
     "resumenFinalVarias": "Has encontrado todas las parejas. Ganas {n} estrellas.",
     "celebrarTexto": "¡Todas las parejas!",
     "otroNivel": "Elegir otro nivel"
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a recordar dónde está cada cosa en casa."
+}, 'es');
 })();

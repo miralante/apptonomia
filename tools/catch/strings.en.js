@@ -14,5 +14,7 @@
     "rondaCompletadaTitulo": "Round complete!",
     "resumenFinal": "You caught {n} pictures. Well done!",
     "transfer": "This trains your eye-hand coordination. It will help you catch things, play and move around more safely."
-  }, 'en');
+  ,
+  "transferencia": "This helps you react quickly when you grab moving things."
+}, 'en');
 })();

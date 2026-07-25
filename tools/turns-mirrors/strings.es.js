@@ -28,5 +28,7 @@
     "resumenFinal": "Has ganado {n} estrellas. Ahora tienes {total} estrellas.",
     "btnOtroNivel": "Elegir otro nivel",
     "ariaOpcion": "Opción {n}"
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a orientarte y a entender planos y direcciones."
+}, 'es');
 })();

@@ -94,5 +94,9 @@
     // Completion
     'fin_ronda': 'Ronda terminada. Muy bien.',
     'siguiente_nivel': 'Ya estás listo para el siguiente nivel.',
+  "contexto": "Estás en una situación con otra persona. Tienes que elegir qué decir o hacer para que la otra se sienta bien.",
+  "pista": "🤔 Piensa cómo te gustaría que te hablaran a ti. ¿Qué le dirías?",
+  "explicacion": "✅ Así se dice con educación. Las personas se sienten a gusto cuando se las trata así.",
+  "transferencia": "Esto te servirá para llevarte bien con la familia, los amigos y en el cole: las palabras amables siempre ayudan.",
   }, 'es');
 })();

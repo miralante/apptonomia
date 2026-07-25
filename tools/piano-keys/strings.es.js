@@ -101,5 +101,7 @@
     "melodiaArcoiris": "Arco iris",
     "melodiaOndina": "Ondina",
     "nota": {"C":"Do","C#":"Do sostenido","D":"Re","D#":"Re sostenido","E":"Mi","F":"Fa","F#":"Fa sostenido","G":"Sol","G#":"Sol sostenido","A":"La","A#":"La sostenido","B":"Si"}
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a disfrutar de la música y a tocar con más confianza."
+}, 'es');
 })();

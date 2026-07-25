@@ -14,6 +14,7 @@
     "explicacionCorrecta": "✅ ¡Correcto! Por eso es gracioso.",
     "explicacionIncorrectaA": "❌ Esa no es la razón. La razón es: ",
     "explicacionIncorrectaB": "",
-    "pista": "🤔 Prueba otra vez. Vuelve a leer el chiste: "
+    "pista": "🤔 Prueba otra vez. Vuelve a leer el chiste: ",
+  "transferencia": "Esto te servirá para entender mejor los chistes en familia, con los amigos o en la tele, y para reírte con más ganas.",
   }, 'es');
 })();

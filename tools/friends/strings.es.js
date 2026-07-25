@@ -17,6 +17,7 @@
     "btnOtroNivel": "Elegir otro nivel",
     "explicacionCorrecta": "✅ ¡Correcto!",
     "explicacionIncorrectaA": "❌ Eso no es. La respuesta correcta es: ",
-    "pista": "🤔 Prueba otra vez. Vuelve a pensar en la situación: "
+    "pista": "🤔 Prueba otra vez. Vuelve a pensar en la situación: ",
+  "transferencia": "Esto te servirá para saber cómo reaccionar cuando un amigo está triste, enfadado o necesita ayuda, y para resolver mejor los pequeños conflictos.",
   }, 'es');
 })();

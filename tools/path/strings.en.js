@@ -23,5 +23,7 @@
     "ariaIzquierda": "Move left",
     "ariaDerecha": "Move right",
     "ariaTablero": "Path board"
-  }, 'en');
+  ,
+  "transferencia": "This helps you follow directions and get somewhere on your own."
+}, 'en');
 })();

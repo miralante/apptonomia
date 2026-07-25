@@ -116,7 +116,6 @@
       opcionesREl.appendChild(btn);
     });
 
-    App.tts.speak(item.situacion);
     pintarProgresoR();
     pintarEstrellas();
   }
@@ -154,6 +153,7 @@
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(feedbackREl);
+      App.feedback.lockUntilAck(App.utils.$$('#opcionesReconocer .btn-opcion'), explicacionRWrap);
     }
   }
 
@@ -298,7 +298,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   $('#btnVolverLlamada').addEventListener('click', irMenu);
   btnSiguienteR.addEventListener('click', siguienteReconocer);
   $('#btnEscucharExplicacionReconocer').addEventListener('click', function () {
-    App.tts.speak(explicacionREl.textContent);
   });
   $('#btnEscucharReconocer').addEventListener('click', function () {
     App.tts.speak(itemsReconocer[idxR].situacion);
@@ -308,9 +307,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     else iniciarLlamada();
   });
   $('#btnVolverMenuFinal').addEventListener('click', irMenu);
-  $('#btnInstruccionLlamada').addEventListener('click', function () {
-    App.tts.speak($('#instruccionLlamada').textContent);
-  });
+
 
   irMenu();
 })();

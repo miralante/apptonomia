@@ -31,6 +31,10 @@
     "wordFound": "You found “{word}”!",
     "notAligned": "The two letters must be on the same line.",
     "finalSummary": "You earned {n} stars. Now you have {total} stars.",
-    "repeatedSummary": "You already had the stars for this level. Great job again!"
+    "repeatedSummary": "You already had the stars for this level. Great job again!",
+  "contexto": "You are looking for a word hidden in a letter board. Read calmly and swipe over it.",
+  "pista": "🤔 Look at the first letter of the word and find it on the board.",
+  "explicacion": "✅ Words are read letter by letter. That also helps you read messages and signs better.",
+  "transferencia": "This will help you spot words better: on a sign, in a recipe or in the school menu.",
   }, 'en');
 })();

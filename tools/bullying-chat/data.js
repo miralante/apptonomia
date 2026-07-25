@@ -51,17 +51,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'No contesto. Se lo voy a contar a un adulto de confianza.', segura: true,
                   avisoSeguro: 'Contárselo a un adulto es lo mejor. Los insultos repetidos son acoso, no es tu culpa.' },
-                { texto: 'Les insulto también, para que vean lo que se siente.', segura: false,
-                  aviso: 'Devolver el insulto no hace que pare, y puede empeorar las cosas. Mejor cuéntaselo a un adulto.' },
-                { texto: 'No digo nada y dejo que sigan.', segura: false,
-                  aviso: 'Quedarte callado no hace que el acoso pare solo. Contarlo a alguien de confianza sí ayuda.' }
+                { texto: 'Les insulto también, para que vean lo que se siente.',
+segura: false,
+pista: '¿Devolver el insulto hará que pare, y puede empeorar las cosas?',
+aviso: 'Devolver el insulto no hace que pare, y puede empeorar las cosas. Mejor cuéntaselo a un adulto.' },
+                { texto: 'No digo nada y dejo que sigan.',
+segura: false,
+pista: '¿Quedarte callado hará que el acoso pare solo?',
+aviso: 'Quedarte callado no hace que el acoso pare solo. Contarlo a alguien de confianza sí ayuda.' }
               ] },
               { tipo: 'msg', texto: 'El grupo sigue escribiendo cosas feas sobre ti, día tras día.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Guardo los mensajes (una captura de pantalla) y se los enseño a un adulto.', segura: true,
                   avisoSeguro: 'Guardar las pruebas ayuda a que el adulto entienda lo que pasa y pueda ayudarte mejor.' },
-                { texto: 'Borro el chat para no verlo más.', segura: false,
-                  aviso: 'Borrarlo no hace que pare. Es mejor guardarlo y contarlo, para que un adulto pueda ayudar.' }
+                { texto: 'Borro el chat para no verlo más.',
+segura: false,
+pista: '¿Borrarlo hará que pare. Es mejor guardarlo y contarlo, para que un adulto pueda ayudar?',
+aviso: 'Borrarlo no hace que pare. Es mejor guardarlo y contarlo, para que un adulto pueda ayudar.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Se lo has contado a un adulto. Eso es lo correcto. Acosar no está bien y tú no tienes la culpa.' }
@@ -76,17 +82,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'No respondo al mote. Se lo voy a contar a una persona de confianza.', segura: true,
                   avisoSeguro: 'Un mote que hace daño y se repite no es una broma: es acoso. Contarlo es lo correcto.' },
-                { texto: 'Le pongo yo un mote peor, a ver si le gusta.', segura: false,
-                  aviso: 'Responder con otro mote alarga la pelea y no arregla nada. Mejor cuéntaselo a alguien de confianza.' },
-                { texto: 'Me río yo también, para que no se note que me molesta.', segura: false,
-                  aviso: 'No hace falta fingir que no duele. Si te molesta, cuenta. Trabajar a tu ritmo no es motivo de burla.' }
+                { texto: 'Le pongo yo un mote peor, a ver si le gusta.',
+segura: false,
+pista: '¿Responder con otro mote alarga la pelea y no arregla nada?',
+aviso: 'Responder con otro mote alarga la pelea y no arregla nada. Mejor cuéntaselo a alguien de confianza.' },
+                { texto: 'Me río yo también, para que no se note que me molesta.',
+segura: false,
+pista: '¿Hace falta fingir que no duele. Si te molesta, cuenta?',
+aviso: 'No hace falta fingir que no duele. Si te molesta, cuenta. Trabajar a tu ritmo no es motivo de burla.' }
               ] },
               { tipo: 'msg', texto: 'Cada día te llaman por ese mote, aunque ya has pedido que paren.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Guardo los mensajes y se los enseño al encargado o a mi familia.', segura: true,
                   avisoSeguro: 'Cuando pides que paren y no paran, toca contarlo con pruebas. El encargado está para ayudarte.' },
-                { texto: 'Dejo de mirar el grupo del taller para siempre.', segura: false,
-                  aviso: 'Dejar de mirar el grupo te aísla del trabajo, y la burla sigue. Contarlo puede pararla de verdad.' }
+                { texto: 'Dejo de mirar el grupo del taller para siempre.',
+segura: false,
+pista: '¿De verdad: dejar de mirar el grupo te aísla del trabajo, y la burla sigue?',
+aviso: 'Dejar de mirar el grupo te aísla del trabajo, y la burla sigue. Contarlo puede pararla de verdad.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a una persona de confianza',
                 confirmacion: 'Muy bien. En el taller, el encargado y tu familia pueden hacer que esto pare.' }
@@ -102,17 +114,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'No contesto a la burla y se lo cuento a un adulto de confianza.', segura: true,
                   avisoSeguro: 'Reírse de cómo escribe alguien es acoso. Cada persona aprende a su ritmo, y eso está bien.' },
-                { texto: 'No vuelvo a escribir nunca en el grupo.', segura: false,
-                  aviso: 'Dejar de hablar por miedo a la burla te quita tu sitio. El problema es de quien se burla, no tuyo.' },
-                { texto: 'Me burlo yo de cómo escribe otro.', segura: false,
-                  aviso: 'Pasarle la burla a otra persona hace más daño. Mejor cuéntaselo a un adulto.' }
+                { texto: 'No vuelvo a escribir nunca en el grupo.',
+segura: false,
+pista: '¿De verdad: dejar de hablar por miedo a la burla te quita tu sitio?',
+aviso: 'Dejar de hablar por miedo a la burla te quita tu sitio. El problema es de quien se burla, no tuyo.' },
+                { texto: 'Me burlo yo de cómo escribe otro.',
+segura: false,
+pista: '¿De verdad: pasarle la burla a otra persona hace más daño?',
+aviso: 'Pasarle la burla a otra persona hace más daño. Mejor cuéntaselo a un adulto.' }
               ] },
               { tipo: 'msg', texto: 'Al día siguiente siguen con lo mismo cada vez que escribes.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Escribo con calma que no está bien reírse, y lo cuento con capturas.', segura: true,
                   avisoSeguro: 'Decirlo con calma y contarlo con pruebas es la mejor combinación. No estás solo con esto.' },
-                { texto: 'Les pido perdón por escribir mal.', segura: false,
-                  aviso: 'No tienes que pedir perdón por aprender a tu ritmo. Quien se burla es quien actúa mal.' }
+                { texto: 'Les pido perdón por escribir mal.',
+segura: false,
+pista: '¿Realmente tienes que pedir perdón por aprender a tu ritmo?',
+aviso: 'No tienes que pedir perdón por aprender a tu ritmo. Quien se burla es quien actúa mal.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Bien hecho. Escribir con faltas no es motivo de burla; burlarse sí es un problema.' }
@@ -127,17 +145,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Silencio su chat en el juego y se lo cuento a un adulto.', segura: true,
                   avisoSeguro: 'Silenciar y contar es la jugada perfecta: dejas de leer los insultos y un adulto puede pararlos.' },
-                { texto: 'Le insulto yo cada vez que pierde.', segura: false,
-                  aviso: 'Devolver insultos convierte el juego en una pelea. Silenciar y contarlo funciona mejor.' },
-                { texto: 'Dejo de jugar al juego que me gusta.', segura: false,
-                  aviso: 'No tienes que renunciar a lo que te gusta. El que actúa mal es él, no tú.' }
+                { texto: 'Le insulto yo cada vez que pierde.',
+segura: false,
+pista: '¿De verdad: devolver insultos convierte el juego en una pelea?',
+aviso: 'Devolver insultos convierte el juego en una pelea. Silenciar y contarlo funciona mejor.' },
+                { texto: 'Dejo de jugar al juego que me gusta.',
+segura: false,
+pista: '¿Realmente tienes que renunciar a lo que te gusta?',
+aviso: 'No tienes que renunciar a lo que te gusta. El que actúa mal es él, no tú.' }
               ] },
               { tipo: 'msg', texto: 'Te escribe: "Si no te vas del juego, mañana se lo digo a todos en clase."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Guardo su mensaje y se lo enseño hoy a un adulto de confianza.', segura: true,
                   avisoSeguro: 'Esa amenaza es la prueba perfecta para que un adulto actúe. Contarlo hoy es lo mejor.' },
-                { texto: 'Me voy del juego para que no diga nada.', segura: false,
-                  aviso: 'Si obedeces a una amenaza, vendrán más. Contarlo es lo que las corta.' }
+                { texto: 'Me voy del juego para que no diga nada.',
+segura: false,
+pista: 'Si obedeces, vendrán más. Contarlo es lo que las corta?',
+aviso: 'Si obedeces a una amenaza, vendrán más. Contarlo es lo que las corta.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Muy bien. El acoso en los juegos online también es acoso, y también se puede parar.' }
@@ -160,17 +184,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Me siento mal. Se lo cuento a alguien de confianza.', segura: true,
                   avisoSeguro: 'Contarlo ayuda. Que te excluyan a propósito y a escondidas duele, y mereces que alguien te ayude.' },
-                { texto: 'Hago yo también un grupo para dejar fuera a otro.', segura: false,
-                  aviso: 'Excluir a otra persona no arregla que te hayan excluido a ti. Mejor cuéntaselo a un adulto.' },
-                { texto: 'No le doy importancia, seguro que no es nada.', segura: false,
-                  aviso: 'Si te duele, sí importa. No hace falta que lo soportes solo o sola.' }
+                { texto: 'Hago yo también un grupo para dejar fuera a otro.',
+segura: false,
+pista: '¿Excluir a otra persona arregla que te hayan excluido a ti?',
+aviso: 'Excluir a otra persona no arregla que te hayan excluido a ti. Mejor cuéntaselo a un adulto.' },
+                { texto: 'No le doy importancia, seguro que no es nada.',
+segura: false,
+pista: 'Si Si te duele, sí importa., ¿hace falta que lo soportes solo o sola?',
+aviso: 'Si te duele, sí importa. No hace falta que lo soportes solo o sola.' }
               ] },
               { tipo: 'msg', texto: 'Un compañero te escribe directamente: "Nadie te quiere en el grupo, mejor no insistas."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Le respondo con calma que eso no está bien, y se lo cuento a un adulto.', segura: true,
                   avisoSeguro: 'Puedes responder con calma y también contarlo. Las dos cosas ayudan a que la situación mejore.' },
-                { texto: 'Le suplico que me dejen entrar en el grupo.', segura: false,
-                  aviso: 'No tienes que rogar para que te traten bien. Cuéntaselo a alguien de confianza.' }
+                { texto: 'Le suplico que me dejen entrar en el grupo.',
+segura: false,
+pista: '¿Realmente tienes que rogar para que te traten bien?',
+aviso: 'No tienes que rogar para que te traten bien. Cuéntaselo a alguien de confianza.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Muy bien. Un adulto puede ayudarte a que la situación cambie.' }
@@ -185,17 +215,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Me duele. Se lo voy a contar a una persona de confianza.', segura: true,
                   avisoSeguro: 'Dejarte fuera a propósito y con burla no es un despiste: es exclusión. Contarlo ayuda.' },
-                { texto: 'Pregunto mil veces si puedo ir, porfa, porfa.', segura: false,
-                  aviso: 'No tienes que suplicar para que te inviten. Mereces amigas que quieran que estés.' },
-                { texto: 'Escribo algo feo del cumpleaños para vengarme.', segura: false,
-                  aviso: 'Vengarte te pone a su altura y empeora las cosas. Mejor cuéntalo.' }
+                { texto: 'Pregunto mil veces si puedo ir, porfa, porfa.',
+segura: false,
+pista: '¿Realmente tienes que suplicar para que te inviten?',
+aviso: 'No tienes que suplicar para que te inviten. Mereces amigas que quieran que estés.' },
+                { texto: 'Escribo algo feo del cumpleaños para vengarme.',
+segura: false,
+pista: '¿Vengarte te pone a su altura y empeora las cosas?',
+aviso: 'Vengarte te pone a su altura y empeora las cosas. Mejor cuéntalo.' }
               ] },
               { tipo: 'msg', texto: 'El sábado suben fotos de la fiesta y te etiquetan: "¡Qué pena que no vinieras! 😂"' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Guardo los mensajes y se los enseño a un adulto de confianza.', segura: true,
                   avisoSeguro: 'Burlarse encima de la exclusión lo hace aún más claro. Con las pruebas, un adulto puede actuar.' },
-                { texto: 'Contesto que la fiesta seguro que fue aburridísima.', segura: false,
-                  aviso: 'Responder con desprecio alarga la pelea. Contarlo a un adulto sí puede cambiarlo.' }
+                { texto: 'Contesto que la fiesta seguro que fue aburridísima.',
+segura: false,
+pista: '¿Responder con desprecio alarga la pelea. Contarlo a un adulto sí puede cambiarlo?',
+aviso: 'Responder con desprecio alarga la pelea. Contarlo a un adulto sí puede cambiarlo.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Bien hecho. Nadie merece que le dejen fuera para reírse. Un adulto puede ayudar.' }
@@ -210,15 +246,19 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Pregunto con calma por qué no estoy, y se lo cuento al encargado.', segura: true,
                   avisoSeguro: 'Preguntar con calma está bien, y el encargado debe saber que te dejan fuera de los avisos del trabajo.' },
-                { texto: 'No digo nada, será que no hay sitio en el grupo.', segura: false,
-                  aviso: 'En los grupos siempre hay sitio. Dejarte fuera de los avisos del trabajo no está bien.' }
+                { texto: 'No digo nada, será que no hay sitio en el grupo.',
+segura: false,
+pista: 'Si En los grupos siempre hay sitio. Dejarte fuera de los avisos del trabajo, ¿está bien?',
+aviso: 'En los grupos siempre hay sitio. Dejarte fuera de los avisos del trabajo no está bien.' }
               ] },
               { tipo: 'msg', texto: 'Un compañero te dice: "Es que en ese grupo estamos los de siempre, tú no pintas nada."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Se lo cuento al encargado o a mi familia. Es mi trabajo también.', segura: true,
                   avisoSeguro: 'Los avisos del taller son de todos. Excluirte a propósito es un problema que el encargado debe arreglar.' },
-                { texto: 'Le pido perdón por haber preguntado.', segura: false,
-                  aviso: 'No has hecho nada malo al preguntar. Quien excluye es quien actúa mal.' }
+                { texto: 'Le pido perdón por haber preguntado.',
+segura: false,
+pista: '¿De verdad: no has hecho nada malo al preguntar. Quien excluye es quien actúa mal?',
+aviso: 'No has hecho nada malo al preguntar. Quien excluye es quien actúa mal.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo al encargado o a mi familia',
                 confirmacion: 'Muy bien. Los avisos del trabajo son para todos, y tú formas parte del equipo.' }
@@ -233,17 +273,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Capto que es a propósito. Se lo cuento a un adulto de confianza.', segura: true,
                   avisoSeguro: 'Expulsarte siempre "de broma" es exclusión a propósito. Contarlo es lo correcto.' },
-                { texto: 'Sigo entrando una y otra vez sin decir nada.', segura: false,
-                  aviso: 'Si te echan a propósito, insistir en silencio no lo arregla. Cuéntaselo a alguien.' },
-                { texto: 'Intento expulsarles yo a ellos.', segura: false,
-                  aviso: 'Devolver la expulsión convierte el juego en una guerra. Contarlo funciona mejor.' }
+                { texto: 'Sigo entrando una y otra vez sin decir nada.',
+segura: false,
+pista: 'Si Si te echan a propósito, insistir en silencio, ¿lo arregla?',
+aviso: 'Si te echan a propósito, insistir en silencio no lo arregla. Cuéntaselo a alguien.' },
+                { texto: 'Intento expulsarles yo a ellos.',
+segura: false,
+pista: '¿De verdad: devolver la expulsión convierte el juego en una guerra?',
+aviso: 'Devolver la expulsión convierte el juego en una guerra. Contarlo funciona mejor.' }
               ] },
               { tipo: 'msg', texto: 'En clase se ríen: "¿Qué pasa, que no sabes ni entrar a la partida?"' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Respondo con calma que sé lo que hacen, y lo cuento.', segura: true,
                   avisoSeguro: 'Nombrar lo que hacen, con calma y sin pelear, les quita el juego. Y contarlo lo para.' },
-                { texto: 'Me aguanto la rabia y no se lo digo a nadie.', segura: false,
-                  aviso: 'Aguantar en silencio no hace que pare. Mereces jugar como todos los demás.' }
+                { texto: 'Me aguanto la rabia y no se lo digo a nadie.',
+segura: false,
+pista: '¿Aguantar en silencio hará que pare. Mereces jugar como todos los demás?',
+aviso: 'Aguantar en silencio no hace que pare. Mereces jugar como todos los demás.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Bien hecho. Echarte del juego a propósito una y otra vez no es una broma.' }
@@ -267,17 +313,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Escribo con calma que eso no es verdad, y se lo cuento a un adulto.', segura: true,
                   avisoSeguro: 'Está bien aclarar la verdad con calma. Y contarlo a un adulto ayuda a que pare.' },
-                { texto: 'Empiezo a contar cosas falsas de ella también.', segura: false,
-                  aviso: 'Contar mentiras de otra persona no soluciona nada, y hace más daño. Mejor cuéntaselo a un adulto.' },
-                { texto: 'No digo nada, aunque no sea verdad.', segura: false,
-                  aviso: 'Puedes decir con calma que no es verdad. Y sobre todo, contárselo a alguien de confianza.' }
+                { texto: 'Empiezo a contar cosas falsas de ella también.',
+segura: false,
+pista: 'Si Contar mentiras de otra persona, ¿soluciona nada, y hace más daño?',
+aviso: 'Contar mentiras de otra persona no soluciona nada, y hace más daño. Mejor cuéntaselo a un adulto.' },
+                { texto: 'No digo nada, aunque no sea verdad.',
+segura: false,
+pista: 'Si Puedes decir con calma que, ¿es verdad?',
+aviso: 'Puedes decir con calma que no es verdad. Y sobre todo, contárselo a alguien de confianza.' }
               ] },
               { tipo: 'msg', texto: 'El rumor sigue circulando y algunos compañeros te miran raro.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Se lo cuento a un adulto de confianza para que me ayude.', segura: true,
                   avisoSeguro: 'Un rumor que se extiende necesita la ayuda de un adulto para pararlo bien.' },
-                { texto: 'Dejo de ir a clase para no verlos.', segura: false,
-                  aviso: 'Evitar ir a clase no resuelve el problema. Un adulto puede ayudar a que el rumor pare.' }
+                { texto: 'Dejo de ir a clase para no verlos.',
+segura: false,
+pista: 'Si Evitar ir a clase, ¿resuelve el problema?',
+aviso: 'Evitar ir a clase no resuelve el problema. Un adulto puede ayudar a que el rumor pare.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Bien hecho. Un adulto puede ayudar a aclarar la verdad y a que paren los rumores.' }
@@ -292,17 +344,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Escribo que eso es privado, y se lo cuento a un adulto.', segura: true,
                   avisoSeguro: 'Tus sentimientos son tuyos. Airearlos para reírse es una forma de acoso.' },
-                { texto: 'Digo que le gusta alguien a otra persona, para desviar la atención.', segura: false,
-                  aviso: 'Pasarle el foco a otro le hace a él el mismo daño. Mejor contarlo a un adulto.' },
-                { texto: 'Niego todo gritando con enfado.', segura: false,
-                  aviso: 'Gritar les da justo la reacción que buscan. Con calma y contándolo se para mejor.' }
+                { texto: 'Digo que le gusta alguien a otra persona, para desviar la atención.',
+segura: false,
+pista: '¿De verdad: pasarle el foco a otro le hace a él el mismo daño?',
+aviso: 'Pasarle el foco a otro le hace a él el mismo daño. Mejor contarlo a un adulto.' },
+                { texto: 'Niego todo gritando con enfado.',
+segura: false,
+pista: '¿De verdad: gritar les da justo la reacción que buscan?',
+aviso: 'Gritar les da justo la reacción que buscan. Con calma y contándolo se para mejor.' }
               ] },
               { tipo: 'msg', texto: 'Empiezan a escribir tu nombre con corazones y risas por todo el grupo.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'No respondo a las risas y lo cuento con capturas.', segura: true,
                   avisoSeguro: 'Sin tu reacción, la "gracia" se les acaba antes. Y las capturas ayudan al adulto a actuar.' },
-                { texto: 'Salgo del grupo de clase para siempre sin contarlo.', segura: false,
-                  aviso: 'Salir sin contarlo te deja fuera de tu grupo y el problema sigue. Contarlo puede pararlo.' }
+                { texto: 'Salgo del grupo de clase para siempre sin contarlo.',
+segura: false,
+pista: '¿De verdad: salir sin contarlo te deja fuera de tu grupo y el problema sigue?',
+aviso: 'Salir sin contarlo te deja fuera de tu grupo y el problema sigue. Contarlo puede pararlo.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Muy bien. Reírse de los sentimientos de alguien no está bien nunca.' }
@@ -317,17 +375,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Le digo con calma que eso me ha dolido, y se lo cuento a un adulto.', segura: true,
                   avisoSeguro: 'Decir cómo te sientes está bien, y un adulto puede ayudar a que el secreto deje de circular.' },
-                { texto: 'Cuento yo un secreto suyo aún peor.', segura: false,
-                  aviso: 'Traicionar su secreto te convierte en lo mismo que te ha dolido. No entres en esa rueda.' },
-                { texto: 'Hago como si no me importara.', segura: false,
-                  aviso: 'Sí importa: era tu secreto. No tienes que fingir que no duele.' }
+                { texto: 'Cuento yo un secreto suyo aún peor.',
+segura: false,
+pista: '¿De verdad: traicionar su secreto te convierte en lo mismo que te ha dolido?',
+aviso: 'Traicionar su secreto te convierte en lo mismo que te ha dolido. No entres en esa rueda.' },
+                { texto: 'Hago como si no me importara.',
+segura: false,
+pista: 'Si Sí importa: era tu secreto., ¿tienes que fingir que no duele?',
+aviso: 'Sí importa: era tu secreto. No tienes que fingir que no duele.' }
               ] },
               { tipo: 'msg', texto: 'Te escribe: "Era solo una broma, no te enfades. No se lo digas a nadie, ¿eh?"' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Lo cuento igualmente. Pedir silencio después de hacer daño no vale.', segura: true,
                   avisoSeguro: 'Exacto: quien hace daño y pide silencio sabe que hizo mal. Contarlo es lo correcto.' },
-                { texto: 'Vale, no se lo digo a nadie para que no se enfade él.', segura: false,
-                  aviso: 'Proteger a quien te ha hecho daño no te protege a ti. Cuéntaselo a un adulto.' }
+                { texto: 'Vale, no se lo digo a nadie para que no se enfade él.',
+segura: false,
+pista: 'Si Proteger a quien te ha hecho daño, ¿te protege a ti?',
+aviso: 'Proteger a quien te ha hecho daño no te protege a ti. Cuéntaselo a un adulto.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Bien hecho. Contar un secreto ajeno para reírse no es una broma.' }
@@ -343,17 +407,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Me adelanto: se lo cuento yo primero a un adulto, con la verdad.', segura: true,
                   avisoSeguro: 'Adelantarte a contar la verdad es la mejor defensa contra una acusación falsa.' },
-                { texto: 'Espero a ver si se les olvida.', segura: false,
-                  aviso: 'Esperar deja que la mentira crezca. Contar la verdad tú primero te protege.' },
-                { texto: 'Amenazo con acusarles yo de otra cosa.', segura: false,
-                  aviso: 'Responder con otra acusación te mete en el problema. La verdad y un adulto te sacan de él.' }
+                { texto: 'Espero a ver si se les olvida.',
+segura: false,
+pista: '¿De verdad: esperar deja que la mentira crezca. Contar la verdad tú primero te protege?',
+aviso: 'Esperar deja que la mentira crezca. Contar la verdad tú primero te protege.' },
+                { texto: 'Amenazo con acusarles yo de otra cosa.',
+segura: false,
+pista: '¿De verdad: responder con otra acusación te mete en el problema?',
+aviso: 'Responder con otra acusación te mete en el problema. La verdad y un adulto te sacan de él.' }
               ] },
               { tipo: 'msg', texto: 'Te escriben a ti: "Como digas que no fuiste tú, será peor."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Guardo ese mensaje: es la prueba de que me quieren culpar. Lo cuento ya.', segura: true,
                   avisoSeguro: 'Ese mensaje demuestra la trampa. Con él, el adulto verá clarísimo lo que pasa.' },
-                { texto: 'Me callo y acepto la culpa para que me dejen en paz.', segura: false,
-                  aviso: 'Aceptar una culpa que no es tuya no te dará paz: pedirán más. La verdad te protege.' }
+                { texto: 'Me callo y acepto la culpa para que me dejen en paz.',
+segura: false,
+pista: 'Si Aceptar una culpa que, ¿es tuya no te dará paz: pedirán más?',
+aviso: 'Aceptar una culpa que no es tuya no te dará paz: pedirán más. La verdad te protege.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contar la verdad a un adulto ahora mismo',
                 confirmacion: 'Muy bien. Contaste la verdad primero y el mensaje guardado lo demostró todo.' }
@@ -377,17 +447,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Pido que la borren, y se lo cuento a un adulto de confianza.', segura: true,
                   avisoSeguro: 'Puedes pedir que la borren y también contarlo a un adulto. Reírse así de una foto tuya no está bien.' },
-                { texto: 'Comparto una foto suya para reírme también.', segura: false,
-                  aviso: 'Hacer lo mismo no soluciona nada y hace más daño. Mejor cuéntaselo a un adulto.' },
-                { texto: 'Me río también para que no se note que me duele.', segura: false,
-                  aviso: 'No hace falta fingir que no duele. Contarlo a un adulto es lo que de verdad ayuda.' }
+                { texto: 'Comparto una foto suya para reírme también.',
+segura: false,
+pista: 'Si Hacer lo mismo, ¿soluciona nada y hace más daño?',
+aviso: 'Hacer lo mismo no soluciona nada y hace más daño. Mejor cuéntaselo a un adulto.' },
+                { texto: 'Me río también para que no se note que me duele.',
+segura: false,
+pista: '¿Hace falta fingir que no duele. Contarlo a un adulto es lo que de verdad ayuda?',
+aviso: 'No hace falta fingir que no duele. Contarlo a un adulto es lo que de verdad ayuda.' }
               ] },
               { tipo: 'msg', texto: 'La foto se sigue compartiendo con más gente.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Guardo el mensaje y se lo enseño a un adulto de confianza.', segura: true,
                   avisoSeguro: 'Guardar lo que ha pasado ayuda a que el adulto pueda actuar mejor.' },
-                { texto: 'Borro mi cuenta para que no me encuentren.', segura: false,
-                  aviso: 'No tienes que desaparecer tú. Un adulto puede ayudar a que quiten la foto y pare la burla.' }
+                { texto: 'Borro mi cuenta para que no me encuentren.',
+segura: false,
+pista: '¿Realmente tienes que desaparecer tú. Un adulto puede ayudar a que quiten la foto y pare la burla?',
+aviso: 'No tienes que desaparecer tú. Un adulto puede ayudar a que quiten la foto y pare la burla.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Muy bien hecho. Un adulto puede ayudar a que quiten la foto y a hablar con quien la compartió.' }
@@ -403,17 +479,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Escribo que no di permiso para esa foto, y lo cuento.', segura: true,
                   avisoSeguro: 'Hacerte fotos sin permiso ya está mal; compartirlas para reírse, mucho más. Contarlo es lo correcto.' },
-                { texto: 'Les hago yo fotos comiendo, a ver qué tal les sienta.', segura: false,
-                  aviso: 'Hacer lo mismo multiplica el problema. Mejor pedir que la borren y contarlo.' },
-                { texto: 'Como en un rincón a partir de mañana para que no me hagan fotos.', segura: false,
-                  aviso: 'Esconderte no es la solución: tú no has hecho nada malo. Contarlo puede pararlo.' }
+                { texto: 'Les hago yo fotos comiendo, a ver qué tal les sienta.',
+segura: false,
+pista: '¿De verdad: hacer lo mismo multiplica el problema. Mejor pedir que la borren y contarlo?',
+aviso: 'Hacer lo mismo multiplica el problema. Mejor pedir que la borren y contarlo.' },
+                { texto: 'Como en un rincón a partir de mañana para que no me hagan fotos.',
+segura: false,
+pista: 'Si Esconderte, ¿es la solución: tú no has hecho nada malo?',
+aviso: 'Esconderte no es la solución: tú no has hecho nada malo. Contarlo puede pararlo.' }
               ] },
               { tipo: 'msg', texto: 'Alguien la convierte en un montaje y la vuelve a mandar.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Guardo el montaje como prueba y se lo enseño a un adulto hoy.', segura: true,
                   avisoSeguro: 'Cada reenvío es una prueba más. Un adulto puede pedir que se borre todo y hablar con quien lo hizo.' },
-                { texto: 'Pido por privado a cada uno que la borre, sin contárselo a nadie más.', segura: false,
-                  aviso: 'Pedirlo tú solo a cada uno es agotador y no suele funcionar. Un adulto tiene más fuerza para pararlo.' }
+                { texto: 'Pido por privado a cada uno que la borre, sin contárselo a nadie más.',
+segura: false,
+pista: 'Si Pedirlo tú solo a cada uno es agotador y, ¿suele funcionar?',
+aviso: 'Pedirlo tú solo a cada uno es agotador y no suele funcionar. Un adulto tiene más fuerza para pararlo.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Bien hecho. Nadie puede hacerte fotos sin permiso y compartirlas para reírse.' }
@@ -428,17 +510,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Pido que dejen de usarlo, y se lo cuento a un adulto.', segura: true,
                   avisoSeguro: 'Un montaje con tu cara para burlarse es acoso, aunque parezca "solo un sticker". Contarlo ayuda.' },
-                { texto: 'Hago yo stickers de ellos para vengarme.', segura: false,
-                  aviso: 'Responder con más montajes alarga la burla para todos. Mejor cuéntaselo a un adulto.' },
-                { texto: 'Les sigo el juego usando mi propio sticker.', segura: false,
-                  aviso: 'Seguir la corriente no hace que pare, aunque parezca que sí. Si te duele, cuenta.' }
+                { texto: 'Hago yo stickers de ellos para vengarme.',
+segura: false,
+pista: '¿Responder con más montajes alarga la burla para todos?',
+aviso: 'Responder con más montajes alarga la burla para todos. Mejor cuéntaselo a un adulto.' },
+                { texto: 'Les sigo el juego usando mi propio sticker.',
+segura: false,
+pista: '¿Seguir la corriente hará que pare, aunque parezca que sí?',
+aviso: 'Seguir la corriente no hace que pare, aunque parezca que sí. Si te duele, cuenta.' }
               ] },
               { tipo: 'msg', texto: 'Dicen: "Es un homenaje, ¿no te hace gracia? Qué poco humor tienes."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Digo con calma: si a mí no me hace gracia, no es una broma. Y lo cuento.', segura: true,
                   avisoSeguro: 'Exacto: las bromas hacen gracia a TODOS, incluido tú. Si no, es burla, y se cuenta.' },
-                { texto: 'A lo mejor tienen razón y tengo poco humor…', segura: false,
-                  aviso: 'No es falta de humor: es que se ríen DE ti, no CONTIGO. Esa diferencia lo es todo.' }
+                { texto: 'A lo mejor tienen razón y tengo poco humor…',
+segura: false,
+pista: 'Si No es falta de humor: es que se ríen DE ti,, ¿CONTIGO?',
+aviso: 'No es falta de humor: es que se ríen DE ti, no CONTIGO. Esa diferencia lo es todo.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Muy bien. Una broma que no le hace gracia a todos no es una broma.' }
@@ -453,17 +541,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'No la reenvío. Reenviar burlas también es acosar.', segura: true,
                   avisoSeguro: 'Exacto: quien reenvía una burla se convierte en parte del acoso. Cortarlo en tu mano protege a tu compañera.' },
-                { texto: 'La reenvío, total, ya la tiene todo el mundo.', segura: false,
-                  aviso: '"Ya la tiene todo el mundo" es la excusa de siempre. Cada reenvío hace más daño.' },
-                { texto: 'No la reenvío, pero me río con él por privado.', segura: false,
-                  aviso: 'Reírle la gracia también le anima a seguir. Puedes hacer más: contarlo.' }
+                { texto: 'La reenvío, total, ya la tiene todo el mundo.',
+segura: false,
+pista: '¿De verdad: "Ya la tiene todo el mundo" es la excusa de siempre?',
+aviso: '"Ya la tiene todo el mundo" es la excusa de siempre. Cada reenvío hace más daño.' },
+                { texto: 'No la reenvío, pero me río con él por privado.',
+segura: false,
+pista: '¿De verdad: reírle la gracia también le anima a seguir?',
+aviso: 'Reírle la gracia también le anima a seguir. Puedes hacer más: contarlo.' }
               ] },
               { tipo: 'msg', texto: 'Insiste: "¿La has pasado ya? No seas soso."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Le digo que no, aviso a la compañera y lo cuento a un adulto.', segura: true,
                   avisoSeguro: 'Avisar a la persona afectada y a un adulto es proteger de verdad. "Soso" es un precio pequeñísimo.' },
-                { texto: 'La paso para que deje de insistir.', segura: false,
-                  aviso: 'Ceder a la insistencia hace daño a otra persona. Decir que no ya es ayudarla.' }
+                { texto: 'La paso para que deje de insistir.',
+segura: false,
+pista: '¿De verdad: ceder a la insistencia hace daño a otra persona?',
+aviso: 'Ceder a la insistencia hace daño a otra persona. Decir que no ya es ayudarla.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Avisar a mi compañera y contarlo',
                 confirmacion: 'Muy bien hecho. Has cortado la cadena y has protegido a tu compañera.' }
@@ -478,15 +572,19 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'No mando fotos para memes. Luego no se pueden recuperar.', segura: true,
                   avisoSeguro: 'Una foto "graciosa" tuya puede acabar donde no imaginas. Una vez enviada, ya no la controlas tú.' },
-                { texto: 'Si todos lo han hecho, la mando yo también.', segura: false,
-                  aviso: '"Todos lo han hecho" casi nunca es verdad, y aunque lo fuera: tu foto es tuya. No la mandes.' }
+                { texto: 'Si todos lo han hecho, la mando yo también.',
+segura: false,
+pista: '¿De verdad: "Todos lo han hecho" casi nunca es verdad, y aunque lo fuera: tu foto es tuya?',
+aviso: '"Todos lo han hecho" casi nunca es verdad, y aunque lo fuera: tu foto es tuya. No la mandes.' }
               ] },
               { tipo: 'msg', texto: '"Venga, no seas aburrido. Es solo para reírnos un rato."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Que se rían con otra cosa. Mi cara no es un meme.', segura: true,
                   avisoSeguro: 'Muy bien dicho. Puedes reírte CON ellos sin regalar tu imagen para siempre.' },
-                { texto: 'Bueno, una tonta y ya está.', segura: false,
-                  aviso: 'Esa "una tonta" puede reaparecer dentro de años. Las fotos enviadas no se pueden borrar de verdad.' }
+                { texto: 'Bueno, una tonta y ya está.',
+segura: false,
+pista: '¿De verdad: esa "una tonta" puede reaparecer dentro de años?',
+aviso: 'Esa "una tonta" puede reaparecer dentro de años. Las fotos enviadas no se pueden borrar de verdad.' }
               ] },
               { tipo: 'accion', texto: '🚫 No mandar la foto y contarlo si insisten',
                 confirmacion: 'Bien hecho. Tu imagen es tuya, y no hace falta regalarla para caer bien.' }
@@ -509,17 +607,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Se lo cuento enseguida a un adulto de confianza.', segura: true,
                   avisoSeguro: 'Una amenaza hay que contarla siempre y cuanto antes, a un adulto de confianza.' },
-                { texto: 'Le respondo con otra amenaza.', segura: false,
-                  aviso: 'Responder con otra amenaza puede empeorar las cosas. Cuéntaselo a un adulto ahora mismo.' },
-                { texto: 'No voy a clase mañana para evitarlo.', segura: false,
-                  aviso: 'Faltar a clase no resuelve el problema real. Cuéntaselo a un adulto para que te proteja de verdad.' }
+                { texto: 'Le respondo con otra amenaza.',
+segura: false,
+pista: '¿De verdad: responder con otra amenaza puede empeorar las cosas?',
+aviso: 'Responder con otra amenaza puede empeorar las cosas. Cuéntaselo a un adulto ahora mismo.' },
+                { texto: 'No voy a clase mañana para evitarlo.',
+segura: false,
+pista: 'Si Faltar a clase, ¿resuelve el problema real?',
+aviso: 'Faltar a clase no resuelve el problema real. Cuéntaselo a un adulto para que te proteja de verdad.' }
               ] },
               { tipo: 'msg', texto: '"Y no se te ocurra contarlo a nadie."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Se lo cuento a un adulto de todas formas. Es lo más importante.', segura: true,
                   avisoSeguro: 'Que te pidan guardar el secreto es otra señal de que hay que contarlo. Un adulto puede protegerte.' },
-                { texto: 'No se lo cuento a nadie, como me dice.', segura: false,
-                  aviso: 'Cuando alguien te pide guardar en secreto algo que te asusta, siempre hay que contarlo a un adulto.' }
+                { texto: 'No se lo cuento a nadie, como me dice.',
+segura: false,
+pista: '¿De verdad: cuando alguien te pide guardar en secreto algo que te asusta, siempre hay que contarlo a…',
+aviso: 'Cuando alguien te pide guardar en secreto algo que te asusta, siempre hay que contarlo a un adulto.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza ahora mismo',
                 confirmacion: 'Muy bien. Ante una amenaza, contarlo enseguida a un adulto es lo más importante y lo más valiente.' }
@@ -534,17 +638,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'No se los paso y lo cuento hoy a un adulto de confianza.', segura: true,
                   avisoSeguro: 'Obligarte con amenazas a hacer su trabajo es abuso. Contarlo cuanto antes lo para.' },
-                { texto: 'Se los paso, así me deja en paz.', segura: false,
-                  aviso: 'Si cedes hoy, mañana pedirá más. Las amenazas solo paran cuando las conoce un adulto.' },
-                { texto: 'Le paso los deberes mal hechos a propósito.', segura: false,
-                  aviso: 'Los trucos alargan el problema y pueden volverse contra ti. Contarlo es más seguro.' }
+                { texto: 'Se los paso, así me deja en paz.',
+segura: false,
+pista: '¿De verdad: si cedes hoy, mañana pedirá más. Las amenazas solo paran cuando las conoce un adulto?',
+aviso: 'Si cedes hoy, mañana pedirá más. Las amenazas solo paran cuando las conoce un adulto.' },
+                { texto: 'Le paso los deberes mal hechos a propósito.',
+segura: false,
+pista: '¿De verdad: los trucos alargan el problema y pueden volverse contra ti?',
+aviso: 'Los trucos alargan el problema y pueden volverse contra ti. Contarlo es más seguro.' }
               ] },
               { tipo: 'msg', texto: '"Y rapidito, que los necesito antes de las seis."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Guardo sus mensajes como prueba y se los enseño a un adulto.', segura: true,
                   avisoSeguro: 'Sus propios mensajes son la mejor prueba. Con ellas, el adulto puede actuar enseguida.' },
-                { texto: 'Los borro para olvidarme del tema.', segura: false,
-                  aviso: 'Si los borras, será tu palabra contra la suya. Guárdalos y cuéntalo.' }
+                { texto: 'Los borro para olvidarme del tema.',
+segura: false,
+pista: '¿De verdad: si los borras, será tu palabra contra la suya?',
+aviso: 'Si los borras, será tu palabra contra la suya. Guárdalos y cuéntalo.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Muy bien. Nadie puede obligarte a hacer su trabajo con amenazas.' }
@@ -559,17 +669,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'No le doy nada y se lo cuento hoy mismo a un adulto.', segura: true,
                   avisoSeguro: 'Pedir dinero con amenazas es muy grave. Contarlo hoy es la forma de estar protegido mañana.' },
-                { texto: 'Le llevo el dinero para evitar problemas.', segura: false,
-                  aviso: 'Si pagas una vez, pedirá siempre. La protección de verdad es que lo sepa un adulto.' },
-                { texto: 'Le digo que le espero yo a él.', segura: false,
-                  aviso: 'Responder al desafío puede acabar muy mal. La fuerza aquí es contarlo, no pelear.' }
+                { texto: 'Le llevo el dinero para evitar problemas.',
+segura: false,
+pista: '¿De verdad: si pagas una vez, pedirá siempre. La protección de verdad es que lo sepa un adulto?',
+aviso: 'Si pagas una vez, pedirá siempre. La protección de verdad es que lo sepa un adulto.' },
+                { texto: 'Le digo que le espero yo a él.',
+segura: false,
+pista: 'Si Responder al desafío puede acabar muy mal. La fuerza aquí es contarlo,, ¿pelear?',
+aviso: 'Responder al desafío puede acabar muy mal. La fuerza aquí es contarlo, no pelear.' }
               ] },
               { tipo: 'msg', texto: '"Ni se te ocurra decírselo a un profe. Te estaré vigilando."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Precisamente por eso se lo digo ya: a un profesor y a mi familia.', segura: true,
                   avisoSeguro: 'Cuanto más insiste en el silencio, más claro está que contarlo le detiene. Bien visto.' },
-                { texto: 'Mejor me callo, no quiero que me vigile.', segura: false,
-                  aviso: 'El silencio te deja solo con el miedo. Contarlo pone a los adultos de tu lado, que es donde deben estar.' }
+                { texto: 'Mejor me callo, no quiero que me vigile.',
+segura: false,
+pista: '¿De verdad: el silencio te deja solo con el miedo?',
+aviso: 'El silencio te deja solo con el miedo. Contarlo pone a los adultos de tu lado, que es donde deben estar.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contarlo hoy a un profesor y a mi familia',
                 confirmacion: 'Muy bien. Pedir dinero con amenazas es de las cosas más importantes de contar enseguida.' }
@@ -584,17 +700,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Lo cuento igualmente a un adulto: por él y por mí.', segura: true,
                   avisoSeguro: 'Contarlo os protege a los dos. Los adultos saben cómo hacerlo sin señalarte.' },
-                { texto: 'Me callo, no quiero ser el siguiente.', segura: false,
-                  aviso: 'El silencio es justo lo que necesitan para seguir. Contarlo a un adulto os protege a ti y al compañero.' },
-                { texto: 'Les prometo silencio a cambio de que no me toquen.', segura: false,
-                  aviso: 'Los tratos con quien amenaza no se cumplen. La protección de verdad viene de contarlo.' }
+                { texto: 'Me callo, no quiero ser el siguiente.',
+segura: false,
+pista: '¿De verdad: el silencio es justo lo que necesitan para seguir?',
+aviso: 'El silencio es justo lo que necesitan para seguir. Contarlo a un adulto os protege a ti y al compañero.' },
+                { texto: 'Les prometo silencio a cambio de que no me toquen.',
+segura: false,
+pista: 'Si Los tratos con quien amenaza, ¿se cumplen?',
+aviso: 'Los tratos con quien amenaza no se cumplen. La protección de verdad viene de contarlo.' }
               ] },
               { tipo: 'msg', texto: '"¿Entendido? Ni una palabra."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Guardo el mensaje y voy a hablar con un adulto ahora.', segura: true,
                   avisoSeguro: 'Esa amenaza escrita es la prueba que lo desmonta todo. Ahora es cosa de los adultos, no tuya.' },
-                { texto: 'Respondo "entendido" y trago con todo.', segura: false,
-                  aviso: 'No tienes que tragar con nada. Hay adultos cuyo trabajo es exactamente ayudar con esto.' }
+                { texto: 'Respondo "entendido" y trago con todo.',
+segura: false,
+pista: '¿Realmente tienes que tragar con nada. Hay adultos cuyo trabajo es exactamente ayudar con esto?',
+aviso: 'No tienes que tragar con nada. Hay adultos cuyo trabajo es exactamente ayudar con esto.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contarlo todo a un adulto de confianza',
                 confirmacion: 'Muy valiente. Contar lo que viste protege a tu compañero y también a ti.' }
@@ -617,17 +739,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'No participo, y se lo cuento a un adulto de confianza.', segura: true,
                   avisoSeguro: 'No unirte y contarlo ayuda a proteger a tu compañero. Eso es ser un buen amigo.' },
-                { texto: 'Escribo algo feo también, para no quedar mal con el grupo.', segura: false,
-                  aviso: 'Unirte para no quedar mal hace daño a otra persona. Mejor no participar, y contarlo.' },
-                { texto: 'No escribo nada, pero tampoco se lo digo a nadie.', segura: false,
-                  aviso: 'No participar ya es un paso, pero contarlo a un adulto ayuda mucho más a proteger a tu compañero.' }
+                { texto: 'Escribo algo feo también, para no quedar mal con el grupo.',
+segura: false,
+pista: 'Si Unirte para, ¿quedar mal hace daño a otra persona?',
+aviso: 'Unirte para no quedar mal hace daño a otra persona. Mejor no participar, y contarlo.' },
+                { texto: 'No escribo nada, pero tampoco se lo digo a nadie.',
+segura: false,
+pista: '¿De verdad: no participar ya es un paso, pero contarlo a un adulto ayuda mucho más a proteger…',
+aviso: 'No participar ya es un paso, pero contarlo a un adulto ayuda mucho más a proteger a tu compañero.' }
               ] },
               { tipo: 'msg', texto: 'Varios compañeros ya han escrito cosas feas y esperan que tú también lo hagas.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Le escribo en privado para decirle que no está solo, y se lo cuento a un adulto.', segura: true,
                   avisoSeguro: 'Apoyar a quien lo está pasando mal, y contarlo a un adulto, es la mejor forma de ayudar.' },
-                { texto: 'Sigo la corriente del grupo para que no se metan conmigo.', segura: false,
-                  aviso: 'Seguir la corriente hace daño a otra persona. Puedes no participar y contarlo a un adulto.' }
+                { texto: 'Sigo la corriente del grupo para que no se metan conmigo.',
+segura: false,
+pista: '¿De verdad: seguir la corriente hace daño a otra persona?',
+aviso: 'Seguir la corriente hace daño a otra persona. Puedes no participar y contarlo a un adulto.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Contárselo a un adulto de confianza',
                 confirmacion: 'Muy bien hecho. Contarlo ayuda a proteger a tu compañero, y a ti también.' }
@@ -642,15 +770,19 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'No pongo nada. Un emoji de risa también hace daño.', segura: true,
                   avisoSeguro: 'Exacto: cada emoji de risa le dice a ella que todos están en su contra. No participar ya la ayuda.' },
-                { texto: 'Pongo el emoji, total, es solo un emoji.', segura: false,
-                  aviso: 'Para quien lo sufre, cada risa cuenta, aunque sea un emoji. No hay burla "pequeña".' }
+                { texto: 'Pongo el emoji, total, es solo un emoji.',
+segura: false,
+pista: '¿De verdad: para quien lo sufre, cada risa cuenta, aunque sea un emoji?',
+aviso: 'Para quien lo sufre, cada risa cuenta, aunque sea un emoji. No hay burla "pequeña".' }
               ] },
               { tipo: 'msg', texto: 'La compañera se desconecta del grupo. Alguien escribe: "Ya se ha ido la llorona."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Le escribo a ella en privado para apoyarla, y lo cuento a un adulto.', segura: true,
                   avisoSeguro: 'Tu mensaje privado puede ser lo más importante que reciba hoy. Y contarlo hace que esto pare.' },
-                { texto: 'No hago nada, ya se le pasará.', segura: false,
-                  aviso: 'Puede que no se le pase sola. Un mensaje tuyo y un adulto avisado cambian mucho las cosas.' }
+                { texto: 'No hago nada, ya se le pasará.',
+segura: false,
+pista: 'Si Puede que, ¿se le pase sola. Un mensaje tuyo y un adulto avisado cambian mucho las cosas?',
+aviso: 'Puede que no se le pase sola. Un mensaje tuyo y un adulto avisado cambian mucho las cosas.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Apoyarla y contárselo a un adulto',
                 confirmacion: 'Muy bien. Apoyar a quien lo sufre y avisar a un adulto es exactamente lo que hay que hacer.' }
@@ -665,17 +797,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'Le digo que contarlo no es de débiles, y que le acompaño a hacerlo.', segura: true,
                   avisoSeguro: 'Acompañarle a contarlo es la mejor ayuda. El acoso no se arregla en secreto.' },
-                { texto: 'Le prometo guardar el secreto para siempre.', segura: false,
-                  aviso: 'Este secreto le hace daño cada día. Ayudarle de verdad es que un adulto lo sepa.' },
-                { texto: 'Voy yo a pelearme con los que se meten con él.', segura: false,
-                  aviso: 'Pelear lo empeora y te mete a ti en el problema. Acompañarle a contarlo sí funciona.' }
+                { texto: 'Le prometo guardar el secreto para siempre.',
+segura: false,
+pista: '¿De verdad: este secreto le hace daño cada día. Ayudarle de verdad es que un adulto lo sepa?',
+aviso: 'Este secreto le hace daño cada día. Ayudarle de verdad es que un adulto lo sepa.' },
+                { texto: 'Voy yo a pelearme con los que se meten con él.',
+segura: false,
+pista: '¿Pelear lo empeora y te mete a ti en el problema?',
+aviso: 'Pelear lo empeora y te mete a ti en el problema. Acompañarle a contarlo sí funciona.' }
               ] },
               { tipo: 'msg', texto: 'Te contesta: "¿Y si se enteran de que lo he contado y es peor?"' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Le explico que los adultos saben protegerle, y que no está solo.', segura: true,
                   avisoSeguro: 'Así es: los adultos saben actuar sin señalarle. Y si él no puede, puedes contarlo tú por él.' },
-                { texto: 'Le doy la razón y lo dejamos estar.', segura: false,
-                  aviso: 'Dejarlo estar significa que siga sufriendo cada día. Contarlo es la salida, no el peligro.' }
+                { texto: 'Le doy la razón y lo dejamos estar.',
+segura: false,
+pista: '¿De verdad: dejarlo estar significa que siga sufriendo cada día?',
+aviso: 'Dejarlo estar significa que siga sufriendo cada día. Contarlo es la salida, no el peligro.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Acompañarle a contárselo a un adulto',
                 confirmacion: 'Eres un amigo de verdad. Contarlo juntos es mucho más fácil que sufrirlo solo.' }
@@ -690,17 +828,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'No voto y digo que esa encuesta no tiene gracia.', segura: true,
                   avisoSeguro: 'Esas encuestas siempre terminan con alguien pasándolo fatal. No votar y decirlo es pararlo a tiempo.' },
-                { texto: 'Voto a alguien que me cae mal, es solo una encuesta.', segura: false,
-                  aviso: 'No es "solo una encuesta": alguien va a leer que su clase le votó como el más feo. Eso deja marca.' },
-                { texto: 'No voto, pero miro los resultados con curiosidad.', segura: false,
-                  aviso: 'Mirar sin frenar también mantiene el juego vivo. Puedes hacer más: decir que no está bien.' }
+                { texto: 'Voto a alguien que me cae mal, es solo una encuesta.',
+segura: false,
+pista: '¿De verdad: no es "solo una encuesta": alguien va a leer que su clase le votó como el…',
+aviso: 'No es "solo una encuesta": alguien va a leer que su clase le votó como el más feo. Eso deja marca.' },
+                { texto: 'No voto, pero miro los resultados con curiosidad.',
+segura: false,
+pista: '¿De verdad: mirar sin frenar también mantiene el juego vivo?',
+aviso: 'Mirar sin frenar también mantiene el juego vivo. Puedes hacer más: decir que no está bien.' }
               ] },
               { tipo: 'msg', texto: 'Los votos van subiendo y ya hay un "ganador" señalado.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'Aviso a un adulto antes de que el resultado haga más daño.', segura: true,
                   avisoSeguro: 'Avisar rápido puede cortar la encuesta antes de que el "ganador" la vea. Eso es proteger.' },
-                { texto: 'Espero a ver en qué queda la cosa.', segura: false,
-                  aviso: 'Cada hora que pasa, más gente vota y más daño hace. Avisar pronto lo corta.' }
+                { texto: 'Espero a ver en qué queda la cosa.',
+segura: false,
+pista: '¿De verdad: cada hora que pasa, más gente vota y más daño hace?',
+aviso: 'Cada hora que pasa, más gente vota y más daño hace. Avisar pronto lo corta.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Avisar a un adulto de confianza',
                 confirmacion: 'Muy bien. Has cortado una burla colectiva antes de que hiciera más daño.' }
@@ -763,17 +907,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: "I don't answer the nickname. I'm going to tell someone I trust.", segura: true,
                   avisoSeguro: 'A nickname that hurts and gets repeated is not a joke: it is bullying. Telling someone is the right move.' },
-                { texto: "I'll give him a worse nickname, see how he likes it.", segura: false,
-                  aviso: 'Answering with another nickname stretches the fight and fixes nothing. Better tell someone you trust.' },
-                { texto: "I laugh along so it doesn't show that it bothers me.", segura: false,
-                  aviso: 'You do not have to pretend it does not hurt. Working at your own pace is nothing to mock.' }
+                { texto: "I'll give him a worse nickname, see how he likes it.",
+segura: false,
+pista: '¿De verdad: answering with another nickname stretches the fight and fixes nothing?',
+aviso: 'Answering with another nickname stretches the fight and fixes nothing. Better tell someone you trust.' },
+                { texto: "I laugh along so it doesn't show that it bothers me.",
+segura: false,
+pista: '¿De verdad: you do not have to pretend it does not hurt?',
+aviso: 'You do not have to pretend it does not hurt. Working at your own pace is nothing to mock.' }
               ] },
               { tipo: 'msg', texto: 'Every day they call you that nickname, even though you asked them to stop.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I save the messages and show them to the supervisor or my family.', segura: true,
                   avisoSeguro: 'When you ask them to stop and they do not, it is time to tell with proof. The supervisor is there to help you.' },
-                { texto: 'I stop looking at the workshop group forever.', segura: false,
-                  aviso: 'Not looking at the group cuts you off from work, and the mocking continues. Telling someone can really stop it.' }
+                { texto: 'I stop looking at the workshop group forever.',
+segura: false,
+pista: '¿De verdad: not looking at the group cuts you off from work, and the mocking continues?',
+aviso: 'Not looking at the group cuts you off from work, and the mocking continues. Telling someone can really stop it.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell someone I trust',
                 confirmacion: 'Well done. At the workshop, the supervisor and your family can make this stop.' }
@@ -789,17 +939,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: "I don't answer the mocking and I tell a trusted adult.", segura: true,
                   avisoSeguro: 'Laughing at how someone writes is bullying. Everyone learns at their own pace, and that is okay.' },
-                { texto: 'I never write in the group again.', segura: false,
-                  aviso: 'Going quiet out of fear takes away your place. The problem belongs to whoever mocks, not to you.' },
-                { texto: 'I mock how someone else writes.', segura: false,
-                  aviso: 'Passing the mocking to someone else causes more harm. Better tell an adult.' }
+                { texto: 'I never write in the group again.',
+segura: false,
+pista: '¿De verdad: going quiet out of fear takes away your place?',
+aviso: 'Going quiet out of fear takes away your place. The problem belongs to whoever mocks, not to you.' },
+                { texto: 'I mock how someone else writes.',
+segura: false,
+pista: '¿De verdad: passing the mocking to someone else causes more harm?',
+aviso: 'Passing the mocking to someone else causes more harm. Better tell an adult.' }
               ] },
               { tipo: 'msg', texto: 'The next day they do the same every time you write.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I calmly write that mocking is not okay, and I report it with screenshots.', segura: true,
                   avisoSeguro: 'Saying it calmly and reporting it with proof is the best combination. You are not alone with this.' },
-                { texto: 'I apologise for writing badly.', segura: false,
-                  aviso: 'You do not have to apologise for learning at your own pace. Whoever mocks is the one acting wrong.' }
+                { texto: 'I apologise for writing badly.',
+segura: false,
+pista: '¿De verdad: you do not have to apologise for learning at your own pace?',
+aviso: 'You do not have to apologise for learning at your own pace. Whoever mocks is the one acting wrong.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult',
                 confirmacion: 'Well done. Writing with mistakes is no reason for mockery; mocking is the real problem.' }
@@ -814,17 +970,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'I mute his chat in the game and tell an adult.', segura: true,
                   avisoSeguro: 'Muting and telling is the perfect play: you stop reading the insults and an adult can stop them.' },
-                { texto: 'I insult him every time he loses.', segura: false,
-                  aviso: 'Trading insults turns the game into a fight. Muting and telling works better.' },
-                { texto: 'I quit the game I love.', segura: false,
-                  aviso: 'You do not have to give up what you love. He is the one acting wrong, not you.' }
+                { texto: 'I insult him every time he loses.',
+segura: false,
+pista: '¿De verdad: trading insults turns the game into a fight?',
+aviso: 'Trading insults turns the game into a fight. Muting and telling works better.' },
+                { texto: 'I quit the game I love.',
+segura: false,
+pista: '¿De verdad: you do not have to give up what you love?',
+aviso: 'You do not have to give up what you love. He is the one acting wrong, not you.' }
               ] },
               { tipo: 'msg', texto: 'He writes: "If you don\'t leave the game, tomorrow I\'ll tell everyone in class."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I save his message and show it to a trusted adult today.', segura: true,
                   avisoSeguro: 'That threat is the perfect proof for an adult to act. Telling today is best.' },
-                { texto: 'I leave the game so he says nothing.', segura: false,
-                  aviso: 'If you obey a threat, more will come. Telling is what cuts them short.' }
+                { texto: 'I leave the game so he says nothing.',
+segura: false,
+pista: '¿De verdad: if you obey a threat, more will come?',
+aviso: 'If you obey a threat, more will come. Telling is what cuts them short.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult',
                 confirmacion: 'Well done. Bullying in online games is still bullying, and it can be stopped too.' }
@@ -849,15 +1011,19 @@ const DATA = {
                   avisoSeguro: 'Telling someone helps. Being left out on purpose and secretly hurts, and you deserve help.' },
                 { texto: 'I make a group too, to leave someone else out.', segura: false,
                   aviso: "Excluding someone else doesn't fix being excluded yourself. It's better to tell a trusted adult." },
-                { texto: "I don't make a big deal of it, it's probably nothing.", segura: false,
-                  aviso: 'If it hurts, it does matter. You do not have to deal with it alone.' }
+                { texto: "I don't make a big deal of it, it's probably nothing.",
+segura: false,
+pista: '¿De verdad: if it hurts, it does matter. You do not have to deal with it alone?',
+aviso: 'If it hurts, it does matter. You do not have to deal with it alone.' }
               ] },
               { tipo: 'msg', texto: 'A classmate messages you directly: "Nobody wants you in the group, better stop trying."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I calmly reply that this is not okay, and I tell a trusted adult.', segura: true,
                   avisoSeguro: 'You can reply calmly and also tell someone. Both things help the situation get better.' },
-                { texto: 'I beg them to let me into the group.', segura: false,
-                  aviso: 'You do not have to beg to be treated well. Tell someone you trust.' }
+                { texto: 'I beg them to let me into the group.',
+segura: false,
+pista: '¿De verdad: you do not have to beg to be treated well?',
+aviso: 'You do not have to beg to be treated well. Tell someone you trust.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult',
                 confirmacion: 'Well done. A trusted adult can help the situation change.' }
@@ -872,17 +1038,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: "It hurts. I'm going to tell someone I trust.", segura: true,
                   avisoSeguro: 'Leaving you out on purpose and mocking it is not an accident: it is exclusion. Telling helps.' },
-                { texto: 'I ask a thousand times if I can come, please, please.', segura: false,
-                  aviso: 'You do not have to beg to be invited. You deserve friends who want you there.' },
-                { texto: 'I write something mean about the party to get back at them.', segura: false,
-                  aviso: 'Getting back at them puts you at their level and makes things worse. Better tell someone.' }
+                { texto: 'I ask a thousand times if I can come, please, please.',
+segura: false,
+pista: '¿De verdad: you do not have to beg to be invited?',
+aviso: 'You do not have to beg to be invited. You deserve friends who want you there.' },
+                { texto: 'I write something mean about the party to get back at them.',
+segura: false,
+pista: '¿De verdad: getting back at them puts you at their level and makes things worse?',
+aviso: 'Getting back at them puts you at their level and makes things worse. Better tell someone.' }
               ] },
               { tipo: 'msg', texto: 'On Saturday they post photos of the party and tag you: "Shame you didn\'t come! 😂"' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I save the messages and show them to a trusted adult.', segura: true,
                   avisoSeguro: 'Mocking on top of excluding makes it even clearer. With proof, an adult can act.' },
-                { texto: 'I reply that the party was surely super boring.', segura: false,
-                  aviso: 'Replying with scorn stretches the fight. Telling an adult can actually change things.' }
+                { texto: 'I reply that the party was surely super boring.',
+segura: false,
+pista: '¿De verdad: replying with scorn stretches the fight. Telling an adult can actually change things?',
+aviso: 'Replying with scorn stretches the fight. Telling an adult can actually change things.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult',
                 confirmacion: 'Well done. Nobody deserves to be left out for laughs. An adult can help.' }
@@ -897,15 +1069,19 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'I calmly ask why I am not in it, and I tell the supervisor.', segura: true,
                   avisoSeguro: 'Asking calmly is fine, and the supervisor should know you are being left out of work announcements.' },
-                { texto: "I say nothing, maybe there is no room in the group.", segura: false,
-                  aviso: 'There is always room in a group. Leaving you out of work announcements is not okay.' }
+                { texto: "I say nothing, maybe there is no room in the group.",
+segura: false,
+pista: '¿De verdad: there is always room in a group. Leaving you out of work announcements is not okay?',
+aviso: 'There is always room in a group. Leaving you out of work announcements is not okay.' }
               ] },
               { tipo: 'msg', texto: 'A colleague says: "That group is just for the usual crowd, you don\'t belong there."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I tell the supervisor or my family. It is my work too.', segura: true,
                   avisoSeguro: 'Workshop announcements belong to everyone. Excluding you on purpose is a problem the supervisor must fix.' },
-                { texto: 'I apologise for having asked.', segura: false,
-                  aviso: 'You did nothing wrong by asking. Whoever excludes is the one acting wrong.' }
+                { texto: 'I apologise for having asked.',
+segura: false,
+pista: '¿De verdad: you did nothing wrong by asking. Whoever excludes is the one acting wrong?',
+aviso: 'You did nothing wrong by asking. Whoever excludes is the one acting wrong.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell the supervisor or my family',
                 confirmacion: 'Well done. Work announcements are for everyone, and you are part of the team.' }
@@ -920,17 +1096,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'I realise it is on purpose. I tell a trusted adult.', segura: true,
                   avisoSeguro: 'Kicking you out every time "as a joke" is exclusion on purpose. Telling is the right move.' },
-                { texto: 'I keep joining over and over without saying anything.', segura: false,
-                  aviso: 'If they kick you on purpose, insisting in silence does not fix it. Tell someone.' },
-                { texto: 'I try to kick them out instead.', segura: false,
-                  aviso: 'Kicking back turns the game into a war. Telling works better.' }
+                { texto: 'I keep joining over and over without saying anything.',
+segura: false,
+pista: '¿De verdad: if they kick you on purpose, insisting in silence does not fix it?',
+aviso: 'If they kick you on purpose, insisting in silence does not fix it. Tell someone.' },
+                { texto: 'I try to kick them out instead.',
+segura: false,
+pista: '¿De verdad: kicking back turns the game into a war?',
+aviso: 'Kicking back turns the game into a war. Telling works better.' }
               ] },
               { tipo: 'msg', texto: 'In class they laugh: "What\'s wrong, can\'t even join a match?"' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I calmly reply that I know what they are doing, and I tell someone.', segura: true,
                   avisoSeguro: 'Naming what they do, calmly and without fighting, takes their fun away. And telling stops it.' },
-                { texto: 'I swallow my anger and tell nobody.', segura: false,
-                  aviso: 'Holding it in silence does not make it stop. You deserve to play like everyone else.' }
+                { texto: 'I swallow my anger and tell nobody.',
+segura: false,
+pista: '¿De verdad: holding it in silence does not make it stop?',
+aviso: 'Holding it in silence does not make it stop. You deserve to play like everyone else.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult',
                 confirmacion: 'Well done. Kicking you out of the game on purpose again and again is not a joke.' }
@@ -979,17 +1161,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'I write that this is private, and I tell an adult.', segura: true,
                   avisoSeguro: 'Your feelings are yours. Airing them for laughs is a form of bullying.' },
-                { texto: "I say who someone else has a crush on, to move the spotlight.", segura: false,
-                  aviso: 'Moving the spotlight hurts that person the same way. Better tell an adult.' },
-                { texto: 'I deny everything, shouting angrily.', segura: false,
-                  aviso: 'Shouting gives them exactly the reaction they want. Staying calm and telling stops it better.' }
+                { texto: "I say who someone else has a crush on, to move the spotlight.",
+segura: false,
+pista: '¿De verdad: moving the spotlight hurts that person the same way?',
+aviso: 'Moving the spotlight hurts that person the same way. Better tell an adult.' },
+                { texto: 'I deny everything, shouting angrily.',
+segura: false,
+pista: '¿De verdad: shouting gives them exactly the reaction they want?',
+aviso: 'Shouting gives them exactly the reaction they want. Staying calm and telling stops it better.' }
               ] },
               { tipo: 'msg', texto: 'They start writing your name with hearts and laughter all over the group.' },
               { tipo: 'eleccion', opciones: [
                 { texto: "I don't react to the laughter and I report it with screenshots.", segura: true,
                   avisoSeguro: 'Without your reaction, the "fun" runs out sooner. And screenshots help the adult act.' },
-                { texto: 'I leave the class group forever without telling anyone.', segura: false,
-                  aviso: 'Leaving without telling puts you out of your own group and the problem continues. Telling can stop it.' }
+                { texto: 'I leave the class group forever without telling anyone.',
+segura: false,
+pista: '¿De verdad: leaving without telling puts you out of your own group and the problem continues?',
+aviso: 'Leaving without telling puts you out of your own group and the problem continues. Telling can stop it.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult',
                 confirmacion: 'Well done. Laughing at someone\'s feelings is never okay.' }
@@ -1004,17 +1192,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'I calmly tell him that hurt me, and I tell a trusted adult.', segura: true,
                   avisoSeguro: 'Saying how you feel is right, and an adult can help stop the secret from spreading.' },
-                { texto: 'I share an even worse secret of his.', segura: false,
-                  aviso: 'Betraying his secret turns you into the very thing that hurt you. Do not enter that wheel.' },
-                { texto: "I act as if I don't care.", segura: false,
-                  aviso: 'It does matter: it was your secret. You do not have to pretend it does not hurt.' }
+                { texto: 'I share an even worse secret of his.',
+segura: false,
+pista: '¿De verdad: betraying his secret turns you into the very thing that hurt you?',
+aviso: 'Betraying his secret turns you into the very thing that hurt you. Do not enter that wheel.' },
+                { texto: "I act as if I don't care.",
+segura: false,
+pista: '¿De verdad: it does matter: it was your secret. You do not have to pretend it does not…',
+aviso: 'It does matter: it was your secret. You do not have to pretend it does not hurt.' }
               ] },
               { tipo: 'msg', texto: 'He writes: "It was just a joke, don\'t be mad. Don\'t tell anyone, okay?"' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I tell anyway. Asking for silence after causing harm does not count.', segura: true,
                   avisoSeguro: 'Exactly: whoever causes harm and asks for silence knows they did wrong. Telling is right.' },
-                { texto: "Okay, I won't tell anyone so he doesn't get angry.", segura: false,
-                  aviso: 'Protecting the person who hurt you does not protect you. Tell a trusted adult.' }
+                { texto: "Okay, I won't tell anyone so he doesn't get angry.",
+segura: false,
+pista: '¿De verdad: protecting the person who hurt you does not protect you?',
+aviso: 'Protecting the person who hurt you does not protect you. Tell a trusted adult.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult',
                 confirmacion: "Well done. Sharing someone's secret for laughs is not a joke." }
@@ -1030,17 +1224,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'I get ahead of it: I tell an adult first, with the truth.', segura: true,
                   avisoSeguro: 'Getting ahead with the truth is the best defence against a false accusation.' },
-                { texto: 'I wait and hope they forget.', segura: false,
-                  aviso: 'Waiting lets the lie grow. Telling the truth first protects you.' },
-                { texto: 'I threaten to accuse them of something else.', segura: false,
-                  aviso: 'Answering with another accusation pulls you into the problem. The truth and an adult pull you out.' }
+                { texto: 'I wait and hope they forget.',
+segura: false,
+pista: '¿De verdad: waiting lets the lie grow. Telling the truth first protects you?',
+aviso: 'Waiting lets the lie grow. Telling the truth first protects you.' },
+                { texto: 'I threaten to accuse them of something else.',
+segura: false,
+pista: '¿De verdad: answering with another accusation pulls you into the problem?',
+aviso: 'Answering with another accusation pulls you into the problem. The truth and an adult pull you out.' }
               ] },
               { tipo: 'msg', texto: 'They message you: "If you say it wasn\'t you, it will be worse."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I save that message: it proves they want to frame me. Telling now.', segura: true,
                   avisoSeguro: 'That message exposes the trap. With it, the adult will see clearly what is going on.' },
-                { texto: 'I stay quiet and accept the blame so they leave me alone.', segura: false,
-                  aviso: 'Accepting blame that is not yours will not bring peace: they will ask for more. The truth protects you.' }
+                { texto: 'I stay quiet and accept the blame so they leave me alone.',
+segura: false,
+pista: '¿De verdad: accepting blame that is not yours will not bring peace: they will ask for more?',
+aviso: 'Accepting blame that is not yours will not bring peace: they will ask for more. The truth protects you.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell the truth to an adult right now',
                 confirmacion: 'Well done. You told the truth first and the saved message proved everything.' }
@@ -1073,8 +1273,10 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'I save the message and show it to a trusted adult.', segura: true,
                   avisoSeguro: 'Saving what happened helps the adult act on it better.' },
-                { texto: 'I delete my account so they can\'t find me.', segura: false,
-                  aviso: 'You do not have to disappear. A trusted adult can help get the photo taken down and stop the mocking.' }
+                { texto: 'I delete my account so they can\'t find me.',
+segura: false,
+pista: '¿De verdad: you do not have to disappear. A trusted adult can help get the photo taken down…',
+aviso: 'You do not have to disappear. A trusted adult can help get the photo taken down and stop the mocking.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult',
                 confirmacion: 'Well done. A trusted adult can help get the photo removed and talk to whoever shared it.' }
@@ -1090,17 +1292,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: "I write that I didn't give permission for that photo, and I tell someone.", segura: true,
                   avisoSeguro: 'Taking photos of you without permission is already wrong; sharing them for laughs, much worse. Telling is right.' },
-                { texto: 'I take photos of them eating, see how they like it.', segura: false,
-                  aviso: 'Doing the same multiplies the problem. Better ask them to delete it and tell someone.' },
-                { texto: "From tomorrow I'll eat in a corner so nobody photographs me.", segura: false,
-                  aviso: 'Hiding is not the answer: you did nothing wrong. Telling someone can stop it.' }
+                { texto: 'I take photos of them eating, see how they like it.',
+segura: false,
+pista: '¿De verdad: doing the same multiplies the problem. Better ask them to delete it and tell someone?',
+aviso: 'Doing the same multiplies the problem. Better ask them to delete it and tell someone.' },
+                { texto: "From tomorrow I'll eat in a corner so nobody photographs me.",
+segura: false,
+pista: '¿De verdad: hiding is not the answer: you did nothing wrong?',
+aviso: 'Hiding is not the answer: you did nothing wrong. Telling someone can stop it.' }
               ] },
               { tipo: 'msg', texto: 'Someone turns it into a meme and sends it again.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I save the meme as proof and show an adult today.', segura: true,
                   avisoSeguro: 'Every re-send is one more proof. An adult can get it all deleted and talk to whoever did it.' },
-                { texto: 'I privately ask each person to delete it, telling nobody else.', segura: false,
-                  aviso: 'Asking each one alone is exhausting and rarely works. An adult has more power to stop it.' }
+                { texto: 'I privately ask each person to delete it, telling nobody else.',
+segura: false,
+pista: '¿De verdad: asking each one alone is exhausting and rarely works?',
+aviso: 'Asking each one alone is exhausting and rarely works. An adult has more power to stop it.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult',
                 confirmacion: 'Well done. Nobody may photograph you without permission and share it for laughs.' }
@@ -1115,17 +1323,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'I ask them to stop using it, and I tell an adult.', segura: true,
                   avisoSeguro: 'A montage of your face made for mocking is bullying, even if it seems like "just a sticker". Telling helps.' },
-                { texto: 'I make stickers of them to get my own back.', segura: false,
-                  aviso: 'Answering with more montages stretches the mocking for everyone. Better tell an adult.' },
-                { texto: 'I play along using my own sticker.', segura: false,
-                  aviso: 'Playing along does not make it stop, even if it seems to. If it hurts, tell someone.' }
+                { texto: 'I make stickers of them to get my own back.',
+segura: false,
+pista: '¿De verdad: answering with more montages stretches the mocking for everyone?',
+aviso: 'Answering with more montages stretches the mocking for everyone. Better tell an adult.' },
+                { texto: 'I play along using my own sticker.',
+segura: false,
+pista: '¿De verdad: playing along does not make it stop, even if it seems to?',
+aviso: 'Playing along does not make it stop, even if it seems to. If it hurts, tell someone.' }
               ] },
               { tipo: 'msg', texto: 'They say: "It\'s a tribute, don\'t you find it funny? You have no sense of humour."' },
               { tipo: 'eleccion', opciones: [
                 { texto: "I calmly say: if it isn't funny to me, it isn't a joke. And I tell someone.", segura: true,
                   avisoSeguro: 'Exactly: jokes are funny to EVERYONE, including you. Otherwise it is mockery, and you report it.' },
-                { texto: 'Maybe they are right and I have no humour…', segura: false,
-                  aviso: 'It is not a lack of humour: they laugh AT you, not WITH you. That difference is everything.' }
+                { texto: 'Maybe they are right and I have no humour…',
+segura: false,
+pista: '¿De verdad: it is not a lack of humour: they laugh AT you, not WITH you?',
+aviso: 'It is not a lack of humour: they laugh AT you, not WITH you. That difference is everything.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult',
                 confirmacion: 'Well done. A joke that is not funny to everyone is not a joke.' }
@@ -1140,17 +1354,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: "I don't forward it. Forwarding mockery is bullying too.", segura: true,
                   avisoSeguro: 'Exactly: whoever forwards mockery becomes part of the bullying. Stopping it in your hands protects her.' },
-                { texto: 'I forward it, everyone has it already anyway.', segura: false,
-                  aviso: '"Everyone has it already" is the usual excuse. Every forward causes more harm.' },
-                { texto: "I don't forward it, but I laugh with him in private.", segura: false,
-                  aviso: 'Laughing along also encourages him to continue. You can do more: tell someone.' }
+                { texto: 'I forward it, everyone has it already anyway.',
+segura: false,
+pista: '¿De verdad: "Everyone has it already" is the usual excuse?',
+aviso: '"Everyone has it already" is the usual excuse. Every forward causes more harm.' },
+                { texto: "I don't forward it, but I laugh with him in private.",
+segura: false,
+pista: '¿De verdad: laughing along also encourages him to continue. You can do more: tell someone?',
+aviso: 'Laughing along also encourages him to continue. You can do more: tell someone.' }
               ] },
               { tipo: 'msg', texto: 'He insists: "Have you sent it yet? Don\'t be boring."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I say no, warn my classmate and tell an adult.', segura: true,
                   avisoSeguro: 'Warning the person affected and an adult is real protection. "Boring" is a tiny price.' },
-                { texto: 'I send it so he stops insisting.', segura: false,
-                  aviso: 'Giving in to insistence hurts another person. Saying no already helps her.' }
+                { texto: 'I send it so he stops insisting.',
+segura: false,
+pista: 'Si Giving in to insistence hurts another person. Saying, ¿already helps her?',
+aviso: 'Giving in to insistence hurts another person. Saying no already helps her.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Warn my classmate and tell someone',
                 confirmacion: 'Very well done. You cut the chain and protected your classmate.' }
@@ -1165,15 +1385,19 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: "I don't send photos for memes. You can never take them back.", segura: true,
                   avisoSeguro: 'A "funny" photo of you can end up where you least imagine. Once sent, you no longer control it.' },
-                { texto: "If everyone has done it, I'll send one too.", segura: false,
-                  aviso: '"Everyone has done it" is almost never true, and even if it were: your photo is yours. Do not send it.' }
+                { texto: "If everyone has done it, I'll send one too.",
+segura: false,
+pista: '¿De verdad: "Everyone has done it" is almost never true, and even if it were: your photo is…',
+aviso: '"Everyone has done it" is almost never true, and even if it were: your photo is yours. Do not send it.' }
               ] },
               { tipo: 'msg', texto: '"Come on, don\'t be boring. It\'s just for a laugh."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'They can laugh at something else. My face is not a meme.', segura: true,
                   avisoSeguro: 'Well said. You can laugh WITH them without giving away your image forever.' },
-                { texto: 'Fine, one silly one and that is it.', segura: false,
-                  aviso: 'That "one silly one" can reappear years later. Sent photos can never truly be deleted.' }
+                { texto: 'Fine, one silly one and that is it.',
+segura: false,
+pista: '¿De verdad: that "one silly one" can reappear years later?',
+aviso: 'That "one silly one" can reappear years later. Sent photos can never truly be deleted.' }
               ] },
               { tipo: 'accion', texto: '🚫 Not send the photo and tell someone if they insist',
                 confirmacion: 'Well done. Your image is yours, and you do not have to give it away to be liked.' }
@@ -1196,8 +1420,10 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'I tell a trusted adult right away.', segura: true,
                   avisoSeguro: 'A threat should always be reported right away to a trusted adult.' },
-                { texto: 'I threaten them back.', segura: false,
-                  aviso: 'Threatening them back can make things worse. Tell a trusted adult right now.' },
+                { texto: 'I threaten them back.',
+segura: false,
+pista: '¿De verdad: threatening them back can make things worse. Tell a trusted adult right now?',
+aviso: 'Threatening them back can make things worse. Tell a trusted adult right now.' },
                 { texto: "I skip class tomorrow to avoid it.", segura: false,
                   aviso: "Missing class doesn't solve the real problem. Tell a trusted adult so they can truly protect you." }
               ] },
@@ -1221,17 +1447,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: "I don't send it and I tell a trusted adult today.", segura: true,
                   avisoSeguro: 'Forcing you with threats to do their work is abuse. Telling right away stops it.' },
-                { texto: "I send it, so he leaves me alone.", segura: false,
-                  aviso: 'If you give in today, tomorrow he will ask for more. Threats only stop when an adult knows.' },
-                { texto: 'I send him homework done wrong on purpose.', segura: false,
-                  aviso: 'Tricks stretch out the problem and can backfire on you. Telling is safer.' }
+                { texto: "I send it, so he leaves me alone.",
+segura: false,
+pista: '¿De verdad: if you give in today, tomorrow he will ask for more?',
+aviso: 'If you give in today, tomorrow he will ask for more. Threats only stop when an adult knows.' },
+                { texto: 'I send him homework done wrong on purpose.',
+segura: false,
+pista: '¿De verdad: tricks stretch out the problem and can backfire on you?',
+aviso: 'Tricks stretch out the problem and can backfire on you. Telling is safer.' }
               ] },
               { tipo: 'msg', texto: '"And quick, I need it before six."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I save his messages as proof and show them to an adult.', segura: true,
                   avisoSeguro: 'His own messages are the best proof. With them, the adult can act right away.' },
-                { texto: 'I delete them to forget about it.', segura: false,
-                  aviso: 'If you delete them, it will be your word against his. Save them and tell someone.' }
+                { texto: 'I delete them to forget about it.',
+segura: false,
+pista: '¿De verdad: if you delete them, it will be your word against his?',
+aviso: 'If you delete them, it will be your word against his. Save them and tell someone.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult',
                 confirmacion: 'Well done. Nobody can force you to do their work with threats.' }
@@ -1246,17 +1478,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: "I don't give him anything and I tell an adult today.", segura: true,
                   avisoSeguro: 'Demanding money with threats is very serious. Telling today is how you stay protected tomorrow.' },
-                { texto: 'I bring him the money to avoid trouble.', segura: false,
-                  aviso: 'If you pay once, he will ask forever. Real protection is an adult knowing about it.' },
-                { texto: "I tell him I'll be waiting for him instead.", segura: false,
-                  aviso: 'Rising to the challenge can end very badly. Strength here is telling, not fighting.' }
+                { texto: 'I bring him the money to avoid trouble.',
+segura: false,
+pista: '¿De verdad: if you pay once, he will ask forever?',
+aviso: 'If you pay once, he will ask forever. Real protection is an adult knowing about it.' },
+                { texto: "I tell him I'll be waiting for him instead.",
+segura: false,
+pista: '¿De verdad: rising to the challenge can end very badly?',
+aviso: 'Rising to the challenge can end very badly. Strength here is telling, not fighting.' }
               ] },
               { tipo: 'msg', texto: '"Don\'t even think of telling a teacher. I\'ll be watching you."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'That is exactly why I am telling now: a teacher and my family.', segura: true,
                   avisoSeguro: 'The more he insists on silence, the clearer it is that telling stops him. Well spotted.' },
-                { texto: "I'd better keep quiet, I don't want him watching me.", segura: false,
-                  aviso: 'Silence leaves you alone with the fear. Telling puts the adults on your side, which is where they belong.' }
+                { texto: "I'd better keep quiet, I don't want him watching me.",
+segura: false,
+pista: '¿De verdad: silence leaves you alone with the fear. Telling puts the adults on your side, which is…',
+aviso: 'Silence leaves you alone with the fear. Telling puts the adults on your side, which is where they belong.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a teacher and my family today',
                 confirmacion: 'Well done. Demanding money with threats is one of the most important things to report right away.' }
@@ -1271,17 +1509,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: 'I tell an adult anyway: for him and for me.', segura: true,
                   avisoSeguro: 'Telling protects you both. Adults know how to handle it without pointing at you.' },
-                { texto: "I keep quiet, I don't want to be next.", segura: false,
-                  aviso: 'Silence is exactly what they need to continue. Telling an adult protects you and your classmate.' },
-                { texto: 'I promise silence in exchange for being left alone.', segura: false,
-                  aviso: 'Deals with people who threaten are never kept. Real protection comes from telling.' }
+                { texto: "I keep quiet, I don't want to be next.",
+segura: false,
+pista: '¿De verdad: silence is exactly what they need to continue?',
+aviso: 'Silence is exactly what they need to continue. Telling an adult protects you and your classmate.' },
+                { texto: 'I promise silence in exchange for being left alone.',
+segura: false,
+pista: '¿De verdad: deals with people who threaten are never kept?',
+aviso: 'Deals with people who threaten are never kept. Real protection comes from telling.' }
               ] },
               { tipo: 'msg', texto: '"Understood? Not a word."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I save the message and go talk to an adult now.', segura: true,
                   avisoSeguro: 'That written threat is the proof that undoes everything. Now it is the adults\' job, not yours.' },
-                { texto: 'I reply "understood" and swallow it all.', segura: false,
-                  aviso: 'You do not have to swallow anything. There are adults whose exact job is to help with this.' }
+                { texto: 'I reply "understood" and swallow it all.',
+segura: false,
+pista: '¿De verdad: you do not have to swallow anything. There are adults whose exact job is to help…',
+aviso: 'You do not have to swallow anything. There are adults whose exact job is to help with this.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult everything',
                 confirmacion: 'Very brave. Telling what you saw protects your classmate and you too.' }
@@ -1304,17 +1548,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: "I don't join in, and I tell a trusted adult.", segura: true,
                   avisoSeguro: 'Not joining in and telling someone helps protect your classmate. That is being a good friend.' },
-                { texto: 'I write something mean too, so I don\'t look bad to the group.', segura: false,
-                  aviso: 'Joining in so you don\'t look bad still hurts another person. Better not to join in, and tell someone.' },
-                { texto: "I don't write anything, but I don't tell anyone either.", segura: false,
-                  aviso: 'Not joining in is already a step, but telling a trusted adult helps protect your classmate much more.' }
+                { texto: 'I write something mean too, so I don\'t look bad to the group.',
+segura: false,
+pista: '¿De verdad: joining in so you don\'t look bad still hurts another person?',
+aviso: 'Joining in so you don\'t look bad still hurts another person. Better not to join in, and tell someone.' },
+                { texto: "I don't write anything, but I don't tell anyone either.",
+segura: false,
+pista: '¿De verdad: not joining in is already a step, but telling a trusted adult helps protect your classmate…',
+aviso: 'Not joining in is already a step, but telling a trusted adult helps protect your classmate much more.' }
               ] },
               { tipo: 'msg', texto: 'Several classmates have already written mean things and expect you to as well.' },
               { tipo: 'eleccion', opciones: [
                 { texto: "I message him privately to say he's not alone, and I tell a trusted adult.", segura: true,
                   avisoSeguro: 'Supporting someone who is struggling, and telling a trusted adult, is the best way to help.' },
-                { texto: 'I go along with the group so they don\'t turn on me.', segura: false,
-                  aviso: 'Going along with it still hurts another person. You can choose not to join in, and tell a trusted adult.' }
+                { texto: 'I go along with the group so they don\'t turn on me.',
+segura: false,
+pista: '¿De verdad: going along with it still hurts another person?',
+aviso: 'Going along with it still hurts another person. You can choose not to join in, and tell a trusted adult.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Tell a trusted adult',
                 confirmacion: 'Well done. Telling someone helps protect your classmate, and you too.' }
@@ -1329,15 +1579,19 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: "I add nothing. A laughing emoji hurts too.", segura: true,
                   avisoSeguro: 'Exactly: every laughing emoji tells her the whole group is against her. Not joining already helps her.' },
-                { texto: "I add the emoji, it's only an emoji.", segura: false,
-                  aviso: 'For the person suffering, every laugh counts, even an emoji. There is no "small" mockery.' }
+                { texto: "I add the emoji, it's only an emoji.",
+segura: false,
+pista: '¿De verdad: for the person suffering, every laugh counts, even an emoji?',
+aviso: 'For the person suffering, every laugh counts, even an emoji. There is no "small" mockery.' }
               ] },
               { tipo: 'msg', texto: 'The girl leaves the group. Someone writes: "There goes the crybaby."' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I message her privately to support her, and I tell an adult.', segura: true,
                   avisoSeguro: 'Your private message may be the most important thing she receives today. And telling makes it stop.' },
-                { texto: "I do nothing, she'll get over it.", segura: false,
-                  aviso: 'She may not get over it alone. A message from you and an informed adult change a lot.' }
+                { texto: "I do nothing, she'll get over it.",
+segura: false,
+pista: '¿De verdad: she may not get over it alone. A message from you and an informed adult change…',
+aviso: 'She may not get over it alone. A message from you and an informed adult change a lot.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Support her and tell an adult',
                 confirmacion: 'Well done. Supporting the person suffering and alerting an adult is exactly right.' }
@@ -1352,17 +1606,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: "I tell him that reporting isn't weakness, and I'll go with him to do it.", segura: true,
                   avisoSeguro: 'Going with him to tell is the best help. Bullying is not fixed in secret.' },
-                { texto: 'I promise to keep the secret forever.', segura: false,
-                  aviso: 'This secret hurts him every single day. Really helping means an adult finding out.' },
-                { texto: "I'll go fight the kids who pick on him.", segura: false,
-                  aviso: 'Fighting makes it worse and pulls you into the problem. Going with him to tell does work.' }
+                { texto: 'I promise to keep the secret forever.',
+segura: false,
+pista: '¿De verdad: this secret hurts him every single day. Really helping means an adult finding out?',
+aviso: 'This secret hurts him every single day. Really helping means an adult finding out.' },
+                { texto: "I'll go fight the kids who pick on him.",
+segura: false,
+pista: '¿De verdad: fighting makes it worse and pulls you into the problem?',
+aviso: 'Fighting makes it worse and pulls you into the problem. Going with him to tell does work.' }
               ] },
               { tipo: 'msg', texto: 'He replies: "What if they find out I told and it gets worse?"' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I explain that adults know how to protect him, and he is not alone.', segura: true,
                   avisoSeguro: 'That is right: adults know how to act without exposing him. And if he cannot, you can tell for him.' },
-                { texto: 'I agree with him and we let it be.', segura: false,
-                  aviso: 'Letting it be means he keeps suffering every day. Telling is the way out, not the danger.' }
+                { texto: 'I agree with him and we let it be.',
+segura: false,
+pista: '¿De verdad: letting it be means he keeps suffering every day?',
+aviso: 'Letting it be means he keeps suffering every day. Telling is the way out, not the danger.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Go with him to tell a trusted adult',
                 confirmacion: 'You are a true friend. Telling together is much easier than suffering alone.' }
@@ -1377,17 +1637,23 @@ const DATA = {
               { tipo: 'eleccion', opciones: [
                 { texto: "I don't vote and I say that poll isn't funny.", segura: true,
                   avisoSeguro: 'Those polls always end with someone feeling awful. Not voting and saying so stops it in time.' },
-                { texto: "I vote for someone I don't like, it's just a poll.", segura: false,
-                  aviso: 'It is not "just a poll": someone will read that their class voted them the ugliest. That leaves a mark.' },
-                { texto: "I don't vote, but I check the results out of curiosity.", segura: false,
-                  aviso: 'Watching without stopping it also keeps the game alive. You can do more: say it is not okay.' }
+                { texto: "I vote for someone I don't like, it's just a poll.",
+segura: false,
+pista: '¿De verdad: it is not "just a poll": someone will read that their class voted them the ugliest?',
+aviso: 'It is not "just a poll": someone will read that their class voted them the ugliest. That leaves a mark.' },
+                { texto: "I don't vote, but I check the results out of curiosity.",
+segura: false,
+pista: '¿De verdad: watching without stopping it also keeps the game alive?',
+aviso: 'Watching without stopping it also keeps the game alive. You can do more: say it is not okay.' }
               ] },
               { tipo: 'msg', texto: 'The votes keep coming and there is already a "winner" being pointed at.' },
               { tipo: 'eleccion', opciones: [
                 { texto: 'I alert an adult before the result causes more harm.', segura: true,
                   avisoSeguro: 'Alerting quickly can cut the poll before the "winner" sees it. That is protecting someone.' },
-                { texto: 'I wait to see how it ends.', segura: false,
-                  aviso: 'Every hour that passes, more people vote and more harm is done. Alerting early cuts it short.' }
+                { texto: 'I wait to see how it ends.',
+segura: false,
+pista: '¿De verdad: every hour that passes, more people vote and more harm is done?',
+aviso: 'Every hour that passes, more people vote and more harm is done. Alerting early cuts it short.' }
               ] },
               { tipo: 'accion', texto: '🗣️ Alert a trusted adult',
                 confirmacion: 'Well done. You cut a group mockery short before it caused more harm.' }

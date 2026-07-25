@@ -25,6 +25,7 @@
     "rondaCompletadaTitulo": "¡Ronda completada!",
     "explicacionCorrecta": "✅ ¡Correcto! Ese es el que no encaja con los demás.",
     "explicacionIncorrectaA": "❌ Ese sí encaja con los demás. El que no encaja es: ",
-    "pista": "🤔 Prueba otra vez. Mira los tres dibujos con calma."
+    "pista": "🤔 Prueba otra vez. Mira los tres dibujos con calma.",
+  "transferencia": "Esto te servirá para encontrar parecidos y diferencias en la vida real: en la compra (\"¿esto va con esto?\"), al recoger la ropa o al ordenar los cubiertos.",
   }, 'es');
 })();

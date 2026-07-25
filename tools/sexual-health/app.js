@@ -86,6 +86,7 @@
       button.disabled = true;
       App.feedback.encourage($('#feedback'));
       showExplanation(attempts === 1 ? item.pista : item.explicacion);
+      App.feedback.lockUntilAck(App.utils.$$('#options .btn-opcion'), $('#explanationWrap'));
       return;
     }
 

@@ -16,6 +16,7 @@
     "elegirOtroNivel": "Elegir otro nivel",
     "explicacionCorrecta": "✅ ¡Correcto! Lo dice la frase: ",
     "explicacionIncorrectaA": "❌ No. La respuesta correcta es: ",
-    "pista": "🤔 Prueba otra vez. Vuelve a leer la frase: "
+    "pista": "🤔 Prueba otra vez. Vuelve a leer la frase: ",
+  "transferencia": "Esto te servirá para entender mejor las frases que lees: carteles, mensajes del móvil, el menú del cole o las instrucciones de un juego.",
   }, 'es');
 })();

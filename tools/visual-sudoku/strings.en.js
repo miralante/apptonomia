@@ -26,5 +26,7 @@
     "btnAyuda": "💡 Help",
     "ayudaPaso1": "Look at the marked gap. Check its row, its column and its box: which picture is not there yet?",
     "ayudaPaso2": "That gap needs {picto}. It is the missing one: it is not in its row, its column or its box. Touch it on the palette."
-  }, 'en');
+  ,
+  "transferencia": "This trains your logic to solve everyday problems."
+}, 'en');
 })();

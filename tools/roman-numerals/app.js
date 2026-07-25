@@ -157,7 +157,6 @@
       optionsEl.appendChild(btn);
     });
 
-    App.tts.speak(round.shown + '. ' + round.question);
     paintProgress();
     paintStars();
   }
@@ -193,6 +192,7 @@
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(feedbackEl);
+      App.feedback.lockUntilAck(App.utils.$$('#options .btn-opcion'), explanationWrap);
     }
   }
 
@@ -217,9 +217,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   }
 
   /* ---------- Eventos ---------- */
-  $('#instructionBtn').addEventListener('click', function () {
-    App.tts.speak($('#instructionText').textContent);
-  });
+
   $('#referenceListenBtn').addEventListener('click', function () {
     App.tts.speak(referenceSpeech());
   });

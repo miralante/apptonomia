@@ -18,23 +18,19 @@
       <span class="stars" id="stars">⭐ 0</span>
     </header>
 
-    <!-- Start screen -->
-    <section id="pantallaInicio" class="pila centrado">
-      <div class="fila centrado-fila">
-        <p class="instruccion" id="instruccion" data-i18n="instruccion">Toca los pasos en el orden correcto, de primero a último.</p>
-      </div>
-      <h2 data-i18n="elegirNivel">Elige el nivel</h2>
-      <div class="pila" id="niveles"></div>
-    </section>
-
     <!-- Game screen -->
-    <section id="pantallaJuego" class="oculto pila">
+    <section id="pantallaJuego" class="pila">
       <div class="progress-bar">
         <div class="progress-fill" id="progressFill"></div>
         <span class="progress-text" id="progressText">0 / 5</span>
       </div>
 
-      <p class="tarea-titulo centrado" id="tareaTitulo"></p>
+      <p class="instruccion centrado" data-i18n="instruccion">Toca los pasos en el orden correcto, de primero a último.</p>
+
+      <div class="tarea-cabecera centrado">
+        <span class="tarea-picto" id="tareaPicto" aria-hidden="true"></span>
+        <p class="tarea-titulo" id="tareaTitulo"></p>
+      </div>
 
       <p class="etiqueta centrado" data-i18n="etiquetaOrden">Tu orden</p>
       <div class="pila-secuencia" id="secuencia"></div>
@@ -53,8 +49,7 @@
       <p id="resumenFinal"></p>
       <p id="transferencia" class="transferencia" data-i18n="transferencia"></p>
       <button type="button" class="btn" id="btnRepetir" data-i18n="core.playAgain">Jugar otra vez</button>
-      <button type="button" class="btn btn-secundario" id="btnOtroNivel" data-i18n="btnOtroNivel">Elegir otro nivel</button>
-      <a href="../../site/index.html" class="btn btn-secundario" data-i18n="core.backToMenu">Volver al menú</a>
+      <button type="button" class="btn btn-secundario" id="btnVolverMenu" data-i18n="core.backToMenu">Volver al menú</button>
     </section>
     <footer class="pie-app">
       <a href="../../legal/index.html" class="enlace-legal" data-i18n="core.dataProtection">Protección de datos</a>
@@ -82,4 +77,3 @@
   </script>
 </body>
 </html>
-

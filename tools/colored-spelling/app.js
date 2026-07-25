@@ -192,7 +192,6 @@
     clearBtn.classList.remove('oculto');
 
     paintStars();
-    App.tts.speak(item.correct);
     // reenfocar el input para teclado físico/móvil
     setTimeout(function () { inputEl.focus(); }, 50);
   }

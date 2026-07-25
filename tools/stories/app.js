@@ -17,6 +17,8 @@
   var secuenciaEl = $('#secuencia');
   var disponiblesEl = $('#disponibles');
   var feedbackEl = $('#feedback');
+  var explicacionWrap = $('#explicacionWrap');
+  var explicacionEl = $('#explicacion');
   var btnSiguiente = $('#btnSiguiente');
   var progressFill = $('#progressFill');
   var progressText = $('#progressText');
@@ -34,6 +36,7 @@
   var aciertosRonda = 0;
   var siguienteEsperado = 0;
   var slots = [];
+  var intentos = 0;   /* Socratic counter per story (rule 12) */
 
   function guardar() { App.storage.set(TOOL_ID, progreso); }
 
@@ -76,8 +79,11 @@
   function render() {
     var historia = historias[idx];
     siguienteEsperado = 0;
-    slots = new Array(historia.vinetas.length).fill(null);
+    intentos = 0;
     feedbackEl.textContent = '';
+    feedbackEl.className = 'feedback';
+    explicacionWrap.classList.add('oculto');
+    explicacionEl.textContent = '';
     feedbackEl.className = 'feedback';
     btnSiguiente.classList.add('oculto');
     historiaTituloEl.textContent = App.i18n.t('historia.' + historia.id);
@@ -124,8 +130,29 @@
         terminarHistoria();
       }
     } else {
+      intentos += 1;
+      if (intentos === 1) {
+        mostrarPista();
+      } else {
+        mostrarExplicacion();
+      }
+      btn.disabled = true;
+      btn.classList.add('animo');
       App.feedback.encourage(feedbackEl);
+      App.feedback.lockUntilAck(App.utils.$$('.vineta', disponiblesEl), explicacionWrap);
     }
+  }
+
+  /* Socratic method (rule 12). First mistake → hint (no answer);
+     second mistake → explanation with the correct beginning. */
+  function mostrarPista() {
+    explicacionEl.textContent = App.i18n.t('pista');
+    explicacionWrap.classList.remove('oculto');
+  }
+
+  function mostrarExplicacion() {
+    explicacionEl.textContent = App.i18n.t('explicacion');
+    explicacionWrap.classList.remove('oculto');
   }
 
   function terminarHistoria() {

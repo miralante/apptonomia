@@ -17,6 +17,7 @@
     "btnOtroNivel": "Choose another level",
     "explicacionCorrecta": "✅ Correct! That is what this sign means.",
     "explicacionIncorrectaA": "❌ No, that is not it. This sign means: ",
-    "pista": "🤔 Try again. Think carefully about what this sign indicates: "
+    "pista": "🤔 Try again. Think carefully about what this sign indicates: ",
+  "transferencia": "This will help you move safely around your neighbourhood: spot the toilet, the exit, the crossing or the danger sign when you go out.",
   }, 'en');
 })();

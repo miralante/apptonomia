@@ -366,6 +366,9 @@
     } else {
       simon.turnoJugador = false;
       mostrarFeedback('feedbackSimon', App.i18n.t('finJuego').replace('{n}', simon.puntos), 'animo');
+      if (window.App && App.feedback && App.feedback.encourage) {
+        App.feedback.encourage(document.getElementById('feedbackSimon'));
+      }
 
       if (simon.nivel > 1) {
         premiar('simon');

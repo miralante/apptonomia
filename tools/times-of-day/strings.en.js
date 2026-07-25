@@ -16,6 +16,7 @@
     "elegirOtroNivel": "Choose another level",
     "explicacionCorrecta": "✅ Correct! That is the right time of day.",
     "explicacionIncorrectaA": "❌ That is not the right time. It goes in: ",
-    "pista": "🤔 Try again. Think about when you normally do that task."
+    "pista": "🤔 Try again. Think about when you normally do that task.",
+  "transferencia": "This will help you organise your day better: knowing if what is next belongs to morning, afternoon or night helps you not lose track.",
   }, 'en');
 })();

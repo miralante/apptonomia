@@ -14,5 +14,7 @@
     "rondaCompletadaTitulo": "¡Ronda completada!",
     "resumenFinal": "Has atrapado {n} dibujos. ¡Muy bien!",
     "transfer": "Esto entrena tu coordinación ojo-mano. Te servirá para atrapar cosas, jugar y moverte con más seguridad."
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a reaccionar rápido cuando coges cosas en movimiento."
+}, 'es');
 })();

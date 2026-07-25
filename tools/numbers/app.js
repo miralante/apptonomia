@@ -1031,6 +1031,7 @@
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(feedbackEl);
+      App.feedback.lockUntilAck(App.utils.$$('#opciones .btn-opcion'), explicacionWrap);
     }
   }
 
@@ -1069,18 +1070,13 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   }
 
   /* ---- Eventos ---- */
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
-  $('#btnInstruccionActividad').addEventListener('click', function () {
-    App.tts.speak(App.i18n.t('actividad.' + actividad.id + '.instruccion') + App.i18n.t('instruccionExtra'));
-  });
+
+
   $('#btnEscuchar').addEventListener('click', function () {
     App.tts.speak(pregunta ? (pregunta.hablar || pregunta.enunciado) : '');
   });
   btnSiguiente.addEventListener('click', siguiente);
   btnEscucharExplicacion.addEventListener('click', function () {
-    App.tts.speak(explicacionEl.textContent);
   });
   $('#btnVolverMenu').addEventListener('click', function () { mostrar(pantallaMenu); });
   $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });

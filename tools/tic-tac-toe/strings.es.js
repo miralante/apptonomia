@@ -36,5 +36,7 @@
     "ayudaEsquina2": "Toca la esquina marcada: participa en tres líneas posibles.",
     "ayudaLibre1": "Mira las casillas libres. ¿Cuál te ayuda a juntar tus fichas en línea?",
     "ayudaLibre2": "Toca la casilla marcada y sigue juntando tus fichas en línea."
-  }, 'es');
+  ,
+  "transferencia": "Esto entrena tu estrategia para anticipar la jugada del rival."
+}, 'es');
 })();

@@ -25,6 +25,7 @@
     "rondaCompletadaTitulo": "Round complete!",
     "explicacionCorrecta": "✅ Correct! That one doesn't belong with the others.",
     "explicacionIncorrectaA": "❌ That one does belong with the others. The odd one out is: ",
-    "pista": "🤔 Try again. Look calmly at the three pictures."
+    "pista": "🤔 Try again. Look calmly at the three pictures.",
+  "transferencia": "This will help you spot what fits together in real life: at the shop (\"does this go with that?\"), folding laundry or sorting cutlery.",
   }, 'en');
 })();

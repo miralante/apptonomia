@@ -49,5 +49,7 @@
     "plantillaRio": "Río con puentes",
     "resumenLibre": "Has puesto {n} bloques. ¡Qué bien!",
     "resumenPlantilla": "Has completado el modelo con {n} bloques."
-  }, 'es');
+  ,
+  "transferencia": "Esto te ayuda a imaginar y a montar cosas por ti mismo/a."
+}, 'es');
 })();

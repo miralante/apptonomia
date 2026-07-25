@@ -40,5 +40,7 @@
     "etiquetaCadena": "The table",
     "etiquetaMano": "Your tiles",
     "fichasRival": "Rival's tiles: {n}"
-  }, 'en');
+  ,
+  "transferencia": "This helps you match and count tiles in board games."
+}, 'en');
 })();

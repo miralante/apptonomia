@@ -82,6 +82,10 @@
     "ayudaPagar2": "Touch the marked money: it fits without going over the price.",
     "ayudaQuita1": "Look at your total. Have you put in more money than the price?",
     "ayudaQuita2": "Touch the marked button to remove money.",
-    "ayudaComprobar": "Your total equals the price. Touch Check!"
+    "ayudaComprobar": "Your total equals the price. Touch Check!",
+  "contexto": "You have money on the table. You will count it, pay, check the change and save for something you want.",
+  "pista": "🤔 Count the money slowly. How much is there altogether?",
+  "explicacion": "✅ That is how to use money. Next time you have coins, try counting them like this.",
+  "transferencia": "This will help you handle real money: count it, pay, check the change and save.",
   }, 'en');
 })();

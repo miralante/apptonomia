@@ -235,7 +235,6 @@
     quizExplanationWrap.classList.add('oculto');
     quizExplanation.textContent = '';
     nextCardBtn.classList.remove('oculto');
-    App.tts.speak(w.word);
     paintCardProgress();
     paintStars();
   }
@@ -294,7 +293,6 @@
       quizOptions.appendChild(btn);
     });
 
-    App.tts.speak(item.word);
     paintQuizProgress();
     paintStars();
   }
@@ -338,6 +336,7 @@
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(quizFeedback);
+      App.feedback.lockUntilAck(App.utils.$$('#quizOptions .btn-opcion'), quizExplanationWrap);
     }
   }
 
@@ -398,9 +397,7 @@
   $('#otherBlockBtn').addEventListener('click', goStart);
   $('#backLevelsBtnCards').addEventListener('click', goStart);
   $('#backLevelsBtnQuiz').addEventListener('click', goStart);
-  $('#instructionBtn').addEventListener('click', function () {
-    App.tts.speak(t('instruction'));
-  });
+
 
   /* Inicial */
   paintStars();

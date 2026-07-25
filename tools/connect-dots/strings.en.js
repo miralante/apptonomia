@@ -25,5 +25,7 @@
     "shape_star9": "a big star",
     "shape_star10": "a bright star",
     "transfer": "Now your hand follows a sequence of numbers with precision. It will help you write, draw and follow step-by-step instructions."
-  }, 'en');
+  ,
+  "transferencia": "This helps you follow number and stroke sequences on paper."
+}, 'en');
 })();

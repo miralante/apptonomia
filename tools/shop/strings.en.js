@@ -57,6 +57,10 @@
     "pistaMucho": "Think: how much does {nombre} normally cost? Much more or much less?",
     "explicacionMuchoBien": "Normally, {nombre} costs about {ref}. {mostrado} is a normal price.",
     "explicacionMuchoMal": "Normally, {nombre} costs about {ref}. {mostrado} is too much money.",
-    "resumenMucho": "You judged {n} of {t} prices correctly."
+    "resumenMucho": "You judged {n} of {t} prices correctly.",
+  "contexto": "You are in a shop with money in your hand. You will decide if you can afford it, pay and check the change.",
+  "pista": "🤔 Count the money slowly. Can you afford it or not?",
+  "explicacion": "✅ That is how to use real money. Next time you pay, do it calmly and check the change.",
+  "transferencia": "This will help you with real shopping: knowing if you can afford it, paying the right amount and checking the change.",
   }, 'en');
 })();

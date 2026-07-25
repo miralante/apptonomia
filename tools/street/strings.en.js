@@ -17,6 +17,7 @@
     "btnOtroNivel": "Choose another level",
     "explicacionCorrecta": "✅ Correct! That is the safest thing to do.",
     "explicacionIncorrectaA": "❌ That is not the safest. The right answer is: ",
-    "pista": "🤔 Try again. Think about the situation: "
+    "pista": "🤔 Try again. Think about the situation: ",
+  "transferencia": "This will help you get around the street more safely: cross the road, wait for the bus or know who to ask for help if you get lost.",
   }, 'en');
 })();

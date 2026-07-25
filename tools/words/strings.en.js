@@ -17,6 +17,7 @@
     "elegirOtroTema": "Choose another topic",
     "explicacionCorrecta": "✅ Correct! That is its name.",
     "explicacionIncorrectaA": "❌ That is not the word. It is called: ",
-    "pista": "🤔 Try again. Listen again and look closely at the picture."
+    "pista": "🤔 Try again. Listen again and look closely at the picture.",
+  "transferencia": "This will help you use the new words in real conversations, at school or when you tell someone about your day.",
   }, 'en');
 })();

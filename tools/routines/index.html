@@ -20,11 +20,7 @@
 
     <!-- Routine menu -->
     <section id="pantallaMenu" class="pila">
-      <div class="fila">
-        <p class="instruccion" id="instruccion" data-i18n="instruccion">Elige una rutina. Marca cada paso cuando lo hagas.</p>
-        <button type="button" class="btn btn-audio" id="btnInstruccion" data-i18n-aria="core.listenInstructions" aria-label="Escuchar las instrucciones">🔊</button>
-      </div>
-      <div class="grid-tarjetas" id="listaRutinas"></div>
+      <div id="listaRutinas" class="lista-rutinas"></div>
     </section>
 
     <!-- Vista de una rutina -->
@@ -41,14 +37,60 @@
     <!-- Ordenar pasos de una rutina -->
     <section id="pantallaOrdenar" class="oculto pila">
       <h2 id="tituloOrdenar" class="centrado"></h2>
-      <p class="instruccion centrado" id="instruccionOrdenar" data-i18n="instruccionOrdenar">Pon los pasos en orden. Toca las flechas para moverlos.</p>
-      <ol id="listaOrdenar" class="pila lista-ordenable"></ol>
+      <p class="instruccion centrado" id="instruccionOrdenar" data-i18n="instruccionOrdenar">Toca los pasos en el orden correcto, de primero a último.</p>
+
+      <div class="orden-dos-columnas">
+        <div class="orden-col orden-col-tu">
+          <p class="etiqueta centrado" data-i18n="etiquetaTuOrden">Tu orden</p>
+          <ol id="listaSlots" class="pila-slots"></ol>
+          <div class="barra-mover-slot" role="group" aria-label="Mover el slot seleccionado">
+            <button type="button" class="btn-flecha-slot btn-subir-slot" id="btnSubirPaso" aria-label="Subir el paso seleccionado" disabled>↑</button>
+            <button type="button" class="btn-flecha-slot btn-bajar-slot" id="btnBajarPaso" aria-label="Bajar el paso seleccionado" disabled>↓</button>
+          </div>
+        </div>
+        <div class="orden-col orden-col-pasos">
+          <p class="etiqueta centrado" data-i18n="etiquetaPasosDisponibles">Pasos</p>
+          <div id="listaPasosDisponibles" class="pila-disponibles"></div>
+        </div>
+      </div>
+
       <div class="fila centrado">
         <button type="button" class="btn" id="btnComprobar" data-i18n="btnComprobar">Comprobar</button>
         <button type="button" class="btn btn-secundario" id="btnPistaOrdenar" data-i18n="btnPista">💡 Pista</button>
         <button type="button" class="btn btn-secundario" id="btnResolverOrdenar" data-i18n="btnResolver">Ver solución</button>
       </div>
       <div class="feedback" id="feedbackOrdenar" aria-live="polite"></div>
+    </section>
+
+    <!-- Crea tu lista libre -->
+    <section id="pantallaListaLibre" class="oculto pila">
+      <h2 data-i18n="listaLibreTitulo">📝 Crea tu lista</h2>
+      <p class="instruccion centrado" data-i18n="listaLibreInstruccion">Escribe las cosas de tu lista. Tú decides el orden.</p>
+      <p class="transferencia centrado" data-i18n="listaLibreTransferencia"></p>
+
+      <ul id="itemsListaActual" class="lista-items-actual"></ul>
+
+      <div class="fila-anadir-item">
+        <input type="text" id="inputNuevoItem" class="input-lista" maxlength="60" autocomplete="off">
+        <button type="button" class="btn" id="btnAnadirItem" data-i18n="btnAnadirItem">➕ Añadir</button>
+      </div>
+
+      <div class="fila centrado">
+        <button type="button" class="btn" id="btnGuardarLista" data-i18n="btnGuardarLista" disabled>💾 Guardar lista</button>
+        <button type="button" class="btn btn-secundario" id="btnVaciarLista" data-i18n="btnVaciarLista" data-i18n-aria="ariaVaciarLista">🗑️ Vaciar</button>
+      </div>
+
+      <div id="nombrarLista" class="nombrar-lista oculto pila">
+        <label for="inputNombreLista" class="instruccion centrado" data-i18n="promptNombreLista">¿Cómo quieres llamar a tu lista?</label>
+        <input id="inputNombreLista" class="input-nombre-lista" type="text" maxlength="30" autocomplete="off" data-i18n-aria="ariaNombreLista">
+        <div class="fila centrado">
+          <button type="button" class="btn" id="btnConfirmarGuardarLista" data-i18n="btnConfirmarGuardarLista">✅ Guardar</button>
+        </div>
+      </div>
+
+      <div class="feedback" id="feedbackListaLibre" aria-live="polite"></div>
+
+      <div id="listasGuardadas" class="listas-guardadas"></div>
     </section>
 
     <!-- Rutina completada -->

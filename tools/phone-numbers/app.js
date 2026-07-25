@@ -126,7 +126,6 @@
     text.textContent = t('summaryText');
     summaryCard.appendChild(text);
     show(summaryScreen);
-    App.tts.speak(summarySpeech());
   }
 
   /* ---------- Paso 3: test ---------- */
@@ -176,7 +175,6 @@
       quizOptions.appendChild(btn);
     });
 
-    App.tts.speak(item.situacion);
     paintQuizProgress();
     paintStars();
   }
@@ -211,6 +209,7 @@
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(quizFeedback);
+      App.feedback.lockUntilAck(App.utils.$$('#quizOptions .btn-opcion'), quizExplanationWrap);
     }
   }
 
@@ -250,9 +249,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     App.tts.speak(quizExplanation.textContent);
   });
   quizNextBtn.addEventListener('click', nextQuiz);
-  $('#instructionBtn').addEventListener('click', function () {
-    App.tts.speak($('#cardsScreen .instruction').textContent);
-  });
+
   $('#replayBtn').addEventListener('click', startCards);
 
   function init() {

@@ -40,6 +40,10 @@
     increase: 'Subir una cantidad',
     euro: '{value} euros',
     meter: '{value} metros',
-    liter: '{value} litros'
+    liter: '{value} litros',
+  "contexto": "Estás midiendo o comparando cantidades del día a día: poco o mucho, más o menos, cuántos faltan.",
+  "pista": "🤔 Mira el dibujo con calma. ¿Es poco o es mucho?",
+  "explicacion": "✅ Así se calcula \"más o menos\". La próxima vez, prueba a pensarlo antes de medir.",
+  "transferencia": "Esto te servirá para calcular cantidades reales: en la compra, en la cocina, al repartir o al medir.",
   }, 'es');
 })();

@@ -96,9 +96,6 @@
   /* Events */
   objetivoEl.addEventListener('click', acierto);
   $('#btnRepetir').addEventListener('click', empezar);
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak($('#instruccion').textContent);
-  });
 
   /* Reposition the target if the window size changes */
   window.addEventListener('resize', function () {

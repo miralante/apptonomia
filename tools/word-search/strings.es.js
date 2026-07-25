@@ -31,6 +31,10 @@
     "wordFound": "¡Has encontrado «{word}»!",
     "notAligned": "Las dos letras deben estar en la misma línea.",
     "finalSummary": "Has ganado {n} estrellas. Ahora tienes {total} estrellas.",
-    "repeatedSummary": "Ya tenías las estrellas de este nivel. ¡Muy bien otra vez!"
+    "repeatedSummary": "Ya tenías las estrellas de este nivel. ¡Muy bien otra vez!",
+  "contexto": "Estás buscando una palabra escondida en un tablero de letras. Tienes que leer con calma y pasar el dedo sobre ella.",
+  "pista": "🤔 Mira la primera letra de la palabra y búscala en el tablero.",
+  "explicacion": "✅ Las palabras se leen letra a letra. Eso también te ayuda a leer mejor mensajes y carteles.",
+  "transferencia": "Esto te servirá para fijarte mejor en las palabras: en un cartel, en una receta o en el menú del cole.",
   }, 'es');
 })();

@@ -249,6 +249,7 @@
       feedbackEl.textContent = '';
       feedbackEl.className = 'feedback';
       explicacionWrap.classList.add('oculto');
+      App.feedback.success(feedbackEl);
     }
     App.feedback.celebrate(App.i18n.t('encajada'));
     btnSiguiente.classList.remove('oculto');
@@ -295,10 +296,8 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     pantallaInicio.classList.remove('oculto');
   });
   $('#btnEstado').addEventListener('click', function () {
-    App.tts.speak(estadoEl.textContent);
   });
   $('#btnEscucharExplicacion').addEventListener('click', function () {
-    App.tts.speak(explicacionEl.textContent);
   });
 
   pintarNiveles();

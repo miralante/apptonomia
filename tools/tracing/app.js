@@ -410,9 +410,6 @@
     }
     iniciarPracticaLibre(seleccion);
   });
-  $('#btnInstruccion').addEventListener('click', function () {
-    App.tts.speak(App.i18n.t('instruccionCompleta'));
-  });
 
   pintarNiveles();
   pintarEstrellas();

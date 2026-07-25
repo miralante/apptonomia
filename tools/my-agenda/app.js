@@ -102,6 +102,7 @@
       } else {
         showExplanation('explanationLabel', choice.explanation);
       }
+      App.feedback.lockUntilAck(App.utils.$$('#options .btn-opcion'), $('#explanationWrap'));
       return;
     }
 
@@ -148,10 +149,8 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     App.tts.speak(cases[caseIndex].scenario + ' ' + App.i18n.t('question'));
   });
   $('#explanationAudio').addEventListener('click', function () {
-    App.tts.speak($('#explanation').textContent);
   });
   $('#endAudio').addEventListener('click', function () {
-    App.tts.speak($('#endText').textContent);
   });
   $('#nextButton').addEventListener('click', nextCase);
   $('#repeatButton').addEventListener('click', function () { startLevel(level); });

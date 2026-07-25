@@ -29,6 +29,10 @@
     "correctExplanation": "✅ ¡Correcto!",
     "wrongExplanationPrefix": "❌ Eso no es lo correcto. Lo correcto es: ",
     "hint": "🤔 Prueba otra vez. Piensa en: ",
-    "finalSummary": "Has ganado {n} estrellas. Ahora tienes {total} estrellas."
+    "finalSummary": "Has ganado {n} estrellas. Ahora tienes {total} estrellas.",
+  "contexto": "Estás leyendo números romanos. Los verás en sitios reales: libros, monumentos o relojes.",
+  "pista": "🤔 Recuerda el valor de cada letra. ¿Cuánto vale esa?",
+  "explicacion": "✅ Así se lee en números romanos. Ahora ya puedes leer siglos y capítulos.",
+  "transferencia": "Esto te servirá para leer números romanos de verdad: en una placa, en un libro o en el siglo de un cuadro.",
   }, 'es');
 })();

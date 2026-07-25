@@ -182,9 +182,7 @@
   }
 
   /* ---------- Events ---------- */
-  $('#instructionBtn').addEventListener('click', function () {
-    App.tts.speak($('#instructionText').textContent);
-  });
+
   $('#playAgainBtn').addEventListener('click', startRound);
 
   function init() {

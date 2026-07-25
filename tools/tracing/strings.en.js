@@ -32,5 +32,7 @@
     "iniciarPractica": "Practise →",
     "seleccionResumen": "You picked {n} letters. Tap one to remove it.",
     "ariaNoSeleccionada": "Tap to select it."
-  }, 'en');
+  ,
+  "transferencia": "This helps you write better in your notebook."
+}, 'en');
 })();

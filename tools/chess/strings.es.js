@@ -67,5 +67,7 @@
     "casillaEstrella": "Estrella",
     "casillaDestino": "Puedes mover aquí",
     "fila": "fila {f}, columna {c}"
-  }, 'es');
+  ,
+  "transferencia": "Esto entrena tu estrategia y tu paciencia para pensar antes de actuar."
+}, 'es');
 })();

@@ -33,5 +33,7 @@
     "ayudaCentro2": "Toca la columna marcada, en el centro: desde ahí hay más maneras de hacer cuatro.",
     "ayudaLibre1": "Mira las columnas libres. ¿Cuál te ayuda a juntar tus fichas en línea?",
     "ayudaLibre2": "Toca la columna marcada y sigue juntando tus fichas en línea."
-  }, 'es');
+  ,
+  "transferencia": "Esto entrena tu estrategia para anticipar la jugada del rival."
+}, 'es');
 })();

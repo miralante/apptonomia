@@ -17,6 +17,7 @@
     "btnOtroNivel": "Elegir otro nivel",
     "explicacionCorrecta": "✅ ¡Correcto! Eso es lo más seguro.",
     "explicacionIncorrectaA": "❌ Eso no es lo más seguro. Lo correcto es: ",
-    "pista": "🤔 Prueba otra vez. Piensa en la situación: "
+    "pista": "🤔 Prueba otra vez. Piensa en la situación: ",
+  "transferencia": "Esto te servirá para moverte por la calle con más seguridad: cruzar, esperar al bus o saber a quién pedir ayuda si te pierdes.",
   }, 'es');
 })();

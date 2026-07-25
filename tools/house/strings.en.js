@@ -9,13 +9,10 @@
   App.i18n.register({
     "title": "🏠 The House",
     "instruccion": "Tap the steps in the right order, from first to last.",
-    "instruccionNivel": " First, choose the level.",
-    "elegirNivel": "Choose the level",
     "etiquetaOrden": "Your order",
     "etiquetaPasos": "Steps",
     "ariaPaso": "Step",
-    "veces": "times",
     "resumenFinal": "You ordered {n} tasks. You now have {total} stars.",
-    "btnOtroNivel": "Choose another level"
+    "transferencia": "This will help you when you do these tasks at home for real."
   }, 'en');
 })();

@@ -140,7 +140,6 @@
   function mostrarTextoQuiz(texto) {
     explicacionQuizEl.textContent = texto;
     explicacionQuizWrap.classList.remove('oculto');
-    App.tts.speak(texto);
   }
 
   function pintarProgresoQuiz() {
@@ -226,6 +225,7 @@
     if (intentosQ === 1) {
       /* First failure: Socratic hint, without giving the answer (rule 12). */
       mostrarTextoQuiz(cfgActual().pista(casoQ));
+      App.feedback.lockUntilAck(opcionBotones.map(function (p) { return p.btn; }), explicacionQuizWrap);
     } else {
       /* Second failure: the correct answer is marked and explained
          (rule 11: no one is left without a resolution). */
@@ -665,7 +665,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     }
     feedbackPagarEl.textContent = texto;
     feedbackPagarEl.className = 'feedback animo';
-    App.tts.speak(texto);
   }
 
   /* ---- 💡 On-demand hint (two-step Socratic method) ----
@@ -706,7 +705,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     }
     ayudaPagarTextoEl.textContent = texto;
     ayudaPagarWrap.classList.remove('oculto');
-    App.tts.speak(texto);
   }
 
   function siguientePagar() {
@@ -722,16 +720,12 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   });
   $('#btnVolverMenuNiveles').addEventListener('click', function () { App.tts.stop(); mostrar('pantallaMenu'); });
   $('#btnVolverMenuFinal').addEventListener('click', function () { App.tts.stop(); mostrar('pantallaMenu'); });
-  $('#btnInstruccionActividad').addEventListener('click', function () {
-    App.tts.speak($('#instruccionActividad').textContent);
-  });
 
   btnSiguienteQuiz.addEventListener('click', siguienteQuiz);
   $('#btnEnunciadoQuiz').addEventListener('click', function () {
     App.tts.speak(enunciadoQuizEl.textContent);
   });
   $('#btnEscucharExplicacionQuiz').addEventListener('click', function () {
-    App.tts.speak(explicacionQuizEl.textContent);
   });
 
   $('#btnEscuchar').addEventListener('click', function () {

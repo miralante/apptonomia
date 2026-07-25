@@ -145,7 +145,7 @@
       cajasSEl.appendChild(fila);
     });
 
-    App.tts.speak(item.palabra);
+
     pintarProgresoS();
     pintarEstrellas();
   }
@@ -183,6 +183,7 @@
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(feedbackSEl);
+      App.feedback.lockUntilAck(App.utils.$$('.caja', cajasSEl), explicacionSWrap);
     }
   }
 
@@ -364,6 +365,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
       btn.classList.add('animo');
       btn.disabled = true;
       App.feedback.encourage(feedbackLEl);
+      App.feedback.lockUntilAck(App.utils.$$('.btn.caja', listasDiaEl), explicacionLWrap);
     }
   }
 
@@ -395,10 +397,8 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   btnSiguienteS.addEventListener('click', siguienteSecciones);
   btnSiguienteL.addEventListener('click', siguienteLista);
   $('#btnEscucharExplicacionSecciones').addEventListener('click', function () {
-    App.tts.speak(explicacionSEl.textContent);
   });
   $('#btnEscucharExplicacionLista').addEventListener('click', function () {
-    App.tts.speak(explicacionLEl.textContent);
   });
   $('#btnRepetir').addEventListener('click', function () {
     if (actividadActual === 'secciones') iniciarSecciones(nivelS);
