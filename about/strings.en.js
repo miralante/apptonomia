@@ -35,7 +35,7 @@
     "principleEasyReadTitle": '📖 Plain Language',
     "principleEasyReadText": 'Short sentences, one idea per sentence, everyday vocabulary. Zero jargon in the interface the person using the app sees.',
     "principleAccessibilityTitle": '♿ Accessibility for everyone',
-    "principleAccessibilityText": 'Large buttons, high contrast, audio on every important piece of text, full keyboard navigation, and respect for the system’s reduced-motion setting.',
+    "principleAccessibilityText": 'Large buttons, high contrast, audio only when gamification or the activity design requires it (e.g. hearing what is typed on the keyboard, listening to a sequence), full keyboard navigation, and respect for the system’s reduced-motion setting.',
     "principleSoberTechTitle": '🧱 Sober technology',
     "principleSoberTechText": 'HTML, CSS and JavaScript, no frameworks. Works offline and can be installed as an app. Open source, in a public repository.',
     "techTitle": 'How it is built',

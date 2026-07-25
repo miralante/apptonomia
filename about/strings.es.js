@@ -35,7 +35,7 @@
     "principleEasyReadTitle": '📖 Lectura Fácil',
     "principleEasyReadText": 'Frases cortas, una idea por frase, vocabulario cotidiano. Cero tecnicismos en la interfaz que ve la persona usuaria.',
     "principleAccessibilityTitle": '♿ Accesibilidad universal',
-    "principleAccessibilityText": 'Botones grandes, alto contraste, audio en cada texto importante, navegación completa por teclado, y respeto al modo de pocas animaciones del sistema.',
+    "principleAccessibilityText": 'Botones grandes, alto contraste, audio solo cuando la gamificación o el diseño de la actividad lo requiera (p. ej. escuchar lo escrito con el teclado, lectura de secuencias), navegación completa por teclado, y respeto al modo de pocas animaciones del sistema.',
     "principleSoberTechTitle": '🧱 Tecnología sobria',
     "principleSoberTechText": 'HTML, CSS y JavaScript sin frameworks. Funciona sin internet y se puede instalar como aplicación. Código abierto, en un repositorio público.',
     "techTitle": 'Cómo está hecha',
