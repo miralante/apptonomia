@@ -13,10 +13,7 @@
     "scan:secrets": "node scripts/scan-secrets.js",
     "scan:secrets:all": "node scripts/scan-secrets.js --all",
     "scan:secrets:install": "node scripts/scan-secrets.js --install",
-    "prepush": "node scripts/scan-secrets.js --pre-push",
-    "cf:login": "wrangler login",
-    "cf:preview": "wrangler pages deploy . --project-name apptonomia --branch preview",
-    "cf:deploy": "wrangler pages deploy . --project-name apptonomia --branch master"
+    "prepush": "node scripts/scan-secrets.js --pre-push"
   },
   "keywords": [
     "therapy",
@@ -26,7 +23,6 @@
   "author": "The Naked Frame",
   "license": "MIT",
   "devDependencies": {
-    "playwright": "^1.61.1",
-    "wrangler": "^4.114.0"
+    "playwright": "^1.61.1"
   }
 }

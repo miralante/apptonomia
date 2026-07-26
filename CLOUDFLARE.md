@@ -1,90 +1,51 @@
 # Cloudflare Pages — Apptonomia
 
-Apptonomia is now deployed on **Cloudflare Pages** instead of Firebase Hosting.
-The site is fully static (no build step, no backend), so the only files Pages
-needs to know about live at the repository root.
+Apptonomia is deployed on **Cloudflare Pages** via the **Git connector**
+(not GitHub Actions). The site is fully static (no build step, no backend),
+so the only files Pages needs to know about live at the repository root.
 
-## Files added in this migration
+## Files in this repository
 
 | File | Purpose |
 |---|---|
 | `wrangler.toml` | Project name and `pages_build_output_dir = "."` |
 | `_headers` | Cache and security headers, replaces `firebase.json` `headers` |
 | `_redirects` | `/* → /index.html 200` SPA rewrite, replaces `firebase.json` `rewrites` |
-| `.github/workflows/ci.yml` | `node scripts/check.js`, i18n smoke and secrets scan on every push/PR |
-| `.github/workflows/pages-deploy.yml` | Deploy to Cloudflare Pages via `cloudflare/pages-action` |
+| `.github/workflows/ci.yml` | `node scripts/check.js`, i18n smoke and secrets scan on every push/PR (does **not** deploy) |
 
-## Files removed
-
-| File | Reason |
-|---|---|
-| `firebase.json` | Hosting config — superseded by `_headers` + `_redirects` |
-| `.firebaserc` | Project alias — no longer needed |
-
-`.firebase/` (local CLI cache) is still ignored via `.gitignore`.
+`.github/workflows/pages-deploy.yml` and the `cf:*` npm scripts / `wrangler`
+devDependency that shipped with the self-hosted Wrangler path have been
+removed. Deploys go through the Cloudflare dashboard instead.
 
 ## One-time setup
 
-Two equally valid paths. Pick **one** and skip the other.
+In the Cloudflare dashboard, **Workers & Pages → Create application →
+Pages → Connect to Git**:
 
-### Path A — Cloudflare Git connector (recommended)
+1. Select the Apptonomia repository.
+2. Set the **production branch** to `master`.
+3. Leave the **build command** and **build output directory** empty — the
+   Cloudflare connector reads `pages_build_output_dir = "."` from
+   `wrangler.toml`, and the repository root already is the build output.
+4. (Optional) In **Settings → Build**, confirm the framework preset is
+   "None" and the output directory is `.`.
 
-1. In the Cloudflare dashboard, **Workers & Pages → Create application →
-   Pages → Connect to Git**.
-2. Select the Apptonomia repository, set the production branch to `master`
-   and the build command to an empty string (the repo root **is** the build
-   output).
-3. Cloudflare then builds and deploys every push to `master` and every PR
-   (preview channel). No GitHub secret is required, and `wrangler login` is
-   not needed locally.
-4. Local `wrangler` is only used for one-off previews or rollbacks.
-
-### Path B — Self-hosted via GitHub Actions + Wrangler
-
-1. Install the Wrangler CLI locally:
-   ```bash
-   npm install
-   ```
-2. Authenticate against Cloudflare (opens a browser):
-   ```bash
-   npm run cf:login
-   ```
-3. Create the Pages project from the command line (only the first time):
-   ```bash
-   npx wrangler pages project create apptonomia --production-branch master
-   ```
-4. In the GitHub repository settings, add two secrets under
-   **Settings → Secrets and variables → Actions**:
-   - `CLOUDFLARE_API_TOKEN` — create at
-     <https://dash.cloudflare.com/profile/api-tokens> with the
-     "Edit Cloudflare Pages" template.
-   - `CLOUDFLARE_ACCOUNT_ID` — copy from the right sidebar of any zone in
-     the Cloudflare dashboard.
-5. The workflow `.github/workflows/pages-deploy.yml` deploys automatically
-   on every push to `master` (production) and on every PR (preview channel,
-   URL posted as a PR comment).
+Cloudflare then builds and deploys every push to `master` (production) and
+every pull request (preview channel, URL posted on the PR). No GitHub
+secret is required, no `wrangler login` is needed locally. `wrangler.toml`
+stays in the repo so the dashboard has the project contract; `wrangler`
+itself is no longer a dev dependency.
 
 ## Day-to-day deploys
 
-### Via npm (Path B, or manual rollbacks under Path A)
+Pushes to `master` and pull requests are picked up automatically by the
+Cloudflare Git connector. The CI workflow (`.github/workflows/ci.yml`)
+runs the structural, i18n and secrets checks on every PR but does **not**
+deploy.
 
-```bash
-# Preview channel (URL like https://<hash>.apptonomia.pages.dev)
-npm run cf:preview
-
-# Production
-npm run cf:deploy
-```
-
-Both scripts wrap `wrangler pages deploy .` (`.` because the repo root is the
-build output). The deploy is a **network operation** — request explicit
-approval from the user before running it, per `CLAUDE.md` §3.
-
-### Via GitHub Actions
-
-Once the secrets from Path B step 4 are set (or Path A is configured in the
-dashboard), pushes to `master` and pull requests trigger an automatic
-deployment. The required secrets are documented in the workflow file.
+Local rollbacks or one-off previews via the CLI are out of scope for this
+repo. If you ever need them, install Wrangler directly (`npx wrangler`)
+without adding it back to `devDependencies`.
 
 ## Custom domain
 
@@ -94,8 +55,8 @@ dashboard once `apptonomia.pages.dev` is live:
 1. Add the domain to the Pages project.
 2. Update DNS at the registrar to the Cloudflare nameservers.
 3. Remove the Firebase Hosting custom domain mapping **only after** the
-   Cloudflare deployment is verified end-to-end (do not run the two at the
-   same time).
+   Cloudflare deployment is verified end-to-end (do not run the two at
+   the same time).
 
 ## Compatibility notes
 
@@ -104,5 +65,5 @@ dashboard once `apptonomia.pages.dev` is live:
 - The SPA rewrite in `_redirects` preserves deep links such as
   `https://apptonomia.pages.dev/tools/clock/`.
 - Long-lived cache for fingerprinted JS/CSS/images is safe; the HTML
-  entry points and `sw.js` are forced to `must-revalidate` so the PWA shell
-  can update.
+  entry points and `sw.js` are forced to `must-revalidate` so the PWA
+  shell can update.
