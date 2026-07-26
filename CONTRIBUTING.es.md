@@ -231,6 +231,13 @@ valida que:
 
 ---
 
+## 📜 Código de conducta
+
+Este proyecto sigue [`CODE_OF_CONDUCT.es.md`](CODE_OF_CONDUCT.es.md).
+Participar implica aceptarlo.
+
+---
+
 ## 🙏 Agradecimientos
 
 Gracias por dedicar tiempo a una herramienta que ayuda a personas con

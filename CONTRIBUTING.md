@@ -227,6 +227,13 @@ When a PR adds an activity, your review as support person is what validates:
 
 ---
 
+## 📜 Code of conduct
+
+This project follows [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
+Participating means accepting it.
+
+---
+
 ## 🙏 Thanks
 
 Thanks for devoting time to a tool that helps people with intellectual
