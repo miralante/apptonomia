@@ -530,6 +530,12 @@
         "does": 'Practice courtesy phrases in everyday situations: saying thank you, asking politely, greeting, saying goodbye, giving way to others.',
         "works": 'Basic social norms, social skills, respectful interaction.',
         "daily": 'Reinforce these phrases in real life: celebrate when they use them spontaneously.'      },
+      "school-rules": {
+        "name": 'School Rules and Civics',
+        "does": 'Reads situations at school and in public places (classroom, canteen, library, bus, street, park, cinema) and chooses the right civic action: raising your hand, queuing, recycling, crossing on green, turning off the lights, mediating an argument, inviting someone excluded to play.',
+        "works": 'Coexistence rules, civics, respect in shared and public spaces, care for the environment, inclusion, honesty and responsibility.',
+        "daily": 'Stay with them at school and on outings: notice the rules they apply on their own and celebrate each civic gesture (giving way, picking up paper, recycling) in real life.'
+      },
       "self-esteem": {
         "name": 'This Is Me',
         "does": 'Reads situations about disability, differences, comparison and insensitive people, and chooses the response that reflects healthy self-esteem.',

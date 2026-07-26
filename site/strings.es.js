@@ -87,6 +87,8 @@
     "mybody_detalle": "Nota lo que sientes y cuida de ti.",
     "goodmanners_nombre": "Buenos Modales",
     "goodmanners_detalle": "Aprende a ser amable: gracias, por favor, adiós.",
+    "schoolrules_nombre": "Normas del Cole",
+    "schoolrules_detalle": "Aprende las normas de clase, la calle y los sitios públicos.",
     "pairs_nombre": "Parejas",
     "pairs_detalle": "Busca las cartas iguales.",
     "differences_nombre": "Diferencias",

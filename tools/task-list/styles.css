@@ -96,11 +96,331 @@
 
 #pantallaFinal { padding-top: 48px; }
 
-#pantallaFinal .btn { align-self: center; min-width: 280px; 
+#pantallaFinal .btn { align-self: center; min-width: 280px; }
+
 #pantallaFinal .transferencia {
   margin: 8px auto 24px;
   font-size: 1.1rem;
   color: var(--color-texto-secundario, #555);
   max-width: 480px;
 }
+
+/* ============================================================
+   Pantalla "Crea tu lista" (Nivel 3).
+   Simulación y entrenamiento del flujo real de una lista:
+   nombre, añadir, reordenar, marcar, borrar, guardar, recuperar.
+   ============================================================ */
+.panel-nombre {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio);
+  margin: var(--espacio) auto;
+  max-width: 480px;
+  width: 100%;
+}
+
+.input-nombre-lista,
+.input-lista {
+  display: block;
+  width: 100%;
+  min-height: var(--boton-min);
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: var(--texto-base);
+  font-weight: 600;
+  color: var(--color-texto);
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+.input-nombre-lista {
+  font-size: var(--texto-grande);
+  text-align: center;
+}
+
+.input-nombre-lista:focus-visible,
+.input-lista:focus-visible {
+  outline: 3px solid var(--mod-secuencia);
+  outline-offset: 2px;
+  border-color: var(--mod-secuencia);
+}
+
+.panel-editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio);
+  margin: var(--espacio) auto;
+  max-width: 720px;
+  width: 100%;
+}
+
+.lista-progreso {
+  margin: 0;
+  font-weight: 700;
+  color: var(--mod-secuencia);
+  font-size: var(--texto-base);
+}
+
+.lista-items-crear {
+  list-style: none;
+  margin: 0;
+  padding: var(--espacio);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--mod-secuencia-suave);
+  border-radius: var(--radio);
+  min-height: 80px;
+}
+
+.lista-items-crear .item-vacio {
+  margin: 0;
+  color: var(--color-texto-suave);
+  font-style: italic;
+  text-align: center;
+  padding: var(--espacio);
+}
+
+.item-crear {
+  display: grid;
+  grid-template-columns: 32px 48px 1fr 48px 44px;
+  align-items: center;
+  gap: var(--espacio);
+  padding: 10px 12px;
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.item-crear:hover { border-color: var(--mod-secuencia); }
+
+.item-crear.seleccionado {
+  border-color: var(--mod-secuencia);
+  background: var(--mod-secuencia-suave);
+  box-shadow: 0 0 0 3px var(--mod-secuencia);
+}
+
+.item-crear.hecho {
+  background: var(--color-acierto-suave);
+  border-color: var(--color-acierto);
+  opacity: 0.85;
+}
+
+.item-crear.hecho .item-texto {
+  text-decoration: line-through;
+  color: var(--color-texto-suave);
+}
+
+.item-pos {
+  font-size: var(--texto-base);
+  font-weight: 800;
+  color: var(--mod-secuencia);
+  text-align: center;
+}
+
+.item-check {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--color-borde);
+  background: var(--color-superficie);
+  color: var(--mod-secuencia);
+  font-size: 24px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.item-check:hover { border-color: var(--mod-secuencia); }
+.item-crear.hecho .item-check {
+  background: var(--color-acierto);
+  border-color: var(--color-acierto);
+  color: #FFFFFF;
+}
+
+.item-texto {
+  font-weight: 600;
+  font-size: var(--texto-base);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.item-seleccionar,
+.item-quitar {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 8px;
+  border: 2px solid var(--color-borde);
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.item-seleccionar:hover { border-color: var(--mod-secuencia); }
+.item-quitar:hover { background: var(--color-borde); }
+.item-crear.seleccionado .item-seleccionar {
+  background: var(--mod-secuencia);
+  color: #FFFFFF;
+  border-color: var(--mod-secuencia);
+}
+
+/* Barra de flechas ↑/↓ para reordenar el elemento seleccionado. */
+.barra-mover-slot {
+  display: flex;
+  justify-content: center;
+  gap: var(--espacio);
+  margin: var(--espacio) 0;
+}
+
+.btn-flecha-slot {
+  min-width: 64px;
+  min-height: 64px;
+  border-radius: var(--radio);
+  border: 3px solid var(--mod-secuencia);
+  background: var(--mod-secuencia);
+  color: #FFFFFF;
+  font-size: 32px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.btn-flecha-slot:hover:not(:disabled) {
+  background: var(--mod-secuencia-suave);
+  color: var(--mod-secuencia);
+}
+.btn-flecha-slot:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: var(--color-superficie);
+  color: var(--mod-secuencia);
+  border-color: var(--color-borde);
+}
+.btn-flecha-slot:focus-visible {
+  outline: 3px solid var(--mod-secuencia);
+  outline-offset: 2px;
+}
+
+/* Input + botón Añadir, debajo del editor. */
+.fila-anadir-item {
+  display: flex;
+  gap: var(--espacio);
+  margin: var(--espacio) 0;
+  flex-wrap: wrap;
+}
+
+.fila-anadir-item .input-lista {
+  flex: 1;
+  min-width: 200px;
+}
+
+#btnGuardarListaCrear:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Listas guardadas (estilo coherente con routines). */
+.listas-guardadas {
+  margin-top: var(--espacio-grande);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio);
+}
+
+.listas-guardadas h3 {
+  margin: 0;
+  font-size: var(--texto-base);
+  color: var(--color-texto);
+}
+
+.lista-guardada {
+  background: var(--mod-secuencia-suave);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.lista-guardada-fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+.lista-guardada-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--color-texto);
+}
+.lista-guardada-info .nombre { font-weight: 700; }
+.lista-guardada-info .cantidad {
+  font-size: var(--texto-pequeno);
+  color: var(--color-texto-suave);
+}
+
+.lista-guardada-acciones {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.lista-guardada-acciones button {
+  min-width: var(--boton-min);
+  min-height: var(--boton-min);
+  font-size: 22px;
+  background: var(--color-superficie);
+  border: 2px solid var(--color-borde);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.lista-guardada-acciones button:hover {
+  background: var(--color-superficie-2, #f7f4ef);
+}
+
+.lista-guardada-items {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--espacio) var(--espacio) var(--espacio);
+}
+.lista-guardada-items li {
+  padding: 4px 0;
+  color: var(--color-texto);
+  border-top: 1px solid var(--color-borde);
+}
+.lista-guardada-items li:first-child { border-top: none; }
+.lista-guardada-items li.hecho {
+  text-decoration: line-through;
+  color: var(--color-texto-suave);
+}
+
+.transferencia {
+  margin: 8px auto 24px;
+  font-size: var(--texto-base);
+  color: var(--color-texto-secundario, #555);
+  max-width: 480px;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item-crear { transition: none; }
+}
+
+@media (max-width: 480px) {
+  .item-crear {
+    grid-template-columns: 28px 40px 1fr 40px 36px;
+    gap: 8px;
+  }
+  .item-check,
+  .item-seleccionar,
+  .item-quitar { min-width: 40px; min-height: 40px; }
 }

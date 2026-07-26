@@ -56,7 +56,7 @@
       'comedy-club': 'Chistes', 'idioms': 'Dichos', 'double-meaning': 'Doble Sentido', 'categories': 'Categorías',
       'sentence': 'La Frase', 'words': 'Palabras', 'dictionary': 'Diccionario', 'spelling': 'Completa la Palabra',
       'word-search': 'Sopa de Letras',
-      'emotions': '¿Cómo me siento?', 'calm': 'Calma', 'friends': 'Entre Amigos', 'my-body': 'Mi Cuerpo Me Avisa', 'good-manners': 'Buenos Modales',
+      'emotions': '¿Cómo me siento?', 'calm': 'Calma', 'friends': 'Entre Amigos', 'my-body': 'Mi Cuerpo Me Avisa', 'good-manners': 'Buenos Modales', 'school-rules': 'Normas del Cole y Civismo',
       'self-esteem': 'Así Soy Yo',
       'resilience': 'Cuando Algo Me Cuesta',
       'trust-circle': 'Círculo de Confianza',

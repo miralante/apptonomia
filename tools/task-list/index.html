@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <header class="tool-header">
-      <a href="../../site/index.html" class="back-link" data-i18n="core.back">← Volver</a>
+      <a href="../../site/index.html" class="back-link" id="btnVolver" data-i18n="core.back">← Volver</a>
       <h1 data-i18n="title">🗒️ Lista de Tareas</h1>
       <span class="stars" id="stars">⭐ 0</span>
     </header>
@@ -44,6 +44,55 @@
 
       <div class="feedback" id="feedback" aria-live="polite"></div>
       <button type="button" class="btn oculto" id="btnSiguiente" data-i18n="core.next">Siguiente →</button>
+    </section>
+
+    <!-- Pantalla "Crea tu lista" (Nivel 3):
+         simulación y entrenamiento del flujo real de una lista.
+         La persona:
+           1. Crea una lista de práctica con un nombre y elementos.
+           2. Reordena los elementos con flechas ↑/↓.
+           3. Marca cada elemento como "Hecho".
+           4. Puede borrar un elemento o vaciar la lista.
+           5. Guarda la lista y la recupera más tarde desde el menú.
+         Las listas se guardan en localStorage del dispositivo
+         (no son datos personales: son listas de entrenamiento). -->
+    <section id="pantallaCrear" class="oculto pila">
+      <h2 class="centrado" data-i18n="crearTitulo">📝 Crea tu lista</h2>
+      <p class="instruccion centrado" data-i18n="crearInstruccion">Practica creando una lista: añade cosas, cámbialas de orden, márcalas como hechas y bórralas.</p>
+      <p class="transferencia centrado" data-i18n="transferenciaCrear"></p>
+
+      <div id="panelNombre" class="panel-nombre pila">
+        <label for="inputNombreListaCrear" class="instruccion centrado" data-i18n="labelNombreLista">Nombre de la lista</label>
+        <input id="inputNombreListaCrear" class="input-nombre-lista" type="text" maxlength="30" autocomplete="off" data-i18n-aria="ariaNombreLista">
+        <div class="fila centrado">
+          <button type="button" class="btn" id="btnEmpezarCrear" data-i18n="btnEmpezarCrear">Empezar</button>
+        </div>
+        <div id="listasGuardadas" class="listas-guardadas"></div>
+      </div>
+
+      <div id="panelEditor" class="panel-editor oculto pila">
+        <p class="lista-titulo centrado" id="tituloListaCrear"></p>
+        <p class="lista-progreso centrado" id="progresoListaCrear"></p>
+
+        <ol id="itemsListaCrear" class="lista-items-crear"></ol>
+
+        <div class="barra-mover-slot" role="group" aria-label="Mover el elemento seleccionado">
+          <button type="button" class="btn-flecha-slot btn-subir-slot" id="btnSubirItemCrear" aria-label="Subir el elemento seleccionado" disabled>↑</button>
+          <button type="button" class="btn-flecha-slot btn-bajar-slot" id="btnBajarItemCrear" aria-label="Bajar el elemento seleccionado" disabled>↓</button>
+        </div>
+
+        <div class="fila-anadir-item">
+          <input type="text" id="inputNuevoItemCrear" class="input-lista" maxlength="60" autocomplete="off">
+          <button type="button" class="btn" id="btnAnadirItemCrear" data-i18n="btnAnadirItem">➕ Añadir</button>
+        </div>
+
+        <div class="fila centrado">
+          <button type="button" class="btn" id="btnGuardarListaCrear" data-i18n="btnGuardarLista" disabled>💾 Guardar lista</button>
+          <button type="button" class="btn btn-secundario" id="btnVaciarListaCrear" data-i18n="btnVaciarLista" data-i18n-aria="ariaVaciarLista">🗑️ Vaciar</button>
+        </div>
+      </div>
+
+      <div class="feedback" id="feedbackCrear" aria-live="polite"></div>
     </section>
 
     <!-- End screen -->

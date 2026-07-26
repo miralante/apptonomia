@@ -532,6 +532,12 @@
         "works": 'Normas sociales básicas, habilidades sociales, interacción respetuosa.',
         "daily": 'Reforzad estas fórmulas en la vida real: celebrad cuando las use espontáneamente.'
       },
+      "school-rules": {
+        "name": 'Normas del Cole y Civismo',
+        "does": 'Lee situaciones del cole y de sitios públicos (aula, comedor, biblioteca, autobús, calle, parque, cine) y elige la acción cívica adecuada: pedir la palabra, hacer cola, reciclar, cruzar con el semáforo en verde, apagar la luz, mediar en una discusión, invitar a jugar a alguien excluido.',
+        "works": 'Normas de convivencia, civismo, respeto en espacios públicos y compartidos, cuidado del entorno, inclusión, honestidad y responsabilidad.',
+        "daily": 'Acompañadle en el cole y en salidas: reconoced las normas que aplica solo y celebrad cada gesto cívico (ceder el paso, recoger un papel, reciclar) en la vida real.'
+      },
       "self-esteem": {
         "name": 'Así Soy Yo',
         "does": 'Lee situaciones sobre discapacidad, diferencias, comparación e insensibilidad ajena y elige la respuesta que refleja una autoestima sana.',

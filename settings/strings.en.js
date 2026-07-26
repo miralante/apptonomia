@@ -56,7 +56,7 @@
       'comedy-club': 'Comedy Club', 'idioms': 'Idioms', 'double-meaning': 'Double Meaning', 'categories': 'Categories',
       'sentence': 'The Sentence', 'words': 'Words', 'dictionary': 'Dictionary', 'spelling': 'Complete the Word',
       'word-search': 'Word Search',
-      'emotions': 'How Do I Feel?', 'calm': 'Calm', 'friends': 'Among Friends', 'my-body': 'My Body Tells Me', 'good-manners': 'Good Manners',
+      'emotions': 'How Do I Feel?', 'calm': 'Calm', 'friends': 'Among Friends', 'my-body': 'My Body Tells Me', 'good-manners': 'Good Manners', 'school-rules': 'School Rules and Civics',
       'self-esteem': 'This Is Me',
       'resilience': "When It's Hard",
       'trust-circle': 'Circle of Trust',

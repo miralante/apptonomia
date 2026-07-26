@@ -1,9 +1,18 @@
 /* ============================================================
    Apptonomia — Lista de Tareas (autonomía: organizar tareas mixtas
-   de casa, trabajo y cuidado personal en el orden lógico del día)
+   de casa, trabajo y cuidado personal en el orden lógico del día).
    Datos en data.js (DATA.niveles). Módulos compartidos en assets/js/.
-   Mecánica: tocar las tareas en el orden correcto. Un toque fuera de
-   orden no penaliza: solo anima a seguir intentando.
+   Tres niveles:
+     - Niveles 1 y 2: ordenar tareas predefinidas (simulación).
+       Tocar las tareas en el orden correcto. Un toque fuera de
+       orden no penaliza: solo anima a seguir intentando.
+     - Nivel 3: "Crea tu lista" — simulación y proceso de
+       entrenamiento. La persona practica el flujo real de una
+       lista: poner nombre, añadir elementos, reordenarlos con
+       ↑/↓, marcarlos como "Hecho", borrar elementos, guardar la
+       lista y volver a abrirla más tarde. Las listas se guardan
+       en localStorage del dispositivo (no son datos personales,
+       son listas de práctica).
    ============================================================ */
 (function () {
   'use strict';
@@ -14,11 +23,13 @@
 
   var pantallaInicio = $('#pantallaInicio');
   var pantallaJuego = $('#pantallaJuego');
+  var pantallaCrear = $('#pantallaCrear');
   var pantallaFinal = $('#pantallaFinal');
   var listaTituloEl = $('#listaTitulo');
   var secuenciaEl = $('#secuencia');
   var disponiblesEl = $('#disponibles');
   var feedbackEl = $('#feedback');
+  var feedbackCrearEl = $('#feedbackCrear');
   var btnSiguiente = $('#btnSiguiente');
   var progressFill = $('#progressFill');
   var progressText = $('#progressText');
@@ -28,6 +39,9 @@
   var progreso = App.storage.get(TOOL_ID);
   if (typeof progreso.estrellas !== 'number') progreso.estrellas = 0;
   if (!progreso.completados) progreso.completados = {};
+  /* Listas de práctica del nivel "Crea tu lista". Se persisten en
+     localStorage del dispositivo. Vacío por defecto. */
+  if (!Array.isArray(progreso.misListas)) progreso.misListas = [];
 
   /* Round state */
   var nivel = null;
@@ -41,6 +55,14 @@
 
   function pintarEstrellas() { starsEl.textContent = '⭐ ' + progreso.estrellas; }
 
+  function mostrarPantalla(id) {
+    [pantallaInicio, pantallaJuego, pantallaCrear, pantallaFinal].forEach(function (p) {
+      if (p) p.classList.add('oculto');
+    });
+    var dest = $('#' + id);
+    if (dest) dest.classList.remove('oculto');
+  }
+
   function pintarNiveles() {
     var cont = $('#niveles');
     cont.innerHTML = '';
@@ -51,19 +73,21 @@
       var veces = progreso.completados[n.id] || 0;
       btn.innerHTML = n.nombre + ' — ' + n.descripcion +
         ' <span class="nivel-info">(' + veces + ' ' + App.i18n.t('veces') + ')</span>';
-      btn.addEventListener('click', function () { iniciarRonda(n); });
+      btn.addEventListener('click', function () { iniciarNivel(n); });
       cont.appendChild(btn);
     });
   }
 
-  function iniciarRonda(n) {
+  function iniciarNivel(n) {
     nivel = n;
+    if (n.listasLibres) {
+      abrirPantallaCrear();
+      return;
+    }
     listas = App.utils.shuffle(nivel.listas).slice(0, DATOS.porRonda);
     idx = 0;
     aciertosRonda = 0;
-    pantallaInicio.classList.add('oculto');
-    pantallaFinal.classList.add('oculto');
-    pantallaJuego.classList.remove('oculto');
+    mostrarPantalla('pantallaJuego');
     render();
   }
 
@@ -156,22 +180,419 @@
   function terminarRonda() {
     progreso.completados[nivel.id] = (progreso.completados[nivel.id] || 0) + 1;
     guardar();
-    pantallaJuego.classList.add('oculto');
-    pantallaFinal.classList.remove('oculto');
+    mostrarPantalla('pantallaFinal');
     $('#resumenFinal').textContent = App.i18n.t('resumenFinal')
       .replace('{n}', aciertosRonda)
       .replace('{total}', progreso.estrellas);
-$('#transferencia').textContent = App.i18n.t('transferencia');
+    $('#transferencia').textContent = App.i18n.t('transferencia');
     App.feedback.celebrate(App.i18n.t('core.roundComplete'));
+  }
+
+  /* ============================================================
+     Pantalla "Crea tu lista" (Nivel 3).
+     Simulación y proceso de entrenamiento del flujo real de una
+     lista:
+       1. Poner nombre a la lista (sin window.prompt: Lectura Fácil).
+       2. Añadir elementos uno a uno (Enter o botón).
+       3. Reordenar con flechas ↑/↓ (seleccionar + mover).
+       4. Marcar / desmarcar como "Hecho" (toggle por elemento).
+       5. Quitar un elemento (botón ✕) o vaciar toda la lista.
+       6. Guardar la lista (gana 1⭐ la primera vez).
+       7. Abrir una lista guardada más tarde, seguir usándola,
+          borrarla.
+     No hay pista/Explicación Socrática: las decisiones son libres
+     (mismo razonamiento que piano-keys en modo libre o
+     tools/builders). Gana 1⭐ solo al guardar una lista por
+     primera vez (regla: solo se suma, nunca se resta).
+     ============================================================ */
+  var listaCrear = { nombre: '', items: [], seleccionado: -1 };
+
+  function abrirPantallaCrear() {
+    listaCrear = { nombre: '', items: [], seleccionado: -1 };
+    mostrarPantalla('pantallaCrear');
+    $('#panelNombre').classList.remove('oculto');
+    $('#panelEditor').classList.add('oculto');
+    var inputNombre = $('#inputNombreListaCrear');
+    inputNombre.value = '';
+    inputNombre.placeholder = App.i18n.t('promptNombreListaDefault');
+    feedbackCrearEl.textContent = '';
+    feedbackCrearEl.className = 'feedback';
+    pintarListasGuardadas();
+    pintarEstrellas();
+    inputNombre.focus();
+  }
+
+  function confirmarNombreLista() {
+    var inputNombre = $('#inputNombreListaCrear');
+    var nombre = inputNombre.value.trim().slice(0, 30);
+    if (!nombre) {
+      feedbackCrearEl.textContent = App.i18n.t('nombreRequerido');
+      feedbackCrearEl.className = 'feedback animo';
+      App.feedback.encourage(feedbackCrearEl);
+      inputNombre.focus();
+      return;
+    }
+    listaCrear.nombre = nombre;
+    $('#panelNombre').classList.add('oculto');
+    $('#panelEditor').classList.remove('oculto');
+    $('#tituloListaCrear').textContent = nombre;
+    var inputItem = $('#inputNuevoItemCrear');
+    inputItem.placeholder = App.i18n.t('placeholderInputItem');
+    inputItem.setAttribute('aria-label', App.i18n.t('ariaInputItem'));
+    pintarItemsCrear();
+    feedbackCrearEl.textContent = '';
+    feedbackCrearEl.className = 'feedback';
+    inputItem.focus();
+  }
+
+  function pintarItemsCrear() {
+    var el = $('#itemsListaCrear');
+    el.innerHTML = '';
+    if (listaCrear.items.length === 0) {
+      var p = document.createElement('li');
+      p.className = 'item-vacio';
+      p.textContent = App.i18n.t('listaActualVacia');
+      el.appendChild(p);
+    } else {
+      listaCrear.items.forEach(function (it, i) {
+        var li = document.createElement('li');
+        li.className = 'item-crear' +
+          (it.hecho ? ' hecho' : '') +
+          (i === listaCrear.seleccionado ? ' seleccionado' : '');
+
+        var pos = document.createElement('span');
+        pos.className = 'item-pos';
+        pos.setAttribute('aria-hidden', 'true');
+        pos.textContent = (i + 1);
+
+        var check = document.createElement('button');
+        check.type = 'button';
+        check.className = 'item-check';
+        check.setAttribute('aria-pressed', String(Boolean(it.hecho)));
+        check.setAttribute(
+          'aria-label',
+          (it.hecho ? App.i18n.t('ariaItemHecho') : App.i18n.t('ariaItemPendiente'))
+            .replace('{texto}', it.texto)
+        );
+        check.textContent = it.hecho ? '✔' : '○';
+        check.addEventListener('click', function (e) {
+          e.stopPropagation();
+          toggleHecho(i);
+        });
+
+        var texto = document.createElement('span');
+        texto.className = 'item-texto';
+        texto.textContent = it.texto;
+
+        var sel = document.createElement('button');
+        sel.type = 'button';
+        sel.className = 'item-seleccionar';
+        sel.setAttribute('aria-label',
+          App.i18n.t('ariaSeleccionarItem').replace('{n}', i + 1).replace('{texto}', it.texto));
+        sel.textContent = '↕';
+        sel.addEventListener('click', function (e) {
+          e.stopPropagation();
+          seleccionarItem(i);
+        });
+
+        var quitar = document.createElement('button');
+        quitar.type = 'button';
+        quitar.className = 'item-quitar';
+        quitar.textContent = '✕';
+        quitar.setAttribute('aria-label', App.i18n.t('ariaQuitarItem').replace('{texto}', it.texto));
+        quitar.addEventListener('click', function (e) {
+          e.stopPropagation();
+          quitarItemCrear(i);
+        });
+
+        li.appendChild(pos);
+        li.appendChild(check);
+        li.appendChild(texto);
+        li.appendChild(sel);
+        li.appendChild(quitar);
+
+        li.addEventListener('click', function () { seleccionarItem(i); });
+        el.appendChild(li);
+      });
+    }
+
+    var hechos = listaCrear.items.filter(function (x) { return x.hecho; }).length;
+    var total = listaCrear.items.length;
+    var progEl = $('#progresoListaCrear');
+    if (total === 0) {
+      progEl.textContent = '';
+    } else if (hechos === total) {
+      progEl.textContent = App.i18n.t('progresoCrearCompleta');
+    } else {
+      progEl.textContent = App.i18n.t('progresoCrear')
+        .replace('{hechos}', hechos).replace('{total}', total);
+    }
+
+    $('#btnGuardarListaCrear').disabled = listaCrear.items.length === 0;
+
+    var sel = listaCrear.seleccionado;
+    var btnSubir = $('#btnSubirItemCrear');
+    var btnBajar = $('#btnBajarItemCrear');
+    btnSubir.disabled = !(sel > 0 && listaCrear.items.length > 0);
+    btnBajar.disabled = !(sel >= 0 && sel < listaCrear.items.length - 1);
+  }
+
+  function seleccionarItem(i) {
+    listaCrear.seleccionado = (listaCrear.seleccionado === i) ? -1 : i;
+    pintarItemsCrear();
+    if (listaCrear.seleccionado === -1) {
+      feedbackCrearEl.textContent = App.i18n.t('selectorVacio');
+      feedbackCrearEl.className = 'feedback';
+    } else {
+      feedbackCrearEl.textContent = App.i18n.t('seleccionaParaMover');
+      feedbackCrearEl.className = 'feedback';
+    }
+  }
+
+  function moverItemCrear(dir) {
+    var sel = listaCrear.seleccionado;
+    if (sel < 0) {
+      feedbackCrearEl.textContent = App.i18n.t('selectorVacio');
+      feedbackCrearEl.className = 'feedback';
+      return;
+    }
+    var j = sel + dir;
+    if (j < 0 || j >= listaCrear.items.length) return;
+    var tmp = listaCrear.items[sel];
+    listaCrear.items[sel] = listaCrear.items[j];
+    listaCrear.items[j] = tmp;
+    listaCrear.seleccionado = j;
+    App.feedback.success(feedbackCrearEl);
+    feedbackCrearEl.textContent = App.i18n.t('elementoMovidoFeedback')
+      .replace('{pos}', j + 1);
+    pintarItemsCrear();
+  }
+
+  function anadirItemCrear() {
+    var input = $('#inputNuevoItemCrear');
+    var texto = input.value.trim();
+    if (!texto) return;
+    listaCrear.items.push({ texto: texto.slice(0, 60), hecho: false });
+    input.value = '';
+    App.feedback.success(feedbackCrearEl);
+    feedbackCrearEl.textContent = App.i18n.t('elementoAnadidoFeedback')
+      .replace('{texto}', texto);
+    input.focus();
+    pintarItemsCrear();
+  }
+
+  function quitarItemCrear(i) {
+    var texto = listaCrear.items[i].texto;
+    listaCrear.items.splice(i, 1);
+    if (listaCrear.seleccionado === i) listaCrear.seleccionado = -1;
+    else if (listaCrear.seleccionado > i) listaCrear.seleccionado -= 1;
+    feedbackCrearEl.className = 'feedback';
+    App.feedback.encourage(feedbackCrearEl);
+    feedbackCrearEl.textContent = App.i18n.t('elementoBorradoFeedback')
+      .replace('{texto}', texto);
+    pintarItemsCrear();
+  }
+
+  function toggleHecho(i) {
+    var it = listaCrear.items[i];
+    it.hecho = !it.hecho;
+    if (it.hecho) {
+      App.feedback.success(feedbackCrearEl);
+      feedbackCrearEl.textContent = App.i18n.t('elementoHechoFeedback')
+        .replace('{texto}', it.texto);
+    } else {
+      feedbackCrearEl.textContent = App.i18n.t('elementoPendienteFeedback')
+        .replace('{texto}', it.texto);
+    }
+    pintarItemsCrear();
+  }
+
+  function vaciarListaCrear() {
+    listaCrear.items = [];
+    listaCrear.seleccionado = -1;
+    feedbackCrearEl.textContent = App.i18n.t('listaBorradaFeedback');
+    feedbackCrearEl.className = 'feedback';
+    pintarItemsCrear();
+  }
+
+  function guardarListaCrear() {
+    if (listaCrear.items.length === 0) return;
+    var entradas = listaCrear.items.map(function (it) {
+      return { texto: it.texto, hecho: Boolean(it.hecho) };
+    });
+    /* Si la lista ya existía (mismo nombre), actualizamos en vez de duplicar. */
+    var idxExistente = -1;
+    for (var i = 0; i < progreso.misListas.length; i++) {
+      if (progreso.misListas[i].nombre === listaCrear.nombre) { idxExistente = i; break; }
+    }
+    var esNueva = idxExistente === -1;
+    if (esNueva) {
+      progreso.misListas.push({
+        nombre: listaCrear.nombre,
+        items: entradas,
+        guardada: App.utils.hoy()
+      });
+      progreso.estrellas += 1; /* Sumar estrella solo al guardar una lista nueva. */
+    } else {
+      progreso.misListas[idxExistente].items = entradas;
+      progreso.misListas[idxExistente].guardada = App.utils.hoy();
+    }
+    guardar();
+    pintarEstrellas();
+    App.feedback.success(feedbackCrearEl);
+    feedbackCrearEl.textContent = App.i18n.t('listaGuardadaFeedback');
+    pintarListasGuardadas();
+  }
+
+  function pintarListasGuardadas() {
+    var el = $('#listasGuardadas');
+    if (!el) return;
+    el.innerHTML = '';
+    if (progreso.misListas.length === 0) return;
+
+    var h3 = document.createElement('h3');
+    h3.textContent = App.i18n.t('tusListas');
+    el.appendChild(h3);
+
+    progreso.misListas.forEach(function (lista, i) {
+      var wrap = document.createElement('div');
+      wrap.className = 'lista-guardada';
+
+      var fila = document.createElement('div');
+      fila.className = 'lista-guardada-fila';
+
+      var info = document.createElement('button');
+      info.type = 'button';
+      info.className = 'lista-guardada-info';
+      info.setAttribute('aria-expanded', 'false');
+      info.setAttribute('aria-label', App.i18n.t('ariaVerLista').replace('{nombre}', lista.nombre));
+      var nombre = document.createElement('span');
+      nombre.className = 'nombre';
+      nombre.textContent = lista.nombre;
+      var cantidad = document.createElement('span');
+      cantidad.className = 'cantidad';
+      cantidad.textContent = App.i18n.t('elementosCount').replace('{n}', lista.items.length);
+      info.appendChild(nombre);
+      info.appendChild(cantidad);
+
+      var acciones = document.createElement('div');
+      acciones.className = 'lista-guardada-acciones';
+
+      var btnEscuchar = document.createElement('button');
+      btnEscuchar.type = 'button';
+      btnEscuchar.textContent = '🔊';
+      btnEscuchar.setAttribute('aria-label', App.i18n.t('ariaEscucharLista').replace('{nombre}', lista.nombre));
+      btnEscuchar.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var hechos = lista.items.filter(function (x) { return x.hecho; }).length;
+        App.tts.speak(lista.nombre + '. ' + lista.items.length + ' ' +
+          App.i18n.t('elementosCount').replace('{n}', lista.items.length) + '. ' +
+          lista.items.map(function (x) { return x.texto; }).join(', '));
+      });
+
+      var btnAbrir = document.createElement('button');
+      btnAbrir.type = 'button';
+      btnAbrir.textContent = '✏️';
+      btnAbrir.setAttribute('aria-label', App.i18n.t('ariaAbrirLista').replace('{nombre}', lista.nombre));
+      btnAbrir.addEventListener('click', function (e) {
+        e.stopPropagation();
+        abrirListaGuardada(i);
+      });
+
+      var btnBorrar = document.createElement('button');
+      btnBorrar.type = 'button';
+      btnBorrar.textContent = '🗑️';
+      btnBorrar.setAttribute('aria-label', App.i18n.t('ariaBorrarLista').replace('{nombre}', lista.nombre));
+      btnBorrar.addEventListener('click', function (e) {
+        e.stopPropagation();
+        progreso.misListas.splice(i, 1);
+        guardar();
+        pintarListasGuardadas();
+        feedbackCrearEl.className = 'feedback';
+        feedbackCrearEl.textContent = App.i18n.t('listaBorradaFeedback');
+      });
+
+      acciones.appendChild(btnEscuchar);
+      acciones.appendChild(btnAbrir);
+      acciones.appendChild(btnBorrar);
+
+      fila.appendChild(info);
+      fila.appendChild(acciones);
+      wrap.appendChild(fila);
+
+      var itemsEl = document.createElement('ul');
+      itemsEl.className = 'lista-guardada-items oculto';
+      lista.items.forEach(function (it) {
+        var li = document.createElement('li');
+        li.className = it.hecho ? 'hecho' : '';
+        li.textContent = (it.hecho ? '✔ ' : '○ ') + it.texto;
+        itemsEl.appendChild(li);
+      });
+      wrap.appendChild(itemsEl);
+
+      info.addEventListener('click', function () {
+        var visible = !itemsEl.classList.contains('oculto');
+        itemsEl.classList.toggle('oculto', visible);
+        info.setAttribute('aria-expanded', String(!visible));
+      });
+
+      el.appendChild(wrap);
+    });
+  }
+
+  function abrirListaGuardada(i) {
+    var lista = progreso.misListas[i];
+    if (!lista) return;
+    listaCrear = {
+      nombre: lista.nombre,
+      items: lista.items.map(function (x) { return { texto: x.texto, hecho: Boolean(x.hecho) }; }),
+      seleccionado: -1
+    };
+    $('#panelNombre').classList.add('oculto');
+    $('#panelEditor').classList.remove('oculto');
+    $('#tituloListaCrear').textContent = listaCrear.nombre;
+    var inputItem = $('#inputNuevoItemCrear');
+    inputItem.value = '';
+    inputItem.placeholder = App.i18n.t('placeholderInputItem');
+    inputItem.setAttribute('aria-label', App.i18n.t('ariaInputItem'));
+    feedbackCrearEl.textContent = '';
+    feedbackCrearEl.className = 'feedback';
+    pintarItemsCrear();
+    inputItem.focus();
   }
 
   /* Events */
   btnSiguiente.addEventListener('click', siguiente);
-  $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
+  $('#btnRepetir').addEventListener('click', function () { iniciarNivel(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {
-    pantallaFinal.classList.add('oculto');
+    mostrarPantalla('pantallaInicio');
     pintarNiveles();
-    pantallaInicio.classList.remove('oculto');
+  });
+
+  /* Eventos del Nivel 3 — "Crea tu lista". */
+  $('#btnEmpezarCrear').addEventListener('click', confirmarNombreLista);
+  $('#inputNombreListaCrear').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); confirmarNombreLista(); }
+  });
+  $('#btnAnadirItemCrear').addEventListener('click', anadirItemCrear);
+  $('#inputNuevoItemCrear').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); anadirItemCrear(); }
+  });
+  $('#btnVaciarListaCrear').addEventListener('click', vaciarListaCrear);
+  $('#btnGuardarListaCrear').addEventListener('click', guardarListaCrear);
+  $('#btnSubirItemCrear').addEventListener('click', function () { moverItemCrear(-1); });
+  $('#btnBajarItemCrear').addEventListener('click', function () { moverItemCrear(1); });
+
+  /* "Volver" contextual: si la persona está en medio de "Crea tu
+     lista", la primera pulsación la lleva al menú de niveles
+     (no al sitio), igual que en routines (btnVolver). */
+  $('#btnVolver').addEventListener('click', function (e) {
+    if (!pantallaCrear.classList.contains('oculto')) {
+      e.preventDefault();
+      App.tts.stop();
+      mostrarPantalla('pantallaInicio');
+      pintarNiveles();
+    }
   });
 
   pintarNiveles();

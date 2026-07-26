@@ -121,8 +121,13 @@ const DATA = {
             { picto: '⏰', texto: 'Poner el despertador' },
             { picto: '🌙', texto: 'Apagar la luz' }
           ] }
-        ]
-      }
+        ]      },
+      {
+        id: 3,
+        nombre: 'Nivel 3',
+        descripcion: 'Crea tu lista',
+        estrellas: 1,
+        listasLibres: true      }
     ]
   },
   en: {
@@ -231,6 +236,13 @@ const DATA = {
             { picto: '🌙', texto: 'Turn off the light' }
           ] }
         ]
+      },
+      {
+        id: 3,
+        nombre: 'Level 3',
+        descripcion: 'Create your list',
+        estrellas: 1,
+        listasLibres: true
       }
     ]
   }

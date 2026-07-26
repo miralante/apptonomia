@@ -54,6 +54,7 @@ Apptonomia has **76 activities** organized into **7 modules** according to the t
 | **Among Friends** | Solve social situations with friends |
 | **My Body Tells Me** | Learn to notice your body's signals when you feel something |
 | **Good Manners** | Practice courtesy phrases: thank you, please, good morning, goodbye, giving way |
+| **School Rules and Civics** | Practise the rules of the classroom, school and public places (asking to speak, queueing, recycling, crossing on green, switching off the lights, mediating an argument, including an excluded classmate) |
 | **This Is Me** | Accept who you are and respond to disability, discrimination and insensitive people |
 | **When It's Hard** | Tolerate frustration and learn to ask for help without shame |
 | **Circle of Trust** | Tell friend, companion and acquaintance apart, and recognize manipulation (including requests for money) |
