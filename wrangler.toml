@@ -1,0 +1,23 @@
+# Cloudflare Pages configuration for Apptonomia.
+# Docs: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+#
+# The site is fully static (no Workers / Functions / KV needed). The build
+# output is the repository root itself: there is no bundler, no build step.
+# Cloudflare Pages picks `_headers` and `_redirects` from the same directory
+# that is uploaded.
+
+name = "apptonomia"
+pages_build_output_dir = "."
+compatibility_date = "2025-01-01"
+
+# Optional: explicit production branch. Uncomment to override the dashboard
+# default ("main").
+# production_branch = "master"
+
+# Optional: bind a custom domain once it has been moved off Firebase Hosting.
+# Manage the actual DNS cutover in the Cloudflare dashboard (or `wrangler
+# pages domain add` after the project exists).
+#
+# [[env.production.routes]]
+# pattern = "apptonomia.com/*"
+# custom_domain = true

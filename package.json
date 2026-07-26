@@ -14,10 +14,9 @@
     "scan:secrets:all": "node scripts/scan-secrets.js --all",
     "scan:secrets:install": "node scripts/scan-secrets.js --install",
     "prepush": "node scripts/scan-secrets.js --pre-push",
-    "firebase:login": "firebase login",
-    "firebase:init": "firebase init",
-    "firebase:deploy": "firebase deploy",
-    "firebase:hosting": "firebase hosting:channel:deploy preview"
+    "cf:login": "wrangler login",
+    "cf:preview": "wrangler pages deploy . --project-name apptonomia --branch preview",
+    "cf:deploy": "wrangler pages deploy . --project-name apptonomia --branch master"
   },
   "keywords": [
     "therapy",
@@ -27,7 +26,7 @@
   "author": "The Naked Frame",
   "license": "MIT",
   "devDependencies": {
-    "firebase-tools": "^15.24.0",
-    "playwright": "^1.61.1"
+    "playwright": "^1.61.1",
+    "wrangler": "^3.90.0"
   }
 }

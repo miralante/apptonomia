@@ -30,7 +30,7 @@ Spanish, in Easy Reading format.
 
 - **HTML5 + CSS3 + Vanilla JavaScript.** No frameworks, no bundlers, no build step,
   no backend, no runtime npm dependencies (devDependencies for deployment
-  like `firebase-tools` are allowed).
+  like `wrangler` are allowed).
 - **Classic scripts**, not ES modules (compatibility with `file://` and old browsers).
   All shared code is exposed on `window.App.*`.
 - **No JS CDNs.** Only external exception: Google Fonts (Atkinson Hyperlegible and Nunito).
@@ -66,7 +66,7 @@ apptonomia/
 │   ├── js/feedback.js     #   window.App.feedback
 │   ├── js/dinero.js       #   window.App.dinero (euro activities)
 │   └── img/               #   SVG pictograms and PWA icons; the UI uses system icons and emojis first for simple graphical elements; if more is needed, use free images downloaded locally from CC0/public-domain sources
-├── tools/<slug>/          # Level 2: one folder per ACTIVITY (81 current)
+├── tools/<slug>/          # Level 2: one folder per ACTIVITY (82 current)
 │   ├── index.html         #   structure and asset loading
 │   ├── app.js             #   logic only
 │   ├── data.js            #   data only
@@ -78,8 +78,9 @@ apptonomia/
 ├── presentacion/          # Hidden route: public project presentation (§8.3)
 ├── manifest.json          # PWA
 ├── sw.js                  # Service worker: cache list + VERSION (§11)
-├── firebase.json          # Hosting (deployment)
-└── .firebaserc            # Firebase project: apptonomia
+├── wrangler.toml          # Cloudflare Pages project config
+├── _headers               # Cloudflare Pages cache and security headers
+└── _redirects             # Cloudflare Pages SPA rewrite (`/*` → `/index.html 200`)
 ```
 
 ### 2.1 Level 1 — Shared core (`assets/`)
@@ -103,7 +104,7 @@ no code per module:
 | 🧠 Memory and attention | Memory and attention | `--mod-memoria` (orange) | pairs, differences, whats-missing, ecos, turns-mirrors, blocks, where-is, path, fit, theatre |
 | 🔢 Thinking and counting | Reasoning and math | `--mod-razonamiento` (teal) | riddles, patterns, numbers, quantities, math-tables, roman-numerals, wallet, clock, stories, odd-one-out, puzzle, oca, tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
 | 💬 Language and words | Language and communication | `--mod-lenguaje` (raspberry) | comedy-club, idioms, double-meaning, categories, sentence, words, vocabulary, dictionary, spelling, colored-spelling, word-search |
-| 💜 Emotions | Emotions and relationships | `--mod-emocional` (purple) | emotions, calm, friends, my-body, good-manners, self-esteem, resilience, trust-circle |
+| 💜 Emotions | Emotions and relationships | `--mod-emocional` (purple) | emotions, calm, friends, my-body, good-manners, school-rules, self-esteem, resilience, trust-circle |
 | 💗 Body and relationships | Affective-sexual education | `--mod-cuerpo` (terracotta) | sexual-health |
 
 > **Multi-area note**: an activity may work on more than one therapeutic
@@ -785,14 +786,23 @@ npx playwright install chromium firefox webkit
 
 ### 12.5 Deployment
 
+The site is deployed on **Cloudflare Pages** (project `apptonomia`). The
+repository root is the build output — there is no bundler or build step.
+Cloudflare picks up `wrangler.toml`, `_headers` and `_redirects` automatically.
+See `CLOUDFLARE.md` at the repository root for the full setup.
+
 ```bash
-# Firebase Hosting (project "apptonomia")
-npm run firebase:hosting            # preview channel (for testing)
-npm run firebase:deploy             # production
+# Preview channel (URL like https://<hash>.apptonomia.pages.dev)
+npm run cf:preview
+
+# Production
+npm run cf:deploy
 ```
 
-In **remote-control** sessions (without local browser) the only way to test is the
-Firebase preview channel — notify the user before deploying.
+In **remote-control** sessions (without local browser) the only way to test is
+the Cloudflare Pages preview channel — notify the user before deploying, and
+treat both `cf:preview` and `cf:deploy` as network operations per `CLAUDE.md`
+§3.
 
 The scripts automate structure and basic loading checks. Complete functional
 walkthroughs, content quality and accessibility review still require manual testing.

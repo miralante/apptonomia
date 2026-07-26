@@ -65,7 +65,7 @@ apptonomia/
 │   ├── js/feedback.js     #   window.App.feedback
 │   ├── js/dinero.js       #   window.App.dinero (actividades de euros)
 │   └── img/               #   pictogramas SVG e iconos PWA; la interfaz usa primero iconos del sistema y emojis para gráficos simples; si hace falta algo más, usar imágenes libres descargadas localmente desde fuentes CC0/domino público
-├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (81 actuales)
+├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (82 actuales)
 │   ├── index.html         #   estructura y carga de assets
 │   ├── app.js             #   solo lógica
 │   ├── data.js            #   solo datos
@@ -102,7 +102,7 @@ no hay código por módulo:
 | 🧠 Memoria y atención | Memoria y atención | `--mod-memoria` (naranja) | pairs, differences, whats-missing, ecos, turns-mirrors, blocks, where-is, path, fit, theatre |
 | 🔢 Pensar y contar | Razonamiento y matemáticas | `--mod-razonamiento` (teal) | riddles, patterns, numbers, quantities, math-tables, roman-numerals, wallet, clock, stories, odd-one-out, puzzle, oca, tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
 | 💬 Lenguaje y palabras | Lenguaje y comunicación | `--mod-lenguaje` (frambuesa) | comedy-club, idioms, double-meaning, categories, sentence, words, vocabulary, dictionary, spelling, colored-spelling, word-search |
-| 💜 Emociones | Emociones y relaciones | `--mod-emocional` (morado) | emotions, calm, friends, my-body, good-manners, self-esteem, resilience, trust-circle |
+| 💜 Emociones | Emociones y relaciones | `--mod-emocional` (morado) | emotions, calm, friends, my-body, good-manners, school-rules, self-esteem, resilience, trust-circle |
 | 💗 Cuerpo y relaciones | Educación afectivo-sexual | `--mod-cuerpo` (terracota) | sexual-health |
 
 > **Nota multi-área**: una actividad puede trabajar más de un área terapéutica
@@ -799,14 +799,23 @@ npx playwright install chromium firefox webkit
 
 ### 12.5 Despliegue
 
+El sitio se publica en **Cloudflare Pages** (proyecto `apptonomia`). La raíz
+del repositorio es el build output: no hay bundler ni paso de build.
+Cloudflare recoge `wrangler.toml`, `_headers` y `_redirects` automáticamente.
+Consulta `CLOUDFLARE.md` en la raíz del repo para la configuración completa.
+
 ```bash
-# Firebase Hosting (proyecto "apptonomia")
-npm run firebase:hosting            # canal de preview (para probar)
-npm run firebase:deploy             # producción
+# Canal de preview (URL del tipo https://<hash>.apptonomia.pages.dev)
+npm run cf:preview
+
+# Producción
+npm run cf:deploy
 ```
 
-En sesiones **remote-control** (sin navegador local) la única forma de probar es el
-canal de preview de Firebase — avisar al usuario antes de desplegar.
+En sesiones **remote-control** (sin navegador local) la única forma de probar es
+el canal de preview de Cloudflare Pages — avisar al usuario antes de
+desplegar, y tratar tanto `cf:preview` como `cf:deploy` como operaciones de
+red según `CLAUDE.md` §3.
 
 Los scripts automatizan estructura y carga básica. Los recorridos funcionales
 completos, la calidad del contenido y la revisión de accesibilidad siguen
