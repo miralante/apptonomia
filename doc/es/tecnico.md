@@ -276,12 +276,8 @@ Cada actividad en `tools/<slug>/` sigue este patrón:
     <script src="../../assets/js/tts.js"></script>
     <script src="../../assets/js/storage.js"></script>
     <script src="../../assets/js/feedback.js"></script>
-    <script>
-      (function () {
-        var loc = window.App.i18n.locale();
-        document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
-      })();
-    </script>
+    <script src="strings.es.js"></script>
+    <script src="strings.en.js"></script>
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>
@@ -445,19 +441,23 @@ el locale:
 <script src="../../assets/js/tts.js"></script>
 <script src="../../assets/js/storage.js"></script>
 <script src="../../assets/js/feedback.js"></script>
-<script>
-  /* Carga condicional del archivo de idioma activo (es|en). */
-  (function () {
-    var loc = window.App.i18n.locale();
-    document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
-  })();
-</script>
+<script src="strings.es.js"></script>
+<script src="strings.en.js"></script>
 <script src="data.js"></script>
 <script src="app.js"></script>
 ```
 
-El `document.write` durante el parseo del HTML es síncrono, así que el `<script>`
-inyectado se ejecuta antes que los siguientes — preserva el orden de dependencias.
+Ambos archivos de locale se cargan de forma síncrona (sin `document.write`), así
+que `App.i18n.register` se ejecuta antes de `data.js` y `app.js`. **No** uses
+`document.write` para inyectar el archivo de textos: Chrome y Firefox procesan
+los `<script>` inyectados por `document.write` de forma asíncrona, por lo que
+los textos terminan cargando **después** de `data.js`/`app.js`. Como
+consecuencia, `App.i18n.t()` devuelve la clave literal durante el renderizado
+inicial y el DOM la conserva (el `title` del header, las etiquetas de los
+botones, los títulos de sección, etc.). El patrón antiguo con `document.write`
+era una regresión: el script inline se ejecutaba, el parser continuaba, y
+`data.js`/`app.js` llegaban a `App.i18n.t()` antes de que el `<script>`
+inyectado se hubiera ejecutado.
 
 ### 6.3 Claves comunes (`core.*`, `feedback.*`)
 

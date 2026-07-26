@@ -511,13 +511,8 @@
   <script src="../assets/js/i18n.js"></script>
   <script src="../assets/js/tts.js"></script>
   <script src="../assets/js/storage.js"></script>
-  <script>
-  /* Carga condicional del archivo de idioma activo (es|en). */
-  (function () {
-    var loc = window.App.i18n.locale();
-    document.write('<script src="strings.' + loc + '.js"><\/script>');
-  })();
-</script>
+  <script src="strings.es.js"></script>
+  <script src="strings.en.js"></script>
   <script>
     (function () {
       'use strict';

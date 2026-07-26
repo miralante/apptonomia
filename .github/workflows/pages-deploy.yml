@@ -1,0 +1,95 @@
+name: Deploy to Cloudflare Pages
+
+# Two deployment paths are supported. Only one is needed:
+#
+#   1. RECOMMENDED: connect the repository in the Cloudflare Pages dashboard.
+#      Cloudflare then builds and deploys automatically on every push to the
+#      production branch and on every PR (preview channel). No GitHub secret
+#      is required. This workflow is a no-op in that case but still runs
+#      `check.js` as a safety net before the dashboard build.
+#
+#   2. SELF-HOSTED: this workflow deploys via the official Wrangler Action,
+#      which uses `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` secrets to
+#      push the repository root as the Pages build output. Use this if you
+#      prefer not to give Cloudflare access to the GitHub repository.
+#
+# Secrets (option 2 only) — set them in the repo settings, never commit:
+#   CLOUDFLARE_API_TOKEN    https://dash.cloudflare.com/profile/api-tokens
+#                           ("Edit Cloudflare Pages" template)
+#   CLOUDFLARE_ACCOUNT_ID   right sidebar of any zone in the dashboard
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Pre-deploy checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dev dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: node scripts/check.js
+        run: npm run check
+
+  deploy:
+    name: wrangler pages deploy
+    needs: check
+    runs-on: ubuntu-latest
+    # Reference the secret directly so the job is skipped cleanly when the
+    # token is not configured (e.g. repositories using the Cloudflare Git
+    # connector instead of this action). GitHub evaluates the expression and
+    # treats the missing secret as an empty string.
+    if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+    environment:
+      name: ${{ github.ref == 'refs/heads/master' && 'production' || 'preview' }}
+      url: ${{ steps.deploy.outputs.deployment-url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dev dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: apptonomia
+          directory: .
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: "4"
+
+      - name: Comment preview URL on pull requests
+        if: github.event_name == 'pull_request' && steps.deploy.outputs.deployment-url != ''
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: cloudflare-preview
+          message: |
+            :cloud: Cloudflare Pages preview ready:
+            ${{ steps.deploy.outputs.deployment-url }}

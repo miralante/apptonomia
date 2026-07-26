@@ -276,12 +276,8 @@ Each activity in `tools/<slug>/` follows this pattern:
     <script src="../../assets/js/tts.js"></script>
     <script src="../../assets/js/storage.js"></script>
     <script src="../../assets/js/feedback.js"></script>
-    <script>
-      (function () {
-        var loc = window.App.i18n.locale();
-        document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
-      })();
-    </script>
+    <script src="strings.es.js"></script>
+    <script src="strings.en.js"></script>
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>
@@ -442,19 +438,21 @@ active language. The texts file is injected synchronously per locale:
 <script src="../../assets/js/tts.js"></script>
 <script src="../../assets/js/storage.js"></script>
 <script src="../../assets/js/feedback.js"></script>
-<script>
-  /* Conditional load of the active language file (es|en). */
-  (function () {
-    var loc = window.App.i18n.locale();
-    document.write('<script src="strings.' + loc + '.js?v=' + Date.now() + '"><\/script>');
-  })();
-</script>
+<script src="strings.es.js"></script>
+<script src="strings.en.js"></script>
 <script src="data.js"></script>
 <script src="app.js"></script>
 ```
 
-`document.write` during HTML parsing is synchronous, so the injected `<script>`
-executes before the following ones — preserving the dependency order.
+Both locale files load synchronously (no `document.write`), so `App.i18n.register`
+runs before `data.js` and `app.js`. **Do not** use `document.write` to inject the
+texts file: Chrome and Firefox process `document.write`-injected scripts
+asynchronously, so the texts end up loading **after** `data.js`/`app.js`. As a
+result, `App.i18n.t()` returns literal keys during the initial render and the
+DOM keeps them (header `title`, button labels, section titles, etc.). The old
+`document.write` pattern was a regression: the inline script ran, the parser
+continued, and `data.js`/`app.js` reached `App.i18n.t()` before the injected
+`<script>` had executed.
 
 ### 6.3 Common keys (`core.*`, `feedback.*`)
 

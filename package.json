@@ -27,6 +27,6 @@
   "license": "MIT",
   "devDependencies": {
     "playwright": "^1.61.1",
-    "wrangler": "^3.90.0"
+    "wrangler": "^4.114.0"
   }
 }

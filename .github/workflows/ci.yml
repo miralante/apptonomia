@@ -1,0 +1,68 @@
+name: CI
+
+# Runs the project's structural, i18n and secrets checks on every push and
+# pull request. Deploys to Cloudflare Pages are handled in `pages-deploy.yml`.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  check:
+    name: node scripts/check.js
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dev dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Run structural and i18n checks
+        run: npm run check
+
+  i18n-smoke:
+    name: i18n smoke (es/en key parity)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dev dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: i18n keys smoke test
+        run: node scripts/i18n-keys-smoke.js
+
+  secrets-scan:
+    name: secrets scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dev dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Scan for accidentally committed secrets
+        run: npm run scan:secrets
