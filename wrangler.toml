@@ -1,28 +1,18 @@
-# Cloudflare Pages configuration for Apptonomia.
-# Docs: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+# wrangler.toml — Cloudflare Pages configuration for Apptonomia.
 #
-# The site is fully static (no Workers / Functions / KV needed). The build
-# output is the repository root itself: there is no bundler, no build step.
-# Cloudflare Pages picks `_headers` and `_redirects` from the same directory
-# that is uploaded.
+# Apptonomia is a fully static site (plain HTML/CSS/JS, no build step). On
+# Cloudflare Pages, only two fields in this file are read:
+#   * `name`                   — the Pages project name (becomes the
+#                                `*.pages.dev` subdomain).
+#   * `pages_build_output_dir` — directory to publish. The repo root for
+#                                us; Cloudflare's default is `./public`.
 #
-# Canonical URL: https://apptonomia.pages.dev
-# Project name:  apptonomia (the `*.pages.dev` subdomain is derived from
-#                this name by Cloudflare — it is not configurable here.)
+# No `compatibility_date` (Pages ignores it — it's a Workers concept).
+# No `[assets]` (Pages doesn't use static-assets binding).
+# No `wrangler pages deploy` (Pages builds via the Cloudflare dashboard
+# or the Workers Builds integration; the CLI isn't needed).
 #
-# IMPORTANT — keep this file scoped to the Pages schema only.
-# The `production_branch`, `main`, and Workers-style keys (`[build]`,
-# `[env]`, `[vars]`, route blocks) are not valid here and make the
-# Cloudflare Git connector run `wrangler deploy` instead of
-# `wrangler pages deploy`. Production branch and custom domains are
-# configured in the Cloudflare dashboard, not in this file.
+# See: https://developers.cloudflare.com/pages/configuration/build-configuration/
 
 name = "apptonomia"
 pages_build_output_dir = "."
-compatibility_date = "2025-01-01"
-
-# Production branch and any custom domain are configured in the
-# Cloudflare dashboard (Workers & Pages -> apptonomia -> Settings ->
-# Builds / Custom domains). Do NOT add a `production_branch` key here:
-# it is a Workers-only field and breaks the Pages build with
-# "Missing entry-point to Worker script".
