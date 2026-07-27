@@ -29,8 +29,8 @@ Spanish, in Easy Reading format.
 ### Non-negotiable technical constraints
 
 - **HTML5 + CSS3 + Vanilla JavaScript.** No frameworks, no bundlers, no build step,
-  no backend, no runtime npm dependencies (devDependencies for deployment
-  like `wrangler` are allowed).
+  no backend, no runtime npm dependencies. The only devDependency is
+  `playwright` (used by the cross-browser smoke tests).
 - **Classic scripts**, not ES modules (compatibility with `file://` and old browsers).
   All shared code is exposed on `window.App.*`.
 - **No JS CDNs.** Only external exception: Google Fonts (Atkinson Hyperlegible and Nunito).
@@ -78,7 +78,6 @@ apptonomia/
 ├── presentacion/          # Hidden route: public project presentation (§8.3)
 ├── manifest.json          # PWA
 ├── sw.js                  # Service worker: cache list + VERSION (§11)
-├── wrangler.toml          # Cloudflare Pages project config
 ├── _headers               # Cloudflare Pages cache and security headers
 └── _redirects             # Cloudflare Pages SPA rewrite (`/*` → `/index.html 200`)
 ```
@@ -786,24 +785,23 @@ npx playwright install chromium firefox webkit
 
 The site is deployed on **Cloudflare Pages** (project `apptonomia`). The
 repository root is the build output — there is no bundler or build step.
-Cloudflare picks up `wrangler.toml`, `_headers` and `_redirects` automatically.
-See `CLOUDFLARE.md` at the repository root for the full setup.
+Cloudflare picks up `_headers` and `_redirects` automatically. See
+`CLOUDFLARE.md` at the repository root for the full setup.
 
-```bash
-# Preview channel (URL like https://<hash>.apptonomia.pages.dev)
-npm run cf:preview
+There is no custom GitHub Actions workflow and no CLI deploy script: pushes
+to `master` trigger the build through the Cloudflare Git connector, and pull
+requests get an automatic preview channel (`https://<hash>.apptonomia.pages.dev`).
+A redeploy is just a push, and a rollback is done from the Cloudflare
+dashboard (Workers & Pages → `apptonomia` → Deployments).
 
-# Production
-npm run cf:deploy
-```
+The only "deploy" command relevant to maintenance is opening a PR — the
+preview channel replaces local browser checks for **remote-control** sessions,
+per `CLAUDE.md` §3 (preview URLs are still a network operation, so notify the
+user before pushing).
 
-In **remote-control** sessions (without local browser) the only way to test is
-the Cloudflare Pages preview channel — notify the user before deploying, and
-treat both `cf:preview` and `cf:deploy` as network operations per `CLAUDE.md`
-§3.
-
-The scripts automate structure and basic loading checks. Complete functional
-walkthroughs, content quality and accessibility review still require manual testing.
+The scripts above (`check`, `smoke`, `test:cross`) automate structure and
+basic loading checks. Complete functional walkthroughs, content quality and
+accessibility review still require manual testing.
 
 ---
 

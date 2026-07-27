@@ -801,25 +801,26 @@ npx playwright install chromium firefox webkit
 
 El sitio se publica en **Cloudflare Pages** (proyecto `apptonomia`). La raíz
 del repositorio es el build output: no hay bundler ni paso de build.
-Cloudflare recoge `wrangler.toml`, `_headers` y `_redirects` automáticamente.
-Consulta `CLOUDFLARE.md` en la raíz del repo para la configuración completa.
+Cloudflare recoge `_headers` y `_redirects` automáticamente. Consulta
+`CLOUDFLARE.md` en la raíz del repo para la configuración completa.
 
-```bash
-# Canal de preview (URL del tipo https://<hash>.apptonomia.pages.dev)
-npm run cf:preview
+No hay workflow personalizado de GitHub Actions ni script CLI de despliegue:
+los pushes a `master` disparan el build a través del conector Git de
+Cloudflare, y los pull requests reciben un canal de preview automático
+(`https://<hash>.apptonomia.pages.dev`). Redesplegar es hacer push, y
+cualquier rollback se hace desde el dashboard de Cloudflare
+(Workers & Pages → `apptonomia` → Deployments).
 
-# Producción
-npm run cf:deploy
-```
+El único "comando de despliegue" relevante para mantenimiento es abrir un PR
+— el canal de preview sustituye a las pruebas locales con navegador en
+sesiones **remote-control**, según `CLAUDE.md` §3 (las URLs de preview siguen
+siendo una operación de red, así que hay que avisar al usuario antes de
+hacer push).
 
-En sesiones **remote-control** (sin navegador local) la única forma de probar es
-el canal de preview de Cloudflare Pages — avisar al usuario antes de
-desplegar, y tratar tanto `cf:preview` como `cf:deploy` como operaciones de
-red según `CLAUDE.md` §3.
-
-Los scripts automatizan estructura y carga básica. Los recorridos funcionales
-completos, la calidad del contenido y la revisión de accesibilidad siguen
-requiriendo comprobación manual.
+Los scripts anteriores (`check`, `smoke`, `test:cross`) automatizan estructura
+y carga básica. Los recorridos funcionales completos, la calidad del
+contenido y la revisión de accesibilidad siguen requiriendo comprobación
+manual.
 
 ---
 

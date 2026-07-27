@@ -3,8 +3,9 @@
 **Canonical URL:** https://apptonomia.pages.dev
 
 Apptonomia is deployed on **Cloudflare Pages**, using its built-in
-GitHub integration. There is no custom GitHub Actions workflow — the
-Cloudflare dashboard owns the build and deploy.
+GitHub integration. There is no custom GitHub Actions workflow and no
+`wrangler.toml` in the repo — the Cloudflare dashboard owns the build
+and deploy, and project configuration lives entirely there.
 
 ## How it works
 
@@ -14,32 +15,47 @@ Cloudflare dashboard owns the build and deploy.
    infrastructure.
 3. The build is a no-op: no `build command`, no `output directory` other
    than `.`, so the static files are served as-is.
-4. `wrangler.toml` pins the project name and the build output directory;
-   the dashboard configuration is the source of truth at deploy time.
-5. The `ci.yml` GitHub Action still runs on every push and PR to gate
+4. The `ci.yml` GitHub Action still runs on every push and PR to gate
    structural, i18n and secrets checks, but it does not deploy.
 
-The `apptonomia.pages.dev` subdomain is assigned by Cloudflare from
-the project name `apptonomia` declared in `wrangler.toml`. The URL
-itself is not a setting in `wrangler.toml` — it lives in the Cloudflare
-dashboard and is documented here only as a reference.
+The `apptonomia.pages.dev` subdomain is assigned by Cloudflare from the
+project name `apptonomia` declared in the Cloudflare dashboard. The
+project name is **not** declared in the repo — that mirrors the working
+setup of the sibling `sinonimia` project and avoids the "project type
+misdetected as Worker" failure mode that `wrangler.toml` introduces
+(see "Why no `wrangler.toml`?" below).
 
 ## Files in this repository
 
 | File | Purpose |
 |---|---|
-| `wrangler.toml` | Project name (`apptonomia`) and `pages_build_output_dir = "."` only |
-| `_headers` | Cache and security headers, replaces `firebase.json` `headers` |
-| `_redirects` | `/* → /index.html 200` SPA rewrite, replaces `firebase.json` `rewrites` |
+| `_headers` | Cache and security headers, replaces the old `firebase.json` `headers` |
+| `_redirects` | `/* → /index.html 200` SPA rewrite, replaces the old `firebase.json` `rewrites` |
 | `.github/workflows/ci.yml` | `node scripts/check.js`, i18n smoke and secrets scan on every push/PR (does **not** deploy) |
 
-`wrangler.toml` is intentionally minimal: only `name` and
-`pages_build_output_dir`. Workers-only keys (`production_branch`,
-`compatibility_date`, `[build]`, `[env]`, `[vars]`, `main`,
-`[[routes]]`) are not valid here — the connector will mis-detect the
-project as a Worker and run `wrangler deploy` instead of
-`wrangler pages deploy`, which fails with "Missing entry-point to
-Worker script or to assets directory".
+No deploy-side configuration is committed: no `wrangler.toml`, no
+`functions/`, no `_routes.json`, no Cloudflare service-account keys.
+The dashboard is the source of truth for project settings; the repo
+holds the static assets and the CI that gates them.
+
+## Why no `wrangler.toml`?
+
+A `wrangler.toml` containing `name = "apptonomia"` and
+`pages_build_output_dir = "."` looks correct, but in practice the
+Cloudflare Pages Git connector can mis-detect the project type when
+that file is present: it falls back to `wrangler deploy` (the **Worker**
+deploy command), which then fails with *"Missing entry-point to Worker
+script or to assets directory"* because the file declares neither a
+`main` entry-point nor an `[assets]` binding. Removing `wrangler.toml`
+and letting the dashboard drive the deploy with `pages_build_output_dir`
+implicit (= repo root) sidesteps the issue entirely. This is the same
+pattern the sibling `sinonimia` repo uses and is what makes that
+project's deploys succeed end-to-end.
+
+If the project ever needs a manual CLI deploy (for example, to attach
+preview channels during a local debugging session), Wrangler can be
+installed transiently via `npx wrangler pages deploy . --project-name apptonomia`
+without committing a `wrangler.toml` or a `wrangler` devDependency.
 
 ## Configuration in Cloudflare
 
@@ -70,27 +86,25 @@ Pages → Connect to Git**:
 1. Select the Apptonomia repository.
 2. Set the **production branch** to `master`.
 3. Leave **build command** and **build output directory** empty — the
-   Cloudflare connector reads `pages_build_output_dir = "."` from
-   `wrangler.toml`, and the repository root already is the build
-   output.
+   repository root already is the build output.
 4. (Optional) In **Settings → Build**, confirm the framework preset is
    "None" and the output directory is `.`.
 
-If a Pages project named `apptonomia` already exists from a previous
-Worker-style attempt, delete it before creating the Pages project.
-Pages and Workers share the project name namespace, so a stale Worker
-named `apptonomia` will block Pages from taking the same name.
+If a Pages or Worker project named `apptonomia` already exists from a
+previous attempt, delete it before creating the Pages project. Pages
+and Workers share the project name namespace, so a stale Worker named
+`apptonomia` will block Pages from taking the same name and will also
+be the source of the deploy failure described in "Why no
+`wrangler.toml`?" — deleting it is the first thing to try if the
+dashboard still mis-detects the project type.
 
 Cloudflare then builds and deploys every push to `master` (production)
 and every pull request (preview channel, URL posted on the PR). No
 GitHub secret is required, no `wrangler login` is needed locally.
-`wrangler.toml` stays in the repo so the dashboard has the project
-contract; `wrangler` itself is no longer a dev dependency.
 
 The production URL is **https://apptonomia.pages.dev** — it follows the
-pattern `<project-name>.pages.dev` for the project declared in
-`wrangler.toml` (`name = "apptonomia"`) connected to the `master`
-branch (set in the dashboard, not in `wrangler.toml`).
+pattern `<project-name>.pages.dev` for the project named `apptonomia`
+in the dashboard, connected to the `master` branch.
 
 ## Day-to-day deploys
 
@@ -99,9 +113,19 @@ Cloudflare Git connector. The CI workflow (`.github/workflows/ci.yml`)
 runs the structural, i18n and secrets checks on every PR but does **not**
 deploy.
 
-Local rollbacks or one-off previews via the CLI are out of scope for this
-repo. If you ever need them, install Wrangler directly (`npx wrangler`)
-without adding it back to `devDependencies`.
+For a one-off preview outside the Git connector (e.g. to test a dirty
+worktree without pushing), Wrangler can be invoked directly without any
+project-side configuration file:
+
+```bash
+npx wrangler pages deploy . --project-name apptonomia
+```
+
+## Rollback
+
+Cloudflare dashboard → Workers & Pages → `apptonomia` → **Deployments**.
+Each successful build is listed with a timestamp. Click any of them
+and select **"Retry deployment"** or **"Rollback to this deployment"**.
 
 ## Custom domain
 
