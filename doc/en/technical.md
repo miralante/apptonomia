@@ -81,8 +81,7 @@ apptonomia/
 ├── presentacion/          # Hidden route: public project presentation (§8.3)
 ├── manifest.json          # PWA
 ├── sw.js                  # Service worker: cache list + VERSION (§11)
-├── _headers               # Cloudflare Pages cache and security headers
-└── _redirects             # Cloudflare Pages SPA rewrite (`/*` → `/index.html 200`)
+└── _headers               # Cloudflare Pages cache and security headers
 ```
 
 ### 2.1 Level 1 — Shared core (`assets/`)
@@ -797,8 +796,8 @@ zero-dependency `scripts/check.js`, `scripts/i18n-keys-smoke.js` and
 
 The site is deployed on **Cloudflare Pages** (project `apptonomia`). The
 repository root is the build output — there is no bundler or build step.
-Cloudflare picks up `_headers` and `_redirects` automatically. See
-`CLOUDFLARE.md` at the repository root for the full setup.
+Cloudflare picks up `_headers` automatically. See `CLOUDFLARE.md` at
+the repository root for the full setup.
 
 There is no custom GitHub Actions workflow and no CLI deploy script: pushes
 to `master` trigger the build through the Cloudflare Git connector, and pull

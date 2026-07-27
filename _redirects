@@ -1,6 +1,0 @@
-# Cloudflare Pages redirects — equivalent of the SPA rewrite in firebase.json.
-# Any unknown path falls back to /index.html, which is the level-0 redirector
-# that points at /site/index.html. This keeps the static site working as a
-# single-page app for deep links such as /tools/clock/ or /team/.
-
-/*    /index.html   200

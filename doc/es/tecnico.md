@@ -813,8 +813,8 @@ ejecuta los scripts sin dependencias `scripts/check.js`,
 
 El sitio se publica en **Cloudflare Pages** (proyecto `apptonomia`). La raíz
 del repositorio es el build output: no hay bundler ni paso de build.
-Cloudflare recoge `_headers` y `_redirects` automáticamente. Consulta
-`CLOUDFLARE.md` en la raíz del repo para la configuración completa.
+Cloudflare recoge `_headers` automáticamente. Consulta `CLOUDFLARE.md`
+en la raíz del repo para la configuración completa.
 
 No hay workflow personalizado de GitHub Actions ni script CLI de despliegue:
 los pushes a `master` disparan el build a través del conector Git de

@@ -30,13 +30,31 @@ misdetected as Worker" failure mode that `wrangler.toml` introduces
 | File | Purpose |
 |---|---|
 | `_headers` | Cache and security headers, replaces the old `firebase.json` `headers` |
-| `_redirects` | `/* → /index.html 200` SPA rewrite, replaces the old `firebase.json` `rewrites` |
 | `.github/workflows/ci.yml` | `node scripts/check.js`, i18n smoke and secrets scan on every push/PR (does **not** deploy) |
 
 No deploy-side configuration is committed: no `wrangler.toml`, no
-`functions/`, no `_routes.json`, no Cloudflare service-account keys.
-The dashboard is the source of truth for project settings; the repo
-holds the static assets and the CI that gates them.
+`_redirects`, no `functions/`, no `_routes.json`, no Cloudflare
+service-account keys. The dashboard is the source of truth for project
+settings; the repo holds the static assets and the CI that gates them.
+
+## Why no `_redirects`?
+
+Cloudflare Pages serves every static file in the repo automatically,
+including the implicit `index.html` lookup for any directory: visiting
+`/tools/clock/` resolves to `tools/clock/index.html`, `/team/` to
+`team/index.html`, and so on, without any rewrite rule. Every section
+of Apptonomia (`site/`, `tools/<slug>/` for all 82 activities,
+`team/`, `about/`, `settings/`, `legal/`) ships its own real
+`index.html`, so a catch-all rewrite is unnecessary and would in fact
+break: the previous version had `/* /index.html 200` (Firebase-era
+SPA rewrite) and Cloudflare rejected it with *"Infinite loop detected
+in this rule"* because `/index.html` itself matches `/*` and would
+re-trigger the rule indefinitely.
+
+The root `/index.html` keeps its `<meta http-equiv="refresh">` to
+`site/index.html` as a client-side entry pointer, the same way it did
+under Firebase Hosting — that has nothing to do with the server-side
+routing and does not cause a loop.
 
 ## Why no `wrangler.toml`?
 
@@ -74,9 +92,8 @@ No environment variables are required: the app makes no server-side calls.
 ## Required Cloudflare headers
 
 The site uses a `_headers` file at the repo root to set cache and
-security headers, and `_redirects` for the SPA rewrite. Cloudflare
-Pages reads these on every deploy and applies the rules
-automatically — no dashboard configuration needed for them.
+security headers. Cloudflare Pages reads it on every deploy and
+applies the rules automatically — no dashboard configuration needed.
 
 ## One-time setup
 
@@ -142,8 +159,10 @@ dashboard once `apptonomia.pages.dev` is live:
 
 - `manifest.json` and `sw.js` use relative paths, so they work on any host
   without changes.
-- The SPA rewrite in `_redirects` preserves deep links such as
-  `https://apptonomia.pages.dev/tools/clock/`.
+- Deep links such as `https://apptonomia.pages.dev/tools/clock/` resolve
+  to the real `tools/clock/index.html` automatically (Cloudflare's
+  implicit `index.html` lookup per directory), so no rewrite rule is
+  needed for them.
 - Long-lived cache for fingerprinted JS/CSS/images is safe; the HTML
   entry points and `sw.js` are forced to `must-revalidate` so the PWA
   shell can update.
