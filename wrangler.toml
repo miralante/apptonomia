@@ -9,20 +9,20 @@
 # Canonical URL: https://apptonomia.pages.dev
 # Project name:  apptonomia (the `*.pages.dev` subdomain is derived from
 #                this name by Cloudflare — it is not configurable here.)
+#
+# IMPORTANT — keep this file scoped to the Pages schema only.
+# The `production_branch`, `main`, and Workers-style keys (`[build]`,
+# `[env]`, `[vars]`, route blocks) are not valid here and make the
+# Cloudflare Git connector run `wrangler deploy` instead of
+# `wrangler pages deploy`. Production branch and custom domains are
+# configured in the Cloudflare dashboard, not in this file.
 
 name = "apptonomia"
 pages_build_output_dir = "."
 compatibility_date = "2025-01-01"
 
-# Production branch. Cloudflare's dashboard default for Pages is "main",
-# so we override it explicitly here to keep production tied to this repo's
-# `master` branch (preview channels use any other branch / PR ref).
-production_branch = "master"
-
-# Optional: bind a custom domain once it has been moved off Firebase Hosting.
-# Manage the actual DNS cutover in the Cloudflare dashboard (or `wrangler
-# pages domain add` after the project exists).
-#
-# [[env.production.routes]]
-# pattern = "apptonomia.com/*"
-# custom_domain = true
+# Production branch and any custom domain are configured in the
+# Cloudflare dashboard (Workers & Pages -> apptonomia -> Settings ->
+# Builds / Custom domains). Do NOT add a `production_branch` key here:
+# it is a Workers-only field and breaks the Pages build with
+# "Missing entry-point to Worker script".

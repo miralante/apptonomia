@@ -30,7 +30,8 @@ In the Cloudflare dashboard, **Workers & Pages → Create application →
 Pages → Connect to Git**:
 
 1. Select the Apptonomia repository.
-2. Set the **production branch** to `master`.
+2. Set the **production branch** to `master` (configured in the
+   dashboard's **Builds** tab, **not** in `wrangler.toml`).
 3. Leave the **build command** and **build output directory** empty — the
    Cloudflare connector reads `pages_build_output_dir = "."` from
    `wrangler.toml`, and the repository root already is the build output.
@@ -46,7 +47,7 @@ itself is no longer a dev dependency.
 The production URL is **https://apptonomia.pages.dev** — it follows the
 pattern `<project-name>.pages.dev` for the project declared in
 `wrangler.toml` (`name = "apptonomia"`) connected to the `master` branch
-(set via `production_branch = "master"` in the same file).
+(set in the dashboard, not in `wrangler.toml`).
 
 ## Day-to-day deploys
 
