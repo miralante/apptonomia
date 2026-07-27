@@ -1,8 +1,15 @@
 # Cloudflare Pages — Apptonomia
 
+**Canonical URL:** https://apptonomia.pages.dev
+
 Apptonomia is deployed on **Cloudflare Pages** via the **Git connector**
 (not GitHub Actions). The site is fully static (no build step, no backend),
 so the only files Pages needs to know about live at the repository root.
+
+The `apptonomia.pages.dev` subdomain is assigned by Cloudflare from the
+project name (`apptonomia`) declared in `wrangler.toml`. The URL itself is
+**not** a setting in `wrangler.toml` — it lives in the Cloudflare dashboard
+and is documented here only as a reference.
 
 ## Files in this repository
 
@@ -35,6 +42,11 @@ every pull request (preview channel, URL posted on the PR). No GitHub
 secret is required, no `wrangler login` is needed locally. `wrangler.toml`
 stays in the repo so the dashboard has the project contract; `wrangler`
 itself is no longer a dev dependency.
+
+The production URL is **https://apptonomia.pages.dev** — it follows the
+pattern `<project-name>.pages.dev` for the project declared in
+`wrangler.toml` (`name = "apptonomia"`) connected to the `master` branch
+(set via `production_branch = "master"` in the same file).
 
 ## Day-to-day deploys
 
