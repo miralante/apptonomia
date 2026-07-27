@@ -179,7 +179,7 @@ When a PR adds an activity, your review as support person is what validates:
 
 - `node scripts/check.js` passes without errors
 - `node scripts/smoke.js` passes without errors (Chromium ES+EN, all activities)
-- `npm run test:cross` passes without errors (Chrome + Firefox + Safari, desktop + iPhone + Pixel 5)
+- `node scripts/cross-browser.js` passes without errors (Chrome + Firefox + Safari, desktop + iPhone + Pixel 5)
 - Tested on mobile (responsive 360 px)
 - No console errors
 - If you changed cached files, you bumped `VERSION` in `sw.js`

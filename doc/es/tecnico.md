@@ -28,8 +28,11 @@ Aplicación web de terapia ocupacional para personas con discapacidad intelectua
 ### Restricciones técnicas innegociables
 
 - **HTML5 + CSS3 + JavaScript vanilla.** Sin frameworks, sin bundlers, sin build step,
-  sin backend, sin dependencias npm de ejecución (las devDependencies de despliegue
-  como `firebase-tools` sí están permitidas).
+  sin backend, sin dependencias npm en absoluto. No hay `package.json` en el
+  repo (el proyecto hermano `sinonimia` consolidó este patrón), de modo
+  que Cloudflare Pages no ejecuta `npm install` durante el build y no
+  hay nada que bundlear. Las pruebas cross-browser locales instalan
+  `playwright` ad-hoc; CI no lo necesita.
 - **Scripts clásicos**, no ES modules (compatibilidad con `file://` y navegadores viejos).
   Todo el código compartido se expone en `window.App.*`.
 - **Sin CDNs de JS.** Única excepción externa: Google Fonts (Atkinson Hyperlegible y Nunito).
@@ -774,10 +777,14 @@ node scripts/cross-browser.js --all-langs
 # Probar una sola actividad
 node scripts/cross-browser.js parejas
 
-# Vía npm
-npm run test:cross
-npm test          # check + smoke + cross-browser
+# Vía scripts de npm (no disponibles — no hay package.json)
+# npm run test:cross
+# npm test          # check + smoke + cross-browser
 ```
+
+El proyecto no tiene `package.json`, así que no hay alias `npm run`:
+cada script se invoca directamente con `node scripts/<nombre>.js`. CI
+(`.github/workflows/ci.yml`) hace lo mismo.
 
 `scripts/cross-browser.js` abre cada actividad en **Chromium (Chrome/Edge),
 Firefox y WebKit (Safari)**, en **escritorio, iPhone 12 y Pixel 5**, y
@@ -790,12 +797,17 @@ verifica:
 - Cambio de idioma ES → EN funciona (si hay selector en la actividad)
 - En móvil: no hay scroll horizontal (responsive 360 px)
 
-Requisitos:
+Requisitos (una sola vez, solo en desarrollo local — CI no los necesita):
 
 ```bash
-npm install
+npm install --no-save playwright
 npx playwright install chromium firefox webkit
 ```
+
+El flag `--no-save` evita crear un `package.json` en el repo. Las
+pruebas cross-browser **no** forman parte del pipeline de CI (CI
+ejecuta los scripts sin dependencias `scripts/check.js`,
+`scripts/i18n-keys-smoke.js` y `scripts/scan-secrets.js`).
 
 ### 12.5 Despliegue
 

@@ -181,7 +181,7 @@ valida que:
 
 - `node scripts/check.js` pasa sin errores
 - `node scripts/smoke.js` pasa sin errores (Chromium ES+EN, todas las actividades)
-- `npm run test:cross` pasa sin errores (Chrome + Firefox + Safari, escritorio + iPhone + Pixel 5)
+- `node scripts/cross-browser.js` pasa sin errores (Chrome + Firefox + Safari, escritorio + iPhone + Pixel 5)
 - Probado en móvil (responsive 360 px)
 - Sin errores en consola
 - Si cambias archivos cacheados, has subido `VERSION` en `sw.js`

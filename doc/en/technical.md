@@ -29,8 +29,11 @@ Spanish, in Easy Reading format.
 ### Non-negotiable technical constraints
 
 - **HTML5 + CSS3 + Vanilla JavaScript.** No frameworks, no bundlers, no build step,
-  no backend, no runtime npm dependencies. The only devDependency is
-  `playwright` (used by the cross-browser smoke tests).
+  no backend, no npm dependencies at all. There is no `package.json`
+  in the repo (the sibling `sinonimia` project established this
+  pattern), so Cloudflare Pages does not run `npm install` during the
+  build and there is nothing to bundle. Local cross-browser tests
+  install `playwright` ad-hoc; CI does not need it.
 - **Classic scripts**, not ES modules (compatibility with `file://` and old browsers).
   All shared code is exposed on `window.App.*`.
 - **No JS CDNs.** Only external exception: Google Fonts (Atkinson Hyperlegible and Nunito).
@@ -758,10 +761,14 @@ node scripts/cross-browser.js --all-langs
 # Test a single activity
 node scripts/cross-browser.js pairs
 
-# Via npm
-npm run test:cross
-npm test          # check + smoke + cross-browser
+# Via npm scripts (not available — there is no package.json)
+# npm run test:cross
+# npm test          # check + smoke + cross-browser
 ```
+
+The project has no `package.json`, so there are no `npm run` aliases:
+each script is invoked directly with `node scripts/<name>.js`. CI
+(`.github/workflows/ci.yml`) does the same.
 
 `scripts/cross-browser.js` opens each activity in **Chromium (Chrome/Edge),
 Firefox and WebKit (Safari)**, on **desktop, iPhone 12 and Pixel 5**, and
@@ -774,12 +781,17 @@ verifies:
 - ES → EN language change works (if selector is in the activity)
 - On mobile: no horizontal scroll (responsive 360 px)
 
-Requirements:
+Requirements (one-time, local dev only — not needed in CI):
 
 ```bash
-npm install
+npm install --no-save playwright
 npx playwright install chromium firefox webkit
 ```
+
+The `--no-save` flag avoids creating a `package.json` in the repo.
+Cross-browser tests are **not** part of the CI pipeline (CI runs the
+zero-dependency `scripts/check.js`, `scripts/i18n-keys-smoke.js` and
+`scripts/scan-secrets.js`).
 
 ### 12.5 Deployment
 
