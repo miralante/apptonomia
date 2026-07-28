@@ -21,7 +21,6 @@
   var tituloRutina = $('#tituloRutina');
   var tituloOrdenar = $('#tituloOrdenar');
   var progressFill = $('#progressFill');
-  var progressText = $('#progressText');
   var feedbackEl = $('#feedback');
   var feedbackOrdenar = $('#feedbackOrdenar');
   var starsEl = $('#stars');
@@ -133,11 +132,10 @@
         barra.appendChild(barraFill);
         var estado = document.createElement('span');
         estado.className = 'estado';
-        estado.textContent = completada
-          ? App.i18n.t('completadaHoy')
-          : App.i18n.t('pasosDe').replace('{n}', hechos).replace('{total}', total);
-        progreso.appendChild(barra);
-        progreso.appendChild(estado);
+        /* Sin contador numérico "X de Y pasos" en las tarjetas del menú:
+           la barra visual ya muestra el avance y se evita la presión. */
+        estado.textContent = completada ? App.i18n.t('completadaHoy') : '';
+        if (estado.textContent) progreso.appendChild(estado);
         cuerpo.appendChild(progreso);
       }
 
@@ -316,7 +314,6 @@
     var n = contarHechos(rutinaActual);
     var total = rutinaActual.pasos.length;
     progressFill.style.width = ((n / total) * 100) + '%';
-    progressText.textContent = App.i18n.t('pasosDe').replace('{n}', n).replace('{total}', total);
   }
 
   function marcarHecho(i) {
@@ -577,8 +574,8 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
       ordenActual.pistaUsada = false;
       guardar();
       App.feedback.encourage(feedbackOrdenar);
-      feedbackOrdenar.textContent = App.i18n.t('ordenFeedback').replace('{n}', bien).replace('{total}', total) +
-        ' ' + App.i18n.t('ordenIncorrecto');
+      /* Sin contador "X de Y pasos en su sitio": feedback cualitativo. */
+      feedbackOrdenar.textContent = App.i18n.t('ordenIncorrecto');
       actualizarBotonesSocraticos();
     }
   }
