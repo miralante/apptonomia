@@ -63,6 +63,14 @@
     mesaEl.classList.toggle('oculto', !piezas || !piezas.length);
   }
 
+  /* "Una moneda de un euro, una moneda de cincuenta céntimos" —
+     used in audio-only mode of "How much is there?" so the user
+     can still count what is on the table, just by listening. */
+  function enunciadoHablarContar(piezas) {
+    var desgloseTexto = desglose(piezas);
+    return App.i18n.t('contarEnunciadoAudio').replace('{d}', desgloseTexto);
+  }
+
   /* ============================================================
      Generadores de casos (variedad infinita, cero autoría)
      ============================================================ */
@@ -168,7 +176,14 @@
     btnSiguienteQuiz.classList.add('oculto');
 
     enunciadoQuizEl.textContent = cfg.enunciado(casoQ);
-    pintarMesa(cfg.mesa ? cfg.mesa(casoQ) : null);
+    /* Audio-only variants (e.g. ¿Cuánto hay? sin mesa) hide the
+       table so the user has to listen and count; the hint shows
+       the pieces if they fail. */
+    pintarMesa(casoQ.sinMesa ? null : (cfg.mesa ? cfg.mesa(casoQ) : null));
+    if (casoQ.sinMesa && cfg.enunciadoHablar) {
+      App.tts.stop();
+      App.tts.speak(cfg.enunciadoHablar(casoQ));
+    }
 
     opcionesQuizEl.innerHTML = '';
     opcionBotones = [];
@@ -223,7 +238,14 @@
     btn.disabled = true;
     App.feedback.encourage(feedbackQuizEl);
     if (intentosQ === 1) {
-      /* First failure: Socratic hint, without giving the answer (rule 12). */
+      /* First failure: Socratic hint, without giving the answer (rule 12).
+         In audio rounds, the hint also reveals the table so the user can
+         count the pieces by eye — a visual fallback for the audio-only case. */
+      if (casoQ.sinMesa) {
+        pintarMesa(cfgActual().mesa(casoQ));
+        App.tts.stop();
+        App.tts.speak(cfgActual().pista(casoQ));
+      }
       mostrarTextoQuiz(cfgActual().pista(casoQ));
       App.feedback.lockUntilAck(opcionBotones.map(function (p) { return p.btn; }), explicacionQuizWrap);
     } else {
@@ -245,7 +267,11 @@
      ============================================================ */
   var ACTIVIDADES = {
 
-    /* --- How much is there? — count the money on the table --- */
+    /* --- How much is there? — count the money on the table ---
+       Half the rounds are visual (table shown); the other half are
+       audio-only (no table, the breakdown is read aloud). On the
+       first failure of an audio round, the table is shown as a
+       hint so the user is never left without a way to count. */
     contar: {
       esQuiz: true,
       instruccion: 'instruccionContar',
@@ -273,9 +299,20 @@
         while (distractores.length < 2) {
           distractores.push(total + (distractores.length + 1) * nivel.cents[0]);
         }
-        return { piezas: piezas, total: total, importes: App.utils.shuffle([total].concat(distractores)) };
+        /* Audio round? Skip the table; the breakdown is read aloud
+           and the pieces only appear on the first failure. */
+        var sinMesa = Math.random() < 0.5;
+        return {
+          piezas: piezas,
+          total: total,
+          importes: App.utils.shuffle([total].concat(distractores)),
+          sinMesa: sinMesa
+        };
       },
       enunciado: function () { return App.i18n.t('contarPregunta'); },
+      /* Spoken breakdown for audio rounds: "a one-euro coin and a
+         fifty-cent coin". read after the written prompt. */
+      enunciadoHablar: function (caso) { return enunciadoHablarContar(caso.piezas); },
       mesa: function (caso) { return caso.piezas; },
       opciones: function (caso) {
         return caso.importes.map(function (cent) {

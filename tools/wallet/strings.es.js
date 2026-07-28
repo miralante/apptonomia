@@ -32,6 +32,7 @@
     "instruccionRedondeo": "Mira el precio. Di cuánto es, más o menos, sin contar los céntimos.",
     "anadirDinero": "Añadir {d}",
     "contarPregunta": "¿Cuánto dinero hay?",
+    "contarEnunciadoAudio": "En la mesa hay: {d}. ¿Cuánto dinero hay en total?",
     "ariaMesa": "Dinero sobre la mesa",
     "pistaContar": "Cuenta otra vez, despacio. Empieza por el dinero más grande.",
     "explicacionBien": "¡Eso es! Hay {d}. En total, {total}.",

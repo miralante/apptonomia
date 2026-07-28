@@ -32,6 +32,7 @@
     "instruccionRedondeo": "Look at the price. Say how much it is, more or less, without counting the cents.",
     "anadirDinero": "Add {d}",
     "contarPregunta": "How much money is there?",
+    "contarEnunciadoAudio": "On the table there is: {d}. How much money is there altogether?",
     "ariaMesa": "Money on the table",
     "pistaContar": "Count again, slowly. Start with the biggest money.",
     "explicacionBien": "That is it! There is {d}. In total, {total}.",
