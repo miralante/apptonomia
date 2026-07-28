@@ -3,10 +3,9 @@
    Cache-first strategy for the app shell (works offline).
    When adding new files: add them to ARCHIVOS and bump VERSION.
    ============================================================ */
-var VERSION = 'apptonomia-v111';
+var VERSION = 'apptonomia-v112';
 
 var ARCHIVOS = [
-  './',
   './index.html',
   './manifest.json',
   './site/index.html',
