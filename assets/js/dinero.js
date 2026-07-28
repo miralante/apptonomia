@@ -68,9 +68,14 @@
     return CATALOGO.filter(function (d) { return d.cent === cent; })[0];
   }
 
-  /* "2 €" / "50 cts" — short label printed on the token. */
+  /* Number printed ON the token (inside the coin/banknote), so users
+     can sum the money on the table by eye. The spoken label
+     (aria-label, hint, breakdown) is `hablado()` — it stays verbose
+     ("50 céntimos", "dos euros"). Keep this short: just the number,
+     and only the unit when it adds clarity at a glance. */
   function etiqueta(cent) {
-    return cent >= 100 ? (cent / 100) + ' €' : cent + ' ' + App.i18n.t('dinero.cts');
+    if (cent >= 100) return (cent / 100) + ' €';
+    return String(cent);
   }
 
   /* "1,50 €" — amount with the active language's decimal separator. */
