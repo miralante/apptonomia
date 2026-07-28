@@ -312,5 +312,12 @@
       paintLanguageSelector();
     })();
   </script>
+  <script>
+    /* Register the SW from this entry point so it is active for any later
+       navigation, matching what the tools and site/ pages already do. */
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../sw.js').catch(function () {});
+    }
+  </script>
 </body>
 </html>
