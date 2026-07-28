@@ -16,6 +16,7 @@
     "wordsCount": "words",
     "part": "Part",
     "noRondasForTier": "There are no rounds for this level in this block. Try another level.",
+    "done": "✔ Done",
     "definitionLabel": "Means:",
     "exampleLabel": "For example:",
     "categoryLabel": "Category:",

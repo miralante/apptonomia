@@ -16,6 +16,7 @@
     "wordsCount": "palabras",
     "part": "Parte",
     "noRondasForTier": "No hay rondas para este nivel en este bloque. Prueba otro nivel.",
+    "done": "✔ Hecha",
     "definitionLabel": "Significa:",
     "exampleLabel": "Por ejemplo:",
     "categoryLabel": "Categoría:",
