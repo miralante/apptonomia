@@ -48,6 +48,87 @@ Spanish, in Easy Reading format.
   represents. Existing Spanish-named files (identifiers or comments) are
   migrated when touched, not all at once.
 
+### 1.1 Hosting and deployment — Cloudflare Pages
+
+The site is deployed on **Cloudflare Pages** via the Git connector
+(`miralante/apptonomia` → `apptonomia` → branch `master`). Canonical URL:
+**https://apptonomia.pages.dev**.
+
+Key consequences for development:
+
+- **No build step.** The repo root *is* the build output. There is no
+  `npm install`, no bundler, no transformer. Files are served as-is.
+- **No `_redirects`, no `wrangler.toml`, no `functions/`.** Cloudflare Pages
+  already serves every static file with implicit `index.html` lookup per
+  directory, so each section (`site/`, `tools/<slug>/`, `team/`,
+  `settings/`, `about/`, `legal/`) ships its own real `index.html` and
+  Cloudflare resolves `/tools/clock/` to `tools/clock/index.html`
+  automatically. Trying to add a Firebase-era SPA rewrite would cause
+  an "Infinite loop detected in this rule" rejection.
+- **Cache headers live in `_headers`** at the repo root. Cloudflare reads
+  it on every deploy. The HTML entry points and `sw.js` are forced to
+  `must-revalidate`; fingerprinted JS/CSS/images get a 1-year
+  immutable cache. When you change cache policy, edit `_headers`,
+  not the dashboard.
+- **`manifest.json` and `sw.js` must use relative paths** (start `./`)
+  so the app works on any host without changes.
+- **One-time setup lives in the dashboard**, not in the repo: project
+  name `apptonomia`, framework preset `None`, build output `.`, production
+  branch `master`. The full operational guide is in `CLOUDFLARE.md`.
+
+If you ever need a one-off preview deploy from a dirty worktree without
+pushing, `npx wrangler pages deploy . --project-name apptonomia`
+works without committing any Wrangler config.
+
+- **The service worker never caches or serves redirects.** The `fetch`
+  handler in `sw.js` only caches responses with `status === 200` and
+  returns a small inline "Sin conexión" HTML (no `Location` header) as
+  its offline fallback. This is deliberate: Safari rejects a
+  top-level navigation served by a SW that carries a redirect
+  ("Response served by service worker has redirections") and
+  Cloudflare never returns a redirect for our static files anyway,
+  so caching them would only risk breaking the offline path.
+
+### 1.2 Cross-browser support — Apple Safari is a first-class target
+
+The intended audience uses **iPhones and iPads** as their primary device.
+This means **Safari (WebKit) is a first-class target**, not a
+best-effort fallback. Every change must be verified on WebKit before
+landing, not just on Chromium.
+
+Practical rules that follow from that:
+
+- **Stay on classic scripts and ES5-style code.** No ES modules, no
+  `import`/`export`, no top-level `let`/`const`, no arrow functions in
+  `tools/`. Everything goes on `window.App.*`. This is also the rule
+  that keeps the app working from `file://` for offline use.
+- **Use `var`, classic function expressions, and IIFE-with-`'use strict'`.**
+- **No modern Web APIs without a feature-check.** Prefer the smallest
+  subset that works on the current Safari shipped with the oldest
+  iOS version we still support. If you need a newer API, gate it
+  with `'apiName' in navigator` (or the equivalent) and provide a
+  graceful fallback.
+- **Register the service worker from every entry point**, not only
+  from `site/index.html`. The root `index.html`, `about/`, `settings/`,
+  `team/`, `legal/` and every `tools/<slug>/index.html` must call
+  `navigator.serviceWorker.register(...)` with the correct relative
+  path. Rationale: if a user lands on a page directly (bookmark, home
+  screen icon, external link, refresh) and the SW has not been
+  registered in that session, Safari can fail the next navigation
+  with the generic "Safari cannot open the page" error.
+- **No JavaScript CDNs.** External scripts blocked by Safari's
+  cross-origin policies are a frequent source of "works on Chrome,
+  broken on Safari" reports. All shared code is committed in
+  `assets/js/` and loaded with relative paths.
+- **Cross-browser verification is mandatory**. The repo provides
+  `scripts/cross-browser.js`, which launches every activity in
+  Chromium + Firefox + WebKit, on desktop + iPhone 12 + Pixel 5, in
+  ES (and EN with `--lang en`). New activities or any change that
+  touches navigation, the service worker, or layout must run
+  `node scripts/cross-browser.js <slug>` before the PR is merged.
+  CI does not run it (no `playwright` in CI), so the developer is
+  the last line of defence for Safari.
+
 ---
 
 ## 2. Architecture and modular design

@@ -47,6 +47,99 @@ Aplicación web de terapia ocupacional para personas con discapacidad intelectua
   en el idioma que representan. Archivos existentes en español (identificadores
   o comentarios) se migran al tocarlos, no de golpe.
 
+### 1.1 Hosting y despliegue — Cloudflare Pages
+
+El sitio se despliega en **Cloudflare Pages** mediante el conector de
+Git (`miralante/apptonomia` → `apptonomia` → rama `master`). URL
+canónica: **https://apptonomia.pages.dev**.
+
+Consecuencias clave para el desarrollo:
+
+- **Sin paso de build.** La raíz del repo *es* el directorio de salida.
+  No hay `npm install`, ni bundler, ni transformador. Los archivos se
+  sirven tal cual.
+- **Sin `_redirects`, sin `wrangler.toml`, sin `functions/`.** Cloudflare
+  Pages ya sirve cada archivo estático con búsqueda implícita de
+  `index.html` por directorio, de modo que cada sección (`site/`,
+  `tools/<slug>/`, `team/`, `settings/`, `about/`, `legal/`) incluye
+  su propio `index.html` real y Cloudflare resuelve
+  `/tools/clock/` a `tools/clock/index.html` automáticamente. Intentar
+  añadir una reescritura SPA estilo Firebase provoca el rechazo
+  *"Infinite loop detected in this rule"*.
+- **Las cabeceras de caché viven en `_headers`** en la raíz del repo.
+  Cloudflare las lee en cada deploy. Los HTML de entrada y `sw.js`
+  se fuerzan a `must-revalidate`; los JS/CSS/imágenes
+  versionados obtienen caché inmutable de 1 año. Cuando cambies la
+  política de caché, edita `_headers` y no el panel de Cloudflare.
+- **`manifest.json` y `sw.js` deben usar rutas relativas** (empezar
+  por `./`) para que la aplicación funcione en cualquier host sin
+  tocarlos.
+- **La configuración puntual vive en el panel** de Cloudflare, no en
+  el repo: nombre de proyecto `apptonomia`, framework preset `None`,
+  directorio de salida `.`, rama de producción `master`. La guía
+  operativa completa está en `CLOUDFLARE.md`.
+
+Si alguna vez hace falta un deploy de previsualización puntual desde
+una worktree sucia sin pushear, `npx wrangler pages deploy .
+--project-name apptonomia` funciona sin necesidad de committedar
+ningún fichero de configuración de Wrangler.
+
+- **El service worker nunca cachea ni sirve redirecciones.** El
+  handler `fetch` de `sw.js` solo guarda en caché respuestas con
+  `status === 200` y, como fallback offline, devuelve un HTML
+  inline mínimo "Sin conexión" sin cabecera `Location`. Es
+  deliberado: Safari rechaza una navegación de nivel superior
+  servida por el SW que lleve una redirección
+  ("Response served by service worker has redirections") y, además,
+  Cloudflare nunca devuelve redirecciones para nuestros archivos
+  estáticos, así que cachearlas solo introduciría riesgo en la
+  ruta offline.
+
+### 1.2 Soporte cross-browser — Safari de Apple es un target de primer nivel
+
+La audiencia objetivo usa **iPhone e iPad** como dispositivo principal.
+Esto significa que **Safari (WebKit) es un target de primer nivel**, no
+un fallback oportunista. Todo cambio debe verificarse en WebKit antes
+de hacer merge, no solo en Chromium.
+
+Reglas prácticas que se derivan de esto:
+
+- **Mantente en scripts clásicos y código estilo ES5.** Nada de ES
+  modules, ni `import`/`export`, ni `let`/`const` en el nivel
+  superior, ni arrow functions en `tools/`. Todo se publica en
+  `window.App.*`. Es también la regla que permite que la app
+  funcione desde `file://` para uso offline.
+- **Usa `var`, expresiones de función clásicas e IIFE con
+  `'use strict'`.**
+- **Nada de Web APIs modernas sin feature-check.** Prefiere el
+  subconjunto mínimo que funcione en el Safari actual de la versión
+  de iOS más antigua que aún soportemos. Si necesitas una API más
+  reciente, protégela con `'apiName' in navigator` (o equivalente)
+  y ofrece un fallback elegante.
+- **Registra el service worker desde cada punto de entrada**, no
+  solo desde `site/index.html`. El `index.html` raíz, `about/`,
+  `settings/`, `team/`, `legal/` y cada `tools/<slug>/index.html`
+  deben llamar a `navigator.serviceWorker.register(...)` con la ruta
+  relativa correcta. Motivo: si el usuario llega directamente a una
+  página (marcador, icono de pantalla de inicio, enlace externo,
+  recarga) y el SW no se ha registrado en esa sesión, Safari puede
+  fallar la siguiente navegación con el mensaje genérico
+  "Safari no puede abrir la página".
+- **Sin CDNs de JavaScript.** Los scripts externos bloqueados por
+  las políticas cross-origin de Safari son una fuente habitual de
+  reportes del tipo "en Chrome va, en Safari no". Todo el código
+  compartido está commiteado en `assets/js/` y se carga con rutas
+  relativas.
+- **La verificación cross-browser es obligatoria.** El repo incluye
+  `scripts/cross-browser.js`, que lanza cada actividad en Chromium +
+  Firefox + WebKit, en escritorio + iPhone 12 + Pixel 5, en ES (y
+  EN con `--lang en`). Las actividades nuevas y cualquier cambio
+  que afecte a navegación, al service worker o al layout deben
+  pasar `node scripts/cross-browser.js <slug>` antes de hacer
+  merge del PR. CI no lo ejecuta (no hay `playwright` en CI), así
+  que la persona que desarrolla es la última línea de defensa para
+  Safari.
+
 ---
 
 ## 2. Arquitectura y diseño modular
