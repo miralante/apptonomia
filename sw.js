@@ -3,7 +3,7 @@
    Cache-first strategy for the app shell (works offline).
    When adding new files: add them to ARCHIVOS and bump VERSION.
    ============================================================ */
-var VERSION = 'apptonomia-v109';
+var VERSION = 'apptonomia-v111';
 
 var ARCHIVOS = [
   './',
@@ -573,14 +573,37 @@ self.addEventListener('fetch', function (event) {
     caches.match(event.request).then(function (respuesta) {
       if (respuesta) return respuesta;
       return fetch(event.request).then(function (r) {
-        /* Also cache new same-origin resources and fonts */
-        var copia = r.clone();
-        caches.open(VERSION).then(function (cache) {
-          cache.put(event.request, copia);
-        });
+        /* Also cache new same-origin resources and fonts — but never cache
+           a redirect. Safari (and the Fetch spec) rejects a top-level
+           navigation served by the SW that carries a Location header
+           ("Response served by service worker has redirections"), so we
+           follow the redirect and cache only the final 200. */
+        if (r.status === 200) {
+          var copia = r.clone();
+          caches.open(VERSION).then(function (cache) {
+            cache.put(event.request, copia);
+          });
+        }
         return r;
       }).catch(function () {
-        return caches.match('./site/index.html');
+        /* Offline / network failure. Don't serve site/index.html here:
+           its relative paths only resolve correctly under /site/, so
+           Safari would either break the layout or refuse the response
+           as a phantom redirect. Reply with a tiny inline HTML that
+           stays at the current URL and offers a link to the landing. */
+        return new Response(
+          '<!doctype html><html lang="es"><head><meta charset="utf-8">' +
+          '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+          '<title>Sin conexión</title><style>body{font-family:system-ui,sans-serif;' +
+          'margin:2rem auto;max-width:32rem;padding:0 1rem;line-height:1.5}' +
+          'a{color:#1d4ed8}</style></head><body>' +
+          '<h1>Sin conexión</h1>' +
+          '<p>No hemos podido cargar esta página. Comprueba tu conexión a ' +
+          'Internet y vuelve a intentarlo.</p>' +
+          '<p><a href="./site/index.html">Volver a la portada</a></p>' +
+          '</body></html>',
+          { status: 200, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
+        );
       });
     })
   );
