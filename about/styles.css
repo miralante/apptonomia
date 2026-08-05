@@ -110,6 +110,35 @@
   font-size: var(--texto-pequeno);
 }
 
+/* Grid de proyectos hermanos --------------------------------------------- */
+.siblings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--espacio);
+  margin-top: var(--espacio);
+}
+.sibling {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio);
+  padding: var(--espacio);
+  background: var(--color-superficie);
+  border: 3px solid var(--color-borde);
+  border-radius: var(--radio);
+  text-decoration: none;
+  color: var(--color-texto);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.sibling:hover, .sibling:focus-visible {
+  border-color: var(--mod-coordinacion);
+  transform: scale(1.02);
+}
+.sibling .picto { font-size: 36px; flex-shrink: 0; }
+.sibling-texto { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.sibling .nombre { font-weight: 800; color: var(--mod-coordinacion); }
+.sibling .detalle { font-size: var(--texto-pequeno); color: var(--color-texto-suave); }
+.sibling .flecha-externa { font-size: 1.2em; color: var(--color-texto-suave); flex-shrink: 0; }
+
 /* Footer -------------------------------------------------------------- */
 .pie-about {
   display: flex; flex-wrap: wrap; justify-content: center; gap: var(--espacio);

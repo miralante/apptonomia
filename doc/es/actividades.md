@@ -1,6 +1,6 @@
 # Catálogo de actividades
 
-Apptonomia tiene **76 actividades** organizadas en **7 módulos** según el tipo de habilidad que trabajan. El orden de los módulos va de lo más ligado a la terapia ocupacional (autonomía, emociones) a lo más académico (memoria, razonamiento, lenguaje), sigue con el módulo específico de dificultades motoras y termina con el módulo de educación afectivo-sexual, añadido después por requerir siempre supervisión profesional o familiar.
+Apptonomia tiene **69 actividades** organizadas en **7 módulos** según el tipo de habilidad que trabajan. El orden de los módulos va de lo más ligado a la terapia ocupacional (autonomía, emociones) a lo más académico (memoria, razonamiento, lenguaje), sigue con el módulo específico de dificultades motoras y termina con el módulo de educación afectivo-sexual, añadido después por requerir siempre supervisión profesional o familiar.
 
 ---
 
@@ -24,7 +24,7 @@ Apptonomia tiene **76 actividades** organizadas en **7 módulos** según el tipo
 | **¿Qué hago primero?** | Aprende a priorizar: si pasan varias cosas, qué hacer antes |
 | **¿Qué necesito?** | Elige qué útiles hacer falta preparar antes de una tarea |
 | **¿Dónde lo guardo?** | Aprende dónde se guardan las cosas en casa |
-| **Lista de Tareas** | Ordena tareas del día en el orden correcto |
+| **Lista de Tareas** | Ordena tareas del día en el orden correcto. El nivel 3 enseña y entrena a planificarse: crea, guarda, abre y borra varias listas propias, añadiendo, reordenando, marcando y quitando tareas en cada una |
 | **Mi agenda** | Prepara una cita o tarea: orden, materiales y momento adecuado |
 | **¿Qué me pongo?** | Elige la ropa adecuada según el tiempo que hace |
 | **La Calle** | Cruzar la calle, transporte público, qué hacer si te pierdes |
@@ -82,26 +82,11 @@ Apptonomia tiene **76 actividades** organizadas en **7 módulos** según el tipo
 
 ---
 
-## Módulo 4: 🔢 Pensar y contar
+## Módulo 4: 🎲 Juegos de mesa
 
 **Color del módulo:** Teal (verde-azulado)
 
-**¿Qué trabaja?** Razonamiento lógico, matemáticas, resolución de problemas, juegos de mesa.
-
-### Razonamiento y lógica
-
-| Actividad | Descripción |
-|-----------|-------------|
-| **Adivinanzas** | Descubre qué es a partir de pistas |
-| **Patrones** | Completa series de formas, colores o números |
-| **El Monedero** | Cuenta dinero, paga con cambio, practica con euros |
-| **El Reloj** | Aprende a leer las horas en un reloj |
-| **¿Qué no encaja?** | Encuentra el objeto que no pertenece al grupo |
-| **Historias** | Ordena viñetas para formar una historia con sentido |
-| **Puzzle** | Monta rompecabezas recomponiendo una imagen |
-| **La Oca** | Juega una partida de dados contra el tablero |
-
-### Juegos de mesa
+**¿Qué trabaja?** Juegos de mesa clásicos, con niveles y un rival que juega suave.
 
 | Actividad | Descripción |
 |-----------|-------------|
@@ -112,14 +97,10 @@ Apptonomia tiene **76 actividades** organizadas en **7 módulos** según el tipo
 | **El Ajedrez** | Puzzles de ajedrez para conocer las piezas |
 | **Cuatro en Raya** | Juega al conecta 4 contra el ordenador |
 
-### Matemáticas
-
-| Actividad | Descripción |
-|-----------|-------------|
-| **Los Números** | Contar, números pares e impares, números negativos (ascensor: pisos bajo tierra), valor de las cifras, cambio de posición (10 unidades → 1 decena… hasta el billón), fracciones, decimales, las cuatro operaciones (con la división como reparto) |
-| **Cantidades** | Practica poco y mucho, subir y bajar, aproximar y encontrar el número de en medio con una barra |
-| **Las Tablas** | Cuenta de cabeza (±1, ±2, ±3, ±5, ±10), tablas de sumar, descomposición llegando al 10 (7 + 5 = 7 + 3 + 2), tablas de multiplicar y división entre 10, con puntos de colores |
-| **Números Romanos** | Lee números romanos y reconoce en qué siglo estás |
+> El cálculo y el razonamiento lógico (Los Números, Cantidades, Las
+> Tablas, Números Romanos, Adivinanzas, Patrones, El Monedero, El Reloj,
+> Historias, ¿Qué no encaja?, Puzzle, La Oca) se separaron a un proyecto
+> hermano, **Calculia**.
 
 ---
 
@@ -155,7 +136,6 @@ Apptonomia tiene **76 actividades** organizadas en **7 módulos** según el tipo
 |-----------|-------------|
 | **Atrapa** | Pulsa el objetivo que cambia de posición en la pantalla |
 | **Une los Puntos** | Une entre 5 y 10 números en orden, elegidos al azar en cada ronda, para dibujar una figura |
-| **Teclado** | Aprende a escribir en el teclado del ordenador letra a letra |
 | **Trazos** | Repasa líneas, ángulos, curvas y letras del abecedario en ES/EN con el dedo o el ratón. Modo libre con selección de letras (mayúsculas y minúsculas) |
 | **Colorear** | Pinta dibujos dividiendo las zonas con colores |
 | **Piano** | Toca el teclado del ordenador como si fuera un piano |
@@ -179,15 +159,15 @@ Apptonomia tiene **76 actividades** organizadas en **7 módulos** según el tipo
 
 | Módulo | Nº actividades | Color |
 |--------|----------------|-------|
-| 📋 Mi día a día | 24 | Verde |
-| 💜 Emociones | 8 | Morado |
+| 📋 Mi día a día | 26 | Verde |
+| 💜 Emociones | 9 | Morado |
 | 🧠 Memoria y atención | 10 | Naranja |
-| 🔢 Pensar y contar | 18 | Teal |
+| 🎲 Juegos de mesa | 6 | Teal |
 | 💬 Lenguaje y palabras | 11 | Frambuesa |
-| 🎯 Puntería y manos | 7 | Azul |
+| 🎯 Puntería y manos | 6 | Azul |
 | 💗 Cuerpo y relaciones | 1 | Terracota |
 
-**Total: 79 actividades**
+**Total: 69 actividades**
 
 ---
 
@@ -204,15 +184,11 @@ Apptonomia tiene **76 actividades** organizadas en **7 módulos** según el tipo
 
 ### Actividades intermedias
 
-- Adivinanzas
 - Diferencias
-- Patrones
 - La Casa
-- El Reloj
 - Mi agenda
 - Chat Seguro
 - Calma
-- El Monedero
 - Mis Datos
 
 ### Actividades avanzadas
@@ -233,7 +209,6 @@ Apptonomia incluye varios juegos de mesa clásicos adaptados:
 
 | Juego | Descripción | Dificultad |
 |-------|-------------|------------|
-| **La Oca** | Juego clásico con dados | Fácil |
 | **Tres en Raya** | Tres en línea contra el ordenador | Fácil-Medio |
 | **Dominó** | Encadena fichas contra el ordenador | Medio |
 | **Sudoku Visual** | Sudoku 4×4 con pictos | Medio |

@@ -1,6 +1,6 @@
 # Activity catalog
 
-Apptonomia has **76 activities** organized into **7 modules** according to the type of skill they work on. Modules are ordered from most tied to occupational therapy (autonomy, emotions) to most academic (memory, reasoning, language), then the module specific to motor difficulties, and end with the affective-sexual education module, added last because it always requires professional or family supervision.
+Apptonomia has **69 activities** organized into **7 modules** according to the type of skill they work on. Modules are ordered from most tied to occupational therapy (autonomy, emotions) to most academic (memory, reasoning, language), then the module specific to motor difficulties, and end with the affective-sexual education module, added last because it always requires professional or family supervision.
 
 ---
 
@@ -24,7 +24,7 @@ Apptonomia has **76 activities** organized into **7 modules** according to the t
 | **What Do I Do First?** | Learn to prioritize: if several things happen, what to do first |
 | **What Do I Need?** | Choose what tools are needed before a task |
 | **Where Do I Keep It?** | Learn where things are stored at home |
-| **Task List** | Put daily tasks in the correct order |
+| **Task List** | Put daily tasks in the correct order. Level 3 teaches and trains planning: create, save, open and delete several of your own lists, adding, reordering, marking and removing tasks in each one |
 | **My Schedule** | Prepare for an appointment or task: order, materials and timing |
 | **What Do I Wear?** | Choose appropriate clothing based on the weather |
 | **The Street** | Crossing the street, public transport, what to do if you get lost |
@@ -82,26 +82,11 @@ Apptonomia has **76 activities** organized into **7 modules** according to the t
 
 ---
 
-## Module 4: 🔢 Thinking and counting
+## Module 4: 🎲 Board games
 
 **Module color:** Teal
 
-**What it works on?** Logical reasoning, mathematics, problem solving, board games.
-
-### Reasoning and logic
-
-| Activity | Description |
-|----------|-------------|
-| **Riddles** | Discover what it is from clues |
-| **Patterns** | Complete series of shapes, colors or numbers |
-| **The Coin Purse** | Count money, pay with change, practice with euros |
-| **The Clock** | Learn to read the time on a clock |
-| **What doesn't fit?** | Find the object that doesn't belong to the group |
-| **Stories** | Put pictures in order to form a story that makes sense |
-| **Puzzle** | Assemble jigsaw puzzles by putting an image back together |
-| **The Goose Game** | Play a dice game against the board |
-
-### Board games
+**What it works on?** Classic board games, with levels and an opponent that plays gently.
 
 | Activity | Description |
 |----------|-------------|
@@ -112,14 +97,10 @@ Apptonomia has **76 activities** organized into **7 modules** according to the t
 | **Chess** | Chess puzzles to learn the pieces |
 | **Four in a Row** | Play connect 4 against the computer |
 
-### Mathematics
-
-| Activity | Description |
-|----------|-------------|
-| **Numbers** | Counting, even/odd numbers, negative numbers (elevator: floors below ground), place value, changing places (10 units → 1 ten… up to one trillion), fractions, decimals, the four operations (with division as fair sharing) |
-| **Quantities** | Practise little and much, increasing and decreasing, rounding, and finding the middle number with a slider |
-| **Math Tables** | Count in your head (±1, ±2, ±3, ±5, ±10), addition tables, decomposition by making 10 (7 + 5 = 7 + 3 + 2), multiplication tables and division by 10, with colored dots |
-| **Roman Numerals** | Read Roman numerals and recognize which century you're in |
+> Math and logical reasoning (Numbers, Quantities, Math Tables, Roman
+> Numerals, Riddles, Patterns, The Wallet, The Clock, Stories, What
+> Doesn't Belong?, Puzzle, Goose Game) were split out to a sibling
+> project, **Calculia**.
 
 ---
 
@@ -155,7 +136,6 @@ Apptonomia has **76 activities** organized into **7 modules** according to the t
 |----------|-------------|
 | **Catch It** | Tap the target that changes position on the screen |
 | **Connect the Dots** | Join between 5 and 10 numbers, chosen at random each round, in order to draw a shape |
-| **Keyboard** | Learn to type on the computer keyboard letter by letter |
 | **Traces** | Trace lines, angles, curves and alphabet letters in ES/EN with your finger or mouse. Free mode lets you pick which letters (uppercase and lowercase) to practise |
 | **Coloring** | Paint drawings by filling areas with colors |
 | **Piano** | Play the computer keyboard like a piano |
@@ -179,15 +159,15 @@ Apptonomia has **76 activities** organized into **7 modules** according to the t
 
 | Module | Nº activities | Color |
 |--------|---------------|-------|
-| 📋 Autonomy and home | 24 | Green |
-| 💜 Emotions | 8 | Purple |
+| 📋 Autonomy and home | 26 | Green |
+| 💜 Emotions | 9 | Purple |
 | 🧠 Memory and attention | 10 | Orange |
-| 🔢 Thinking and counting | 18 | Teal |
+| 🎲 Board games | 6 | Teal |
 | 💬 Language and words | 11 | Raspberry |
-| 🎯 Coordination and motor skills | 7 | Blue |
+| 🎯 Coordination and motor skills | 6 | Blue |
 | 💗 Body and relationships | 1 | Terracotta |
 
-**Total: 79 activities**
+**Total: 69 activities**
 
 ---
 
@@ -204,15 +184,11 @@ Apptonomia has **76 activities** organized into **7 modules** according to the t
 
 ### Intermediate activities
 
-- Riddles
 - Spot the Difference
-- Patterns
 - The House
-- The Clock
 - My Schedule
 - Safe Chat
 - Calm
-- The Coin Purse
 - My Details
 
 ### Advanced activities
@@ -235,7 +211,6 @@ Apptonomia includes several classic board games adapted:
 
 | Game | Description | Difficulty |
 |------|-------------|------------|
-| **The Goose Game** | Classic dice game | Easy |
 | **Tic-Tac-Toe** | Three in a row against the computer | Easy-Medium |
 | **Dominoes** | Chain dominoes against the computer | Medium |
 | **Visual Sudoku** | 4×4 sudoku with pictures | Medium |

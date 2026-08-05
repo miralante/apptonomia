@@ -55,11 +55,11 @@ Tap the language button (🇪🇸 or 🇬🇧) at the top of the screen.
 
 ## Example of use
 
-Imagine you want to practice telling time. In the **🔢 Thinking and counting** module, choose **The Clock**. The app will show a clock and ask "What time is it?". You can:
+Imagine you want to practice a board game. In the **🎲 Board games** module, choose **Tic-Tac-Toe**. The app will show the board and let you play against the computer. You can:
 
-1. **Look at** the clock
-2. **Listen to** the question with the 🔊 button
-3. **Tap** the correct answer
+1. **Look at** the board
+2. **Listen to** the instructions with the 🔊 button
+3. **Tap** the square where you want to play
 
 If you get it right, a brief celebration appears. If not, you'll receive an encouraging message: "Almost. Try again!".
 
@@ -81,9 +81,8 @@ If you get it right, a brief celebration appears. If not, you'll receive an enco
 | Activity | What it does |
 |----------|-------------|
 | **Pairs** | Find the matching cards |
-| **Riddles** | Discover what it is from clues |
-| **Patterns** | Complete series of shapes or colors |
 | **Dominoes** | Play a game of dominoes |
+| **Tic-Tac-Toe** | Play tic tac toe against the computer |
 
 ### For emotions
 

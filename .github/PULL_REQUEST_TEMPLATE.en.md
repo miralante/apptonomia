@@ -1,0 +1,18 @@
+# Pull request
+
+## Summary
+
+<!-- What changes and why? -->
+
+## Checks
+
+- [ ] `node scripts/check.js` passes locally.
+- [ ] If you modified app shell files, you updated the relevant
+      canonical documentation in `doc/en/`.
+- [ ] If you changed product content, the `es`/`en` strings are in
+      sync.
+- [ ] You tested the flow in at least one real desktop browser.
+
+## Caption
+
+<!-- optional. Screenshots or notes for the reviewer. -->

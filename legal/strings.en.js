@@ -30,7 +30,7 @@
     "dataItem1Label": 'Game progress',
     "dataItem1Text": 'the stars earned and the levels completed in each activity.',
     "dataItem2Label": 'Name (optional)',
-    "dataItem2Text": 'if you type it into the Keyboard or Piano activities, so it shows on screen while you practise.',
+    "dataItem2Text": 'if you type it into the Piano activity, so it shows on screen while you practise.',
     "dataItem3Label": 'Contact details (optional)',
     "dataItem3Text": 'if you type them into the My Details activity (address and phone numbers), to practise remembering them. They are only saved on this device.',
     "dataP3": 'We never save: failures, time taken, number of attempts, comparisons with other people, or detailed usage histories.',

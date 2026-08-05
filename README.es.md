@@ -7,7 +7,7 @@ discapacidad intelectual. Pensada para usarse de forma autónoma, en el
 navegador, sin coste y sin datos personales.
 
 - 🌐 **Aplicación**: [apptonomia.web.app](https://apptonomia.web.app)
-- 📦 **Repositorio**: [github.com/thenkdframe/apptonomia](https://github.com/thenkdframe/apptonomia)
+-  📦 **Repositorio**: [github.com/miralante/apptonomia](https://github.com/miralante/apptonomia)
 - 💻 **Usar en tu propio ordenador**: consulta [`doc/es/guia-rapida.md`](doc/es/guia-rapida.md) §1 — descarga el ZIP y haz doble clic en `site/index.html`, o usa `python -m http.server 8080` para la experiencia PWA completa.
 
 ---
@@ -45,8 +45,29 @@ Según tu rol y perfil, te interesa una u otra documentación:
 |---|---|
 | [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) | Familias, terapeutas y desarrolladores que quieran contribuir |
 | `CLAUDE.md` | Agentes IA: reglas obligatorias y estado del proyecto |
+| [`CLOUDFLARE.md`](CLOUDFLARE.md) | Guía canónica de despliegue en Cloudflare Pages para el grupo de hermanos (Apptonomia + Calculia, Okeymoney, Sinonimia, Teclatlon) |
 | Historial del proyecto | En `git log`; no se mantiene una hoja de ruta externa |
 | `doc/es/I18N.md` / `doc/en/I18N.md` | Detalles del sistema multiidioma ES/EN |
 
 ---
+
+## 🧩 Proyectos hermanos
+
+Apptonomia es el **proyecto principal** de un pequeño grupo de
+proyectos hermanos que comparten autor, la misma filosofía de
+accesibilidad y sin backend, y la misma historia de despliegue. Los
+demás salieron de Apptonomia o se construyeron a su lado sobre el
+mismo stack.
+
+| Proyecto | Qué es | Repositorio |
+|---|---|---|
+| **Apptonomia** *(principal — este repo)* | Terapia ocupacional: 7 módulos, 69 actividades | [github.com/miralante/apptonomia](https://github.com/miralante/apptonomia) |
+| Calculia | Cálculo y razonamiento lógico: 12 actividades | [github.com/miralante/calculia](https://github.com/miralante/calculia) |
+| Okeymoney | Finanzas personales y autonomía cotidiana | [github.com/miralante/okeymoney](https://github.com/miralante/okeymoney) |
+| Sinonimia | Diccionario en lectura fácil | [github.com/miralante/sinonimia](https://github.com/miralante/sinonimia) |
+| Teclatlon | Mecanografía con el teclado físico | [github.com/miralante/teclatlon](https://github.com/miralante/teclatlon) |
+
+El [`CLOUDFLARE.md`](CLOUDFLARE.md) de este repo es la guía canónica
+de despliegue del grupo; cada repo hermano tiene su propio doc
+específico que apunta aquí.
 

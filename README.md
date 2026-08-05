@@ -7,7 +7,7 @@ intellectual disability. Designed to be used autonomously, in the browser,
 free of charge and without personal data.
 
 - 🌐 **App**: [apptonomia.web.app](https://apptonomia.web.app)
-- 📦 **Repository**: [github.com/thenkdframe/apptonomia](https://github.com/thenkdframe/apptonomia)
+- 📦 **Repository**: [github.com/miralante/apptonomia](https://github.com/miralante/apptonomia)
 - 💻 **Run locally**: see [`doc/en/quick-guide.md`](doc/en/quick-guide.md) §1 — download the ZIP and double-click `site/index.html`, or use `python -m http.server 8080` for the full PWA experience.
 
 ---
@@ -45,8 +45,28 @@ By role and profile, the most relevant docs are:
 |---|---|
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Anyone who wants to contribute (family, therapists, devs) |
 | `CLAUDE.md` | AI agents: operational workflow, coordination and approvals |
+| [`CLOUDFLARE.md`](CLOUDFLARE.md) | Canonical Cloudflare Pages deploy guide for the sibling group (Apptonomia + Calculia, Okeymoney, Sinonimia, Teclatlon) |
 | Project history | Lives in `git log`; no external roadmap is maintained |
 | `doc/es/I18N.md` / `doc/en/I18N.md` | Details of the ES/EN multilanguage system |
 
 ---
+
+## 🧩 Sibling projects
+
+Apptonomia is the **main** project of a small group of sibling projects
+that share the same author, the same accessibility-first / no-backend
+philosophy and the same deploy story. The others were spun out of
+Apptonomia or built next to it on the same stack.
+
+| Project | What it is | Repository |
+|---|---|---|
+| **Apptonomia** *(main — this repo)* | Occupational therapy: 7 modules, 69 activities | [github.com/miralante/apptonomia](https://github.com/miralante/apptonomia) |
+| Calculia | Math and logical reasoning: 12 activities | [github.com/miralante/calculia](https://github.com/miralante/calculia) |
+| Okeymoney | Personal finance and everyday autonomy | [github.com/miralante/okeymoney](https://github.com/miralante/okeymoney) |
+| Sinonimia | Plain-language dictionary (easy-read) | [github.com/miralante/sinonimia](https://github.com/miralante/sinonimia) |
+| Teclatlon | Touch-typing with a physical keyboard | [github.com/miralante/teclatlon](https://github.com/miralante/teclatlon) |
+
+This repo's [`CLOUDFLARE.md`](CLOUDFLARE.md) is the canonical deploy
+guide for the whole group; each sibling repo has its own
+project-specific doc that links back here.
 

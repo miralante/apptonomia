@@ -182,7 +182,7 @@ cuatro **anclajes del aprendizaje significativo**:
   abstractos.
 - **Personalización ligera cuando proceda**: un avatar estable o un
   campo de nombre aumenta la propiedad sobre lo aprendido
-  (ver `tools/piano-keys/`, `tools/keyboard-typing/`).
+  (ver `tools/piano-keys/`).
 - **Práctica espaciada**: `localStorage` guarda el nivel alcanzado; la
   landing sugiere retomar ese nivel y no uno aleatorio.
 
@@ -207,8 +207,8 @@ La diferencia operativa entre los dos vehículos:
 Actividades del catálogo que aplican este vehículo: `blocks`,
 `builders`, `catch`, `checkers`, `chess`, `coloring`, `connect-dots`,
 `connect-four`, `differences`, `domino`, `ecos`, `emotions`, `fit`,
-`keyboard-typing`, `oca`, `pairs`, `path`, `piano-keys`, `puzzle`,
-`stories`, `tic-tac-toe`, `tracing`, `turns-mirrors`, `visual-sudoku`,
+`pairs`, `path`, `piano-keys`,
+`tic-tac-toe`, `tracing`, `turns-mirrors`, `visual-sudoku`,
 `where-is`.
 
 > Forzar una escena donde el estímulo ya es contexto satura la pantalla

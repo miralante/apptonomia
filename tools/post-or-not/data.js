@@ -38,7 +38,11 @@ const DATA = {
           { picto: '🪪', situacion: 'Un formulario de un juego gratis te pide una foto de tu DNI.', opciones: ['No la mando y aviso a un adulto', 'Mando la foto del DNI', 'Mando solo la parte de delante'], correcta: 0 },
           { picto: '🤳', situacion: 'Quieres publicar una foto tuya en bañador en la piscina.', opciones: ['No la publico: es demasiado privada', 'La publico, es verano', 'La mando solo a un desconocido que me la pide'], correcta: 0 },
           { picto: '🎂', situacion: 'Una web te pide tu fecha de nacimiento completa y tu dirección para "felicitarte".', opciones: ['No relleno esos datos', 'Los escribo todos', 'Escribo solo la dirección'], correcta: 0 },
-          { picto: '💵', situacion: 'Te han regalado dinero o algo caro y quieres publicar una foto enseñándolo a todo el mundo.', opciones: ['No lo enseño a todo el mundo, solo a quien conozco de verdad', 'Publico la foto para que la vea todo el mundo', 'Publico la foto y digo cuánto cuesta'], correcta: 0 }
+          { picto: '💵', situacion: 'Te han regalado dinero o algo caro y quieres publicar una foto enseñándolo a todo el mundo.', opciones: ['No lo enseño a todo el mundo, solo a quien conozco de verdad', 'Publico la foto para que la vea todo el mundo', 'Publico la foto y digo cuánto cuesta'], correcta: 0 },
+          { picto: '🚌', situacion: 'Vas a publicar una foto de tu carné de transporte con tu nombre completo bien visible.', opciones: ['Tapo mi nombre o no publico esa parte', 'Publico la foto tal cual', 'Publico también mi fecha de nacimiento'], correcta: 0 },
+          { picto: '📧', situacion: 'Un mensaje pide que confirmes tu contraseña de correo pinchando en un enlace.', opciones: ['No pincho el enlace ni doy mi contraseña', 'Pincho el enlace para ver qué es', 'Doy la contraseña por si es verdad'], correcta: 0 },
+          { picto: '🧑‍🤝‍🧑', situacion: 'Un desconocido de internet te pide el nombre de tus amigos y familiares.', opciones: ['No le doy esos nombres', 'Le doy los nombres que pide', 'Le doy solo el nombre de mi familia'], correcta: 0 },
+          { picto: '🗓️', situacion: 'Quieres publicar que vas a estar fuera de casa toda la semana de vacaciones.', opciones: ['Espero a volver para publicarlo', 'Lo publico ahora para que todos lo sepan', 'Publico las fechas exactas'], correcta: 0 }
         ]
       },
       {
@@ -60,7 +64,11 @@ const DATA = {
           { picto: '🕵️', situacion: 'Alguien de internet dice ser famoso y te pide que guardes el secreto de que habláis.', opciones: ['No guardo el secreto: se lo cuento a un adulto', 'Guardo el secreto porque es famoso', 'Se lo cuento solo a un amigo'], correcta: 0 },
           { picto: '📲', situacion: 'Un mensaje te pide instalar una aplicación desde un enlace raro para "ganar premios".', opciones: ['No la instalo y pregunto a un adulto', 'La instalo rápido antes de que se acabe', 'La instalo y luego la borro'], correcta: 0 },
           { picto: '😜', situacion: 'Tienes una foto muy graciosa de un compañero haciendo el tonto. Se ríe todo el mundo.', opciones: ['No la publico sin su permiso', 'La publico porque es graciosa', 'La mando a un grupo grande'], correcta: 0 },
-          { picto: '🧾', situacion: 'Una tienda online que no conoces pide pagar solo por transferencia y tiene precios rarísimos de baratos.', opciones: ['No compro y lo consulto con un adulto', 'Compro rápido que se acaba', 'Pago la mitad para probar'], correcta: 0 }
+          { picto: '🧾', situacion: 'Una tienda online que no conoces pide pagar solo por transferencia y tiene precios rarísimos de baratos.', opciones: ['No compro y lo consulto con un adulto', 'Compro rápido que se acaba', 'Pago la mitad para probar'], correcta: 0 },
+          { picto: '🎮', situacion: 'En un juego online, alguien te ofrece objetos gratis si le das acceso a tu cuenta.', opciones: ['No le doy acceso a mi cuenta', 'Le doy acceso para conseguir los objetos', 'Le doy acceso solo un momento'], correcta: 0 },
+          { picto: '🧑‍💻', situacion: 'Un perfil que dice ser de una empresa te escribe que has sido "seleccionado/a" para un trabajo fácil y bien pagado.', opciones: ['Lo compruebo con un adulto antes de responder', 'Respondo enseguida dando mis datos', 'Acepto porque suena muy bien'], correcta: 0 },
+          { picto: '🖼️', situacion: 'Alguien te pide que le mandes una foto de tu documento de identidad para "verificar tu edad" en una web.', opciones: ['No la mando y pregunto a un adulto si es de fiar', 'La mando para poder entrar', 'Mando solo una parte del documento'], correcta: 0 },
+          { picto: '🔁', situacion: 'Ves que un perfil parecido al de un amigo te vuelve a pedir amistad, aunque ya erais amigos.', opciones: ['Lo compruebo con mi amigo antes de aceptar', 'Acepto porque ya éramos amigos', 'Acepto y le cuento las novedades'], correcta: 0 }
         ]
       }
     ]
@@ -87,7 +95,11 @@ const DATA = {
           { picto: '🪪', situacion: 'A free game form asks for a photo of your ID card.', opciones: ['I do not send it and tell an adult', 'I send the ID photo', 'I send just the front side'], correcta: 0 },
           { picto: '🤳', situacion: 'You want to post a photo of yourself in a swimsuit at the pool.', opciones: ['I do not post it: it is too private', 'I post it, it is summer', 'I send it only to a stranger who asks for it'], correcta: 0 },
           { picto: '🎂', situacion: 'A website asks for your full birth date and your address to "wish you happy birthday".', opciones: ['I do not fill in those details', 'I write them all', 'I write just the address'], correcta: 0 },
-          { picto: '💵', situacion: 'You were given money or something expensive as a gift and want to post a photo showing it to everyone.', opciones: ['I do not show it to everyone, only people I really know', 'I post the photo so everyone can see it', 'I post the photo and say how much it costs'], correcta: 0 }
+          { picto: '💵', situacion: 'You were given money or something expensive as a gift and want to post a photo showing it to everyone.', opciones: ['I do not show it to everyone, only people I really know', 'I post the photo so everyone can see it', 'I post the photo and say how much it costs'], correcta: 0 },
+          { picto: '🚌', situacion: 'You are going to post a photo of your transport pass with your full name clearly visible.', opciones: ['I cover my name or do not post that part', 'I post the photo as it is', 'I also post my date of birth'], correcta: 0 },
+          { picto: '📧', situacion: 'A message asks you to confirm your email password by clicking a link.', opciones: ['I do not click the link or give my password', 'I click the link to see what it is', 'I give the password in case it is real'], correcta: 0 },
+          { picto: '🧑‍🤝‍🧑', situacion: 'A stranger online asks for the names of your friends and family.', opciones: ['I do not give those names', 'I give the names they ask for', "I give just my family's name"], correcta: 0 },
+          { picto: '🗓️', situacion: 'You want to post that you will be away from home all week on holiday.', opciones: ['I wait until I am back to post it', 'I post it now so everyone knows', 'I post the exact dates'], correcta: 0 }
         ]
       },
       {
@@ -109,7 +121,11 @@ const DATA = {
           { picto: '🕵️', situacion: 'Someone online says they are famous and asks you to keep your chats a secret.', opciones: ['I do not keep the secret: I tell an adult', 'I keep the secret because they are famous', 'I tell just one friend'], correcta: 0 },
           { picto: '📲', situacion: 'A message asks you to install an app from a strange link to "win prizes".', opciones: ['I do not install it and ask an adult', 'I install it quickly before it ends', 'I install it and delete it later'], correcta: 0 },
           { picto: '😜', situacion: 'You have a very funny photo of a classmate goofing around. Everyone laughs.', opciones: ['I do not post it without their permission', 'I post it because it is funny', 'I send it to a big group'], correcta: 0 },
-          { picto: '🧾', situacion: 'An online shop you do not know only takes bank transfers and has strangely cheap prices.', opciones: ['I do not buy and check with an adult', 'I buy fast before it runs out', 'I pay half to try'], correcta: 0 }
+          { picto: '🧾', situacion: 'An online shop you do not know only takes bank transfers and has strangely cheap prices.', opciones: ['I do not buy and check with an adult', 'I buy fast before it runs out', 'I pay half to try'], correcta: 0 },
+          { picto: '🎮', situacion: 'In an online game, someone offers you free items if you give them access to your account.', opciones: ['I do not give access to my account', 'I give access to get the items', 'I give access just for a moment'], correcta: 0 },
+          { picto: '🧑‍💻', situacion: 'A profile claiming to be a company messages you that you have been "selected" for an easy, well-paid job.', opciones: ['I check it with an adult before replying', 'I reply right away giving my details', 'I accept because it sounds great'], correcta: 0 },
+          { picto: '🖼️', situacion: 'Someone asks you to send a photo of your ID document to "verify your age" on a website.', opciones: ['I do not send it and ask a trusted adult if it is legitimate', 'I send it so I can enter', 'I send just part of the document'], correcta: 0 },
+          { picto: '🔁', situacion: "You see a profile similar to a friend's send a new friend request, even though you were already friends.", opciones: ['I check with my friend before accepting', 'I accept because we were already friends', 'I accept and tell them the news'], correcta: 0 }
         ]
       }
     ]

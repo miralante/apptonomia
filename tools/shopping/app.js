@@ -396,10 +396,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   $('#btnVolverMenuLista').addEventListener('click', irMenu);
   btnSiguienteS.addEventListener('click', siguienteSecciones);
   btnSiguienteL.addEventListener('click', siguienteLista);
-  $('#btnEscucharExplicacionSecciones').addEventListener('click', function () {
-  });
-  $('#btnEscucharExplicacionLista').addEventListener('click', function () {
-  });
   $('#btnRepetir').addEventListener('click', function () {
     if (actividadActual === 'secciones') iniciarSecciones(nivelS);
     else iniciarLista(nivelL);

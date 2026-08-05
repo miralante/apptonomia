@@ -91,7 +91,7 @@ actividad nueva debería elegir— son:
 | **Escena + decisión** | El objetivo terapéutico es elegir bien en un momento de la vida diaria. | `situations`, `what-first`, `what-do-i-need`, `where-to-store`, `emergencies`, `street` |
 | **Diálogo o chat seguro** | El objetivo es qué decir o escribir en un contexto social o digital. | `safe-chat`, `post-or-not`, `bullying-chat` |
 | **Rutina paso a paso** | El objetivo es el orden de una tarea real (mañana, cocina, compra, salir a la calle). | `routines`, `house`, `task-list`, `my-agenda` |
-| **Entrenamiento de habilidad pura** | El objetivo terapéutico **es** la habilidad (memoria secuencial, motricidad fina, lógica, puzzles, percepción). El estímulo ya es el contexto: el piano, la cuadrícula, las piezas, la secuencia. | `piano-keys`, `tracing`, `puzzle`, `fit`, `visual-sudoku`, `tic-tac-toe`, `pairs`, `connect-dots` |
+| **Entrenamiento de habilidad pura** | El objetivo terapéutico **es** la habilidad (memoria secuencial, motricidad fina, lógica, puzzles, percepción). El estímulo ya es el contexto: el piano, la cuadrícula, las piezas, la secuencia. | `piano-keys`, `tracing`, `fit`, `visual-sudoku`, `tic-tac-toe`, `pairs`, `connect-dots` |
 
 La simulación (los tres primeros patrones) es el **vehículo preferente**
 cuando el objetivo lo permite. El cuarto patrón — **entrenamiento de
@@ -205,8 +205,8 @@ Ejemplos (reales del catálogo):
 - «Practicar la **clasificación de palabras por categoría semántica**
   para desenvolverse mejor en conversaciones cotidianas»
   (`tools/categories/`).
-- «Practicar **la suma y la descomposición del 10** para resolver cálculos
-  mentales del día a día» (`tools/math-tables/`).
+- «Practicar **anticipar la jugada del otro jugador** para jugar una
+  partida justa por turnos» (`tools/tic-tac-toe/`).
 - «Practicar **el seguimiento de una rutina de mañana** para ganar
   autonomía al prepararse solo/a» (`tools/routines/`).
 
@@ -302,9 +302,7 @@ correcta en el primer fallo.
 > instrucciones"; solo se añade a esta lista con un PR justificado
 > (abre un issue con la etiqueta `UX`):
 >
-> - `keyboard-typing` — escucha lo escrito con el teclado
 > - `piano-keys` — escucha lo tocado en el piano
-> - `math-tables` — escucha la operación (p. ej. "dos más dos")
 > - `my-agenda` — escucha las tareas planificadas
 > - `sexual-health` — escucha el caso sobre el que decidir
 > - `social-safety` — escucha la situación sobre la que decidir
@@ -474,7 +472,7 @@ estos cuatro **anclajes del aprendizaje significativo**:
   la rutina matutina, usa los pasos que la persona sigue en casa.
 - **Permite personalización ligera**: dejar que la persona escriba su
   nombre o elija un avatar estable aumenta la **propiedad** sobre lo
-  aprendido (ver `tools/piano-keys/`, `tools/keyboard-typing/`).
+  aprendido (ver `tools/piano-keys/`).
 - **Espacia la práctica**: en `localStorage` puedes guardar el nivel
   alcanzado; en la landing, sugiere retomar ese nivel y no uno
   aleatorio.

@@ -55,11 +55,11 @@ Toca el botón del idioma (🇪🇸 o 🇬🇧) en la parte superior de la panta
 
 ## Ejemplo de uso
 
-Imagina que quieres practicar las horas. En el módulo **🔢 Pensar y contar**, elige **El Reloj**. La aplicación te mostrará un reloj y te preguntará "¿Qué hora es?". Tú puedes:
+Imagina que quieres practicar un juego de mesa. En el módulo **🎲 Juegos de mesa**, elige **Tres en Raya**. La aplicación te mostrará el tablero y podrás jugar contra el ordenador. Tú puedes:
 
-1. **Mirar** el reloj
-2. **Escuchar** la pregunta con el botón 🔊
-3. **Tocar** la respuesta correcta
+1. **Mirar** el tablero
+2. **Escuchar** las instrucciones con el botón 🔊
+3. **Tocar** la casilla donde quieres jugar
 
 Si aciertas, aparecerá una celebración breve. Si no, recibirá un mensaje de ánimo: "Casi. ¡Inténtalo otra vez!".
 
@@ -81,9 +81,8 @@ Si aciertas, aparecerá una celebración breve. Si no, recibirá un mensaje de �
 | Actividad | ¿Qué hace? |
 |-----------|------------|
 | **Parejas** | Encuentra las cartas que coinciden |
-| **Adivinanzas** | Descubre qué es a partir de pistas |
-| **Patrones** | Completa series de formas o colores |
 | **Dominó** | Juega una partida de dominó |
+| **Tres en Raya** | Juega al tres en raya contra el ordenador |
 
 ### Para las emociones
 

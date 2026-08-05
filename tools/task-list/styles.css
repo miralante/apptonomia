@@ -119,6 +119,29 @@
   width: 100%;
 }
 
+.consejo-lista {
+  background: var(--mod-secuencia-suave);
+  border-radius: var(--radio);
+  padding: var(--espacio);
+}
+
+.consejo-lista-titulo {
+  margin: 0 0 8px;
+  font-weight: 700;
+  color: var(--mod-secuencia);
+}
+
+.consejo-lista-pasos {
+  margin: 0;
+  padding-left: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--color-texto);
+}
+
+.btn-mis-listas { align-self: center; }
+
 .input-nombre-lista,
 .input-lista {
   display: block;

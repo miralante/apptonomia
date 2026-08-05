@@ -48,11 +48,8 @@ Antes de usar la aplicación, observa al usuario con estas preguntas:
 
 | Actividad | Habilidad trabajada |
 |-----------|---------------------|
-| **Adivinanzas** | Razonamiento verbal |
 | **Diferencias** | Atención al detalle |
-| **Patrones** | Lógica y secuenciación |
 | **La Casa** | Secuenciación de tareas domésticas |
-| **El Reloj** | Gestión del tiempo |
 | **Mi agenda** | Planificación temporal y anticipación |
 | **Chat Seguro** | Seguridad en internet |
 
@@ -182,16 +179,15 @@ Esta taxonomía resume qué áreas cubre actualmente Apptonomia. Sirve para dete
 huecos y para elegir una actividad según el objetivo de apoyo. El detalle de cada
 actividad está en [`actividades.md`](actividades.md).
 
+> La cobertura de cálculo y razonamiento lógico (deducción e inferencia,
+> completar patrones, montar puzles, operaciones matemáticas, lectura de
+> números romanos) se fue con las 12 actividades separadas al proyecto
+> hermano **Calculia**.
+
 | Área | Cobertura | Actividades |
 |---|---|---|
-| Montar piezas y puzles | ✔ | Puzzle |
-| Patrones y series | ✔ | Patrones |
-| Deducción e inferencia | ✔ | Adivinanzas |
-| Ordenación y priorización | ✔ | Historias, La Casa, ¿Qué hago primero?, Mi agenda |
-| Coherencia temática | ✔ | ¿Qué no encaja? |
-| Codificación y decodificación | ✔ | Patrones (nivel 4) |
+| Ordenación y priorización | ✔ | La Casa, ¿Qué hago primero?, Mi agenda |
 | Atención | ✔ | Diferencias, ¿Qué falta? |
-| Espacio, tiempo y orientación espacial | ✔ | El Reloj, Historias, Puzzle |
 | Memoria visual y a corto plazo | ✔ | Parejas, ¿Qué falta? |
 | Memoria auditiva y verbal | ✔ | Ecos |
 | Vocabulario y categorías | ✔ | Categorías, Palabras, Sopa de Letras |
@@ -200,25 +196,23 @@ actividad está en [`actividades.md`](actividades.md).
 | Comprensión del lenguaje | ✔ | La Frase |
 | Frases hechas, refranes y chistes | ✔ | Dichos, Chistes |
 | Ambigüedad léxica y comprensión del contexto | ✔ | Doble Sentido |
-| Ortografía y escritura | ✔ | Teclado, Trazos |
+| Ortografía y escritura | ✔ | Trazos |
 | Sentimientos y conflictos sociales | ✔ | ¿Cómo me siento?, Situaciones, Entre Amigos |
 | Autoestima, autoaceptación y respuesta a la discriminación | ✔ | Así Soy Yo |
 | Tolerancia a la frustración, vulnerabilidad y pedir ayuda | ✔ | Cuando Algo Me Cuesta |
 | Amigo, compañero o conocido; reconocer manipulación y falsas amistades (incluida la petición de dinero) | ✔ | Círculo de Confianza, Entre Amigos (nivel 5), Chat Seguro (escenario "Me piden dinero") |
 | Seguridad en internet | ✔ | Chat Seguro, Chat Acoso, ¿Lo publico?, Redes, intimidad y ley |
-| Operaciones matemáticas y dinero | ✔ | El Monedero, Números |
-| Lectura de números romanos y siglos | ✔ | Números Romanos |
-| Tiempo y horas | ✔ | El Reloj, Mi agenda |
+| Tiempo y horas | ✔ | Mi agenda |
 | Musicalidad y ritmo | ✔ | Ecos, Piano |
 | Aseo, tareas y organización del hogar | ✔ | Mis Rutinas, La Casa, Mi agenda, Emergencias |
 | Creatividad, dibujo y color | ✔ | Colorear, Trazos |
 | Percepción global y de detalles | ✔ | Diferencias |
 | Respiración y conciencia interior | ✔ | ¿Cómo me siento?, Calma, Mi Cuerpo Me Avisa |
-| Coordinación ojo-mano y motricidad fina | ✔ | Atrapa, Teclado, Trazos |
-| Juegos de mesa | ✔ | La Oca, Tres en Raya, Dominó, Las Damas, El Ajedrez, Cuatro en Raya |
+| Coordinación ojo-mano y motricidad fina | ✔ | Atrapa, Trazos |
+| Juegos de mesa | ✔ | Tres en Raya, Dominó, Las Damas, El Ajedrez, Cuatro en Raya |
 | Movilidad comunitaria | ✔ | La Calle |
 | Autonomía en salud | ✔ | Emergencias, Teléfonos Importantes, Mis Datos, Mi Cuerpo Me Avisa, Se lo Cuento al Médico, Mi Botiquín |
-| Compra y dinero en contexto real | ✔ | La Compra, La Tienda, El Monedero |
+| Compra y dinero en contexto real | ✔ | La Compra, La Tienda |
 | Alimentación saludable | ✔ | Comida Sana |
 | Educación afectivo-sexual: cuerpo, consentimiento y relaciones sanas | ✔ | Mi Cuerpo, Mis Decisiones |
 | Anticoncepción e higiene y salud sexual (derivando a profesional sanitario) | ✔ | Mi Cuerpo, Mis Decisiones |
@@ -263,7 +257,6 @@ Las capacidades que el producto no pretende cubrir y sus motivos se definen en
 - Trazos
 - Colorear
 - Piano
-- Teclado
 
 ### Trabajar emociones y habilidades sociales
 

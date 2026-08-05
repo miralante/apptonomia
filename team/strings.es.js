@@ -61,8 +61,8 @@
     "module2Intro": 'Actividades de la vida diaria, tareas del hogar, organización y conducta en situaciones cotidianas.',
     "module3Title": '🧠 Memoria y atención',
     "module3Intro": 'Memoria visual, auditiva y de corto plazo; atención sostenida; percepción global y de detalles.',
-    "module4Title": '🔢 Pensar y contar — Razonamiento y matemáticas',
-    "module4Intro": 'Patrones, deducción, ordenación, números, dinero, horas, medidas y juego reglado.',
+    "module4Title": '🎲 Juegos de mesa',
+    "module4Intro": 'Seis juegos de mesa clásicos, con niveles y un rival que juega suave.',
     "module5Title": '💬 Lenguaje y palabras — Lenguaje y comunicación',
     "module5Intro": 'Vocabulario, categorías, comprensión lectora, lenguaje figurado y humor.',
     "module6Title": '💜 Emociones — Emociones y relaciones',
@@ -81,12 +81,6 @@
         "does": 'Toca los números en orden (5, 7 o 9 según el nivel); cada acierto traza una línea hasta el siguiente punto y, al terminar, aparece una figura cerrada (casa, barco, estrella, flecha, pez, cohete...).',
         "works": 'Precisión del gesto, seguimiento de una secuencia numérica, planificación motora.',
         "daily": 'Dejadle unir puntos en libros de pasatiempos reales o dibujar siguiendo números en papel.'
-      },
-      "keyboard-typing": {
-        "name": 'Teclado',
-        "does": 'Mecanografía guiada con el teclado físico, letra a letra.',
-        "works": 'Motricidad fina, escritura, lateralidad (mano y dedo por tecla), uso real del ordenador.',
-        "daily": 'Dejad que escriba mensajes cortos reales (una lista, un mensaje a la familia) en el ordenador.'
       },
       "tracing": {
         "name": 'Trazos',
@@ -321,78 +315,6 @@
         "does": 'Monta una escena colocando personajes delante o detrás del decorado que diga la frase.',
         "works": 'Profundidad y planos (fondo / primer plano), vocabulario delante/detrás, comprensión de consignas espaciales.',
         "daily": 'Montad escenas reales con muñecos: "pon el oso delante de la caja".'
-      },
-      "riddles": {
-        "name": 'Adivinanzas',
-        "does": 'Escucha o lee una adivinanza y elige la respuesta.',
-        "works": 'Inferencia, deducción, comprensión.',
-        "daily": 'Contad adivinanzas en voz alta en las comidas familiares.'
-      },
-      "patterns": {
-        "name": 'Patrones',
-        "does": 'Completa la serie: ¿qué sigue?',
-        "works": 'Razonamiento lógico, series de formas, colores y números.',
-        "daily": 'Señalad patrones reales (azulejos, ropa a rayas) y preguntad qué sigue.'
-      },
-      "numbers": {
-        "name": 'Los Números',
-        "does": 'Cuenta, lee números grandes, suma, resta, multiplica y mide, con cifras coloreadas por posición.',
-        "works": 'Numeración, pares e impares, números negativos (con el ascensor), valor posicional (con canjes de 10 y la escalera del ×10 hasta el billón), fracciones, decimales, cálculo mental, medidas.',
-        "daily": 'Dejad que cuente y pague cosas reales usando números grandes.'
-      },
-      "quantities": {
-        "name": 'Cantidades',
-        "does": 'Mueve una barra para elegir poco o mucho, subir o bajar una cantidad, aproximar a la decena y encontrar el número que queda en medio.',
-        "works": 'Sentido de cantidad, comparación, estimación, redondeo y relación espacial en la recta numérica.',
-        "daily": 'Usad una regla, una jarra medidora o precios reales y preguntad: "¿es poco o mucho?", "¿cuánto falta?" o "¿qué queda en medio?".'
-      },
-      "math-tables": {
-        "name": 'Las Tablas',
-        "does": 'Cinco pasos con puntos de colores: sumar y restar 1, 2, 3, 5 o 10 de cabeza (los cincos y dieces se cuentan en filas), tablas de sumar, descomponer llegando primero a 10 (7 + 5 = 7 + 3 + 2), tablas de multiplicar y dividir entre 10 contando filas.',
-        "works": 'Cálculo mental progresivo, conteo de 5 en 5 y de 10 en 10, suma como unión, descomposición aditiva (puente al 10), multiplicación como repetición y división como reparto en filas, con conteo de apoyo visual.',
-        "daily": 'Agrupad objetos reales (garbanzos, botones) por colores y contad juntos: "3 grupos de 4, ¿cuántos hay?".'
-      },
-      "roman-numerals": {
-        "name": 'Números Romanos',
-        "does": 'Cuatro niveles: aprende los símbolos I, V, X y los números del 1 al 21, y usa esos números para leer y escribir en qué siglo está algo ("Siglo XV" → 15).',
-        "works": 'Lectura de números romanos, aplicada al caso real más frecuente (siglos en museos, monumentos y libros de historia). Progresión de una sola variable por nivel: rango, luego contexto de "siglo", luego dirección de la pregunta.',
-        "daily": 'Señalad el siglo escrito en números romanos de una placa, portada o libro real y descifradlo juntos.'
-      },
-      "wallet": {
-        "name": 'El Monedero',
-        "does": 'Menú con cinco actividades de dinero físico (monedas y billetes dibujados con su aspecto real), en el orden del ciclo de una compra. "¿Cuánto hay?": contar el dinero de la mesa y elegir el total. "Paga justo": tocar el dinero hasta el precio exacto, con botón 💡 que enseña a pagar de mayor a menor. "¿Con qué pago?": cuando no se tiene el importe justo, elegir el dinero que llega — y ver el cambio que devuelven como monedas. "¿Está bien el cambio?": contar lo devuelto y decidir si es correcto (protege de errores y engaños). "La Hucha": calcular cuánto falta para comprar algo. Todas con pista al primer fallo y explicación generada del propio caso.',
-        "works": 'Reconocimiento de monedas y billetes, conteo de dinero, manejo funcional del dinero, suma y resta de cantidades, estrategia de pago, verificación del cambio y planificación del ahorro.',
-        "daily": 'Dejad que pague en efectivo compras pequeñas reales, que compruebe el cambio y que ahorre para algo concreto con una hucha de verdad.'
-      },
-      "clock": {
-        "name": 'El Reloj',
-        "does": 'Lee la hora y la asocia a momentos del día.',
-        "works": 'Lectura del reloj, orientación temporal, rutinas horarias.',
-        "daily": 'Preguntadle la hora del reloj real de casa varias veces al día.'
-      },
-      "stories": {
-        "name": 'Historias',
-        "does": 'Ordena viñetas: ¿qué pasó primero?',
-        "works": 'Secuencia temporal, causa y efecto, ordenación de ideas.',
-        "daily": 'Pedidle que cuente qué hizo hoy en orden, del principio al final.'
-      },
-      "odd-one-out": {
-        "name": '¿Qué no encaja?',
-        "does": 'Encuentra el elemento que sobra en el grupo.',
-        "works": 'Coherencia temática, categorización, razonamiento.',
-        "daily": 'Jugad a buscar el objeto que no encaja en un cajón o estantería real.'
-      },
-      "puzzle": {
-        "name": 'Puzzle',
-        "does": 'Coloca cada pieza en su sitio para recomponer una imagen.',
-        "works": 'Orientación espacial, percepción global, montaje de piezas.',
-        "daily": 'Tened puzzles físicos sencillos en casa para montar juntos.'
-      },
-      "oca": {
-        "name": 'La Oca',
-        "does": 'Tira el dado y avanza por el tablero con mini-retos.',
-        "works": 'Juego de mesa reglado, turnos, conteo.',
-        "daily": 'Jugad partidas reales de la oca u otro juego de mesa con dado.'
       },
       "tic-tac-toe": {
         "name": 'Tres en Raya',

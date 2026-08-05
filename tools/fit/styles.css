@@ -15,7 +15,7 @@
 
 .tool-header h1 { color: var(--mod-memoria); }
 
-.btn:not(.btn-secundario):not(.btn-audio):not(.btn-control) {
+.btn:not(.btn-secundario):not(.btn-control) {
   background: var(--mod-memoria);
 }
 

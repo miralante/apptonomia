@@ -48,11 +48,8 @@ Before using the application, observe the user with these questions:
 
 | Activity | Skill worked |
 |----------|--------------|
-| **Riddles** | Verbal reasoning |
 | **Spot the Difference** | Attention to detail |
-| **Patterns** | Logic and sequencing |
 | **The House** | Household task sequencing |
-| **The Clock** | Time management |
 | **My Schedule** | Time planning and anticipation |
 | **Safe Chat** | Internet safety |
 
@@ -182,16 +179,15 @@ This taxonomy summarizes the areas currently covered by Apptonomia. It helps
 identify gaps and choose an activity for a support goal. See
 [`activities.md`](activities.md) for details about each activity.
 
+> Math and logical-reasoning coverage (deduction and inference, pattern
+> completion, puzzle assembly, mathematical operations, Roman numeral
+> reading) moved with the 12 activities split out to the sibling
+> project **Calculia**.
+
 | Area | Coverage | Activities |
 |---|---|---|
-| Assembling pieces and puzzles | ✔ | Puzzle |
-| Patterns and sequences | ✔ | Patterns |
-| Deduction and inference | ✔ | Riddles |
-| Ordering and prioritization | ✔ | Stories, The House, What Do I Do First?, My Schedule |
-| Thematic coherence | ✔ | What doesn't fit? |
-| Encoding and decoding | ✔ | Patterns (level 4) |
+| Ordering and prioritization | ✔ | The House, What Do I Do First?, My Schedule |
 | Attention | ✔ | Spot the Difference, What's missing? |
-| Space, time and spatial orientation | ✔ | The Clock, Stories, Puzzle |
 | Visual and short-term memory | ✔ | Pairs, What's missing? |
 | Auditory and verbal memory | ✔ | Echoes |
 | Vocabulary and categories | ✔ | Categories, Words, Word Search |
@@ -200,25 +196,23 @@ identify gaps and choose an activity for a support goal. See
 | Language comprehension | ✔ | The Sentence |
 | Idioms, sayings and jokes | ✔ | Idioms, Comedy Club |
 | Lexical ambiguity and context comprehension | ✔ | Double Meaning |
-| Spelling and writing | ✔ | Keyboard, Traces |
+| Spelling and writing | ✔ | Traces |
 | Feelings and social conflicts | ✔ | How do I feel?, Situations, Among Friends |
 | Self-esteem, self-acceptance and response to discrimination | ✔ | This Is Me |
 | Frustration tolerance, vulnerability and asking for help | ✔ | When It's Hard |
 | Friend, companion or acquaintance; recognizing manipulation and fake friendships (including requests for money) | ✔ | Circle of Trust, Among Friends (level 5), Safe Chat ("They ask me for money" scenario) |
 | Internet safety | ✔ | Safe Chat, Bullying Chat, Should I Post It?, Social media, intimacy and law |
-| Mathematical operations and money | ✔ | The Coin Purse, Numbers |
-| Reading Roman numerals and centuries | ✔ | Roman Numerals |
-| Time and clock reading | ✔ | The Clock, My Schedule |
+| Time and clock reading | ✔ | My Schedule |
 | Musicality and rhythm | ✔ | Echoes, Piano |
 | Personal care, household tasks and organization | ✔ | My Routines, The House, My Schedule, Emergencies |
 | Creativity, drawing and coloring | ✔ | Coloring, Traces |
 | Global and detailed perception | ✔ | Spot the Difference |
 | Breathing and body awareness | ✔ | How do I feel?, Calm, My Body Tells Me |
-| Eye-hand coordination and fine motor skills | ✔ | Catch It, Keyboard, Traces |
-| Board games | ✔ | The Goose Game, Tic-Tac-Toe, Dominoes, Checkers, Chess, Four in a Row |
+| Eye-hand coordination and fine motor skills | ✔ | Catch It, Traces |
+| Board games | ✔ | Tic-Tac-Toe, Dominoes, Checkers, Chess, Four in a Row |
 | Community mobility | ✔ | The Street |, My First-Aid Kit
 | Health autonomy | ✔ | Emergencies, Important Phone Numbers, My Details, My Body Tells Me, I Tell the Doctor |
-| Shopping and money in real contexts | ✔ | The Shopping, The Shop, The Coin Purse |
+| Shopping and money in real contexts | ✔ | The Shopping, The Shop |
 | Healthy eating | ✔ | Healthy Food |
 | Affective-sexual education: body, consent and healthy relationships | ✔ | My Body, My Choices |
 | Contraception and hygiene and sexual health (pointing to a health professional) | ✔ | My Body, My Choices |
@@ -263,7 +257,6 @@ defined in [`SPEC.md`](SPEC.md) §6.
 - Traces
 - Coloring
 - Piano
-- Keyboard
 
 ### Working on emotions and social skills
 

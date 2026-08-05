@@ -62,6 +62,36 @@
   color: #FFFFFF;
 }
 
+/* Shortcuts a las apps hermanas (servicios independientes, mismo equipo) */
+.anclas-hermanas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio);
+  justify-content: center;
+  padding: 0 0 var(--espacio);
+}
+
+.ancla-hermana {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--boton-min);
+  padding: 8px var(--espacio);
+  font-family: var(--fuente);
+  font-size: var(--texto-pequeno);
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--color-texto);
+  background: var(--color-superficie);
+  border: 3px dashed var(--color-borde);
+  border-radius: var(--radio);
+}
+
+.ancla-hermana:hover,
+.ancla-hermana:focus-visible {
+  border-color: var(--mod-coordinacion);
+}
+
 .cabecera {
   display: flex;
   flex-direction: column;

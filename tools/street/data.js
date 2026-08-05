@@ -38,7 +38,11 @@ const DATA = {
           { picto: '🚲', situacion: 'En la acera hay un carril para bicicletas pintado en el suelo.', opciones: ['Caminar fuera del carril de las bicis', 'Caminar por el medio del carril bici', 'Pararte dentro del carril a mirar el móvil'], correcta: 0 },
           { picto: '🐕', situacion: 'Un perro que no conoces está atado en la puerta de una tienda.', opciones: ['Pasar de largo sin tocarlo', 'Acariciarlo aunque no lo conozcas', 'Darle comida de tu bolsillo'], correcta: 0 },
           { picto: '📱', situacion: 'Vas caminando por la calle mirando la pantalla del móvil en vez de mirar por dónde vas.', opciones: ['Guardar el móvil y mirar por dónde caminas', 'Seguir caminando mirando la pantalla', 'Caminar con el móvil bien visible en la mano'], correcta: 0 },
-          { picto: '☕', situacion: 'Estás en una cafetería y vas al baño. Dejas el móvil solo encima de la mesa.', opciones: ['Llevarte el móvil contigo o dárselo a alguien de confianza', 'Dejarlo en la mesa, total vuelves enseguida', 'Pedirle a la persona de la mesa de al lado que lo vigile'], correcta: 0 }
+          { picto: '☕', situacion: 'Estás en una cafetería y vas al baño. Dejas el móvil solo encima de la mesa.', opciones: ['Llevarte el móvil contigo o dárselo a alguien de confianza', 'Dejarlo en la mesa, total vuelves enseguida', 'Pedirle a la persona de la mesa de al lado que lo vigile'], correcta: 0 },
+          { picto: '🚗', situacion: 'Vas a bajar del coche en un aparcamiento. Hay coches circulando cerca.', opciones: ['Mirar antes de abrir la puerta y bajar por el lado seguro', 'Abrir la puerta rápido sin mirar', 'Bajar corriendo entre los coches'], correcta: 0 },
+          { picto: '🛴', situacion: 'Vas en patinete por la acera llena de gente.', opciones: ['Bajar del patinete y caminar entre la gente', 'Seguir esquivando a toda velocidad', 'Tocar el timbre para que se aparten'], correcta: 0 },
+          { picto: '🚉', situacion: 'Estás esperando el tren y hay una línea amarilla pintada en el suelo del andén.', opciones: ['Esperar detrás de la línea amarilla', 'Acercarte al borde para ver si llega', 'Sentarte con los pies colgando en el borde'], correcta: 0 },
+          { picto: '🧥', situacion: 'Vas a cruzar de noche por una calle con poca luz.', opciones: ['Cruzar por la zona más iluminada y con cuidado', 'Cruzar por la parte más oscura porque es más corta', 'Cruzar corriendo sin mirar'], correcta: 0 }
         ]
       },
       {
@@ -59,7 +63,11 @@ const DATA = {
           { picto: '🌧️', situacion: 'Llueve mucho y el suelo de la calle resbala.', opciones: ['Caminar despacio y con cuidado', 'Correr para llegar antes', 'Cruzar corriendo entre los coches'], correcta: 0 },
           { picto: '🧒', situacion: 'Ves a un niño pequeño solo y llorando en la calle.', opciones: ['Avisar a un policía o a un adulto para que le ayuden', 'Llevártelo tú a buscar a su familia', 'Seguir andando como si nada'], correcta: 0 },
           { picto: '📵', situacion: 'Te has perdido y tu móvil no tiene batería.', opciones: ['Entrar en una tienda y pedir que llamen a tu familia', 'Caminar sin rumbo hasta encontrar tu casa', 'Irte con un desconocido que dice conocer tu calle'], correcta: 0 },
-          { picto: '🚕', situacion: 'Un vecino que apenas conoces insiste en llevarte en su coche.', opciones: ['Decir "no, gracias" y contárselo después a tu familia', 'Subir porque le has visto alguna vez', 'Subir para no parecer maleducado'], correcta: 0 }
+          { picto: '🚕', situacion: 'Un vecino que apenas conoces insiste en llevarte en su coche.', opciones: ['Decir "no, gracias" y contárselo después a tu familia', 'Subir porque le has visto alguna vez', 'Subir para no parecer maleducado'], correcta: 0 },
+          { picto: '🚌', situacion: 'El autobús va muy lleno y el conductor te pide esperar al siguiente.', opciones: ['Esperar tranquilo/a al siguiente autobús', 'Insistir para subir a la fuerza', 'Enfadarte con el conductor'], correcta: 0 },
+          { picto: '🧑‍🦯', situacion: 'Ves a una persona con dificultad para cruzar sola.', opciones: ['Preguntarle si necesita ayuda', 'Pasar de largo sin decir nada', 'Reírte de cómo camina'], correcta: 0 },
+          { picto: '📵', situacion: 'Se te ha estropeado el móvil y necesitas avisar de que llegas tarde.', opciones: ['Pedir el teléfono a una persona de una tienda o similar para llamar a tu familia', 'No avisar a nadie y seguir andando', 'Pedirle el móvil a un desconocido cualquiera por la calle'], correcta: 0 },
+          { picto: '🚦', situacion: 'El semáforo para coches está en verde pero no ves ningún coche parado en el cruce.', opciones: ['Esperar igualmente a que tu semáforo se ponga verde', 'Cruzar aunque tu semáforo esté en rojo', 'Cruzar corriendo por si acaso'], correcta: 0 }
         ]
       }
     ]
@@ -87,7 +95,11 @@ const DATA = {
           { picto: '🚲', situacion: 'There is a bike lane painted on the pavement.', opciones: ['Walk outside the bike lane', 'Walk in the middle of the bike lane', 'Stand in the lane looking at your phone'], correcta: 0 },
           { picto: '🐕', situacion: 'A dog you do not know is tied up outside a shop.', opciones: ['Walk past without touching it', 'Pet it even though you do not know it', 'Give it food from your pocket'], correcta: 0 },
           { picto: '📱', situacion: 'You are walking down the street looking at your phone screen instead of watching where you are going.', opciones: ['Put the phone away and watch where you are walking', 'Keep walking while staring at the screen', 'Walk holding the phone clearly visible in your hand'], correcta: 0 },
-          { picto: '☕', situacion: 'You are at a cafe and go to the bathroom. You leave your phone alone on the table.', opciones: ['Take the phone with you or give it to someone you trust', 'Leave it on the table, you will be right back', 'Ask the person at the next table to watch it'], correcta: 0 }
+          { picto: '☕', situacion: 'You are at a cafe and go to the bathroom. You leave your phone alone on the table.', opciones: ['Take the phone with you or give it to someone you trust', 'Leave it on the table, you will be right back', 'Ask the person at the next table to watch it'], correcta: 0 },
+          { picto: '🚗', situacion: 'You are getting out of the car in a car park. Cars are moving nearby.', opciones: ['Look before opening the door and get out on the safe side', 'Open the door quickly without looking', 'Get out running between the cars'], correcta: 0 },
+          { picto: '🛴', situacion: 'You are riding a scooter on a pavement full of people.', opciones: ['Get off the scooter and walk among the people', 'Keep dodging people at full speed', 'Ring the bell so people move aside'], correcta: 0 },
+          { picto: '🚉', situacion: 'You are waiting for the train and there is a yellow line painted on the platform floor.', opciones: ['Wait behind the yellow line', 'Get close to the edge to see if it is coming', 'Sit down with your feet hanging over the edge'], correcta: 0 },
+          { picto: '🧥', situacion: 'You are about to cross at night on a poorly lit street.', opciones: ['Cross in the best-lit spot and carefully', 'Cross through the darkest part because it is shorter', 'Cross running without looking'], correcta: 0 }
         ]
       },
       {
@@ -108,7 +120,11 @@ const DATA = {
           { picto: '🌧️', situacion: 'It is raining hard and the street is slippery.', opciones: ['Walk slowly and carefully', 'Run to get there sooner', 'Run across between the cars'], correcta: 0 },
           { picto: '🧒', situacion: 'You see a small child alone and crying on the street.', opciones: ['Tell a police officer or an adult so they can help', 'Take the child yourself to look for their family', 'Keep walking as if nothing happened'], correcta: 0 },
           { picto: '📵', situacion: 'You are lost and your phone has no battery.', opciones: ['Go into a shop and ask them to call your family', 'Wander around until you find your house', 'Leave with a stranger who says they know your street'], correcta: 0 },
-          { picto: '🚕', situacion: 'A neighbour you barely know insists on driving you home.', opciones: ['Say "no, thank you" and tell your family afterwards', 'Get in because you have seen them before', 'Get in so you do not seem rude'], correcta: 0 }
+          { picto: '🚕', situacion: 'A neighbour you barely know insists on driving you home.', opciones: ['Say "no, thank you" and tell your family afterwards', 'Get in because you have seen them before', 'Get in so you do not seem rude'], correcta: 0 },
+          { picto: '🚌', situacion: 'The bus is very full and the driver asks you to wait for the next one.', opciones: ['Wait calmly for the next bus', 'Insist on getting on by force', 'Get angry with the driver'], correcta: 0 },
+          { picto: '🧑‍🦯', situacion: 'You see someone having trouble crossing alone.', opciones: ['Ask if they need help', 'Walk past without saying anything', 'Laugh at how they walk'], correcta: 0 },
+          { picto: '📵', situacion: 'Your phone has broken and you need to let someone know you will be late.', opciones: ['Ask someone at a shop to use their phone to call your family', 'Tell no one and keep walking', 'Ask a random stranger on the street for their phone'], correcta: 0 },
+          { picto: '🚦', situacion: "The traffic light for cars is green but you don't see any car stopped at the crossing.", opciones: ['Wait anyway until your light turns green', 'Cross even though your light is red', 'Cross running just in case'], correcta: 0 }
         ]
       }
     ]

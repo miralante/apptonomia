@@ -148,10 +148,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   $('#caseAudio').addEventListener('click', function () {
     App.tts.speak(cases[caseIndex].scenario + ' ' + App.i18n.t('question'));
   });
-  $('#explanationAudio').addEventListener('click', function () {
-  });
-  $('#endAudio').addEventListener('click', function () {
-  });
   $('#nextButton').addEventListener('click', nextCase);
   $('#repeatButton').addEventListener('click', function () { startLevel(level); });
   $('#levelsButton').addEventListener('click', function () {

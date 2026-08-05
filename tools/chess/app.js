@@ -645,10 +645,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     mostrar('pantallaNivelesPartida');
   });
 
-  $('#btnEstadoPiezas').addEventListener('click', function () {
-  });
-  $('#btnEstadoPartida').addEventListener('click', function () {
-  });
 
   pintarEstrellas();
 })();

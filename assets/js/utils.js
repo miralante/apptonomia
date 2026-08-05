@@ -47,15 +47,6 @@
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
-  /** true if the device is mainly touch-based (no physical keyboard
-      expected): no fine pointer (mouse/trackpad) as the primary input.
-      A laptop with a touchscreen still returns false (its primary input
-      is the mouse/trackpad); a phone or tablet returns true. */
-  function esTactil() {
-    return !!(window.matchMedia &&
-      window.matchMedia('(hover: none) and (pointer: coarse)').matches);
-  }
-
   /* Keep the screen awake during the activity (Screen Wake Lock).
      Progressive enhancement: if the browser doesn't support it, nothing
      happens. Requires a user gesture, so it's requested on the first
@@ -84,7 +75,6 @@
     $: $,
     $$: $$,
     hoy: hoy,
-    reducedMotion: reducedMotion,
-    esTactil: esTactil
+    reducedMotion: reducedMotion
   };
 })();

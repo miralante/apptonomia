@@ -1,0 +1,85 @@
+name: Deploy to Cloudflare Pages
+
+# Two deployment paths are supported. Pick ONE and skip the other.
+#
+# 1) RECOMMENDED -- Cloudflare Git connector.
+#    Connect the repository in the Cloudflare Pages dashboard and the
+#    dashboard takes care of builds and deploys. No GitHub secret is
+#    required, this workflow becomes a no-op aside from the pre-deploy
+#    safety checks below.
+#
+# 2) SELF-HOSTED -- this workflow deploys via the official Wrangler
+#    Action, which uses the CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID
+#    secrets to push the repository root as the Pages build output. Use
+#    this if you prefer not to give Cloudflare access to GitHub.
+#
+# Secrets (option 2 only) -- configure them under
+# Settings -> Secrets and variables -> Actions. Never commit them.
+#   CLOUDFLARE_API_TOKEN    Create at the Cloudflare dashboard profile,
+#                           using the "Edit Cloudflare Pages" template.
+#   CLOUDFLARE_ACCOUNT_ID   Copy from the right sidebar of any zone.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Pre-deploy checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dev dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: node scripts/check.js
+        run: npm run check
+
+  deploy:
+    name: wrangler pages deploy
+    needs: check
+    runs-on: ubuntu-latest
+    # Reference the secret directly so the job is skipped cleanly when
+    # the token is not configured. GitHub evaluates the expression and
+    # treats the missing secret as an empty string, so repositories
+    # using the Cloudflare Git connector are unaffected.
+    if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+    environment:
+      name: ${{ github.ref == 'refs/heads/master' && 'production' || 'preview' }}
+      url: ${{ steps.deploy.outputs.deployment-url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dev dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: apptonomia
+          directory: .
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: "4"

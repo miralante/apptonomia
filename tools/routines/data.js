@@ -35,7 +35,7 @@ var DATA = {
       momento: 'manana',
       pasos: [
         { texto: 'Quito la manta y la almohada.', picto: '🛌' },
-        { texto: 'Estiro la sábana.', picto: '�️' },
+        { texto: 'Estiro la sábana.', picto: '🛏️' },
         { texto: 'Pongo la manta.', picto: '🛌' },
         { texto: 'Pongo la almohada.', picto: '🛏️' }
       ]
@@ -189,7 +189,7 @@ var DATA = {
     {
       id: 'limpiar-polvo',
       nombre: 'Limpiar el polvo',
-      picto: '�',
+      picto: '🪑',
       momento: 'limpieza',
       pasos: [
         { texto: 'Cojo un trapo.', picto: '🧽' },
@@ -410,7 +410,7 @@ var DATA = {
       momento: 'manana',
       pasos: [
         { texto: 'I pull back the blanket and pillow.', picto: '🛌' },
-        { texto: 'I straighten the sheet.', picto: '�️' },
+        { texto: 'I straighten the sheet.', picto: '🛏️' },
         { texto: 'I spread the blanket.', picto: '🛌' },
         { texto: 'I put the pillow back.', picto: '🛏️' }
       ]
@@ -564,7 +564,7 @@ var DATA = {
     {
       id: 'limpiar-polvo',
       nombre: 'Dust the furniture',
-      picto: '�',
+      picto: '🪑',
       momento: 'limpieza',
       pasos: [
         { texto: 'I take a cloth.', picto: '🧽' },

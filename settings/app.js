@@ -2,11 +2,11 @@
    Apptonomia — Settings (hidden route)
    View/reset what's saved in localStorage. Two actions:
    - "Reset the person's data": deletes language + name
-     (Keyboard and Piano are the only tools with a name).
+     (Piano is the only tool with a name).
      Progress in every activity is kept.
    - "Reset the whole app": deletes everything under
      'apptonomia:*' (equivalent to opening the app for the first time).
-   Two-step confirmation (same pattern as keyboard-typing's
+   Two-step confirmation (same pattern as piano-keys's
    "Delete my progress"): one tap asks to confirm, the second deletes.
    ============================================================ */
 (function () {
@@ -17,7 +17,7 @@
   /* Tools that store a first name (see equipo/index.html
      §Progress and privacy). Keep this list up to date if a
      new tool asks for a name. */
-  var TOOLS_WITH_NAME = ['keyboard-typing', 'piano-keys'];
+  var TOOLS_WITH_NAME = ['piano-keys'];
 
   /* 'my-details' stores address/phone fields for the "Mis Datos"
      activity, same personal-data-by-exception status as a first

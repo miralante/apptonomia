@@ -180,7 +180,7 @@ anchors** when designing its content:
   examples.
 - **Light personalisation where appropriate**: a stable avatar or a
   name field increases ownership of what was learned
-  (see `tools/piano-keys/`, `tools/keyboard-typing/`).
+  (see `tools/piano-keys/`).
 - **Spaced practice**: `localStorage` saves the level reached; the
   landing suggests resuming that level rather than a random one.
 
@@ -207,8 +207,8 @@ Operational difference between the two vehicles:
 
 Activities in the catalogue that use this vehicle: `blocks`, `builders`,
 `catch`, `checkers`, `chess`, `coloring`, `connect-dots`, `connect-four`,
-`differences`, `domino`, `ecos`, `emotions`, `fit`, `keyboard-typing`,
-`oca`, `pairs`, `path`, `piano-keys`, `puzzle`, `stories`, `tic-tac-toe`,
+`differences`, `domino`, `ecos`, `emotions`, `fit`,
+`pairs`, `path`, `piano-keys`, `tic-tac-toe`,
 `tracing`, `turns-mirrors`, `visual-sudoku`, `where-is`.
 
 > Forcing a scene where the stimulus is already the context saturates

@@ -29,7 +29,11 @@ const DATA = {
         { frase: 'La niña salta a la comba.', pregunta: '¿Quién salta a la comba?', opciones: ['El niño', 'La niña', 'La profesora'], correcta: 1 },
         { frase: 'El bebé llora en la cuna.', pregunta: '¿Quién llora en la cuna?', opciones: ['El bebé', 'El niño', 'El perro'], correcta: 0 },
         { frase: 'Sofía riega las plantas.', pregunta: '¿Quién riega las plantas?', opciones: ['Sofía', 'Elena', 'La jardinera'], correcta: 0 },
-        { frase: 'El abuelo lee el periódico.', pregunta: '¿Quién lee el periódico?', opciones: ['La abuela', 'El abuelo', 'El padre'], correcta: 1 }
+        { frase: 'El abuelo lee el periódico.', pregunta: '¿Quién lee el periódico?', opciones: ['La abuela', 'El abuelo', 'El padre'], correcta: 1 },
+        { frase: 'Carlos riega el jardín.', pregunta: '¿Quién riega el jardín?', opciones: ['Carlos', 'Diego', 'El vecino'], correcta: 0 },
+        { frase: 'El pato nada en el estanque.', pregunta: '¿Quién nada en el estanque?', opciones: ['El pato', 'El cisne', 'El pez'], correcta: 0 },
+        { frase: 'Laura hace los deberes en su cuarto.', pregunta: '¿Quién hace los deberes?', opciones: ['Laura', 'Clara', 'La hermana'], correcta: 0 },
+        { frase: 'El cartero deja una carta en el buzón.', pregunta: '¿Quién deja la carta?', opciones: ['El vecino', 'El cartero', 'El profesor'], correcta: 1 }
       ]
     },
     {
@@ -52,7 +56,11 @@ const DATA = {
         { frase: 'El coche está aparcado en el garaje.', pregunta: '¿Dónde está el coche?', opciones: ['En la calle', 'En el garaje', 'En el parque'], correcta: 1 },
         { frase: 'Marta pone la mesa en el comedor.', pregunta: '¿Dónde pone la mesa Marta?', opciones: ['En la cocina', 'En el comedor', 'En el jardín'], correcta: 1 },
         { frase: 'El panadero hace pan en la panadería.', pregunta: '¿Qué hace el panadero?', opciones: ['Pan', 'Pasteles', 'Zumo'], correcta: 0 },
-        { frase: 'Los niños ven una película en el cine.', pregunta: '¿Dónde ven la película los niños?', opciones: ['En casa', 'En el cine', 'En el colegio'], correcta: 1 }
+        { frase: 'Los niños ven una película en el cine.', pregunta: '¿Dónde ven la película los niños?', opciones: ['En casa', 'En el cine', 'En el colegio'], correcta: 1 },
+        { frase: 'El abuelo juega a las cartas en el salón.', pregunta: '¿Dónde juega el abuelo a las cartas?', opciones: ['En la cocina', 'En el salón', 'En el jardín'], correcta: 1 },
+        { frase: 'Laura pinta un cuadro en su habitación.', pregunta: '¿Qué pinta Laura?', opciones: ['Un cuadro', 'Una carta', 'Un mapa'], correcta: 0 },
+        { frase: 'El panadero vende pan en el mercado.', pregunta: '¿Dónde vende pan el panadero?', opciones: ['En el mercado', 'En su casa', 'En el colegio'], correcta: 0 },
+        { frase: 'El gato caza un ratón en el granero.', pregunta: '¿Qué caza el gato?', opciones: ['Un pájaro', 'Un ratón', 'Un pez'], correcta: 1 }
       ]
     },
     {
@@ -75,7 +83,11 @@ const DATA = {
         { frase: 'El coche se para porque el semáforo está en rojo.', pregunta: '¿Por qué se para el coche?', opciones: ['Porque no tiene gasolina', 'Porque el semáforo está en rojo', 'Porque está averiado'], correcta: 1 },
         { frase: 'María se pone crema porque va a la playa.', pregunta: '¿Por qué se pone crema María?', opciones: ['Porque va a la playa', 'Porque tiene frío', 'Porque va a dormir'], correcta: 0 },
         { frase: 'El niño se pone los guantes porque hace mucho frío.', pregunta: '¿Por qué se pone guantes el niño?', opciones: ['Porque hace calor', 'Porque hace mucho frío', 'Porque va a nadar'], correcta: 1 },
-        { frase: 'Pedro apaga la tele porque es hora de dormir.', pregunta: '¿Por qué apaga la tele Pedro?', opciones: ['Porque es hora de dormir', 'Porque tiene hambre', 'Porque va a jugar'], correcta: 0 }
+        { frase: 'Pedro apaga la tele porque es hora de dormir.', pregunta: '¿Por qué apaga la tele Pedro?', opciones: ['Porque es hora de dormir', 'Porque tiene hambre', 'Porque va a jugar'], correcta: 0 },
+        { frase: 'Carlos se pone protector solar porque hay mucho sol.', pregunta: '¿Por qué se pone protector solar Carlos?', opciones: ['Porque hay mucho sol', 'Porque llueve', 'Porque tiene frío'], correcta: 0 },
+        { frase: 'Laura cierra la ventana porque hace ruido fuera.', pregunta: '¿Por qué cierra la ventana Laura?', opciones: ['Porque hace ruido fuera', 'Porque hace calor', 'Porque quiere dormir'], correcta: 0 },
+        { frase: 'El perro se esconde porque hay truenos.', pregunta: '¿Por qué se esconde el perro?', opciones: ['Porque tiene hambre', 'Porque hay truenos', 'Porque está contento'], correcta: 1 },
+        { frase: 'Sofía enciende la calefacción porque tiene frío.', pregunta: '¿Por qué enciende la calefacción Sofía?', opciones: ['Porque tiene frío', 'Porque tiene calor', 'Porque va a salir'], correcta: 0 }
       ]
     }
   ]
@@ -103,7 +115,11 @@ const DATA = {
           { frase: 'The girl skips with a rope.', pregunta: 'Who skips with a rope?', opciones: ['The boy', 'The girl', 'The teacher'], correcta: 1 },
           { frase: 'The baby cries in the cot.', pregunta: 'Who cries in the cot?', opciones: ['The baby', 'The boy', 'The dog'], correcta: 0 },
           { frase: 'Sophie waters the plants.', pregunta: 'Who waters the plants?', opciones: ['Sophie', 'Ellen', 'The gardener'], correcta: 0 },
-          { frase: 'Grandpa reads the newspaper.', pregunta: 'Who reads the newspaper?', opciones: ['Grandma', 'Grandpa', 'Dad'], correcta: 1 }
+          { frase: 'Grandpa reads the newspaper.', pregunta: 'Who reads the newspaper?', opciones: ['Grandma', 'Grandpa', 'Dad'], correcta: 1 },
+          { frase: 'Charlie waters the garden.', pregunta: 'Who waters the garden?', opciones: ['Charlie', 'Daniel', 'The neighbour'], correcta: 0 },
+          { frase: 'The duck swims in the pond.', pregunta: 'Who swims in the pond?', opciones: ['The duck', 'The swan', 'The fish'], correcta: 0 },
+          { frase: 'Laura does her homework in her room.', pregunta: 'Who does the homework?', opciones: ['Laura', 'Clara', 'The sister'], correcta: 0 },
+          { frase: 'The postman leaves a letter in the mailbox.', pregunta: 'Who leaves the letter?', opciones: ['The neighbour', 'The postman', 'The teacher'], correcta: 1 }
         ]
       },
       {
@@ -126,7 +142,11 @@ const DATA = {
           { frase: 'The car is parked in the garage.', pregunta: 'Where is the car?', opciones: ['On the street', 'In the garage', 'In the park'], correcta: 1 },
           { frase: 'Martha sets the table in the dining room.', pregunta: 'Where does Martha set the table?', opciones: ['In the kitchen', 'In the dining room', 'In the garden'], correcta: 1 },
           { frase: 'The baker makes bread at the bakery.', pregunta: 'What does the baker make?', opciones: ['Bread', 'Cakes', 'Juice'], correcta: 0 },
-          { frase: 'The children watch a film at the cinema.', pregunta: 'Where do the children watch the film?', opciones: ['At home', 'At the cinema', 'At school'], correcta: 1 }
+          { frase: 'The children watch a film at the cinema.', pregunta: 'Where do the children watch the film?', opciones: ['At home', 'At the cinema', 'At school'], correcta: 1 },
+          { frase: 'Grandpa plays cards in the living room.', pregunta: 'Where does grandpa play cards?', opciones: ['In the kitchen', 'In the living room', 'In the garden'], correcta: 1 },
+          { frase: 'Laura paints a picture in her room.', pregunta: 'What does Laura paint?', opciones: ['A picture', 'A letter', 'A map'], correcta: 0 },
+          { frase: 'The baker sells bread at the market.', pregunta: 'Where does the baker sell bread?', opciones: ['At the market', 'At home', 'At school'], correcta: 0 },
+          { frase: 'The cat catches a mouse in the barn.', pregunta: 'What does the cat catch?', opciones: ['A bird', 'A mouse', 'A fish'], correcta: 1 }
         ]
       },
       {
@@ -149,7 +169,11 @@ const DATA = {
           { frase: 'The car stops because the traffic light is red.', pregunta: 'Why does the car stop?', opciones: ['Because it has no petrol', 'Because the traffic light is red', 'Because it is broken'], correcta: 1 },
           { frase: 'Emma puts on sun cream because she is going to the beach.', pregunta: 'Why does Emma put on sun cream?', opciones: ['Because she is going to the beach', 'Because she is cold', 'Because she is going to sleep'], correcta: 0 },
           { frase: 'The boy puts on gloves because it is very cold.', pregunta: 'Why does the boy put on gloves?', opciones: ['Because it is hot', 'Because it is very cold', 'Because he is going swimming'], correcta: 1 },
-          { frase: 'Jack turns off the television because it is bedtime.', pregunta: 'Why does Jack turn off the television?', opciones: ['Because it is bedtime', 'Because he is hungry', 'Because he is going to play'], correcta: 0 }
+          { frase: 'Jack turns off the television because it is bedtime.', pregunta: 'Why does Jack turn off the television?', opciones: ['Because it is bedtime', 'Because he is hungry', 'Because he is going to play'], correcta: 0 },
+          { frase: 'Charlie puts on sun cream because it is very sunny.', pregunta: 'Why does Charlie put on sun cream?', opciones: ['Because it is very sunny', 'Because it is raining', 'Because he is cold'], correcta: 0 },
+          { frase: 'Laura closes the window because it is noisy outside.', pregunta: 'Why does Laura close the window?', opciones: ['Because it is noisy outside', 'Because it is hot', 'Because she wants to sleep'], correcta: 0 },
+          { frase: 'The dog hides because there is thunder.', pregunta: 'Why does the dog hide?', opciones: ['Because it is hungry', 'Because there is thunder', 'Because it is happy'], correcta: 1 },
+          { frase: 'Sophie turns on the heating because she is cold.', pregunta: 'Why does Sophie turn on the heating?', opciones: ['Because she is cold', 'Because she is hot', 'Because she is going out'], correcta: 0 }
         ]
       }
     ]

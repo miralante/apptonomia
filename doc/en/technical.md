@@ -48,46 +48,42 @@ Spanish, in Easy Reading format.
   represents. Existing Spanish-named files (identifiers or comments) are
   migrated when touched, not all at once.
 
-### 1.1 Hosting and deployment — Cloudflare Pages
+### 1.1 Hosting and deployment
 
-The site is deployed on **Cloudflare Pages** via the Git connector
-(`miralante/apptonomia` → `apptonomia` → branch `master`). Canonical URL:
-**https://apptonomia.pages.dev**.
+The app is served as a static site on **Cloudflare Pages** via the
+Git connector (`miralante/apptonomia` → `apptonomia` → branch
+`master`). Canonical URL: **https://apptonomia.pages.dev**. Operational
+details — dashboard configuration, why there is no `wrangler.toml` or
+`_redirects`, naming requirements, rollback, custom domain setup, and
+the SW note — live in [`CLOUDFLARE.md`](../../CLOUDFLARE.md). Five
+things suffice here:
 
-Key consequences for development:
-
-- **No build step.** The repo root *is* the build output. There is no
-  `npm install`, no bundler, no transformer. Files are served as-is.
-- **No `_redirects`, no `wrangler.toml`, no `functions/`.** Cloudflare Pages
-  already serves every static file with implicit `index.html` lookup per
-  directory, so each section (`site/`, `tools/<slug>/`, `team/`,
-  `settings/`, `about/`, `legal/`) ships its own real `index.html` and
-  Cloudflare resolves `/tools/clock/` to `tools/clock/index.html`
-  automatically. Trying to add a Firebase-era SPA rewrite would cause
-  an "Infinite loop detected in this rule" rejection.
-- **Cache headers live in `_headers`** at the repo root. Cloudflare reads
-  it on every deploy. The HTML entry points and `sw.js` are forced to
-  `must-revalidate`; fingerprinted JS/CSS/images get a 1-year
+- **No build step.** The repo root *is* the build output. No
+  `npm install`, no bundler, no transformer.
+- **No `_redirects`, no `wrangler.toml`, no `functions/`.** Cloudflare
+  Pages already provides implicit `index.html` lookup per directory,
+  so each section (`site/`, `tools/<slug>/`, `team/`, `settings/`,
+  `about/`, `legal/`) ships its own real `index.html` and Cloudflare
+  resolves `/tools/pairs/` to `tools/pairs/index.html` automatically.
+- **Cache headers live in `_headers`** at the repo root. Cloudflare
+  reads it on every deploy. HTML entry points and `sw.js` are forced
+  to `must-revalidate`; fingerprinted JS/CSS/images get a 1-year
   immutable cache. When you change cache policy, edit `_headers`,
   not the dashboard.
 - **`manifest.json` and `sw.js` must use relative paths** (start `./`)
   so the app works on any host without changes.
 - **One-time setup lives in the dashboard**, not in the repo: project
-  name `apptonomia`, framework preset `None`, build output `.`, production
-  branch `master`. The full operational guide is in `CLOUDFLARE.md`.
+  name `apptonomia`, framework preset `None`, build output `.`,
+  production branch `master`.
 
-If you ever need a one-off preview deploy from a dirty worktree without
-pushing, `npx wrangler pages deploy . --project-name apptonomia`
-works without committing any Wrangler config.
-
-- **The service worker never caches or serves redirects.** The `fetch`
-  handler in `sw.js` only caches responses with `status === 200` and
-  returns a small inline "Sin conexión" HTML (no `Location` header) as
-  its offline fallback. This is deliberate: Safari rejects a
-  top-level navigation served by a SW that carries a redirect
-  ("Response served by service worker has redirections") and
-  Cloudflare never returns a redirect for our static files anyway,
-  so caching them would only risk breaking the offline path.
+The service worker **never caches or serves redirects.** The `fetch`
+handler in `sw.js` only caches responses with `status === 200` and
+returns a small inline "Sin conexión" HTML (no `Location` header) as
+its offline fallback. This is deliberate: Safari rejects a top-level
+navigation served by a SW that carries a redirect ("Response served by
+service worker has redirections") and Cloudflare never returns a
+redirect for our static files anyway, so caching them would only risk
+breaking the offline path.
 
 ### 1.2 Cross-browser support — Apple Safari is a first-class target
 
@@ -150,7 +146,7 @@ apptonomia/
 │   ├── js/feedback.js     #   window.App.feedback
 │   ├── js/dinero.js       #   window.App.dinero (euro activities)
 │   └── img/               #   SVG pictograms and PWA icons; the UI uses system icons and emojis first for simple graphical elements; if more is needed, use free images downloaded locally from CC0/public-domain sources
-├── tools/<slug>/          # Level 2: one folder per ACTIVITY (82 current)
+├── tools/<slug>/          # Level 2: one folder per ACTIVITY (69 current)
 │   ├── index.html         #   structure and asset loading
 │   ├── app.js             #   logic only
 │   ├── data.js            #   data only
@@ -181,16 +177,16 @@ no code per module:
 
 | Module | Area | Color token | Activities |
 |---|---|---|---|
-| 🎯 Aiming and hands | Coordination and motor skills | `--mod-coordinacion` (blue) | catch, connect-dots, keyboard-typing, tracing, coloring, piano-keys, builders |
+| 🎯 Aiming and hands | Coordination and motor skills | `--mod-coordinacion` (blue) | catch, connect-dots, tracing, coloring, piano-keys, builders |
 | 📋 My daily routine | Autonomy and home | `--mod-secuencia` (green) | routines, house, situations, safe-chat, bullying-chat, post-or-not, social-safety, signs, times-of-day, what-first, what-do-i-need, where-to-store, task-list, my-agenda, what-to-wear, street, emergencies, phone-numbers, my-details, shopping, shop, healthy-food |
 | 🧠 Memory and attention | Memory and attention | `--mod-memoria` (orange) | pairs, differences, whats-missing, ecos, turns-mirrors, blocks, where-is, path, fit, theatre |
-| 🔢 Thinking and counting | Reasoning and math | `--mod-razonamiento` (teal) | riddles, patterns, numbers, quantities, math-tables, roman-numerals, wallet, clock, stories, odd-one-out, puzzle, oca, tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
+| 🎲 Board games | Rule-based board games | `--mod-razonamiento` (teal) | tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
 | 💬 Language and words | Language and communication | `--mod-lenguaje` (raspberry) | comedy-club, idioms, double-meaning, categories, sentence, words, vocabulary, dictionary, spelling, colored-spelling, word-search |
 | 💜 Emotions | Emotions and relationships | `--mod-emocional` (purple) | emotions, calm, friends, my-body, good-manners, school-rules, self-esteem, resilience, trust-circle |
 | 💗 Body and relationships | Affective-sexual education | `--mod-cuerpo` (terracotta) | sexual-health |
 
 > **Multi-area note**: an activity may work on more than one therapeutic
-> area (for example, `keyboard-typing` works on coordination but also on
+> area (for example, an activity can train coordination as well as
 > language and writing). In the landing it appears **once**, under its
 > **main module**: the one that best represents its primary goal. The
 > therapeutic modules exist for navigation; cross-area work is reflected
@@ -226,7 +222,6 @@ Each activity is **autonomous and isolated**:
 | `$$` | `(selector) → Array<Element>` | Shortcut for `querySelectorAll` (returns real Array) |
 | `hoy` | `() → 'YYYY-MM-DD'` | Today's local date (for daily routines) |
 | `reducedMotion` | `() → boolean` | true if the system requests less animation |
-| `esTactil` | `() → boolean` | true if the device is mainly touch-based (`hover:none, pointer:coarse`) — physical keyboard/mouse not expected. Used by `keyboard-typing` to pre-select the mobile keyboard |
 
 ### 3.2 `window.App.tts` (`tts.js`)
 
@@ -627,7 +622,7 @@ Detailed recipe and considerations (numbers, hours, cultural content) in
   or taxonomic terms; **(b)** stimuli drawn from the person's own environment
   (nearby shop, real morning routine, not abstract examples); **(c)** light
   personalisation where appropriate (stable avatar, name field — see
-  `tools/piano-keys/`, `tools/keyboard-typing/`); **(d)** spaced practice via
+  `tools/piano-keys/`); **(d)** spaced practice via
   `localStorage` (saved level) so the landing can resume the person at the
   level reached, not at a random one. Activities that satisfy the simulation
   contract but skip these anchors are considered "simulation only" and the
@@ -650,14 +645,6 @@ Detailed recipe and considerations (numbers, hours, cultural content) in
   boxes, hidden costs, fake alerts), or exploitative loss aversion
   ("you had 5 ⭐, you lost 2"). Pressure is not a persuasion technique in
   Apptonomia.
-- **Decorative on-screen keyboards** (`keyboard-typing`): visual elements with
-  `pointer-events: none`; the real input is the physical keyboard. **Deliberate
-  exception**: the `movil` keyboard type (`DATA.layouts.movil`, CSS class
-  `.tocable`) is touchable, because on a mobile/tablet there's no physical keyboard
-  to press — the screen is the only real input. It's detected and pre-selected
-  (`App.utils.esTactil()`, based on `matchMedia('(hover:none) and
-  (pointer:coarse)')`) without the user having to choose anything.
-
 ---
 
 ## 8. Hidden routes
@@ -685,7 +672,7 @@ deletes):
 
 - **Reset person data**: `App.storage.remove('locale')` +
   empty the `nombre` field of tools that ask for it (currently
-  `keyboard-typing` and `piano-keys` — keep this list in
+  `piano-keys` — keep this list in
   `settings/app.js` if a new tool requires a name).
 - **Reset entire application**: deletes all `apptonomia:*` keys
   (`App.storage.listaToolIds()` + `remove('locale')`). Equivalent to a first use.
@@ -696,18 +683,25 @@ Public-facing presentation of the project, aimed at journalists, funders, new
 contributors and anyone arriving from the repository or the site who wants to
 understand what Apptonomia is without opening the source code.
 
-Six sections: the project's origin, the six non-negotiable principles
+Seven sections: the project's origin, the six non-negotiable principles
 (autonomy, no pressure, privacy, Easy Reading, accessibility, sober
 technology), how the application is built (static PWA, no backend, single
 `localStorage`, MIT, only external assets are the fonts), the six
-therapeutic areas and the total of 69 activities, authorship, and five
-ways to help (testing, proposing, reviewing, contributing code, spreading
-the word). The footer links to the activity menu and to the team guide,
-but no public link points at it: it is only reached by typing the URL.
+therapeutic areas and the total of 69 activities, the sibling projects
+(Calculia, Okeymoney, Sinonimia, Teclatlon — same team and philosophy,
+independent services with an external link to their own domain),
+authorship, and five ways to help (testing, proposing, reviewing,
+contributing code, spreading the word). The footer links to the activity
+menu and to the team guide, but no public link points at it: it is only
+reached by typing the URL.
 
 Keep it up to date, in both languages, when modules are added or when the
 total activity count changes. Do not add text aimed at the end user here:
 that page is not for them.
+
+Keep the sibling-project list and URLs in sync with `README.md`/
+`README.es.md` and with the equivalent section in `site/index.html` if
+any project in the group changes.
 
 ### 8.4 `/legal/`
 

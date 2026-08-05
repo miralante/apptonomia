@@ -132,6 +132,48 @@
     });
   }
 
+  /**
+   * Registers a flat dict (no locale) under the active locale.
+   * Convenience for strings.<locale>.js files that don't pass an
+   * explicit locale argument: they are loaded conditionally by
+   * their own <script> tag, so we trust the call site to be in
+   * the right locale. Falls back to POR_DEFECTO if no locale is
+   * known yet (e.g. i18n.js loaded before setLocale has run).
+   */
+  function registerFlat(dict) {
+    if (!dict || typeof dict !== 'object') return;
+    var loc;
+    try {
+      loc = typeof locale === 'function' ? locale() : POR_DEFECTO;
+    } catch (e) {
+      loc = POR_DEFECTO;
+    }
+    if (SOPORTADOS.indexOf(loc) === -1) loc = POR_DEFECTO;
+    DICT[loc] = DICT[loc] || {};
+    for (var clave in dict) {
+      if (Object.prototype.hasOwnProperty.call(dict, clave)) {
+        DICT[loc][clave] = dict[clave];
+      }
+    }
+  }
+
+  // Wrap register(): if it's called with a flat dict (no locale and
+  // no {es,en} wrapper), route to registerFlat so existing
+  // strings.<locale>.js keep working without an explicit locale.
+  var _registerOriginal = register;
+  function registerWrapped(dict, locale) {
+    if (typeof locale !== 'string' && dict && typeof dict === 'object') {
+      var hasLocaleWrapper = SOPORTADOS.some(function (loc) {
+        return Object.prototype.hasOwnProperty.call(dict, loc);
+      });
+      if (!hasLocaleWrapper) {
+        registerFlat(dict);
+        return;
+      }
+    }
+    _registerOriginal(dict, locale);
+  }
+
   function buscar(dictLoc, key) {
     var partes = key.split('.');
     var actual = dictLoc;
@@ -142,12 +184,17 @@
     return actual;
   }
 
-  function t(key) {
+  function resolver(key) {
     var loc = locale();
     var valor = buscar(DICT[loc], key);
     if (valor === undefined && loc !== POR_DEFECTO) {
       valor = buscar(DICT[POR_DEFECTO], key);
     }
+    return valor;
+  }
+
+  function t(key) {
+    var valor = resolver(key);
     if (valor === undefined) return key;
     if (Array.isArray(valor)) return valor.join(', ');
     return valor;
@@ -274,19 +321,35 @@
     return texto !== undefined ? texto : estructura;
   }
 
+  /**
+   * Applies data-i18n[-aria] bindings, writing only resolved translations.
+   * A missing key (e.g. a strings.<locale>.js file not registered yet)
+   * is left untouched rather than overwritten with the raw key, so the
+   * default text already present in the markup never flashes into an
+   * ugly identifier like "routines_nombre".
+   */
   function apply(root) {
     root = root || document;
     var nodos = root.querySelectorAll('[data-i18n]');
     for (var i = 0; i < nodos.length; i++) {
-      nodos[i].textContent = t(nodos[i].getAttribute('data-i18n'));
+      var valor = resolver(nodos[i].getAttribute('data-i18n'));
+      if (valor !== undefined) {
+        nodos[i].textContent = Array.isArray(valor) ? valor.join(', ') : valor;
+      }
     }
     var ariaNodos = root.querySelectorAll('[data-i18n-aria]');
     for (var j = 0; j < ariaNodos.length; j++) {
-      ariaNodos[j].setAttribute('aria-label', t(ariaNodos[j].getAttribute('data-i18n-aria')));
+      var valorAria = resolver(ariaNodos[j].getAttribute('data-i18n-aria'));
+      if (valorAria !== undefined) {
+        ariaNodos[j].setAttribute('aria-label', Array.isArray(valorAria) ? valorAria.join(', ') : valorAria);
+      }
     }
     var tituloClave = document.documentElement.getAttribute('data-i18n-title');
     if (tituloClave) {
-      document.title = t(tituloClave) + ' | Apptonomia';
+      var valorTitulo = resolver(tituloClave);
+      if (valorTitulo !== undefined) {
+        document.title = (Array.isArray(valorTitulo) ? valorTitulo.join(', ') : valorTitulo) + ' | Apptonomia';
+      }
     }
   }
 
@@ -313,6 +376,7 @@
     pick: pick,
     data: data,
     datos: datos,
-    apply: apply
+    apply: apply,
+    register: registerWrapped
   };
 })();

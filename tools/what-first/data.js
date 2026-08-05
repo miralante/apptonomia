@@ -37,7 +37,11 @@ const DATA = {
           { picto: '🚪', situacion: 'Llaman al timbre de casa y el adulto está en la ducha. Estás jugando.', opciones: ['Avisar al adulto de que han llamado', 'Abrir la puerta tú solo a cualquiera', 'Seguir jugando sin decir nada'], correcta: 0 },
           { picto: '🔥', situacion: 'Notas olor a quemado en casa. Estás a punto de empezar tu juego favorito.', opciones: ['Avisar enseguida a un adulto', 'Empezar el juego primero', 'Abrir la ventana y no decir nada'], correcta: 0 },
           { picto: '🧃', situacion: 'Se te ha caído zumo en el sofá. Quieres seguir viendo la película.', opciones: ['Limpiarlo o avisar ahora', 'Taparlo con un cojín', 'Seguir viendo la película'], correcta: 0 },
-          { picto: '🚽', situacion: 'Tienes muchas ganas de ir al baño. Están a punto de dar tu dibujo favorito en la tele.', opciones: ['Ir al baño primero', 'Aguantar hasta que acabe', 'Cruzar las piernas y esperar'], correcta: 0 }
+          { picto: '🚽', situacion: 'Tienes muchas ganas de ir al baño. Están a punto de dar tu dibujo favorito en la tele.', opciones: ['Ir al baño primero', 'Aguantar hasta que acabe', 'Cruzar las piernas y esperar'], correcta: 0 },
+          { picto: '🩸', situacion: 'Tu hermana se ha hecho un corte y sangra un poco. Tú estás terminando un dibujo.', opciones: ['Ir a ayudarla ahora', 'Terminar el dibujo primero', 'Decirle que espere'], correcta: 0 },
+          { picto: '🧯', situacion: 'Ves humo saliendo de un enchufe. Estás jugando con la consola.', opciones: ['Avisar a un adulto ya', 'Terminar la partida', 'Acercarte a mirar de cerca'], correcta: 0 },
+          { picto: '🐾', situacion: 'Tu gato se ha quedado encerrado fuera y araña la puerta. Estás merendando.', opciones: ['Dejarlo entrar ahora', 'Terminar de merendar', 'Decir que entre solo'], correcta: 0 },
+          { picto: '💧', situacion: 'Se está desbordando la bañera y tú estás viendo dibujos.', opciones: ['Cerrar el grifo ahora', 'Terminar los dibujos', 'Esperar a que se desborde del todo'], correcta: 0 }
         ]
       },
       {
@@ -57,7 +61,11 @@ const DATA = {
           { picto: '🥶', situacion: 'La ventana se ha quedado abierta y entra frío; tu abuela está sentada al lado. Estás entretenido con un puzle.', opciones: ['Cerrar la ventana primero', 'Terminar el puzle primero', 'Dejar la ventana abierta'], correcta: 0 },
           { picto: '📦', situacion: 'Esperas un paquete importante y el mensajero llama a la puerta. Estás merendando.', opciones: ['Atender al mensajero ahora', 'Terminar la merienda primero', 'Dejar que se vaya y ya volverá'], correcta: 0 },
           { picto: '🧊', situacion: 'La compra con congelados lleva un rato en la entrada. Quieres ver un capítulo de tu serie.', opciones: ['Guardar los congelados primero', 'Ver el capítulo primero', 'Dejar la compra para la noche'], correcta: 0 },
-          { picto: '☔', situacion: 'Hay ropa tendida fuera y empieza a llover. Estabas descansando en el sofá.', opciones: ['Recoger la ropa ahora', 'Esperar a ver si para de llover', 'Dejar que se moje'], correcta: 0 }
+          { picto: '☔', situacion: 'Hay ropa tendida fuera y empieza a llover. Estabas descansando en el sofá.', opciones: ['Recoger la ropa ahora', 'Esperar a ver si para de llover', 'Dejar que se moje'], correcta: 0 },
+          { picto: '📮', situacion: 'Tienes que echar una carta importante antes de que cierre correos, y también te apetece terminar un capítulo de tu libro.', opciones: ['Ir a echar la carta primero', 'Terminar el capítulo primero', 'Dejarlo para mañana'], correcta: 0 },
+          { picto: '🔋', situacion: 'El móvil de un familiar se está quedando sin batería y lo necesita en media hora. Tú quieres terminar de jugar.', opciones: ['Ponerlo a cargar ahora', 'Terminar de jugar primero', 'Decir que ya se cargará solo'], correcta: 0 },
+          { picto: '🧺', situacion: 'Tienes ropa tendida y ves nubes de tormenta acercándose. Querías seguir leyendo.', opciones: ['Recoger la ropa ahora', 'Seguir leyendo un rato más', 'Esperar a ver si escampa'], correcta: 0 },
+          { picto: '📞', situacion: 'Tienes que llamar para confirmar una cita importante antes de que cierren, y también quieres terminar de ver un vídeo.', opciones: ['Llamar ahora', 'Terminar el vídeo primero', 'Llamar mañana'], correcta: 0 }
         ]
       }
     ]
@@ -84,7 +92,11 @@ const DATA = {
           { picto: '🚪', situacion: 'The doorbell rings and the adult is in the shower. You are playing.', opciones: ['Tell the adult someone is at the door', 'Open the door to anyone by yourself', 'Keep playing and say nothing'], correcta: 0 },
           { picto: '🔥', situacion: 'You smell something burning at home. You are about to start your favorite game.', opciones: ['Tell an adult right away', 'Start the game first', 'Open the window and say nothing'], correcta: 0 },
           { picto: '🧃', situacion: 'You spilled juice on the sofa. You want to keep watching the movie.', opciones: ['Clean it up or tell someone now', 'Cover it with a cushion', 'Keep watching the movie'], correcta: 0 },
-          { picto: '🚽', situacion: 'You really need the toilet. Your favorite cartoon is about to start on TV.', opciones: ['Go to the toilet first', 'Hold it until it ends', 'Cross your legs and wait'], correcta: 0 }
+          { picto: '🚽', situacion: 'You really need the toilet. Your favorite cartoon is about to start on TV.', opciones: ['Go to the toilet first', 'Hold it until it ends', 'Cross your legs and wait'], correcta: 0 },
+          { picto: '🩸', situacion: 'Your sister has a small cut and it is bleeding a little. You are finishing a drawing.', opciones: ['Go help her now', 'Finish the drawing first', 'Tell her to wait'], correcta: 0 },
+          { picto: '🧯', situacion: 'You see smoke coming from a socket. You are playing a video game.', opciones: ['Tell an adult right away', 'Finish the round', 'Go closer to look'], correcta: 0 },
+          { picto: '🐾', situacion: 'Your cat got locked outside and is scratching the door. You are having a snack.', opciones: ['Let it in now', 'Finish your snack', 'Say it can come in by itself'], correcta: 0 },
+          { picto: '💧', situacion: 'The bathtub is overflowing and you are watching cartoons.', opciones: ['Turn off the tap now', 'Finish watching cartoons', 'Wait until it overflows completely'], correcta: 0 }
         ]
       },
       {
@@ -104,7 +116,11 @@ const DATA = {
           { picto: '🥶', situacion: 'The window was left open and cold air is coming in; your grandma is sitting next to it. You are busy with a puzzle.', opciones: ['Close the window first', 'Finish the puzzle first', 'Leave the window open'], correcta: 0 },
           { picto: '📦', situacion: 'You are expecting an important parcel and the courier rings the bell. You are having a snack.', opciones: ['Answer the courier now', 'Finish your snack first', 'Let them leave and come back another day'], correcta: 0 },
           { picto: '🧊', situacion: 'The shopping with frozen food has been sitting by the door for a while. You want to watch an episode of your show.', opciones: ['Put the frozen food away first', 'Watch the episode first', 'Leave the shopping until tonight'], correcta: 0 },
-          { picto: '☔', situacion: 'There are clothes drying outside and it starts to rain. You were resting on the sofa.', opciones: ['Bring the clothes in now', 'Wait to see if the rain stops', 'Let them get wet'], correcta: 0 }
+          { picto: '☔', situacion: 'There are clothes drying outside and it starts to rain. You were resting on the sofa.', opciones: ['Bring the clothes in now', 'Wait to see if the rain stops', 'Let them get wet'], correcta: 0 },
+          { picto: '📮', situacion: 'You need to post an important letter before the post office closes, and you also feel like finishing a chapter of your book.', opciones: ['Go post the letter first', 'Finish the chapter first', 'Leave it for tomorrow'], correcta: 0 },
+          { picto: '🔋', situacion: "A family member's phone is running low on battery and they need it in half an hour. You want to keep playing.", opciones: ['Put it to charge now', 'Finish playing first', 'Say it will charge on its own'], correcta: 0 },
+          { picto: '🧺', situacion: 'You have clothes drying outside and you see storm clouds approaching. You wanted to keep reading.', opciones: ['Bring the clothes in now', 'Keep reading a while longer', 'Wait to see if it clears up'], correcta: 0 },
+          { picto: '📞', situacion: 'You need to call to confirm an important appointment before they close, and you also want to finish watching a video.', opciones: ['Call now', 'Finish the video first', 'Call tomorrow'], correcta: 0 }
         ]
       }
     ]

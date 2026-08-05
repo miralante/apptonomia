@@ -61,8 +61,8 @@
     "module2Intro": 'Daily-living activities, household tasks, organization and everyday-situation behavior.',
     "module3Title": '🧠 Memory and attention',
     "module3Intro": 'Visual, auditory and short-term memory; sustained attention; global and detail perception.',
-    "module4Title": '🔢 Thinking and counting — Reasoning and mathematics',
-    "module4Intro": 'Patterns, deduction, ordering, numbers, money, time, measurement and rule-based games.',
+    "module4Title": '🎲 Board games',
+    "module4Intro": 'Six classic board games, with levels and an opponent that plays gently.',
     "module5Title": '💬 Language and words — Language and communication',
     "module5Intro": 'Vocabulary, categories, reading comprehension, figurative language and humor.',
     "module6Title": '💜 Emotions — Emotions and relationships',
@@ -81,12 +81,6 @@
         "does": 'Touches numbers in order (5, 7 or 9 depending on the level); each correct tap draws a line to the next dot and, once finished, a closed shape appears (house, boat, star, arrow, fish, rocket...).',
         "works": 'Gesture precision, following a numeric sequence, motor planning.',
         "daily": 'Let them connect the dots in real puzzle books or draw by following numbers on paper.'
-      },
-      "keyboard-typing": {
-        "name": 'Keyboard',
-        "does": 'Guided typing on the physical keyboard, letter by letter.',
-        "works": 'Fine motor skills, writing, laterality (which hand and finger for each key), real computer use.',
-        "daily": 'Let them type short, real messages (a list, a note to the family) on the computer.'
       },
       "tracing": {
         "name": 'Traces',
@@ -321,78 +315,6 @@
         "does": 'Sets up a scene by placing characters in front of or behind the backdrop that the sentence describes.',
         "works": 'Depth and planes (background / foreground), in-front-of/behind vocabulary, understanding spatial instructions.',
         "daily": 'Act out real scenes with toys: "put the bear in front of the box."'
-      },
-      "riddles": {
-        "name": 'Riddles',
-        "does": 'Listens to or reads a riddle and chooses the answer.',
-        "works": 'Inference, deduction, comprehension.',
-        "daily": 'Tell riddles out loud at family meals.'
-      },
-      "patterns": {
-        "name": 'Patterns',
-        "does": 'Completes the series: what comes next?',
-        "works": 'Logical reasoning, series of shapes, colors and numbers.',
-        "daily": 'Point out real patterns (tiles, striped clothing) and ask what comes next.'
-      },
-      "numbers": {
-        "name": 'Numbers',
-        "does": 'Counts, reads large numbers, adds, subtracts, multiplies and measures, with digits colored by place value.',
-        "works": 'Numeracy, even/odd numbers, negative numbers (with the elevator), place value (with trades of 10 and the ×10 ladder up to one trillion), fractions, decimals, mental math, measurement.',
-        "daily": 'Let them count and pay for real things using large numbers.'
-      },
-      "quantities": {
-        "name": 'Quantities',
-        "does": 'Moves a bar to choose a little or a lot, raise or lower an amount, round to the nearest ten, and find the number in between.',
-        "works": 'Sense of quantity, comparison, estimation, rounding and spatial relations on the number line.',
-        "daily": 'Use a ruler, a measuring jug or real prices and ask: "is that a little or a lot?", "how much is left?" or "what number is in between?"'
-      },
-      "math-tables": {
-        "name": 'Math Tables',
-        "does": 'Five steps with colored dots: add and subtract 1, 2, 3, 5 or 10 in your head (fives and tens are counted in rows), addition tables, breaking numbers apart by making 10 first (7 + 5 = 7 + 3 + 2), multiplication tables, and dividing by 10 by counting rows.',
-        "works": 'Progressive mental arithmetic, counting in fives and tens, addition as joining, additive decomposition (bridging through 10), multiplication as repetition and division as sharing into rows, with visual counting support.',
-        "daily": 'Group real objects (chickpeas, buttons) by color and count together: "3 groups of 4, how many are there?".'
-      },
-      "roman-numerals": {
-        "name": 'Roman Numerals',
-        "does": 'Four levels: learns the symbols I, V, X and the numbers 1 to 21, then uses those numbers to read and write which century something is from ("15th century" → XV).',
-        "works": 'Reading Roman numerals, applied to the most common real case (centuries on museum plaques, monuments and history books). One variable changes per level: range, then the "century" context, then the direction of the question.',
-        "daily": 'Point out a century written in Roman numerals on a real plaque, book cover or monument and decode it together.'
-      },
-      "wallet": {
-        "name": 'The Coin Purse',
-        "does": 'A menu with five activities using physical money (coins and bills drawn to look real), in the order of a real shopping cycle. "How Much Is There?": count the money on the table and choose the total. "Pay the Exact Amount": tap money up to the exact price, with a 💡 button that shows how to pay from largest to smallest. "What Do I Pay With?": when the exact amount is not available, choose money that covers it — and see the change given back as coins. "Is the Change Right?": count what was given back and decide if it is correct (protects against mistakes and being cheated). "The Piggy Bank": work out how much more is needed to buy something. All with a hint on the first mistake and an explanation generated from the actual case.',
-        "works": 'Recognizing coins and bills, counting money, functional money handling, adding and subtracting amounts, payment strategy, checking change, and savings planning.',
-        "daily": 'Let them pay cash for small real purchases, check the change, and save for something specific with a real piggy bank.'
-      },
-      "clock": {
-        "name": 'The Clock',
-        "does": 'Reads the time and links it to moments of the day.',
-        "works": 'Reading a clock, time orientation, daily-schedule routines.',
-        "daily": 'Ask them the time on the real clock at home several times a day.'
-      },
-      "stories": {
-        "name": 'Stories',
-        "does": 'Orders panels: what happened first?',
-        "works": 'Time sequencing, cause and effect, ordering ideas.',
-        "daily": 'Ask them to tell what they did today in order, start to finish.'
-      },
-      "odd-one-out": {
-        "name": 'Odd One Out',
-        "does": 'Finds the item that does not belong in the group.',
-        "works": 'Thematic coherence, categorization, reasoning.',
-        "daily": 'Play at finding the object that does not belong in a real drawer or shelf.'
-      },
-      "puzzle": {
-        "name": 'Puzzle',
-        "does": 'Places each piece where it belongs to rebuild an image.',
-        "works": 'Spatial orientation, global perception, piece assembly.',
-        "daily": 'Keep simple physical puzzles at home to build together.'
-      },
-      "oca": {
-        "name": 'The Goose Game',
-        "does": 'Rolls the dice and moves along the board with mini-challenges.',
-        "works": 'Rule-based board game, turn-taking, counting.',
-        "daily": 'Play real rounds of the goose game or another dice board game.'
       },
       "tic-tac-toe": {
         "name": 'Tic-Tac-Toe',

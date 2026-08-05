@@ -315,10 +315,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     pantallaInicio.classList.remove('oculto');
   });
 
-  $('#btnEstado').addEventListener('click', function () {
-  });
-  $('#btnEscucharExplicacion').addEventListener('click', function () {
-  });
 
   pintarNiveles();
   pintarEstrellas();

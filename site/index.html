@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../assets/css/tokens.css">
   <link rel="stylesheet" href="../assets/css/base.css">
   <link rel="stylesheet" href="../assets/css/components.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/site/styles.css">
 </head>
 <body>
   <div class="container">
@@ -33,10 +33,33 @@
       <a href="#mod-secuencia" class="ancla-modulo" style="--acento: var(--mod-secuencia);"><span data-i18n="modSecuencia">📋 Mi día a día</span></a>
       <a href="#mod-emocional" class="ancla-modulo" style="--acento: var(--mod-emocional);"><span data-i18n="modEmocional">💜 Emociones</span></a>
       <a href="#mod-memoria" class="ancla-modulo" style="--acento: var(--mod-memoria);"><span data-i18n="modMemoria">🧠 Memoria y atención</span></a>
-      <a href="#mod-razonamiento" class="ancla-modulo" style="--acento: var(--mod-razonamiento);"><span data-i18n="modRazonamiento">🔢 Pensar y contar</span></a>
+      <a href="#mod-razonamiento" class="ancla-modulo" style="--acento: var(--mod-razonamiento);"><span data-i18n="modRazonamiento">🎲 Juegos de mesa</span></a>
       <a href="#mod-lenguaje" class="ancla-modulo" style="--acento: var(--mod-lenguaje);"><span data-i18n="modLenguaje">💬 Lenguaje y palabras</span></a>
       <a href="#mod-coordinacion" class="ancla-modulo" style="--acento: var(--mod-coordinacion);"><span data-i18n="modCoordinacion">🎯 Puntería y manos</span></a>
       <a href="#mod-cuerpo" class="ancla-modulo" style="--acento: var(--mod-cuerpo);"><span data-i18n="modCuerpo">💗 Cuerpo y relaciones</span></a>
+    </nav>
+
+    <nav class="anclas-hermanas" aria-label="Ir a otra aplicación">
+      <a href="https://calculia.miralante.workers.dev" class="ancla-hermana" target="_blank" rel="noopener noreferrer">
+        <span aria-hidden="true">🔢</span>
+        <span data-i18n="calculia_nombre">Calculia</span>
+        <span class="sr-only" data-i18n="otraAppLinkHint">Se abre en otra aplicación, en una pestaña nueva.</span>
+      </a>
+      <a href="https://okeymoney.miralante.workers.dev" class="ancla-hermana" target="_blank" rel="noopener noreferrer">
+        <span aria-hidden="true">💶</span>
+        <span data-i18n="okeymoney_nombre">Okeymoney</span>
+        <span class="sr-only" data-i18n="otraAppLinkHint">Se abre en otra aplicación, en una pestaña nueva.</span>
+      </a>
+      <a href="https://sinonimia.miralante.workers.dev" class="ancla-hermana" target="_blank" rel="noopener noreferrer">
+        <span aria-hidden="true">📖</span>
+        <span data-i18n="sinonimia_nombre">Sinonimia</span>
+        <span class="sr-only" data-i18n="otraAppLinkHint">Se abre en otra aplicación, en una pestaña nueva.</span>
+      </a>
+      <a href="https://teclatlon.miralante.workers.dev" class="ancla-hermana" target="_blank" rel="noopener noreferrer">
+        <span aria-hidden="true">⌨️</span>
+        <span data-i18n="teclatlon_nombre">Teclatlon</span>
+        <span class="sr-only" data-i18n="otraAppLinkHint">Se abre en otra aplicación, en una pestaña nueva.</span>
+      </a>
     </nav>
 
     <main class="pila modulos">
@@ -289,68 +312,8 @@
 
       <!-- Módulo: Razonamiento y matemáticas (académico) -->
       <section class="modulo" id="mod-razonamiento" style="--acento: var(--mod-razonamiento); --acento-suave: var(--mod-razonamiento-suave);">
-        <h2><span aria-hidden="true" data-i18n="modRazonamiento">🔢 Pensar y contar</span></h2>
+        <h2><span aria-hidden="true" data-i18n="modRazonamiento">🎲 Juegos de mesa</span></h2>
         <div class="grid-tarjetas">
-          <a href="../tools/riddles/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🧩</span>
-            <span class="nombre" data-i18n="riddles_nombre">Adivinanzas</span>
-            <span class="detalle" data-i18n="riddles_detalle">¿Qué es? Piensa y elige.</span>
-          </a>
-          <a href="../tools/patterns/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🔵</span>
-            <span class="nombre" data-i18n="patterns_nombre">Patrones</span>
-            <span class="detalle" data-i18n="patterns_detalle">¿Qué sigue ahora?</span>
-          </a>
-          <a href="../tools/numbers/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🧮</span>
-            <span class="nombre" data-i18n="numbers_nombre">Los Números</span>
-            <span class="detalle" data-i18n="numbers_detalle">Cuenta, suma y mide.</span>
-          </a>
-          <a href="../tools/quantities/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">↔️</span>
-            <span class="nombre" data-i18n="quantities_nombre">Cantidades</span>
-            <span class="detalle" data-i18n="quantities_detalle">Practica poco, mucho y aproximar.</span>
-          </a>
-          <a href="../tools/math-tables/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🔢</span>
-            <span class="nombre" data-i18n="mathtables_nombre">Las Tablas</span>
-            <span class="detalle" data-i18n="mathtables_detalle">Cuenta, suma, multiplica y divide con colores.</span>
-          </a>
-          <a href="../tools/roman-numerals/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🏛️</span>
-            <span class="nombre" data-i18n="romannumerals_nombre">Números Romanos</span>
-            <span class="detalle" data-i18n="romannumerals_detalle">Aprende a reconocer los siglos.</span>
-          </a>
-          <a href="../tools/wallet/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">💶</span>
-            <span class="nombre" data-i18n="wallet_nombre">El Monedero</span>
-            <span class="detalle" data-i18n="wallet_detalle">Paga el precio justo.</span>
-          </a>
-          <a href="../tools/clock/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🕐</span>
-            <span class="nombre" data-i18n="clock_nombre">El Reloj</span>
-            <span class="detalle" data-i18n="clock_detalle">¿Qué hora es?</span>
-          </a>
-          <a href="../tools/stories/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">📖</span>
-            <span class="nombre" data-i18n="stories_nombre">Historias</span>
-            <span class="detalle" data-i18n="stories_detalle">Ordena lo que pasó primero.</span>
-          </a>
-          <a href="../tools/odd-one-out/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🔎</span>
-            <span class="nombre" data-i18n="oddoneout_nombre">¿Qué no encaja?</span>
-            <span class="detalle" data-i18n="oddoneout_detalle">Encuentra el que sobra.</span>
-          </a>
-          <a href="../tools/puzzle/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🧩</span>
-            <span class="nombre" data-i18n="puzzle_nombre">Puzzle</span>
-            <span class="detalle" data-i18n="puzzle_detalle">Coloca cada pieza en su sitio.</span>
-          </a>
-          <a href="../tools/oca/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">🦢</span>
-            <span class="nombre" data-i18n="oca_nombre">La Oca</span>
-            <span class="detalle" data-i18n="oca_detalle">Tira el dado y avanza.</span>
-          </a>
           <a href="../tools/tic-tac-toe/index.html" class="tarjeta">
             <span class="picto" aria-hidden="true">⭕</span>
             <span class="nombre" data-i18n="tictactoe_nombre">Tres en Raya</span>
@@ -460,11 +423,6 @@
             <span class="nombre" data-i18n="connectdots_nombre">Une los Puntos</span>
             <span class="detalle" data-i18n="connectdots_detalle">Une los números en orden.</span>
           </a>
-          <a href="../tools/keyboard-typing/index.html" class="tarjeta">
-            <span class="picto" aria-hidden="true">⌨️</span>
-            <span class="nombre" data-i18n="teclado_nombre">Teclado</span>
-            <span class="detalle" data-i18n="teclado_detalle">Aprende a escribir.</span>
-          </a>
           <a href="../tools/piano-keys/index.html" class="tarjeta">
             <span class="picto" aria-hidden="true">🎹</span>
             <span class="nombre" data-i18n="piano_nombre">Piano</span>
@@ -511,8 +469,8 @@
   <script src="../assets/js/i18n.js"></script>
   <script src="../assets/js/tts.js"></script>
   <script src="../assets/js/storage.js"></script>
-  <script src="strings.es.js"></script>
-  <script src="strings.en.js"></script>
+  <script src="/site/strings.es.js"></script>
+  <script src="/site/strings.en.js"></script>
   <script>
     (function () {
       'use strict';

@@ -297,8 +297,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   $('#btnVolverReconocer').addEventListener('click', irMenu);
   $('#btnVolverLlamada').addEventListener('click', irMenu);
   btnSiguienteR.addEventListener('click', siguienteReconocer);
-  $('#btnEscucharExplicacionReconocer').addEventListener('click', function () {
-  });
   $('#btnEscucharReconocer').addEventListener('click', function () {
     App.tts.speak(itemsReconocer[idxR].situacion);
   });

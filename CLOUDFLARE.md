@@ -1,5 +1,16 @@
 # Cloudflare Pages — Apptonomia
 
+> **Production branch & automatic deploy.** Apptonomia deploys
+> **automatically on every push to `master`** via the **Cloudflare
+> Git connector** configured in the Cloudflare dashboard. The CI
+> workflow (`.github/workflows/ci.yml`) runs structural, i18n and
+> secrets checks on every push and PR but does **not** deploy. An
+> **optional** deploy workflow (`.github/workflows/pages-deploy.yml`)
+> exists as a self-hosted fallback: it only runs if the
+> `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` GitHub secrets
+> are set; otherwise it is a no-op. The recommended path is the
+> Cloudflare Git connector, which needs no GitHub secrets.
+
 **Canonical URL:** https://apptonomia.pages.dev
 
 Apptonomia is deployed on **Cloudflare Pages**, using its built-in
@@ -41,9 +52,9 @@ settings; the repo holds the static assets and the CI that gates them.
 
 Cloudflare Pages serves every static file in the repo automatically,
 including the implicit `index.html` lookup for any directory: visiting
-`/tools/clock/` resolves to `tools/clock/index.html`, `/team/` to
+`/tools/pairs/` resolves to `tools/pairs/index.html`, `/team/` to
 `team/index.html`, and so on, without any rewrite rule. Every section
-of Apptonomia (`site/`, `tools/<slug>/` for all 82 activities,
+of Apptonomia (`site/`, `tools/<slug>/` for all 69 activities,
 `team/`, `about/`, `settings/`, `legal/`) ships its own real
 `index.html`, so a catch-all rewrite is unnecessary and would in fact
 break: the previous version had `/* /index.html 200` (Firebase-era
@@ -159,8 +170,8 @@ dashboard once `apptonomia.pages.dev` is live:
 
 - `manifest.json` and `sw.js` use relative paths, so they work on any host
   without changes.
-- Deep links such as `https://apptonomia.pages.dev/tools/clock/` resolve
-  to the real `tools/clock/index.html` automatically (Cloudflare's
+- Deep links such as `https://apptonomia.pages.dev/tools/pairs/` resolve
+  to the real `tools/pairs/index.html` automatically (Cloudflare's
   implicit `index.html` lookup per directory), so no rewrite rule is
   needed for them.
 - Long-lived cache for fingerprinted JS/CSS/images is safe; the HTML

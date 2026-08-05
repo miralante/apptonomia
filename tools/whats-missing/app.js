@@ -22,7 +22,6 @@
   var feedbackEl = $('#feedback');
   var explicacionWrap = $('#explicacionWrap');
   var explicacionEl = $('#explicacion');
-  var btnEscucharExplicacion = $('#btnEscucharExplicacion');
   var btnListo = $('#btnListo');
   var btnSiguiente = $('#btnSiguiente');
   var progressFill = $('#progressFill');
@@ -210,8 +209,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   /* Events */
   btnListo.addEventListener('click', ocultarUno);
   btnSiguiente.addEventListener('click', siguiente);
-  btnEscucharExplicacion.addEventListener('click', function () {
-  });
   $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {
     pantallaFinal.classList.add('oculto');

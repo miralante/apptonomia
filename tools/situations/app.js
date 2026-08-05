@@ -19,8 +19,6 @@
   var feedbackEl = $('#feedback');
   var explicacionWrap = $('#explicacionWrap');
   var explicacionEl = $('#explicacion');
-  var btnEscucharExplicacion = $('#btnEscucharExplicacion');
-  var btnEscuchar = $('#btnEscuchar');
   var btnSiguiente = $('#btnSiguiente');
   var progressFill = $('#progressFill');
   var progressText = $('#progressText');
@@ -154,7 +152,6 @@
 
   function siguiente() {
     idx += 1;
-    App.tts.stop();
     if (idx >= banco().porRonda) {
       terminarRonda();
     } else {
@@ -174,12 +171,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   }
 
   /* Events */
-  btnEscuchar.addEventListener('click', function () {
-    App.tts.speak(items[idx].situacion);
-  });
   btnSiguiente.addEventListener('click', siguiente);
-  btnEscucharExplicacion.addEventListener('click', function () {
-  });
   $('#btnRepetir').addEventListener('click', function () { iniciarRonda(nivel); });
   $('#btnOtroNivel').addEventListener('click', function () {
     pantallaFinal.classList.add('oculto');

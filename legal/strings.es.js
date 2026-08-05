@@ -30,7 +30,7 @@
     "dataItem1Label": 'Progreso del juego',
     "dataItem1Text": 'las estrellas ganadas y los niveles completados de cada actividad.',
     "dataItem2Label": 'Nombre (opcional)',
-    "dataItem2Text": 'si lo escribes en las actividades Teclado o Piano, para que aparezca en pantalla mientras practicas.',
+    "dataItem2Text": 'si lo escribes en la actividad Piano, para que aparezca en pantalla mientras practicas.',
     "dataItem3Label": 'Datos de contacto (opcional)',
     "dataItem3Text": 'si los escribes en la actividad Mis Datos (dirección y teléfonos), para practicar a recordarlos. Solo se guardan en este dispositivo.',
     "dataP3": 'Nunca guardamos: fallos, tiempo empleado, número de intentos, comparaciones con otras personas ni historiales de uso detallados.',

@@ -43,7 +43,11 @@ const DATA = {
           { picto: '😌', situacion: 'Tu amiga cierra los ojos y descansa tranquila en el jardín.', opciones: ['Tranquilo', 'Asustado', 'Enfadado'], correcta: 0 },
           { picto: '😊', situacion: 'Tu amigo se ríe mucho jugando con sus amigos.', opciones: ['Contento', 'Triste', 'Cansado'], correcta: 0 },
           { picto: '😢', situacion: 'Tu amiga tiene los ojos llorosos porque extraña a su familia.', opciones: ['Triste', 'Enfadado', 'Tranquilo'], correcta: 0 },
-          { picto: '😠', situacion: 'Tu amigo golpea la mesa porque algo no le sale bien.', opciones: ['Enfadado', 'Asustado', 'Contento'], correcta: 0 }
+          { picto: '😠', situacion: 'Tu amigo golpea la mesa porque algo no le sale bien.', opciones: ['Enfadado', 'Asustado', 'Contento'], correcta: 0 },
+          { picto: '😊', situacion: 'Tu amigo consigue por fin algo que llevaba tiempo intentando y da saltos de alegría.', opciones: ['Contento', 'Triste', 'Enfadado'], correcta: 0 },
+          { picto: '😢', situacion: 'A tu amiga se le ha mojado el dibujo que había hecho con tanto cariño.', opciones: ['Triste', 'Contento', 'Enfadado'], correcta: 0 },
+          { picto: '😠', situacion: 'Tu amigo cierra los puños porque le han interrumpido mientras hablaba.', opciones: ['Enfadado', 'Tranquilo', 'Cansado'], correcta: 0 },
+          { picto: '😴', situacion: 'Tu amiga apenas puede mantener los ojos abiertos después de un día muy largo.', opciones: ['Cansado', 'Sorprendido', 'Enfadado'], correcta: 0 }
         ]
       },
       {
@@ -66,7 +70,11 @@ const DATA = {
           { picto: '🥱', situacion: 'Tu amiga no tiene nada que hacer en casa toda la tarde.', opciones: ['Aburrido', 'Enfadado', 'Avergonzado'], correcta: 0 },
           { picto: '😲', situacion: 'Tu amigo gana un premio con el que ni siquiera soñaba.', opciones: ['Sorprendido', 'Triste', 'Aburrido'], correcta: 0 },
           { picto: '😳', situacion: 'Tu amiga olvida las palabras de una canción delante de todos.', opciones: ['Avergonzado', 'Contento', 'Sorprendido'], correcta: 0 },
-          { picto: '🥱', situacion: 'Tu amigo repite el mismo juego una y otra vez y ya no le divierte.', opciones: ['Aburrido', 'Asustado', 'Tranquilo'], correcta: 0 }
+          { picto: '🥱', situacion: 'Tu amigo repite el mismo juego una y otra vez y ya no le divierte.', opciones: ['Aburrido', 'Asustado', 'Tranquilo'], correcta: 0 },
+          { picto: '😲', situacion: 'Tu amigo ve que su equipo ha ganado el partido en el último segundo.', opciones: ['Sorprendido', 'Aburrido', 'Triste'], correcta: 0 },
+          { picto: '😳', situacion: 'A tu amiga se le nota la comida en la cara y nadie se lo dice hasta el final.', opciones: ['Avergonzado', 'Sorprendido', 'Contento'], correcta: 0 },
+          { picto: '🥱', situacion: 'Tu amigo lleva toda la tarde sin nada que hacer y mira el techo.', opciones: ['Aburrido', 'Sorprendido', 'Avergonzado'], correcta: 0 },
+          { picto: '😳', situacion: 'Tu amiga tropieza al subir al escenario delante de todo el público.', opciones: ['Avergonzado', 'Tranquilo', 'Cansado'], correcta: 0 }
         ]
       },
       {
@@ -89,7 +97,11 @@ const DATA = {
           { picto: '😔', situacion: 'Un amigo se queda solo en el recreo.', opciones: ['Otro amigo le invita a jugar con el grupo', 'Nadie le dice nada', 'Se ríen de que esté solo'], correcta: 0 },
           { picto: '🎭', situacion: 'Dos amigas quieren el mismo disfraz para la fiesta.', opciones: ['Buscan otra opción entre las dos, juntas', 'Se pelean por el disfraz', 'Una se lo queda sin decir nada'], correcta: 0 },
           { picto: '🚶‍♂️', situacion: 'Un amigo empuja sin querer a otro sin darse cuenta.', opciones: ['Se disculpa enseguida', 'Sigue caminando sin decir nada', 'Se ríe de lo que pasó'], correcta: 0 },
-          { picto: '📖', situacion: 'Dos amigos no están de acuerdo con el final de una historia que inventan juntos.', opciones: ['Juntan las dos ideas en una nueva', 'Cada uno cuenta su versión, enfadado', 'Uno decide todo sin preguntar al otro'], correcta: 0 }
+          { picto: '📖', situacion: 'Dos amigos no están de acuerdo con el final de una historia que inventan juntos.', opciones: ['Juntan las dos ideas en una nueva', 'Cada uno cuenta su versión, enfadado', 'Uno decide todo sin preguntar al otro'], correcta: 0 },
+          { picto: '🧩', situacion: 'Dos amigos quieren montar el mismo puzle a la vez.', opciones: ['Se turnan para poner las piezas', 'Se pelean por las piezas', 'Uno se lleva el puzle entero'], correcta: 0 },
+          { picto: '🎧', situacion: 'Un amigo pone la música muy alta y molesta a otro que quiere leer.', opciones: ['Baja el volumen cuando se lo piden', 'Sube el volumen todavía más', 'Se enfada por que le digan algo'], correcta: 0 },
+          { picto: '🍕', situacion: 'Dos amigos quieren el último trozo de pizza.', opciones: ['Lo comparten a partes iguales', 'Se pelean por él', 'Uno lo coge sin decir nada'], correcta: 0 },
+          { picto: '📱', situacion: 'Un amigo usa el móvil de otro sin pedirlo primero.', opciones: ['Pide perdón y pregunta la próxima vez', 'Dice que no pasa nada por hacerlo', 'Se enfada porque le llaman la atención'], correcta: 0 }
         ]
       },
       {
@@ -112,7 +124,11 @@ const DATA = {
           { picto: '📝', situacion: 'Un compañero se equivoca en un trabajo en grupo y los demás se enfadan.', opciones: ['El grupo le ayuda a corregirlo entre todos', 'Le culpan delante de todos', 'Le excluyen del trabajo'], correcta: 0 },
           { picto: '🤝', situacion: 'Tienes un conflicto con un amigo y no sabéis cómo resolverlo solos.', opciones: ['Pedís ayuda a un adulto de confianza', 'Seguís enfadados sin hablar nunca más', 'Dejáis que el problema crezca sin decir nada'], correcta: 0 },
           { picto: '😟', situacion: 'Un amigo está muy nervioso porque sus padres discuten en casa.', opciones: ['Le escuchas y le acompañas sin juzgar', 'Le dices que no es tu problema', 'Se lo cuentas a otros sin que él lo sepa'], correcta: 0 },
-          { picto: '🤗', situacion: 'Dos amigos se disculpan después de una pelea y quieren seguir siendo amigos.', opciones: ['Os dais una segunda oportunidad y seguís jugando juntos', 'Decides que ya no puede ser tu amigo nunca más', 'Sigues recordándole la pelea todo el tiempo'], correcta: 0 }
+          { picto: '🤗', situacion: 'Dos amigos se disculpan después de una pelea y quieren seguir siendo amigos.', opciones: ['Os dais una segunda oportunidad y seguís jugando juntos', 'Decides que ya no puede ser tu amigo nunca más', 'Sigues recordándole la pelea todo el tiempo'], correcta: 0 },
+          { picto: '🥲', situacion: 'Un amigo se entera de que tú también querías el mismo premio que ha ganado él.', opciones: ['Te pregunta cómo te sientes y te anima', 'No dice nada de lo que has sentido', 'Presume más todavía delante de ti'], correcta: 0 },
+          { picto: '😣', situacion: 'Un amigo tuyo está nervioso porque tiene una prueba importante mañana.', opciones: ['Le ayudas a repasar y le animas', 'Le dices que seguro que le va mal', 'Le metes más presión hablando del tema'], correcta: 0 },
+          { picto: '🫤', situacion: 'Sientes que un amigo siempre decide el plan y tú nunca opinas.', opciones: ['Le dices con calma que te gustaría decidir a veces', 'Aceptas siempre sin decir nada', 'Dejas de quedar con él sin explicar por qué'], correcta: 0 },
+          { picto: '🤔', situacion: 'Un amigo te pide perdón pero tú no sabes si perdonarle todavía.', opciones: ['Le dices que necesitas un poco más de tiempo', 'Le perdonas aunque no lo sientas de verdad', 'Le dices que nunca le vas a perdonar'], correcta: 0 }
         ]
       },
       {
@@ -135,7 +151,11 @@ const DATA = {
           { picto: '🤐', situacion: 'Un compañero amenaza con dejar de ser tu amigo si cuentas a tu familia lo que hacéis juntos.', opciones: ['Se lo cuento a mi familia de todas formas', 'No lo cuento por miedo a perder su amistad', 'Se lo cuento a otra persona pero no a mi familia'], correcta: 0 },
           { picto: '🧩', situacion: 'Un amigo solo quiere hacer siempre lo que él decide y nunca lo que tú propones.', opciones: ['Le digo que a veces me gustaría decidir yo también', 'Acepto siempre lo que él decide para no discutir', 'Dejo de proponer nada, aunque me moleste'], correcta: 0 },
           { picto: '💭', situacion: 'Un compañero te hace sentir culpable por pasar tiempo con tu familia en vez de con él.', opciones: ['Le digo que puedo estar con mi familia y seguir siendo su amigo', 'Dejo de ver a mi familia para no sentirme culpable', 'Le hago sentir culpable a él también'], correcta: 0 },
-          { picto: '🌱', situacion: 'No sabes si un compañero es un verdadero amigo o solo se aprovecha de ti, y te preocupa.', opciones: ['Hablo con una persona de confianza para verlo con más claridad', 'Decido cortar la amistad sin hablarlo con nadie', 'Sigo igual, esperando que la situación mejore sola'], correcta: 0 }
+          { picto: '🌱', situacion: 'No sabes si un compañero es un verdadero amigo o solo se aprovecha de ti, y te preocupa.', opciones: ['Hablo con una persona de confianza para verlo con más claridad', 'Decido cortar la amistad sin hablarlo con nadie', 'Sigo igual, esperando que la situación mejore sola'], correcta: 0 },
+          { picto: '📌', situacion: 'Un compañero te dice que si cambias de opinión sobre algo, dejará de contar contigo para todo.', opciones: ['Le digo que puedo cambiar de opinión si quiero', 'No cambio nunca de opinión por miedo a perderle', 'Cambio de opinión aunque no quiera'], correcta: 0 },
+          { picto: '🗝️', situacion: 'Un amigo quiere saber la contraseña de tus redes sociales "para demostrar confianza".', opciones: ['Le digo que mi contraseña es solo mía', 'Se la doy para que confíe en mí', 'Le doy una contraseña falsa sin decir nada'], correcta: 0 },
+          { picto: '📉', situacion: 'Cada vez que cuentas algo bueno que te ha pasado, un compañero cambia de tema enseguida.', opciones: ['Sigo contando las cosas buenas a otras personas que sí me escuchan', 'Dejo de contar cosas buenas para siempre', 'Le hago lo mismo cuando cuenta algo suyo'], correcta: 0 },
+          { picto: '🔁', situacion: 'Un amigo repite que le debes una disculpa por algo que en realidad no hiciste.', opciones: ['Le digo con calma que no tengo que disculparme por algo que no hice', 'Me disculpo para que deje de insistir', 'Le grito para que pare de decirlo'], correcta: 0 }
         ]
       }
     ]
@@ -163,7 +183,11 @@ const DATA = {
           { picto: '😌', situacion: 'Your friend closes her eyes and rests calmly in the garden.', opciones: ['Calm', 'Scared', 'Angry'], correcta: 0 },
           { picto: '😊', situacion: 'Your friend laughs a lot playing with his friends.', opciones: ['Happy', 'Sad', 'Tired'], correcta: 0 },
           { picto: '😢', situacion: "Your friend's eyes are teary because she misses her family.", opciones: ['Sad', 'Angry', 'Calm'], correcta: 0 },
-          { picto: '😠', situacion: 'Your friend hits the table because something is not going well.', opciones: ['Angry', 'Scared', 'Happy'], correcta: 0 }
+          { picto: '😠', situacion: 'Your friend hits the table because something is not going well.', opciones: ['Angry', 'Scared', 'Happy'], correcta: 0 },
+          { picto: '😊', situacion: 'Your friend finally achieves something he had been trying for a long time and jumps for joy.', opciones: ['Happy', 'Sad', 'Angry'], correcta: 0 },
+          { picto: '😢', situacion: "Your friend's drawing, made with so much care, got wet.", opciones: ['Sad', 'Happy', 'Angry'], correcta: 0 },
+          { picto: '😠', situacion: 'Your friend clenches his fists because he was interrupted while talking.', opciones: ['Angry', 'Calm', 'Tired'], correcta: 0 },
+          { picto: '😴', situacion: 'Your friend can barely keep her eyes open after a very long day.', opciones: ['Tired', 'Surprised', 'Angry'], correcta: 0 }
         ]
       },
       {
@@ -186,7 +210,11 @@ const DATA = {
           { picto: '🥱', situacion: 'Your friend has nothing to do at home all afternoon.', opciones: ['Bored', 'Angry', 'Embarrassed'], correcta: 0 },
           { picto: '😲', situacion: 'Your friend wins a prize he never even dreamed of.', opciones: ['Surprised', 'Sad', 'Bored'], correcta: 0 },
           { picto: '😳', situacion: 'Your friend forgets the words of a song in front of everyone.', opciones: ['Embarrassed', 'Happy', 'Surprised'], correcta: 0 },
-          { picto: '🥱', situacion: "Your friend plays the same game over and over and it's not fun anymore.", opciones: ['Bored', 'Scared', 'Calm'], correcta: 0 }
+          { picto: '🥱', situacion: "Your friend plays the same game over and over and it's not fun anymore.", opciones: ['Bored', 'Scared', 'Calm'], correcta: 0 },
+          { picto: '😲', situacion: 'Your friend sees his team win the match in the last second.', opciones: ['Surprised', 'Bored', 'Sad'], correcta: 0 },
+          { picto: '😳', situacion: 'Your friend has food on her face and nobody tells her until the end.', opciones: ['Embarrassed', 'Surprised', 'Happy'], correcta: 0 },
+          { picto: '🥱', situacion: 'Your friend has had nothing to do all afternoon and stares at the ceiling.', opciones: ['Bored', 'Surprised', 'Embarrassed'], correcta: 0 },
+          { picto: '😳', situacion: 'Your friend trips walking onto the stage in front of the whole audience.', opciones: ['Embarrassed', 'Calm', 'Tired'], correcta: 0 }
         ]
       },
       {
@@ -209,7 +237,11 @@ const DATA = {
           { picto: '😔', situacion: 'A friend is left alone at recess.', opciones: ['Another friend invites him to play with the group', 'Nobody says anything', 'They laugh that he is alone'], correcta: 0 },
           { picto: '🎭', situacion: 'Two friends want the same costume for the party.', opciones: ['They look for another option together', 'They fight over the costume', 'One keeps it without saying anything'], correcta: 0 },
           { picto: '🚶‍♂️', situacion: 'A friend accidentally bumps into another without noticing.', opciones: ['He apologizes right away', 'He keeps walking without saying anything', 'He laughs about what happened'], correcta: 0 },
-          { picto: '📖', situacion: 'Two friends disagree about the ending of a story they are making up together.', opciones: ['They combine both ideas into a new one', 'Each tells their own version, upset', 'One decides everything without asking the other'], correcta: 0 }
+          { picto: '📖', situacion: 'Two friends disagree about the ending of a story they are making up together.', opciones: ['They combine both ideas into a new one', 'Each tells their own version, upset', 'One decides everything without asking the other'], correcta: 0 },
+          { picto: '🧩', situacion: 'Two friends want to put together the same puzzle at the same time.', opciones: ['They take turns placing the pieces', 'They fight over the pieces', 'One takes the whole puzzle'], correcta: 0 },
+          { picto: '🎧', situacion: 'A friend plays music very loud and bothers another who wants to read.', opciones: ['He turns it down when asked', 'He turns it up even more', 'He gets angry at being told something'], correcta: 0 },
+          { picto: '🍕', situacion: 'Two friends want the last slice of pizza.', opciones: ['They share it equally', 'They fight over it', 'One takes it without saying anything'], correcta: 0 },
+          { picto: '📱', situacion: "A friend uses another's phone without asking first.", opciones: ['He apologizes and asks next time', 'He says it is fine to do that', 'He gets angry at being called out'], correcta: 0 }
         ]
       },
       {
@@ -232,7 +264,11 @@ const DATA = {
           { picto: '📝', situacion: 'A classmate makes a mistake in group work and the others get angry.', opciones: ['The group helps him fix it together', 'They blame him in front of everyone', 'They exclude him from the work'], correcta: 0 },
           { picto: '🤝', situacion: "You have a conflict with a friend and neither of you knows how to solve it alone.", opciones: ['You ask a trusted adult for help', 'You stay angry and never talk about it again', 'You let the problem grow without saying anything'], correcta: 0 },
           { picto: '😟', situacion: 'A friend is very nervous because his parents argue at home.', opciones: ['You listen to him and stay by his side without judging', 'You tell him it is not your problem', 'You tell others without him knowing'], correcta: 0 },
-          { picto: '🤗', situacion: 'Two friends apologize after a fight and want to stay friends.', opciones: ['You give each other a second chance and keep playing together', 'You decide he can never be your friend again', 'You keep bringing up the fight all the time'], correcta: 0 }
+          { picto: '🤗', situacion: 'Two friends apologize after a fight and want to stay friends.', opciones: ['You give each other a second chance and keep playing together', 'You decide he can never be your friend again', 'You keep bringing up the fight all the time'], correcta: 0 },
+          { picto: '🥲', situacion: 'A friend finds out you also wanted the same prize he won.', opciones: ['He asks how you feel and encourages you', 'He says nothing about how you felt', 'He shows off even more in front of you'], correcta: 0 },
+          { picto: '😣', situacion: 'A friend of yours is nervous because he has an important test tomorrow.', opciones: ['You help him review and encourage him', 'You tell him it will surely go badly', 'You add more pressure by talking about it'], correcta: 0 },
+          { picto: '🫤', situacion: 'You feel like a friend always decides the plan and you never get a say.', opciones: ['You calmly tell him you would like to decide sometimes', 'You always agree without saying anything', 'You stop hanging out with him without explaining why'], correcta: 0 },
+          { picto: '🤔', situacion: 'A friend apologizes but you are not sure yet if you want to forgive him.', opciones: ['You tell him you need a bit more time', 'You forgive him even though you do not really mean it', 'You tell him you will never forgive him'], correcta: 0 }
         ]
       },
       {
@@ -255,7 +291,11 @@ const DATA = {
           { picto: '🤐', situacion: 'A companion threatens to stop being your friend if you tell your family what you do together.', opciones: ['I tell my family anyway', 'I do not tell them, afraid of losing the friendship', 'I tell someone else, but not my family'], correcta: 0 },
           { picto: '🧩', situacion: 'A friend only ever wants to do what he decides and never what you suggest.', opciones: ['I tell him I would sometimes like to decide too', 'I always go along with what he decides to avoid arguing', 'I stop suggesting anything, even though it bothers me'], correcta: 0 },
           { picto: '💭', situacion: 'A companion makes you feel guilty for spending time with your family instead of with them.', opciones: ['I tell them I can be with my family and still be their friend', 'I stop seeing my family so I do not feel guilty', 'I make them feel guilty too'], correcta: 0 },
-          { picto: '🌱', situacion: 'You are not sure if a companion is a true friend or is just taking advantage of you, and it worries you.', opciones: ['I talk to someone I trust to see it more clearly', 'I decide to end the friendship without talking to anyone about it', 'I keep going as usual, hoping the situation improves on its own'], correcta: 0 }
+          { picto: '🌱', situacion: 'You are not sure if a companion is a true friend or is just taking advantage of you, and it worries you.', opciones: ['I talk to someone I trust to see it more clearly', 'I decide to end the friendship without talking to anyone about it', 'I keep going as usual, hoping the situation improves on its own'], correcta: 0 },
+          { picto: '📌', situacion: 'A companion tells you that if you change your mind about something, he will stop counting on you for anything.', opciones: ['I tell him I can change my mind if I want to', 'I never change my mind out of fear of losing him', 'I change my mind even though I do not want to'], correcta: 0 },
+          { picto: '🗝️', situacion: 'A friend wants to know your social media password "to show trust."', opciones: ['I tell him my password is mine alone', 'I give it to him so he trusts me', 'I give him a fake password without saying anything'], correcta: 0 },
+          { picto: '📉', situacion: 'Every time you share something good that happened to you, a companion quickly changes the subject.', opciones: ['I keep sharing good news with people who do listen', 'I stop sharing good news forever', 'I do the same to him when he shares something'], correcta: 0 },
+          { picto: '🔁', situacion: 'A friend keeps saying you owe him an apology for something you did not actually do.', opciones: ['I calmly tell him I do not have to apologize for something I did not do', 'I apologize so he stops insisting', 'I shout at him to make him stop saying it'], correcta: 0 }
         ]
       }
     ]

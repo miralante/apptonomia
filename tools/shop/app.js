@@ -816,8 +816,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   $('#btnEnunciadoQuiz').addEventListener('click', function () {
     App.tts.speak(enunciadoQuizEl.textContent);
   });
-  $('#btnEscucharExplicacionQuiz').addEventListener('click', function () {
-  });
 
   btnContinuarTienda.addEventListener('click', function () {
     var fn = alContinuar;
@@ -826,8 +824,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   });
   $('#btnEnunciadoTienda').addEventListener('click', function () {
     App.tts.speak(enunciadoTiendaEl.textContent);
-  });
-  $('#btnEscucharExplicacionTienda').addEventListener('click', function () {
   });
 
   $('#btnRepetir').addEventListener('click', function () {

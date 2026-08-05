@@ -387,6 +387,25 @@
 
 .item-lista-actual .texto { flex: 1; font-weight: 600; }
 
+.item-lista-flechas {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.btn-flecha-item {
+  min-width: 44px;
+  min-height: 44px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-texto-suave);
+  font-size: 18px;
+  cursor: pointer;
+}
+.btn-flecha-item:hover:not(:disabled) { background: var(--color-borde); }
+.btn-flecha-item:disabled { opacity: 0.3; cursor: not-allowed; }
+
 .item-lista-actual .btn-quitar-item {
   min-width: 44px;
   min-height: 44px;
@@ -396,8 +415,36 @@
   color: var(--color-texto-suave);
   font-size: 20px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 .item-lista-actual .btn-quitar-item:hover { background: var(--color-borde); }
+
+.aviso-editando {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--espacio);
+  padding: 8px 12px;
+  margin: 0 0 var(--espacio) 0;
+  background: var(--mod-secuencia-suave);
+  border-radius: var(--radio);
+  font-weight: 600;
+  text-align: center;
+}
+
+.btn-cancelar-edicion {
+  min-height: 44px;
+  padding: 4px 12px;
+  border: 2px solid var(--color-borde);
+  border-radius: 8px;
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  cursor: pointer;
+}
+.btn-cancelar-edicion:hover { background: var(--color-superficie-2, #f7f4ef); }
+
+.lista-guardada-editando { outline: 3px solid var(--mod-secuencia); outline-offset: 2px; }
 
 .fila-anadir-item {
   display: flex;

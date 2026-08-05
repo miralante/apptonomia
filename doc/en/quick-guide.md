@@ -272,7 +272,7 @@ When you enter the app, you see a screen with **6 colored boxes**. Each box is a
 │  ┌─────────────────────────────────────────────────────┐   │
 │  │ 🎯 AIMING AND HANDS                                  │   │
 │  │ Coordination and motor skills                        │   │
-│  │ [Catch] [Keyboard] [Tracing] [Coloring]...          │   │
+│  │ [Catch] [Tracing] [Coloring]...                     │   │
 │  └─────────────────────────────────────────────────────┘   │
 │                                                             │
 │  ┌─────────────────────────────────────────────────────┐   │

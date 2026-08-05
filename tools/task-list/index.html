@@ -62,6 +62,15 @@
       <p class="transferencia centrado" data-i18n="transferenciaCrear"></p>
 
       <div id="panelNombre" class="panel-nombre pila">
+        <div class="consejo-lista">
+          <p class="consejo-lista-titulo" data-i18n="consejoListaTitulo">💡 Cómo hacer una buena lista</p>
+          <ol class="consejo-lista-pasos">
+            <li data-i18n="consejoListaPaso1">Piensa qué tienes que hacer.</li>
+            <li data-i18n="consejoListaPaso2">Apunta cada cosa en la lista.</li>
+            <li data-i18n="consejoListaPaso3">Ponlas en el orden en que las vas a hacer.</li>
+            <li data-i18n="consejoListaPaso4">Márcalas como hechas cuando termines.</li>
+          </ol>
+        </div>
         <label for="inputNombreListaCrear" class="instruccion centrado" data-i18n="labelNombreLista">Nombre de la lista</label>
         <input id="inputNombreListaCrear" class="input-nombre-lista" type="text" maxlength="30" autocomplete="off" data-i18n-aria="ariaNombreLista">
         <div class="fila centrado">
@@ -71,6 +80,9 @@
       </div>
 
       <div id="panelEditor" class="panel-editor oculto pila">
+        <div class="fila centrado">
+          <button type="button" class="btn btn-secundario btn-mis-listas" id="btnMisListas" data-i18n="btnMisListas" data-i18n-aria="ariaMisListas">📋 Mis listas</button>
+        </div>
         <p class="lista-titulo centrado" id="tituloListaCrear"></p>
         <p class="lista-progreso centrado" id="progresoListaCrear"></p>
 

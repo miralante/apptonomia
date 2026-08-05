@@ -255,8 +255,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   $('#btnConsigna').addEventListener('click', function () {
     App.tts.speak(consignaEl.textContent);
   });
-  $('#btnEscucharExplicacion').addEventListener('click', function () {
-  });
 
   pintarNiveles();
   pintarEstrellas();

@@ -272,7 +272,7 @@ Cuando entras en la aplicación, ves una pantalla con **6 cajas de colores**. Ca
 │  ┌─────────────────────────────────────────────────────┐   │
 │  │ 🎯 PUNTERÍA Y MANOS                                 │   │
 │  │ Coordinación y motricidad                           │   │
-│  │ [Atrapa] [Teclado] [Trazos] [Colorear]...          │   │
+│  │ [Atrapa] [Trazos] [Colorear]...                    │   │
 │  └─────────────────────────────────────────────────────┘   │
 │                                                             │
 │  ┌─────────────────────────────────────────────────────┐   │

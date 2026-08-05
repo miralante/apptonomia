@@ -47,53 +47,45 @@ Aplicación web de terapia ocupacional para personas con discapacidad intelectua
   en el idioma que representan. Archivos existentes en español (identificadores
   o comentarios) se migran al tocarlos, no de golpe.
 
-### 1.1 Hosting y despliegue — Cloudflare Pages
+### 1.1 Hosting y despliegue
 
-El sitio se despliega en **Cloudflare Pages** mediante el conector de
-Git (`miralante/apptonomia` → `apptonomia` → rama `master`). URL
-canónica: **https://apptonomia.pages.dev**.
+La app se sirve como sitio estático en **Cloudflare Pages** mediante
+el conector de Git (`miralante/apptonomia` → `apptonomia` → rama
+`master`). URL canónica: **https://apptonomia.pages.dev**. El detalle
+operativo — configuración del dashboard, por qué no hay `wrangler.toml`
+ni `_redirects`, requisitos de nombres, rollback, dominio
+personalizado y la nota sobre el SW — vive en
+[`CLOUDFLARE.md`](../../CLOUDFLARE.md). Aquí basta con saber cinco
+cosas:
 
-Consecuencias clave para el desarrollo:
-
-- **Sin paso de build.** La raíz del repo *es* el directorio de salida.
-  No hay `npm install`, ni bundler, ni transformador. Los archivos se
-  sirven tal cual.
-- **Sin `_redirects`, sin `wrangler.toml`, sin `functions/`.** Cloudflare
-  Pages ya sirve cada archivo estático con búsqueda implícita de
-  `index.html` por directorio, de modo que cada sección (`site/`,
-  `tools/<slug>/`, `team/`, `settings/`, `about/`, `legal/`) incluye
-  su propio `index.html` real y Cloudflare resuelve
-  `/tools/clock/` a `tools/clock/index.html` automáticamente. Intentar
-  añadir una reescritura SPA estilo Firebase provoca el rechazo
-  *"Infinite loop detected in this rule"*.
+- **Sin paso de build.** La raíz del repo *es* el directorio de
+  salida. No hay `npm install`, ni bundler, ni transformador.
+- **Sin `_redirects`, sin `wrangler.toml`, sin `functions/`.**
+  Cloudflare Pages ya hace búsqueda implícita de `index.html` por
+  directorio, así que cada sección (`site/`, `tools/<slug>/`, `team/`,
+  `settings/`, `about/`, `legal/`) incluye su propio `index.html` real
+  y Cloudflare resuelve `/tools/pairs/` a `tools/pairs/index.html`
+  automáticamente.
 - **Las cabeceras de caché viven en `_headers`** en la raíz del repo.
   Cloudflare las lee en cada deploy. Los HTML de entrada y `sw.js`
-  se fuerzan a `must-revalidate`; los JS/CSS/imágenes
-  versionados obtienen caché inmutable de 1 año. Cuando cambies la
-  política de caché, edita `_headers` y no el panel de Cloudflare.
+  se fuerzan a `must-revalidate`; los JS/CSS/imágenes versionados
+  obtienen caché inmutable de 1 año. Cuando cambies la política de
+  caché, edita `_headers` y no el panel de Cloudflare.
 - **`manifest.json` y `sw.js` deben usar rutas relativas** (empezar
-  por `./`) para que la aplicación funcione en cualquier host sin
-  tocarlos.
+  por `./`) para que la app funcione en cualquier host sin tocarlos.
 - **La configuración puntual vive en el panel** de Cloudflare, no en
   el repo: nombre de proyecto `apptonomia`, framework preset `None`,
-  directorio de salida `.`, rama de producción `master`. La guía
-  operativa completa está en `CLOUDFLARE.md`.
+  directorio de salida `.`, rama de producción `master`.
 
-Si alguna vez hace falta un deploy de previsualización puntual desde
-una worktree sucia sin pushear, `npx wrangler pages deploy .
---project-name apptonomia` funciona sin necesidad de committedar
-ningún fichero de configuración de Wrangler.
-
-- **El service worker nunca cachea ni sirve redirecciones.** El
-  handler `fetch` de `sw.js` solo guarda en caché respuestas con
-  `status === 200` y, como fallback offline, devuelve un HTML
-  inline mínimo "Sin conexión" sin cabecera `Location`. Es
-  deliberado: Safari rechaza una navegación de nivel superior
-  servida por el SW que lleve una redirección
-  ("Response served by service worker has redirections") y, además,
-  Cloudflare nunca devuelve redirecciones para nuestros archivos
-  estáticos, así que cachearlas solo introduciría riesgo en la
-  ruta offline.
+El service worker **nunca cachea ni sirve redirecciones.** El handler
+`fetch` de `sw.js` solo guarda en caché respuestas con `status === 200`
+y, como fallback offline, devuelve un HTML inline mínimo "Sin
+conexión" sin cabecera `Location`. Es deliberado: Safari rechaza una
+navegación de nivel superior servida por el SW que lleve una
+redirección ("Response served by service worker has redirections") y,
+además, Cloudflare nunca devuelve redirecciones para nuestros archivos
+estáticos, así que cachearlas solo introduciría riesgo en la ruta
+offline.
 
 ### 1.2 Soporte cross-browser — Safari de Apple es un target de primer nivel
 
@@ -161,7 +153,7 @@ apptonomia/
 │   ├── js/feedback.js     #   window.App.feedback
 │   ├── js/dinero.js       #   window.App.dinero (actividades de euros)
 │   └── img/               #   pictogramas SVG e iconos PWA; la interfaz usa primero iconos del sistema y emojis para gráficos simples; si hace falta algo más, usar imágenes libres descargadas localmente desde fuentes CC0/domino público
-├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (82 actuales)
+├── tools/<slug>/          # Nivel 2: una carpeta por ACTIVIDAD (69 actuales)
 │   ├── index.html         #   estructura y carga de assets
 │   ├── app.js             #   solo lógica
 │   ├── data.js            #   solo datos
@@ -193,16 +185,16 @@ no hay código por módulo:
 
 | Módulo | Área | Token de color | Actividades |
 |---|---|---|---|
-| 🎯 Puntería y manos | Coordinación y motricidad | `--mod-coordinacion` (azul) | catch, connect-dots, keyboard-typing, tracing, coloring, piano-keys, builders |
+| 🎯 Puntería y manos | Coordinación y motricidad | `--mod-coordinacion` (azul) | catch, connect-dots, tracing, coloring, piano-keys, builders |
 | 📋 Mi día a día | Autonomía y hogar | `--mod-secuencia` (verde) | routines, house, situations, safe-chat, bullying-chat, post-or-not, social-safety, signs, times-of-day, what-first, what-do-i-need, where-to-store, task-list, my-agenda, what-to-wear, street, emergencies, phone-numbers, my-details, shopping, shop, healthy-food |
 | 🧠 Memoria y atención | Memoria y atención | `--mod-memoria` (naranja) | pairs, differences, whats-missing, ecos, turns-mirrors, blocks, where-is, path, fit, theatre |
-| 🔢 Pensar y contar | Razonamiento y matemáticas | `--mod-razonamiento` (teal) | riddles, patterns, numbers, quantities, math-tables, roman-numerals, wallet, clock, stories, odd-one-out, puzzle, oca, tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
+| 🎲 Juegos de mesa | Juegos de mesa reglados | `--mod-razonamiento` (teal) | tic-tac-toe, visual-sudoku, domino, checkers, chess, connect-four |
 | 💬 Lenguaje y palabras | Lenguaje y comunicación | `--mod-lenguaje` (frambuesa) | comedy-club, idioms, double-meaning, categories, sentence, words, vocabulary, dictionary, spelling, colored-spelling, word-search |
 | 💜 Emociones | Emociones y relaciones | `--mod-emocional` (morado) | emotions, calm, friends, my-body, good-manners, school-rules, self-esteem, resilience, trust-circle |
 | 💗 Cuerpo y relaciones | Educación afectivo-sexual | `--mod-cuerpo` (terracota) | sexual-health |
 
 > **Nota multi-área**: una actividad puede trabajar más de un área terapéutica
-> (por ejemplo, `keyboard-typing` trabaja coordinación pero también lenguaje y
+> (por ejemplo, una actividad puede entrenar coordinación y también lenguaje y
 > escritura). En la landing aparece **una sola vez**, dentro de su **módulo
 > principal**: el que mejor representa su objetivo principal. Los módulos
 > terapéuticos sirven para navegar; las áreas se reflejan en la descripción de
@@ -238,7 +230,6 @@ Cada actividad es **autónoma y aislada**:
 | `$$` | `(selector) → Array<Element>` | Atajo de `querySelectorAll` (devuelve Array real) |
 | `hoy` | `() → 'YYYY-MM-DD'` | Fecha local de hoy (para rutinas diarias) |
 | `reducedMotion` | `() → boolean` | true si el sistema pide menos animación |
-| `esTactil` | `() → boolean` | true si el dispositivo es principalmente táctil (`hover:none, pointer:coarse`) — sin teclado/ratón físico esperable. Usado por `keyboard-typing` para preseleccionar el teclado de móvil |
 
 ### 3.2 `window.App.tts` (`tts.js`)
 
@@ -649,8 +640,8 @@ Receta detallada y consideraciones (números, horas, contenido cultural) en
   términos clínicos o taxonómicos; **(b)** estímulos tomados del entorno
   real de la persona (tienda cercana, su rutina matutina real, no
   ejemplos abstractos); **(c)** personalización ligera cuando proceda
-  (avatar estable, campo de nombre — ver `tools/piano-keys/`,
-  `tools/keyboard-typing/`); **(d)** práctica espaciada vía `localStorage`
+  (avatar estable, campo de nombre — ver `tools/piano-keys/`);
+  **(d)** práctica espaciada vía `localStorage`
   (nivel guardado) para que la landing reanude a la persona en el nivel
   alcanzado y no en uno aleatorio. Una actividad que cumple el contrato
   de simulación pero omite estos anclajes se considera "solo simulación"
@@ -675,14 +666,6 @@ Receta detallada y consideraciones (números, horas, contenido cultural) en
   premarcadas, costes ocultos, alertas falsas), ni aversión explotadora
   a la pérdida ("tenías 5 ⭐, has perdido 2"). La presión no es una
   técnica de persuasión en Apptonomia.
-- **Teclados en pantalla decorativos** (`keyboard-typing`): elementos visuales con
-  `pointer-events: none`; la entrada real es el teclado físico. **Excepción
-  deliberada**: el tipo de teclado `movil` (`DATA.layouts.movil`, clase CSS
-  `.tocable`) sí se puede tocar, porque en un móvil/tablet no hay teclado físico
-  que pulsar — la pantalla es la única entrada real. Se detecta y se preselecciona
-  solo (`App.utils.esTactil()`, basado en `matchMedia('(hover:none) and
-  (pointer:coarse)')`) sin que el usuario tenga que elegir nada.
-
 ---
 
 ## 8. Rutas ocultas
@@ -710,7 +693,7 @@ borra):
 
 - **Restablecer datos de la persona**: `App.storage.remove('locale')` +
   vaciar el campo `nombre` de las herramientas que lo piden (hoy
-  `keyboard-typing` y `piano-keys` — mantener esta lista en
+  `piano-keys` — mantener esta lista en
   `settings/app.js` si una herramienta nueva pide un nombre).
 - **Restablecer toda la aplicación**: borra todas las claves `apptonomia:*`
   (`App.storage.listaToolIds()` + `remove('locale')`). Equivale a un primer uso.
@@ -721,14 +704,20 @@ Página pública de presentación del proyecto, pensada para periodistas,
 financiadores, nuevos colaboradores y cualquier persona que llega al sitio o al
 repositorio y quiere entender qué es Apptonomia sin abrir el código.
 
-Tiene seis secciones: el origen del proyecto, los seis principios que no se
+Tiene siete secciones: el origen del proyecto, los seis principios que no se
 negocian (autonomía, sin presión, privacidad, Lectura Fácil, accesibilidad,
 tecnología sobria), cómo está hecha la aplicación (PWA estática, sin backend,
 `localStorage` único, MIT, sólo fuentes externas), las seis áreas terapéuticas
-con el total de 69 actividades, autoría y cinco formas de colaborar (probar,
-proponer, revisar, contribuir código, difundir). El pie enlaza al menú de
-actividades y a la guía del equipo de apoyo, pero ningún enlace público apunta
-a ella: solo se llega escribiendo la URL.
+con el total de 69 actividades, los proyectos hermanos (Calculia, Okeymoney,
+Sinonimia, Teclatlon — mismo equipo y filosofía, servicios independientes con
+enlace externo a su propio dominio), autoría y cinco formas de colaborar
+(probar, proponer, revisar, contribuir código, difundir). El pie enlaza al
+menú de actividades y a la guía del equipo de apoyo, pero ningún enlace
+público apunta a ella: solo se llega escribiendo la URL.
+
+Mantener la lista y las URLs de los proyectos hermanos sincronizadas con
+`README.md`/`README.es.md` y con la sección equivalente de `site/index.html`
+si cambia algún proyecto del grupo.
 
 Actualizarla cuando se añadan módulos o cuando cambie el número total de
 actividades, en los dos idiomas. No añadir aquí texto dirigido a la persona

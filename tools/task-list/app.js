@@ -198,8 +198,11 @@
        4. Marcar / desmarcar como "Hecho" (toggle por elemento).
        5. Quitar un elemento (botón ✕) o vaciar toda la lista.
        6. Guardar la lista (gana 1⭐ la primera vez).
-       7. Abrir una lista guardada más tarde, seguir usándola,
-          borrarla.
+       7. Volver a "Mis listas" (botón dentro del editor, sin salir
+          del nivel) para crear otra lista, abrir una guardada o
+          borrarla, y así practicar a manejar varias listas.
+     Antes de empezar se muestra un consejo breve (piensa, apunta,
+     ordena, marca) para modelar el método antes de practicar.
      No hay pista/Explicación Socrática: las decisiones son libres
      (mismo razonamiento que piano-keys en modo libre o
      tools/builders). Gana 1⭐ solo al guardar una lista por
@@ -540,6 +543,23 @@
     });
   }
 
+  /* Vuelve al panel de "Mis listas" sin salir del Nivel 3, para poder
+     crear otra lista, abrir otra guardada o borrar alguna sin perder
+     el sitio (los cambios sin guardar de la lista actual se pierden,
+     igual que al pulsar "Volver": guardarListaCrear() es explícito). */
+  function volverAMisListas() {
+    $('#panelEditor').classList.add('oculto');
+    $('#panelNombre').classList.remove('oculto');
+    var inputNombre = $('#inputNombreListaCrear');
+    inputNombre.value = '';
+    inputNombre.placeholder = App.i18n.t('promptNombreListaDefault');
+    feedbackCrearEl.textContent = '';
+    feedbackCrearEl.className = 'feedback';
+    pintarListasGuardadas();
+    pintarEstrellas();
+    inputNombre.focus();
+  }
+
   function abrirListaGuardada(i) {
     var lista = progreso.misListas[i];
     if (!lista) return;
@@ -582,6 +602,7 @@
   $('#btnGuardarListaCrear').addEventListener('click', guardarListaCrear);
   $('#btnSubirItemCrear').addEventListener('click', function () { moverItemCrear(-1); });
   $('#btnBajarItemCrear').addEventListener('click', function () { moverItemCrear(1); });
+  $('#btnMisListas').addEventListener('click', volverAMisListas);
 
   /* "Volver" contextual: si la persona está en medio de "Crea tu
      lista", la primera pulsación la lleva al menú de niveles

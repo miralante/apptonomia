@@ -626,10 +626,16 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
      Sin Socrático (pista/explicación): no hay "respuesta correcta"
      que explicar, igual que el modo libre de piano-keys o builders.
      Gana 1⭐ cada lista guardada (regla: solo se suma, nunca se resta). */
-  var listaLibre = { items: [] };
+  /* editando: referencia directa al objeto dentro de progreso.misListas
+     que se está modificando (null = creando una lista nueva). Guardar la
+     referencia, no el índice, evita desincronizarse si otra lista se
+     borra mientras se edita esta. */
+  var listaLibre = { items: [], editando: null, nombreOriginal: null };
 
   function abrirListaLibre() {
     listaLibre.items = [];
+    listaLibre.editando = null;
+    listaLibre.nombreOriginal = null;
     pantallaMenu.classList.add('oculto');
     pantallaListaLibre.classList.remove('oculto');
     $('#nombrarLista').classList.add('oculto');
@@ -653,6 +659,26 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
       listaLibre.items.forEach(function (texto, i) {
         var li = document.createElement('li');
         li.className = 'item-lista-actual';
+
+        var flechas = document.createElement('div');
+        flechas.className = 'item-lista-flechas';
+        var btnSubir = document.createElement('button');
+        btnSubir.type = 'button';
+        btnSubir.className = 'btn-flecha-item';
+        btnSubir.textContent = '↑';
+        btnSubir.disabled = i === 0;
+        btnSubir.setAttribute('aria-label', App.i18n.t('ariaSubirItem').replace('{texto}', texto));
+        btnSubir.addEventListener('click', function () { moverItem(i, -1); });
+        var btnBajar = document.createElement('button');
+        btnBajar.type = 'button';
+        btnBajar.className = 'btn-flecha-item';
+        btnBajar.textContent = '↓';
+        btnBajar.disabled = i === listaLibre.items.length - 1;
+        btnBajar.setAttribute('aria-label', App.i18n.t('ariaBajarItem').replace('{texto}', texto));
+        btnBajar.addEventListener('click', function () { moverItem(i, 1); });
+        flechas.appendChild(btnSubir);
+        flechas.appendChild(btnBajar);
+
         var span = document.createElement('span');
         span.className = 'texto';
         span.textContent = texto;
@@ -663,11 +689,13 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
         btnQuitar.setAttribute('aria-label', App.i18n.t('ariaQuitarItem').replace('{texto}', texto));
         btnQuitar.addEventListener('click', function () { quitarItem(i); });
         li.appendChild(span);
+        li.appendChild(flechas);
         li.appendChild(btnQuitar);
         el.appendChild(li);
       });
     }
     $('#btnGuardarLista').disabled = listaLibre.items.length === 0;
+    actualizarAvisoEdicion();
   }
 
   function anadirItem() {
@@ -685,15 +713,57 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     pintarListaActual();
   }
 
+  function moverItem(i, dir) {
+    var j = i + dir;
+    if (j < 0 || j >= listaLibre.items.length) return;
+    var tmp = listaLibre.items[i];
+    listaLibre.items[i] = listaLibre.items[j];
+    listaLibre.items[j] = tmp;
+    pintarListaActual();
+  }
+
   function vaciarListaActual() {
     listaLibre.items = [];
     pintarListaActual();
   }
 
+  /* ---- Editar una lista guardada ----
+     Carga sus elementos en el mismo editor que "Crea tu lista": añadir,
+     quitar y reordenar funcionan igual. Al guardar se actualiza la lista
+     en lugar de crear una nueva y no se concede estrella extra (evita
+     "cultivar" estrellas editando una y otra vez). */
+  function editarLista(lista) {
+    listaLibre.items = lista.items.slice();
+    listaLibre.editando = lista;
+    listaLibre.nombreOriginal = lista.nombre;
+    $('#nombrarLista').classList.add('oculto');
+    pintarListaActual();
+    pintarListasGuardadas();
+    $('#inputNuevoItem').focus();
+  }
+
+  function cancelarEdicion() {
+    listaLibre.items = [];
+    listaLibre.editando = null;
+    listaLibre.nombreOriginal = null;
+    $('#nombrarLista').classList.add('oculto');
+    pintarListaActual();
+    pintarListasGuardadas();
+  }
+
+  function actualizarAvisoEdicion() {
+    var editando = listaLibre.editando !== null;
+    $('#editandoAviso').classList.toggle('oculto', !editando);
+    if (editando) {
+      $('#editandoAvisoTexto').textContent = App.i18n.t('editandoListaAviso').replace('{nombre}', listaLibre.nombreOriginal);
+    }
+    $('#btnGuardarLista').textContent = App.i18n.t(editando ? 'btnGuardarCambios' : 'btnGuardarLista');
+  }
+
   function mostrarNombrarLista() {
     if (listaLibre.items.length === 0) return;
     var input = $('#inputNombreLista');
-    input.value = App.i18n.t('promptNombreListaDefault');
+    input.value = listaLibre.editando !== null ? listaLibre.nombreOriginal : App.i18n.t('promptNombreListaDefault');
     $('#nombrarLista').classList.remove('oculto');
     input.focus();
     input.select();
@@ -701,17 +771,25 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
 
   function confirmarGuardarLista() {
     var nombre = $('#inputNombreLista').value.trim().slice(0, 30) || App.i18n.t('promptNombreListaDefault');
-    progreso.misListas.push({ nombre: nombre, items: listaLibre.items.slice() });
-    progreso.estrellas += 1;
+    var editando = listaLibre.editando;
+    if (editando) {
+      editando.nombre = nombre;
+      editando.items = listaLibre.items.slice();
+    } else {
+      progreso.misListas.push({ nombre: nombre, items: listaLibre.items.slice() });
+      progreso.estrellas += 1;
+    }
     guardar();
     listaLibre.items = [];
+    listaLibre.editando = null;
+    listaLibre.nombreOriginal = null;
     $('#nombrarLista').classList.add('oculto');
     pintarListaActual();
     pintarListasGuardadas();
     pintarEstrellas();
     var feedbackEl = $('#feedbackListaLibre');
     App.feedback.success(feedbackEl);
-    feedbackEl.textContent = App.i18n.t('listaGuardadaFeedback');
+    feedbackEl.textContent = App.i18n.t(editando ? 'listaActualizadaFeedback' : 'listaGuardadaFeedback');
   }
 
   function pintarListasGuardadas() {
@@ -724,8 +802,10 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     el.appendChild(h3);
 
     progreso.misListas.forEach(function (lista, i) {
+      var editandoEsta = listaLibre.editando === lista;
+
       var wrap = document.createElement('div');
-      wrap.className = 'lista-guardada';
+      wrap.className = 'lista-guardada' + (editandoEsta ? ' lista-guardada-editando' : '');
 
       var fila = document.createElement('div');
       fila.className = 'lista-guardada-fila';
@@ -746,6 +826,12 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
 
       var acciones = document.createElement('div');
       acciones.className = 'lista-guardada-acciones';
+      var btnEditar = document.createElement('button');
+      btnEditar.type = 'button';
+      btnEditar.textContent = '✏️';
+      btnEditar.disabled = editandoEsta;
+      btnEditar.setAttribute('aria-label', App.i18n.t('ariaEditarLista').replace('{nombre}', lista.nombre));
+      btnEditar.addEventListener('click', function () { editarLista(lista); });
       var btnEscuchar = document.createElement('button');
       btnEscuchar.type = 'button';
       btnEscuchar.textContent = '🔊';
@@ -756,6 +842,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
       var btnBorrar = document.createElement('button');
       btnBorrar.type = 'button';
       btnBorrar.textContent = '🗑️';
+      btnBorrar.disabled = editandoEsta;
       btnBorrar.setAttribute('aria-label', App.i18n.t('ariaBorrarLista').replace('{nombre}', lista.nombre));
       btnBorrar.addEventListener('click', function () {
         progreso.misListas.splice(i, 1);
@@ -765,6 +852,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
         feedbackEl.className = 'feedback';
         feedbackEl.textContent = App.i18n.t('listaBorradaFeedback');
       });
+      acciones.appendChild(btnEditar);
       acciones.appendChild(btnEscuchar);
       acciones.appendChild(btnBorrar);
 
@@ -804,6 +892,7 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
     if (e.key === 'Enter') { e.preventDefault(); anadirItem(); }
   });
   $('#btnVaciarLista').addEventListener('click', vaciarListaActual);
+  $('#btnCancelarEdicion').addEventListener('click', cancelarEdicion);
   $('#btnGuardarLista').addEventListener('click', mostrarNombrarLista);
   $('#btnConfirmarGuardarLista').addEventListener('click', confirmarGuardarLista);
   $('#inputNombreLista').addEventListener('keydown', function (e) {

@@ -231,10 +231,6 @@ $('#transferencia').textContent = App.i18n.t('transferencia');
   $('#btnVolverDeNormas').addEventListener('click', irMenu);
   $('#btnSalirChat').addEventListener('click', irMenu);
   $('#btnVolverMenu').addEventListener('click', irMenu);
-  $('#btnConsejo').addEventListener('click', function () {
-  });
-  $('#btnConsejoSeguro').addEventListener('click', function () {
-  });
   $('#btnRegla').addEventListener('click', function () {
     App.tts.speak(App.i18n.t('paraRecordarHablado') + ' ' + $('#reglaTexto').textContent);
   });

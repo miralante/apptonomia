@@ -94,7 +94,7 @@ activity should pick from — are:
 | **Scene + decision** | The therapeutic goal is choosing well in a moment of daily life. | `situations`, `what-first`, `what-do-i-need`, `where-to-store`, `emergencies`, `street` |
 | **Safe dialogue / chat** | The therapeutic goal is what to say or write in a social or digital context. | `safe-chat`, `post-or-not`, `bullying-chat` |
 | **Step-by-step routine** | The therapeutic goal is the order of a real task (morning, kitchen, shopping, going out). | `routines`, `house`, `task-list`, `my-agenda` |
-| **Pure-skill training** | The therapeutic goal **is** the skill (sequential memory, fine motor, logic, puzzles, perception). The stimulus is already the context: the piano, the grid, the pieces, the sequence. | `piano-keys`, `tracing`, `puzzle`, `fit`, `visual-sudoku`, `tic-tac-toe`, `pairs`, `connect-dots` |
+| **Pure-skill training** | The therapeutic goal **is** the skill (sequential memory, fine motor, logic, puzzles, perception). The stimulus is already the context: the piano, the grid, the pieces, the sequence. | `piano-keys`, `tracing`, `fit`, `visual-sudoku`, `tic-tac-toe`, `pairs`, `connect-dots` |
 
 Simulation (the first three patterns) is the **preferred vehicle** when
 the goal allows it. The fourth pattern — **pure-skill training** — is a
@@ -203,8 +203,8 @@ Examples (real ones from the catalogue):
 
 - "Practise **classifying words by semantic category** to handle
   everyday conversations better" (`tools/categories/`).
-- "Practise **addition and make-ten decomposition** to solve mental
-  calculations in daily life" (`tools/math-tables/`).
+- "Practise **anticipating the other player's move** to play a fair
+  turn-based game" (`tools/tic-tac-toe/`).
 - "Practise **following a morning routine** to gain autonomy when
   getting ready alone" (`tools/routines/`).
 
@@ -301,9 +301,7 @@ correct answer on the first mistake.
 > **not** add a generic "listen to instructions" 🔊; only join this
 > list with a justified PR (open an issue with the `UX` label):
 >
-> - `keyboard-typing` — hears what the user types
 > - `piano-keys` — hears what the user plays
-> - `math-tables` — hears the operation (e.g. "two plus two")
 > - `my-agenda` — hears the planned tasks
 > - `sexual-health` — hears the case to decide on
 > - `social-safety` — hears the situation to decide on
@@ -472,7 +470,7 @@ honour these four **meaningful-learning anchors**:
   routine, use the steps the person actually follows.
 - **Allow light personalisation**: letting the person write their
   name or pick a stable avatar increases **ownership** of what was
-  learned (see `tools/piano-keys/`, `tools/keyboard-typing/`).
+  learned (see `tools/piano-keys/`).
 - **Space the practice**: in `localStorage` you can save the level
   reached; on the landing, suggest resuming that level rather than
   a random one.
