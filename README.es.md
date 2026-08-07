@@ -45,7 +45,7 @@ Según tu rol y perfil, te interesa una u otra documentación:
 |---|---|
 | [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) | Familias, terapeutas y desarrolladores que quieran contribuir |
 | `CLAUDE.md` | Agentes IA: reglas obligatorias y estado del proyecto |
-| [`CLOUDFLARE.md`](CLOUDFLARE.md) | Guía canónica de despliegue en Cloudflare Pages para el grupo de hermanos (Apptonomia + Calculia, Okeymoney, Sinonimia, Teclatlon) |
+| [`CLOUDFLARE.md`](CLOUDFLARE.md) | Guía canónica de despliegue en Cloudflare Workers para el grupo de hermanos (Apptonomia + Calculia, Okeymoney, Sinonimia, Teclatlon) |
 | Historial del proyecto | En `git log`; no se mantiene una hoja de ruta externa |
 | `doc/es/I18N.md` / `doc/en/I18N.md` | Detalles del sistema multiidioma ES/EN |
 

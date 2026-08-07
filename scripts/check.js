@@ -23,6 +23,14 @@
       porRonda) and app.js uses the DATA.porRonda literal instead of
       banco().porRonda, it's almost certainly the same bug (comparing
       against undefined never ends the round).
+   9. _headers: if a Content-Security-Policy line exists, every quoted
+      source expression (e.g. 'self') has exactly one leading and one
+      trailing quote — catches malformed quoting like ''self'' that
+      browsers silently drop, turning a directive into "block
+      everything" (this is why teclatlon's CSP was silently broken;
+      see the sibling repo's CLOUDFLARE.md). Apptonomia's _headers has
+      no CSP line by design, so this check does not require one to
+      exist — it only validates whatever is actually there.
    Output: list of failures with the exact file. Exit code 1 if there
    are any, "OK (N checks)" otherwise.
    ============================================================ */
@@ -371,6 +379,26 @@ Object.keys(destinos).forEach(function (f) {
 });
 // siteSet queda como referencia del chequeo anterior; el de catálogo se
 // resuelve en el bucle superior.
+
+/* --- 9. _headers: comillado de las expresiones de origen del CSP --- */
+checks += 1;
+var contenidoHeaders = fs.readFileSync(path.join(RAIZ, '_headers'), 'utf8');
+contenidoHeaders.split('\n').filter(function (linea) {
+  return /^\s*Content-Security-Policy:/i.test(linea);
+}).forEach(function (linea) {
+  var valor = linea.replace(/^\s*Content-Security-Policy:/i, '');
+  valor.split(';').forEach(function (directiva) {
+    directiva.trim().split(/\s+/).filter(Boolean).forEach(function (token) {
+      var numComillas = (token.match(/'/g) || []).length;
+      if (numComillas === 0) return;
+      var bienFormado = numComillas === 2 && token[0] === "'" && token[token.length - 1] === "'";
+      if (!bienFormado) {
+        fallos.push('_headers: expresión de origen CSP mal formada "' + token +
+          '" — las comillas deben envolver la palabra clave una sola vez (p. ej. \'self\', no \'\'self\'\')');
+      }
+    });
+  });
+});
 
 /* --- Result --- */
 if (fallos.length) {

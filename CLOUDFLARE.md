@@ -1,4 +1,4 @@
-# Cloudflare Pages — Apptonomia
+# Cloudflare Workers (static assets) — Apptonomia
 
 > **Production branch & automatic deploy.** Apptonomia deploys
 > **automatically on every push to `master`** via the **Cloudflare
@@ -10,31 +10,53 @@
 > `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` GitHub secrets
 > are set; otherwise it is a no-op. The recommended path is the
 > Cloudflare Git connector, which needs no GitHub secrets.
+>
+> **This project is deployed as a Cloudflare Worker (static assets),
+> not classic Cloudflare Pages**, despite this file's history and
+> title below. Confirmed by direct testing: `apptonomia.pages.dev`
+> (the URL this file used to call "canonical") does not resolve at
+> all, while `https://apptonomia.miralante.workers.dev` returns 200
+> with real Cloudflare headers. See the sibling `teclatlon` and
+> `sinonimia` repos' `CLOUDFLARE.md` for the same correction and how
+> it was diagnosed.
+>
+> **`apptonomia.web.app` (Firebase Hosting) is still live and is what
+> this repo's own README links to as "the App"** — it predates the
+> Cloudflare migration described below in "Custom domain", which
+> looks incomplete: that section says the Firebase mapping should be
+> removed only after Cloudflare is verified end-to-end, but
+> `apptonomia.web.app` still serves the site with **no `_headers`
+> protection at all** (no CSP, no security headers — Firebase Hosting
+> doesn't read that file). This needs a human decision (finish the
+> DNS/custom-domain migration, or update the README link to point at
+> the Workers URL) — not something to silently change here.
 
-**Canonical URL:** https://apptonomia.pages.dev
+**Live URL:** <https://apptonomia.miralante.workers.dev>
 
-Apptonomia is deployed on **Cloudflare Pages**, using its built-in
-GitHub integration. There is no custom GitHub Actions workflow and no
-`wrangler.toml` in the repo — the Cloudflare dashboard owns the build
-and deploy, and project configuration lives entirely there.
+Apptonomia is deployed as a **Cloudflare Worker (static assets)**
+project, using the Cloudflare Git connector. There is no custom
+GitHub Actions workflow that deploys, and — deliberately, see "Why
+still no `wrangler.toml`?" below — no `wrangler.toml` in the repo;
+the Cloudflare dashboard owns the build and deploy, and project
+configuration lives entirely there.
 
 ## How it works
 
-1. The repo `miralante/apptonomia` is connected to a Cloudflare Pages
-   project named `apptonomia`.
-2. Every push to `master` triggers a Pages build in Cloudflare's
-   infrastructure.
+1. The repo `miralante/apptonomia` is connected to a Cloudflare
+   Workers project named `apptonomia`.
+2. Every push to `master` triggers a build in Cloudflare's
+   infrastructure via Workers Builds.
 3. The build is a no-op: no `build command`, no `output directory` other
    than `.`, so the static files are served as-is.
 4. The `ci.yml` GitHub Action still runs on every push and PR to gate
    structural, i18n and secrets checks, but it does not deploy.
 
-The `apptonomia.pages.dev` subdomain is assigned by Cloudflare from the
-project name `apptonomia` declared in the Cloudflare dashboard. The
-project name is **not** declared in the repo — that mirrors the working
-setup of the sibling `sinonimia` project and avoids the "project type
-misdetected as Worker" failure mode that `wrangler.toml` introduces
-(see "Why no `wrangler.toml`?" below).
+The `apptonomia.<account-subdomain>.workers.dev` address is assigned
+by Cloudflare from the project name `apptonomia` declared in the
+Cloudflare dashboard. The project name is **not** declared in the
+repo — that avoids the "project type misdetected as Worker" failure
+mode that a Pages-style `wrangler.toml` introduced here in the past
+(see "Why still no `wrangler.toml`?" below).
 
 ## Files in this repository
 
@@ -50,7 +72,7 @@ settings; the repo holds the static assets and the CI that gates them.
 
 ## Why no `_redirects`?
 
-Cloudflare Pages serves every static file in the repo automatically,
+Cloudflare serves every static file in the repo automatically,
 including the implicit `index.html` lookup for any directory: visiting
 `/tools/pairs/` resolves to `tools/pairs/index.html`, `/team/` to
 `team/index.html`, and so on, without any rewrite rule. Every section
@@ -67,24 +89,35 @@ The root `/index.html` keeps its `<meta http-equiv="refresh">` to
 under Firebase Hosting — that has nothing to do with the server-side
 routing and does not cause a loop.
 
-## Why no `wrangler.toml`?
+## Why still no `wrangler.toml`?
 
-A `wrangler.toml` containing `name = "apptonomia"` and
-`pages_build_output_dir = "."` looks correct, but in practice the
-Cloudflare Pages Git connector can mis-detect the project type when
-that file is present: it falls back to `wrangler deploy` (the **Worker**
-deploy command), which then fails with *"Missing entry-point to Worker
-script or to assets directory"* because the file declares neither a
-`main` entry-point nor an `[assets]` binding. Removing `wrangler.toml`
-and letting the dashboard drive the deploy with `pages_build_output_dir`
-implicit (= repo root) sidesteps the issue entirely. This is the same
-pattern the sibling `sinonimia` repo uses and is what makes that
-project's deploys succeed end-to-end.
+A `wrangler.toml` containing `name = "apptonomia"` and a Pages-style
+`pages_build_output_dir = "."` setting looked correct, but in
+practice the Cloudflare Git connector mis-detected the project type
+when that file was present: it fell back to `wrangler deploy`
+expecting a hand-authored Worker, which then failed with *"Missing
+entry-point to Worker script or to assets directory"* because the
+file declared neither a `main` entry-point nor an `[assets]` binding.
+Removing `wrangler.toml` sidestepped the issue.
+
+The sibling `teclatlon`, `sinonimia`, `calculia` and `okeymoney`
+projects have since added back a `wrangler.toml` each — with the
+correct shape (`[assets] directory = "."`, no `main`) — because it's
+Cloudflare's currently recommended path and, for the ones with a
+`404.html`, because `not_found_handling = "404-page"` is the only way
+to make Cloudflare serve it (without it, an unmatched path gets a
+bare empty 404). Apptonomia doesn't have a `404.html` to protect and
+is the project every other sibling's deploy guide points to as
+canonical, so — until there's a concrete reason to add one —
+`wrangler.toml` stays out here on purpose, favouring the
+lowest-risk path for the main project over strict consistency with
+the siblings.
 
 If the project ever needs a manual CLI deploy (for example, to attach
 preview channels during a local debugging session), Wrangler can be
-installed transiently via `npx wrangler pages deploy . --project-name apptonomia`
-without committing a `wrangler.toml` or a `wrangler` devDependency.
+installed transiently via `npx wrangler deploy --name apptonomia
+--assets .` from the repo root, without committing a `wrangler.toml`
+or a `wrangler` devDependency.
 
 ## Configuration in Cloudflare
 
@@ -103,36 +136,37 @@ No environment variables are required: the app makes no server-side calls.
 ## Required Cloudflare headers
 
 The site uses a `_headers` file at the repo root to set cache and
-security headers. Cloudflare Pages reads it on every deploy and
-applies the rules automatically — no dashboard configuration needed.
+security headers. Cloudflare reads it on every deploy and applies the
+rules automatically — no dashboard configuration needed.
 
 ## One-time setup
 
 In the Cloudflare dashboard, **Workers & Pages → Create application →
-Pages → Connect to Git**:
+Connect to Git**:
 
 1. Select the Apptonomia repository.
 2. Set the **production branch** to `master`.
-3. Leave **build command** and **build output directory** empty — the
-   repository root already is the build output.
+3. Leave **build command** empty — the repository root already is the
+   build output. (Workers Builds may show this as "deploy command"
+   instead of "build output directory"; leave that at its default too
+   since there's no `wrangler.toml` telling it otherwise.)
 4. (Optional) In **Settings → Build**, confirm the framework preset is
-   "None" and the output directory is `.`.
+   "None".
 
-If a Pages or Worker project named `apptonomia` already exists from a
-previous attempt, delete it before creating the Pages project. Pages
-and Workers share the project name namespace, so a stale Worker named
-`apptonomia` will block Pages from taking the same name and will also
-be the source of the deploy failure described in "Why no
-`wrangler.toml`?" — deleting it is the first thing to try if the
-dashboard still mis-detects the project type.
+If a project named `apptonomia` already exists from a previous
+attempt in the wrong shape, delete it before creating this one —
+that was the source of the deploy failure described in "Why still no
+`wrangler.toml`?" the one time it happened here.
 
 Cloudflare then builds and deploys every push to `master` (production)
 and every pull request (preview channel, URL posted on the PR). No
 GitHub secret is required, no `wrangler login` is needed locally.
 
-The production URL is **https://apptonomia.pages.dev** — it follows the
-pattern `<project-name>.pages.dev` for the project named `apptonomia`
-in the dashboard, connected to the `master` branch.
+The production URL is **https://apptonomia.miralante.workers.dev** —
+it follows the pattern `<project-name>.<account-subdomain>.workers.dev`
+for the project named `apptonomia` in the dashboard, connected to the
+`master` branch. (Not `apptonomia.pages.dev` — see the note at the top
+of this file.)
 
 ## Day-to-day deploys
 
@@ -146,7 +180,7 @@ worktree without pushing), Wrangler can be invoked directly without any
 project-side configuration file:
 
 ```bash
-npx wrangler pages deploy . --project-name apptonomia
+npx wrangler deploy --name apptonomia --assets .
 ```
 
 ## Rollback
@@ -157,10 +191,20 @@ and select **"Retry deployment"** or **"Rollback to this deployment"**.
 
 ## Custom domain
 
-The custom domain (formerly on Firebase) must be moved in the Cloudflare
-dashboard once `apptonomia.pages.dev` is live:
+**Status as of this writing: this migration looks unfinished.** The
+plan below predates the correction at the top of this file (Cloudflare
+ended up serving from a `workers.dev` address, not `apptonomia.pages.dev`
+as step 1 assumed), and `apptonomia.web.app` — the pre-migration
+Firebase Hosting URL, still linked from this repo's own README — is
+still live and still serving traffic with none of the `_headers`
+protections. That's a real gap: verify with whoever owns the
+Cloudflare/DNS/Firebase consoles whether the custom domain move ever
+happened, and either finish it or decommission `apptonomia.web.app`
+and repoint the README. Not something to change from a repo edit.
 
-1. Add the domain to the Pages project.
+Original plan:
+
+1. Add the domain to the Cloudflare project.
 2. Update DNS at the registrar to the Cloudflare nameservers.
 3. Remove the Firebase Hosting custom domain mapping **only after** the
    Cloudflare deployment is verified end-to-end (do not run the two at
@@ -170,10 +214,10 @@ dashboard once `apptonomia.pages.dev` is live:
 
 - `manifest.json` and `sw.js` use relative paths, so they work on any host
   without changes.
-- Deep links such as `https://apptonomia.pages.dev/tools/pairs/` resolve
-  to the real `tools/pairs/index.html` automatically (Cloudflare's
-  implicit `index.html` lookup per directory), so no rewrite rule is
-  needed for them.
+- Deep links such as `https://apptonomia.miralante.workers.dev/tools/pairs/`
+  resolve to the real `tools/pairs/index.html` automatically
+  (Cloudflare's implicit `index.html` lookup per directory), so no
+  rewrite rule is needed for them.
 - Long-lived cache for fingerprinted JS/CSS/images is safe; the HTML
   entry points and `sw.js` are forced to `must-revalidate` so the PWA
   shell can update.

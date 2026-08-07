@@ -45,7 +45,7 @@ By role and profile, the most relevant docs are:
 |---|---|
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Anyone who wants to contribute (family, therapists, devs) |
 | `CLAUDE.md` | AI agents: operational workflow, coordination and approvals |
-| [`CLOUDFLARE.md`](CLOUDFLARE.md) | Canonical Cloudflare Pages deploy guide for the sibling group (Apptonomia + Calculia, Okeymoney, Sinonimia, Teclatlon) |
+| [`CLOUDFLARE.md`](CLOUDFLARE.md) | Canonical Cloudflare Workers deploy guide for the sibling group (Apptonomia + Calculia, Okeymoney, Sinonimia, Teclatlon) |
 | Project history | Lives in `git log`; no external roadmap is maintained |
 | `doc/es/I18N.md` / `doc/en/I18N.md` | Details of the ES/EN multilanguage system |
 
