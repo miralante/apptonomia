@@ -1,0 +1,25 @@
+# Sistema operativo / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+# Ficheros scratch de sesiones del editor / agente
+.tmp*
+# Notas/workspace personal del mantenedor
+,dev/
+.dev/
+
+# Por si en el futuro alguien añade alguna herramienta con dependencias
+node_modules/
+npm-debug.log*
+
+# Artefactos de agentes/herramientas de IA (se regeneran localmente)
+graphify-out/
+.graphifyignore
+
+# Cachés que generan los scripts de mantenimiento
+scripts/.cache/
+
+# Logs de servidores de desarrollo locales
+*.log

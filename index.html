@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== SEO: título, descripción, keywords, canonical, robots =====
+       Title and description are the single most cited signals in both
+       classic SERPs and LLM retrieval (they end up verbatim in many
+       answer engines). Keyword is explicit for crawlers that still
+       weigh it. Canonical points to the production domain so any
+       dev/staging copy does not outrank it; robots leaves indexing on
+       (it's the public landing) and points to a real sitemap. -->
+  <title>Apptonomia — Suite de apps para aprender a tu ritmo</title>
+  <meta name="description" data-i18n-attr="meta.description" content="Apptonomia es una suite de seis aplicaciones web gratuitas y sin registro para aprender a tu ritmo: Calculia (matemáticas), Routime (actividades), Okeymoney (dinero cotidiano), Sinonimia (diccionario en lectura fácil), Memofun (tarjetas de estudio) y Teclatlon (mecanografía). Accede a todas desde un solo portal.">
+  <meta name="keywords" content="apptonomia, calculia, routime, okeymoney, sinonimia, memofun, teclatlon, suite educativa, aprender a tu ritmo, easy read, lectura fácil, accesibilidad cognitiva, aplicaciones gratuitas sin registro, matemáticas, mecanografía, diccionario, flashcards, dinero cotidiano">
+  <meta name="author" content="Apptonomia">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://apptonomia.uk/">
+  <link rel="alternate" hreflang="es" href="https://apptonomia.uk/?lang=es">
+  <link rel="alternate" hreflang="en" href="https://apptonomia.uk/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://apptonomia.uk/">
+
+  <!-- ===== Open Graph (Facebook, LinkedIn, Discord, WhatsApp previews) ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Apptonomia">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="Apptonomia — Suite de apps para aprender a tu ritmo">
+  <meta property="og:description" content="Seis aplicaciones web gratuitas y sin registro: Calculia, Routime, Okeymoney, Sinonimia, Memofun y Teclatlon. Acceso directo desde un solo portal.">
+  <meta property="og:url" content="https://apptonomia.uk/">
+  <meta property="og:image" content="https://apptonomia.uk/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Apptonomia: seis aplicaciones para aprender a tu ritmo">
+
+  <!-- ===== Twitter Card ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Apptonomia — Suite de apps para aprender a tu ritmo">
+  <meta name="twitter:description" content="Calculia, Routime, Okeymoney, Sinonimia, Memofun y Teclatlon en un solo portal. Gratis y sin registro.">
+  <meta name="twitter:image" content="https://apptonomia.uk/og-image.png">
+
+  <!-- ===== Theme / appearance ===== -->
+  <meta name="theme-color" content="#FAF7F2">
+  <meta name="color-scheme" content="light">
+  <meta name="format-detection" content="telephone=no">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- ===== JSON-LD: structured data for Google + AI retrieval =====
+       Two blocks:
+       1) Organization + WebSite with the production URL, so search
+          engines know the canonical home, and LLMs can ground "what
+          is Apptonomia" answers in a single source.
+       2) ItemList of the six products (Schema.org SoftwareApplication),
+          each with a URL, a description (bilingual), a category and
+          a free price — this is the single highest-leverage block for
+          AI retrieval: it turns "list all Apptonomia apps" into a
+          deterministic lookup instead of a guess.
+       The description fields use the Spanish copy (es is the source
+       of truth per the project's language policy); the en equivalents
+       are mirrored in strings.en.js for the visible UI. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "WebSite"],
+        "@id": "https://apptonomia.uk/#org",
+        "name": "Apptonomia",
+        "alternateName": "Apptonomia.uk",
+        "url": "https://apptonomia.uk/",
+        "logo": "https://apptonomia.uk/logo.png",
+        "description": "Apptonomia es una suite de aplicaciones web gratuitas y sin registro, pensadas para aprender a tu ritmo. Incluye Calculia, Routime, Okeymoney, Sinonimia, Memofun y Teclatlon.",
+        "inLanguage": ["es", "en"],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@apptonomia.uk",
+          "contactType": "customer support",
+          "availableLanguage": ["Spanish", "English"]
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://apptonomia.uk/#suite",
+        "name": "Suite Apptonomia",
+        "description": "Las seis aplicaciones que forman la suite Apptonomia.",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": 6,
+        "itemListElement": [
+          {
+            "@type": "SoftwareApplication",
+            "position": 1,
+            "name": "Calculia",
+            "url": "https://calculia.apptonomia.uk/",
+            "applicationCategory": "EducationalApplication",
+            "applicationSubCategory": "Matemáticas y razonamiento lógico",
+            "operatingSystem": "Web",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+            "description": "Cálculo y razonamiento lógico con actividades cortas y visuales."
+          },
+          {
+            "@type": "SoftwareApplication",
+            "position": 2,
+            "name": "Routime",
+            "url": "https://routime.apptonomia.uk/",
+            "applicationCategory": "EducationalApplication",
+            "applicationSubCategory": "Actividades cotidianas",
+            "operatingSystem": "Web",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+            "description": "Actividades cotidianas para entrenar mente y habilidades."
+          },
+          {
+            "@type": "SoftwareApplication",
+            "position": 3,
+            "name": "Okeymoney",
+            "url": "https://okeymoney.apptonomia.uk/",
+            "applicationCategory": "FinanceApplication",
+            "applicationSubCategory": "Educación financiera",
+            "operatingSystem": "Web",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+            "description": "Dinero y autonomía cotidiana, paso a paso."
+          },
+          {
+            "@type": "SoftwareApplication",
+            "position": 4,
+            "name": "Sinonimia",
+            "url": "https://sinonimia.apptonomia.uk/",
+            "applicationCategory": "EducationalApplication",
+            "applicationSubCategory": "Diccionario en lectura fácil",
+            "operatingSystem": "Web",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+            "description": "Diccionario en lectura fácil con sinónimos y pictogramas."
+          },
+          {
+            "@type": "SoftwareApplication",
+            "position": 5,
+            "name": "Memofun",
+            "url": "https://memofun.apptonomia.uk/",
+            "applicationCategory": "EducationalApplication",
+            "applicationSubCategory": "Tarjetas de estudio (flashcards)",
+            "operatingSystem": "Web",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+            "description": "Tarjetas de memoria para aprender a tu ritmo."
+          },
+          {
+            "@type": "SoftwareApplication",
+            "position": 6,
+            "name": "Teclatlon",
+            "url": "https://teclatlon.apptonomia.uk/",
+            "applicationCategory": "EducationalApplication",
+            "applicationSubCategory": "Mecanografía",
+            "operatingSystem": "Web",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+            "description": "Mecanografía con el teclado físico del ordenador."
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script src="bootstrap.js"></script>
+  <style>
+    /* ===== Design tokens (alineados con Calculia / Teclatlon / Memofun) ===== */
+    :root {
+      --color-bg: #FAF7F2;
+      --color-surface: #FFFFFF;
+      --color-text: #1A1A2E;
+      --color-text-soft: #4A4A68;
+      --color-border: #D8D2C8;
+      --accent: #1B6CA8;
+      --accent-soft: #E3EEF6;
+      --color-focus: #1B6CA8;
+      --color-shadow: rgba(26, 26, 46, 0.12);
+
+      --font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --text-base: 18px;
+      --text-small: 15px;
+      --text-large: 26px;
+      --text-title: 38px;
+
+      --space: 16px;
+      --space-large: 24px;
+      --space-xl: 40px;
+      --radius: 16px;
+      --button-min: 56px;
+      --shadow: 0 2px 8px var(--color-shadow);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: var(--text-base);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--color-text);
+      background: var(--color-bg);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    h1 { font-size: var(--text-title); line-height: 1.15; letter-spacing: -0.02em; }
+    h2 { font-size: var(--text-large); line-height: 1.25; }
+    h3 { font-size: 22px; line-height: 1.3; }
+    p  { max-width: 38em; color: var(--color-text-soft); }
+
+    :focus-visible {
+      outline: 3px solid var(--color-focus);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 0 0 var(--radius) var(--radius);
+      z-index: 100;
+    }
+    .skip-link:focus { left: 16px; top: 16px; }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 var(--space-large);
+    }
+
+    /* ===== Header ===== */
+    .app-header {
+      padding: var(--space) 0 var(--space-large);
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space);
+      margin-bottom: var(--space-large);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .brand:hover { text-decoration: none; }
+    .brand-mark {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: var(--color-text);
+      color: #fff;
+      display: grid; place-items: center;
+      font-weight: 800; font-size: 22px;
+    }
+    .brand-name { font-size: 22px; letter-spacing: -0.02em; }
+
+    .lang-switch {
+      display: inline-flex;
+      gap: 6px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      padding: 4px;
+    }
+    .btn-lang {
+      border: 0;
+      background: transparent;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font: inherit;
+      font-weight: 600;
+      color: var(--color-text-soft);
+      cursor: pointer;
+      min-height: 40px;
+    }
+    .btn-lang[aria-pressed="true"] {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .app-hero {
+      text-align: center;
+      padding-top: var(--space-large);
+    }
+    .app-hero h1 {
+      max-width: 18ch;
+      margin: 0 auto var(--space);
+    }
+    .app-hero .hero-tagline {
+      margin: 0 auto;
+      max-width: 38ch;
+      font-size: 20px;
+      line-height: 1.45;
+      color: var(--color-text-soft);
+      letter-spacing: -0.01em;
+    }
+
+    /* ===== Suite grid ===== */
+    main {
+      flex: 1;
+      padding: var(--space-xl) 0 var(--space-large);
+    }
+
+    .suite {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space);
+    }
+
+    .suite-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: var(--space-large);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      color: var(--color-text);
+      text-decoration: none;
+      min-height: 180px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .suite-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px var(--color-shadow);
+      text-decoration: none;
+    }
+    .suite-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .suite-picto {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-size: 22px;
+      background: var(--accent-soft);
+    }
+    .suite-tag {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-soft);
+    }
+    .suite-card h3 {
+      font-size: 22px;
+      letter-spacing: -0.01em;
+    }
+    .suite-card p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--color-text-soft);
+    }
+    .suite-domain {
+      margin-top: auto;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-text);
+      opacity: 0.7;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ===== Footer ===== */
+    .app-footer {
+      padding: var(--space-large) 0 var(--space);
+      color: var(--color-text-soft);
+      font-size: 14px;
+    }
+    .app-footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space);
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) {
+      :root { --text-title: 30px; --text-large: 22px; }
+      .top-bar { flex-wrap: wrap; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#contenido" data-i18n="core.skipToContent">Ir al contenido</a>
+
+<header class="app-header">
+  <div class="container">
+    <div class="top-bar">
+      <a class="brand" href="./" aria-label="Apptonomia">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span class="brand-name">Apptonomia</span>
+      </a>
+
+      <div class="lang-switch" role="group" aria-label="Elegir idioma">
+        <button type="button" class="btn-lang" id="lang-es" data-locale="es" aria-pressed="true">ES</button>
+        <button type="button" class="btn-lang" id="lang-en" data-locale="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+
+    <div class="app-hero">
+      <h1 data-i18n="home.title">Apptonomia</h1>
+      <p class="hero-tagline" data-i18n="home.tagline">Aprende a tu ritmo, en el idioma que prefieras.</p>
+    </div>
+  </div>
+</header>
+
+<main id="contenido" class="container">
+  <div class="suite" aria-label="Suite de proyectos">
+
+    <a class="suite-card" href="https://calculia.apptonomia.uk" target="_blank" rel="noreferrer">
+      <div class="suite-card-head">
+        <span class="suite-picto" aria-hidden="true">🧮</span>
+        <span class="suite-tag" data-i18n="tags.math">Matemáticas</span>
+      </div>
+      <h3>Calculia</h3>
+      <p data-i18n="projects.calculia">Cálculo y razonamiento lógico con actividades cortas y visuales.</p>
+      <span class="suite-domain">calculia.apptonomia.uk</span>
+    </a>
+
+    <a class="suite-card" href="https://routime.apptonomia.uk" target="_blank" rel="noreferrer">
+      <div class="suite-card-head">
+        <span class="suite-picto" aria-hidden="true">🧩</span>
+        <span class="suite-tag" data-i18n="tags.activities">Actividades</span>
+      </div>
+      <h3>Routime</h3>
+      <p data-i18n="projects.routime">Actividades cotidianas para entrenar mente y habilidades.</p>
+      <span class="suite-domain">routime.apptonomia.uk</span>
+    </a>
+
+    <a class="suite-card" href="https://okeymoney.apptonomia.uk" target="_blank" rel="noreferrer">
+      <div class="suite-card-head">
+        <span class="suite-picto" aria-hidden="true">💶</span>
+        <span class="suite-tag" data-i18n="tags.life">Vida diaria</span>
+      </div>
+      <h3>Okeymoney</h3>
+      <p data-i18n="projects.okeymoney">Dinero y autonomía cotidiana, paso a paso.</p>
+      <span class="suite-domain">okeymoney.apptonomia.uk</span>
+    </a>
+
+    <a class="suite-card" href="https://sinonimia.apptonomia.uk" target="_blank" rel="noreferrer">
+      <div class="suite-card-head">
+        <span class="suite-picto" aria-hidden="true">📖</span>
+        <span class="suite-tag" data-i18n="tags.words">Palabras</span>
+      </div>
+      <h3>Sinonimia</h3>
+      <p data-i18n="projects.sinonimia">Diccionario en lectura fácil con sinónimos y pictogramas.</p>
+      <span class="suite-domain">sinonimia.apptonomia.uk</span>
+    </a>
+
+    <a class="suite-card" href="https://memofun.apptonomia.uk" target="_blank" rel="noreferrer">
+      <div class="suite-card-head">
+        <span class="suite-picto" aria-hidden="true">⭐</span>
+        <span class="suite-tag" data-i18n="tags.study">Estudio</span>
+      </div>
+      <h3>Memofun</h3>
+      <p data-i18n="projects.memofun">Tarjetas de memoria para aprender a tu ritmo.</p>
+      <span class="suite-domain">memofun.apptonomia.uk</span>
+    </a>
+
+    <a class="suite-card" href="https://teclatlon.apptonomia.uk" target="_blank" rel="noreferrer">
+      <div class="suite-card-head">
+        <span class="suite-picto" aria-hidden="true">⌨️</span>
+        <span class="suite-tag" data-i18n="tags.keyboard">Teclado</span>
+      </div>
+      <h3>Teclatlon</h3>
+      <p data-i18n="projects.teclatlon">Mecanografía con el teclado físico del ordenador.</p>
+      <span class="suite-domain">teclatlon.apptonomia.uk</span>
+    </a>
+
+  </div>
+</main>
+
+<footer class="app-footer">
+  <div class="container">
+    <span data-i18n="footer.note">Apptonomia — acceso a la suite</span>
+    <a href="mailto:hello@apptonomia.uk">hello@apptonomia.uk</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="strings.es.js"></script>
+<script src="strings.en.js"></script>
+<script src="prepaint.js"></script>
+</body>
+</html>

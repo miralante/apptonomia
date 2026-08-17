@@ -1,0 +1,23 @@
+# wrangler.toml — Cloudflare Workers (static assets) configuration for
+# the Apptonomia suite portal.
+#
+# Apptonomia is a fully static site (plain HTML/CSS/JS, no build step, no
+# server-side code), so it's deployed as a Worker with no `main` script —
+# just a static-assets binding. This is Cloudflare's current recommended
+# path for static sites (the classic "Pages" product is being superseded by
+# Workers + static assets) and matches the shape used by every sibling
+# project in the suite (see sinonimia/CLOUDFLARE.md for the canonical
+# example).
+#
+# See: https://developers.cloudflare.com/workers/static-assets/
+
+name = "apptonomia"
+compatibility_date = "2026-07-27"
+
+[assets]
+directory = "."
+# Serve 404.html for any path that isn't a static asset, instead of
+# Cloudflare's default JSON 404 — the portal itself has no client-side
+# router (the script.js + bootstrap.js bootstrap is the only JS, and
+# it never reads the URL path).
+not_found_handling = "404-page"
