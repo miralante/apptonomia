@@ -1,0 +1,56 @@
+name: Validate
+
+# Runs the project's structural, i18n and secrets checks on every push and
+# pull request. Deploy to Cloudflare Workers (static assets) is handled by
+# the Cloudflare Git connector reading _headers and wrangler.toml from the
+# repo root — this workflow does not deploy.
+#
+# None of the scripts below require npm dependencies: they all run with
+# plain `node` and only use stdlib modules (fs, path, vm, child_process).
+# The repo has no `package.json` (the sibling `sinonimia` project
+# established this pattern) so there is nothing to install.
+#
+# The `secrets-scan` job is intentionally best-effort: it uses plain
+# regex patterns that match the most common shapes of accidentally
+# committed secrets, and only fails the pipeline when it finds something
+# in the working tree. It is not a substitute for `gitleaks` or
+# `trufflehog`, and a clean run does not mean "no secrets are present".
+# It is the cheapest possible net for "did anyone paste a key in a
+# hurry?".
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  check:
+    name: node scripts/check.js
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run structural and i18n checks
+        run: node scripts/check.js
+
+  secrets-scan:
+    name: secrets scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Scan for accidentally committed secrets
+        run: node scripts/scan-secrets.js
