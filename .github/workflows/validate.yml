@@ -38,7 +38,36 @@ jobs:
           node-version: "20"
 
       - name: Run structural and i18n checks
-        run: node scripts/check.js
+        # NOTE: this repo intentionally has no scripts/check.js — the
+        # landing is a single static page (see README.md). The job is
+        # kept as a no-op marker so the `Validate` workflow name matches
+        # the rest of the suite; the substantive audit lives in the
+        # `forbidden-terms` job below.
+        run: echo "apptonomia: no scripts/check.js by design; see forbidden-terms job"
+
+  forbidden-terms:
+    name: forbidden-terms scan
+    # Enforces SPEC.md §4 ("Mandatory rule: zero mentions in the
+    # user-facing product") across the public landing: index.html,
+    # js/*.js, and about/privacidad.html. Mirrors the FORBIDDEN_TERMS
+    # blocklist in calculia/okeymoney/teclatlon/scripts/check.js and
+    # sinonimia/scripts/validar.js (where js/data.*.js is excluded —
+    # dictionary entries may legitimately name a real bureaucratic
+    # concept; apptonomia ships no dictionary, so no such exception
+    # applies). Runs in its own job so it can fail fast on a copy
+    # regression without waiting on other steps.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Scan landing for disability/OT/minors mentions
+        run: node scripts/check-forbidden-terms.js
 
   secrets-scan:
     name: secrets scan
