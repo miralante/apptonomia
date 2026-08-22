@@ -34,6 +34,48 @@
 //                                      it has no per-project graph yet.
 //                      --target <dir>  restrict to a single project (repeatable).
 //
+//   ask <slug> "..." Delegate a question to a sibling's deep per-project graph
+//                    instead of the cross-project meta-graph. This is the
+//                    "use the sibling's own graph" path: the agent stays in
+//                    apptonomia (no `cd ../<sibling>` needed) and we route the
+//                    call to graphify query on that sibling's graphify-out/
+//                    graph.json, with cwd set to the sibling so .graphifyignore
+//                    and other defaults still apply.
+//                    Positional:
+//                      <slug>          one of the seven siblings
+//                      "<question>"    the natural-language query
+//                    Flags:
+//                      --graph <path>    override the graph.json location
+//                      --type            query|explain   (default: query;
+//                                         path/path_query need two labels A B,
+//                                         run those from inside the sibling)
+//                      --budget <N>      cap output tokens (default: 2000)
+//                      --raw             use DFS instead of BFS
+//                      --refresh         force `graphify update .` in the
+//                                        sibling before answering, even when
+//                                        the graph is already fresh
+//                      --refresh-force   same as --refresh but passes
+//                                        `--force` to the underlying
+//                                        `graphify update .`, overriding
+//                                        graphify's safety guard that
+//                                        refuses to overwrite a smaller
+//                                        graph (e.g. 435 nodes) with an
+//                                        older one (e.g. 500 nodes). Use
+//                                        when the corpus has shrunk and you
+//                                        know the new size is correct.
+//                      --refresh-if-stale  same, but only when the graph is
+//                                        stale (HEAD != GRAPH_REPORT commit);
+//                                        the recommended agent-driven path:
+//                                        always pass this so answers reflect
+//                                        the latest code without manual
+//                                        `update --apply` calls.
+//                      --refresh-if-stale-force  combine --refresh-if-stale
+//                                        with the --force passthrough.
+//                    Default behavior (no refresh flag): if the per-project
+//                    graph is stale, print a one-line WARNING before answering
+//                    so the agent knows the answer may be outdated; the query
+//                    still runs against whatever graph is on disk.
+//
 // Default subcommand (no first non-flag arg) is `sync --check`, so the
 // legacy invocation `node scripts/sync-graphify-skill.js` still works.
 //
@@ -43,6 +85,11 @@
 //   node scripts/sync-graphify-skill.js update --check           # report stale graphs
 //   node scripts/sync-graphify-skill.js update --apply           # update + meta
 //   node scripts/sync-graphify-skill.js update --apply --all     # include apptonomia
+//   node scripts/sync-graphify-skill.js ask calculia "how does the Wallet activity render its money keypad?"
+//   node scripts/sync-graphify-skill.js ask memofun --type explain "App.decks"
+//   node scripts/sync-graphify-skill.js ask --refresh-if-stale calculia "what changed in the Wallet since last build?"
+//   node scripts/sync-graphify-skill.js ask --refresh okeymoney "rebuild from scratch then query the dashboard layout"
+//   node scripts/sync-graphify-skill.js ask --refresh-force sinonimia "what are the main CSS files in the app?"
 //
 // Exit codes:
 //   0  success (no drift, or all updates applied, or skip when nothing to do)
@@ -69,23 +116,90 @@ function parseArgs(argv) {
     targets: [],
     targetsFile: null,
     all: false,
+    askSlug: null,
+    askQuery: null,
+    askGraph: null,
+    askType: null,
+    askBudget: null,
+    askRaw: false,
+    askRefresh: false,
+    askRefreshIfStale: false,
+    askRefreshForce: false,
+    askRefreshIfStaleForce: false,
   };
   let i = 2;
-  // Optional subcommand (sync | update) before any flags.
+  // Optional subcommand (sync | update | ask) before any flags.
   if (i < argv.length && !argv[i].startsWith('-')) {
     const sub = argv[i];
-    if (sub !== 'sync' && sub !== 'update') {
+    if (sub !== 'sync' && sub !== 'update' && sub !== 'ask') {
       console.error(`Unknown subcommand: ${sub}`);
       printHelp(); process.exit(2);
     }
     args.subcommand = sub;
     i++;
   }
+  // For `ask`, separate flags from positional args without assuming order.
+  // The slug is the single non-flag token; everything else non-flag is the
+  // query. Flags may appear before, after, or around the positional args.
+  if (args.subcommand === 'ask') {
+    const remaining = argv.slice(i);
+    function isFlag(tok) { return tok && tok.startsWith('-'); }
+    function applyFlag(idx) {
+      // Consumes one token (and a value if the flag is not a boolean).
+      // Returns the new index.
+      if (idx >= remaining.length) return idx;
+      const tok = remaining[idx];
+      if (tok === '--help' || tok === '-h') { printHelp(); process.exit(0); }
+      else if (tok === '--raw') { args.askRaw = true; return idx + 1; }
+      else if (tok === '--refresh') { args.askRefresh = true; return idx + 1; }
+      else if (tok === '--refresh-force') { args.askRefresh = true; args.askRefreshForce = true; return idx + 1; }
+      else if (tok === '--refresh-if-stale') { args.askRefreshIfStale = true; return idx + 1; }
+      else if (tok === '--refresh-if-stale-force') { args.askRefreshIfStale = true; args.askRefreshForce = true; return idx + 1; }
+      else if (tok === '--graph') { if (idx + 1 >= remaining.length) { console.error('--graph requires a value'); process.exit(2); } args.askGraph = remaining[idx + 1]; return idx + 2; }
+      else if (tok === '--type') { if (idx + 1 >= remaining.length) { console.error('--type requires a value'); process.exit(2); } args.askType = remaining[idx + 1]; return idx + 2; }
+      else if (tok === '--budget') { if (idx + 1 >= remaining.length) { console.error('--budget requires a value'); process.exit(2); } args.askBudget = remaining[idx + 1]; return idx + 2; }
+      else { console.error(`Unknown argument for ask: ${tok}`); printHelp(); process.exit(2); }
+    }
+    // Single linear pass. First non-flag is the slug; everything after that is
+    // either query tokens or flags. A flag interrupts the query, and the next
+    // non-flag token resumes it.
+    let k = 0;
+    // Optional leading flag group (e.g. `ask --type query slug "q"`).
+    while (k < remaining.length && isFlag(remaining[k])) k = applyFlag(k);
+    if (k >= remaining.length || isFlag(remaining[k])) {
+      console.error('Usage: ask <slug> "<question>"');
+      process.exit(2);
+    }
+    args.askSlug = remaining[k];
+    k++;
+    // Now alternate: consume query tokens until a flag, then handle the flag,
+    // then resume query tokens. This handles `ask slug --type X q1 q2 --raw q3`.
+    const queryTokens = [];
+    while (k < remaining.length) {
+      if (isFlag(remaining[k])) {
+        k = applyFlag(k);
+      } else {
+        queryTokens.push(remaining[k]);
+        k++;
+      }
+    }
+    args.askQuery = queryTokens.join(' ');
+    if (!args.askQuery) {
+      console.error('Usage: ask <slug> "<question>"');
+      process.exit(2);
+    }
+    // Skip the rest of argv; we already parsed everything.
+    i = argv.length;
+  }
   for (; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--apply') { args.apply = true; args.check = false; }
     else if (a === '--check') { args.check = true; args.apply = false; }
     else if (a === '--from') { args.from = argv[++i]; }
+    else if (a === '--graph') { args.askGraph = argv[++i]; }
+    else if (a === '--type') { args.askType = argv[++i]; }
+    else if (a === '--budget') { args.askBudget = argv[++i]; }
+    else if (a === '--raw') { args.askRaw = true; }
     else if (a === '--target') { args.targets.push(argv[++i]); }
     else if (a === '--targets-file') { args.targetsFile = argv[++i]; }
     else if (a === '--all') { args.all = true; }
@@ -98,11 +212,19 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  console.log('Usage: node scripts/sync-graphify-skill.js [sync|update] [options]');
+  console.log('Usage: node scripts/sync-graphify-skill.js [sync|update|ask] [options]');
   console.log('');
   console.log('Subcommands:');
   console.log('  sync    [(--check)|--apply] [--from <dir>] [--target <dir>...] [--targets-file <file>]');
-  console.log('  update  [(--check)|--apply] [--all] [--target <dir>...] [--targets-file <file>]');
+  console.log('  update  [(--check)|--apply] [--all] [--target <d      override the graph.json location');
+  console.log('                                --type query|explain    (default: query; path/path_query need A B labels)');
+  console.log('                                --budget <N>            cap output tokens (default: 2000)');
+  console.log('                                --raw                   use DFS instead of BFS');
+  console.log('                                --refresh               force graphify update . in the sibling before answering');
+  console.log('                                --refresh-force         same as --refresh but passes --force to graphify update');
+  console.log('                                                       (overrides "refuse to overwrite smaller graph")');
+  console.log('                                --refresh-if-stale      same, but only when the graph is stale (recommended)');
+  console.log('                                --refresh-if-stale-force  combine --refresh-if-stale with --force passthrough');
   console.log('');
   console.log('Default (no subcommand): sync --check');
 }
@@ -284,9 +406,16 @@ function inspectProjectGraph(projectDir) {
   };
 }
 
-function runGraphifyUpdate(projectDir, interpreter) {
+function runGraphifyUpdate(projectDir, interpreter, opts) {
+  // opts.force — pass `--force` to `graphify update .` so it overrides the
+  // safety guard that refuses to overwrite a smaller graph with an older
+  // (and larger) one. Use only when the agent knows the new size is
+  // correct (e.g. the corpus shrank because entries/files were deleted).
   // Returns { code, stdout, stderr }; never throws.
-  const r = spawnSync(interpreter, ['-m', 'graphify', 'update', '.'], {
+  opts = opts || {};
+  const args = ['-m', 'graphify', 'update', '.'];
+  if (opts.force) args.push('--force');
+  const r = spawnSync(interpreter, args, {
     cwd: projectDir,
     encoding: 'utf8',
     env: process.env,
@@ -398,6 +527,161 @@ function cmdUpdate(args) {
   process.exit(failed === 0 ? 0 : 1);
 }
 
+// --- ask subcommand: delegate a question to a sibling's graphify graph ------
+// Purpose: from apptonomia (the metaproject root) run a `graphify query` against
+// a sibling's own `graphify-out/graph.json`, so questions about a specific
+// project use the deep per-project graph rather than the cross-project index
+// at graphify-out-meta/. This is the "fast path — existing graph" rule from
+// the graphify skill, applied across project boundaries without forcing the
+// agent to `cd` into the sibling first.
+
+const ALLOWED_ASK_TYPES = new Set(['query', 'explain']);
+
+function resolveAskTarget(args) {
+  // Resolves the absolute graph.json path to query against.
+  // --graph, when given, wins. Otherwise <slug>/graphify-out/graph.json next to
+  // the suite root.
+  if (args.askGraph) {
+    const abs = path.resolve(args.askGraph);
+    if (!fs.existsSync(abs)) {
+      console.error(`--graph points to a non-existent file: ${abs}`);
+      process.exit(2);
+    }
+    return abs;
+  }
+  const suiteDir = discoverSuiteDir();
+  const candidate = path.join(suiteDir, args.askSlug, 'graphify-out', 'graph.json');
+  if (!fs.existsSync(candidate)) {
+    console.error(`No graph found for slug "${args.askSlug}" at ${candidate}.`);
+    console.error('Did you mean one of:', DEFAULT_PROJECTS.join(', '), '?');
+    console.error('Or pass --graph <path-to-graph.json> explicitly.');
+    process.exit(2);
+  }
+  return candidate;
+}
+
+function cmdAsk(args) {
+  const slug = args.askSlug;
+  const query = args.askQuery;
+  if (!slug || !query) {
+    console.error('Usage: ask <slug> "<question>"');
+    process.exit(2);
+  }
+  if (!DEFAULT_PROJECTS.includes(slug)) {
+    console.error(`Unknown slug: "${slug}". Expected one of: ${DEFAULT_PROJECTS.join(', ')}.`);
+    process.exit(2);
+  }
+
+  const askType = args.askType || 'query';
+  if (!ALLOWED_ASK_TYPES.has(askType)) {
+    console.error(`--type must be one of: ${[...ALLOWED_ASK_TYPES].join(', ')} (or path/path_query with two labels).`);
+    process.exit(2);
+  }
+
+  const interpreter = resolveGraphifyInterpreter();
+  if (!interpreter) {
+    console.error('Could not locate a graphifyy Python interpreter. Install with:');
+    console.error('  uv tool install --upgrade graphifyy');
+    process.exit(2);
+  }
+
+  // Refresh handling: by default, warn (don't block) if the per-project graph
+  // is stale. --refresh forces a rebuild even when fresh. --refresh-if-stale
+  // silently rebuilds only when stale (the agent-driven happy path). Add
+  // `-force` to either to pass `--force` through to graphify update (overrides
+  // its "refuse to overwrite smaller graph" guard).
+  if (args.askRefresh && args.askRefreshIfStale) {
+    console.error('Pass only one of --refresh / --refresh-if-stale (with or without -force).');
+    process.exit(2);
+  }
+  const suiteDir = discoverSuiteDir();
+  const siblingRoot = path.join(suiteDir, slug);
+  if (args.askRefresh || args.askRefreshIfStale) {
+    if (!fs.existsSync(siblingRoot)) {
+      console.error(`Cannot refresh: sibling directory not found at ${siblingRoot}`);
+      process.exit(2);
+    }
+    if (args.askRefreshIfStale) {
+      const inspection = inspectProjectGraph(siblingRoot);
+      if (inspection.status === 'fresh') {
+        console.log(`[${slug}] graph is FRESH (${inspection.reason}); skipping rebuild.`);
+      } else if (inspection.status === 'no-graph') {
+        console.log(`[${slug}] no graph.json yet; running initial build...`);
+        const r = runGraphifyUpdate(siblingRoot, interpreter, { force: args.askRefreshForce });
+        if (r.code !== 0) {
+          console.error(`[${slug}] graphify update failed (exit ${r.code}). Continuing without the refresh.`);
+          if (r.stderr) console.error(r.stderr.split(/\r?\n/).slice(0, 8).join('\n'));
+        } else {
+          console.log(`[${slug}] initial graph built successfully.`);
+        }
+      } else {
+        console.log(`[${slug}] graph is STALE [${inspection.status}]: ${inspection.reason}`);
+        console.log(`[${slug}] running graphify update . ${args.askRefreshForce ? '(with --force)' : ''}...`);
+        const r = runGraphifyUpdate(siblingRoot, interpreter, { force: args.askRefreshForce });
+        if (r.code !== 0) {
+          console.error(`[${slug}] graphify update failed (exit ${r.code}). Falling back to stale graph for the query.`);
+          if (r.stderr) console.error(r.stderr.split(/\r?\n/).slice(0, 8).join('\n'));
+        } else {
+          console.log(`[${slug}] graph rebuilt successfully.`);
+        }
+      }
+    } else {
+      console.log(`[${slug}] --refresh${args.askRefreshForce ? ' --force' : ''}: forcing graphify update . ${args.askRefreshForce ? '(with --force)' : ''}...`);
+      const r = runGraphifyUpdate(siblingRoot, interpreter, { force: args.askRefreshForce });
+      if (r.code !== 0) {
+        console.error(`[${slug}] graphify update failed (exit ${r.code}). Continuing with stale graph.`);
+        if (r.stderr) console.error(r.stderr.split(/\r?\n/).slice(0, 8).join('\n'));
+      } else {
+        console.log(`[${slug}] graph rebuilt successfully.`);
+      }
+    }
+  } else {
+    // Default: warn if stale, don't block. Agent may re-run with --refresh.
+    if (fs.existsSync(siblingRoot)) {
+      const inspection = inspectProjectGraph(siblingRoot);
+      if (inspection.status !== 'fresh') {
+        console.log(`[${slug}] NOTE: graph is ${inspection.status.toUpperCase()} (${inspection.reason}).`);
+        console.log(`         Pass --refresh-if-stale to rebuild automatically, or --refresh to force.`);
+        console.log(`         Add -force (e.g. --refresh-if-stale-force) when the rebuild refuses to overwrite`);
+        console.log('');
+      }
+    }
+  }
+
+  const graphPath = resolveAskTarget(args);
+
+  // `path` / `path_query` need two positional labels (A and B), which we don't
+  // have here. Reject early with a clear message instead of building a broken
+  // invocation.
+  if (args.askType === 'path_query' || args.askType === 'path') {
+    console.error(`--type ${args.askType} requires two node labels (A and B).`);
+    console.error('Run graphify path "A" "B" from inside the sibling directory,');
+    console.error('or call this script with --type query for BFS traversal.');
+    process.exit(2);
+  }
+
+  // Build the graphify CLI invocation. Use the sibling's directory as cwd so
+  // graphify's defaults (graphify-out/graph.json, .graphifyignore) resolve
+  // correctly even when --graph isn't passed.
+  const siblingDir = path.dirname(path.dirname(graphPath)); // strip /graphify-out/graph.json
+  const argv2 = ['-m', 'graphify', askType, query, '--graph', graphPath];
+  if (args.askBudget) argv2.push('--budget', String(args.askBudget));
+  if (args.askRaw) argv2.push('--dfs');
+
+  console.log(`[${slug}] graphify ${askType} (cwd=${siblingDir})`);
+  console.log(`         graph=${graphPath}`);
+  console.log(`         query="${query}"`);
+  console.log('');
+
+  const r = spawnSync(interpreter, argv2, {
+    cwd: siblingDir,
+    encoding: 'utf8',
+    env: process.env,
+    stdio: 'inherit',
+  });
+  process.exit(r.status === null ? -1 : r.status);
+}
+
 // --- Main ---------------------------------------------------------------------
 
 function main() {
@@ -405,6 +689,11 @@ function main() {
 
   if (args.subcommand === 'update') {
     cmdUpdate(args);
+    return;
+  }
+
+  if (args.subcommand === 'ask') {
+    cmdAsk(args);
     return;
   }
 

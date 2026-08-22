@@ -48,10 +48,15 @@ source browsing:
   similarity / `parent_of` edges. `meta.edge_kinds` reports the
   count of each edge kind.
 - **Per-project questions** ("how do I add an activity in
-  calculia?", "where is the cache list in teclatlon?"): `cd` into
-  that sibling and run `graphify query "<question>"` against its
-  own `graphify-out/graph.json`. The graphify skill is installed
-  per-project at `<project>/.claude/skills/graphify/SKILL.md` and
+  calculia?", "where is the cache list in teclatlon?"): use the
+  graphify script's `ask` subcommand from this directory — it
+  stays in apptonomia and queries the sibling's own graph
+  without `cd`-ing:
+  ```
+  node scripts/sync-graphify-skill.js ask <slug> "<question>"
+  ```
+  The graphify skill is installed per-project at
+  `<project>/.claude/skills/graphify/SKILL.md` and
   canonical-source-synced from `~/.claude/skills/graphify/` via
   `node scripts/sync-graphify-skill.js` (in this metaproject
   root).
@@ -85,7 +90,29 @@ node scripts/sync-graphify-skill.js update --check   # report only
 node scripts/sync-graphify-skill.js update --apply   # run updates + rebuild meta
 node scripts/sync-graphify-skill.js update --apply --all          # include apptonomia
 node scripts/sync-graphify-skill.js update --apply --target ../<project>   # one only
+
+# Query a sibling's deep graph from this directory, no `cd` needed.
+node scripts/sync-graphify-skill.js ask <slug> "<question>"
+node scripts/sync-graphify-skill.js ask <slug> "<concept>" --type explain
+node scripts/sync-graphify-skill.js ask <slug> "<question>" --budget 800 --raw
+node scripts/sync-graphify-skill.js ask --refresh-if-stale <slug> "<question>"   # rebuild the sibling's graph first when stale
+node scripts/sync-graphify-skill.js ask --refresh <slug> "<question>"             # force a rebuild even when fresh
+node scripts/sync-graphify-skill.js ask --refresh-force <slug> "<question>"       # rebuild + pass --force to graphify (overrides "smaller graph" guard)
 ```
+
+When you ask about a sibling whose code has changed since its last graph
+build, pass `--refresh-if-stale` so the answer reflects the latest code
+(no manual `update --apply` needed). Without the flag, `ask` will print
+a one-line warning if the graph is stale but still answer against the
+current graph on disk. The flag only refreshes the sibling's graph; the
+meta-graph at `graphify-out-meta/` is rebuilt only by `update --apply`.
+
+If `graphify update .` refuses to overwrite a smaller graph with an
+older one (warning `new graph has N nodes but existing graph.json has M`),
+add `-force` to the refresh flag: `--refresh-if-stale-force` or
+`--refresh-force`. This passes `--force` through to `graphify update .`
+and is safe when the corpus has legitimately shrunk (entries/files
+deleted) and the new size is known to be correct.
 
 Stale detection compares `git rev-parse HEAD` against the
 `Built from commit:` field of each project's `GRAPH_REPORT.md`.

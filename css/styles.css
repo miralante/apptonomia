@@ -277,4 +277,28 @@
         scroll-behavior: auto !important;
       }
     }
+
+    /* ---- Responsive: tablet (641px–1023px) ----
+       El landing ya tiene `--text-title` y `--text-large` definidos en
+       `:root` (default desktop) y reescritos para móvil en el bloque
+       `@media (max-width: 640px)` de arriba. Aquí ajustamos al rango
+       intermedio: tipografía un punto mayor y el grid de tarjetas
+       (.suite) pasa de 1 columna móvil a un layout de 2–3 según
+       espacio, gracias a auto-fill/minmax. Forzamos un mínimo de 2
+       columnas en este rango para que las cards no se estiren
+       demasiado en tablets en landscape. */
+    @media (min-width: 641px) and (max-width: 1023px) {
+      :root { --text-title: 40px; --text-large: 28px; }
+      .suite { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ---- Responsive: escritorio ancho (≥ 1024px) ----
+       En monitor 1080p+ el landing se ve centrado pero las 6 tarjetas
+       de la suite en una columna pierden proporción. Forzamos 3
+       columnas (que cubren 2 filas × 3) y damos más aire al hero. */
+    @media (min-width: 1024px) {
+      :root { --text-title: 48px; --text-large: 32px; }
+      .suite { grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+      .app-hero { padding-top: var(--space-xl); }
+    }
   </style>

@@ -77,6 +77,23 @@ plain HTML/CSS/JS.
   `graphify-out-meta/graph.json` + `graph.html`. By default `apptonomia/` is
   skipped (it has no per-project graph yet); pass `--all` to include it.
   Failures in one project do not abort the rest.
+- **Ask a codebase question about a sibling from this directory** without
+  `cd`-ing into it:
+  ```
+  node scripts/sync-graphify-skill.js ask <slug> "<question>"          # default: BFS query
+  node scripts/sync-graphify-skill.js ask <slug> "<concept>" --type explain
+  node scripts/sync-graphify-skill.js ask <slug> "<question>" --budget 800 --raw
+  node scripts/sync-graphify-skill.js ask --refresh-if-stale <slug> "<question>"   # rebuild the sibling's graph first if it's stale
+  node scripts/sync-graphify-skill.js ask --refresh-force <slug> "<question>"       # rebuild + pass --force to graphify (overrides "refuse to overwrite smaller graph")
+  ```
+  Validates `<slug>` is one of the seven siblings, resolves
+  `<sibling>/graphify-out/graph.json` (or the path passed via `--graph`),
+  sets cwd to the sibling so `.graphifyignore` and the other defaults
+  still apply, and runs `python -m graphify query "<question>" --graph <path>`
+  inheriting stdout/stderr. Use it in preference to the meta-graph for
+  any question that's about a specific sibling (a single activity, a
+  specific function, a file layout in one project). See the
+  "Per-project deep graphs" section below for the full rule.
 - **Inspect the meta-graph index** at [graphify-out-meta/](graphify-out-meta/).
   This is the cross-project index (one node per project + similarity
   edges); the deep graphs live inside each project's own `graphify-out/`.
@@ -117,7 +134,10 @@ visual.
 ### Per-project deep graphs
 
 For any codebase question about a single project, prefer the per-project
-graph before reading source files:
+graph before reading source files. Two ways to invoke it:
+
+**From inside the sibling (the manual path — what each sibling's own
+`CLAUDE.md` says):**
 
 ```
 cd <project>
@@ -126,9 +146,79 @@ graphify path "<A>" "<B>"
 graphify explain "<concept>"
 ```
 
-The skill's "Fast path — existing graph" rule applies: if
-`<project>/graphify-out/graph.json` exists, the skill jumps straight to
-`graphify query` and skips re-extraction.
+**From apptonomia (the orchestrated path — what the metaproject root does
+on behalf of any agent working here):**
+
+```
+# Default: query the sibling's deep graph from apptonomia, no `cd` needed.
+node scripts/sync-graphify-skill.js ask <slug> "<question>"
+
+# Equivalent to graphify explain on that sibling's graph.
+node scripts/sync-graphify-skill.js ask <slug> "<concept>" --type explain
+
+# Cap output tokens or switch to DFS traversal.
+node scripts/sync-graphify-skill.js ask <slug> "<question>" --budget 800 --raw
+
+# Refresh the sibling's graph before answering (auto-rebuild only when stale).
+# Recommended when the sibling code has changed since its last build.
+node scripts/sync-graphify-skill.js ask --refresh-if-stale <slug> "<question>"
+```
+
+`ask` validates that `<slug>` is one of the seven siblings, resolves
+`<sibling>/graphify-out/graph.json` (or `--graph <path>` if you pass it
+explicitly), sets cwd to the sibling so `.graphifyignore` and other
+defaults still apply, then runs `python -m graphify query "<question>"`
+inheriting stdout/stderr. It propagates graphify's exit code, so a
+non-zero answer still surfaces as a failed command.
+
+**Refresh handling (auto-update the sibling graph):**
+
+The per-project graph is built by `graphify update .` and stays on disk
+until rebuilt. By default `ask` will answer whatever the current graph
+says; if the sibling's `HEAD` has moved past the commit recorded in
+`graphify-out/GRAPH_REPORT.md`, the script prints a one-line warning
+(`NOTE: graph is COMMITS-SINCE-BUILD`) and proceeds. To avoid stale
+answers without a manual `update --apply`, two flags are available:
+
+- `--refresh-if-stale` — run `graphify update .` in the sibling first,
+  but only when its graph is actually stale. Silently skips when fresh.
+  **This is the recommended flag for agents** — combine it with every
+  `ask` so the answer reflects the latest code.
+- `--refresh` — always rebuild, even when the graph is fresh. Use
+  after a non-git change (e.g. generated files, a `gitignore` tweak)
+  or to force a clean baseline.
+- `--refresh-force` and `--refresh-if-stale-force` — variants of the
+  above that pass `--force` through to `graphify update .`, overriding
+  graphify's safety guard that refuses to overwrite a smaller graph
+  with an older (larger) one. Use when the corpus has legitimately
+  shrunk (entries/files deleted) and the new size is known to be
+  correct. Without `-force`, those rebuilds fail with the warning
+  `new graph has N nodes but existing graph.json has M` and the script
+  falls back to the stale graph for the query.
+
+Both flags only touch the sibling's `graphify-out/`; the meta-graph at
+`graphify-out-meta/` is **not** regenerated here. Run
+`node scripts/sync-graphify-skill.js update --apply` separately when
+the meta-graph needs an update (e.g. after several siblings have been
+refreshed).
+
+**When to use which path:**
+
+- A question **about a specific sibling** (`calculia`'s Wallet keypad,
+  `memofun`'s `App.decks`, `routime`'s `tools/differences`, etc.) →
+  **always use `ask <slug>` from apptonomia**, never the meta-graph.
+  The meta-graph is one node per project; it can't tell you anything
+  about a specific activity inside a project. The skill's "Fast path
+  — existing graph" rule applies here too: if
+  `<sibling>/graphify-out/graph.json` exists, the script jumps straight
+  to `graphify query` and skips re-extraction.
+- A **cross-project comparison** ("which siblings share the X community?",
+  "how does `apptonomia` relate to `calculia`?") → use the meta-graph
+  at [graphify-out-meta/graph.json](graphify-out-meta/graph.json)
+  (or `graphify-out-meta/graph.html` for the visual).
+- `graphify path "<A>" "<B>"` and `graphify --type path_query` need
+  two positional labels, which `ask` doesn't take — run those from
+  inside the sibling instead.
 
 ## Agent workflow — metaproject rules
 
