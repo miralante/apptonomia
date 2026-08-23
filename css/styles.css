@@ -1,25 +1,38 @@
 ﻿  <style>
-    /* ===== Self-hosted fonts (mismas que el resto de la suite) ===== */
+    /* ===== Self-hosted fonts (mismas que el resto de la suite) =====
+       The .woff2 files live under /assets/fonts/ (see CLAUDE.md §"Landing
+       typography" and doc/en/technical.md §1). Resolved from
+       /css/styles.css that means '../assets/fonts/<file>.woff2' — the
+       previous '../fonts/<file>.woff2' resolved to /fonts/<file>.woff2
+       (which doesn't exist), silently 404-ing the fonts in production.
+       Safari iOS visibly broke on this (long unbroken tokens such as
+       'sinonimia.apptonomia.uk' wrap at one character with the wrong
+       fallback metrics, clipping the leading characters of every domain);
+       Chromium / Firefox fell back to system-ui without the clipping
+       artifact, which is why this was easy to miss in cross-browser
+       testing without WebKit. Fixing the path is the suite-wide
+       directive: "self-hosted, no CDN, no @import" — the woff2 must
+       actually load. */
     @font-face {
       font-family: 'Atkinson Hyperlegible';
       font-style: normal;
       font-weight: 400;
       font-display: swap;
-      src: url('../fonts/atkinson-hyperlegible-400.woff2') format('woff2');
+      src: url('../assets/fonts/atkinson-hyperlegible-400.woff2') format('woff2');
     }
     @font-face {
       font-family: 'Atkinson Hyperlegible';
       font-style: normal;
       font-weight: 700;
       font-display: swap;
-      src: url('../fonts/atkinson-hyperlegible-700.woff2') format('woff2');
+      src: url('../assets/fonts/atkinson-hyperlegible-700.woff2') format('woff2');
     }
     @font-face {
       font-family: 'Nunito';
       font-style: normal;
       font-weight: 400 900;
       font-display: swap;
-      src: url('../fonts/nunito-variable.woff2') format('woff2-variations');
+      src: url('../assets/fonts/nunito-variable.woff2') format('woff2-variations');
     }
 
     /* ===== Design tokens (alineados con Calculia / Teclatlon / Memofun) ===== */
