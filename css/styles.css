@@ -207,6 +207,14 @@
       color: var(--color-text);
       text-decoration: none;
       min-height: 180px;
+      /* iOS Safari/WebKit otherwise refuses to shrink a grid item below its
+         intrinsic content width: an unbroken token such as
+         'sinonimia.apptonomia.uk' inside .suite-domain widens the column
+         past the viewport and overflows the layout to the left (matches
+         the sinonimia .buscador-fila #buscar min-width: 0 fix). Forcing
+         min-width: 0 lets the grid track actually govern the card's width
+         on every engine, no UA sniffing required. */
+      min-width: 0;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
     .suite-card:hover {
@@ -249,6 +257,14 @@
       color: var(--color-text);
       opacity: 0.7;
       font-variant-numeric: tabular-nums;
+      /* The domain string is one unbroken token (no spaces, no hyphens
+         in some cases). Without this, Safari iOS lets it overflow the
+         .suite-card column even after the min-width: 0 fix above; other
+         engines break it on the dot. overflow-wrap: anywhere is the
+         cross-browser equivalent that wraps at any character if the
+         token is wider than the column. */
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     /* ===== Footer ===== */
