@@ -160,7 +160,15 @@
   }
   </script>
   <script src="js/bootstrap.js"></script>
-  <link rel="stylesheet" href="css/styles.css">
+  <!-- Cache-bust query: bump whenever css/styles.css content changes. The
+       /_headers file marks *.css as `Cache-Control: public, max-age=31536000,
+       immutable` for fast repeat visits; without `?v=` that means a browser
+       that has already fetched the old stylesheet will keep using it for a
+       year, even after the deploy (Safari iOS keeps this cache across PWA
+       launches and across tab restores). Bump the date suffix in the same
+       commit that touches the stylesheet — same contract as the PWA
+       siblings' sw.js VERSION. -->
+  <link rel="stylesheet" href="css/styles.css?v=2026-08-23">
 </head>
 <body>
 

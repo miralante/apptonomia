@@ -89,6 +89,16 @@
 # and there are only two of them — if this ever grows past ~5 bundles,
 # revisit and switch to a content hash in the filename instead of a
 # version bump in wrangler.toml's `compatibility_date`).
+#
+# css/styles.css is also `immutable` for a year, BUT index.html carries
+# a `?v=<date>` cache-bust suffix on the <link rel="stylesheet"> tag so
+# a content change to the CSS forces every browser to re-fetch. Bump the
+# date suffix in `index.html` in the same commit that touches
+# css/styles.css — same contract as the PWA siblings' sw.js VERSION
+# (see CLAUDE.md §"Metaproject agent rules" §5). Without this, Safari
+# iOS in particular keeps the old stylesheet across visits for the full
+# year, even after a deploy, and renders long unbroken tokens (domain
+# names in the suite grid, …) with stale metrics.
 # ---------------------------------------------------------------------------
 /index.html
   Cache-Control: no-cache
