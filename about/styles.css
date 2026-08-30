@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Apptonomia — Presentación del proyecto (about/)
+   Página oculta (noindex, nofollow). Tono cercano y sobrio: reutiliza los
+   tokens del portal y añade los grids específicos de principios, áreas y
+   proyectos hermanos.
+   ========================================================================== */
+
+.about { max-width: 880px; }
+
+/* Cabecera tipo manifiesto ------------------------------------------------- */
+.cabecera-about { padding: 24px 0 24px; text-align: center; }
+.cabecera-about h1 {
+  font-size: 2.6em;
+  margin: 12px 0 0;
+  letter-spacing: -0.02em;
+}
+.cabecera-about .lema {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #4A4A68;
+  margin: 8px 0 0;
+}
+.cabecera-about .entradilla {
+  font-size: 1.1em;
+  max-width: 640px;
+  margin: 16px auto 0;
+  color: #1A1A2E;
+}
+.logo-about {
+  margin-top: 8px;
+  font-size: 64px;
+  line-height: 1;
+}
+
+.aviso-ruta {
+  display: inline-block; padding: 8px 16px;
+  background: #E0F0EE; color: #1A1A2E;
+  border: 2px solid #00695C; border-radius: 16px;
+  font-size: 0.95em; font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.idioma-selector {
+  display: flex; flex-wrap: wrap; gap: 16px;
+  justify-content: center; margin-bottom: 16px;
+}
+.btn-idioma {
+  min-height: 64px; min-width: 64px; padding: 0 16px;
+  font-family: 'Atkinson Hyperlegible', 'Nunito', system-ui, sans-serif;
+  font-size: 1.05em; font-weight: 700;
+  color: #1A1A2E; background: #FFFFFF;
+  border: 3px solid #D8D2C8; border-radius: 16px;
+  cursor: pointer;
+}
+.btn-idioma:hover { border-color: #1B6CA8; }
+.btn-idioma[aria-pressed="true"] {
+  border-color: #1B6CA8; background: #E0F0EE;
+}
+
+/* Índice de la presentación ----------------------------------------------- */
+.indice { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+.indice a {
+  padding: 10px 16px; border-radius: 16px;
+  background: #FFFFFF; border: 2px solid #D8D2C8;
+  color: #1A1A2E; text-decoration: none;
+  font-size: 0.95em; font-weight: 700;
+}
+.indice a:hover, .indice a:focus { border-color: #1B6CA8; }
+
+/* Secciones como cards --------------------------------------------------- */
+.about section { padding: 24px; margin-bottom: 24px; }
+.about section h2 { margin-bottom: 12px; }
+.about section ul { padding-left: 24px; }
+.about section li { margin-bottom: 8px; }
+.about section em { color: #4A4A68; }
+.about section code {
+  background: #FAF7F2; padding: 2px 6px; border-radius: 6px;
+  font-size: 0.95em; border: 1px solid #D8D2C8;
+  font-family: ui-monospace, "Cascadia Code", Menlo, monospace;
+}
+
+/* Grid de principios ---------------------------------------------------- */
+.principios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.principio {
+  border-left: 8px solid var(--acento);
+  padding: 20px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  border-top: 1px solid #D8D2C8;
+  border-right: 1px solid #D8D2C8;
+  border-bottom: 1px solid #D8D2C8;
+}
+.principio h3 { color: var(--acento); margin-bottom: 8px; }
+.principio p { color: #1A1A2E; }
+
+/* Grid de las seis apps (hermanos) --------------------------------------- */
+.siblings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.sibling {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #FFFFFF;
+  border: 3px solid #D8D2C8;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #1A1A2E;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.sibling:hover, .sibling:focus-visible {
+  border-color: #00695C;
+  transform: scale(1.02);
+}
+.sibling .picto { font-size: 36px; flex-shrink: 0; }
+.sibling-texto { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.sibling .nombre { font-weight: 800; color: #00695C; }
+.sibling .detalle { font-size: 0.95em; color: #4A4A68; }
+.sibling .flecha-externa { font-size: 1.2em; color: #4A4A68; flex-shrink: 0; }
+
+/* Footer -------------------------------------------------------------- */
+.pie-about {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+  padding: 24px 0 40px;
+}
+
+/* Móvil --------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .cabecera-about h1 { font-size: 2em; }
+  .cabecera-about .lema { font-size: 1.2em; }
+  .about section { padding: 16px; }
+  .principios-grid, .siblings-grid { grid-template-columns: 1fr; }
+}

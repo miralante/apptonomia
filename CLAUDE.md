@@ -5,6 +5,24 @@ the level of the **Miralante metaproject** — that is, when operating across
 the seven sibling projects under `Miralante/`, not inside one specific
 product. For per-project guidance, read each project's own `CLAUDE.md`.
 
+> **Workspace double role (apptonomia only).** This `apptonomia/`
+> workspace plays two roles at once: (1) the **metaproject root** of the
+> Miralante suite — it carries the cross-project plumbing
+> (`scripts/sync-graphify-skill.js`, the `graphify-out-meta/` index, this
+> `CLAUDE.md`); and (2) the **public landing** at `https://apptonomia.uk/`
+> — `index.html` here is the portal page users see first, with one card
+> per sibling linking out to its own domain. SEO metadata, Open Graph,
+> JSON-LD `ItemList`, and the multilingual landing copy
+> (`js/strings.es.js`, `js/strings.en.js`) live alongside the
+> cross-project plumbing. Edits to this repo's landing (`index.html`,
+> `js/strings.*.js`, SEO meta, the JSON-LD suite list) are in scope
+> here, but they must not bleed into the siblings: the landing links
+> out to each sibling's domain, it doesn't ship their code. If the user
+> names a sibling project ("calculia", "memofun", …) or the task is
+> product-level inside a sibling, switch to that sibling's own
+> `CLAUDE.md` and treat edits as scoped to that sibling — never
+> auto-edit other siblings.
+
 ## What this is
 
 `Miralante/` is the parent directory of a static-PWA accessibility suite for
@@ -102,7 +120,7 @@ plain HTML/CSS/JS.
   cd ../calculia && node scripts/check.js
   cd ../memofun   && node scripts/check.js
   cd ../okeymoney && node scripts/check.js
-  cd ../sinonimia && node scripts/validar.js
+  cd ../sinonimia && node scripts/check.js
   cd ../teclatlon && node scripts/check.js
   cd ../routime   && node scripts/check.js
   ```
@@ -249,6 +267,84 @@ Per-project product principles, accessibility rules, activity catalogues,
 service-worker cache contracts, version-bump policy, and roadmaps live in
 each project's own `CLAUDE.md` and `doc/<lang>/*.md` files. This file
 only documents the **metaproject plumbing**.
+
+## Settings / data-reset pattern (suite-wide)
+
+Every PWA-shipping sibling exposes a way for the device's support person
+(family, teacher, therapist) to **see and clear what the local browser
+stores for that app**. The shape differs per project but the contract is
+the same, so contributors don't reinvent it per app.
+
+### Canonical reference
+
+- **Routime** is the canonical implementation. Read
+  [`routime/settings/`](../routime/settings/) (an *out-of-menu* hidden
+  route: `index.html` + `app.js` + `strings.<locale>.js` + `styles.css`)
+  and the comments in [`routime/settings/app.js`](../routime/settings/app.js#L1-L40)
+  for the full rationale: two-step confirmation, no analytics, no
+  network. Routime also ships a JSON export/import backup because its
+  catalogue has 69 activities and the effort is justified there.
+- **Calculia** has its own `settings/` folder
+  ([`calculia/settings/app.js`](../calculia/settings/app.js)). When
+  touching it, align it with the Routime reference, do not duplicate it.
+
+### Convention every PWA-shipping sibling follows
+
+1. **One `localStorage` prefix per app.** Declare it as a constant near
+   the top of the *root* `app.js` and use it for every key — do not
+   invent ad-hoc prefixes. Verified prefixes on 2026-08-30:
+
+   | Project | Prefix (preliminary) | Evidence on 2026-08-30 |
+   |---|---|---|
+   | `routime` | `routime:` | canonical, see [`routime/settings/app.js`](../routime/settings/app.js) |
+   | `calculia` | `calculia:` | `calculia/settings/app.js` — to verify |
+   | `memofun` | *TBD — keys seen: `prefs.cursoFijado` (no project prefix)* | needs per-key audit |
+   | `okeymoney` | *TBD — "single ledger in localStorage"* | needs per-key audit |
+   | `sinonimia` | `sinonimia-` (hyphen) — seen: `sinonimia-idioma` | `sinonimia/js/bootstrap-i18n.js:43` |
+   | `teclatlon` | *TBD — currently migrating legacy keys* | `teclatlon/app.js:30` (migration in flight) |
+
+   *Apptonomia itself does not ship a PWA and stores no user data, so
+   it does not have a prefix.*
+
+   **Status**: the prefixes marked *TBD* were discovered during a quick
+   `grep` pass on 2026-08-30 but **were not verified per-file**. Before
+   adding a reset UI to any of those projects, the maintainer must
+   confirm the prefix by reading the project's `app.js` and listing
+   every key it writes.
+
+2. **A way to clear all keys under that prefix**, reachable by the
+   support person (not the end user). Two acceptable shapes:
+   - A dedicated `settings/` hidden route (Routime, Calculia).
+   - A "Borrar mis datos" button on the main menu, with a two-step
+     confirmation (same pattern as
+     [`piano-keys`](routime/tools/piano-keys/)'s "Delete my progress").
+     Acceptable for siblings whose catalogue is small (1–5 activities)
+     and where a dedicated route would be a near-empty shell.
+
+3. **No `localStorage.clear()`.** Always scope the wipe to the project's
+   own prefix, so a shared browser that hosts several siblings is not
+   wiped across apps.
+
+4. **i18n parity.** Any UI string the support person sees lives in
+   `strings.es.js` + `strings.en.js` (no literals in `app.js` /
+   `index.html`). The hidden-route shape uses `data-i18n` exactly like
+   the rest of the app; the menu-button shape uses `App.i18n.t('key')`.
+
+5. **Cache contract.** If the new strings / button live in a file
+   listed in `sw.js` `ARCHIVOS`, bump `VERSION` in the project's
+   `sw.js`. Sinonimia does not ship a `sw.js` and is exempt.
+
+6. **Never network.** No analytics, no telemetry, no remote backup.
+   Local export/import (JSON file via `<a download>`) is acceptable
+   when justified by catalogue size; otherwise omit it.
+
+### Where to apply this pattern
+
+- New sibling: copy the convention table, pick a prefix, add a hidden
+  `settings/` route or a main-menu button, and reference this section.
+- Existing sibling that lacks a reset path: open a per-project PR that
+  reads the sibling's own `CLAUDE.md`, follows its rules, and lands the
+  minimum viable wipe UI. Do **not** bundle it with unrelated work.
 
 ## Landing typography
 

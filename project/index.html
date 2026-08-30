@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apptonomia — Deck institucional</title>
+  <!-- Hidden route. Aimed at organisations, funders, public administrations,
+       foundations and media outlets that might collaborate with the project.
+       Not linked from the public portal; reachable only by typing the URL. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Apptonomia: presentación institucional para entidades colaboradoras. Misión, producto, modelo de gobernanza, métricas y formas de colaboración.">
+  <meta name="theme-color" content="#0E1B3A">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="styles.css?v=2026-08-30">
+</head>
+<body class="deck-body">
+
+<a class="skip-link" href="#deck-stage" data-i18n="core.skipToContent">Ir al contenido</a>
+
+<!-- ============================
+     MARCO SUPERIOR (esquina)
+     ============================ -->
+<header class="deck-topbar" role="banner">
+  <div class="deck-brand">
+    <span class="deck-mark" aria-hidden="true">A</span>
+    <span class="deck-brandname">Apptonomia</span>
+    <span class="deck-divider" aria-hidden="true">·</span>
+    <span class="deck-context" data-i18n="deck.contextLabel">Deck institucional · 2026</span>
+  </div>
+  <nav class="deck-toolbar" aria-label="Controles de la presentación">
+    <div class="deck-lang" role="group" aria-label="Elegir idioma">
+      <button type="button" class="deck-btn deck-btn-lang" id="btnLangEs" data-locale="es" aria-pressed="true">ES</button>
+      <button type="button" class="deck-btn deck-btn-lang" id="btnLangEn" data-locale="en" aria-pressed="false">EN</button>
+    </div>
+    <button type="button" class="deck-btn deck-btn-ghost" id="btnPrev" aria-label="Diapositiva anterior">
+      <span aria-hidden="true">←</span>
+    </button>
+    <span class="deck-counter" aria-live="polite" aria-atomic="true">
+      <span id="slideNum">1</span><span class="deck-counter-sep">/</span><span id="slideTotal">12</span>
+    </span>
+    <button type="button" class="deck-btn deck-btn-ghost" id="btnNext" aria-label="Siguiente diapositiva">
+      <span aria-hidden="true">→</span>
+    </button>
+    <button type="button" class="deck-btn deck-btn-primary" id="btnPrint" aria-label="Imprimir o guardar como PDF">
+      <span aria-hidden="true">⎙</span>
+      <span data-i18n="deck.print">Imprimir / PDF</span>
+    </button>
+  </nav>
+</header>
+
+<!-- ============================
+     ESCENARIO DE DIAPOSITIVAS
+     ============================ -->
+<main id="deck-stage" class="deck-stage" tabindex="-1">
+
+  <!-- Slide 1 · Portada ----------------------------------------------- -->
+  <section class="slide slide-cover" data-slide="cover" aria-roledescription="slide" aria-label="Portada">
+    <div class="slide-cover-grid">
+      <div class="slide-cover-left">
+        <p class="slide-eyebrow" data-i18n="deck.coverEyebrow">Proyecto de impacto social</p>
+        <h1 class="slide-cover-title">Apptonomia</h1>
+      <p class="slide-cover-tagline" data-i18n="deck.coverTagline">Aplicaciones web para que cada persona aprenda a su propio ritmo.</p>
+      <p class="slide-cover-date" data-i18n="deck.coverDate">2026</p>
+        <ul class="slide-cover-chips" aria-label="Características principales">
+          <li><span aria-hidden="true">✓</span> <span data-i18n="deck.coverChip1">Gratis y sin registro</span></li>
+          <li><span aria-hidden="true">✓</span> <span data-i18n="deck.coverChip2">Privacidad por defecto</span></li>
+          <li><span aria-hidden="true">✓</span> <span data-i18n="deck.coverChip3">Accesibilidad cognitiva</span></li>
+          <li><span aria-hidden="true">✓</span> <span data-i18n="deck.coverChip4">Código abierto</span></li>
+        </ul>
+      </div>
+      <aside class="slide-cover-right" aria-hidden="true">
+        <div class="slide-cover-card card-1">
+          <span class="slide-cover-picto">🧮</span>
+          <strong>Calculia</strong>
+          <small data-i18n="deck.coverCardMath">Cálculo y lógica</small>
+        </div>
+        <div class="slide-cover-card card-2">
+          <span class="slide-cover-picto">🧩</span>
+          <strong>Routime</strong>
+          <small data-i18n="deck.coverCardRoutine">Rutinas y vida diaria</small>
+        </div>
+        <div class="slide-cover-card card-3">
+          <span class="slide-cover-picto">💶</span>
+          <strong>Okeymoney</strong>
+          <small data-i18n="deck.coverCardMoney">Dinero cotidiano</small>
+        </div>
+        <div class="slide-cover-card card-4">
+          <span class="slide-cover-picto">📖</span>
+          <strong>Sinonimia</strong>
+          <small data-i18n="deck.coverCardDict">Diccionario fácil</small>
+        </div>
+        <div class="slide-cover-card card-5">
+          <span class="slide-cover-picto">⭐</span>
+          <strong>Memofun</strong>
+          <small data-i18n="deck.coverCardCards">Tarjetas de estudio</small>
+        </div>
+        <div class="slide-cover-card card-6">
+          <span class="slide-cover-picto">⌨️</span>
+          <strong>Teclatlon</strong>
+          <small data-i18n="deck.coverCardTyping">Mecanografía</small>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Slide 2 · El problema ------------------------------------------- -->
+  <section class="slide" data-slide="problem" aria-roledescription="slide" aria-label="El problema">
+    <header class="slide-head">
+      <p class="slide-eyebrow" data-i18n="deck.problemEyebrow">El problema</p>
+      <h2 class="slide-title" data-i18n="deck.problemTitle">Aprender entre sesiones es casi imposible</h2>
+    </header>
+    <div class="slide-body slide-two-col">
+      <div class="slide-col">
+        <p class="slide-lead" data-i18n="deck.problemLead">Las personas con discapacidad intelectual practican con su terapeuta en consulta. Después, en casa, en el colegio o en su tiempo libre, están solas.</p>
+        <ul class="slide-list slide-list-strong">
+          <li><span aria-hidden="true">—</span> <span data-i18n="deck.problemP1">Dificultad para encontrar recursos adaptados al colectivo y con utilidad práctica real.</span></li>
+          <li><span aria-hidden="true">—</span> <span data-i18n="deck.problemP2">Pocas aplicaciones que faciliten la labor de educadores, familias y terapeutas.</span></li>
+          <li><span aria-hidden="true">—</span> <span data-i18n="deck.problemP3">No hay necesidad de recoger datos personales — y, cuando los hay, son especialmente sensibles.</span></li>
+          <li><span aria-hidden="true">—</span> <span data-i18n="deck.problemP4">Resulta difícil asegurar que se consigan las habilidades necesarias para contribuir a una vida autónoma.</span></li>
+        </ul>
+      </div>
+      <aside class="slide-callout slide-callout-quote">
+        <p data-i18n="deck.problemQuote">«¿Qué pasa entre una sesión y la siguiente?»</p>
+        <small data-i18n="deck.problemQuoteAttr">— La pregunta que dio origen al proyecto</small>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Slide 3 · La solución ------------------------------------------- -->
+  <section class="slide" data-slide="solution" aria-roledescription="slide" aria-label="La solución">
+    <header class="slide-head">
+      <p class="slide-eyebrow" data-i18n="deck.solutionEyebrow">La solución</p>
+      <h2 class="slide-title" data-i18n="deck.solutionTitle">Una suite de aplicaciones autónomas, accesibles y respetuosas</h2>
+    </header>
+    <div class="slide-body slide-statement">
+      <p class="slide-lead slide-lead-center" data-i18n="deck.solutionLead">Calculia, Routime, Okeymoney, Sinonimia, Memofun y Teclatlon forman una <strong>suite coherente</strong>: misma estética, mismos principios de accesibilidad, lectura fácil y terapéuticos, misma promesa de privacidad. La persona usuaria puede usar cualquiera sin crear cuenta, sin instalar nada y sin compartir datos.</p>
+      <div class="slide-pillars slide-pillars-6">
+        <article class="slide-pillar">
+          <span class="slide-pillar-icon" aria-hidden="true">🤲</span>
+          <h3 data-i18n="deck.solutionPillar1Title">Autonomía real</h3>
+          <p data-i18n="deck.solutionPillar1Text">Las apps se usan sin un profesional al lado. Si necesitan ayuda constante, algo no está bien resuelto.</p>
+        </article>
+        <article class="slide-pillar">
+          <span class="slide-pillar-icon" aria-hidden="true">🚫</span>
+          <h3 data-i18n="deck.solutionPillar2Title">Sin presión</h3>
+          <p data-i18n="deck.solutionPillar2Text">Sin cronómetros, sin game over, sin puntuaciones negativas. El error se responde con ánimo y se puede reintentar.</p>
+        </article>
+        <article class="slide-pillar">
+          <span class="slide-pillar-icon" aria-hidden="true">🔒</span>
+          <h3 data-i18n="deck.solutionPillar3Title">Privacidad por defecto</h3>
+          <p data-i18n="deck.solutionPillar3Text">Sin registro, sin cookies, sin analítica, sin servicios de terceros. Todo el progreso se guarda en el dispositivo.</p>
+        </article>
+        <article class="slide-pillar">
+          <span class="slide-pillar-icon" aria-hidden="true">🧰</span>
+          <h3 data-i18n="deck.solutionPillar4Title">Utilidad práctica</h3>
+          <p data-i18n="deck.solutionPillar4Text">Pensadas para facilitar la labor de terapeutas, educadores y familias: reutilizables entre sesiones, sin coste ni instalación.</p>
+        </article>
+        <article class="slide-pillar">
+          <span class="slide-pillar-icon" aria-hidden="true">🧠</span>
+          <h3 data-i18n="deck.solutionPillar5Title">Adaptadas al colectivo</h3>
+          <p data-i18n="deck.solutionPillar5Text">Diseñadas para personas con discapacidad intelectual: entrenan razonamiento y habilidad intelectual con el objetivo de contribuir a una vida autónoma.</p>
+        </article>
+        <article class="slide-pillar">
+          <span class="slide-pillar-icon" aria-hidden="true">🪜</span>
+          <h3 data-i18n="deck.solutionPillar6Title">Aprendizaje sin error</h3>
+          <p data-i18n="deck.solutionPillar6Text">Cada actividad empieza con apoyo visual y modelado, y se retira poco a poco para que la persona llegue a hacerla sola. El error se previene más que se corrige: se reencuadra, no se castiga.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4 · Objetivos --------------------------------------------- -->
+  <section class="slide" data-slide="objectives" aria-roledescription="slide" aria-label="Objetivos">
+    <header class="slide-head">
+      <p class="slide-eyebrow" data-i18n="deck.objEyebrow">Objetivos</p>
+      <h2 class="slide-title" data-i18n="deck.objTitle">Cinco objetivos, medibles y públicos</h2>
+    </header>
+    <div class="slide-body">
+      <ol class="slide-objectives">
+        <li class="slide-objective">
+          <div class="slide-objective-num">01</div>
+          <div class="slide-objective-body">
+            <h3 data-i18n="deck.obj1Title">Acceso universal y gratuito</h3>
+            <p data-i18n="deck.obj1Text">Eliminar la barrera económica, técnica y de registro para que cualquier persona pueda practicar desde el primer clic.</p>
+          </div>
+        </li>
+        <li class="slide-objective">
+          <div class="slide-objective-num">02</div>
+          <div class="slide-objective-body">
+            <h3 data-i18n="deck.obj2Title">Facilitar la adquisición de conocimientos en lectura fácil</h3>
+            <p data-i18n="deck.obj2Text">Aplicar la norma UNE 153101 (Lectura Fácil) en toda la comunicación escrita: oraciones cortas, una idea por frase, vocabulario cotidiano y apoyo visual. La lectura fácil no es solo un estilo: es la condición que hace posible que el contenido sea comprensible y, por tanto, aprendible.</p>
+          </div>
+        </li>
+        <li class="slide-objective">
+          <div class="slide-objective-num">03</div>
+          <div class="slide-objective-body">
+            <h3 data-i18n="deck.obj3Title">Respeto a la dignidad y la privacidad</h3>
+            <p data-i18n="deck.obj3Text">Cero datos personales, cero rastreo, cero cuentas. La suite no sabe quién es la persona que la usa, y eso es deliberado.</p>
+          </div>
+        </li>
+        <li class="slide-objective">
+          <div class="slide-objective-num">04</div>
+          <div class="slide-objective-body">
+            <h3 data-i18n="deck.obj4Title">Objetivos didácticos y pedagógicos</h3>
+            <p data-i18n="deck.obj4Text">Diseñar cada actividad con una intención didáctica explícita: qué se entrena, por qué importa y cómo se nota el avance. Las apps acompañan el aprendizaje curricular y son un complemento útil para el aula, el gabinete y el hogar.</p>
+          </div>
+        </li>
+        <li class="slide-objective">
+          <div class="slide-objective-num">05</div>
+          <div class="slide-objective-body">
+            <h3 data-i18n="deck.obj5Title">Fomentar la autonomía mediante entrenamiento y simulaciones</h3>
+            <p data-i18n="deck.obj5Text">Las actividades entrenan capacidades reales (calcular, leer, escribir, manejar dinero, seguir una rutina) y reproducen situaciones de la vida cotidiana en un entorno seguro. Practicar repetidamente con escenarios realistas favorece la transferencia a la vida autónoma fuera de la pantalla.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Slide 5 · Producto ---------------------------------------------- -->
+  <section class="slide" data-slide="product" aria-roledescription="slide" aria-label="El producto">
+    <header class="slide-head">
+      <p class="slide-eyebrow" data-i18n="deck.productEyebrow">El producto</p>
+      <h2 class="slide-title" data-i18n="deck.productTitle">Aplicaciones, un mismo lenguaje</h2>
+    </header>
+    <div class="slide-body">
+      <div class="slide-products">
+        <article class="slide-product" data-accent="#1B6CA8">
+          <span class="slide-product-picto" aria-hidden="true">🧮</span>
+          <h3>Calculia</h3>
+          <p data-i18n="deck.productCalc">Cálculo y razonamiento lógico con actividades cortas y visuales.</p>
+          <span class="slide-product-tag" data-i18n="deck.productMath">Matemáticas</span>
+        </article>
+        <article class="slide-product" data-accent="#00695C">
+          <span class="slide-product-picto" aria-hidden="true">🧩</span>
+          <h3>Routime</h3>
+          <p data-i18n="deck.productRoutime">Actividades cotidianas para entrenar mente y habilidades de la vida diaria.</p>
+          <span class="slide-product-tag" data-i18n="deck.productRoutine">Rutinas y vida diaria</span>
+        </article>
+        <article class="slide-product" data-accent="#B8860B">
+          <span class="slide-product-picto" aria-hidden="true">💶</span>
+          <h3>Okeymoney</h3>
+          <p data-i18n="deck.productOkey">Dinero y autonomía cotidiana, paso a paso, con un simulador de manejo de finanzas.</p>
+          <span class="slide-product-tag" data-i18n="deck.productMoney">Educación financiera</span>
+        </article>
+        <article class="slide-product" data-accent="#7A3E9D">
+          <span class="slide-product-picto" aria-hidden="true">📖</span>
+          <h3>Sinonimia</h3>
+          <p data-i18n="deck.productSin">Diccionario en lectura fácil con sinónimos y pictogramas ARASAAC.</p>
+          <span class="slide-product-tag" data-i18n="deck.productDict">Lectura fácil</span>
+        </article>
+        <article class="slide-product" data-accent="#C0392B">
+          <span class="slide-product-picto" aria-hidden="true">⭐</span>
+          <h3>Memofun</h3>
+          <p data-i18n="deck.productMemo">Tarjetas de estudio para repasar a tu ritmo. Cada tarjeta, una idea.</p>
+          <span class="slide-product-tag" data-i18n="deck.productCards">Flashcards</span>
+        </article>
+        <article class="slide-product" data-accent="#2E5C8A">
+          <span class="slide-product-picto" aria-hidden="true">⌨️</span>
+          <h3>Teclatlon</h3>
+          <p data-i18n="deck.productTec">Mecanografía con el teclado físico del ordenador, dedo a dedo.</p>
+          <span class="slide-product-tag" data-i18n="deck.productTyping">Mecanografía</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6 · Multilingüe y ampliable ----------------------------- -->
+  <section class="slide" data-slide="multilang" aria-roledescription="slide" aria-label="Multilingüe y ampliable">
+    <header class="slide-head">
+      <p class="slide-eyebrow" data-i18n="deck.langEyebrow">Idioma</p>
+      <h2 class="slide-title" data-i18n="deck.langTitle">Multilingüe por defecto, ampliable por colaboración</h2>
+    </header>
+    <div class="slide-body slide-lang">
+      <div class="slide-lang-intro">
+        <p class="slide-lead" data-i18n="deck.langLead">Cada aplicación de la suite nace con un <strong>núcleo multilingüe</strong>: español e inglés como idiomas base. La arquitectura está preparada para crecer con más lenguas sin reescribir código, simplemente añadiendo archivos de traducción.</p>
+        <ul class="slide-list">
+          <li><span aria-hidden="true">●</span> <span data-i18n="deck.langP1"><strong>Detección automática</strong> por el idioma del navegador, con selector manual siempre visible.</span></li>
+          <li><span aria-hidden="true">●</span> <span data-i18n="deck.langP2"><strong>Aislamiento por archivo:</strong> cada idioma vive en su propio <code>strings.&lt;locale&gt;.js</code>, sin tocar el resto del código.</span></li>
+          <li><span aria-hidden="true">●</span> <span data-i18n="deck.langP3"><strong>Cobertura completa:</strong> textos de la interfaz, mensajes de feedback, alertas y microcopy.</span></li>
+          <li><span aria-hidden="true">●</span> <span data-i18n="deck.langP4"><strong>Lectura fácil:</strong> las traducciones siguen la norma UNE 153101 también en otros idiomas.</span></li>
+        </ul>
+      </div>
+      <aside class="slide-lang-how">
+        <h3 data-i18n="deck.langHowTitle">¿Quieres añadir un idioma?</h3>
+        <ol class="slide-lang-steps">
+          <li data-i18n="deck.langStep1">Forkea el repositorio de la app que quieras traducir.</li>
+          <li data-i18n="deck.langStep2">Copia <code>strings.es.js</code> como <code>strings.&lt;tu-idioma&gt;.js</code> y traduce las claves.</li>
+          <li data-i18n="deck.langStep3">Registra el idioma en el selector y en el conmutador de la cabecera.</li>
+          <li data-i18n="deck.langStep4">Abre un pull request. Lo revisamos contigo y lo publicamos.</li>
+        </ol>
+        <p class="slide-lang-cta" data-i18n="deck.langCta">Una buena traducción ayuda a cientos de familias. La guía paso a paso vive en cada repositorio, en <code>doc/&lt;lang&gt;/I18N.md</code>.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Slide 7 · Organización y código abierto ------------------------ -->
+  <section class="slide" data-slide="organization" aria-roledescription="slide" aria-label="Organización y código abierto">
+    <header class="slide-head">
+      <p class="slide-eyebrow" data-i18n="deck.orgEyebrow">Organización</p>
+      <h2 class="slide-title" data-i18n="deck.orgTitle">Una suite, varios repositorios, código abierto</h2>
+    </header>
+    <div class="slide-body slide-org">
+      <div class="slide-org-diagram" aria-hidden="true">
+        <div class="slide-org-node slide-org-root">
+          <strong>apptonomia.uk</strong>
+          <small data-i18n="deck.orgRootDesc">Portal de la suite</small>
+        </div>
+        <ul class="slide-org-children">
+          <li>calculia.uk</li>
+          <li>routime.uk</li>
+          <li>okeymoney.uk</li>
+          <li>sinonimia.uk</li>
+          <li>memofun.uk</li>
+          <li>teclatlon.uk</li>
+        </ul>
+      </div>
+      <div class="slide-org-text">
+        <p data-i18n="deck.orgP1">Apptonomia es un <strong>metaproyecto</strong>: un portal central en <code>apptonomia.uk</code> enlaza a las aplicaciones hermanas, cada una con su propio dominio, su propio repositorio y su propio ciclo de despliegue. Esto permite que cada app evolucione a su ritmo sin bloquear a las demás.</p>
+        <ul class="slide-list">
+          <li><span aria-hidden="true">●</span> <span data-i18n="deck.orgP2"><strong>Despliegues independientes.</strong> Cada app se publica por separado en Cloudflare Workers.</span></li>
+          <li><span aria-hidden="true">●</span> <span data-i18n="deck.orgP3"><strong>Convenciones comunes.</strong> Estructura, accesibilidad, i18n y modo offline compartidos.</span></li>
+          <li><span aria-hidden="true">●</span> <span data-i18n="deck.orgP4"><strong>Gobernanza ligera.</strong> Roles documentados y CLAUDE.md como contrato operativo.</span></li>
+          <li><span aria-hidden="true">●</span> <span data-i18n="deck.orgP5"><strong>Código abierto por diseño.</strong> La suite completa — código, contenidos, decisiones de producto y hojas de ruta — vive en repositorios públicos bajo licencia MIT. Issues y pull requests públicos, integración continua abierta, sin telemetría ni backend que ocultar.</span></li>
+          <li><span aria-hidden="true">●</span> <span data-i18n="deck.orgP6"><strong>Forks bienvenidos.</strong> Una administración, una ONG o un centro educativo puede mantener una variante adaptada a su comunidad sin pedir permiso.</span></li>
+        </ul>
+        <div class="slide-org-repos" aria-label="Repositorios de GitHub">
+          <p class="slide-org-repos-title" data-i18n="deck.orgReposTitle">Repositorios de GitHub</p>
+          <ul class="slide-org-repos-list">
+            <li><a href="https://github.com/miralante/apptonomia" target="_blank" rel="noreferrer">github.com/miralante/apptonomia</a></li>
+            <li><a href="https://github.com/miralante/calculia" target="_blank" rel="noreferrer">github.com/miralante/calculia</a></li>
+            <li><a href="https://github.com/miralante/routime" target="_blank" rel="noreferrer">github.com/miralante/routime</a></li>
+            <li><a href="https://github.com/miralante/okeymoney" target="_blank" rel="noreferrer">github.com/miralante/okeymoney</a></li>
+            <li><a href="https://github.com/miralante/sinonimia" target="_blank" rel="noreferrer">github.com/miralante/sinonimia</a></li>
+            <li><a href="https://github.com/miralante/memofun" target="_blank" rel="noreferrer">github.com/miralante/memofun</a></li>
+            <li><a href="https://github.com/miralante/teclatlon" target="_blank" rel="noreferrer">github.com/miralante/teclatlon</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 8 · Tecnología -------------------------------------------- -->
+  <section class="slide" data-slide="tech" aria-roledescription="slide" aria-label="Tecnología">
+    <header class="slide-head">
+      <p class="slide-eyebrow" data-i18n="deck.techEyebrow">Tecnología</p>
+      <h2 class="slide-title" data-i18n="deck.techTitle">Lo aburrido, bien hecho</h2>
+    </header>
+    <div class="slide-body slide-tech">
+      <div class="slide-tech-grid">
+        <article class="slide-tech-card">
+          <h3 data-i18n="deck.techStackTitle">Stack</h3>
+          <ul class="slide-tech-list">
+            <li><span aria-hidden="true">▸</span> HTML, CSS y JavaScript puros.</li>
+            <li><span aria-hidden="true">▸</span> Cero frameworks, cero bundlers, cero npm en producción.</li>
+            <li><span aria-hidden="true">▸</span> Tipografías autoalojadas (Atkinson Hyperlegible + Nunito).</li>
+            <li><span aria-hidden="true">▸</span> Cloudflare Workers (static assets) como hosting.</li>
+          </ul>
+        </article>
+        <article class="slide-tech-card">
+          <h3 data-i18n="deck.techOfflineTitle">Funciona sin conexión</h3>
+          <ul class="slide-tech-list">
+            <li><span aria-hidden="true">▸</span> Service Worker cache-first en cada app.</li>
+            <li><span aria-hidden="true">▸</span> Instalable como PWA (Add to Home Screen).</li>
+            <li><span aria-hidden="true">▸</span> Datos persistidos en <code>localStorage</code>.</li>
+            <li><span aria-hidden="true">▸</span> Sin backend, sin cola, sin servidor que mantener.</li>
+          </ul>
+        </article>
+        <article class="slide-tech-card">
+          <h3 data-i18n="deck.techAccTitle">Accesibilidad y lectura fácil</h3>
+          <ul class="slide-tech-list">
+            <li><span aria-hidden="true">▸</span> WCAG 2.1 AA mínimo; AAA en lo aplicable al público.</li>
+            <li><span aria-hidden="true">▸</span> UNE 153101:2018 EX (Lectura Fácil) en toda la comunicación escrita.</li>
+            <li><span aria-hidden="true">▸</span> <span data-i18n="deck.techAccLFText">La lectura fácil no es solo un estilo: es la condición que hace posible que el contenido sea comprensible y, por tanto, aprendible.</span></li>
+            <li><span aria-hidden="true">▸</span> Bilingüe es/en, con arquitectura preparada para más idiomas.</li>
+            <li><span aria-hidden="true">▸</span> Color nunca es el único canal de información.</li>
+          </ul>
+        </article>
+        <article class="slide-tech-card">
+          <h3 data-i18n="deck.techSecurityTitle">Seguridad y privacidad</h3>
+          <ul class="slide-tech-list">
+            <li><span aria-hidden="true">▸</span> Cabeceras CSP estrictas en cada despliegue.</li>
+            <li><span aria-hidden="true">▸</span> Cero cookies, cero telemetría, cero servicios externos.</li>
+            <li><span aria-hidden="true">▸</span> Licencia MIT en todos los repositorios.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 9 · Auditorías y normas ----------------------------------- -->
+  <section class="slide" data-slide="standards" aria-roledescription="slide" aria-label="Normas y auditoría">
+    <header class="slide-head">
+      <p class="slide-eyebrow" data-i18n="deck.stdEyebrow">Normas y auditoría</p>
+      <h2 class="slide-title" data-i18n="deck.stdTitle">Diseñado para ellos, escrito en código</h2>
+    </header>
+    <div class="slide-body slide-standards">
+      <ul class="slide-standards-list">
+        <li>
+          <span class="slide-standards-mark" aria-hidden="true">UNE</span>
+          <div>
+            <h3 data-i18n="deck.stdUneTitle">UNE 153101:2018 EX — Lectura Fácil</h3>
+            <p data-i18n="deck.stdUneText">Oraciones cortas, una idea por frase, vocabulario cotidiano, sin tecnicismos ni jerga clínica en lo que la persona lee. Aplicado a toda la suite — interfaces, mensajes, ejemplos y microcopy — porque la lectura fácil es la condición que hace posible que el contenido sea comprensible y, por tanto, aprendible.</p>
+          </div>
+        </li>
+        <li>
+          <span class="slide-standards-mark" aria-hidden="true">WCAG</span>
+          <div>
+            <h3 data-i18n="deck.stdWcagTitle">WCAG 2.1 — AA mínimo, AAA cuando aplica</h3>
+            <p data-i18n="deck.stdWcagText">Contraste reforzado (AAA 1.4.6), nivel de lectura accesible (AAA 3.1.5) y uso del color nunca como único canal (AAA 1.4.1).</p>
+          </div>
+        </li>
+        <li>
+          <span class="slide-standards-mark" aria-hidden="true">MIT</span>
+          <div>
+            <h3 data-i18n="deck.stdMitTitle">Licencia MIT en todo el código</h3>
+            <p data-i18n="deck.stdMitText">Cualquier entidad puede reutilizar, adaptar o forkear la suite para su comunidad, sin coste de licencia.</p>
+          </div>
+        </li>
+        <li>
+          <span class="slide-standards-mark" aria-hidden="true">CI</span>
+          <div>
+            <h3 data-i18n="deck.stdCiTitle">Integración continua pública</h3>
+            <p data-i18n="deck.stdCiText">Cada cambio pasa por un conjunto de comprobaciones automáticas (paridad i18n, sintaxis, catálogo, accesibilidad, términos prohibidos). El CI es el contrato.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+
+  <!-- Slide 10 · Casos de uso ----------------------------------------- -->
+  <section class="slide" data-slide="use-cases" aria-roledescription="slide" aria-label="Casos de uso">
+    <header class="slide-head">
+      <p class="slide-eyebrow" data-i18n="deck.useEyebrow">Dónde encaja</p>
+      <h2 class="slide-title" data-i18n="deck.useTitle">Casos de uso reales</h2>
+    </header>
+    <div class="slide-body slide-usecases">
+      <article class="slide-usecase">
+        <h3 data-i18n="deck.use1Title">🏫  Centros educativos y aulas de apoyo</h3>
+        <p data-i18n="deck.use1Text">Refuerzo entre clases para estudiantes con necesidades de apoyo. Se instala como PWA en una tablet del aula y se reutiliza cada curso sin licencias.</p>
+      </article>
+      <article class="slide-usecase">
+        <h3 data-i18n="deck.use2Title">🩺  Clínicas y consultas de terapia ocupacional</h3>
+        <p data-i18n="deck.use2Text">Complemento entre sesiones. La terapeuta asigna una actividad concreta y la persona la practica en casa, sin enviar datos a ningún servidor.</p>
+      </article>
+      <article class="slide-usecase">
+        <h3 data-i18n="deck.use3Title">🏠  Familias y personas cuidadoras</h3>
+        <p data-i18n="deck.use3Text">Acceso directo desde el navegador del salón, sin instalar nada. Las familias pueden ver el progreso en el propio dispositivo y borrarlo cuando quieran.</p>
+      </article>
+      <article class="slide-usecase">
+        <h3 data-i18n="deck.use4Title">🌍  Administraciones públicas y ONG</h3>
+        <p data-i18n="deck.use4Text">Despliegue en comunidad o fork personalizado bajo licencia MIT. La suite es reutilizable para proyectos locales con necesidades específicas.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Slide 11 · Colaboración ----------------------------------------- -->
+  <section class="slide" data-slide="collaboration" aria-roledescription="slide" aria-label="Cómo colaborar">
+    <header class="slide-head">
+      <p class="slide-eyebrow" data-i18n="deck.collabEyebrow">Cómo colaborar</p>
+      <h2 class="slide-title" data-i18n="deck.collabTitle">Equipos, roles y formas de participar</h2>
+    </header>
+    <div class="slide-body slide-collab">
+      <p class="slide-lead" data-i18n="deck.collabLead">Apptonomia se mantiene por una red pequeña y distribuida de personas. Los <strong>roles</strong> describen qué hace cada una; las <strong>formas de colaborar</strong> son la puerta de entrada, venga usted desde donde venga.</p>
+
+      <div class="slide-roles">
+        <article class="slide-role" data-accent="#1B6CA8">
+          <span class="slide-role-icon" aria-hidden="true">💻</span>
+          <h3 data-i18n="deck.roleTechTitle">Equipo técnico</h3>
+          <p data-i18n="deck.roleTechText">Mantiene el código de las aplicaciones, la infraestructura, la accesibilidad técnica y la integración continua. Suele trabajar vía pull requests y revisiones en GitHub.</p>
+        </article>
+        <article class="slide-role" data-accent="#00695C">
+          <span class="slide-role-icon" aria-hidden="true">🩺</span>
+          <h3 data-i18n="deck.roleClinicalTitle">Equipo clínico y educativo</h3>
+          <p data-i18n="deck.roleClinicalText">Terapeutas ocupacionales, maestras de educación especial, psicólogas y logopedas que prueban las apps con su población y aportan criterios de uso real.</p>
+        </article>
+        <article class="slide-role" data-accent="#B8860B">
+          <span class="slide-role-icon" aria-hidden="true">📣</span>
+          <h3 data-i18n="deck.roleOutreachTitle">Equipo de difusión y sostenibilidad</h3>
+          <p data-i18n="deck.roleOutreachText">Personas de comunicación, fundaciones y administraciones que dan a conocer la suite, financian su mantenimiento o coordinan forks adaptados a su comunidad.</p>
+        </article>
+      </div>
+
+      <ol class="slide-collab-list">
+        <li>
+          <span class="slide-collab-tag" aria-hidden="true">01</span>
+          <div>
+            <h3 data-i18n="deck.collab1Title">Difusión institucional</h3>
+            <p data-i18n="deck.collab1Text">Presentar Apptonomia en vuestra red de centros, profesionales o familias. Material listo para usar.</p>
+          </div>
+        </li>
+        <li>
+          <span class="slide-collab-tag" aria-hidden="true">02</span>
+          <div>
+            <h3 data-i18n="deck.collab2Title">Validación profesional</h3>
+            <p data-i18n="deck.collab2Text">Equipos clínicos y educativos que prueben las apps y aporten criterios sobre cómo encajan en una sesión, un aula o un plan de apoyo.</p>
+          </div>
+        </li>
+        <li>
+          <span class="slide-collab-tag" aria-hidden="true">03</span>
+          <div>
+            <h3 data-i18n="deck.collab3Title">Contribución técnica o de contenido</h3>
+            <p data-i18n="deck.collab3Text">Pull requests a los repositorios abiertos, nuevas barajas en Memofun, nuevos términos en Sinonimia, traducciones a más idiomas.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Slide 12 · Cierre y contacto ------------------------------------ -->
+  <section class="slide slide-closing" data-slide="closing" aria-roledescription="slide" aria-label="Cierre y contacto">
+    <div class="slide-closing-inner">
+      <p class="slide-eyebrow" data-i18n="deck.closeEyebrow">Gracias por llegar hasta aquí</p>
+      <h2 class="slide-title" data-i18n="deck.closeTitle">Construyamos juntos un proyecto que respete a quien la usa</h2>
+      <p class="slide-lead slide-lead-center" data-i18n="deck.closeLead">Si tu organización quiere explorar una colaboración, escribidnos..</p>
+      <p class="slide-closing-cta-label" data-i18n="deck.closeCtaLabel">Visita el portal</p>
+      <a class="slide-closing-cta" href="https://www.apptonomia.uk/" target="_blank" rel="noreferrer">www.apptonomia.uk</a>
+      <ul class="slide-closing-contact" aria-label="Datos de contacto">
+        <li>
+          <span class="slide-closing-label" data-i18n="deck.closeEmailLabel">Email</span>
+          <a href="mailto:hello@apptonomia.uk">hello@apptonomia.uk</a>
+        </li>
+        <li>
+          <span class="slide-closing-label" data-i18n="deck.closeRepoLabel">Repos</span>
+          <a href="https://github.com/miralante/apptonomia" target="_blank" rel="noreferrer">github.com/miralante</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================
+     PIES DE DIAPOSITIVA
+     ============================ -->
+<footer class="deck-footer" role="contentinfo">
+  <div class="deck-footer-left">
+    <span class="deck-footer-brand">Apptonomia</span>
+    <span class="deck-footer-sep" aria-hidden="true">·</span>
+    <span data-i18n="deck.footer">Deck institucional para entidades colaboradoras</span>
+  </div>
+  <div class="deck-footer-right">
+    <span class="deck-footer-page">
+      <span class="deck-footer-pageno" id="slideNumFoot">1</span>
+      <span class="deck-footer-sep" aria-hidden="true">/</span>
+      <span id="slideTotalFoot">12</span>
+    </span>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script src="strings.es.js"></script>
+<script src="strings.en.js"></script>
+</body>
+</html>

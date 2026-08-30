@@ -1,0 +1,21 @@
+{
+  "name": "Apptonomia",
+  "domain": "apptonomia.uk",
+  "title": "Apptonomia — Suite de apps para aprender a tu ritmo",
+  "description": "Apptonomia es una suite de seis aplicaciones web gratuitas y sin registro para aprender a tu ritmo: Calculia (matemáticas), Routime (actividades), Okeymoney (dinero cotidiano), Sinonimia (diccionario en lectura fácil), Memofun (tarjetas de estudio) y Teclatlon (mecanografía). Accede a todas desde un solo portal.",
+  "keywords": "apptonomia, calculia, routime, okeymoney, sinonimia, memofun, teclatlon, suite educativa, aprender a tu ritmo, easy read, lectura fácil, accesibilidad cognitiva, aplicaciones gratuitas sin registro, matemáticas, mecanografía, diccionario, flashcards, dinero cotidiano",
+  "author": "Apptonomia",
+  "ogSiteName": "Apptonomia",
+  "ogDescription": "Seis aplicaciones web gratuitas y sin registro: Calculia, Routime, Okeymoney, Sinonimia, Memofun y Teclatlon. Acceso directo desde un solo portal.",
+  "twitterDescription": "Calculia, Routime, Okeymoney, Sinonimia, Memofun y Teclatlon en un solo portal. Gratis y sin registro.",
+  "ogImageAlt": "Apptonomia: seis aplicaciones para aprender a tu ritmo",
+  "ogAccent": "#1B6CA8",
+  "ogAccentInk": "#FFFFFF",
+  "ogTagline": "Seis apps para aprender a tu ritmo",
+  "themeColor": "#FAF7F2",
+  "colorScheme": "light",
+  "ogImageAsset": "og-image.svg",
+  "iconAsset": "favicon.svg",
+  "manifest": null,
+  "hasItemList": true
+}

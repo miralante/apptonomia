@@ -9,6 +9,11 @@ Thumbs.db
 # Notas/workspace personal del mantenedor
 ,dev/
 .dev/
+# Configuración local de Claude Code (skills descargados, settings).
+# Se regeneran desde ~/.claude/skills/ si hace falta.
+.claude/
+# Caché local de Wrangler CLI (deployments, logs).
+.wrangler/
 
 # Por si en el futuro alguien añade alguna herramienta con dependencias
 node_modules/

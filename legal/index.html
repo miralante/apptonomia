@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apptonomia — Protección de datos</title>
+  <meta name="description" content="Apptonomia: qué datos guarda, dónde y por qué. Sin registro, sin cookies, sin analítica.">
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container legal">
+    <header class="cabecera-legal">
+      <div class="idioma-selector" role="group" aria-label="Elegir idioma">
+        <button type="button" class="btn-idioma" id="btnIdiomaEs" data-locale="es" aria-pressed="false">🇪🇸 Español</button>
+        <button type="button" class="btn-idioma" id="btnIdiomaEn" data-locale="en" aria-pressed="false">🇬🇧 English</button>
+      </div>
+      <div class="logo-legal">🌿</div>
+      <h1 data-i18n="legal.pageTitle">Protección de datos</h1>
+      <p class="lema" data-i18n="legal.tagline">Sin registro. Sin cookies. Sin analítica.</p>
+      <p class="entradilla" data-i18n="legal.lead">Apptonomia no pide tus datos personales. Todo lo que guarda cada aplicación vive únicamente en este dispositivo. Aquí explicamos, en detalle, qué se guarda y por qué.</p>
+
+      <nav class="indice" aria-label="Índice de esta página">
+        <a href="#responsable" data-i18n="legal.navResponsible">Quién trata tus datos</a>
+        <a href="#datos" data-i18n="legal.navData">Qué guardamos</a>
+        <a href="#derechos" data-i18n="legal.navRights">Tus derechos</a>
+        <a href="#menores" data-i18n="legal.navMinors">Todas las edades</a>
+        <a href="#contacto" data-i18n="legal.navContact">Cambios y contacto</a>
+      </nav>
+    </header>
+
+    <main class="pila">
+
+      <section id="responsable" class="card">
+        <h2 data-i18n="legal.responsibleTitle">Quién trata tus datos</h2>
+        <p><span data-i18n="legal.responsibleP1a">Apptonomia es una iniciativa de </span><strong>The Naked Frame</strong><span data-i18n="legal.responsibleP1b">, un estudio independiente que desarrolla y mantiene la suite. No hay ningún servidor propio que reciba o almacene tus datos: cada aplicación es un conjunto de páginas estáticas que se ejecutan en tu navegador.</span></p>
+        <p><span data-i18n="legal.responsibleP2a">El código fuente completo de cada aplicación es público y auditable en su repositorio de GitHub en </span><a href="https://github.com/thenkdframe" data-i18n="legal.responsibleP2Link">github.com/thenkdframe</a><span data-i18n="legal.responsibleP2b">. Cualquier pregunta sobre esta página puede plantearse abriendo un issue allí.</span></p>
+      </section>
+
+      <section id="datos" class="card">
+        <h2 data-i18n="legal.dataTitle">Qué guardamos y por qué</h2>
+        <p data-i18n="legal.dataP1">Cada aplicación de Apptonomia funciona sin cuentas, sin cookies y sin analítica: no sabemos quién eres ni cómo usas la suite.</p>
+        <p data-i18n="legal.dataP2">Lo único que se guarda vive en el <code>localStorage</code> de tu navegador, en tu propio dispositivo, y nunca se envía a ningún servidor. En general, las seis aplicaciones guardan:</p>
+        <ul>
+          <li><strong data-i18n="legal.dataItem1Label">Progreso del juego</strong>: <span data-i18n="legal.dataItem1Text">las estrellas ganadas, los niveles completados y, en su caso, barajas o metas conseguidas.</span></li>
+          <li><strong data-i18n="legal.dataItem2Label">Idioma elegido</strong>: <span data-i18n="legal.dataItem2Text">para no tener que elegirlo de nuevo cada vez que abres la aplicación.</span></li>
+          <li><strong data-i18n="legal.dataItem3Label">Ajustes de accesibilidad y juego</strong>: <span data-i18n="legal.dataItem3Text">tamaño del texto, tema, modo foco, lectura fácil y otros ajustes del panel.</span></li>
+        </ul>
+        <p data-i18n="legal.dataP3">Nunca guardamos: nombre, contraseñas, fallos, tiempo empleado, número de intentos, comparaciones con otras personas ni historiales de uso detallados.</p>
+        <p data-i18n="legal.dataP4">Esta información se guarda mientras no se borre, y sirve únicamente para que el progreso no se pierda al cerrar la aplicación.</p>
+      </section>
+
+      <section id="derechos" class="card">
+        <h2 data-i18n="legal.rightsTitle">Tus derechos y cómo ejercerlos</h2>
+        <p data-i18n="legal.rightsP1">Como todo lo guardado está en tu dispositivo y no en un servidor, tú tienes el control directo: puedes verlo, cambiarlo o borrarlo en cualquier momento, sin pedírnoslo a nosotros.</p>
+        <p data-i18n="legal.rightsP2">Cada aplicación tiene su propio botón de "Borrar mi progreso" en su panel de Ajustes. También puedes borrar estos datos borrando los datos de navegación de tu navegador para cada sitio, desde su configuración.</p>
+        <p><a class="btn btn-secundario" href="../index.html" data-i18n="legal.rightsLinkPortal">Volver al portal</a></p>
+      </section>
+
+      <section id="menores" class="card">
+        <h2 data-i18n="legal.minorsTitle">Todas las edades y capacidades</h2>
+        <p data-i18n="legal.minorsP1">La suite Apptonomia está pensada para que la use de forma autónoma cualquier persona, sin importar su edad ni sus capacidades.</p>
+        <p data-i18n="legal.minorsP2">Como ninguna de las aplicaciones recoge datos personales en ningún servidor, no es necesario el consentimiento de nadie para tratar datos: no hay ningún tratamiento que autorizar. Sí recomendamos la supervisión habitual que una familia o un profesional haga sobre el uso de cualquier dispositivo.</p>
+      </section>
+
+      <section id="contacto" class="card">
+        <h2 data-i18n="legal.contactTitle">Cambios y contacto</h2>
+        <p data-i18n="legal.contactP1">Esta página puede actualizarse si cambia la suite. El historial de cambios es público en cada repositorio de GitHub.</p>
+        <p data-i18n="legal.contactP2">Última actualización: 30 de agosto de 2026.</p>
+        <p><span data-i18n="legal.contactP3a">Para preguntas sobre esta página, abre un issue en </span><a href="https://github.com/thenkdframe" data-i18n="legal.contactP3Link">github.com/thenkdframe</a><span data-i18n="legal.contactP3b">.</span></p>
+      </section>
+
+    </main>
+
+    <footer class="pie-legal">
+      <a class="btn btn-secundario" href="../index.html" data-i18n="legal.footerPortal">Volver al portal</a>
+    </footer>
+  </div>
+
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/script.js"></script>
+  <script src="../js/strings.es.js"></script>
+  <script src="../js/strings.en.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      function paintLanguageSelector() {
+        var active = App.i18n.locale();
+        document.getElementById('btnIdiomaEs').setAttribute('aria-pressed', String(active === 'es'));
+        document.getElementById('btnIdiomaEn').setAttribute('aria-pressed', String(active === 'en'));
+      }
+      document.getElementById('btnIdiomaEs').addEventListener('click', function () { App.i18n.setLocale('es'); });
+      document.getElementById('btnIdiomaEn').addEventListener('click', function () { App.i18n.setLocale('en'); });
+      paintLanguageSelector();
+    })();
+  </script>
+</body>
+</html>
