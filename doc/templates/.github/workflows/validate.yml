@@ -1,0 +1,34 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    name: node scripts/check.js
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run the structural check
+        run: node scripts/check.js
+
+  cache-bump:
+    name: sw.js VERSION bump
+    runs-on: ubuntu-latest
+    # Only run for PWA siblings — adjust the path filter if the
+    # sibling is not a PWA (delete this job from the workflow).
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify sw.js VERSION was bumped on cached-file change
+        run: node scripts/check-version-bump.js

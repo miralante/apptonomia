@@ -1,16 +1,18 @@
 # Apptonomia
 
 > 🌐 **Other languages:** [Español](README.es.md)
+>
+> 🚀 **Try it live:** [apptonomia.uk](https://apptonomia.uk/)
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![No dependencies](https://img.shields.io/badge/dependencies-none-success.svg)](#-features)
-[![Static site](https://img.shields.io/badge/build-none-informational.svg)](#-quick-start)
-[![PWA](https://img.shields.io/badge/PWA-installable-5A0FC8.svg)](manifest.json)
-[![i18n](https://img.shields.io/badge/i18n-es%20%7C%20en-yellow.svg)](#-documentation)
+[![Static site](https://img.shields.io/badge/build-none-informational.svg)](#-features)
+[![No PWA](https://img.shields.io/badge/PWA-none-lightgrey.svg)](#-features)
+[![i18n](https://img.shields.io/badge/i18n-es%20%7C%20en-yellow.svg)](#-project-documentation-bilingual)
 [![CI](https://img.shields.io/badge/CI-node%20scripts%2Fsync--graphify--skill.js-blue.svg)](.github/workflows/validate.yml)
 
 **Portal page for the Apptonomia suite** — a free, static, dependency-free
-landing that links out to six small sibling web apps, all designed to
+landing that links out to the six apps of the suite, all designed to
 help our typical user profile learn at their own pace, in the browser,
 free of charge, without accounts and without personal data.
 
@@ -32,7 +34,7 @@ open it in a browser to see the full suite.
 ## ✨ Features
 
 This repository hosts the **landing portal** of the Apptonomia suite:
-a single static page that introduces the six sibling apps and links to
+a single static page that introduces the six apps of the suite and links to
 each one. It is intentionally tiny — a single `index.html`, an i18n
 bootstrap (`bootstrap.js` + `script.js`), the two `strings.<locale>.js`
 bundles, and a `_headers` file for HTTP security headers.
@@ -53,13 +55,19 @@ bundles, and a `_headers` file for HTTP security headers.
 
 | Role | Who they are | How they participate | Where they look first |
 |---|---|---|---|
-| 👤 **End user** (typical user profile) | Visits the landing to pick a sibling app | Opens the page in a browser; doesn't read or write code | The app — nothing else to read |
-| ❤️ **Support / family** | Helps an end user navigate the suite | Picks the right sibling for a need; helps install it on the device | Each sibling's `README.md` |
+| 👤 **End user** (typical user profile) | Visits the landing to pick an app of the suite | Opens the page in a browser; doesn't read or write code | The app — nothing else to read |
+| ❤️ **Support / family** | Helps an end user navigate the suite | Picks the right app of the suite for a need; helps install it on the device | Each suite app's `README.md` |
 | 💻 **Build / developer** | Maintains the landing and the cross-project plumbing | Edits `index.html`, `js/`, `_headers`, `wrangler.toml`; runs `node scripts/sync-graphify-skill.js` | [`CLAUDE.md`](CLAUDE.md) |
+
+See [`doc/en/roles.md`](doc/en/roles.md) for the full role description
+and the trio-vs-pair-vs-sole patterns across the apps of the suite.
 
 ---
 
 ## 📚 Project documentation (bilingual)
+
+All project documentation lives in the `doc/` folder plus a few files
+at the repository root:
 
 | Language | Entry point |
 |---|---|
@@ -74,33 +82,43 @@ bundles, and a `_headers` file for HTTP security headers.
 | Deploy runbook (Cloudflare Workers) | [`CLOUDFLARE.md`](CLOUDFLARE.md) |
 | AI agent operational workflow | [`CLAUDE.md`](CLAUDE.md) |
 
-Project history lives in `git log`; no external roadmap is maintained.
+### 📄 Other repo documents
+
+| Document | Audience |
+|---|---|
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Anyone who wants to contribute (family, therapists, devs) |
+| `CLAUDE.md` | AI agents: operational workflow, coordination and approvals |
+| [`CLOUDFLARE.md`](CLOUDFLARE.md) | Canonical Cloudflare Workers deploy guide for the suite (Apptonomia + Calculia, Memofun, Okeymoney, Sinonimia, Teclatlon) |
+| Project history | Lives in `git log`; no external roadmap is maintained |
+| `doc/en/I18N.md` / `doc/es/I18N.md` | Details of the ES/EN multilanguage system |
 
 ---
 
 ## 🛠️ Preparing / Expanding content
 
 The landing is intentionally tiny, so "preparing content" means adding
-or updating the sibling cards on the home page:
+or updating the cards of the suite on the home page:
 
 1. Edit `index.html` to add or update a card (one `<a class="card">`
-   per sibling, with `data-i18n` attributes for the bilingual strings).
+   per app of the suite, with `data-i18n` attributes for the bilingual
+   strings).
 2. Add the matching keys in **both** `js/strings.es.js` and
    `js/strings.en.js` (`es` is the source of truth, `en` must keep
    parity).
 3. Update the JSON-LD `ItemList` block in `index.html` if you're adding
-   a new sibling (and add the entry to each sibling repo's `README.md`
-   "Sibling projects" table — see the suite-wide convention below).
+   a new app of the suite (and add the entry to each suite repo's
+   `README.md` "The Miralante suite" table — see the suite-wide
+   convention below).
 
-To add a new sibling to the suite:
+To add a new app to the suite:
 
-1. Create a new sibling repo following the same conventions
+1. Create a new suite repo following the same conventions
    (`index.html`, `app.js`, `strings.<locale>.js`, `sw.js` with a
    cache-first `VERSION`, `CLOUDFLARE.md`, `CLAUDE.md`, the
-   `usuario/a tipo` euphemism directive).
-2. Add the sibling here, in `index.html`, and in every sibling's
-   `README.md` "Sibling projects" table.
-3. Add the sibling to the cross-project index in
+   `persona tipo` euphemism directive).
+2. Add the app here, in `index.html`, and in every suite repo's
+   `README.md` "The Miralante suite" table.
+3. Add the app to the cross-project index in
    [`graphify-out-meta/graph.json`](graphify-out-meta/graph.json) by
    running `node scripts/sync-graphify-skill.js update --apply --target ../<project>`.
 
@@ -116,8 +134,8 @@ node scripts/sync-graphify-skill.js update --apply # rebuild stale per-project g
 
 No `npm install` needed — the scripts only use Node's standard library.
 There is no `scripts/check.js` for this repo (the landing itself is a
-single static page with no build step); sibling repos have their own
-checks. As a lighter equivalent, `scripts/check-forbidden-terms.js`
+single static page with no build step); the other suite repos have
+their own checks. As a lighter equivalent, `scripts/check-forbidden-terms.js`
 runs in CI and scans the public landing (`index.html`, `js/*.js`,
 `about/privacidad.html`) for the suite-wide blocklist (disability /
 occupational therapy / minors) — see the `forbidden-terms` job in
@@ -141,20 +159,14 @@ workflow is needed.
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for
-the workflow, the project roles, and the recipes (new language, copy
-edits, accessibility fixes, adding a sibling to the suite). All
-participants are expected to follow [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
-
----
-
 ## 🛡️ Security
 
 Apptonomia is a fully client-side static site: no backend, no
-database, no telemetry, no third-party runtime. To report a
-vulnerability see [`SECURITY.md`](SECURITY.md).
+database, no telemetry, no third-party runtime. The threat model is
+essentially "what a hostile offline page could do to the same origin",
+which the browser already sandboxes. See [`SECURITY.md`](SECURITY.md)
+(or [`SECURITY.es.md`](SECURITY.es.md)) for how to report a suspected
+issue privately.
 
 ---
 
@@ -185,7 +197,7 @@ directly.
 ## 🙏 Credits
 
 The landing uses the accessibility conventions that inform every
-sibling app in the suite: large hit areas, high contrast, plain
+app of the suite: large hit areas, high contrast, plain
 language, no pressure patterns, no clinical language in user-facing
 surfaces.
 
@@ -197,7 +209,7 @@ guess. Spanish is the source of truth there; English mirrors live in
 
 ---
 
-## 🧩 Sibling projects
+## 🌐 The Miralante suite — projects in the suite
 
 This repository is the **landing portal** for the Apptonomia suite.
 The actual apps live in their own repositories:
@@ -211,3 +223,7 @@ The actual apps live in their own repositories:
 | [Okeymoney](https://okeymoney.apptonomia.uk/) | Personal finance and everyday autonomy | [github.com/miralante/okeymoney](https://github.com/miralante/okeymoney) |
 | [Sinonimia](https://sinonimia.apptonomia.uk/) | Easy-read dictionary | [github.com/miralante/sinonimia](https://github.com/miralante/sinonimia) |
 | [Teclatlon](https://teclatlon.apptonomia.uk/) | Touch-typing with a physical keyboard | [github.com/miralante/teclatlon](https://github.com/miralante/teclatlon) |
+
+This repo's [`CLOUDFsuite; each suiteE.md) is the canonical deploy
+guide for the whole suite; each suite repo has its own
+project-specific doc that links back here.

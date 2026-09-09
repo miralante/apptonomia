@@ -1,0 +1,29 @@
+{
+  "name": "{{DISPLAY_EN}}",
+  "short_name": "{{DISPLAY_EN}}",
+  "description": "{{DISPLAY_EN}} — free static web app, part of the Apptonomia suite.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#161A21",
+  "lang": "es",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "./assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "lifestyle"],
+  "prefer_related_applications": false
+}

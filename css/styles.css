@@ -121,21 +121,24 @@
 
     .container {
       width: 100%;
-      max-width: 1180px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 var(--space-large);
+      padding: 0 48px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ===== Header ===== */
     .app-header {
       padding: var(--space) 0 var(--space-large);
+      flex-shrink: 0;
     }
     .top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: var(--space);
-      margin-bottom: var(--space-large);
     }
     .brand {
       display: inline-flex;
@@ -181,16 +184,18 @@
 
     .app-hero {
       text-align: center;
-      padding-top: var(--space-large);
+      padding-top: 32px;
+      flex-shrink: 0;
     }
     .app-hero h1 {
       max-width: 18ch;
       margin: 0 auto var(--space);
+      font-size: 56px;
     }
     .app-hero .hero-tagline {
       margin: 0 auto;
       max-width: 38ch;
-      font-size: 20px;
+      font-size: 24px;
       line-height: 1.45;
       color: var(--color-text-soft);
       letter-spacing: -0.01em;
@@ -199,13 +204,17 @@
     /* ===== Suite grid ===== */
     main {
       flex: 1;
-      padding: var(--space-xl) 0 var(--space-large);
+      display: flex;
+      flex-direction: column;
+      padding: 24px 0;
     }
 
     .suite {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: var(--space);
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 24px;
+      flex: 1;
+      align-content: center;
     }
 
     .suite-card {
@@ -285,6 +294,7 @@
       padding: var(--space-large) 0 var(--space);
       color: var(--color-text-soft);
       font-size: 14px;
+      flex-shrink: 0;
     }
     .app-footer .container {
       display: flex;
@@ -295,39 +305,22 @@
     }
 
     @media (max-width: 640px) {
-      :root { --text-title: 30px; --text-large: 22px; }
-      .top-bar { flex-wrap: wrap; }
+      .container { padding: 0 16px; }
+      .app-header { padding-bottom: 8px; }
+      .app-hero { padding-top: 16px; }
+      .app-hero h1 { font-size: clamp(34px, 10vw, 46px); }
+      .app-hero .hero-tagline { font-size: 19px; }
+      main { padding: 16px 0; }
+      .suite { grid-template-columns: 1fr; gap: 14px; align-content: start; }
+      .suite-card { min-height: 150px; padding: 18px; }
+      .app-footer { padding-top: 8px; }
     }
-
+    
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
-    }
-
-    /* ---- Responsive: tablet (641px–1023px) ----
-       El landing ya tiene `--text-title` y `--text-large` definidos en
-       `:root` (default desktop) y reescritos para móvil en el bloque
-       `@media (max-width: 640px)` de arriba. Aquí ajustamos al rango
-       intermedio: tipografía un punto mayor y el grid de tarjetas
-       (.suite) pasa de 1 columna móvil a un layout de 2–3 según
-       espacio, gracias a auto-fill/minmax. Forzamos un mínimo de 2
-       columnas en este rango para que las cards no se estiren
-       demasiado en tablets en landscape. */
-    @media (min-width: 641px) and (max-width: 1023px) {
-      :root { --text-title: 40px; --text-large: 28px; }
-      .suite { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    /* ---- Responsive: escritorio ancho (≥ 1024px) ----
-       En monitor 1080p+ el landing se ve centrado pero las 6 tarjetas
-       de la suite en una columna pierden proporción. Forzamos 3
-       columnas (que cubren 2 filas × 3) y damos más aire al hero. */
-    @media (min-width: 1024px) {
-      :root { --text-title: 48px; --text-large: 32px; }
-      .suite { grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
-      .app-hero { padding-top: var(--space-xl); }
     }
   </style>

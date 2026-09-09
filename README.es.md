@@ -1,17 +1,19 @@
 # Apptonomia
 
 > 🌐 **Otros idiomas:** [English](README.md)
+>
+> 🚀 **Pruébalo en vivo:** [apptonomia.uk](https://apptonomia.uk/)
 
 [![Licencia MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
 [![Sin dependencias](https://img.shields.io/badge/dependencias-ninguna-success.svg)](#-caracter%C3%ADsticas)
-[![Sitio estático](https://img.shields.io/badge/build-ninguno-informational.svg)](#-arranque-r%C3%A1pido)
-[![PWA](https://img.shields.io/badge/PWA-instalable-5A0FC8.svg)](manifest.json)
-[![i18n](https://img.shields.io/badge/i18n-es%20%7C%20en-yellow.svg)](#-documentaci%C3%B3n)
+[![Sitio estático](https://img.shields.io/badge/build-ninguno-informational.svg)](#-caracter%C3%ADsticas)
+[![Sin PWA](https://img.shields.io/badge/PWA-ninguna-lightgrey.svg)](#-caracter%C3%ADsticas)
+[![i18n](https://img.shields.io/badge/i18n-es%20%7C%20en-yellow.svg)](#-documentaci%C3%B3n-del-proyecto-biling%C3%BCe)
 [![CI](https://img.shields.io/badge/CI-node%20scripts%2Fsync--graphify--skill.js-blue.svg)](.github/workflows/validate.yml)
 
 **Portal de la suite Apptonomia** — una landing estática, gratuita y sin
-dependencias que enlaza con seis pequeñas aplicaciones web hermanas,
-todas pensadas para que nuestros/as usuarios/as tipo aprendan a su
+dependencias que enlaza con seis pequeñas aplicaciones web de la
+suite, todas pensadas para que nuestras personas tipo aprendan a su
 propio ritmo, en el navegador, sin coste, sin cuentas y sin datos
 personales.
 
@@ -33,8 +35,8 @@ La landing está desplegada en **[apptonomia.uk](https://apptonomia.uk/)** —
 ## ✨ Características
 
 Este repositorio aloja el **portal de entrada** de la suite Apptonomia:
-una única página estática que presenta las seis aplicaciones hermanas
-y enlaza con cada una. Es deliberadamente pequeño — un único
+una única página estática que presenta las seis aplicaciones de la
+suite y enlaza con cada una. Es deliberadamente pequeño — un único
 `index.html`, un bootstrap de i18n (`bootstrap.js` + `script.js`), los dos
 bundles `strings.<locale>.js`, y un `_headers` para las cabeceras HTTP
 de seguridad.
@@ -56,13 +58,19 @@ de seguridad.
 
 | Rol | Quién es | Cómo participa | Dónde mira primero |
 |---|---|---|---|
-| 👤 **Persona usuaria** (usuario/a tipo) | Visita la landing para elegir una app hermana | Abre la página en un navegador; no lee ni escribe código | La aplicación — no hace falta leer nada más |
-| ❤️ **Apoyo / familia** | Ayuda a la persona usuaria a navegar la suite | Elige la app hermana adecuada; ayuda a instalarla en el dispositivo | El `README.md` de cada hermana |
+| 👤 **Persona usuaria** (persona tipo) | Visita la landing para elegir una app de la suite | Abre la página en un navegador; no lee ni escribe código | La aplicación — no hace falta leer nada más |
+| ❤️ **Apoyo / familia** | Ayuda a la persona usuaria a navegar la suite | Elige la app de la suite adecuada; ayuda a instalarla en el dispositivo | El `README.md` de cada app de la suite |
 | 💻 **Construcción / desarrollador/a** | Mantiene la landing y el cross-project plumbing | Edita `index.html`, `js/`, `_headers`, `wrangler.toml`; ejecuta `node scripts/sync-graphify-skill.js` | [`CLAUDE.md`](CLAUDE.md) |
+
+Ver [`doc/es/roles.md`](doc/es/roles.md) para la descripción completa
+de los roles y los patrones trio/par/único en el conjunto de la suite.
 
 ---
 
 ## 📚 Documentación del proyecto (bilingüe)
+
+Toda la documentación del proyecto vive en la carpeta `doc/`, junto
+con algunos archivos en la raíz del repositorio:
 
 | Idioma | Punto de entrada |
 |---|---|
@@ -77,37 +85,44 @@ de seguridad.
 | Guía de despliegue (Cloudflare Workers) | [`CLOUDFLARE.md`](CLOUDFLARE.md) |
 | Flujo operativo para agentes de IA | [`CLAUDE.md`](CLAUDE.md) |
 
-El historial del proyecto vive en `git log`; no se mantiene una hoja de
-ruta externa.
+### 📄 Otros documentos del repo
+
+| Documento | Para quién |
+|---|---|
+| [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) | Familias, terapeutas y desarrolladores que quieran contribuir |
+| `CLAUDE.md` | Agentes IA: reglas obligatorias y estado del proyecto |
+| [`CLOUDFLARE.md`](CLOUDFLARE.md) | Guía canónica de despliegue en Cloudflare Workers para la suite (Apptonomia + Calculia, Memofun, Okeymoney, Sinonimia, Teclatlon) |
+| Historial del proyecto | En `git log`; no se mantiene una hoja de ruta externa |
+| `doc/es/I18N.md` / `doc/en/I18N.md` | Detalles del sistema multiidioma ES/EN |
 
 ---
 
 ## 🛠️ Preparar / Ampliar contenido
 
 La landing es deliberadamente pequeña, así que "preparar contenido"
-significa añadir o actualizar las tarjetas de las apps hermanas en la
+significa añadir o actualizar las tarjetas de las apps de la suite en la
 página principal:
 
 1. Edita `index.html` para añadir o actualizar una tarjeta (un
-   `<a class="card">` por hermana, con atributos `data-i18n` para los
+   `<a class="card">` por app de la suite, con atributos `data-i18n` para los
    textos bilingües).
 2. Añade las claves correspondientes **en ambos** `js/strings.es.js` y
    `js/strings.en.js` (`es` es la fuente de verdad, `en` debe guardar
    paridad).
 3. Actualiza el bloque JSON-LD `ItemList` en `index.html` si añades una
-   hermana nueva (y añade la entrada a la tabla "Proyectos hermanos"
-   del `README.md` de cada hermana — ver convención de la suite
-   más abajo).
+   app nueva (y añade la entrada a la tabla "La suite Miralante"
+   del `README.md` de cada app de la suite — ver convención de la
+   suite más abajo).
 
-Para añadir una nueva hermana a la suite:
+Para añadir una nueva app a la suite:
 
-1. Crea un nuevo repo hermano siguiendo las mismas convenciones
+1. Crea un nuevo repo de la suite siguiendo las mismas convenciones
    (`index.html`, `app.js`, `strings.<locale>.js`, `sw.js` con un
    `VERSION` cache-first, `CLOUDFLARE.md`, `CLAUDE.md`, la directiva
-   del eufemismo "usuario/a tipo").
-2. Añade la hermana aquí en `index.html` y en la tabla "Proyectos
-   hermanos" del `README.md` de cada hermana.
-3. Añade la hermana al índice cross-project en
+   del eufemismo "persona tipo").
+2. Añade la app aquí en `index.html` y en la tabla "La suite
+   Miralante" del `README.md` de cada app de la suite.
+3. Añade la app al índice cross-project en
    [`graphify-out-meta/graph.json`](graphify-out-meta/graph.json)
    ejecutando `node scripts/sync-graphify-skill.js update --apply --target ../<proyecto>`.
 
@@ -123,7 +138,7 @@ node scripts/sync-graphify-skill.js update --apply # reconstruye grafos por-proy
 
 No hace falta `npm install` — los scripts solo usan la librería estándar
 de Node. Este repo no tiene `scripts/check.js` (la landing es una sola
-página estática sin paso de build); cada repo hermano tiene sus
+página estática sin paso de build); cada repo de la suite tiene sus
 propios checks. Como equivalente ligero, `scripts/check-forbidden-terms.js`
 corre en CI y escanea la landing pública (`index.html`, `js/*.js`,
 `about/privacidad.html`) buscando la blocklist común de la suite
@@ -149,23 +164,14 @@ de un workflow extra.
 
 ---
 
-## 🙌 Contribuir
-
-Las contribuciones son bienvenidas. Consulta
-[`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) para el flujo, los roles del
-proyecto y las recetas (nuevo idioma, correcciones de copy, mejoras
-de accesibilidad, añadir una hermana a la suite). Todas las personas
-participantes deben seguir
-[`CODE_OF_CONDUCT.es.md`](CODE_OF_CONDUCT.es.md).
-
----
-
 ## 🔐 Seguridad
 
 Apptonomia es un sitio estático completamente del lado del cliente: sin
-backend, sin base de datos, sin telemetría, sin servicios de terceros
-en tiempo de ejecución. Para reportar una vulnerabilidad consulta
-[`SECURITY.es.md`](SECURITY.es.md).
+backend, sin base de datos, sin telemetría, sin servicios de terceros en
+tiempo de ejecución. El modelo de amenaza es esencialmente "qué podría
+hacer una página maliciosa offline contra el mismo origen", algo que el
+navegador ya aísla. Ver [`SECURITY.es.md`](SECURITY.es.md) (o
+[`SECURITY.md`](SECURITY.md)) para reportar una sospecha de forma privada.
 
 ---
 
@@ -196,7 +202,7 @@ directamente.
 ## 🙏 Créditos
 
 La landing usa las convenciones de accesibilidad que informan cada app
-hermana de la suite: áreas de pulsación grandes, alto contraste,
+de la suite: áreas de pulsación grandes, alto contraste,
 lenguaje llano, sin patrones de presión, sin lenguaje clínico en
 superficies visibles a quien usa la app.
 
@@ -208,7 +214,7 @@ espejos en inglés viven en `js/strings.en.js`.
 
 ---
 
-## 🧩 Proyectos hermanos
+## 🌐 La suite Miralante — proyectos del grupo
 
 Este repositorio es el **portal de entrada** de la suite Apptonomia.
 Las aplicaciones reales viven en sus propios repositorios:
@@ -216,9 +222,13 @@ Las aplicaciones reales viven en sus propios repositorios:
 | Proyecto | Qué es | Repositorio |
 |---|---|---|
 | **Apptonomia** *(este repo — portal)* | Landing que presenta la suite | [github.com/miralante/apptonomia](https://github.com/miralante/apptonomia) |
-| [Routime](https://routime.apptonomia.uk/) | Actividades para rutinas y vida cotidiana (diseñado para nuestros/as usuarios/as tipo) | [github.com/miralante/routime](https://github.com/miralante/routime) |
+| [Routime](https://routime.apptonomia.uk/) | Actividades para rutinas y vida cotidiana (diseñado para nuestras personas tipo) | [github.com/miralante/routime](https://github.com/miralante/routime) |
 | [Calculia](https://calculia.apptonomia.uk/) | Cálculo y razonamiento lógico | [github.com/miralante/calculia](https://github.com/miralante/calculia) |
 | [Memofun](https://memofun.apptonomia.uk/) | Tarjetas de memoria con aprendizaje significativo | [github.com/miralante/memofun](https://github.com/miralante/memofun) |
 | [Okeymoney](https://okeymoney.apptonomia.uk/) | Finanzas personales y autonomía cotidiana | [github.com/miralante/okeymoney](https://github.com/miralante/okeymoney) |
 | [Sinonimia](https://sinonimia.apptonomia.uk/) | Diccionario en lectura fácil | [github.com/miralante/sinonimia](https://github.com/miralante/sinonimia) |
 | [Teclatlon](https://teclatlon.apptonomia.uk/) | Mecanografía con el teclado físico | [github.com/miralante/teclatlon](https://github.com/miralante/teclatlon) |
+
+El [`CLOUDFLARE.md`](CLOUDFLARE.md) de este repo es la guía canónica
+de despliegue de la suite; cada repo de la suite tiene su propio doc
+específico que apunta aquí.

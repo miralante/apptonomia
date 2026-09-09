@@ -95,6 +95,22 @@ function buildHead(cfg, opts) {
   lines.push('  <link rel="alternate" hreflang="en" href="https://' + domain + '/?lang=en">');
   lines.push('  <link rel="alternate" hreflang="x-default" href="https://' + domain + '/">');
   lines.push('');
+  lines.push('  <!-- ===== GEO (Dublin Core, geography-agnostic) =====');
+  lines.push('       See doc/{en,es}/guia-de-cumplimiento.md §7.1. Fields live in');
+  lines.push('       app.config.json > dc*. Edit the config and re-run; do not');
+  lines.push('       hand-edit -- the next build will overwrite them. -->');
+  if (cfg.dcCreator)    lines.push('  <meta name="DC.creator" content="' + escapeHtml(cfg.dcCreator) + '">');
+  if (cfg.dcSubject)    lines.push('  <meta name="DC.subject" content="' + escapeHtml(cfg.dcSubject) + '">');
+  if (cfg.dcType)       lines.push('  <meta name="DC.type" content="' + escapeHtml(cfg.dcType) + '">');
+  if (cfg.description)  lines.push('  <meta name="DC.description" content="' + escapeHtml(cfg.description) + '">');
+  if (cfg.dcRights)     lines.push('  <meta name="DC.rights" content="' + escapeHtml(cfg.dcRights) + '">');
+  lines.push('  <meta name="DC.language" content="es">');
+  lines.push('  <meta name="DC.language" content="en">');
+  lines.push('  <meta name="DC.title" content="' + escapeHtml(cfg.title) + '">');
+  lines.push('');
+  lines.push('  <!-- ===== LLMO: discover /llms.txt for LLM crawlers ===== -->');
+  lines.push('  <link rel="alternate" type="text/markdown" href="https://' + domain + '/llms.txt" title="' + escapeHtml(cfg.llmsTitle || cfg.name) + '">');
+  lines.push('');
   lines.push('  <!-- ===== Open Graph (Facebook, LinkedIn, Discord, WhatsApp previews) =====');
   if (isSuiteLanding) {
     lines.push('       Apptonomia is the suite gateway; its OG block is the broadest');
@@ -189,13 +205,69 @@ function replaceBlock(html, indent, configRel, cfg) {
   return html.slice(0, span.start) + block + html.slice(span.end);
 }
 
-/* --- One-shot migration: strip the existing SEO region in <head> and
-   insert a build:head block in its place. Used by `--init`. The SEO region
-   is everything from the first <meta charset> up to (but not including) the
-   first non-SEO tag — see insertBlock() above for the comment on why this
-   is fragile. We detect the boundaries by anchor markers that appear in
-   every sibling's <head> today: <meta charset> as the start, and either
-   <script type="application/ld+json"> or </head> as the end. */
+/* --- Inject a FAQPage node into the first JSON-LD <script> block.
+   Idempotent: if a FAQPage node already exists in the @graph it is replaced,
+   otherwise one is appended. If the JSON-LD has no @graph, the script builds
+   one with the existing top-level node as the first member and the FAQPage
+   appended. Used by AEO (see guia-de-cumplimiento.md §7.2).
+   The FAQ node is only emitted when `cfg.faq` is a non-empty array; this
+   keeps the script backwards-compatible with siblings that haven't adopted
+   the policy yet. */
+function buildFaqNode(faq) {
+  return {
+    '@type': 'FAQPage',
+    'mainEntity': faq.map(function (entry) {
+      return {
+        '@type': 'Question',
+        'name': String(entry.question || ''),
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': String(entry.answer || '')
+        }
+      };
+    })
+  };
+}
+
+function hasFaqNode(graphNode) {
+  if (!graphNode || !Array.isArray(graphNode['@graph'])) return false;
+  return graphNode['@graph'].some(function (n) { return n && n['@type'] === 'FAQPage'; });
+}
+
+function upsertFaqPage(graphNode, faq) {
+  if (!Array.isArray(graphNode['@graph'])) {
+    // No @graph: lift the existing top-level object aside and rebuild as @graph.
+    var existing = {};
+    Object.keys(graphNode).forEach(function (k) {
+      if (k !== '@context') existing[k] = graphNode[k];
+    });
+    graphNode['@graph'] = [existing, buildFaqNode(faq)];
+    return;
+  }
+  var idx = graphNode['@graph'].findIndex(function (n) { return n && n['@type'] === 'FAQPage'; });
+  var faqNode = buildFaqNode(faq);
+  if (idx === -1) graphNode['@graph'].push(faqNode);
+  else graphNode['@graph'][idx] = faqNode;
+}
+
+function injectFaqPageJsonLd(html, cfg) {
+  if (!cfg.faq || !Array.isArray(cfg.faq) || cfg.faq.length < 1) return html;
+  var scriptOpen = '<script type="application/ld+json">';
+  var openIdx = html.indexOf(scriptOpen);
+  if (openIdx === -1) return html;
+  var contentStart = openIdx + scriptOpen.length;
+  // Walk past a leading newline if present so the JSON parse is clean.
+  while (html.charAt(contentStart) === '\n' || html.charAt(contentStart) === ' ' || html.charAt(contentStart) === '\t') contentStart++;
+  var closeIdx = html.indexOf('</script>', contentStart);
+  if (closeIdx === -1) return html;
+  var jsonText = html.slice(contentStart, closeIdx).trim();
+  var data;
+  try { data = JSON.parse(jsonText); }
+  catch (e) { console.error('WARN: JSON-LD block could not be parsed (' + e.message + '); skipping FAQPage injection.'); return html; }
+  upsertFaqPage(data, cfg.faq);
+  var newJson = JSON.stringify(data, null, 2);
+  return html.slice(0, contentStart) + '\n  ' + newJson + '\n  ' + html.slice(closeIdx);
+}
 function migrateBlock(html, cfg) {
   var headOpen = html.indexOf('<head>');
   if (headOpen === -1) fail('cannot find <head> in target HTML');
@@ -238,8 +310,15 @@ function main() {
   // (the suite gateway) and single-activity siblings use index.html. We try
   // site/index.html first and fall back to index.html when --entry is not set.
   var entryRel = entryIdx !== -1 ? argv[entryIdx + 1] : null;
+  // Resolve siblingArg robustly: any positional that is not the entry's
+  // value nor a recognised flag. entryIdx can be -1 (no --entry), in which
+  // case we still skip the index right after entryIdx (i.e. 0) only when
+  // --entry is present — see the explicit `entryIdx !== -1` guard below,
+  // which fixes a pre-existing bug where the first positional was skipped
+  // even when there was no --entry flag at all.
+  var skipIdx1 = entryIdx !== -1 ? entryIdx + 1 : -1;
   var siblingArg = argv.find(function (a, i) {
-    return i !== entryIdx && i !== entryIdx + 1 && a !== '--check' && !a.startsWith('--');
+    return i !== entryIdx && i !== skipIdx1 && a !== '--check' && a !== '--init' && !a.startsWith('--');
   });
 
   var here = __dirname;
@@ -283,6 +362,11 @@ function main() {
     next = insertBlock(html, indent, configRel, cfg);
   }
   if (next === null) fail('failed to compute the next HTML content');
+
+  // AEO: inject / upsert a FAQPage node in the existing JSON-LD block.
+  // Idempotent; see injectFaqPageJsonLd() above and
+  // doc/{en,es}/guia-de-cumplimiento.md §7.2.
+  next = injectFaqPageJsonLd(next, cfg);
 
   if (checkOnly) {
     if (next === html) {

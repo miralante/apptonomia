@@ -44,12 +44,41 @@
     ? window.__APPTONOMIA_LOCALE__
     : DEFAULT_LOCALE;
 
+  /* ---------------------------------------------------------------
+    * Shared footer injector (apptonomia is a static landing; the
+    * core is intentionally minimal — no assets/js/utils.js — so
+    * inyectarPie lives next to App.i18n rather than in a separate
+    * utils module. Fills any <footer data-pie-app>...</footer>
+    * marker with the canonical one-link "back to portal" footer
+    * used by about/ and legal/. Idempotent: a footer that already
+    * has children is skipped.
+    * --------------------------------------------------------------- */
+  function inyectarPie() {
+    var pies = document.querySelectorAll('footer[data-pie-app]');
+    for (var i = 0; i < pies.length; i++) {
+      var pie = pies[i];
+      if (pie.childNodes && pie.childNodes.length > 0) continue;
+      var i18nKey = pie.getAttribute('data-pie-key') || 'about.footerPortal';
+      var extraClass = pie.getAttribute('data-pie-class');
+      if (extraClass) pie.className = (pie.className ? pie.className + ' ' : '') + extraClass;
+      pie.innerHTML = '<a class="btn btn-secundario" href="../index.html" data-i18n="' + i18nKey + '"></a>';
+      /* Re-apply the active locale's text to the freshly inserted node. */
+      var t = App.i18n.t;
+      var a = pie.querySelector('[data-i18n]');
+      if (a) {
+        var value = t(i18nKey);
+        if (value) a.textContent = value;
+      }
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     /* The head bootstrap already did a pre-paint pass that translated
        every [data-i18n] node and painted the lang switch. By the
        time DOMContentLoaded fires, the visible text is already in
        the active locale; this handler only needs to wire the
        click-to-switch behaviour. */
+    inyectarPie();
     var buttons = document.querySelectorAll('.btn-lang');
     function setLocale(locale) {
       activeLocale = locale;
@@ -62,6 +91,13 @@
         var key = nodes[i].getAttribute('data-i18n');
         var value = t(key);
         if (value) nodes[i].textContent = value;
+      }
+      /* Re-translate the freshly injected footer too. */
+      var injected = document.querySelectorAll('footer[data-pie-app] [data-i18n]');
+      for (var n = 0; n < injected.length; n++) {
+        var k = injected[n].getAttribute('data-i18n');
+        var v = t(k);
+        if (v) injected[n].textContent = v;
       }
       for (var j = 0; j < buttons.length; j++) {
         var isActive = buttons[j].getAttribute('data-locale') === locale;

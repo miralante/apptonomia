@@ -113,7 +113,7 @@ targets.forEach(function (file) {
       failures.push(
         rel + ': contains "' + term + '" \u2014 the public landing must not ' +
         'mention disability, occupational therapy or minors ' +
-        '(see CLAUDE.md "Public-facing wording: usuario/a tipo euphemism")'
+        '(see CLAUDE.md "Public-facing wording: persona tipo euphemism")'
       );
     }
   });

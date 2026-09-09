@@ -1,0 +1,40 @@
+# Cloudflare Pages / Workers static-assets _headers for {{DISPLAY_EN}}.
+#
+# This file is read by Cloudflare at the edge. It is **not** served
+# as a static asset; it is configuration. Cloudflare's per-file
+# limit is 100 header rule lines — keep this file under that.
+#
+# When you change a cached file's content (and want browsers to
+# pick up the new version), bump sw.js's VERSION (CLAUDE.md §B.1).
+# The headers below set long cache lifetimes on hashed/static
+# assets, so the SW version bump is the only mechanism that forces
+# a refresh of the assets themselves.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer-when-downgrade
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/manifest.json
+  Cache-Control: public, max-age=0, must-revalidate
+
+/strings.*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/404.html
+  Cache-Control: public, max-age=3600
+
+/*
+  X-Robots-Tag: index, follow
