@@ -371,6 +371,11 @@ usable touch targets, and avoid fixed heights or decorative gaps that create
 excessive scrolling. Verify the layout at 320px, 375px, 768px and desktop,
 checking both overflow and unused space.
 
+The HTML must also declare UTF-8. Any immutable CSS/JS asset changed by the
+new app requires a semantic cache version in the same change (`<slug>-vN`),
+and the final check must be made against the deployed URL in a fresh session,
+not only against a local preview.
+
 ## See also
 
 - [`guia-de-cumplimiento.md`](guia-de-cumplimiento.md) — the

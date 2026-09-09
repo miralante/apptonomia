@@ -388,6 +388,11 @@ alturas fijas o espacios decorativos que provoquen scroll excesivo. Hay que
 verificar el layout a 320px, 375px, 768px y escritorio, comprobando tanto el
 overflow como el espacio vacío innecesario.
 
+El HTML también debe declarar UTF-8. Si se cambia un recurso CSS/JS inmutable,
+hay que actualizar en el mismo cambio su versión semántica de caché
+(`<slug>-vN`), y la comprobación final debe hacerse contra la URL publicada,
+en una sesión nueva, no solo en una previsualización local.
+
 ## Ver también
 
 - [`guia-de-cumplimiento.md`](guia-de-cumplimiento.md) — el

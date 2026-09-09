@@ -91,9 +91,9 @@
 # version bump in wrangler.toml's `compatibility_date`).
 #
 # css/styles.css is also `immutable` for a year, BUT index.html carries
-# a `?v=<date>` cache-bust suffix on the <link rel="stylesheet"> tag so
+# a `?v=apptonomia-vN` cache-bust suffix on the <link rel="stylesheet"> tag so
 # a content change to the CSS forces every browser to re-fetch. Bump the
-# date suffix in `index.html` in the same commit that touches
+# version suffix in `index.html` in the same commit that touches
 # css/styles.css — same contract as the PWA siblings' sw.js VERSION
 # (see CLAUDE.md §"Metaproject agent rules" §5). Without this, Safari
 # iOS in particular keeps the old stylesheet across visits for the full

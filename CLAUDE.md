@@ -47,6 +47,13 @@ primary content appears without excessive scrolling. Validate at 320px,
 375px, 768px and desktop widths, checking both overflow and wasted empty
 space. Teclatlon may keep its explicit physical-keyboard mobile gate.
 
+When changing an immutable CSS or JS asset, update its cache identity in the
+same change. Apptonomia CSS uses a semantic suffix such as
+`?v=apptonomia-vN` (never a date); sibling PWAs use their `<slug>-vN`
+service-worker version. After deployment, verify the published asset URL and
+hard-reload or use a fresh private session before judging the visual result.
+Do not consider a local-only check sufficient.
+
 The document is split in two blocks:
 
 - **Block A Ã¢â‚¬â€ Workflow** (Ã‚Â§A.1 Ã¢â‚¬Â¦ Ã‚Â§A.4): rules that govern *how* an
