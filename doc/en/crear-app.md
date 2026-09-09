@@ -364,8 +364,8 @@ A first-deploy checklist:
 
 ## Responsive layout requirement
 
-Every new sibling must follow the suite responsive design contract: include
-the real mobile viewport, use fluid containers and flexible grids/stacks,
+Every new sibling must follow the suite responsive design contract: declare
+UTF-8 and the real mobile viewport, use fluid containers and flexible grids/stacks,
 prevent horizontal overflow, collapse columns at narrow widths, preserve
 usable touch targets, and avoid fixed heights or decorative gaps that create
 excessive scrolling. Verify the layout at 320px, 375px, 768px and desktop,

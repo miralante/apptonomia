@@ -37,7 +37,7 @@ or in the sibling project's own `CLAUDE.md`.
 ### Suite-wide responsive design contract
 
 Every suite page, including this landing and every new sibling, must use
-the real viewport (`<meta name="viewport" content="width=device-width, initial-scale=1">`),
+UTF-8 (`<meta charset="UTF-8">`) and the real viewport (`<meta name="viewport" content="width=device-width, initial-scale=1">`),
 fluid containers and `box-sizing: border-box`. Layouts must use flexible
 grids or stacks (`minmax(min(100%, ...), 1fr)`, flex wrapping) instead of
 fixed desktop columns. At narrow widths, controls and cards must fit the

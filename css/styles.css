@@ -203,7 +203,7 @@
 
     /* ===== Suite grid ===== */
     main {
-      flex: 1;
+      flex: 0 1 auto;
       display: flex;
       flex-direction: column;
       padding: 24px 0;
@@ -213,8 +213,8 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
       gap: 24px;
-      flex: 1;
-      align-content: center;
+      flex: 0 1 auto;
+      align-content: start;
     }
 
     .suite-card {

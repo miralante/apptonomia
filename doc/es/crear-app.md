@@ -380,8 +380,8 @@ Una checklist de primer despliegue:
 
 ## Requisito de responsive y layout
 
-Cada nuevo hermano debe seguir el contrato responsive de la suite: incluir
-el viewport móvil real, usar contenedores fluidos y rejillas/columnas
+Cada nuevo hermano debe seguir el contrato responsive de la suite: declarar
+UTF-8 y el viewport móvil real, usar contenedores fluidos y rejillas/columnas
 flexibles, evitar el desbordamiento horizontal, apilar las columnas en
 pantallas estrechas, mantener objetivos táctiles utilizables y evitar
 alturas fijas o espacios decorativos que provoquen scroll excesivo. Hay que
