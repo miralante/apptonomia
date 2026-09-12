@@ -2,16 +2,16 @@
   "name": "Apptonomia",
   "domain": "apptonomia.uk",
   "title": "Apptonomia — Suite de apps para aprender a tu ritmo",
-  "description": "Apptonomia es una suite de seis aplicaciones web gratuitas y sin registro para aprender a tu ritmo: Calculia (matemáticas), Routime (actividades), Okeymoney (dinero cotidiano), Sinonimia (diccionario en lectura fácil), Memofun (tarjetas de estudio) y Teclatlon (mecanografía). Accede a todas desde un solo portal.",
-  "keywords": "apptonomia, calculia, routime, okeymoney, sinonimia, memofun, teclatlon, suite educativa, aprender a tu ritmo, easy read, lectura fácil, accesibilidad cognitiva, aplicaciones gratuitas sin registro, matemáticas, mecanografía, diccionario, flashcards, dinero cotidiano",
+  "description": "Apptonomia es una suite de siete aplicaciones web gratuitas y sin registro para aprender a tu ritmo: Calculia (matemáticas), Routime (actividades), Okeymoney (dinero cotidiano), Sinonimia (diccionario en lectura fácil), Memofun (tarjetas de estudio), Teclatlon (mecanografía) y Enroca (ajedrez). Accede a todas desde un solo portal.",
+  "keywords": "apptonomia, calculia, routime, okeymoney, sinonimia, memofun, teclatlon, suite educativa, aprender a tu ritmo, easy read, lectura fácil, accesibilidad cognitiva, aplicaciones gratuitas sin registro, matemáticas, mecanografía, diccionario, flashcards, dinero cotidiano, enroca, ajedrez",
   "author": "Apptonomia",
   "ogSiteName": "Apptonomia",
-  "ogDescription": "Seis aplicaciones web gratuitas y sin registro: Calculia, Routime, Okeymoney, Sinonimia, Memofun y Teclatlon. Acceso directo desde un solo portal.",
-  "twitterDescription": "Calculia, Routime, Okeymoney, Sinonimia, Memofun y Teclatlon en un solo portal. Gratis y sin registro.",
-  "ogImageAlt": "Apptonomia: seis aplicaciones para aprender a tu ritmo",
+  "ogDescription": "Siete aplicaciones web gratuitas y sin registro: Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Enroca. Acceso directo desde un solo portal.",
+  "twitterDescription": "Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Enroca en un solo portal. Gratis y sin registro.",
+  "ogImageAlt": "Apptonomia: siete aplicaciones para aprender a tu ritmo",
   "ogAccent": "#1B6CA8",
   "ogAccentInk": "#FFFFFF",
-  "ogTagline": "Seis apps para aprender a tu ritmo",
+  "ogTagline": "Siete apps para aprender a tu ritmo",
   "themeColor": "#FAF7F2",
   "colorScheme": "light",
   "ogImageAsset": "og-image.svg",
@@ -19,21 +19,21 @@
   "manifest": null,
   "hasItemList": true,
   "dcCreator": "Apptonomia",
-  "dcSubject": "Suite de seis aplicaciones web gratuitas para aprender a tu ritmo: matemáticas, razonamiento lógico, actividades cotidianas, dinero del día a día, diccionario en lectura fácil, tarjetas de estudio y mecanografía con el teclado del ordenador.",
-  "dcRights": "MIT (código) — ver LICENSE. Sin contenido editorial propio: el portal agrega las páginas de los seis hermanos, cada una con su propia licencia de contenido.",
+  "dcSubject": "Suite de siete aplicaciones web gratuitas para aprender a tu ritmo: matemáticas, razonamiento lógico, actividades cotidianas, dinero del día a día, diccionario en lectura fácil, tarjetas de estudio, mecanografía con el teclado del ordenador y ajedrez.",
+  "dcRights": "MIT (código) — ver LICENSE. Sin contenido editorial propio: el portal agrega las páginas de los siete hermanos, cada una con su propia licencia de contenido.",
   "dcType": "Collection",
   "faq": [
     {
       "question": "¿Qué es Apptonomia?",
-      "answer": "Apptonomia es un portal que reúne seis aplicaciones web gratuitas y sin registro: Calculia (matemáticas y razonamiento), Routime (actividades cotidianas), Okeymoney (dinero del día a día), Sinonimia (diccionario en lectura fácil), Memofun (tarjetas de estudio) y Teclatlon (mecanografía con el teclado del ordenador)."
+      "answer": "Apptonomia es un portal que reúne siete aplicaciones web gratuitas y sin registro: Calculia (matemáticas y razonamiento), Routime (actividades cotidianas), Okeymoney (dinero del día a día), Sinonimia (diccionario en lectura fácil), Memofun (tarjetas de estudio), Teclatlon (mecanografía con el teclado del ordenador) y Enroca (ajedrez)."
     },
     {
       "question": "¿Cuánto cuesta usar Apptonomia?",
-      "answer": "Nada. Apptonomia y sus seis aplicaciones son gratis y no necesitan registro, ni cuenta, ni correo electrónico. Funcionan desde el navegador."
+      "answer": "Nada. Apptonomia y sus siete aplicaciones son gratis y no necesitan registro, ni cuenta, ni correo electrónico. Funcionan desde el navegador."
     },
     {
       "question": "¿Necesito instalar algo?",
-      "answer": "No. Se usan desde el navegador, en móvil, tablet u ordenador. Las seis aplicaciones pueden instalarse como aplicación web progresiva (PWA) para usarlas sin conexión, pero no es obligatorio."
+      "answer": "No. Se usan desde el navegador, en móvil, tablet u ordenador. Las siete aplicaciones pueden instalarse como aplicación web progresiva (PWA) para usarlas sin conexión, pero no es obligatorio."
     },
     {
       "question": "¿Apptonomia envía mis datos a algún servidor?",
@@ -41,14 +41,14 @@
     },
     {
       "question": "¿Puedo usar Apptonomia sin conexión a internet?",
-      "answer": "Sí. Después de la primera visita, las seis aplicaciones siguen funcionando sin conexión. Cada una tiene su propio service worker que guarda los archivos en caché."
+      "answer": "Sí. Después de la primera visita, las siete aplicaciones siguen funcionando sin conexión. Cada una tiene su propio service worker que guarda los archivos en caché."
     }
   ],
-  "llmsTitle": "Apptonomia — Suite de seis aplicaciones web gratuitas",
-  "llmsSummary": "Portal de seis aplicaciones web gratuitas y sin registro para aprender a tu ritmo: Calculia, Routime, Okeymoney, Sinonimia, Memofun y Teclatlon.",
+  "llmsTitle": "Apptonomia — Suite de siete aplicaciones web gratuitas",
+  "llmsSummary": "Portal de siete aplicaciones web gratuitas y sin registro para aprender a tu ritmo: Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Enroca.",
   "llmsWhatItIs": [
-    "Un portal estático que reúne seis aplicaciones web independientes, todas gratuitas y sin registro.",
-    "Cada aplicación cubre un dominio distinto: cálculo, actividades cotidianas, dinero, vocabulario, estudio y mecanografía.",
+    "Un portal estático que reúne siete aplicaciones web independientes, todas gratuitas y sin registro.",
+    "Cada aplicación cubre un dominio distinto: cálculo, actividades cotidianas, dinero, vocabulario, estudio, mecanografía y ajedrez.",
     "Diseñado para ser usado desde el navegador, sin instalar nada, y compatible con la instalación como PWA para uso sin conexión.",
     "Sin cuentas, sin telemetría y sin copia de seguridad remota: todo queda en el navegador de quien lo usa."
   ],
@@ -59,12 +59,41 @@
     "No envía contenido a un backend: no hay servidor de aplicación, solo archivos estáticos servidos por Cloudflare."
   ],
   "llmsResources": [
-    { "name": "Calculia", "url": "https://calculia.apptonomia.uk/", "description": "Actividades cortas y visuales de cálculo y razonamiento lógico." },
-    { "name": "Routime", "url": "https://routime.apptonomia.uk/", "description": "Actividades para entrenar mente y habilidades de la vida diaria." },
-    { "name": "Okeymoney", "url": "https://okeymoney.apptonomia.uk/", "description": "Saldo, gastos, metas de ahorro y decisiones antes de comprar." },
-    { "name": "Sinonimia", "url": "https://sinonimia.apptonomia.uk/", "description": "Diccionario en lectura fácil con sinónimos y pictogramas." },
-    { "name": "Memofun", "url": "https://memofun.apptonomia.uk/", "description": "Tarjetas de memoria (flashcards) por curso y asignatura." },
-    { "name": "Teclatlon", "url": "https://teclatlon.apptonomia.uk/", "description": "Mecanografía con el teclado físico del ordenador." }
+    {
+      "name": "Calculia",
+      "url": "https://calculia.apptonomia.uk/",
+      "description": "Actividades cortas y visuales de cálculo y razonamiento lógico."
+    },
+    {
+      "name": "Routime",
+      "url": "https://routime.apptonomia.uk/",
+      "description": "Actividades para entrenar mente y habilidades de la vida diaria."
+    },
+    {
+      "name": "Okeymoney",
+      "url": "https://okeymoney.apptonomia.uk/",
+      "description": "Saldo, gastos, metas de ahorro y decisiones antes de comprar."
+    },
+    {
+      "name": "Sinonimia",
+      "url": "https://sinonimia.apptonomia.uk/",
+      "description": "Diccionario en lectura fácil con sinónimos y pictogramas."
+    },
+    {
+      "name": "Memofun",
+      "url": "https://memofun.apptonomia.uk/",
+      "description": "Tarjetas de memoria (flashcards) por curso y asignatura."
+    },
+    {
+      "name": "Teclatlon",
+      "url": "https://teclatlon.apptonomia.uk/",
+      "description": "Mecanografía con el teclado físico del ordenador."
+    },
+    {
+      "name": "Enroca",
+      "url": "https://enroca.apptonomia.uk/",
+      "description": "Ajedrez, paso a paso: lecciones, ejercicios y partidas con ayuda."
+    }
   ],
   "llmsLicense": "MIT (código). El contenido editorial de cada aplicación (entradas de diccionario, barajas de Memofun, etc.) tiene su propia licencia, indicada en la página de cada proyecto."
 }

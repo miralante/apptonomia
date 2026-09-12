@@ -107,6 +107,7 @@ Every project listed below has its own `CLAUDE.md`, its own `sw.js`
 | `okeymoney/` | Personal-finance & everyday-autonomy trainer | single shared-state app | es/en | [doc/en/SPEC.md](../okeymoney/doc/en/SPEC.md) |
 | `sinonimia/` | Plain-language dictionary | single-page app | es/en | [doc/en/SPEC.md](../sinonimia/doc/en/SPEC.md) |
 | `teclatlon/` | Touch-typing trainer (physical keyboard only) | single-activity app | es/en | [doc/en/SPEC.md](../teclatlon/doc/en/SPEC.md) |
+| `enroca/` | Chess lessons, comprehension exercises and supported play | single-purpose learning app | es/en | [doc/en/spec.md](../enroca/doc/en/spec.md) |
 | `routime/` | Life-skills & routines activity suite | multi-activity catalogue | es/en | [doc/en/SPEC.md](../routime/doc/en/SPEC.md) |
 
 > When the user says "the project", "este proyecto", "el repo"

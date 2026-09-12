@@ -9,7 +9,7 @@ if (window.App.i18n) {
       skipToContent: 'Ir al contenido'
     },
     meta: {
-      description: 'Portal a la suite Apptonomia: Calculia, Memofun, Okeymoney, Sinonimia, Teclatlon y Routime.'
+      description: 'Portal a la suite Apptonomia: Calculia, Memofun, Okeymoney, Sinonimia, Teclatlon, Routime y Enroca.'
     },
     home: {
       title: 'Apptonomia',
@@ -21,7 +21,8 @@ if (window.App.i18n) {
       life: 'Vida diaria',
       words: 'Palabras',
       keyboard: 'Teclado',
-      activities: 'Actividades'
+      activities: 'Actividades',
+      chess: 'Ajedrez'
     },
     projects: {
       calculia: 'Cálculo y razonamiento lógico con actividades cortas y visuales.',
@@ -29,7 +30,8 @@ if (window.App.i18n) {
       okeymoney: 'Dinero y autonomía cotidiana, paso a paso.',
       sinonimia: 'Diccionario en lectura fácil con sinónimos y pictogramas.',
       teclatlon: 'Mecanografía con el teclado físico del ordenador.',
-      routime: 'Actividades cotidianas para entrenar mente y habilidades.'
+      routime: 'Actividades cotidianas para entrenar mente y habilidades.',
+      enroca: 'Ajedrez, paso a paso: aprende, practica y juega con ayuda.'
     },
     footer: {
       note: 'Apptonomia — acceso a la suite'
@@ -51,7 +53,7 @@ if (window.App.i18n) {
       responsibleP2b: '. Cualquier pregunta sobre esta página puede plantearse abriendo un issue allí.',
       dataTitle: 'Qué guardamos y por qué',
       dataP1: 'Cada aplicación de Apptonomia funciona sin cuentas, sin cookies y sin analítica: no sabemos quién eres ni cómo usas la suite.',
-      dataP2: 'Lo único que se guarda vive en el localStorage de tu navegador, en tu propio dispositivo, y nunca se envía a ningún servidor. En general, las seis aplicaciones guardan:',
+      dataP2: 'Lo único que se guarda vive en el localStorage de tu navegador, en tu propio dispositivo, y nunca se envía a ningún servidor. En general, las siete aplicaciones guardan:',
       dataItem1Label: 'Progreso del juego',
       dataItem1Text: 'las estrellas ganadas, los niveles completados y, en su caso, barajas o metas conseguidas.',
       dataItem2Label: 'Idioma elegido',
@@ -79,7 +81,7 @@ if (window.App.i18n) {
       routeNotice: 'Esta página no se enlaza desde el portal. Solo se llega escribiendo la dirección.',
       tagline: 'Una suite de aplicaciones para aprender a tu ritmo.',
       lead1: 'Apptonomia es la ',
-      leadStrong: 'suite de seis aplicaciones web',
+      leadStrong: 'suite de siete aplicaciones web',
       lead2: ' pensada para que las personas con discapacidad intelectual aprendan por sí mismas, sin presión y con respeto a su privacidad.',
       navOrigin: 'El origen',
       navPrinciples: 'Los principios',
@@ -91,7 +93,7 @@ if (window.App.i18n) {
       originP1a: 'Apptonomia nace de una pregunta que se repite al final de cada sesión de terapia ocupacional: ',
       originP1em: '¿qué pasa entre una sesión y la siguiente?',
       originP2: 'La persona con discapacidad intelectual practica con su terapeuta en consulta, pero después está sola en casa, en el colegio o en su tiempo libre. Queríamos un conjunto de herramientas que respetase esa autonomía, que diese seguridad a las familias y que sirviese a la terapeuta como complemento entre sesiones, no como sustituto.',
-      originP3: 'Esta suite es el resultado: seis aplicaciones autónomas (Calculia, Memofun, Okeymoney, Routime, Sinonimia y Teclatlon), todas en Lectura Fácil, todas accesibles, todas pensadas para que la persona usuaria pueda usarlas a su propio ritmo.',
+      originP3: 'Esta suite es el resultado: siete aplicaciones autónomas (Calculia, Memofun, Okeymoney, Routime, Sinonimia y Teclatlon), todas en Lectura Fácil, todas accesibles, todas pensadas para que la persona usuaria pueda usarlas a su propio ritmo.',
       principlesTitle: 'Los principios que no negociamos',
       principlesIntro: 'Estas ideas están escritas primero en el código y después en los textos. Si una decisión las rompe, esa decisión está mal.',
       principleAutonomyTitle: '🤲 Autonomía real',
@@ -125,8 +127,8 @@ if (window.App.i18n) {
       techItem6Text: 'cada texto vive en un archivo por idioma. Hoy la suite está disponible en español de España e inglés.',
       techItem7Label: 'Dependencias externas: ninguna',
       techItem7Text: ', excepto la descarga de las fuentes tipográficas Atkinson Hyperlegible y Nunito (usadas por su alta legibilidad).',
-      siblingsTitle: 'Las seis apps de la suite',
-      siblingsIntro: 'Apptonomia es el portal de entrada a seis aplicaciones independientes, cada una con su propio dominio y su propio ritmo de desarrollo. Todas comparten la misma filosofía de accesibilidad y respeto a la privacidad.',
+      siblingsTitle: 'Las siete apps de la suite',
+      siblingsIntro: 'Apptonomia es el portal de entrada a siete aplicaciones independientes, cada una con su propio dominio y su propio ritmo de desarrollo. Todas comparten la misma filosofía de accesibilidad y respeto a la privacidad.',
       siblingCalculiaName: 'Calculia',
       siblingCalculiaText: 'Cálculo y razonamiento lógico.',
       siblingMemofunName: 'Memofun',
@@ -139,9 +141,11 @@ if (window.App.i18n) {
       siblingSinonimiaText: 'Diccionario en lectura fácil.',
       siblingTeclatlonName: 'Teclatlon',
       siblingTeclatlonText: 'Mecanografía con el teclado físico.',
+      siblingEnrocaName: 'Enroca',
+      siblingEnrocaText: 'Ajedrez: lecciones, ejercicios y juego con ayuda.',
       siblingLinkHint: 'Se abre en una pestaña nueva.',
       authorshipTitle: 'Quiénes la hacen',
-      authorshipP1a: 'Apptonomia y las seis aplicaciones de la suite son una iniciativa de ',
+      authorshipP1a: 'Apptonomia y las siete aplicaciones de la suite son una iniciativa de ',
       authorshipP1b: ', un estudio independiente que trabaja en proyectos abiertos con impacto social y educativo.',
       authorshipP2: 'Las aplicaciones se construyen con la participación de personas con discapacidad intelectual, familias, terapeutas ocupacionales y profesorado, que prueban cada cambio y revisan el contenido antes de que llegue a producción.',
       authorshipP3: 'El código, el texto y las decisiones se publican en abierto para que cualquier persona o equipo pueda auditarlos, aprender de ellos y adaptarlos a otros contextos.',

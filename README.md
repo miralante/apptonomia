@@ -12,7 +12,7 @@
 [![CI](https://img.shields.io/badge/CI-node%20scripts%2Fsync--graphify--skill.js-blue.svg)](.github/workflows/validate.yml)
 
 **Portal page for the Apptonomia suite** — a free, static, dependency-free
-landing that links out to the six apps of the suite, all designed to
+landing that links out to the seven apps of the suite, all designed to
 help our typical user profile learn at their own pace, in the browser,
 free of charge, without accounts and without personal data.
 
@@ -34,7 +34,7 @@ open it in a browser to see the full suite.
 ## ✨ Features
 
 This repository hosts the **landing portal** of the Apptonomia suite:
-a single static page that introduces the six apps of the suite and links to
+a single static page that introduces the seven apps of the suite and links to
 each one. It is intentionally tiny — a single `index.html`, an i18n
 bootstrap (`bootstrap.js` + `script.js`), the two `strings.<locale>.js`
 bundles, and a `_headers` file for HTTP security headers.
@@ -46,7 +46,7 @@ bundles, and a `_headers` file for HTTP security headers.
 - 🔒 **Privacy by default** — no backend, no database, no telemetry,
   no third-party runtime.
 - 📦 **SEO-ready** — full Open Graph, Twitter Card, JSON-LD
-  `ItemList` of the six products for search and AI retrieval.
+  `ItemList` of the seven products for search and AI retrieval.
 - ☁️ **Cloudflare Workers** — deployed via the static-assets binding.
 
 ---
@@ -223,6 +223,7 @@ The actual apps live in their own repositories:
 | [Okeymoney](https://okeymoney.apptonomia.uk/) | Personal finance and everyday autonomy | [github.com/miralante/okeymoney](https://github.com/miralante/okeymoney) |
 | [Sinonimia](https://sinonimia.apptonomia.uk/) | Easy-read dictionary | [github.com/miralante/sinonimia](https://github.com/miralante/sinonimia) |
 | [Teclatlon](https://teclatlon.apptonomia.uk/) | Touch-typing with a physical keyboard | [github.com/miralante/teclatlon](https://github.com/miralante/teclatlon) |
+| [Enroca](https://enroca.apptonomia.uk/) | Chess lessons, exercises and supported play | [github.com/miralante/enroca](https://github.com/miralante/enroca) |
 
 This repo's [`CLOUDFsuite; each suiteE.md) is the canonical deploy
 guide for the whole suite; each suite repo has its own

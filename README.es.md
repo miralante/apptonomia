@@ -12,7 +12,7 @@
 [![CI](https://img.shields.io/badge/CI-node%20scripts%2Fsync--graphify--skill.js-blue.svg)](.github/workflows/validate.yml)
 
 **Portal de la suite Apptonomia** — una landing estática, gratuita y sin
-dependencias que enlaza con seis pequeñas aplicaciones web de la
+dependencias que enlaza con siete pequeñas aplicaciones web de la
 suite, todas pensadas para que nuestras personas tipo aprendan a su
 propio ritmo, en el navegador, sin coste, sin cuentas y sin datos
 personales.
@@ -35,7 +35,7 @@ La landing está desplegada en **[apptonomia.uk](https://apptonomia.uk/)** —
 ## ✨ Características
 
 Este repositorio aloja el **portal de entrada** de la suite Apptonomia:
-una única página estática que presenta las seis aplicaciones de la
+una única página estática que presenta las siete aplicaciones de la
 suite y enlaza con cada una. Es deliberadamente pequeño — un único
 `index.html`, un bootstrap de i18n (`bootstrap.js` + `script.js`), los dos
 bundles `strings.<locale>.js`, y un `_headers` para las cabeceras HTTP
@@ -49,7 +49,7 @@ de seguridad.
 - 🔒 **Privacidad por defecto** — sin backend, sin base de datos, sin
   telemetría, sin servicios de terceros.
 - 📦 **SEO listo** — Open Graph, Twitter Card, JSON-LD `ItemList` con
-  las seis apps para búsqueda y recuperación por IA.
+  las siete apps para búsqueda y recuperación por IA.
 - ☁️ **Cloudflare Workers** — desplegado con el binding static-assets.
 
 ---
@@ -228,6 +228,7 @@ Las aplicaciones reales viven en sus propios repositorios:
 | [Okeymoney](https://okeymoney.apptonomia.uk/) | Finanzas personales y autonomía cotidiana | [github.com/miralante/okeymoney](https://github.com/miralante/okeymoney) |
 | [Sinonimia](https://sinonimia.apptonomia.uk/) | Diccionario en lectura fácil | [github.com/miralante/sinonimia](https://github.com/miralante/sinonimia) |
 | [Teclatlon](https://teclatlon.apptonomia.uk/) | Mecanografía con el teclado físico | [github.com/miralante/teclatlon](https://github.com/miralante/teclatlon) |
+| [Enroca](https://enroca.apptonomia.uk/) | Ajedrez: lecciones, ejercicios y juego con ayuda | [github.com/miralante/enroca](https://github.com/miralante/enroca) |
 
 El [`CLOUDFLARE.md`](CLOUDFLARE.md) de este repo es la guía canónica
 de despliegue de la suite; cada repo de la suite tiene su propio doc

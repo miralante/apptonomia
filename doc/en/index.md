@@ -3,7 +3,7 @@
 > Navigation map for the metaproject's own docs. For the **suite as a
 > whole**, the cross-project plumbing and the AI agent workflow, see
 > [`../../CLAUDE.md`](../../CLAUDE.md); for the canonical Cloudflare
-> Workers deploy guide that covers all six apps of the suite, see
+> Workers deploy guide that covers all seven apps of the suite, see
 > [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md).
 >
 > **Landing**: [apptonomia.uk](https://apptonomia.uk) · **Other language**: [Español](../es/indice.md)
@@ -16,7 +16,7 @@ This repository's `doc/` tree covers the **landing page itself** plus
 the **suite-wide docs** that govern every app of the Miralante suite
 and the recipe for adding new ones. The cross-project plumbing, the
 meta-graph and the operational handbook live in `../../CLAUDE.md`. Each
-of the six apps of the suite has its own repo and its own `doc/` tree.
+of the seven apps of the suite has its own repo and its own `doc/` tree.
 
 ```
 doc/
@@ -94,11 +94,11 @@ How to contribute and other repository-root documents (`CLAUDE.md`,
 | Understand the architecture, scripts and deploy of the metaproject | [`technical.md`](technical.md) |
 | Add a third locale to the landing | [`i18n.md`](i18n.md) |
 | Browse the table of contents | [`contents.md`](contents.md) |
-| See what the metaproject ships (six cards + plumbing + templates) | [`activities.md`](activities.md) |
+| See what the metaproject ships (seven cards + plumbing + templates) | [`activities.md`](activities.md) |
 | Step-by-step how to use Apptonomia | [`guia-rapida.md`](guia-rapida.md) |
 | **Suite compliance checklist** (UNE 153101, WCAG AAA, public-facing wording, no telemetry, settings/data-reset, landing typography, cache contract) | [`guia-de-cumplimiento.md`](guia-de-cumplimiento.md) |
 | **Add a new sibling to the suite** (recipe + file templates) | [`crear-app.md`](crear-app.md) + [`templates/`](templates/) |
-| Deploy the landing or any of the six apps of the suite | [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md) |
+| Deploy the landing or any of the seven apps of the suite | [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md) |
 | Contribute to this repo | [`../../CONTRIBUTING.md`](../../CONTRIBUTING.md) |
 | Browse the metaproject landing | [apptonomia.uk](https://apptonomia.uk) |
 
@@ -110,3 +110,7 @@ How to contribute and other repository-root documents (`CLAUDE.md`,
   table (this repo's canonical sources for each topic).
 - The metaproject's `graphify-out-meta/` — visual cross-project
   index (one node per sibling + similarity / hierarchy edges).
+
+## Enroca
+
+[Chess lessons, exercises and play](../../../enroca/README.md). [Project guidance](../../../enroca/CLAUDE.md).
