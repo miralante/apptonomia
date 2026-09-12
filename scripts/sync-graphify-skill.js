@@ -273,6 +273,7 @@ const DEFAULT_PROJECTS = [
   'sinonimia',
   'teclatlon',
   'routime',
+  'enroca',
 ];
 
 function discoverSuiteDir() {

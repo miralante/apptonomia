@@ -9,7 +9,7 @@ if (window.App.i18n) {
       skipToContent: 'Skip to content'
     },
     meta: {
-      description: 'Gateway to the Apptonomia suite: Calculia, Memofun, Okeymoney, Sinonimia, Teclatlon and Routime.'
+      description: 'Gateway to the Apptonomia suite: Calculia, Memofun, Okeymoney, Sinonimia, Teclatlon, Routime and Enroca.'
     },
     home: {
       title: 'Apptonomia',
@@ -21,7 +21,8 @@ if (window.App.i18n) {
       life: 'Daily life',
       words: 'Words',
       keyboard: 'Keyboard',
-      activities: 'Activities'
+      activities: 'Activities',
+      chess: 'Chess'
     },
     projects: {
       calculia: 'Calculation and logical reasoning through short, visual activities.',
@@ -29,7 +30,8 @@ if (window.App.i18n) {
       okeymoney: 'Money and everyday autonomy, step by step.',
       sinonimia: 'Easy-read dictionary with synonyms and pictograms.',
       teclatlon: 'Touch typing with a physical computer keyboard.',
-      routime: 'Everyday activities to train mind and skills.'
+      routime: 'Everyday activities to train mind and skills.',
+      enroca: 'Chess, step by step: learn, practice and play with help.'
     },
     footer: {
       note: 'Apptonomia — gateway to the suite'
@@ -51,7 +53,7 @@ if (window.App.i18n) {
       responsibleP2b: '. Any question about this page can be raised by opening an issue there.',
       dataTitle: 'What we save and why',
       dataP1: 'Every Apptonomia application works without accounts, cookies or analytics: we don’t know who you are or how you use the suite.',
-      dataP2: 'The only thing that gets saved lives in your browser’s localStorage, on your own device, and is never sent to any server. In general, the six applications save:',
+      dataP2: 'The only thing that gets saved lives in your browser’s localStorage, on your own device, and is never sent to any server. In general, the seven applications save:',
       dataItem1Label: 'Game progress',
       dataItem1Text: 'the stars earned, the levels completed, and — where applicable — decks or goals achieved.',
       dataItem2Label: 'Chosen language',
@@ -125,7 +127,7 @@ if (window.App.i18n) {
       techItem6Text: 'every piece of text lives in a file per language. Today the suite is available in Spanish (Spain) and English.',
       techItem7Label: 'External dependencies: none',
       techItem7Text: ', except for downloading the Atkinson Hyperlegible and Nunito typefaces (chosen for their high legibility).',
-      siblingsTitle: 'The six apps of the suite',
+      siblingsTitle: 'The seven apps of the suite',
       siblingsIntro: 'Apptonomia is the gateway to six independent applications, each with its own domain and its own development pace. They all share the same accessibility-first philosophy and the same respect for privacy.',
       siblingCalculiaName: 'Calculia',
       siblingCalculiaText: 'Math and logical reasoning.',
@@ -139,9 +141,11 @@ if (window.App.i18n) {
       siblingSinonimiaText: 'Plain-language dictionary.',
       siblingTeclatlonName: 'Teclatlon',
       siblingTeclatlonText: 'Touch-typing with a physical keyboard.',
+      siblingEnrocaName: 'Enroca',
+      siblingEnrocaText: 'Chess lessons, exercises and supported play.',
       siblingLinkHint: 'Opens in a new tab.',
       authorshipTitle: 'Who makes it',
-      authorshipP1a: 'Apptonomia and the six applications of the suite are an initiative by ',
+      authorshipP1a: 'Apptonomia and the seven applications of the suite are an initiative by ',
       authorshipP1b: ', an independent studio working on open projects with social and educational impact.',
       authorshipP2: 'The applications are built with the involvement of people with intellectual disabilities, families, occupational therapists and teachers, who test every change and review the content before it reaches production.',
       authorshipP3: 'The code, the text and the decisions are published openly so anyone or any team can audit them, learn from them, and adapt them to other contexts.',

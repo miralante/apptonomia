@@ -144,13 +144,15 @@ function buildHead(cfg, opts) {
   lines.push('  <meta name="color-scheme" content="' + escapeHtml(cfg.colorScheme || 'light') + '">');
   lines.push('');
   lines.push(MARKER_END);
-  return lines.map(function (l) { return indent + l; }).join('\n');
+  return lines.map(function (l) { return l ? indent + l : ''; }).join('\n') + '\n';
 }
 
 function findExistingBlock(html) {
   var startIdx = html.indexOf(MARKER_START);
   var endIdx = html.indexOf(MARKER_END);
   if (startIdx === -1 || endIdx === -1 || endIdx < startIdx) return null;
+  var lineStart = html.lastIndexOf('\n', startIdx) + 1;
+  if (/^[ \t]*$/.test(html.slice(lineStart, startIdx))) startIdx = lineStart;
   // Include trailing newline if present so we leave the surrounding spacing clean.
   var after = endIdx + MARKER_END.length;
   if (html.charAt(after) === '\n') after += 1;
@@ -266,7 +268,7 @@ function injectFaqPageJsonLd(html, cfg) {
   catch (e) { console.error('WARN: JSON-LD block could not be parsed (' + e.message + '); skipping FAQPage injection.'); return html; }
   upsertFaqPage(data, cfg.faq);
   var newJson = JSON.stringify(data, null, 2);
-  return html.slice(0, contentStart) + '\n  ' + newJson + '\n  ' + html.slice(closeIdx);
+  return html.slice(0, openIdx + scriptOpen.length) + '\n  ' + newJson + '\n  ' + html.slice(closeIdx);
 }
 function migrateBlock(html, cfg) {
   var headOpen = html.indexOf('<head>');
@@ -348,7 +350,7 @@ function main() {
   var anchorIdx = html.indexOf('<title>');
   if (anchorIdx === -1) anchorIdx = html.indexOf('<meta name="description"');
   if (anchorIdx === -1) fail('cannot find a title or description anchor to detect indent');
-  var indent = detectIndent(html, anchorIdx);
+  var indent = '  ';
 
   var configRel = path.relative(path.dirname(targetPath), configPath).replace(/\\/g, '/');
 

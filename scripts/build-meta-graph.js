@@ -23,7 +23,7 @@ const os = require('os');
 
 const SUITE_DIR = path.resolve(__dirname, '..', '..');
 const OUT_DIR = path.join(__dirname, '..', 'graphify-out-meta');
-const PROJECTS = ['apptonomia', 'calculia', 'memofun', 'okeymoney', 'sinonimia', 'teclatlon', 'routime'];
+const PROJECTS = ['apptonomia', 'calculia', 'memofun', 'okeymoney', 'sinonimia', 'teclatlon', 'routime', 'enroca'];
 
 // Tokens we strip when normalising community names: case, accents, punctuation.
 // A name like "i18n Module" becomes "i18n module"; "M\u00f3dulo i18n.js" also.
