@@ -42,7 +42,7 @@ window.I18N.en = {
   // --- Slide 3 · Solution ---
   'deck.solutionEyebrow': 'The solution',
   'deck.solutionTitle': 'A suite of self-contained, accessible and respectful apps',
-  'deck.solutionLead': 'Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon and Enroca form one consistent suite: same look and feel, same accessibility, easy-read and therapeutic principles, same privacy promise. Users can open any of them without an account, installing nothing and sharing no data.',
+  'deck.solutionLead': 'Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon and Ludia form one consistent suite: same look and feel, same accessibility, easy-read and therapeutic principles, same privacy promise. Users can open any of them without an account, installing nothing and sharing no data.',
   'deck.solutionPillar1Title': 'Real autonomy',
   'deck.solutionPillar1Text': 'Apps work without a professional sitting next to the user. If constant help is needed, something is not right.',
   'deck.solutionPillar2Title': 'No pressure',
@@ -79,7 +79,7 @@ window.I18N.en = {
   'deck.productSin': 'Easy-read dictionary with synonyms and ARASAAC pictograms.',
   'deck.productMemo': 'Study flashcards to revise at your own pace. One idea per card.',
   'deck.productTec': 'Touch typing on the physical computer keyboard, finger by finger.',
-  'deck.productEnroca': 'Step-by-step chess: learn, practice and play with help.',
+  'deck.productLudia': 'Step-by-step chess: learn, practice and play with help.',
   'deck.productMath': 'Math',
   'deck.productRoutine': 'Routines and daily life',
   'deck.productMoney': 'Financial education',

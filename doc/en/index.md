@@ -111,6 +111,6 @@ How to contribute and other repository-root documents (`CLAUDE.md`,
 - The metaproject's `graphify-out-meta/` — visual cross-project
   index (one node per sibling + similarity / hierarchy edges).
 
-## Enroca
+## Ludia
 
-[Chess lessons, exercises and play](../../../enroca/README.md). [Project guidance](../../../enroca/CLAUDE.md).
+[Chess lessons, exercises and play](../../../ludia/README.md). [Project guidance](../../../ludia/CLAUDE.md).

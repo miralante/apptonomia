@@ -1,6 +1,6 @@
 # Apptonomia — Suite de siete aplicaciones web gratuitas
 
-> Portal de siete aplicaciones web gratuitas y sin registro para aprender a tu ritmo: Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Enroca.
+> Portal de siete aplicaciones web gratuitas y sin registro para aprender a tu ritmo: Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Ludia.
 
 ## What it is
 
@@ -24,7 +24,7 @@
 - [Sinonimia](https://sinonimia.apptonomia.uk/) — Diccionario en lectura fácil con sinónimos y pictogramas.
 - [Memofun](https://memofun.apptonomia.uk/) — Tarjetas de memoria (flashcards) por curso y asignatura.
 - [Teclatlon](https://teclatlon.apptonomia.uk/) — Mecanografía con el teclado físico del ordenador.
-- [Enroca](https://enroca.apptonomia.uk/) — Ajedrez, paso a paso: lecciones, ejercicios y partidas con ayuda.
+- [Ludia](https://ludia.apptonomia.uk/) — Ajedrez, paso a paso: lecciones, ejercicios y partidas con ayuda.
 
 ## License
 

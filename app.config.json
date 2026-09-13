@@ -2,12 +2,12 @@
   "name": "Apptonomia",
   "domain": "apptonomia.uk",
   "title": "Apptonomia — Suite de apps para aprender a tu ritmo",
-  "description": "Apptonomia es una suite de siete aplicaciones web gratuitas y sin registro para aprender a tu ritmo: Calculia (matemáticas), Routime (actividades), Okeymoney (dinero cotidiano), Sinonimia (diccionario en lectura fácil), Memofun (tarjetas de estudio), Teclatlon (mecanografía) y Enroca (ajedrez). Accede a todas desde un solo portal.",
-  "keywords": "apptonomia, calculia, routime, okeymoney, sinonimia, memofun, teclatlon, suite educativa, aprender a tu ritmo, easy read, lectura fácil, accesibilidad cognitiva, aplicaciones gratuitas sin registro, matemáticas, mecanografía, diccionario, flashcards, dinero cotidiano, enroca, ajedrez",
+  "description": "Apptonomia es una suite de siete aplicaciones web gratuitas y sin registro para aprender a tu ritmo: Calculia (matemáticas), Routime (actividades), Okeymoney (dinero cotidiano), Sinonimia (diccionario en lectura fácil), Memofun (tarjetas de estudio), Teclatlon (mecanografía) y Ludia (juegos adaptados). Accede a todas desde un solo portal.",
+  "keywords": "apptonomia, calculia, routime, okeymoney, sinonimia, memofun, teclatlon, suite educativa, aprender a tu ritmo, easy read, lectura fácil, accesibilidad cognitiva, aplicaciones gratuitas sin registro, matemáticas, mecanografía, diccionario, flashcards, dinero cotidiano, ludia, ajedrez",
   "author": "Apptonomia",
   "ogSiteName": "Apptonomia",
-  "ogDescription": "Siete aplicaciones web gratuitas y sin registro: Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Enroca. Acceso directo desde un solo portal.",
-  "twitterDescription": "Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Enroca en un solo portal. Gratis y sin registro.",
+  "ogDescription": "Siete aplicaciones web gratuitas y sin registro: Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Ludia. Acceso directo desde un solo portal.",
+  "twitterDescription": "Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Ludia en un solo portal. Gratis y sin registro.",
   "ogImageAlt": "Apptonomia: siete aplicaciones para aprender a tu ritmo",
   "ogAccent": "#1B6CA8",
   "ogAccentInk": "#FFFFFF",
@@ -25,7 +25,7 @@
   "faq": [
     {
       "question": "¿Qué es Apptonomia?",
-      "answer": "Apptonomia es un portal que reúne siete aplicaciones web gratuitas y sin registro: Calculia (matemáticas y razonamiento), Routime (actividades cotidianas), Okeymoney (dinero del día a día), Sinonimia (diccionario en lectura fácil), Memofun (tarjetas de estudio), Teclatlon (mecanografía con el teclado del ordenador) y Enroca (ajedrez)."
+      "answer": "Apptonomia es un portal que reúne siete aplicaciones web gratuitas y sin registro: Calculia (matemáticas y razonamiento), Routime (actividades cotidianas), Okeymoney (dinero del día a día), Sinonimia (diccionario en lectura fácil), Memofun (tarjetas de estudio), Teclatlon (mecanografía con el teclado del ordenador) y Ludia (juegos adaptados)."
     },
     {
       "question": "¿Cuánto cuesta usar Apptonomia?",
@@ -45,7 +45,7 @@
     }
   ],
   "llmsTitle": "Apptonomia — Suite de siete aplicaciones web gratuitas",
-  "llmsSummary": "Portal de siete aplicaciones web gratuitas y sin registro para aprender a tu ritmo: Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Enroca.",
+  "llmsSummary": "Portal de siete aplicaciones web gratuitas y sin registro para aprender a tu ritmo: Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Ludia.",
   "llmsWhatItIs": [
     "Un portal estático que reúne siete aplicaciones web independientes, todas gratuitas y sin registro.",
     "Cada aplicación cubre un dominio distinto: cálculo, actividades cotidianas, dinero, vocabulario, estudio, mecanografía y ajedrez.",
@@ -90,8 +90,8 @@
       "description": "Mecanografía con el teclado físico del ordenador."
     },
     {
-      "name": "Enroca",
-      "url": "https://enroca.apptonomia.uk/",
+      "name": "Ludia",
+      "url": "https://ludia.apptonomia.uk/",
       "description": "Ajedrez, paso a paso: lecciones, ejercicios y partidas con ayuda."
     }
   ],

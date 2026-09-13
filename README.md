@@ -230,7 +230,7 @@ The actual apps live in their own repositories:
 | [Okeymoney](https://okeymoney.apptonomia.uk/) | Personal finance and everyday autonomy | [github.com/miralante/okeymoney](https://github.com/miralante/okeymoney) |
 | [Sinonimia](https://sinonimia.apptonomia.uk/) | Easy-read dictionary | [github.com/miralante/sinonimia](https://github.com/miralante/sinonimia) |
 | [Teclatlon](https://teclatlon.apptonomia.uk/) | Touch-typing with a physical keyboard | [github.com/miralante/teclatlon](https://github.com/miralante/teclatlon) |
-| [Enroca](https://enroca.apptonomia.uk/) | Chess lessons, exercises and supported play | [github.com/miralante/enroca](https://github.com/miralante/enroca) |
+| [Ludia](https://ludia.apptonomia.uk/) | Chess lessons, exercises and supported play | [github.com/miralante/ludia](https://github.com/miralante/ludia) |
 
 This repo's [`CLOUDFsuite; each suiteE.md) is the canonical deploy
 guide for the whole suite; each suite repo has its own

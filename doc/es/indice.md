@@ -114,6 +114,6 @@ Cómo contribuir y otros documentos de la raíz del repositorio
   cross-project (un nodo por hermano + aristas de similitud /
   jerarquía).
 
-## Enroca
+## Ludia
 
-[Ajedrez: lecciones, ejercicios y juego](../../../enroca/README.es.md). [Guía del proyecto](../../../enroca/CLAUDE.md).
+[Ajedrez: lecciones, ejercicios y juego](../../../ludia/README.es.md). [Guía del proyecto](../../../ludia/CLAUDE.md).

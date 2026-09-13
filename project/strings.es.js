@@ -42,7 +42,7 @@ window.I18N.es = {
   // --- Slide 3 · La soluci\u00f3n ---
   'deck.solutionEyebrow': 'La soluci\u00f3n',
   'deck.solutionTitle': 'Una suite de aplicaciones aut\u00f3nomas, accesibles y respetuosas',
-  'deck.solutionLead': 'Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Enroca forman una suite coherente: misma est\u00e9tica, mismos principios de accesibilidad, lectura f\u00e1cil y terap\u00e9uticos, misma promesa de privacidad. La persona usuaria puede usar cualquiera sin crear cuenta, sin instalar nada y sin compartir datos.',
+  'deck.solutionLead': 'Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon y Ludia forman una suite coherente: misma est\u00e9tica, mismos principios de accesibilidad, lectura f\u00e1cil y terap\u00e9uticos, misma promesa de privacidad. La persona usuaria puede usar cualquiera sin crear cuenta, sin instalar nada y sin compartir datos.',
   'deck.solutionPillar1Title': 'Autonom\u00eda real',
   'deck.solutionPillar1Text': 'Las apps se usan sin un profesional al lado. Si necesitan ayuda constante, algo no est\u00e1 bien resuelto.',
   'deck.solutionPillar2Title': 'Sin presi\u00f3n',
@@ -79,7 +79,7 @@ window.I18N.es = {
   'deck.productSin': 'Diccionario en lectura f\u00e1cil con sin\u00f3nimos y pictogramas ARASAAC.',
   'deck.productMemo': 'Tarjetas de estudio para repasar a tu ritmo. Cada tarjeta, una idea.',
   'deck.productTec': 'Mecanograf\u00eda con el teclado f\u00edsico del ordenador, dedo a dedo.',
-  'deck.productEnroca': 'Ajedrez, paso a paso: ense\u00f1a, practica y juega con ayuda.',
+  'deck.productLudia': 'Ajedrez, paso a paso: ense\u00f1a, practica y juega con ayuda.',
   'deck.productMath': 'Matem\u00e1ticas',
   'deck.productRoutine': 'Rutinas y vida diaria',
   'deck.productMoney': 'Educaci\u00f3n financiera',

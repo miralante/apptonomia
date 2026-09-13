@@ -315,7 +315,7 @@ total de `.woff2` empieza a importar.
 ### 6.3 Cabeceras principales compactas
 
 Memofun es la referencia visual para las cabeceras de Calculia, Routime,
-Okeymoney, Teclatlon, Enroca y el portal Apptonomia. Se usa un icono de 44px,
+Okeymoney, Teclatlon, Ludia y el portal Apptonomia. Se usa un icono de 44px,
 título Nunito de 28px, margen interior vertical de 8px y separación de 6px
 entre filas. Por debajo de 650px, el icono mide 32px y el título 22px.
 El texto secundario tiene peso normal y los controles se alinean con una

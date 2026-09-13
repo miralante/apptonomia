@@ -301,7 +301,7 @@ total `.woff2` budget starts to matter.
 ### 6.3 Compact main headers
 
 Memofun is the visual reference for the main headers in Calculia, Routime,
-Okeymoney, Teclatlon, Enroca and the Apptonomia portal. Use a 44px app mark,
+Okeymoney, Teclatlon, Ludia and the Apptonomia portal. Use a 44px app mark,
 a 28px Nunito title, 8px vertical padding and a 6px row gap. Below 650px,
 the mark is 32px and the title is 22px. Supporting text uses regular weight;
 utility controls stay aligned and at least 44px high. Language buttons show

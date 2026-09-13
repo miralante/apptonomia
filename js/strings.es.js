@@ -9,7 +9,7 @@ if (window.App.i18n) {
       skipToContent: 'Ir al contenido'
     },
     meta: {
-      description: 'Portal a la suite Apptonomia: Calculia, Memofun, Okeymoney, Sinonimia, Teclatlon, Routime y Enroca.'
+      description: 'Portal a la suite Apptonomia: Calculia, Memofun, Okeymoney, Sinonimia, Teclatlon, Routime y Ludia.'
     },
     home: {
       title: 'Apptonomia',
@@ -31,7 +31,7 @@ if (window.App.i18n) {
       sinonimia: 'Diccionario en lectura fácil con sinónimos y pictogramas.',
       teclatlon: 'Mecanografía con el teclado físico del ordenador.',
       routime: 'Actividades cotidianas para entrenar mente y habilidades.',
-      enroca: 'Ajedrez, paso a paso: aprende, practica y juega con ayuda.'
+      ludia: 'Juegos adaptados: aprende, practica y juega con ayuda.'
     },
     legal: {
       pageTitle: 'Protección de datos',
@@ -83,7 +83,7 @@ if (window.App.i18n) {
       navOrigin: 'El origen',
       navPrinciples: 'Los principios',
       navTech: 'Cómo está hecha',
-      navEnroca: 'Enroca: ajedrez',
+      navLudia: 'Ludia: juegos adaptados',
       navSiblings: 'Las seis apps',
       navAuthorship: 'Quiénes la hacen',
       navCollaborate: 'Cómo ayudar',
@@ -125,14 +125,14 @@ if (window.App.i18n) {
       techItem6Text: 'cada texto vive en un archivo por idioma. Hoy la suite está disponible en español de España e inglés.',
       techItem7Label: 'Dependencias externas: ninguna',
       techItem7Text: ', excepto la descarga de las fuentes tipográficas Atkinson Hyperlegible y Nunito (usadas por su alta legibilidad).',
-      enrocaTitle: 'Enroca: ajedrez paso a paso',
-      enrocaIntro: 'La última app de la suite enseña ajedrez con adaptaciones para que cada persona pueda avanzar a su propio ritmo. Sigue los mismos principios que el resto (autonomía, sin presión, accesibilidad cognitiva) y añade dos bloques específicos: lo que aporta el juego y las estrategias de adaptación para que sea jugable por todos los públicos.',
-      enrocaBenefitsTitle: '🧠 Beneficios principales',
-      enrocaBenefit1: '<strong>Desarrollo cognitivo:</strong> mejora la memoria, la atención, el razonamiento lógico y la capacidad de resolver problemas.',
-      enrocaBenefit2: '<strong>Autonomía y autoestima:</strong> ofrece un espacio de ocio y superación personal donde cada jugador avanza según su propio potencial.',
-      enrocaAdaptationsTitle: '♿ Estrategias de adaptación',
-      enrocaAdaptation1: '<strong>Apoyos visuales:</strong> tableros con colores contrastados, fichas más intuitivas o esquemas gráficos que expliquen el movimiento de cada pieza.',
-      enrocaAdaptation2: '<strong>Simplificación de reglas:</strong> reducción inicial del número de piezas o de normas complejas para introducir el juego de forma progresiva.',
+      ludiaTitle: 'Ludia: juegos adaptados paso a paso',
+      ludiaIntro: 'La última app de la suite enseña ajedrez con adaptaciones para que cada persona pueda avanzar a su propio ritmo. Sigue los mismos principios que el resto (autonomía, sin presión, accesibilidad cognitiva) y añade dos bloques específicos: lo que aporta el juego y las estrategias de adaptación para que sea jugable por todos los públicos.',
+      ludiaBenefitsTitle: '🧠 Beneficios principales',
+      ludiaBenefit1: '<strong>Desarrollo cognitivo:</strong> mejora la memoria, la atención, el razonamiento lógico y la capacidad de resolver problemas.',
+      ludiaBenefit2: '<strong>Autonomía y autoestima:</strong> ofrece un espacio de ocio y superación personal donde cada jugador avanza según su propio potencial.',
+      ludiaAdaptationsTitle: '♿ Estrategias de adaptación',
+      ludiaAdaptation1: '<strong>Apoyos visuales:</strong> tableros con colores contrastados, fichas más intuitivas o esquemas gráficos que expliquen el movimiento de cada pieza.',
+      ludiaAdaptation2: '<strong>Simplificación de reglas:</strong> reducción inicial del número de piezas o de normas complejas para introducir el juego de forma progresiva.',
       siblingsTitle: 'Las siete apps de la suite',
       siblingsIntro: 'Apptonomia es el portal de entrada a siete aplicaciones independientes, cada una con su propio dominio y su propio ritmo de desarrollo. Todas comparten la misma filosofía de accesibilidad y respeto a la privacidad.',
       siblingCalculiaName: 'Calculia',
@@ -147,8 +147,8 @@ if (window.App.i18n) {
       siblingSinonimiaText: 'Diccionario en lectura fácil.',
       siblingTeclatlonName: 'Teclatlon',
       siblingTeclatlonText: 'Mecanografía con el teclado físico.',
-      siblingEnrocaName: 'Enroca',
-      siblingEnrocaText: 'Ajedrez: lecciones, ejercicios y juego con ayuda.',
+      siblingLudiaName: 'Ludia',
+      siblingLudiaText: 'Juegos adaptados: reglas, ejercicios y partidas con ayuda.',
       siblingLinkHint: 'Se abre en una pestaña nueva.',
       authorshipTitle: 'Quiénes la hacen',
       authorshipP1a: 'Apptonomia y las siete aplicaciones de la suite son una iniciativa de ',
