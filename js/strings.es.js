@@ -33,9 +33,6 @@ if (window.App.i18n) {
       routime: 'Actividades cotidianas para entrenar mente y habilidades.',
       enroca: 'Ajedrez, paso a paso: aprende, practica y juega con ayuda.'
     },
-    footer: {
-      note: 'Apptonomia — acceso a la suite'
-    },
     legal: {
       pageTitle: 'Protección de datos',
       tagline: 'Sin registro. Sin cookies. Sin analítica.',
@@ -86,6 +83,7 @@ if (window.App.i18n) {
       navOrigin: 'El origen',
       navPrinciples: 'Los principios',
       navTech: 'Cómo está hecha',
+      navEnroca: 'Enroca: ajedrez',
       navSiblings: 'Las seis apps',
       navAuthorship: 'Quiénes la hacen',
       navCollaborate: 'Cómo ayudar',
@@ -127,6 +125,14 @@ if (window.App.i18n) {
       techItem6Text: 'cada texto vive en un archivo por idioma. Hoy la suite está disponible en español de España e inglés.',
       techItem7Label: 'Dependencias externas: ninguna',
       techItem7Text: ', excepto la descarga de las fuentes tipográficas Atkinson Hyperlegible y Nunito (usadas por su alta legibilidad).',
+      enrocaTitle: 'Enroca: ajedrez paso a paso',
+      enrocaIntro: 'La última app de la suite enseña ajedrez con adaptaciones para que cada persona pueda avanzar a su propio ritmo. Sigue los mismos principios que el resto (autonomía, sin presión, accesibilidad cognitiva) y añade dos bloques específicos: lo que aporta el juego y las estrategias de adaptación para que sea jugable por todos los públicos.',
+      enrocaBenefitsTitle: '🧠 Beneficios principales',
+      enrocaBenefit1: '<strong>Desarrollo cognitivo:</strong> mejora la memoria, la atención, el razonamiento lógico y la capacidad de resolver problemas.',
+      enrocaBenefit2: '<strong>Autonomía y autoestima:</strong> ofrece un espacio de ocio y superación personal donde cada jugador avanza según su propio potencial.',
+      enrocaAdaptationsTitle: '♿ Estrategias de adaptación',
+      enrocaAdaptation1: '<strong>Apoyos visuales:</strong> tableros con colores contrastados, fichas más intuitivas o esquemas gráficos que expliquen el movimiento de cada pieza.',
+      enrocaAdaptation2: '<strong>Simplificación de reglas:</strong> reducción inicial del número de piezas o de normas complejas para introducir el juego de forma progresiva.',
       siblingsTitle: 'Las siete apps de la suite',
       siblingsIntro: 'Apptonomia es el portal de entrada a siete aplicaciones independientes, cada una con su propio dominio y su propio ritmo de desarrollo. Todas comparten la misma filosofía de accesibilidad y respeto a la privacidad.',
       siblingCalculiaName: 'Calculia',

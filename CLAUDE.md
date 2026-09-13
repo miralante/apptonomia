@@ -1,23 +1,23 @@
-﻿# CLAUDE.md Ã¢â‚¬â€ Miralante metaproject
+# CLAUDE.md — Miralante metaproject
 
 ## About this project
 
-Apptonomia is the **metaproject root** of the Miralante suite: it hosts the public landing at `https://apptonomia.uk/` (one card per sibling app linking out to its own domain) and the cross-project plumbing that ties the seven siblings together Ã¢â‚¬â€ the meta-graph at `graphify-out-meta/`, the cross-repo sync scripts, and this operational handbook. It does not ship a product of its own; its scope is the suite as a whole.
+Apptonomia is the **metaproject root** of the Miralante suite: it hosts the public landing at `https://apptonomia.uk/` (one card per sibling app linking out to its own domain) and the cross-project plumbing that ties the seven siblings together — the meta-graph at `graphify-out-meta/`, the cross-repo sync scripts, and this operational handbook. It does not ship a product of its own; its scope is the suite as a whole.
 
 For per-project guidance (Calculia, Routime, Okeymoney, Sinonimia, Memofun, Teclatlon), read each sibling's own `CLAUDE.md`.
 
 This file provides guidance to Claude Code (claude.ai/code) when working
-at the level of the **Miralante metaproject** Ã¢â‚¬â€ that is, when operating
+at the level of the **Miralante metaproject** — that is, when operating
 across the seven sibling projects under `Miralante/`, not inside one
 specific product. For per-project guidance, read each project's own
 `CLAUDE.md`.
 
 > **Workspace double role (apptonomia only).** This `apptonomia/`
 > workspace plays two roles at once: (1) the **metaproject root** of
-> the Miralante suite Ã¢â‚¬â€ it carries the cross-project plumbing
+> the Miralante suite — it carries the cross-project plumbing
 > (`scripts/sync-graphify-skill.js`, the `graphify-out-meta/` index,
 > this `CLAUDE.md`); and (2) the **public landing** at
-> `https://apptonomia.uk/` Ã¢â‚¬â€ `index.html` here is the portal page users
+> `https://apptonomia.uk/` — `index.html` here is the portal page users
 > see first, with one card per sibling linking out to its own domain.
 > SEO metadata, Open Graph, JSON-LD `ItemList`, and the multilingual
 > landing copy (`js/strings.es.js`, `js/strings.en.js`) live alongside
@@ -25,13 +25,13 @@ specific product. For per-project guidance, read each project's own
 > (`index.html`, `js/strings.*.js`, SEO meta, the JSON-LD suite list)
 > are in scope here, but they must not bleed into the siblings: the
 > landing links out to each sibling's domain, it doesn't ship their
-> code. If the user names a sibling project ("calculia", "memofun", Ã¢â‚¬Â¦)
+> code. If the user names a sibling project ("calculia", "memofun", …)
 > or the task is product-level inside a sibling, switch to that
-> sibling's own `CLAUDE.md` and treat edits as scoped to that sibling Ã¢â‚¬â€
+> sibling's own `CLAUDE.md` and treat edits as scoped to that sibling —
 > never auto-edit other siblings.
 
 This file is intentionally short and stable; anything that grows
-beyond a short rule belongs in the canonical sources listed in Ã‚Â§A.1
+beyond a short rule belongs in the canonical sources listed in §A.1
 or in the sibling project's own `CLAUDE.md`.
 
 ### Suite-wide responsive design contract
@@ -56,10 +56,10 @@ Do not consider a local-only check sufficient.
 
 The document is split in two blocks:
 
-- **Block A Ã¢â‚¬â€ Workflow** (Ã‚Â§A.1 Ã¢â‚¬Â¦ Ã‚Â§A.4): rules that govern *how* an
+- **Block A — Workflow** (§A.1 … §A.4): rules that govern *how* an
   agent edits the metaproject (canonical sources, mandatory workflow,
   external/destructive operations, scope of the file).
-- **Block B ÃƒÂ¢Ã¢â€šÂ¬" Suite-wide policies** (Ãƒâ€šÃ‚Â§B.1 ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ Ãƒâ€šÃ‚Â§B.6): rules that govern
+- **Block B — Suite-wide policies** (§B.1 ÃƒÂ¢Ã¢â€šÂ¬¦ §B.6): rules that govern
   *what* the suite does (cache contract across siblings, accessibility
   & public-facing wording, meta-graph, settings/data-reset,
   GEO/AEO/LLMO).
@@ -71,7 +71,7 @@ general one on the same block.
 
 ---
 
-## Block A Ã¢â‚¬â€ Workflow
+## Block A — Workflow
 
 ### A.1 Canonical sources
 
@@ -82,14 +82,14 @@ location.
 
 | Topic | Canonical source |
 |---|---|
-| **Per-sibling product, audience, accessibility, architecture, i18n, catalogue, roadmap** | Each sibling's own `CLAUDE.md` (linked from Ã‚Â§A.1.1 below) |
+| **Per-sibling product, audience, accessibility, architecture, i18n, catalogue, roadmap** | Each sibling's own `CLAUDE.md` (linked from §A.1.1 below) |
 | Metaproject plumbing (sync script, meta-graph, landing) | This file + `scripts/sync-graphify-skill.js` |
 | Public landing (SEO, Open Graph, JSON-LD `ItemList`, multilingual copy) | This repo's `index.html`, `js/strings.es.js`, `js/strings.en.js` |
 | **Suite compliance checklist** (UNE 153101, WCAG AAA, public-facing wording "usuario/a tipo", settings/data-reset, landing typography) | [`doc/en/guia-de-cumplimiento.md`](doc/en/guia-de-cumplimiento.md) Ã¢â€ â€ [`doc/es/guia-de-cumplimiento.md`](doc/es/guia-de-cumplimiento.md) |
 | **Creating a new sibling** (required files, scripts, doc tree, sw.js cache contract) | [`doc/en/crear-app.md`](doc/en/crear-app.md) Ã¢â€ â€ [`doc/es/crear-app.md`](doc/es/crear-app.md) |
 | **File templates for new siblings** (CLAUDE.md, README.md, sw.js, scripts/check.js, doc tree) | [`doc/templates/`](doc/templates/) |
-| Cross-project convention: settings/data-reset pattern | [`doc/en/guia-de-cumplimiento.md` Â§5](doc/en/guia-de-cumplimiento.md#5-settings--data-reset-pattern) â†” [`doc/es/guia-de-cumplimiento.md` Â§5](doc/es/guia-de-cumplimiento.md#5-settings--data-reset-pattern) â€” also §B.5.1 below for the canonical reference (`crear-app.md` + `doc/templates/`) |
-| Cross-project convention: landing typography | [`doc/en/guia-de-cumplimiento.md` Ã‚Â§6](doc/en/guia-de-cumplimiento.md#6-landing-typography) Ã¢â€ â€ [`doc/es/guia-de-cumplimiento.md` Ã‚Â§6](doc/es/guia-de-cumplimiento.md#6-tipografÃƒÂ­a-del-portal) |
+| Cross-project convention: settings/data-reset pattern | [`doc/en/guia-de-cumplimiento.md` §5](doc/en/guia-de-cumplimiento.md#5-settings--data-reset-pattern) â†” [`doc/es/guia-de-cumplimiento.md` §5](doc/es/guia-de-cumplimiento.md#5-settings--data-reset-pattern) â€” also §B.5.1 below for the canonical reference (`crear-app.md` + `doc/templates/`) |
+| Cross-project convention: landing typography | [`doc/en/guia-de-cumplimiento.md` §6](doc/en/guia-de-cumplimiento.md#6-landing-typography) Ã¢â€ â€ [`doc/es/guia-de-cumplimiento.md` §6](doc/es/guia-de-cumplimiento.md#6-tipografÃƒÂ­a-del-portal) |
 | Human contribution flow | [`CONTRIBUTING.md`](CONTRIBUTING.md) Ã¢â€ â€ [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) |
 | AI agent operational flow | `CLAUDE.md` (this file) |
 
@@ -109,15 +109,16 @@ Every project listed below has its own `CLAUDE.md`, its own `sw.js`
 | `teclatlon/` | Touch-typing trainer (physical keyboard only) | single-activity app | es/en | [doc/en/SPEC.md](../teclatlon/doc/en/SPEC.md) |
 | `enroca/` | Chess lessons, comprehension exercises and supported play | single-purpose learning app | es/en | [doc/en/spec.md](../enroca/doc/en/spec.md) |
 | `routime/` | Life-skills & routines activity suite | multi-activity catalogue | es/en | [doc/en/SPEC.md](../routime/doc/en/SPEC.md) |
+| `enroca/` | Chess lessons, comprehension exercises and supported play | single-purpose learning app | es/en | [doc/en/spec.md](../enroca/doc/en/spec.md) |
 
 > When the user says "the project", "este proyecto", "el repo"
 > without naming one, ask which one before editing. Each sibling has
 > its own version bumping, its own cache contract, and its own deploy
-> channel Ã¢â‚¬â€ touching one is never automatic for the others.
+> channel — touching one is never automatic for the others.
 
 #### A.1.2 Commands
 
-There is no build step at the metaproject level Ã¢â‚¬â€ every project
+There is no build step at the metaproject level — every project
 ships plain HTML/CSS/JS.
 
 - **Sync the graphify skill across the suite** (canonical source is
@@ -232,7 +233,7 @@ git log --oneline -3
 
 - A deploy (even to a temporary Cloudflare Pages preview) is a
   network operation: request explicit approval before running it.
-  Commands are in `technical.md` Ã‚Â§12.5.
+  Commands are in `technical.md` §12.5.
 - Never publish, push, or open/close external resources without an
   explicit request or authorization.
 - Never delete or revert changes from the user or another session to
@@ -249,17 +250,17 @@ lives in Git; `CLAUDE.md` must stay brief, operational, and stable.
 
 ---
 
-## Block B Ã¢â‚¬â€ Suite-wide policies
+## Block B — Suite-wide policies
 
 ### B.1 Service worker cache (cross-project contract)
 
-The cache-bump rule is **not** owned here Ã¢â‚¬â€ it lives in each sibling's
-own `CLAUDE.md` Ã‚Â§B.1 (see `calculia` / `memofun` / `okeymoney` /
+The cache-bump rule is **not** owned here — it lives in each sibling's
+own `CLAUDE.md` §B.1 (see `calculia` / `memofun` / `okeymoney` /
 `routime` / `sinonimia` for the cache-first variant, and `teclatlon`
 for the network-first variant). Operative summary:
 
 - Every PWA-shipping sibling exposes `sw.js` with a `VERSION` string
-  (e.g. `routime-v3`, `calculia-v22`, `teclatlon-v30`, `sinonimia-v1`, Ã¢â‚¬Â¦).
+  (e.g. `routime-v3`, `calculia-v22`, `teclatlon-v30`, `sinonimia-v1`, …).
 - A change to any file listed in that sibling's `ARCHIVOS` /
   `FILES` requires bumping `VERSION` in that same sibling.
 - A bump that doesn't land is silent: end users see the old cached
@@ -270,15 +271,15 @@ for the network-first variant). Operative summary:
 When working across the suite (e.g. syncing a new graphify skill
 that touches `<project>/.claude/skills/graphify/SKILL.md`), only the
 `scripts/sync-graphify-skill.js sync --apply` step can edit siblings
-in bulk Ã¢â‚¬â€ and even then, only the graphify skill files, never the
+in bulk — and even then, only the graphify skill files, never the
 siblings' `sw.js`.
 
 ### B.2 Accessibility & public-facing wording (pointer)
 
 The canonical source for UNE 153101 (easy-read), WCAG AA + AAA
 baseline, and the public-facing "usuario/a tipo" euphemism is
-`doc/en/guia-de-cumplimiento.md` Â§1 / Â§2 / Â§3 (mirror
-`doc/es/guia-de-cumplimiento.md`). Per `Â§A.1`, that guide is the
+`doc/en/guia-de-cumplimiento.md` §1 / §2 / §3 (mirror
+`doc/es/guia-de-cumplimiento.md`). Per `§A.1`, that guide is the
 authoritative document for the suite's accessibility and public-
 facing-wording rules â€” `CLAUDE.md` does not duplicate them here.
 Per-sibling `CLAUDE.md` files expose the same pointer against their
@@ -310,13 +311,13 @@ canonical version of the skill is also installed at the user level
 #### B.4.1 Meta-graph (cross-project index)
 
 The file [graphify-out-meta/graph.json](graphify-out-meta/graph.json)
-holds a thin index Ã¢â‚¬â€ one node per sibling project plus two kinds of
+holds a thin index — one node per sibling project plus two kinds of
 edges:
 
 - **Similarity edges (undirected)**: pairs of siblings that share
-  Ã¢â€°Â¥2 normalised community names across their per-project graphs.
+  ≥2 normalised community names across their per-project graphs.
   Weight = number of shared hubs.
-- **Hierarchy edges (directed, `parent_of`)**: `apptonomia Ã¢â€ â€™
+- **Hierarchy edges (directed, `parent_of`)**: `apptonomia →
   <sibling>`, reflecting that the metaproject root carries the
   cross-project plumbing (sync script, this CLAUDE.md, the
   meta-graph itself).
@@ -331,7 +332,7 @@ For any codebase question about a single project, prefer the
 per-project graph before reading source files. Two ways to invoke
 it:
 
-**From inside the sibling (the manual path Ã¢â‚¬â€ what each sibling's
+**From inside the sibling (the manual path — what each sibling's
 own `CLAUDE.md` says):**
 
 ```
@@ -341,7 +342,7 @@ graphify path "<A>" "<B>"
 graphify explain "<concept>"
 ```
 
-**From apptonomia (the orchestrated path Ã¢â‚¬â€ what the metaproject
+**From apptonomia (the orchestrated path — what the metaproject
 root does on behalf of any agent working here):**
 
 ```
@@ -377,14 +378,14 @@ prints a one-line warning (`NOTE: graph is COMMITS-SINCE-BUILD`)
 and proceeds. To avoid stale answers without a manual `update
 --apply`, two flags are available:
 
-- `--refresh-if-stale` Ã¢â‚¬â€ run `graphify update .` in the sibling
+- `--refresh-if-stale` — run `graphify update .` in the sibling
   first, but only when its graph is actually stale. Silently skips
-  when fresh. **This is the recommended flag for agents** Ã¢â‚¬â€ combine
+  when fresh. **This is the recommended flag for agents** — combine
   it with every `ask` so the answer reflects the latest code.
-- `--refresh` Ã¢â‚¬â€ always rebuild, even when the graph is fresh. Use
+- `--refresh` — always rebuild, even when the graph is fresh. Use
   after a non-git change (e.g. generated files, a `gitignore`
   tweak) or to force a clean baseline.
-- `--refresh-force` and `--refresh-if-stale-force` Ã¢â‚¬â€ variants of
+- `--refresh-force` and `--refresh-if-stale-force` — variants of
   the above that pass `--force` through to `graphify update .`,
   overriding graphify's safety guard that refuses to overwrite a
   smaller graph with an older (larger) one. Use when the corpus
@@ -404,20 +405,20 @@ have been refreshed).
 
 - A question **about a specific sibling** (`calculia`'s Wallet
   keypad, `memofun`'s `App.decks`, `routime`'s
-  `tools/differences`, etc.) Ã¢â€ â€™ **always use `ask <slug>` from
+  `tools/differences`, etc.) → **always use `ask <slug>` from
   apptonomia**, never the meta-graph. The meta-graph is one node
   per project; it can't tell you anything about a specific
-  activity inside a project. The skill's "Fast path Ã¢â‚¬â€ existing
+  activity inside a project. The skill's "Fast path — existing
   graph" rule applies here too: if
   `<sibling>/graphify-out/graph.json` exists, the script jumps
   straight to `graphify query` and skips re-extraction.
 - A **cross-project comparison** ("which siblings share the X
-  community?", "how does `apptonomia` relate to `calculia`?") Ã¢â€ â€™
+  community?", "how does `apptonomia` relate to `calculia`?") →
   use the meta-graph at
   [graphify-out-meta/graph.json](graphify-out-meta/graph.json) (or
   `graphify-out-meta/graph.html` for the visual).
 - `graphify path "<A>" "<B>"` and `graphify --type path_query`
-  need two positional labels, which `ask` doesn't take Ã¢â‚¬â€ run
+  need two positional labels, which `ask` doesn't take — run
   those from inside the sibling instead.
 
 ### B.5 Settings / data-reset pattern (suite-wide)
@@ -470,21 +471,21 @@ Beyond the classic SEO carried by `app.config.json` +
 Card, hreflang, JSON-LD `SoftwareApplication` / `BreadcrumbList`,
 sitemap, robots.txt), the metaproject and the six siblings adopt
 three additional layers, all defined in
-[`doc/en/guia-de-cumplimiento.md` Ã‚Â§7](doc/en/guia-de-cumplimiento.md#7-geo-aeo-and-llmo-search--answer-engine--and-llm-visibility)
+[`doc/en/guia-de-cumplimiento.md` §7](doc/en/guia-de-cumplimiento.md#7-geo-aeo-and-llmo-search--answer-engine--and-llm-visibility)
 Ã¢â€ â€
-[`doc/es/guia-de-cumplimiento.md` Ã‚Â§7](doc/es/guia-de-cumplimiento.md#7-geo-aeo-y-llmo-presencia-en-buscadores-answer-engines-y-llms):
+[`doc/es/guia-de-cumplimiento.md` §7](doc/es/guia-de-cumplimiento.md#7-geo-aeo-y-llmo-presencia-en-buscadores-answer-engines-y-llms):
 
-- **GEO** Ã¢â‚¬â€ semantic / Dublin Core only. Six `<meta name="DC.*">`
+- **GEO** — semantic / Dublin Core only. Six `<meta name="DC.*">`
   (title, creator, subject, description, language, type) plus
   `DC.rights`, sourced from `app.config.json > dc*` and rendered by
   `scripts/build-head.js`. No `geo.region` / `geo.placename` since
   the suite is global and bilingual.
-- **AEO** Ã¢â‚¬â€ `FAQPage` JSON-LD only, no visible FAQ block. 3Ã¢â‚¬â€œ5
+- **AEO** — `FAQPage` JSON-LD only, no visible FAQ block. 3–5
   `{question, answer}` pairs per project in `app.config.json > faq`,
   injected as an extra `@type: FAQPage` node in the existing `@graph`
   by `scripts/build-head.js`. No `QAPage`, no `SpeakableSpecification`,
   no RSS/Atom feed (no real change surface).
-- **LLMO** Ã¢â‚¬â€ `/llms.txt` per project (`scripts/build-llms-txt.js`),
+- **LLMO** — `/llms.txt` per project (`scripts/build-llms-txt.js`),
   linked from `<head>` via `<link rel="alternate" type="text/markdown">`,
   plus a known-AI-crawler allowlist (GPTBot, ClaudeBot, Claude-Web,
   anthropic-ai, cohere-ai, PerplexityBot, CCBot, Google-Extended,
@@ -492,5 +493,5 @@ three additional layers, all defined in
 
 The four gates (Dublin Core count, FAQPage node, `llms.txt`
 existence, AI-crawler UA list) are enforced by `scripts/check.js`
-in the metaproject and in every sibling that adopts them Ã¢â‚¬â€ see
-the cross-project table in Ã‚Â§7.4 of either guide.
+in the metaproject and in every sibling that adopts them — see
+the cross-project table in §7.4 of either guide.

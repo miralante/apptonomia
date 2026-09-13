@@ -298,6 +298,18 @@ total `.woff2` budget starts to matter.
 
 ---
 
+### 6.3 Compact main headers
+
+Memofun is the visual reference for the main headers in Calculia, Routime,
+Okeymoney, Teclatlon, Enroca and the Apptonomia portal. Use a 44px app mark,
+a 28px Nunito title, 8px vertical padding and a 6px row gap. Below 650px,
+the mark is 32px and the title is 22px. Supporting text uses regular weight;
+utility controls stay aligned and at least 44px high. Language buttons show
+full names on desktop and ES/EN on mobile, with full accessible names.
+Keep each app's navigation and settings. The portal shows its name once,
+with its tagline below. Sinonimia retains its own header. Each app owns its
+styles and cache version; no runtime imports from a sibling are needed.
+
 ## 7. GEO, AEO and LLMO (search-, answer-engine- and LLM-visibility)
 
 Classic SEO (titles, descriptions, Open Graph, Twitter Card,

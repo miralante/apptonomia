@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Okeymoney — billete">
+  <title>Okeymoney</title>
+  <!-- Green banknote with gold strip and white euro. Replaced 2026-09-12. -->
+  <rect x="12" y="28" width="76" height="44" rx="6" fill="#2E7D32"/>
+  <rect x="20" y="36" width="14" height="28" rx="3" fill="#B8860B"/>
+  <text x="68" y="62" text-anchor="middle" font-family="'Nunito', Arial, sans-serif" font-size="32" font-weight="800" fill="#FFFFFF">€</text>
+</svg>

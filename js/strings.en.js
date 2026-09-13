@@ -33,9 +33,6 @@ if (window.App.i18n) {
       routime: 'Everyday activities to train mind and skills.',
       enroca: 'Chess, step by step: learn, practice and play with help.'
     },
-    footer: {
-      note: 'Apptonomia — gateway to the suite'
-    },
     legal: {
       pageTitle: 'Data protection',
       tagline: 'No registration. No cookies. No analytics.',
@@ -86,6 +83,7 @@ if (window.App.i18n) {
       navOrigin: 'The origin',
       navPrinciples: 'The principles',
       navTech: 'How it is built',
+      navEnroca: 'Enroca: chess',
       navSiblings: 'The six apps',
       navAuthorship: 'Who makes it',
       navCollaborate: 'How to help',
@@ -127,6 +125,14 @@ if (window.App.i18n) {
       techItem6Text: 'every piece of text lives in a file per language. Today the suite is available in Spanish (Spain) and English.',
       techItem7Label: 'External dependencies: none',
       techItem7Text: ', except for downloading the Atkinson Hyperlegible and Nunito typefaces (chosen for their high legibility).',
+      enrocaTitle: 'Enroca: step-by-step chess',
+      enrocaIntro: 'The newest app in the suite teaches chess with adaptations so each person can progress at their own pace. It follows the same principles as the rest (autonomy, no pressure, cognitive accessibility) and adds two specific blocks: what the game brings, and the adaptation strategies that make it playable for everyone.',
+      enrocaBenefitsTitle: '🧠 Key benefits',
+      enrocaBenefit1: '<strong>Cognitive development:</strong> it improves memory, attention, logical reasoning and problem-solving skills.',
+      enrocaBenefit2: '<strong>Autonomy and self-esteem:</strong> it offers a space for leisure and personal growth where each player advances at their own potential.',
+      enrocaAdaptationsTitle: '♿ Adaptation strategies',
+      enrocaAdaptation1: '<strong>Visual supports:</strong> boards with high-contrast colours, more intuitive pieces, or graphic schemes that explain how each piece moves.',
+      enrocaAdaptation2: '<strong>Rule simplification:</strong> start by reducing the number of pieces or the more complex rules to introduce the game step by step.',
       siblingsTitle: 'The seven apps of the suite',
       siblingsIntro: 'Apptonomia is the gateway to six independent applications, each with its own domain and its own development pace. They all share the same accessibility-first philosophy and the same respect for privacy.',
       siblingCalculiaName: 'Calculia',

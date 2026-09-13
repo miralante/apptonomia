@@ -312,6 +312,20 @@ total de `.woff2` empieza a importar.
 
 ---
 
+### 6.3 Cabeceras principales compactas
+
+Memofun es la referencia visual para las cabeceras de Calculia, Routime,
+Okeymoney, Teclatlon, Enroca y el portal Apptonomia. Se usa un icono de 44px,
+título Nunito de 28px, margen interior vertical de 8px y separación de 6px
+entre filas. Por debajo de 650px, el icono mide 32px y el título 22px.
+El texto secundario tiene peso normal y los controles se alinean con una
+altura mínima de 44px. Los botones de idioma muestran nombres completos en
+escritorio y ES/EN en móvil, con nombres accesibles completos. Cada app
+conserva su navegación y ajustes. El portal muestra su nombre una sola vez,
+con el texto de presentación debajo. Sinonimia conserva su cabecera.
+Cada app mantiene sus estilos y versión de caché sin importar archivos de
+otra aplicación durante la ejecución.
+
 ## 7. GEO, AEO y LLMO (presencia en buscadores, answer engines y LLMs)
 
 SEO clásico (títulos, descripciones, Open Graph, Twitter Card,

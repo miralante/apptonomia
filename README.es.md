@@ -21,7 +21,8 @@ personales.
 - 📦 **Repositorio**: [github.com/miralante/apptonomia](https://github.com/miralante/apptonomia)
 - 💻 **Ejecutar en local**: abre `index.html` directamente en un
   navegador, o sirve la carpeta con cualquier servidor estático
-  (`npx serve .` / `python -m http.server 8080`).
+  (
+npx serve .` / `python -m http.server 8080`).
 
 ---
 
@@ -45,7 +46,8 @@ de seguridad.
   build.
 - 🪶 **Cero dependencias en tiempo de ejecución** — HTML/CSS/JS puros.
 - 🌍 **Bilingüe** — español (por defecto) e inglés, con conmutación por
-  `navigator.languages` o por selector manual.
+  
+navigator.languages` o por selector manual.
 - 🔒 **Privacidad por defecto** — sin backend, sin base de datos, sin
   telemetría, sin servicios de terceros.
 - 📦 **SEO listo** — Open Graph, Twitter Card, JSON-LD `ItemList` con
@@ -60,7 +62,8 @@ de seguridad.
 |---|---|---|---|
 | 👤 **Persona usuaria** (persona tipo) | Visita la landing para elegir una app de la suite | Abre la página en un navegador; no lee ni escribe código | La aplicación — no hace falta leer nada más |
 | ❤️ **Apoyo / familia** | Ayuda a la persona usuaria a navegar la suite | Elige la app de la suite adecuada; ayuda a instalarla en el dispositivo | El `README.md` de cada app de la suite |
-| 💻 **Construcción / desarrollador/a** | Mantiene la landing y el cross-project plumbing | Edita `index.html`, `js/`, `_headers`, `wrangler.toml`; ejecuta `node scripts/sync-graphify-skill.js` | [`CLAUDE.md`](CLAUDE.md) |
+| 💻 **Construcción / desarrollador/a** | Mantiene la landing y el cross-project plumbing | Edita `index.html`, `js/`, `_headers`, `wrangler.toml`; ejecuta 
+ode scripts/sync-graphify-skill.js` | [`CLAUDE.md`](CLAUDE.md) |
 
 Ver [`doc/es/roles.md`](doc/es/roles.md) para la descripción completa
 de los roles y los patrones trio/par/único en el conjunto de la suite.
@@ -124,7 +127,8 @@ Para añadir una nueva app a la suite:
    Miralante" del `README.md` de cada app de la suite.
 3. Añade la app al índice cross-project en
    [`graphify-out-meta/graph.json`](graphify-out-meta/graph.json)
-   ejecutando `node scripts/sync-graphify-skill.js update --apply --target ../<proyecto>`.
+   ejecutando 
+ode scripts/sync-graphify-skill.js update --apply --target ../<proyecto>`.
 
 ---
 
@@ -136,7 +140,8 @@ node scripts/sync-graphify-skill.js sync --apply # copia donde el SHA diverge
 node scripts/sync-graphify-skill.js update --apply # reconstruye grafos por-proyecto obsoletos y el meta-grafo
 ```
 
-No hace falta `npm install` — los scripts solo usan la librería estándar
+No hace falta 
+pm install` — los scripts solo usan la librería estándar
 de Node. Este repo no tiene `scripts/check.js` (la landing es una sola
 página estática sin paso de build); cada repo de la suite tiene sus
 propios checks. Como equivalente ligero, `scripts/check-forbidden-terms.js`
@@ -183,9 +188,11 @@ MIT — ver [`LICENSE`](LICENSE).
 
 ## 🧹 Mantenimiento
 
-Este repo no tiene `node_modules`, artefactos de build, ni directorio
+Este repo no tiene 
+ode_modules`, artefactos de build, ni directorio
 de caché. El directorio `graphify-out-meta/` se regenera con
-`node scripts/sync-graphify-skill.js update --apply`; para forzar una
+
+ode scripts/sync-graphify-skill.js update --apply`; para forzar una
 reconstrucción limpia del meta-grafo desde cero:
 
 ```bash
@@ -233,3 +240,5 @@ Las aplicaciones reales viven en sus propios repositorios:
 El [`CLOUDFLARE.md`](CLOUDFLARE.md) de este repo es la guía canónica
 de despliegue de la suite; cada repo de la suite tiene su propio doc
 específico que apunta aquí.
+
+

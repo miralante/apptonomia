@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Sinonimia">
+  <title>Sinonimia</title>
+  <!-- Stylised "S" — two opposing semicircles that read as the letter S
+       and as a synonym/definition mirror image. Brand-blue stroke on a
+       transparent background so it sits on the landing chip. -->
+  <path d="M70 32
+           A18 18 0 0 0 52 14
+           H48
+           A18 18 0 0 0 48 50
+           H52
+           A18 18 0 0 1 52 86
+           H48
+           A18 18 0 0 1 30 68"
+        fill="none" stroke="#0a5c78" stroke-width="11"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

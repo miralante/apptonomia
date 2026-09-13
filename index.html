@@ -262,31 +262,24 @@
        launches and across tab restores). Bump the `apptonomia-vN` suffix in the same
        commit that touches the stylesheet — same contract as the PWA
        siblings' sw.js VERSION. -->
-  <link rel="stylesheet" href="css/styles.css?v=apptonomia-v3">
+  <link rel="stylesheet" href="css/styles.css?v=apptonomia-v7">
 </head>
 <body>
 
 <a class="skip-link" href="#contenido" data-i18n="core.skipToContent">Ir al contenido</a>
 
-<header class="app-header">
-  <div class="container">
-    <div class="top-bar">
-      <a class="brand" href="./" aria-label="Apptonomia">
-        <span class="brand-mark" aria-hidden="true">A</span>
-        <span class="brand-name">Apptonomia</span>
-      </a>
-
-      <div class="lang-switch" role="group" aria-label="Elegir idioma">
-        <button type="button" class="btn-lang" id="lang-es" data-locale="es" aria-pressed="true">ES</button>
-        <button type="button" class="btn-lang" id="lang-en" data-locale="en" aria-pressed="false">EN</button>
-      </div>
-    </div>
-
-    <div class="app-hero">
-      <h1 data-i18n="home.title">Apptonomia</h1>
-      <p class="hero-tagline" data-i18n="home.tagline">Aprende a tu ritmo, en el idioma que prefieras.</p>
+<header class="app-header suite-header container">
+  <div class="suite-brand">
+    <span class="hero-mark brand-mark" aria-hidden="true">A</span>
+    <div class="suite-brand-copy"><h1 data-i18n="home.title">Apptonomia</h1></div>
+  </div>
+  <div class="suite-controls">
+    <div class="lang-switch" role="group" aria-label="Elegir idioma">
+      <button type="button" class="btn-lang" id="lang-es" data-locale="es" aria-pressed="true" aria-label="Español"><span class="locale-full" aria-hidden="true">🇪🇸 Español</span><span class="locale-short" aria-hidden="true">ES</span></button>
+      <button type="button" class="btn-lang" id="lang-en" data-locale="en" aria-pressed="false" aria-label="English"><span class="locale-full" aria-hidden="true">🇬🇧 English</span><span class="locale-short" aria-hidden="true">EN</span></button>
     </div>
   </div>
+  <div class="suite-details"><p class="tagline" data-i18n="home.tagline">Aprende a tu ritmo, en el idioma que prefieras.</p></div>
 </header>
 
 <main id="contenido" class="container">
@@ -294,7 +287,7 @@
 
     <a class="suite-card" href="https://calculia.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto" aria-hidden="true">🧮</span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/calculia.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.math">Matemáticas</span>
       </div>
       <h3>Calculia</h3>
@@ -304,7 +297,7 @@
 
     <a class="suite-card" href="https://routime.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto" aria-hidden="true">🧩</span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/routime.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.activities">Actividades</span>
       </div>
       <h3>Routime</h3>
@@ -314,7 +307,7 @@
 
     <a class="suite-card" href="https://okeymoney.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto" aria-hidden="true">💶</span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/okeymoney.svg?v=apptonomia-v3" alt=""></span>
         <span class="suite-tag" data-i18n="tags.life">Vida diaria</span>
       </div>
       <h3>Okeymoney</h3>
@@ -324,7 +317,7 @@
 
     <a class="suite-card" href="https://sinonimia.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto" aria-hidden="true">📖</span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/sinonimia.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.words">Palabras</span>
       </div>
       <h3>Sinonimia</h3>
@@ -334,7 +327,7 @@
 
     <a class="suite-card" href="https://memofun.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto" aria-hidden="true">⭐</span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/memofun.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.study">Estudio</span>
       </div>
       <h3>Memofun</h3>
@@ -344,7 +337,7 @@
 
     <a class="suite-card" href="https://teclatlon.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto" aria-hidden="true">⌨️</span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/teclatlon.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.keyboard">Teclado</span>
       </div>
       <h3>Teclatlon</h3>
@@ -354,7 +347,7 @@
 
     <a class="suite-card" href="https://enroca.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto" aria-hidden="true">♟</span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/enroca.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.chess">Ajedrez</span>
       </div>
       <h3>Enroca</h3>
@@ -367,14 +360,13 @@
 
 <footer class="app-footer">
   <div class="container">
-    <span data-i18n="footer.note">Apptonomia — acceso a la suite</span>
     <a href="mailto:hello@apptonomia.uk">hello@apptonomia.uk</a>
   </div>
 </footer>
 
 <script src="js/script.js"></script>
-<script src="js/strings.es.js?v=apptonomia-v4"></script>
-<script src="js/strings.en.js?v=apptonomia-v4"></script>
+<script src="js/strings.es.js?v=apptonomia-v5"></script>
+<script src="js/strings.en.js?v=apptonomia-v5"></script>
 <script src="js/prepaint.js"></script>
 </body>
 </html>
