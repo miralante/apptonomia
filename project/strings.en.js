@@ -131,7 +131,7 @@ window.I18N.en = {
   'deck.use2Text': 'A complement between sessions. The therapist assigns a specific activity and the person practises at home without sending data to any server.',
   'deck.use3Title': '\ud83c\udfe0  Families and carers',
   'deck.use3Text': 'Direct access from the living-room browser, with nothing to install. Families can see progress on the device itself and erase it when they want.',
-  'deck.use4Title': '\ud83c\udf0d  Public entities',
+  'deck.use4Title': '\ud83c\udfe2  Public entities',
   'deck.use4Text': 'Community deployment or a customised fork under the MIT licence. The suite is reusable for local projects with specific needs.',
 
   // --- Slide 11 · Collaboration ---

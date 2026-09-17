@@ -132,7 +132,7 @@ window.I18N.es = {
   'deck.use2Text': 'Complemento entre sesiones. La terapeuta asigna una actividad concreta y la persona la practica en casa, sin enviar datos a ning\u00fan servidor.',
   'deck.use3Title': '\ud83c\udfe0  Familias y personas cuidadoras',
   'deck.use3Text': 'Acceso directo desde el navegador del sal\u00f3n, sin instalar nada. Las familias pueden ver el progreso en el propio dispositivo y borrarlo cuando quieran.',
-  'deck.use4Title': '\ud83c\udf0d  Entidades P\u00fablicas',
+  'deck.use4Title': '\ud83c\udfe2  Entidades p\u00fablicas',
   'deck.use4Text': 'Despliegue en comunidad o fork personalizado bajo licencia MIT. La suite es reutilizable para proyectos locales con necesidades espec\u00edficas.',
 
   // --- Slide 11 · Colaboraci\u00f3n ---
