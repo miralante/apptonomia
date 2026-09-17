@@ -568,6 +568,45 @@ copy-paste file scaffolds.
 | `llms.txt` | yes | Markdown file at the project root so LLM crawlers can summarise the project correctly (see §7.3). |
 | `_redirects` | optional | Static or dynamic redirects (Cloudflare's per-file limit: 2 100). |
 
+### 9.1 Optional `## 🙏 Credits` section in `README.md`
+
+The optional `## 🙏 Credits` section is part of the README
+template under [`templates/`](../templates/), but it is **not
+mandatory** — it is only required when the project ships
+third-party content under a copyright whose attribution must be
+preserved publicly.
+
+- **Include** the section when the project ships content whose
+  licence requires keeping attribution visible on the public
+  surface. Concretely, today:
+  - **Sinonimia** — pictograms are from
+    [ARASAAC](https://arasaac.org) (Sergio Palao / Gobierno de
+    Aragón) under **CC BY-NC-SA**, and dictionary definitions
+    are based on public plain-language glossaries (IVAP, Red de
+    Lenguaje Claro) and medical glossaries. The `## 🙏 Credits`
+    section attributes these sources.
+  - **Memofun** — deck content is built from the official
+    curricula of the Comunidad de Madrid and the English
+    National Curriculum (DfE), plus Entry Level / BTEC Level 2
+    vocational routes. The `## 🙏 Credits` section attributes
+    those curricula.
+- **Omit** the section when the project ships only code and
+  original UI copy — there is nothing to credit and the section
+  becomes filler. Concretely, today:
+  - **Apptonomia** (landing portal), **Calculia**, **Okeymoney**,
+    **Teclatlon** and **Routime** all skip it. Removing an
+    existing `## 🙏 Credits` section is safe as long as the
+    section is not linked from any other doc (a cross-repo grep
+    for `## 🙏 Credits` and `Credits section` returns no hits).
+
+When the section IS included, the attribution **must match** the
+third-party licence: at minimum the source's name, author, and
+licence; for CC licences, the canonical licence URL; for
+ARASAAC, an explicit statement that commercial use requires
+ARASAAC's permission. The `## 📄 License` section is the right
+place for the project's own licence (MIT, or CC BY-SA for some
+sibling content); `## 🙏 Credits` is for the third-party bits.
+
 ---
 
 ## 10. Compliance self-check before opening a PR
@@ -591,6 +630,147 @@ points at the doc that explains the rule.
 | 12 | I added (or did not touch) the `FAQPage` node in the JSON-LD, with 3–5 `{question, answer}` pairs worded without clinical language (§3). | §7.2 above |
 | 13 | I generated (or did not touch) `/llms.txt` at the project root from `app.config.json`, and the head links to it via `<link rel="alternate" type="text/markdown">`. | §7.3 above |
 | 14 | The project's `robots.txt` (if it exists or I added it) allows the AI crawlers listed in §7.3 without blocking them. | §7.3 above |
+
+---
+
+## 11. Consolidating parallel-session work across the suite
+
+The suite regularly hosts **two or more parallel AI sessions**
+working on different siblings (or on different parts of the same
+sibling) at the same time. The metaproject provides a single
+checklist for whoever consolidates the work — typically the last
+session active in the suite, or a human operator reviewing PRs
+across the seven repos. Run this checklist on **each sibling**
+before pushing.
+
+### 11.1 Detect active parallel sessions
+
+Before touching `sw.js` in any sibling, check whether another
+session is actively writing into the repo. A safe rule of thumb:
+**a session is "still active" if any file in the repo has a
+`LastWriteTime` within the last 10 minutes**. The fastest check
+from PowerShell:
+
+```powershell
+Get-ChildItem -Path <sibling> -File -Recurse |
+  Where-Object { $_.LastWriteTime -gt (Get-Date).AddMinutes(-10) } |
+  Measure-Object -Line
+```
+
+If the count is **0**, the session has ended and it is safe to
+edit. If it is **> 0**, another session is still writing — wait
+or coordinate before editing, per §A.3 of `CLAUDE.md`
+("Never delete or revert changes from the user or another session
+to simplify your task; integrate them or explain the conflict").
+
+### 11.2 The bump-VERSION rule
+
+The service-worker's cache-first strategy means a returning
+visitor will not see a code change until `VERSION` in `sw.js` is
+incremented. The `cache-bump` job in `.github/workflows/validate.yml`
+fails the PR if a file in `ARCHIVOS` / `FILES` changed in the
+diff but `VERSION` did not. The corresponding local gate is
+`scripts/check-version-bump.js`.
+
+**Rule**: every commit that touches any file in `ARCHIVOS` /
+`FILES` must bump `VERSION` in the same commit. The bump is
+manual — there is no auto-bumper yet — so whoever closes the PR
+or the push is responsible for it.
+
+### 11.3 Consolidation runbook (per sibling)
+
+For each of the seven siblings, when you close the parallel
+sessions and want to publish, run this runbook.
+
+1. **Activity check** — confirm no session is active (see §11.1).
+   If active, wait or coordinate.
+2. **Read the current `VERSION`** from `sw.js`:
+   ```bash
+   grep '^var VERSION' <sibling>/sw.js
+   ```
+   The format is `'<slug>-v<N>'` (e.g. `sinonimia-v52`).
+3. **Bump `VERSION` by 1** (or more if the parallel session
+   already bumped it once while you weren't watching — re-read
+   the diff with `git log -p sw.js` to know the latest committed
+   value before bumping):
+   ```bash
+   # Manual: edit sw.js, change the v<N> literal to v<N+1>
+   ```
+4. **Run the local gate** to confirm the bump makes the check
+   pass:
+   ```bash
+   node <sibling>/scripts/check-version-bump.js
+   ```
+   Expected output (one line, mojibake in some terminals):
+   ```
+   ✓ sw.js VERSION bump check passed (N cached file(s) changed,
+     VERSION correctly bumped: <slug>-v<M> -> <slug>-v<N>)
+   ```
+5. **Run the structural check** to confirm nothing else broke:
+   ```bash
+   node <sibling>/scripts/check.js
+   ```
+6. **Stage, commit, push** — all in one pass, with a descriptive
+   message:
+   ```bash
+   cd <sibling>
+   git add .
+   git commit -m "chore: bump sw.js VERSION (v<N-1>->v<N>) + sync CI
+
+   - sw.js: bump VERSION from <slug>-v<N-1> to <slug>-v<N> (cache-bump
+     gate per CLAUDE.md §B.1).
+   - .github/workflows/validate.yml: <describe any sync changes>.
+   - <summarise the parallel-session content changes>.
+   "
+   git push
+   ```
+7. **Verify the CI gate** by opening the GitHub Actions tab for
+   the pushed commit and confirming the `cache-bump` job shows a
+   green check. If it is red, the bump was wrong — fix it, amend
+   the commit, force-push (this is a single-author workflow, so
+   force-pushing is safe), and re-verify.
+
+### 11.4 Per-sibling outstanding work log
+
+This section tracks what is left to commit in each sibling at the
+time of writing. Update it whenever the state changes (one entry
+per sibling, one line of current state).
+
+| Sibling | Outstanding work | Last touched |
+|---|---|---|
+| `apptonomia/` | Workflow + template synced (turn 6). `scripts/check-version-bump.js` created (turn 7). Nothing outstanding in `sw.js` (portal has no SW). | 2026-09-16 |
+| `calculia/` | Workflow + template synced (turn 6). Has the `cache-bump` job and the script (turn 6). **`sw.js` is modified by the parallel session; VERSION still at `v66`; the gate will fail until bumped.** | 2026-09-16 |
+| `memofun/` | **Committed locally** as `2fb2cf1` (turn 9): `sw.js` bumped to `v73`, workflow sync, README badges, deck content from parallel session. **Not pushed** — pending `git push` operator decision. | 2026-09-16 |
+| `okeymoney/` | **Committed locally** as `aea54aa` (turn 9): `sw.js` bumped to `v113`, workflow sync, README badges, tools/* + assets/* from parallel session. **Not pushed** — pending `git push` operator decision. | 2026-09-16 |
+| `sinonimia/` | Workflow + template synced (turn 7). Has the `cache-bump` job and the script (turn 7). **`sw.js` is modified by the parallel session; VERSION still at `v52`; the gate will fail until bumped.** | 2026-09-16 |
+| `teclatlon/` | **Committed locally** as `fed4d3a` (turn 9): `sw.js` bumped to `v52`, workflow sync, README badges, about/ + assets/ from parallel session. **Not pushed** — pending `git push` operator decision. | 2026-09-16 |
+| `routime/` | Workflow + template synced (turn 6). Has the `cache-bump` job and the script (turn 6). **`sw.js` is modified by the parallel session; VERSION still at `v25`; the gate will fail until bumped.** | 2026-09-16 |
+
+### 11.5 Decisions log (decision 1 = A, decision 2 = N, decision 3 = pending)
+
+This section records the **outcome** of the three operator
+decisions requested in turn 9 of the 2026-09-16 consolidation
+session. Each decision is recorded here once made so that future
+sessions see the rationale, not just the state.
+
+- **Decision 1 (commit local only, no push) = A**. Operator
+  chose to consolidate the work into local commits in
+  `memofun/`, `okeymoney/` and `teclatlon/` (the three siblings
+  whose parallel sessions had ended more than 3 hours before the
+  bump). Commit hashes: `2fb2cf1` (memofun), `aea54aa` (okeymoney),
+  `fed4d3a` (teclatlon).
+- **Decision 2 (bump `calculia`, `sinonimia`, `routime`) = N**.
+  Operator chose to leave the three siblings with active parallel
+  sessions untouched, on the principle that the bumping agent
+  should be the one that closes the session (per §A.3 and the
+  pattern of `Bump liberally rather than conservatively` from
+  each sibling's `CLAUDE.md` §B.1).
+- **Decision 3 (`git push` on the three committed siblings) =
+  pending**. Operator has not yet decided whether to publish the
+  three local commits. Until this is resolved, `origin/main` on
+  those repos still reflects the pre-consolidation state. The
+  next session — or this one, if re-opened — should either push
+  them or revert the local commits before resuming work.
 
 ---
 

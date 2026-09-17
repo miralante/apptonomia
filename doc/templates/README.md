@@ -10,6 +10,7 @@
 [![PWA](https://img.shields.io/badge/PWA-installable-5A0FC8.svg)](manifest.json)
 [![i18n](https://img.shields.io/badge/i18n-es%20%7C%20en-yellow.svg)](#-project-documentation-bilingual)
 [![CI](https://img.shields.io/badge/CI-node%20scripts%2Fcheck.js-blue.svg)](.github/workflows/validate.yml)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 **{{DISPLAY_EN}}** is a **free, static, dependency-free web app**
 that **<one-sentence description of what the app does>**.
@@ -87,6 +88,7 @@ By role and profile, the most relevant docs are:
 | Document | Audience |
 |---|---|
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Anyone who wants to contribute |
+| [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) | Contributor covenant (Contributor Covenant 2.1) |
 | `CLAUDE.md` | AI agents: operational workflow, coordination and approvals |
 | [`CLOUDFLARE.md`](CLOUDFLARE.md) | Canonical Cloudflare Workers deploy guide |
 | Project history | Lives in `git log`; no external roadmap is maintained |
@@ -183,6 +185,60 @@ Issues and pull requests are welcome. See
 [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) for the Spanish
 version). All participants are expected to follow
 [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
+
+---
+
+<!--
+  ┌─────────────────────────────────────────────────────────────────┐
+  │ OPTIONAL `## 🙏 Credits` SECTION — read before keeping/removing │
+  └─────────────────────────────────────────────────────────────────┘
+
+  Include this section ONLY when {{DISPLAY_EN}} ships third-party
+  content under a copyright whose attribution must be preserved
+  on the public surface (e.g. ARASAAC pictograms, official
+  curricula, third-party glossaries). When you keep it, the
+  attribution MUST match the requirements of the third-party
+  licence (CC BY-SA, CC BY-NC-SA, etc.).
+
+  When {{DISPLAY_EN}} only ships code and original UI copy, REMOVE
+  this whole block (the section heading, the example bullets below,
+  and the trailing `---`). There is nothing to credit and the
+  section becomes filler.
+
+  Canonical rule + per-sibling inventory:
+  [`../../doc/en/guia-de-cumplimiento.md` §9.1](../../doc/en/guia-de-cumplimiento.md#91-optional--credits-section-in-readmemd)
+
+  Example pattern A (curated content under CC BY-SA — Memofun):
+
+  ## 🙏 Credits
+
+  Memofun's "no AI in the product" rule is inherited from
+  Apptonomia's `SPEC.md`. Deck content is written directly by the
+  AI coding agent working on this repository — see `CLAUDE.md`
+  §"Generating deck content" for the rules, and
+  [`doc/en/spec.md`](doc/en/spec.md) §2.5 for the tone and
+  easy-read requirements.
+
+  The `decks/curriculum/` library is built from the Spanish
+  curricula of the Comunidad de Madrid and the English National
+  Curriculum (DfE), plus the vocational Entry Level / BTEC Level 2
+  routes.
+
+  Example pattern B (pictograms under CC BY-NC-SA — Sinonimia):
+
+  ## 🙏 Credits
+
+  Definitions and examples are based on public "plain language"
+  glossaries from government and court bodies (IVAP, Red de
+  Lenguaje Claro) and on medical glossaries written for patients.
+
+  The pictograms in `img/` are from
+  [ARASAAC](https://arasaac.org) (author Sergio Palao, owned by the
+  Government of Aragón) under a CC BY-NC-SA licence. If you add a
+  new pictogram from ARASAAC, keep that licence and the footer
+  attribution — they can't be used commercially without ARASAAC's
+  permission.
+-->
 
 ---
 

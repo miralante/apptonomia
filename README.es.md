@@ -10,6 +10,7 @@
 [![Sin PWA](https://img.shields.io/badge/PWA-ninguna-lightgrey.svg)](#-caracter%C3%ADsticas)
 [![i18n](https://img.shields.io/badge/i18n-es%20%7C%20en-yellow.svg)](#-documentaci%C3%B3n-del-proyecto-biling%C3%BCe)
 [![CI](https://img.shields.io/badge/CI-node%20scripts%2Fsync--graphify--skill.js-blue.svg)](.github/workflows/validate.yml)
+[![Pacto del colaborador](https://img.shields.io/badge/Pacto%20del%20colaborador-2.1-4baaaa.svg)](CODE_OF_CONDUCT.es.md)
 
 **Portal de la suite Apptonomia** — una landing estática, gratuita y sin
 dependencias que enlaza con siete pequeñas aplicaciones web de la
@@ -62,8 +63,7 @@ navigator.languages` o por selector manual.
 |---|---|---|---|
 | 👤 **Persona usuaria** (persona tipo) | Visita la landing para elegir una app de la suite | Abre la página en un navegador; no lee ni escribe código | La aplicación — no hace falta leer nada más |
 | ❤️ **Apoyo / familia** | Ayuda a la persona usuaria a navegar la suite | Elige la app de la suite adecuada; ayuda a instalarla en el dispositivo | El `README.md` de cada app de la suite |
-| 💻 **Construcción / desarrollador/a** | Mantiene la landing y el cross-project plumbing | Edita `index.html`, `js/`, `_headers`, `wrangler.toml`; ejecuta 
-ode scripts/sync-graphify-skill.js` | [`CLAUDE.md`](CLAUDE.md) |
+| 💻 **Construcción / desarrollador/a** | Mantiene la landing y el cross-project plumbing | Edita `index.html`, `js/`, `_headers`, `wrangler.toml`; ejecuta `node scripts/sync-graphify-skill.js` | [`CLAUDE.md`](CLAUDE.md) |
 
 Ver [`doc/es/roles.md`](doc/es/roles.md) para la descripción completa
 de los roles y los patrones trio/par/único en el conjunto de la suite.
@@ -93,6 +93,7 @@ con algunos archivos en la raíz del repositorio:
 | Documento | Para quién |
 |---|---|
 | [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) | Familias, terapeutas y desarrolladores que quieran contribuir |
+| [`CODE_OF_CONDUCT.es.md`](CODE_OF_CONDUCT.es.md) | Pacto del colaborador (Contributor Covenant 2.1) |
 | `CLAUDE.md` | Agentes IA: reglas obligatorias y estado del proyecto |
 | [`CLOUDFLARE.md`](CLOUDFLARE.md) | Guía canónica de despliegue en Cloudflare Workers para la suite (Apptonomia + Calculia, Memofun, Okeymoney, Sinonimia, Teclatlon) |
 | Historial del proyecto | En `git log`; no se mantiene una hoja de ruta externa |
@@ -127,8 +128,7 @@ Para añadir una nueva app a la suite:
    Miralante" del `README.md` de cada app de la suite.
 3. Añade la app al índice cross-project en
    [`graphify-out-meta/graph.json`](graphify-out-meta/graph.json)
-   ejecutando 
-ode scripts/sync-graphify-skill.js update --apply --target ../<proyecto>`.
+   ejecutando `node scripts/sync-graphify-skill.js update --apply --target ../<proyecto>`.
 
 ---
 
@@ -140,8 +140,7 @@ node scripts/sync-graphify-skill.js sync --apply # copia donde el SHA diverge
 node scripts/sync-graphify-skill.js update --apply # reconstruye grafos por-proyecto obsoletos y el meta-grafo
 ```
 
-No hace falta 
-pm install` — los scripts solo usan la librería estándar
+No hace falta `npm install` — los scripts solo usan la librería estándar
 de Node. Este repo no tiene `scripts/check.js` (la landing es una sola
 página estática sin paso de build); cada repo de la suite tiene sus
 propios checks. Como equivalente ligero, `scripts/check-forbidden-terms.js`
@@ -186,6 +185,15 @@ MIT — ver [`LICENSE`](LICENSE).
 
 ---
 
+## Contribuir
+
+Issues y pull requests son bienvenidos. Ver [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md)
+para el flujo de trabajo (y [`CONTRIBUTING.md`](CONTRIBUTING.md) para la versión en inglés).
+Todas las personas participantes deben seguir
+[`CODE_OF_CONDUCT.es.md`](CODE_OF_CONDUCT.es.md).
+
+---
+
 ## 🧹 Mantenimiento
 
 Este repo no tiene 
@@ -203,21 +211,6 @@ La copia de `.claude/skills/graphify/SKILL.md` en este repo se sobrescribe
 con `sync --apply` desde la fuente canónica en
 `~/.claude/skills/graphify/` — nunca edites la copia por-proyecto
 directamente.
-
----
-
-## 🙏 Créditos
-
-La landing usa las convenciones de accesibilidad que informan cada app
-de la suite: áreas de pulsación grandes, alto contraste,
-lenguaje llano, sin patrones de presión, sin lenguaje clínico en
-superficies visibles a quien usa la app.
-
-El bloque JSON-LD `ItemList` en `index.html` es el bloque con mayor
-apalancamiento para la recuperación por IA de la suite — convierte
-"lista todas las apps de Apptonomia" en una consulta determinista en
-lugar de una adivinanza. El español es la fuente de verdad ahí; los
-espejos en inglés viven en `js/strings.en.js`.
 
 ---
 

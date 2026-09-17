@@ -47,13 +47,13 @@
   /* ---------------------------------------------------------------
     * Shared footer injector (apptonomia is a static landing; the
     * core is intentionally minimal — no assets/js/utils.js — so
-    * inyectarPie lives next to App.i18n rather than in a separate
+    * injectFooter lives next to App.i18n rather than in a separate
     * utils module. Fills any <footer data-pie-app>...</footer>
     * marker with the canonical one-link "back to portal" footer
     * used by about/ and legal/. Idempotent: a footer that already
     * has children is skipped.
     * --------------------------------------------------------------- */
-  function inyectarPie() {
+  function injectFooter() {
     var pies = document.querySelectorAll('footer[data-pie-app]');
     for (var i = 0; i < pies.length; i++) {
       var pie = pies[i];
@@ -78,7 +78,7 @@
        time DOMContentLoaded fires, the visible text is already in
        the active locale; this handler only needs to wire the
        click-to-switch behaviour. */
-    inyectarPie();
+    injectFooter();
     var buttons = document.querySelectorAll('.btn-lang');
     function setLocale(locale) {
       activeLocale = locale;

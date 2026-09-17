@@ -8,14 +8,12 @@ window.I18N.en = {
   'core.skipToContent': 'Skip to content',
 
   // --- Top bar ---
-  'deck.contextLabel': 'Institutional deck · 2026',
+  'deck.contextLabel': 'Institutional deck',
   'deck.print': 'Print / PDF',
 
   // --- Slide 1 · Cover ---
   'deck.coverEyebrow': 'Social impact',
   'deck.coverTagline': 'Web apps so every person can learn at their own pace.',
-  'deck.coverDate': '2026',
-  'deck.coverDate': '2026',
   'deck.coverChip1': 'Free, no sign-up',
   'deck.coverChip2': 'Privacy by default',
   'deck.coverChip3': 'Cognitive accessibility',
@@ -26,12 +24,12 @@ window.I18N.en = {
   'deck.coverCardDict': 'Easy-read dictionary',
   'deck.coverCardCards': 'Study flashcards',
   'deck.coverCardTyping': 'Touch typing',
-  'deck.coverCardChess': 'Step-by-step chess',
+  'deck.coverCardChess': 'Adapted games',
 
   // --- Slide 2 · Problem ---
   'deck.problemEyebrow': 'The problem',
   'deck.problemTitle': 'Practising between sessions is almost impossible',
-  'deck.problemLead': 'People with intellectual disabilities practise with their therapist in clinic. Afterwards, at home, at school or in their free time, they are on their own.',
+  'deck.problemLead': 'People with intellectual disabilities practise with their therapist in clinic. Afterwards, at home or in their free time, they are on their own.',
   'deck.problemP1': 'Difficulty finding resources that are adapted to the community and have real practical usefulness.',
   'deck.problemP2': 'Few apps that make the work of educators, families and therapists easier.',
   'deck.problemP3': 'There is no need to collect personal data — and, where it exists, it is especially sensitive.',
@@ -76,17 +74,17 @@ window.I18N.en = {
   'deck.productCalc': 'Calculation and logical reasoning with short, visual activities.',
   'deck.productRoutime': 'Everyday activities to train mind and daily-life skills.',
   'deck.productOkey': 'Money and everyday autonomy, step by step, with a personal-finance simulator.',
-  'deck.productSin': 'Easy-read dictionary with synonyms and ARASAAC pictograms.',
+  'deck.productSin': 'Easy-read dictionary with synonyms and OpenSymbols pictograms.',
   'deck.productMemo': 'Study flashcards to revise at your own pace. One idea per card.',
   'deck.productTec': 'Touch typing on the physical computer keyboard, finger by finger.',
-  'deck.productLudia': 'Step-by-step chess: learn, practice and play with help.',
+  'deck.productLudia': 'Adapted games: learn, practice and play with help.',
   'deck.productMath': 'Math',
   'deck.productRoutine': 'Routines and daily life',
   'deck.productMoney': 'Financial education',
   'deck.productDict': 'Easy read',
   'deck.productCards': 'Flashcards',
   'deck.productTyping': 'Touch typing',
-  'deck.productChess': 'Chess',
+  'deck.productChess': 'Adapted games',
 
   // --- Slide 6 · Organisation ---
   'deck.orgEyebrow': 'Organisation',
@@ -133,7 +131,7 @@ window.I18N.en = {
   'deck.use2Text': 'A complement between sessions. The therapist assigns a specific activity and the person practises at home without sending data to any server.',
   'deck.use3Title': '\ud83c\udfe0  Families and carers',
   'deck.use3Text': 'Direct access from the living-room browser, with nothing to install. Families can see progress on the device itself and erase it when they want.',
-  'deck.use4Title': '\ud83c\udf0d  Public administrations and NGOs',
+  'deck.use4Title': '\ud83c\udf0d  Public entities',
   'deck.use4Text': 'Community deployment or a customised fork under the MIT licence. The suite is reusable for local projects with specific needs.',
 
   // --- Slide 11 · Collaboration ---
@@ -145,13 +143,13 @@ window.I18N.en = {
   'deck.roleClinicalTitle': 'Clinical and education team',
   'deck.roleClinicalText': 'Occupational therapists, special-education teachers, psychologists and speech therapists who test the apps with their population and bring real-world criteria.',
   'deck.roleOutreachTitle': 'Outreach and sustainability team',
-  'deck.roleOutreachText': 'Communications, foundations and public administrations who spread the word, fund maintenance or coordinate community-specific forks.',
+  'deck.roleOutreachText': 'Communications and public entities who spread the word, fund maintenance or coordinate community-specific forks.',
   'deck.collab1Title': 'Institutional outreach',
   'deck.collab1Text': 'Present Apptonomia in your network of centres, professionals and families. Ready-to-use materials.',
   'deck.collab2Title': 'Professional validation',
   'deck.collab2Text': 'Clinical and educational teams who test the apps and bring criteria on how they fit into a session, a classroom or a support plan.',
   'deck.collab3Title': 'Technical or content contribution',
-  'deck.collab3Text': 'Pull requests to the open repositories, new decks in Memofun, new entries in Sinonimia, translations into more languages.',
+  'deck.collab3Text': 'Pull requests to the open repositories, new decks in Memofun, new entries in Sinonimia, new activities in Calculia, Routime, Okeymoney, Teclatlon and Ludia, translations into more languages.',
 
 
   // --- Slide 12 · Closing ---

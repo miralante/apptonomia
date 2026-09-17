@@ -1,28 +1,47 @@
-name: Validate
-
-# Runs the project's structural, i18n and secrets checks on every push and
-# pull request. Deploy to Cloudflare Workers (static assets) is handled by
-# the Cloudflare Git connector reading _headers and wrangler.toml from the
-# repo root — this workflow does not deploy.
+# Canonical CI gate for the Miralante suite (apptonomia is portal-only:
+# no sw.js, so the cache-bump job exits 0 with "~ no sw.js found,
+# skipping").
 #
-# None of the scripts below require npm dependencies: they all run with
-# plain `node` and only use stdlib modules (fs, path, vm, child_process).
-# The repo has no `package.json` (the sibling `sinonimia` project
-# established this pattern) so there is nothing to install.
+# Runs the project's structural, forbidden-terms and secrets checks
+# on every push to master and every pull request against it. Deploy
+# is intentionally NOT in this workflow: deploy to Cloudflare
+# Workers (static assets) is handled by the Cloudflare Git connector
+# reading _headers and wrangler.toml from the repo root.
+#
+# None of the scripts below require npm dependencies: they all run
+# with plain node and only use stdlib modules (fs, path, vm,
+# child_process). The repo has no package.json (the sibling
+# sinonimia project established this pattern) so there is nothing
+# to install.
+#
+# Job list:
+#   1. check           — placeholder no-op (apptonomia is a single
+#                         static page; no scripts/check.js).
+#   2. forbidden-terms — SPEC.md §4 audit across the public landing.
+#   3. cache-bump      — same shape as the rest of the suite; the
+#                         script prints "~ no sw.js found, skipping"
+#                         and exits 0 because the portal ships no SW.
+#   4. secrets-scan    — best-effort grep for accidentally committed
+#                         secrets.
 #
 # The `secrets-scan` job is intentionally best-effort: it uses plain
 # regex patterns that match the most common shapes of accidentally
-# committed secrets, and only fails the pipeline when it finds something
-# in the working tree. It is not a substitute for `gitleaks` or
-# `trufflehog`, and a clean run does not mean "no secrets are present".
-# It is the cheapest possible net for "did anyone paste a key in a
-# hurry?".
+# committed secrets, and only fails the pipeline when it finds
+# something in the working tree. It is not a substitute for
+# `gitleaks` or `trufflehog`, and a clean run does not mean "no
+# secrets are present". It is the cheapest possible net for "did
+# anyone paste a key in a hurry?".
+name: Validate
 
 on:
   push:
     branches: [master]
   pull_request:
     branches: [master]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   check:
@@ -38,11 +57,11 @@ jobs:
           node-version: "20"
 
       - name: Run structural and i18n checks
-        # NOTE: this repo intentionally has no scripts/check.js — the
-        # landing is a single static page (see README.md). The job is
-        # kept as a no-op marker so the `Validate` workflow name matches
-        # the rest of the suite; the substantive audit lives in the
-        # `forbidden-terms` job below.
+        # NOTE: this repo intentionally has no scripts/check.js —
+        # the landing is a single static page (see README.md). The
+        # job is kept as a no-op marker so the `Validate` workflow
+        # name matches the rest of the suite; the substantive audit
+        # lives in the `forbidden-terms` job below.
         run: echo "apptonomia: no scripts/check.js by design; see forbidden-terms job"
 
   forbidden-terms:
@@ -68,6 +87,28 @@ jobs:
 
       - name: Scan landing for disability/OT/minors mentions
         run: node scripts/check-forbidden-terms.js
+
+  cache-bump:
+    name: sw.js VERSION bump check (skipped — portal has no sw.js)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Verify VERSION was bumped when a cached file changed
+        # Same job shape as the rest of the suite (memofun, etc.).
+        # The script prints "~ no sw.js found, skipping" and exits 0
+        # because the portal does not ship a service worker.
+        env:
+          DIFF_BASE: ${{ github.event.pull_request.base.sha || (github.event.before == '0000000000000000000000000000000000000000' && 'HEAD~1') || github.event.before }}
+        run: node scripts/check-version-bump.js
 
   secrets-scan:
     name: secrets scan

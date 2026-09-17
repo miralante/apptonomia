@@ -12,15 +12,15 @@
 </head>
 <body>
   <div class="container legal">
-    <header class="cabecera-legal">
-      <div class="idioma-selector" role="group" aria-label="Elegir idioma">
-        <button type="button" class="btn-idioma" id="btnIdiomaEs" data-locale="es" aria-pressed="false">🇪🇸 Español</button>
-        <button type="button" class="btn-idioma" id="btnIdiomaEn" data-locale="en" aria-pressed="false">🇬🇧 English</button>
+    <header class="header-legal">
+      <div class="lang-selector" role="group" aria-label="Elegir idioma">
+        <button type="button" class="btn-lang" id="btnLangEs" data-locale="es" aria-pressed="false">🇪🇸 Español</button>
+        <button type="button" class="btn-lang" id="btnLangEn" data-locale="en" aria-pressed="false">🇬🇧 English</button>
       </div>
       <div class="logo-legal">🌿</div>
       <h1 data-i18n="legal.pageTitle">Protección de datos</h1>
-      <p class="lema" data-i18n="legal.tagline">Sin registro. Sin cookies. Sin analítica.</p>
-      <p class="entradilla" data-i18n="legal.lead">Apptonomia no pide tus datos personales. Todo lo que guarda cada aplicación vive únicamente en este dispositivo. Aquí explicamos, en detalle, qué se guarda y por qué.</p>
+      <p class="tagline" data-i18n="legal.tagline">Sin registro. Sin cookies. Sin analítica.</p>
+      <p class="lead" data-i18n="legal.lead">Apptonomia no pide tus datos personales. Todo lo que guarda cada aplicación vive únicamente en este dispositivo. Aquí explicamos, en detalle, qué se guarda y por qué.</p>
 
       <nav class="indice" aria-label="Índice de esta página">
         <a href="#responsable" data-i18n="legal.navResponsible">Quién trata tus datos</a>
@@ -31,7 +31,7 @@
       </nav>
     </header>
 
-    <main class="pila">
+    <main class="stack">
 
       <section id="responsable" class="card">
         <h2 data-i18n="legal.responsibleTitle">Quién trata tus datos</h2>
@@ -56,7 +56,7 @@
         <h2 data-i18n="legal.rightsTitle">Tus derechos y cómo ejercerlos</h2>
         <p data-i18n="legal.rightsP1">Como todo lo guardado está en tu dispositivo y no en un servidor, tú tienes el control directo: puedes verlo, cambiarlo o borrarlo en cualquier momento, sin pedírnoslo a nosotros.</p>
         <p data-i18n="legal.rightsP2">Cada aplicación tiene su propio botón de "Borrar mi progreso" en su panel de Ajustes. También puedes borrar estos datos borrando los datos de navegación de tu navegador para cada sitio, desde su configuración.</p>
-        <p><a class="btn btn-secundario" href="../index.html" data-i18n="legal.rightsLinkPortal">Volver al portal</a></p>
+        <p><a class="btn btn-secondary" href="../index.html" data-i18n="legal.rightsLinkPortal">Volver al portal</a></p>
       </section>
 
       <section id="menores" class="card">
@@ -86,11 +86,11 @@
       'use strict';
       function paintLanguageSelector() {
         var active = App.i18n.locale();
-        document.getElementById('btnIdiomaEs').setAttribute('aria-pressed', String(active === 'es'));
-        document.getElementById('btnIdiomaEn').setAttribute('aria-pressed', String(active === 'en'));
+        document.getElementById('btnLangEs').setAttribute('aria-pressed', String(active === 'es'));
+        document.getElementById('btnLangEn').setAttribute('aria-pressed', String(active === 'en'));
       }
-      document.getElementById('btnIdiomaEs').addEventListener('click', function () { App.i18n.setLocale('es'); });
-      document.getElementById('btnIdiomaEn').addEventListener('click', function () { App.i18n.setLocale('en'); });
+      document.getElementById('btnLangEs').addEventListener('click', function () { App.i18n.setLocale('es'); });
+      document.getElementById('btnLangEn').addEventListener('click', function () { App.i18n.setLocale('en'); });
       paintLanguageSelector();
     })();
   </script>

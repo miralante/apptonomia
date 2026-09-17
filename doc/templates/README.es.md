@@ -10,6 +10,7 @@
 [![PWA](https://img.shields.io/badge/PWA-instalable-5A0FC8.svg)](manifest.json)
 [![i18n](https://img.shields.io/badge/i18n-es%20%7C%20en-yellow.svg)](#-documentaci%C3%B3n)
 [![CI](https://img.shields.io/badge/CI-node%20scripts%2Fcheck.js-blue.svg)](.github/workflows/validate.yml)
+[![Pacto del colaborador](https://img.shields.io/badge/Pacto%20del%20colaborador-2.1-4baaaa.svg)](CODE_OF_CONDUCT.es.md)
 
 Aplicación web gratuita y estática, sin dependencias, pensada para
 nuestras personas tipo: **<one-sentence description of what the
@@ -86,6 +87,7 @@ Según tu rol y perfil, te interesa una u otra documentación:
 | Documento | Para quién |
 |---|---|
 | [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) | Familias, terapeutas y desarrolladores que quieran contribuir |
+| [`CODE_OF_CONDUCT.es.md`](CODE_OF_CONDUCT.es.md) | Pacto del colaborador (Contributor Covenant 2.1) |
 | `CLAUDE.md` | Agentes IA: reglas obligatorias y estado del proyecto |
 | [`CLOUDFLARE.md`](CLOUDFLARE.md) | Guía canónica de despliegue en Cloudflare Workers |
 | Historial del proyecto | En `git log`; no se mantiene una hoja de ruta externa |
@@ -188,6 +190,60 @@ Issues y pull requests son bienvenidos. Ver
 (y [`CONTRIBUTING.md`](CONTRIBUTING.md) para la versión en inglés).
 Todas las personas participantes deben seguir
 [`CODE_OF_CONDUCT.es.md`](CODE_OF_CONDUCT.es.md).
+
+---
+
+<!--
+  ┌─────────────────────────────────────────────────────────────────┐
+  │ SECCIÓN OPCIONAL `## 🙏 Créditos` — lee antes de               │
+  │ mantener o eliminar                                              │
+  └─────────────────────────────────────────────────────────────────┘
+
+  Incluye esta sección SOLO cuando {{DISPLAY_ES}} envíe contenido
+  de terceros bajo copyright cuya atribución deba preservarse en
+  la superficie pública (p. ej. pictogramas ARASAAC, currículos
+  oficiales, glosarios de terceros). Cuando la mantengas, la
+  atribución DEBE cumplir los requisitos de la licencia de
+  terceros (CC BY-SA, CC BY-NC-SA, etc.).
+
+  Cuando {{DISPLAY_ES}} solo envíe código y copia de UI original,
+  ELIMINA todo este bloque (el encabezado de sección, los ejemplos
+  de abajo y el `---` final). No hay nada que acreditar y la
+  sección se convierte en relleno.
+
+  Regla canónica + inventario por hermano:
+  [`../../doc/es/guia-de-cumplimiento.md` §9.1](../../doc/es/guia-de-cumplimiento.md#91-sección-opcional--créditos-en-readmemd)
+
+  Patrón de ejemplo A (contenido bajo CC BY-SA — Memofun):
+
+  ## 🙏 Créditos
+
+  La regla "sin IA en el producto" de Memofun se hereda del
+  `SPEC.md` de Apptonomia. El contenido de las barajas lo escribe
+  directamente el agente de IA de programación que trabaja en este
+  repositorio — ver `CLAUDE.md` §"Generating deck content" para
+  las reglas, y [`doc/es/spec.md`](doc/es/spec.md) §2.5 para el
+  tono y los requisitos de lectura fácil.
+
+  La biblioteca `decks/curriculum/` se construye a partir del
+  currículo español de la Comunidad de Madrid y del English
+  National Curriculum (DfE), más las rutas vocacionales Entry
+  Level / BTEC Level 2.
+
+  Patrón de ejemplo B (pictogramas bajo CC BY-NC-SA — Sinonimia):
+
+  ## 🙏 Créditos
+
+  Las definiciones y ejemplos se basan en glosarios públicos de
+  "lenguaje claro" de administraciones y tribunales (IVAP, Red de
+  Lenguaje Claro) y en glosarios médicos pensados para pacientes.
+
+  Los pictogramas en `img/` provienen de
+  [ARASAAC](https://arasaac.org) (autor Sergio Palao, Gobierno
+  de Aragón) bajo licencia CC BY-NC-SA. Si añades un pictograma
+  nuevo de ARASAAC, mantén esa licencia y la atribución del pie
+  — no pueden usarse comercialmente sin permiso de ARASAAC.
+-->
 
 ---
 

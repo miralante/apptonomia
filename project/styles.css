@@ -217,10 +217,6 @@
   color: var(--deck-on-dark-soft);
   margin: 0 0 28px;
 }
-.slide-cover-date {
-  display: inline-block; margin-top: 4px;
-  color: var(--deck-on-dark-soft);
-}
 .slide-cover-chips {
   list-style: none; padding: 0; margin: 0;
   display: flex; flex-wrap: wrap; gap: 8px 12px;
@@ -1008,7 +1004,7 @@
   .slide-cover-card strong { font-size: 0.95rem; }
   .slide-cover-chips { gap: 6px 8px; }
   .slide-cover-chips li { font-size: 0.85rem; padding: 6px 10px; }
-  .slide-cover-date { font-size: 0.9rem; }
+  
   .slide-eyebrow { font-size: 0.7rem; letter-spacing: 0.14em; }
   .slide-title { font-size: 1.55rem !important; line-height: 1.18; }
   .slide-lead { font-size: 1rem; }

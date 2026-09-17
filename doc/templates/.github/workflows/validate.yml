@@ -1,34 +1,150 @@
-name: validate
+# Canonical CI gate for the Miralante suite.
+#
+# Runs the project's structural, i18n, no-clinical-language and
+# service-worker cache-bump checks on every push to the default branch
+# and every pull request against it. Deploy is intentionally NOT in
+# this workflow: deploy to Cloudflare is handled by the Cloudflare
+# Git connector reading wrangler.toml and _headers from the repo root
+# — same model as the sibling projects (Apptonomia, Sinonimia,
+# Okeymoney, Calculia, Memofun, Teclatlon, Routime). No npm install
+# step: every script in scripts/ runs with plain node and only uses
+# stdlib modules (fs, path, vm, child_process).
+#
+# Job list, in order:
+#   1. check         — main gate. Runs scripts/check.js.
+#   2. cache-bump    — pre-deploy safety net. Fails if a file listed in
+#                      sw.js FILES changed in this diff without VERSION
+#                      also being bumped (silently invisible to any
+#                      post-deploy smoke test, so it has to be caught
+#                      from the diff, not after). Skipped automatically
+#                      when the project has no sw.js (portal-only
+#                      projects like Apptonomia).
+#   3. i18n-smoke    — informational: lists every data-i18n* /
+#                      App.i18n.t() key used in a page that isn't
+#                      registered in any locale. Doesn't fail by
+#                      default; missing keys are content gaps to fix
+#                      in strings.<locale>.js, not a CI gate.
+#   4. secrets-scan — best-effort scan for accidentally committed
+#                      secrets (API keys, tokens, private keys);
+#                      pattern-based, not a substitute for GitHub's
+#                      native push protection. Runs scripts/scan-secrets.js.
+#
+# Production smoke testing against the live URL (when the project has
+# one) lives in a sibling .github/workflows/smoke-prod.yml scheduled
+# every 6h + on-demand. Self-hosted deploys (where applicable) live
+# in pages-deploy.yml.
+#
+# Branch names: the suite mixes main and master historically — set
+# `branches: [main]` for projects that ship from main, or
+# `branches: [master]` for projects that ship from master. New
+# siblings should use main.
+name: Validate
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   pull_request:
-    branches: [main]
+    branches: [main, master]
+  workflow_dispatch:
+
+# Cancel in-progress runs for the same branch when a new commit lands.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   check:
     name: node scripts/check.js
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Run the structural check
+
+      - name: Run structural and i18n checks
         run: node scripts/check.js
 
   cache-bump:
-    name: sw.js VERSION bump
+    name: sw.js VERSION bump check
+    # The cache-bump gate is required for projects that ship a sw.js
+    # (calculia, memofun, okeymoney, sinonimia, teclatlon, routime).
+    # Portal-only projects without a sw.js (apptonomia) skip it
+    # gracefully: the script logs "~ no sw.js found, skipping" and
+    # exits 0. The job is kept here so the workflow shape matches the
+    # rest of the suite and a future addition of a sw.js does not
+    # require a workflow change.
     runs-on: ubuntu-latest
-    # Only run for PWA siblings — adjust the path filter if the
-    # sibling is not a PWA (delete this job from the workflow).
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
+          # Need enough history to diff against the parent of the current
+          # HEAD — the script uses HEAD~1 (or DIFF_BASE) as the diff base.
           fetch-depth: 2
-      - uses: actions/setup-node@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Verify sw.js VERSION was bumped on cached-file change
+
+      - name: Verify VERSION was bumped when a cached file changed
+        # DIFF_BASE matches the script's documented contract — see the
+        # header comment in scripts/check-version-bump.js.
+        #
+        # Special cases handled in two layers:
+        #  1. On a PR, use the PR's base SHA (always a real commit,
+        #     no zero-SHA case possible).
+        #  2. On a push:
+        #     - If event.before is the zero SHA ("0000…0"), which only
+        #       happens on a first-ever push to a brand-new branch
+        #       (e.g. a restored branch or a tag), fall back to HEAD~1
+        #       — there is always at least one parent in the line of
+        #       history this CI runs over.
+        #     - Otherwise use event.before normally.
+        # `git diff` against the zero SHA lists *every* file in the
+        # repo as added, which falsely flags every sw.js-cached file
+        # as "changed without a bump" — the fix exists to avoid that
+        # false positive. See scripts/check-version-bump.js for the
+        # matching fallback chain (DIFF_BASE → HEAD~1 → skip).
+        env:
+          DIFF_BASE: ${{ github.event.pull_request.base.sha || (github.event.before == '0000000000000000000000000000000000000000' && 'HEAD~1') || github.event.before }}
         run: node scripts/check-version-bump.js
+
+  i18n-smoke:
+    name: i18n smoke (informational)
+    runs-on: ubuntu-latest
+    # The smoke reports missing keys (content gaps) but does not block
+    # the pipeline: it exits 0 by default and only fails when --strict
+    # is passed. The content session is responsible for closing the
+    # gaps surfaced in the job log.
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: i18n keys smoke test
+        run: node scripts/i18n-keys-smoke.js
+
+  secrets-scan:
+    name: scan for accidentally committed secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Scan for API keys, tokens, private keys
+        # Same script that maintainers run locally; pattern-based,
+        # cheap, and intentionally not a substitute for gitleaks /
+        # trufflehog. A clean run does not mean "no secrets are
+        # present", but a dirty run means we just saved a PR from
+        # committing an obvious paste.
+        run: node scripts/scan-secrets.js

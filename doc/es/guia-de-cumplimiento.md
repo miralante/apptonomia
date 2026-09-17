@@ -586,6 +586,47 @@ para andamios de archivo para copiar y pegar.
 | `settings/` | recomendado (PWA) | Ruta oculta de reset, ver §5. |
 | `_redirects` | opcional | Redirecciones estáticas o dinámicas (límite por archivo de Cloudflare: 2 100). |
 
+### 9.1 Sección opcional `## 🙏 Créditos` en `README.md`
+
+La sección opcional `## 🙏 Créditos` forma parte del template de
+README bajo [`templates/`](../templates/), pero **no es
+obligatoria** — solo se requiere cuando el proyecto envía
+contenido de terceros bajo un copyright cuya atribución deba
+preservarse públicamente.
+
+- **Incluir** la sección cuando el proyecto envíe contenido cuya
+  licencia exija mantener la atribución visible en la superficie
+  pública. Concretamente, hoy:
+  - **Sinonimia** — los pictogramas provienen de
+    [ARASAAC](https://arasaac.org) (Sergio Palao / Gobierno de
+    Aragón) bajo **CC BY-NC-SA**, y las definiciones del
+    diccionario se basan en glosarios públicos de lenguaje claro
+    (IVAP, Red de Lenguaje Claro) y glosarios médicos. La sección
+    `## 🙏 Créditos` atribuye estas fuentes.
+  - **Memofun** — el contenido de los mazos se construye a partir
+    de los currículos oficiales de la Comunidad de Madrid y del
+    currículo nacional inglés (DfE), más las rutas de formación
+    profesional Entry Level / BTEC Level 2. La sección
+    `## 🙏 Créditos` atribuye esos currículos.
+- **Omitir** la sección cuando el proyecto envíe solo código y
+  copia de UI original — no hay nada que acreditar y la sección
+  se convierte en relleno. Concretamente, hoy:
+  - **Apptonomia** (portal), **Calculia**, **Okeymoney**,
+    **Teclatlon** y **Routime** la omiten. Eliminar una sección
+    `## 🙏 Créditos` existente es seguro siempre que la sección
+    no esté enlazada desde ningún otro doc (un grep global por
+    `## 🙏 Créditos` y `sección de créditos` no devuelve
+    coincidencias).
+
+Cuando la sección SÍ se incluye, la atribución **debe cumplir**
+la licencia de terceros: como mínimo el nombre de la fuente, su
+autor y su licencia; para licencias CC, la URL canónica de la
+licencia; para ARASAAC, una mención explícita de que el uso
+comercial requiere su permiso. La sección `## 📄 Licencia` es el
+lugar para la licencia propia del proyecto (MIT, o CC BY-SA para
+contenido de algunos hermanos); `## 🙏 Créditos` es para las
+piezas de terceros.
+
 ---
 
 ## 10. Auto-verificación de cumplimiento antes de abrir un PR
@@ -609,6 +650,152 @@ fila apunta al doc que explica la regla.
 | 12 | He añadido (o no toqué) el nodo `FAQPage` en el JSON-LD, con 3–5 pares `{question, answer}` redactados sin lenguaje clínico (§3). | §7.2 arriba |
 | 13 | He generado (o no toqué) `/llms.txt` en la raíz del proyecto a partir de `app.config.json` y `/llms.txt` se enlaza con `<link rel="alternate" type="text/markdown">`. | §7.3 arriba |
 | 14 | El `robots.txt` del proyecto (si existe o lo he añadido) permite los crawlers de IA documentados en §7.3 sin bloquearlos. | §7.3 arriba |
+
+---
+
+## 11. Consolidar trabajo de sesiones paralelas en toda la suite
+
+La suite suele hospedar **dos o más sesiones de IA en paralelo**
+trabajando en diferentes hermanos (o en distintas partes del
+mismo hermano) al mismo tiempo. El metaproyecto ofrece una
+checklist única para quien consolida el trabajo — típicamente la
+última sesión activa en la suite, o un operador humano
+revisando PRs en los siete repos. Ejecuta esta checklist en
+**cada hermano** antes de publicar.
+
+### 11.1 Detectar sesiones paralelas activas
+
+Antes de tocar `sw.js` en cualquier hermano, comprueba si otra
+sesión está escribiendo activamente en el repo. Regla práctica:
+**una sesión sigue "activa" si cualquier fichero del repo tiene
+`LastWriteTime` menor a 10 minutos**. La verificación rápida
+desde PowerShell:
+
+```powershell
+Get-ChildItem -Path <hermano> -File -Recurse |
+  Where-Object { $_.LastWriteTime -gt (Get-Date).AddMinutes(-10) } |
+  Measure-Object -Line
+```
+
+Si el contador es **0**, la sesión ha terminado y es seguro
+editar. Si es **> 0**, otra sesión sigue escribiendo — espera o
+coordina antes de editar, según §A.3 de `CLAUDE.md`
+("Never delete or revert changes from the user or another session
+to simplify your task; integrate them or explain the conflict").
+
+### 11.2 La regla del bump de `VERSION`
+
+La estrategia cache-first del service-worker hace que una
+persona visitante recurrente no vea un cambio de código hasta
+que se incrementa `VERSION` en `sw.js`. El job `cache-bump` en
+`.github/workflows/validate.yml` falla el PR si un archivo en
+`ARCHIVOS` / `FILES` cambió en el diff pero `VERSION` no. El
+gate local equivalente es `scripts/check-version-bump.js`.
+
+**Regla**: cada commit que toca un archivo en `ARCHIVOS` /
+`FILES` debe bumpear `VERSION` en el mismo commit. El bump es
+manual — todavía no hay auto-bump — así que quien cierra el PR
+o el push es responsable de hacerlo.
+
+### 11.3 Runbook de consolidación (por hermano)
+
+Para cada uno de los siete hermanos, cuando cierres las sesiones
+paralelas y quieras publicar, ejecuta este runbook.
+
+1. **Comprobación de actividad** — confirma que no hay sesión
+   activa (ver §11.1). Si la hay, espera o coordina.
+2. **Lee la `VERSION` actual** desde `sw.js`:
+   ```bash
+   grep '^var VERSION' <hermano>/sw.js
+   ```
+   El formato es `'<slug>-v<N>'` (p. ej. `sinonimia-v52`).
+3. **Bumpea `VERSION` en 1** (o más si la sesión paralela ya
+   bumpeó una vez mientras no mirabas — relee el diff con
+   `git log -p sw.js` para conocer el último valor comiteado
+   antes de bumpear):
+   ```bash
+   # Manual: edita sw.js, cambia el literal v<N> por v<N+1>
+   ```
+4. **Ejecuta el gate local** para confirmar que el bump hace
+   pasar el check:
+   ```bash
+   node <hermano>/scripts/check-version-bump.js
+   ```
+   Salida esperada (una línea, mojibake en algunas terminales):
+   ```
+   ✓ sw.js VERSION bump check passed (N cached file(s) changed,
+     VERSION correctly bumped: <slug>-v<M> -> <slug>-v<N>)
+   ```
+5. **Ejecuta el check estructural** para confirmar que nada
+   más se rompió:
+   ```bash
+   node <hermano>/scripts/check.js
+   ```
+6. **Stage, commit, push** — todo en una pasada, con un mensaje
+   descriptivo:
+   ```bash
+   cd <hermano>
+   git add .
+   git commit -m "chore: bump sw.js VERSION (v<N-1>->v<N>) + sync CI
+
+   - sw.js: bumpear VERSION de <slug>-v<N-1> a <slug>-v<N>
+     (gate cache-bump según CLAUDE.md §B.1).
+   - .github/workflows/validate.yml: <describe cualquier cambio
+     de sincronización>.
+   - <resume los cambios de contenido de la sesión paralela>.
+   "
+   git push
+   ```
+7. **Verifica el gate CI** abriendo la pestaña de GitHub Actions
+   para el commit pusheado y confirmando que el job `cache-bump`
+   muestra un check verde. Si está rojo, el bump fue
+   incorrecto — arréglalo, modifica el commit (`git commit
+   --amend`), haz force-push (es un flujo single-author, así que
+   force-push es seguro) y vuelve a verificar.
+
+### 11.4 Log de trabajo pendiente por hermano
+
+Esta sección registra lo que queda por commitear en cada
+hermano en el momento de escribir. Actualízala cuando cambie el
+estado (una entrada por hermano, una línea del estado actual).
+
+| Hermano | Trabajo pendiente | Última actualización |
+|---|---|---|
+| `apptonomia/` | Workflow + template sincronizados (turno 6). `scripts/check-version-bump.js` creado (turno 7). Nada pendiente en `sw.js` (el portal no tiene SW). | 2026-09-16 |
+| `calculia/` | Workflow + template sincronizados (turno 6). Tiene el job `cache-bump` y el script (turno 6). **`sw.js` modificado por la sesión paralela; VERSION sigue en `v66`; el gate fallará hasta que se bumpee.** | 2026-09-16 |
+| `memofun/` | **Commiteado localmente** como `2fb2cf1` (turno 9): `sw.js` bumpeado a `v73`, sync de workflow, badges README, contenido de barajas de la sesión paralela. **No pusheado** — pendiente de decisión de `git push`. | 2026-09-16 |
+| `okeymoney/` | **Commiteado localmente** como `aea54aa` (turno 9): `sw.js` bumpeado a `v113`, sync de workflow, badges README, tools/* + assets/* de la sesión paralela. **No pusheado** — pendiente de decisión de `git push`. | 2026-09-16 |
+| `sinonimia/` | Workflow + template sincronizados (turno 7). Tiene el job `cache-bump` y el script (turno 7). **`sw.js` modificado por la sesión paralela; VERSION sigue en `v52`; el gate fallará hasta que se bumpee.** | 2026-09-16 |
+| `teclatlon/` | **Commiteado localmente** como `fed4d3a` (turno 9): `sw.js` bumpeado a `v52`, sync de workflow, badges README, about/ + assets/ de la sesión paralela. **No pusheado** — pendiente de decisión de `git push`. | 2026-09-16 |
+| `routime/` | Workflow + template sincronizados (turno 6). Tiene el job `cache-bump` y el script (turno 6). **`sw.js` modificado por la sesión paralela; VERSION sigue en `v25`; el gate fallará hasta que se bumpee.** | 2026-09-16 |
+
+### 11.5 Log de decisiones (decisión 1 = A, decisión 2 = N, decisión 3 = pendiente)
+
+Esta sección registra el **resultado** de las tres decisiones
+del operador que se pidieron en el turno 9 de la sesión de
+consolidación del 2026-09-16. Cada decisión se anota aquí una
+vez tomada para que futuras sesiones vean la justificación, no
+solo el estado.
+
+- **Decisión 1 (commit local, sin push) = A**. El operador
+  eligió consolidar el trabajo en commits locales en
+  `memofun/`, `okeymoney/` y `teclatlon/` (los tres hermanos
+  cuyas sesiones paralelas habían terminado más de 3 horas
+  antes del bump). Hashes de commit: `2fb2cf1` (memofun),
+  `aea54aa` (okeymoney), `fed4d3a` (teclatlon).
+- **Decisión 2 (bumpear `calculia`, `sinonmia`, `routime`) =
+  N**. El operador eligió dejar intactos los tres hermanos con
+  sesiones paralelas activas, por el principio de que quien
+  hace el bump debe ser quien cierra la sesión (según §A.3 y el
+  patrón "Bump liberally rather than conservatively" del §B.1
+  del `CLAUDE.md` de cada hermano).
+- **Decisión 3 (`git push` en los tres hermanos commiteados) =
+  pendiente**. El operador aún no ha decidido si publica los
+  tres commits locales. Hasta que se resuelva, `origin/main`
+  en esos repos sigue reflejando el estado previo a la
+  consolidación. La próxima sesión — o esta, si se re-abre —
+  debe o bien pushearlos o revertir los commits locales antes
+  de seguir trabajando.
 
 ---
 

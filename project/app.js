@@ -1,6 +1,6 @@
 /* ==========================================================================
    Apptonomia — Deck institucional (deck/app.js)
-   Navegación por teclado (←/→, Inicio/Fin, Espacio), botones, contador
+   Navegación por teclado (←/→, Inicio/Fin, Espacio), buttons, contador
    de slide y selector de idioma (es/en) sobre los strings declarados en
    strings.es.js / strings.en.js. Sin dependencias, accesible por diseño.
 
@@ -9,7 +9,7 @@
    - data-i18n="key" -> reemplaza textContent.
    - data-i18n-aria="key" -> reemplaza aria-label.
    - data-i18n-aria-pressed="key" -> toggle aria-pressed según el texto
-     ("true"/"false"), usado por los botones ES/EN.
+     ("true"/"false"), usado por los buttons ES/EN.
    - Sin frameworks, sin librerías.
    ========================================================================== */
 
@@ -137,7 +137,7 @@
         goTo(slides.length - 1);
         break;
       case 'Escape':
-        // Lleva al inicio si se ha hecho scroll fuera del escenario.
+        // Lleva al inicio si se ha done scroll fuera del scenario.
         if (window.scrollY > 100) {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }

@@ -9,13 +9,12 @@ window.I18N.es = {
   'core.skipToContent': 'Ir al contenido',
 
   // --- Marco superior ---
-  'deck.contextLabel': 'Deck institucional · 2026',
+  'deck.contextLabel': 'Deck institucional',
   'deck.print': 'Imprimir / PDF',
 
   // --- Slide 1 · Portada ---
   'deck.coverEyebrow': 'Impacto social',
   'deck.coverTagline': 'Aplicaciones web para que cada persona aprenda a su propio ritmo.',
-  'deck.coverDate': '2026',
   'deck.coverChip1': 'Gratis y sin registro',
   'deck.coverChip2': 'Privacidad por defecto',
   'deck.coverChip3': 'Accesibilidad cognitiva',
@@ -26,12 +25,12 @@ window.I18N.es = {
   'deck.coverCardDict': 'Diccionario f\u00e1cil',
   'deck.coverCardCards': 'Tarjetas de estudio',
   'deck.coverCardTyping': 'Mecanograf\u00eda',
-  'deck.coverCardChess': 'Ajedrez paso a paso',
+  'deck.coverCardChess': 'Juegos adaptados',
 
   // --- Slide 2 · El problema ---
   'deck.problemEyebrow': 'El problema',
   'deck.problemTitle': 'Aprender entre sesiones es casi imposible',
-  'deck.problemLead': 'Las personas con discapacidad intelectual practican con su terapeuta en consulta. Despu\u00e9s, en casa, en el colegio o en su tiempo libre, est\u00e1n solas.',
+  'deck.problemLead': 'Las personas con discapacidad intelectual practican con su terapeuta en consulta. Despu\u00e9s, en casa o en su tiempo libre, est\u00e1n solas.',
   'deck.problemP1': 'Dificultad para encontrar recursos adaptados al colectivo y con utilidad pr\u00e1ctica real.',
   'deck.problemP2': 'Pocas aplicaciones que faciliten la labor de educadores, familias y terapeutas.',
   'deck.problemP3': 'No hay necesidad de recoger datos personales, son especialmente sensibles.',
@@ -76,17 +75,17 @@ window.I18N.es = {
   'deck.productCalc': 'C\u00e1lculo y razonamiento l\u00f3gico con actividades cortas y visuales.',
   'deck.productRoutime': 'Actividades cotidianas para entrenar mente y habilidades de la vida diaria.',
   'deck.productOkey': 'Dinero y autonom\u00eda cotidiana, paso a paso, con un simulador de manejo de finanzas.',
-  'deck.productSin': 'Diccionario en lectura f\u00e1cil con sin\u00f3nimos y pictogramas ARASAAC.',
+  'deck.productSin': 'Diccionario en lectura f\u00e1cil con sin\u00f3nimos y pictogramas OpenSymbols.',
   'deck.productMemo': 'Tarjetas de estudio para repasar a tu ritmo. Cada tarjeta, una idea.',
   'deck.productTec': 'Mecanograf\u00eda con el teclado f\u00edsico del ordenador, dedo a dedo.',
-  'deck.productLudia': 'Ajedrez, paso a paso: ense\u00f1a, practica y juega con ayuda.',
+  'deck.productLudia': 'Juegos adaptados: aprende, practica y juega con ayuda.',
   'deck.productMath': 'Matem\u00e1ticas',
   'deck.productRoutine': 'Rutinas y vida diaria',
   'deck.productMoney': 'Educaci\u00f3n financiera',
   'deck.productDict': 'Lectura f\u00e1cil',
   'deck.productCards': 'Flashcards',
   'deck.productTyping': 'Mecanograf\u00eda',
-  'deck.productChess': 'Ajedrez',
+  'deck.productChess': 'Juegos adaptados',
 
   // --- Slide 6 · Organizaci\u00f3n ---
   'deck.orgEyebrow': 'Organizaci\u00f3n',
@@ -133,7 +132,7 @@ window.I18N.es = {
   'deck.use2Text': 'Complemento entre sesiones. La terapeuta asigna una actividad concreta y la persona la practica en casa, sin enviar datos a ning\u00fan servidor.',
   'deck.use3Title': '\ud83c\udfe0  Familias y personas cuidadoras',
   'deck.use3Text': 'Acceso directo desde el navegador del sal\u00f3n, sin instalar nada. Las familias pueden ver el progreso en el propio dispositivo y borrarlo cuando quieran.',
-  'deck.use4Title': '\ud83c\udf0d  Administraciones p\u00fablicas y ONG',
+  'deck.use4Title': '\ud83c\udf0d  Entidades P\u00fablicas',
   'deck.use4Text': 'Despliegue en comunidad o fork personalizado bajo licencia MIT. La suite es reutilizable para proyectos locales con necesidades espec\u00edficas.',
 
   // --- Slide 11 · Colaboraci\u00f3n ---
@@ -145,13 +144,13 @@ window.I18N.es = {
   'deck.roleClinicalTitle': 'Equipo cl\u00ednico y educativo',
   'deck.roleClinicalText': 'Terapeutas ocupacionales, maestras de educaci\u00f3n especial, psic\u00f3logas y logopedas que prueban las apps con su poblaci\u00f3n y aportan criterios de uso real.',
   'deck.roleOutreachTitle': 'Equipo de difusi\u00f3n y sostenibilidad',
-  'deck.roleOutreachText': 'Personas de comunicaci\u00f3n, fundaciones y administraciones que dan a conocer la suite, financian su mantenimiento o coordinan forks adaptados a su comunidad.',
+  'deck.roleOutreachText': 'Personas de comunicaci\u00f3n y Entidades P\u00fablicas que dan a conocer la suite, financian su mantenimiento o coordinan forks adaptados a su comunidad.',
   'deck.collab1Title': 'Difusi\u00f3n institucional',
   'deck.collab1Text': 'Presentar Apptonomia en vuestra red de centros, profesionales o familias. Material listo para usar.',
   'deck.collab2Title': 'Validaci\u00f3n profesional',
   'deck.collab2Text': 'Equipos cl\u00ednicos y educativos que prueben las apps y aporten criterios sobre c\u00f3mo encajan en una sesi\u00f3n, un aula o un plan de apoyo.',
   'deck.collab3Title': 'Contribuci\u00f3n t\u00e9cnica o de contenido',
-  'deck.collab3Text': 'Pull requests a los repositorios abiertos, nuevas barajas en Memofun, nuevos t\u00e9rminos en Sinonimia, traducciones a m\u00e1s idiomas.',
+  'deck.collab3Text': 'Pull requests a los repositorios abiertos, nuevas barajas en Memofun, nuevos t\u00e9rminos en Sinonimia, nuevas actividades en Calculia, Routime, Okeymoney, Teclatlon y Ludia, traducciones a m\u00e1s idiomas.',
 
 
   // --- Slide 12 · Cierre ---
@@ -166,7 +165,7 @@ window.I18N.es = {
   'deck.langTitle': 'Multilingüe por defecto, ampliable por colaboración',
   'deck.langLead': 'Cada aplicación de la suite nace con un n\u00facleo multilingüe: espa\u00f1ol e ingl\u00e9s como idiomas base. La arquitectura est\u00e1 preparada para crecer con m\u00e1s lenguas sin reescribir c\u00f3digo, simplemente a\u00f1adiendo archivos de traducci\u00f3n.',
   'deck.langP1': 'Detecci\u00f3n autom\u00e1tica por el idioma del navegador, con selector manual siempre visible.',
-  'deck.langP2': 'Aislamiento por archivo: cada idioma vive en su propio sfichero .js, sin tocar el resto del c\u00f3digo.',
+  'deck.langP2': 'Aislamiento por archivo: cada idioma vive en su propio strings.&lt;locale&gt;.js, sin tocar el resto del c\u00f3digo.',
   'deck.langP3': 'Cobertura completa: textos de la interfaz, mensajes de feedback, alertas y microcopy.',
   'deck.langP4': 'Lectura f\u00e1cil: las traducciones siguen la norma UNE 153101 tambi\u00e9n en otros idiomas.',
   'deck.langHowTitle': '¿Quieres a\u00f1adir un idioma?',
