@@ -130,7 +130,7 @@ window.I18N.es = {
   'deck.use1Text': 'Refuerzo entre clases para estudiantes con necesidades de apoyo. Se instala como PWA en una tablet del aula y se reutiliza cada curso sin licencias.',
   'deck.use2Title': '\ud83e\ude7a  Cl\u00ednicas y consultas de terapia ocupacional',
   'deck.use2Text': 'Complemento entre sesiones. La terapeuta asigna una actividad concreta y la persona la practica en casa, sin enviar datos a ning\u00fan servidor.',
-  'deck.use3Title': '\ud83c\udfe0  Familias y personas cuidadoras',
+  'deck.use3Title': '\ud83c\udfe0  Familias',
   'deck.use3Text': 'Acceso directo desde el navegador del sal\u00f3n, sin instalar nada. Las familias pueden ver el progreso en el propio dispositivo y borrarlo cuando quieran.',
   'deck.use4Title': '\ud83c\udfe2  Entidades p\u00fablicas',
   'deck.use4Text': 'Despliegue en comunidad o fork personalizado bajo licencia MIT. La suite es reutilizable para proyectos locales con necesidades espec\u00edficas.',
