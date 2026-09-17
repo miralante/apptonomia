@@ -3,10 +3,10 @@
 # skipping").
 #
 # Runs the project's structural, forbidden-terms and secrets checks
-# on every push to master and every pull request against it. Deploy
-# is intentionally NOT in this workflow: deploy to Cloudflare
-# Workers (static assets) is handled by the Cloudflare Git connector
-# reading _headers and wrangler.toml from the repo root.
+# on every push to main and every pull request against it. Deploy
+# to Cloudflare Workers (static assets) is handled by the `deploy`
+# job below — it runs `wrangler deploy` on every push to main after
+# all validation jobs pass.
 #
 # None of the scripts below require npm dependencies: they all run
 # with plain node and only use stdlib modules (fs, path, vm,
@@ -35,9 +35,9 @@ name: Validate
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -124,3 +124,19 @@ jobs:
 
       - name: Scan for accidentally committed secrets
         run: node scripts/scan-secrets.js
+
+  deploy:
+    name: deploy to Cloudflare Workers
+    # Only deploy on push to main (not on pull requests).
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: [check, forbidden-terms, cache-bump, secrets-scan]
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
