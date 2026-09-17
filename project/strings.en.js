@@ -164,7 +164,7 @@ window.I18N.en = {
   'deck.langTitle': 'Multilingual by default, extensible by collaboration',
   'deck.langLead': 'Every app in the suite ships with a multilingual core: Spanish and English as the base languages. The architecture is ready to grow with more languages without rewriting code, just by adding translation files.',
   'deck.langP1': 'Automatic detection from the browser language, with a manual selector always visible.',
-  'deck.langP2': 'File-level isolation: each language lives in its own sfile .js, without touching the rest of the code.',
+  'deck.langP2': 'File-level isolation: each language lives in its own file .js, without touching the rest of the code.',
   'deck.langP3': 'Full coverage: interface copy, feedback messages, alerts and microcopy.',
   'deck.langP4': 'Easy read: translations follow the UNE 153101 standard in other languages too.',
   'deck.langHowTitle': 'Want to add a language?',
