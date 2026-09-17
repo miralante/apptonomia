@@ -176,5 +176,5 @@ window.I18N.es = {
   'deck.langCta': 'Una buena traducci\u00f3n ayuda a cientos de familias. La gu\u00eda paso a paso vive en cada repositorio, en doc/<lang>/I18N.md.',
 
   // --- Pie ---
-  'deck.footer': 'Deck institucional para entidades colaboradoras'
+  'deck.footer': 'Presentaci\u00f3n institucional'
 };

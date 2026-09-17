@@ -175,5 +175,5 @@ window.I18N.en = {
   'deck.langCta': 'A good translation helps hundreds of families. The step-by-step guide lives in each repository, at doc/<lang>/I18N.md.',
 
   // --- Footer ---
-  'deck.footer': 'Institutional deck for partner organisations'
+  'deck.footer': 'Institutional presentation'
 };
