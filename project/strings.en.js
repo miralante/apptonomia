@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    Apptonomia — Deck institucional · strings.en.js
    English mirror. Keep key parity with strings.es.js.
    ========================================================================== */
@@ -169,10 +169,10 @@ window.I18N.en = {
   'deck.langP4': 'Easy read: translations follow the UNE 153101 standard in other languages too.',
   'deck.langHowTitle': 'Want to add a language?',
   'deck.langStep1': 'Fork the repository of the app you want to translate.',
-  'deck.langStep2': 'Copy strings.es.js as strings.&lt;your-locale&gt;.js and translate the keys.',
+  'deck.langStep2': 'Copy strings.es.js as strings.<your-locale>.js and translate the keys.',
   'deck.langStep3': 'Register the language in the selector switcher in the header.',
   'deck.langStep4': 'Open a pull request. We review it with you and ship it.',
-  'deck.langCta': 'A good translation helps hundreds of families. The step-by-step guide lives in each repository, at doc/&lt;lang&gt;/I18N.md.',
+  'deck.langCta': 'A good translation helps hundreds of families. The step-by-step guide lives in each repository, at doc/<lang>/I18N.md.',
 
   // --- Footer ---
   'deck.footer': 'Institutional deck for partner organisations'
