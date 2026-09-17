@@ -165,7 +165,7 @@ window.I18N.es = {
   'deck.langTitle': 'Multilingüe por defecto, ampliable por colaboración',
   'deck.langLead': 'Cada aplicación de la suite nace con un n\u00facleo multilingüe: espa\u00f1ol e ingl\u00e9s como idiomas base. La arquitectura est\u00e1 preparada para crecer con m\u00e1s lenguas sin reescribir c\u00f3digo, simplemente a\u00f1adiendo archivos de traducci\u00f3n.',
   'deck.langP1': 'Detecci\u00f3n autom\u00e1tica por el idioma del navegador, con selector manual siempre visible.',
-  'deck.langP2': 'Aislamiento por archivo: cada idioma vive en su propio strings.&lt;locale&gt;.js, sin tocar el resto del c\u00f3digo.',
+  'deck.langP2': 'Aislamiento por archivo: cada idioma vive en su propio strings.<locale>.js, sin tocar el resto del c\u00f3digo.',
   'deck.langP3': 'Cobertura completa: textos de la interfaz, mensajes de feedback, alertas y microcopy.',
   'deck.langP4': 'Lectura f\u00e1cil: las traducciones siguen la norma UNE 153101 tambi\u00e9n en otros idiomas.',
   'deck.langHowTitle': '¿Quieres a\u00f1adir un idioma?',
@@ -173,7 +173,7 @@ window.I18N.es = {
   'deck.langStep2': 'Copia strings.es.js como strings.<tu-idioma>.js y traduce las claves.',
   'deck.langStep3': 'Registra el idioma en el selector y en el conmutador de la cabecera.',
   'deck.langStep4': 'Abre un pull request. Lo revisamos contigo y lo publicamos.',
-  'deck.langCta': 'Una buena traducci\u00f3n ayuda a cientos de familias. La gu\u00eda paso a paso vive en cada repositorio, en doc/&lt;lang&gt;/I18N.md.',
+  'deck.langCta': 'Una buena traducci\u00f3n ayuda a cientos de familias. La gu\u00eda paso a paso vive en cada repositorio, en doc/<lang>/I18N.md.',
 
   // --- Pie ---
   'deck.footer': 'Deck institucional para entidades colaboradoras'

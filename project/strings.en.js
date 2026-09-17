@@ -172,7 +172,7 @@ window.I18N.en = {
   'deck.langStep2': 'Copy strings.es.js as strings.<your-locale>.js and translate the keys.',
   'deck.langStep3': 'Register the language in the selector switcher in the header.',
   'deck.langStep4': 'Open a pull request. We review it with you and ship it.',
-  'deck.langCta': 'A good translation helps hundreds of families. The step-by-step guide lives in each repository, at doc/&lt;lang&gt;/I18N.md.',
+  'deck.langCta': 'A good translation helps hundreds of families. The step-by-step guide lives in each repository, at doc/<lang>/I18N.md.',
 
   // --- Footer ---
   'deck.footer': 'Institutional deck for partner organisations'
