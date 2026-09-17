@@ -95,7 +95,7 @@ window.I18N.en = {
   'deck.orgP3': 'Shared conventions. Structure, accessibility, i18n and offline mode are common.',
   'deck.orgP4': 'Lightweight governance. Documented roles and CLAUDE.md as the operational contract.',
   'deck.orgP5': 'Open source by design. The full suite — code, content, product decisions and roadmaps — lives in public repositories under the MIT licence. Public issues and pull requests, open continuous integration, no telemetry and no backend to hide.',
-  'deck.orgP6': 'Forks welcome. An administration, NGO or school can maintain a tailored version for its community without asking for permission.',
+  'deck.orgP6': 'Adaptations welcome. An administration, NGO or school can adapt and maintain a version for its community without asking for permission.',
   'deck.orgReposTitle': 'GitHub repositories',
 
   // --- Slide 7 · Tech ---

@@ -96,7 +96,7 @@ window.I18N.es = {
   'deck.orgP3': 'Convenciones comunes. Estructura, accesibilidad, i18n y modo offline compartidos.',
   'deck.orgP4': 'Gobernanza ligera. Roles documentados y CLAUDE.md como contrato operativo.',
   'deck.orgP5': 'C\u00f3digo abierto por dise\u00f1o. La suite completa \u2014 c\u00f3digo, contenidos, decisiones de producto y hojas de ruta \u2014 vive en repositorios p\u00fablicos bajo licencia MIT. Issues y pull requests p\u00fablicos, integraci\u00f3n continua abierta, sin telemetr\u00eda ni backend que ocultar.',
-  'deck.orgP6': 'Forks bienvenidos. Una administraci\u00f3n, una ONG o un centro educativo puede mantener una variante adaptada a su comunidad sin pedir permiso.',
+  'deck.orgP6': 'Adaptaciones permitidas. Una administraci\u00f3n, una ONG o un centro educativo puede adaptar y mantener una variante para su comunidad sin pedir permiso.',
   'deck.orgReposTitle': 'Repositorios de GitHub',
 
   // --- Slide 7 · Tecnolog\u00eda ---
