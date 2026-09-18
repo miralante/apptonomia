@@ -252,7 +252,8 @@
   border: 1px solid var(--deck-border-on-dark);
   border-radius: 16px;
   padding: 18px 14px;
-  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  text-align: center;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
@@ -357,6 +358,7 @@
   border: 1px solid #ECE6D9;
   border-radius: 16px;
   padding: 24px;
+  text-align: center;
 }
 .slide-pillar-icon {
   display: inline-flex;
@@ -430,6 +432,7 @@
   border-radius: 14px;
   padding: 22px 20px 24px;
   display: flex; flex-direction: column; gap: 8px;
+  align-items: center; text-align: center;
   position: relative;
 }
 .slide-product[data-accent="#1B6CA8"] { --p-accent: #1B6CA8; }
@@ -637,6 +640,7 @@
   border: 1px solid #ECE6D9;
   border-radius: 14px;
   padding: 24px;
+  text-align: center;
 }
 .slide-usecase h3 {
   margin: 0 0 8px;
