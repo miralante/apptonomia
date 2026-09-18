@@ -22,7 +22,7 @@ if (window.App.i18n) {
       words: 'Words',
       keyboard: 'Keyboard',
       activities: 'Activities',
-      chess: 'Chess'
+      chess: 'Adapted games'
     },
     projects: {
       calculia: 'Calculation and logical reasoning through short, visual activities.',
@@ -83,7 +83,7 @@ if (window.App.i18n) {
       navOrigin: 'The origin',
       navPrinciples: 'The principles',
       navTech: 'How it is built',
-      navLudia: 'Ludia: chess',
+      navLudia: 'Ludia: adapted games',
       navSiblings: 'The six apps',
       navAuthorship: 'Who makes it',
       navCollaborate: 'How to help',
@@ -125,8 +125,8 @@ if (window.App.i18n) {
       techItem6Text: 'every piece of text lives in a file per language. Today the suite is available in Spanish (Spain) and English.',
       techItem7Label: 'External dependencies: none',
       techItem7Text: ', except for downloading the Atkinson Hyperlegible and Nunito typefaces (chosen for their high legibility).',
-      ludiaTitle: 'Ludia: step-by-step chess',
-      ludiaIntro: 'The newest app in the suite teaches chess with adaptations so each person can progress at their own pace. It follows the same principles as the rest (autonomy, no pressure, cognitive accessibility) and adds two specific blocks: what the game brings, and the adaptation strategies that make it playable for everyone.',
+      ludiaTitle: 'Ludia: step-by-step adapted games',
+      ludiaIntro: 'The newest app in the suite teaches adapted games so each person can progress at their own pace. It follows the same principles as the rest (autonomy, no pressure, cognitive accessibility) and adds two specific blocks: what the games bring, and the adaptation strategies that make them playable for everyone.',
       ludiaBenefitsTitle: '🧠 Key benefits',
       ludiaBenefit1: '<strong>Cognitive development:</strong> it improves memory, attention, logical reasoning and problem-solving skills.',
       ludiaBenefit2: '<strong>Autonomy and self-esteem:</strong> it offers a space for leisure and personal growth where each player advances at their own potential.',

@@ -228,7 +228,7 @@ Las aplicaciones reales viven en sus propios repositorios:
 | [Okeymoney](https://okeymoney.apptonomia.uk/) | Finanzas personales y autonomía cotidiana | [github.com/miralante/okeymoney](https://github.com/miralante/okeymoney) |
 | [Sinonimia](https://sinonimia.apptonomia.uk/) | Diccionario en lectura fácil | [github.com/miralante/sinonimia](https://github.com/miralante/sinonimia) |
 | [Teclatlon](https://teclatlon.apptonomia.uk/) | Mecanografía con el teclado físico | [github.com/miralante/teclatlon](https://github.com/miralante/teclatlon) |
-| [Ludia](https://ludia.apptonomia.uk/) | Ajedrez: lecciones, ejercicios y juego con ayuda | [github.com/miralante/ludia](https://github.com/miralante/ludia) |
+| [Ludia](https://ludia.apptonomia.uk/) | Juegos adaptados: aprende, practica y juega con ayuda | [github.com/miralante/ludia](https://github.com/miralante/ludia) |
 
 El [`CLOUDFLARE.md`](CLOUDFLARE.md) de este repo es la guía canónica
 de despliegue de la suite; cada repo de la suite tiene su propio doc

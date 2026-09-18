@@ -22,7 +22,7 @@ if (window.App.i18n) {
       words: 'Palabras',
       keyboard: 'Teclado',
       activities: 'Actividades',
-      chess: 'Ajedrez'
+      chess: 'Juegos adaptados'
     },
     projects: {
       calculia: 'Cálculo y razonamiento lógico con actividades cortas y visuales.',

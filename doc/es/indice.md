@@ -116,4 +116,4 @@ Cómo contribuir y otros documentos de la raíz del repositorio
 
 ## Ludia
 
-[Ajedrez: lecciones, ejercicios y juego](../../../ludia/README.es.md). [Guía del proyecto](../../../ludia/CLAUDE.md).
+[Juegos adaptados: aprende, practica y juega](../../../ludia/README.es.md). [Guía del proyecto](../../../ludia/CLAUDE.md).

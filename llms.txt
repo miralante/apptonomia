@@ -24,7 +24,7 @@
 - [Sinonimia](https://sinonimia.apptonomia.uk/) — Diccionario en lectura fácil con sinónimos y pictogramas.
 - [Memofun](https://memofun.apptonomia.uk/) — Tarjetas de memoria (flashcards) por curso y asignatura.
 - [Teclatlon](https://teclatlon.apptonomia.uk/) — Mecanografía con el teclado físico del ordenador.
-- [Ludia](https://ludia.apptonomia.uk/) — Ajedrez, paso a paso: lecciones, ejercicios y partidas con ayuda.
+- [Ludia](https://ludia.apptonomia.uk/) — Juegos adaptados, paso a paso: aprende, practica y juega con ayuda.
 
 ## License
 
