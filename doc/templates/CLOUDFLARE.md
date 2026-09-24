@@ -1,59 +1,125 @@
-# Cloudflare Workers (static assets) — {{DISPLAY_EN}}
+# Cloudflare Workers (static assets) — {{DISPLAY}}
 
-> **Production branch & automatic deploy.** {{DISPLAY_EN}} deploys
-> **automatically on every push to `main`** via the **Cloudflare
-> Git connector** configured in the Cloudflare dashboard. There is
-> no GitHub Actions workflow that deploys — the only workflow in
-> `.github/workflows/validate.yml` runs `node scripts/check.js` on
-> every push and PR to gate content, but it does **not** deploy.
-> The Cloudflare dashboard is the source of truth for project
-> settings.
+> **Production branch & automatic deploy.** {{DISPLAY}} deploys
+> **automatically on every push to `{{PRODUCTION_BRANCH}}`** via the
+> **Cloudflare Git connector**. The GitHub Actions workflow
+> [`.github/workflows/{{WORKFLOW}}`](.github/workflows/{{WORKFLOW}})
+> runs `node scripts/check.js` on every push and PR but does **not**
+> deploy. The Cloudflare dashboard is the source of truth for
+> project settings.
 >
-> **Part of the Miralante suite.** {{DISPLAY_EN}} is one of the
-> six apps of the suite, alongside **Calculia**, **Memofun**,
-> **Okeymoney**, **Sinonimia**, **Teclatlon** and **Routime**.
-> They share the same author, the same accessibility-first /
-> no-backend philosophy, and the same Cloudflare deploy story.
-> The metaproject root at `miralante/apptonomia` is the public
-> landing that links out to all seven apps; it has its own
-> `CLOUDFLARE.md` describing what is unique to the landing. This
-> document describes only what is unique to {{DISPLAY_EN}}.
-
-{{DISPLAY_EN}} is deployed as a **Cloudflare Worker (static
-assets)**, using its built-in GitHub integration — reachable at
-<https://{{DOMAIN}}>. There is no custom GitHub Actions workflow —
-the Cloudflare dashboard owns the build and deploy.
+> **This project is deployed as a Cloudflare Worker (static assets),
+> not classic Cloudflare Pages.**{{LIVE_URL_NOTE}}
+>
+> **Part of the Miralante suite.** {{DISPLAY}} is **one of the seven
+> siblings** (Apptonomia, Calculia, Memofun, Okeymoney, Routime,
+> Sinonimia, Teclatlon) that share the same author, the same
+> accessibility-first / no-backend philosophy, and the same Cloudflare
+> deploy story. The canonical group-wide guide lives in
+> [Apptonomia's `CLOUDFLARE.md`](https://github.com/miralante/apptonomia/blob/master/CLOUDFLARE.md)
+> (the metaproject root, this very file); the per-sibling
+> `CLOUDFLARE.md` documents only the project-specific bits
+> (custom domain, build command, CI workflow name).
 
 ## How it works
 
-1. The repo `{{GIT_ORG}}/{{REPO}}` is connected to a Cloudflare
-   Workers project named `{{SLUG}}`.
-2. Every push to `main` triggers a build in Cloudflare's
-   infrastructure via Workers Builds, which reads `wrangler.toml`
-   to deploy the repo root as a static-assets Worker (no `main`
-   script).
-3. The build is a no-op: no `build command`, no `output directory`
-   other than `.`, so the static files are served as-is.
-4. The `validate.yml` GitHub Action still runs on every push and
-   PR to gate content, but it does not deploy.
+1. The repo is connected to a Cloudflare Workers project named
+   `{{SLUG}}` (Workers & Pages → Connect to Git).
+2. Every push to `{{PRODUCTION_BRANCH}}` triggers a build in
+   Cloudflare's infrastructure via Workers Builds, which reads
+   [`wrangler.toml`](wrangler.toml) to deploy the repo root as a
+   static-assets Worker (no `main` script).{{BUILD_COMMAND_NOTE}}
+3. The build is otherwise a no-op: no `output directory` other than
+   `.`, so the static files are served as-is.
+4. The `{{WORKFLOW}}` GitHub Action still runs on every push and PR
+   to gate content, but it does not deploy.
 
-`wrangler.toml` is the actual deploy configuration Workers Builds
-reads — not just a convenience for local CLI use:
+[`wrangler.toml`](wrangler.toml) is the actual deploy configuration
+Workers Builds reads — not just a convenience for local CLI use. It
+pins the project name (`name = "{{SLUG}}"`) and declares
+`[assets] directory = "."` (no `main` script), plus
+`not_found_handling = "404-page"` so Cloudflare serves this repo's
+own `404.html` for an unmatched path instead of a bare empty 404.
 
-- It pins the project name (`name = "{{SLUG}}"`).
-- Its `[assets] directory = "."` and `not_found_handling =
-  "404-page"` are what make Cloudflare serve this repo's own
-  `404.html` for an unmatched path instead of a bare empty 404.
+> **Do not "fix" by deleting `wrangler.toml`{{REDIRECTS_NOTE}}** or
+> by switching to the legacy `pages_build_output_dir` Pages shape.
+> {{DISPLAY}}'s Cloudflare dashboard project is already a Worker
+> with "Workers Builds", and Cloudflare's own current guidance is to
+> prefer Workers + static assets over classic Pages for new static
+> sites. `wrangler pages deploy` and the Pages shape do not apply
+> here — use `wrangler deploy` if you ever need to push from a dev
+> machine.
 
-## Cache contract
+## Files in this repository
 
-**Every PWA sibling of the suite has the same cache contract**:
+| File | Purpose |
+|---|---|
+| `_headers` | Cache and security headers |
+| `wrangler.toml` | Pins the project name + the `[assets]` binding + `not_found_handling = "404-page"` |
+| `.github/workflows/{{WORKFLOW}}` | `node scripts/check.js` and friends on every push/PR (does **not** deploy) |{{EXTRA_FILES_ROWS}}
+{{REDIRECTS_ROW}}No `_redirects`, no `functions/`, no `package.json`, no Cloudflare
+service-account keys.{{REPO_NARRATIVE}}
 
-- `sw.js` declares a `VERSION` string (e.g. `{{SLUG}}-v3`).
-- `sw.js` declares an `ARCHIVOS` (or `FILES`) array listing every
-  file the SW pre-caches on install.
-- A change to any file in `ARCHIVOS` requires bumping `VERSION` in
-  the same commit.
+## Configuration in Cloudflare
+
+| Setting | Value |
+|---|---|
+| Framework preset | None |
+| Build command | {{BUILD_COMMAND}} |
+| Build output directory | `.` |
+| Production branch | `{{PRODUCTION_BRANCH}}` |
+| Root directory | *(empty — repo root)* |
+
+{{NO_ENV_NARRATIVE}}
+
+## Required Cloudflare headers
+
+The site uses a [`_headers`](_headers) file at the repo root to set
+security headers (CSP, X-Frame-Options, Referrer-Policy,
+Permissions-Policy{{EXTRA_HEADER_LIST}}) and a cache policy:
+{{CACHE_POLICY}}Cloudflare reads this file on every deploy and applies
+the rules automatically — no dashboard configuration needed.
+
+## `*.workers.dev` subdomain — Triggers
+
+For a static-assets Worker, Cloudflare only serves requests over a
+**route** (a `*.workers.dev` subdomain or a custom domain). Without
+one, the project deploys fine — the build succeeds, files are
+uploaded, "Deployments" lists the commit — but the dashboard shows
+**"No active routes"** and every URL returns empty.
+
+**Fix — one click in the dashboard:**
+
+1. Workers & Pages → `{{SLUG}}` → **Settings** → **Triggers** (or
+   **Routes**, depending on the dashboard version).
+2. Under **Workers.dev subdomain**, click **Enable** (or **Add**).
+   Cloudflare assigns the URL immediately; no rebuild needed.
+3. If the dashboard only shows a routes table, add a route
+   manually:
+   - **Route pattern**: `*/*`
+   - **Zone**: `workers.dev` (the account's free `*.workers.dev` zone)
+   - **Worker**: `{{SLUG}}`
+4. Once the route is active, if the latest commit isn't already
+   showing as the **Active** deployment, go to **Deployments** →
+   click the most recent successful build → **Retry deployment** (or
+   **Promote to deploy**).
+
+> **Cannot be set in `wrangler.toml`.** The `workers.dev` binding is
+> a per-project dashboard setting; it is not declared anywhere in
+> the repo. `wrangler deploy` from the CLI does not apply here
+> either — Workers Builds owns the deploy, and the dashboard owns
+> the routes.
+
+## Service worker cache
+
+`sw.js` is {{SW_STRATEGY}} — the {{SW_STRATEGY_LABEL}} strategy used
+by every PWA sibling of the suite.
+
+- `sw.js` declares a `VERSION` string (e.g. `{{SLUG}}-vN`).
+- `sw.js` declares a `FILES` (or `ARCHIVOS`) array listing every file
+  the SW pre-caches on install.
+- A change to any file in `FILES` requires bumping `VERSION` in the
+  same commit.
 - `scripts/check-version-bump.js` is the CI gate that fails the
   build when a cached file changed but `VERSION` didn't.
 
@@ -61,63 +127,67 @@ The cost of bumping is one integer; the cost of not bumping is
 "the user thinks the fix didn't land". Bump liberally rather than
 conservatively. See `CLAUDE.md` §B.1 for the canonical rule.
 
-## Configuration in Cloudflare
+## CI — pre-deploy gate
 
-When the project is set up in the Cloudflare dashboard:
+Every push to `{{PRODUCTION_BRANCH}}` and every PR against
+`{{PRODUCTION_BRANCH}}` runs
+[`.github/workflows/{{WORKFLOW}}`](.github/workflows/{{WORKFLOW}}){{CI_EXTRA}},
+which gates content before the Cloudflare Git connector ever sees
+the commit. The CI workflow does **not** deploy — deploy is
+exclusively the Cloudflare dashboard reading `wrangler.toml` and
+`_headers`. No GitHub secret is required, no `wrangler login` is
+needed locally.
 
-| Setting | Value |
-|---|---|
-| Framework preset | None |
-| Build command | (empty) |
-| Build output directory | `.` |
-| Root directory | (empty) |
-| Environment variables | (none) |
-| Custom domain | `{{DOMAIN}}` |
+## Custom domain
 
-The custom domain's DNS is a CNAME from `{{DOMAIN}}` to
-`{{SLUG}}.<account-subdomain>.workers.dev` — set in the Cloudflare
-DNS tab, not in Workers settings.
+{{CUSTOM_DOMAIN_BODY}}
 
-## Local preview
+## How to redeploy
+
+Nothing to do. Push to `{{PRODUCTION_BRANCH}}` and Cloudflare
+rebuilds.
+
+For a manual rebuild (e.g. after Cloudflare itself had an
+incident), go to the Cloudflare dashboard → Workers & Pages →
+`{{SLUG}}` → **Create deployment** → choose a branch or upload a
+directory.
+
+For a one-off preview outside the Git connector (e.g. to test a
+dirty worktree without pushing):
 
 ```bash
-# Option A — open the file directly. Some browsers restrict
-# things from file:// URLs (service worker registration fails),
-# but the basic content renders fine.
-open index.html        # macOS
-xdg-open index.html    # Linux
-
-# Option B — any static server. The simplest is Python's:
-python -m http.server 8080
-# Then visit http://localhost:8080/
-
-# Option C — node's serve:
-npx serve .
+npx wrangler deploy
 ```
 
-For the **full PWA experience** (service worker, "Add to home
-screen", offline mode), use option B or C — `file://` URLs
-disable the SW in most browsers.
+## How to roll back
 
-## Rollback
+Cloudflare dashboard → Workers & Pages → `{{SLUG}}` →
+**Deployments**. Each successful build is listed with a timestamp.
+Click any of them and select **"Retry deployment"** or **"Rollback
+to this deployment"**.
 
-Cloudflare Pages keeps every deployment. To roll back:
+## How to add a custom domain
 
-1. Open the Cloudflare dashboard → Workers & Pages → `{{SLUG}}` →
-   **Deployments**.
-2. Find the last good deployment, click **...** → **Rollback to
-   this deploy**.
-3. Cloudflare redeploys the previous commit in seconds; the SW
-   uninstalls the current cache on next visit because the rolled-
-   back `sw.js` has the older `VERSION`.
+Cloudflare dashboard → Workers & Pages → `{{SLUG}}` → **Custom
+domains** → **Set up a custom domain** → follow the wizard. DNS is
+configured automatically if the domain is already on Cloudflare, or
+by CNAME if it is on another provider. {{CUSTOM_DOMAIN_NOTE}}
 
-No data is lost: rolling back is just a redeploy of an older
-commit. `localStorage` on the visitor's device is not touched.
+## Rotating credentials
+
+There are no API tokens or secrets to rotate. The GitHub
+integration is a one-time OAuth authorisation; revoking it is a
+matter of removing the app's access on
+[github.com/settings/applications](https://github.com/settings/applications).
 
 ## See also
 
-- `CLAUDE.md` §B.1 — service worker cache rule (per-sibling).
-- `CONTRIBUTING.md` — the workflow that produces the deploys.
-- The metaproject's `apptonomia/CLOUDFLARE.md` — the cross-suite
-  Cloudflare runbook (rebuild, rollback, custom domain,
-  credential rotation).
+- [`CLAUDE.md`](CLAUDE.md) — the per-sibling AI agent workflow; the
+  cache contract in §B.1 is the source of truth for the SW
+  `VERSION` rule.
+- `wrangler.toml` — the actual deploy configuration Workers Builds
+  reads.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — the human contribution
+  flow that produces the commits that Git connector picks up.
+- Apptonomia's `CLOUDFLARE.md` — the metaproject root, this very
+  template, but with `{{DISPLAY}} = Apptonomia`.

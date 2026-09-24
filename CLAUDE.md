@@ -87,10 +87,11 @@ location.
 | Public landing (SEO, Open Graph, JSON-LD `ItemList`, multilingual copy) | This repo's `index.html`, `js/strings.es.js`, `js/strings.en.js` |
 | **Suite compliance checklist** (UNE 153101, WCAG AAA, public-facing wording "usuario/a tipo", settings/data-reset, landing typography) | [`doc/en/guia-de-cumplimiento.md`](doc/en/guia-de-cumplimiento.md) Ã¢â€ â€ [`doc/es/guia-de-cumplimiento.md`](doc/es/guia-de-cumplimiento.md) |
 | **Creating a new sibling** (required files, scripts, doc tree, sw.js cache contract) | [`doc/en/crear-app.md`](doc/en/crear-app.md) Ã¢â€ â€ [`doc/es/crear-app.md`](doc/es/crear-app.md) |
-| **File templates for new siblings** (CLAUDE.md, README.md, sw.js, scripts/check.js, doc tree) | [`doc/templates/`](doc/templates/) |
+| **File templates for new siblings** (CLAUDE.md, README.md, sw.js, scripts/check.js, SECURITY, doc tree) | [`doc/templates/`](doc/templates/) |
 | Cross-project convention: settings/data-reset pattern | [`doc/en/guia-de-cumplimiento.md` §5](doc/en/guia-de-cumplimiento.md#5-settings--data-reset-pattern) â†” [`doc/es/guia-de-cumplimiento.md` §5](doc/es/guia-de-cumplimiento.md#5-settings--data-reset-pattern) â€” also §B.5.1 below for the canonical reference (`crear-app.md` + `doc/templates/`) |
 | Cross-project convention: landing typography | [`doc/en/guia-de-cumplimiento.md` §6](doc/en/guia-de-cumplimiento.md#6-landing-typography) Ã¢â€ â€ [`doc/es/guia-de-cumplimiento.md` §6](doc/es/guia-de-cumplimiento.md#6-tipografÃƒÂ­a-del-portal) |
 | Human contribution flow | [`CONTRIBUTING.md`](CONTRIBUTING.md) Ã¢â€ â€ [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) |
+| **Suite-wide security policy** (`SECURITY.md` / `SECURITY.es.md`) | [`doc/templates/SECURITY.md`](doc/templates/SECURITY.md) Ã¢â€ â€ [`doc/templates/SECURITY.es.md`](doc/templates/SECURITY.es.md); rendered into every sibling by [`scripts/one-off/write-security-md.js`](scripts/one-off/write-security-md.js) |
 | AI agent operational flow | `CLAUDE.md` (this file) |
 
 #### A.1.1 Sibling projects (the seven)

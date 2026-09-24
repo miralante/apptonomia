@@ -1,90 +1,70 @@
-# Código de Conducta del Pacto del Colaborador
+# Código de conducta para contribuyentes
+
+> 🌐 **Otros idiomas:** [English](CODE_OF_CONDUCT.md)
 
 ## Nuestro compromiso
 
-Como miembros, colaboradores y líderes, nos comprometemos a hacer
-de la participación en nuestra comunidad una experiencia libre de
-acoso para todo el mundo, sin importar la edad, el tamaño corporal,
-la discapacidad, el origen étnico, las características sexuales, la
-identidad y expresión de género, el nivel de experiencia, la
-educación, el estatus socioeconómico, la nacionalidad, el aspecto
-físico, la raza, la religión o la identidad y orientación sexual.
+Como personas que participamos y contribuimos a este proyecto, nos
+comprometemos a que participar en nuestra comunidad sea una experiencia
+libre de acoso para todo el mundo, sin importar la edad, el tamaño
+corporal, la discapacidad visible o invisible, el origen étnico, las
+características sexuales, la identidad y expresión de género, el nivel
+de experiencia, la educación, el estatus socioeconómico, la nacionalidad,
+la apariencia física, la raza, la religión, o la identidad y orientación
+sexual.
 
-Nos comprometemos a actuar e interactuar de formas que contribuyan
-a una comunidad abierta, acogedora, diversa, inclusiva y sana.
+Dado que la suite Miralante existe para ayudar a las personas a
+aprender a su propio ritmo, con dignidad y sin presión, esperamos
+esa misma paciencia, claridad y respeto en cómo nos tratamos entre
+nosotros.
 
 ## Nuestros estándares
 
-Ejemplos de comportamiento que contribuyen a crear un ambiente
-positivo para nuestra comunidad:
+Ejemplos de comportamiento que contribuyen a crear un ambiente positivo:
 
-- Demostrar empatía y amabilidad hacia las demás personas
-- Respetar opiniones, puntos de vista y experiencias diferentes
-- Dar y aceptar de buen grado críticas constructivas
-- Aceptar la responsabilidad y disculparse cuando nos hayamos
-  equivocado, aprendiendo de la experiencia
-- Centrarse en lo que es mejor no sólo para nosotros como
-  individuos, sino para la comunidad en general
+- Mostrar empatía y amabilidad ante otras personas.
+- Respetar opiniones, puntos de vista y experiencias diferentes.
+- Dar y aceptar con gracia comentarios constructivos.
+- Asumir la responsabilidad y disculparse ante quienes se vean afectados
+  por nuestros errores, aprendiendo de la experiencia.
+- Centrarse en lo que sea mejor no solo para nosotros como individuos, sino
+  para la comunidad en general.
 
 Ejemplos de comportamiento inaceptable:
 
-- El uso de lenguaje o imagery sexualizada, y la atención o
-  avances sexuales de cualquier tipo
-- Trollear, insultar o hacer comentarios despectivos, y ataques
-  personales o políticos
-- Acoso público o privado
-- Publicar información privada de terceras personas, como una
-  dirección física o de correo electrónico, sin su permiso
-  explícito
-- Otras conductas que razonablemente puedan considerarse
-  inapropiadas en un entorno profesional
+- El uso de lenguaje o imágenes sexualizadas, y la atención o
+  insinuaciones sexuales de cualquier tipo.
+- Comentarios despectivos o insultantes, y ataques personales o políticos.
+- El acoso público o privado.
+- Publicar información privada de otras personas (dirección física o de
+  correo electrónico, por ejemplo) sin su permiso explícito.
+- Otras conductas que razonablemente se puedan considerar inapropiadas en
+  un entorno profesional.
 
 ## Responsabilidades de aplicación
 
-Los líderes de la comunidad son responsables de aclarar y aplicar
-nuestros estándares de comportamiento aceptable, y tomarán
-medidas correctivas apropiadas y justas en respuesta a cualquier
-comportamiento que consideren inapropiado, amenazante, ofensivo o
-dañino.
-
-Los líderes de la comunidad tienen el derecho y la responsabilidad
-de eliminar, editar o rechazar comentarios, commits, código,
-ediciones de wiki, issues y otras contribuciones que no se alineen
-con este Código de Conducta, y comunicarán las razones de sus
-decisiones de moderación cuando sea apropiado.
+Quienes mantienen el proyecto son responsables de aclarar y hacer
+cumplir los estándares de comportamiento aceptable, y tomarán acciones
+correctivas apropiadas y justas ante cualquier conducta que consideren
+inapropiada, amenazante, ofensiva o dañina.
 
 ## Alcance
 
-Este Código de Conducta aplica a todos los espacios de la
-comunidad, y también aplica cuando una persona representa
-oficialmente a la comunidad en espacios públicos. Ejemplos de
-representar a nuestra comunidad incluyen usar una dirección de
-correo electrónico oficial, publicar desde una cuenta oficial de
-redes sociales, o actuar como representante designado en un
-evento en línea o presencial.
+Este código de conducta aplica en todos los espacios del proyecto
+(issues, pull requests, discusiones) y también cuando alguien representa
+al proyecto en espacios públicos.
 
 ## Aplicación
 
-Las instancias de comportamiento abusivo, acosador o inaceptable
-de otro modo pueden ser reportadas a los líderes de la comunidad
-responsables de la aplicación en <maintainer-email>. Todas las
-quejas serán revisadas e investigadas de manera pronta y justa.
-
-Todos los líderes de la comunidad están obligados a respetar la
-privacidad y la seguridad de quien reporte cualquier incidente.
+Los casos de comportamiento abusivo, acosador o inaceptable de
+cualquier otra forma se pueden reportar a quienes mantienen el
+proyecto en la dirección de contacto indicada en el fichero
+`SECURITY.es.md` del repositorio. Todas las quejas serán revisadas e
+investigadas con prontitud y equidad.
 
 ## Atribución
 
-Este Código de Conducta está adaptado del [Pacto del Colaborador][homepage],
-versión 2.1, disponible en
-<https://www.contributor-covenant.org/version/2/1/code_of_conduct.html>.
-
-Las Pautas de Impacto en la Comunidad están inspiradas en la
-[escala de aplicación del código de conducta de Mozilla](https://github.com/mozilla/diversity).
-
-[homepage]: https://www.contributor-covenant.org
-
-Para respuestas a preguntas frecuentes sobre este código de
-conducta, ver las FAQ en
-<https://www.contributor-covenant.org/faq>. Hay traducciones
-disponibles en <https://www.contributor-covenant.org/translations>.
+Este código de conducta está adaptado del
+[Contributor Covenant](https://www.contributor-covenant.org), versión 2.1,
+disponible en
+[https://www.contributor-covenant.org/es/version/2/1/code_of_conduct.html](https://www.contributor-covenant.org/es/version/2/1/code_of_conduct.html).

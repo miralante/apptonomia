@@ -91,7 +91,8 @@ doc/templates/
 ├── SECURITY.md
 ├── SECURITY.es.md
 ├── CLOUDFLARE.md
-├── LICENSE                       ← MIT, 1 line
+├── LICENSE                       ← MIT, copyright line reads "Miralante {{DISPLAY_EN}} contributors"
+├── THIRD_PARTY_LICENSES.md       ← (only if the sibling ships third-party assets under a non-MIT license)
 ├── _headers                      ← Cloudflare cache headers
 ├── wrangler.toml                 ← Cloudflare Workers config
 ├── 404.html

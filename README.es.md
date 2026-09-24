@@ -175,7 +175,9 @@ backend, sin base de datos, sin telemetría, sin servicios de terceros en
 tiempo de ejecución. El modelo de amenaza es esencialmente "qué podría
 hacer una página maliciosa offline contra el mismo origen", algo que el
 navegador ya aísla. Ver [`SECURITY.es.md`](SECURITY.es.md) (o
-[`SECURITY.md`](SECURITY.md)) para reportar una sospecha de forma privada.
+[`SECURITY.md`](SECURITY.md)) para reportar una sospecha de forma
+privada (canal preferido:
+[`hello@apptonomia.uk`](mailto:hello@apptonomia.uk)).
 
 ---
 

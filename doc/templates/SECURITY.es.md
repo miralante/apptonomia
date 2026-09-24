@@ -1,55 +1,55 @@
 # Política de seguridad
 
+{{DISPLAY_NAME}} es un sitio estático completamente del lado del cliente:
+no tiene servidor propio, ni backend, ni base de datos, ni telemetría,
+ni llamadas de runtime a terceros, ni cuentas. La superficie de ataque
+es esencialmente la del navegador sobre el mismo origen (las cabeceras
+de seguridad HTTP en `_headers` están escritas para que
+siga siendo así — CSP bloqueada a `'self'`, sin scripts inline, sin
+`connect-src` a terceros).
+
+{{SUITE_SPECIFIC_THREAT_MODEL_ES}}
+
 ## Versiones soportadas
 
-| Versión | Soporte |
-|---|---|
-| `{{SLUG}}-vN` (última) | ✅ |
-| `{{SLUG}}-v*` antiguas | ❌ |
+Solo la rama `{{DEFAULT_BRANCH}}` recibe parches de seguridad. No
+mantenemos versiones antiguas.
 
-La regla del bump de caché (ver `CLAUDE.md` §B.1) es lo que hace
-que "soportada" signifique algo: un bump de `VERSION` en `sw.js`
-es el único mecanismo que fuerza a las PWAs instaladas a
-recoger el nuevo código. Damos soporte **solo a la última
-`VERSION` desplegada**; las versiones anteriores no se parchean.
+La regla del bump de caché (ver `CLAUDE.md` §B.1) es lo que hace que
+"soportada" signifique algo: un bump de `VERSION` en `sw.js` es el
+único mecanismo que fuerza a las PWAs instaladas a recoger el nuevo
+código. Damos soporte **solo a la última `VERSION` desplegada**; las
+versiones anteriores no se parchean.
 
-## Reportar una vulnerabilidad
+## Cómo reportar una vulnerabilidad
 
-Por favor, **no** abras una issue pública para problemas de
-seguridad sospechosos. Envía un correo a <maintainer-email> en
-su lugar, con:
+Abre un aviso privado a través de
+[GitHub Security Advisories](https://github.com/{{GIT_ORG}}/{{REPO}}/security/advisories/new).
 
-- Una descripción breve del problema
-- Pasos para reproducirlo (navegador, SO, URL)
-- Una captura o log de consola si aplica
-- Si quieres crédito público en el arreglo
+Por favor, incluye:
 
-Responderemos en **72 horas** con una nota de triaje y un plazo
-de arreglo. Los problemas críticos (XSS, RCE, compromiso de
-cuenta, cualquier cosa que rompa la promesa de sin telemetría)
-se arreglan en 7 días; los no críticos en 30 días.
+- Descripción breve y pasos para reproducir.
+- Impacto observado o esperado.
+- SHA de commit o etiqueta afectada.
 
-## Modelo de amenaza
+Si no puedes usar Security Advisories, abre un issue etiquetándolo
+claramente como **security** y añade el prefijo `[SEC]` al título.
+**No subas pruebas de concepto explotables** a un issue público:
+espera a que un maintainer coordine.
 
-{{DISPLAY_ES}} es un sitio estático puramente del lado del cliente.
-Sin backend, sin base de datos, sin telemetría, sin runtime de
-terceros, sin cuentas. El modelo de amenaza es esencialmente:
+Si ninguno de los canales es adecuado, escribe a `{{SUPPORT_EMAIL}}`.
 
-- "Lo que una página maliciosa offline sobre el mismo origen
-  podría hacer al `localStorage` de esta app."
-- "Lo que una página maliciosa sobre otro origen podría hacer
-  vía APIs compartidas (las cabeceras `Permissions-Policy` y CSP
-  de `_headers` están diseñadas para limitar esto)."
-- "Lo que un actor malicioso podría hacer manipulando los
-  archivos desplegados en el edge del CDN."
+## Qué esperar
 
-La política de mismo-origen del navegador, los iframes
-sandboxed, el `Permissions-Policy` y el CSP estricto mitigan (1)
-y (2). Para (3), el conector Git de Cloudflare fuerza un
-despliegue de fuente única de verdad: solo la rama `main` de
-`{{GIT_ORG}}/{{REPO}}` se despliega; las claves de despliegue se
-rotan a través del panel de Cloudflare, no se almacenan en el
-repo.
+- Acuse de recibo en 5 días laborables.
+- Primera evaluación (reproducción, severidad, plan) en 15 días
+  laborables.
+- Si se confirma, un parche o mitigación en cuanto sea viable.
+
+## Divulgación coordinada
+
+Preferimos coordinar la divulgación si la corrección requiere cambios
+visibles en la UI o en el shell de la PWA.
 
 ## Fuera de alcance
 

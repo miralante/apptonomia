@@ -1,10 +1,18 @@
 # Contributing to Apptonomia
 
 > 🌐 **Other languages:** [Español](CONTRIBUTING.es.md)
+>
+> **Part of the [Miralante](https://apptonomia.uk) suite** —
+> Apptonomia is one of seven sibling projects (Apptonomia, Calculia,
+> Memofun, Okeymoney, Routime, Sinonimia, Teclatlon) that share the
+> same workflow, the same accessibility rules and the same code of
+> conduct. This repo hosts the suite's **landing portal only**; the
+> sibling that ships the occupational-therapy app is **Apptonomia
+> itself** (this repo).
 
-Thanks for your interest in contributing to Apptonomia. This guide
-covers the workflow, the project roles, and the small set of recipes
-that keep the portal consistent.
+Thanks for your interest in contributing. This guide covers the GitHub
+workflow we follow across the suite, the project roles, and the small
+set of recipes that keep every sibling consistent.
 
 ---
 
@@ -52,9 +60,29 @@ Examples:
 
 ---
 
+## � Project roles
+
+Most Miralante projects share three roles. The exact split depends on
+the sibling; see that sibling's own `doc/en/roles.md` for the
+authoritative description.
+
+| # | Role | Reads what first |
+|---|---|---|
+| 1 | 👤 **End user** | The app — never this file. |
+| 2 | 🤝 **Support** (family / teacher / therapist) | The sibling's `doc/en/roles.md`. |
+| 3 | 💻 **Contributor** (content or code) | This file, plus that sibling's `doc/en/SPEC.md`, `doc/en/technical.md`, and `CLAUDE.md`. |
+
+> Technical decisions live with the contributor role, **not because the
+> end user is ignored, but because that is each role's domain.**
+> Product, content, language and UI design decisions **are tested and
+> validated with end users whenever possible**, and their feedback is
+> the primary source for improvement.
+
+---
+
 ## 📝 What you can contribute
 
-This repo is the **portal landing** of the Apptonomia suite, so most
+This repo is the **portal landing** of the Miralante suite, so most
 contributions will be one of:
 
 - **Copy fixes** — typos, clearer wording, accessibility tweaks in

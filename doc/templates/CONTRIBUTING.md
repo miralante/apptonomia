@@ -1,10 +1,16 @@
 # Contributing to {{DISPLAY_EN}}
 
 > 🌐 **Other languages:** [Español](CONTRIBUTING.es.md)
+>
+> **Part of the [Miralante](https://apptonomia.uk) suite** —
+> {{DISPLAY_EN}} is one of seven sibling projects (Apptonomia,
+> Calculia, Memofun, Okeymoney, Routime, Sinonimia, Teclatlon) that
+> share the same workflow, the same accessibility rules and the same
+> code of conduct. This repo ships **{{DISPLAY_EN}}** itself.
 
-Thanks for your interest in contributing to {{DISPLAY_EN}}. This
-guide covers the workflow, the project roles, and the small set of
-recipes that keep the app consistent across the Miralante suite.
+Thanks for your interest in contributing. This guide covers the GitHub
+workflow we follow across the suite, the project roles, and the small
+set of recipes that keep every sibling consistent.
 
 ---
 
@@ -16,7 +22,7 @@ recipes that keep the app consistent across the Miralante suite.
 3. 🌿 Create a branch (fork if you don't have push access)
 4. ✏️  Make changes following the recipes below
 5. 📤 Open a Pull Request (PR) referencing the issue
-6. 👀 Wait for review
+6. 👀 Wait for review (at least 1 from a maintainer)
 7. ✅ Merge when approved
 ```
 
@@ -36,84 +42,130 @@ recipes that keep the app consistent across the Miralante suite.
 - `feat/<slug>` — new features
 - `fix/<slug>` — bug fixes
 - `docs/<slug>` — documentation-only changes
+- `content/<slug>` — content-only changes (decks, cards, definitions)
 - `i18n/<code>` — translation to a language (e.g. `i18n/ca`, `i18n/gl`)
 
+### Commits
+
+- Message in **English** (repo convention), summary in imperative.
+- One thing per commit — large commits can be asked to be split.
+- If you close an issue, include `Closes #123` at the end.
+
 ---
 
-## 🤝 Roles in the project
+## 👥 Project roles
 
-| Role | Who they are | How they participate |
+Most Miralante projects share three roles. The exact split depends on
+the sibling; see that sibling's own `doc/en/roles.md` for the
+authoritative description.
+
+| # | Role | Reads what first |
 |---|---|---|
-| 👤 **End user** | Uses the app | Doesn't read or write code; reports issues |
-| ❤️ **Support** | Family, therapist, teacher | Proposes content, wording fixes, difficulty levels |
-| 💻 **Build** | Developer | Implements code, maintains architecture, reviews PRs, deploys |
+| 1 | 👤 **End user** | The app — never this file. |
+| 2 | 🤝 **Support** (family / teacher / therapist) | `doc/en/roles.md`. |
+| 3 | 💻 **Contributor** (content or code) | This file, plus `doc/en/SPEC.md`, `doc/en/technical.md`, and `CLAUDE.md`. |
 
-See [`doc/en/roles.md`](doc/en/roles.md) for the full role
-description.
+> Technical decisions live with the contributor role, **not because
+> the end user is ignored, but because that is each role's domain.**
+> Product, content, language and UI design decisions **are tested and
+> validated with end users whenever possible**, and their feedback is
+> the primary source for improvement.
 
 ---
 
-## 📏 What we expect from a PR
+## 📝 What you can contribute
 
-Before opening a PR:
+- **Copy fixes** — typos, clearer wording, accessibility tweaks.
+- **New language** — see the sibling's `doc/en/I18N.md` for the
+  full recipe.
+- **Accessibility** — contrast, focus order, focus visibility, reduced
+  motion, ARIA labels, easy-read copy (UNE 153101).
+- **Bug fixes** — anything that breaks in any supported browser.
+- **Security headers / CSP** — tightening the policy in `_headers`.
+
+Each of those is small enough that the recipes below should cover it
+without a separate architecture review.
+
+---
+
+## 🌐 Recipes
+
+### Copy fix
+
+1. Edit the source-of-truth strings file (`es` by default per the
+   suite's language policy).
+2. Mirror the change in every other locale file (`en` minimum).
+3. Run `node scripts/check.js` to verify key parity.
+4. Open a PR with a one-line description.
+
+### New language
+
+See the sibling's `doc/en/I18N.md` for the full step-by-step. The
+architecture is multi-locale-ready from the start: every page goes
+through `App.i18n.t()` and `data-i18n` attributes, so adding a
+language requires **no changes** to the bootstrap or app code.
+
+### Accessibility fix
+
+Read `doc/en/SPEC.md` (or `doc/en/spec.md`) §3 first — the
+non-negotiable product constraints live there (buttons ≥ 64×64 px,
+WCAG AA contrast with AAA as the design target, easy-read copy,
+no-pressure feedback). Anything that breaks them will be rejected.
+
+### Adding or tightening a security header
+
+Headers live in `_headers`. The CSP is intentionally tight
+(`script-src 'self'`, no inline scripts; the JSON-LD block is parsed
+as data and does not require `unsafe-inline`). Tightening is welcome;
+loosening almost never is — open an issue first.
+
+---
+
+## ✅ Checklist before opening a PR
 
 - [ ] `node scripts/check.js` passes locally.
-- [ ] If this is a PWA: `node scripts/check-version-bump.js`
-      passes, and you bumped `VERSION` in `sw.js` for any cached
-      file change.
-- [ ] If you touched UI copy, the change exists in **both**
-      `strings.es.js` and `strings.en.js`.
-- [ ] You tested the change in a real desktop browser (and on
-      mobile if the app is a PWA).
-- [ ] You did not introduce a third-party runtime (Google Fonts,
-      analytics, remote AI).
-- [ ] You did not edit another sibling of the suite from this PR.
-
-If you are a new contributor, comment on the issue first so the
-maintainer can agree on scope before you start writing code.
+- [ ] If you added UI strings, **every supported locale** is in sync
+      (at minimum `es` and `en`).
+- [ ] You tested in at least one real desktop browser (Chrome /
+      Firefox / Safari).
+- [ ] You did not add any new runtime dependency — vanilla HTML / CSS /
+      JS only across the whole suite.
+- [ ] You did not loosen the CSP in `_headers` without an issue.
+- [ ] If this PR touches a cached file, you bumped `VERSION` in
+      `sw.js`.
 
 ---
 
-## 🌐 Translations
+## 🚫 What this repo does NOT accept
 
-To add a new language:
-
-1. Add the locale to `strings.<locale>.js` with the same key set
-   as `strings.es.js` + `strings.en.js`.
-2. Update the language picker in `index.html` and
-   `js/i18n.js`'s `SUPPORTED` list.
-3. Add a badge row to `README.md` (the `i18n` badge).
-4. Update the metaproject's `apptonomia/js/strings.<locale>.js`
-   to add your app's name to the landing's card.
-
-Full recipe: see [`doc/en/i18n.md`](doc/en/i18n.md).
-
----
-
-## 🤖 Working with AI coding agents
-
-If you use an AI coding agent to help you, point it at the
-project's [`CLAUDE.md`](CLAUDE.md) (or equivalent) before it
-starts. The agent's workflow is documented there: canonical
-sources, mandatory session-start checks, the cache-bump rule,
-external / destructive ops policy, and the suite-wide policies
-(easy-read, WCAG AAA, public-facing wording, no telemetry).
+- **Loosening the CSP** (`script-src 'self'` stays strict — inline
+  scripts are not allowed).
+- **New runtime dependencies** — vanilla HTML / CSS / JS only, no
+  npm, no CDNs, no build step.
+- **Analytics / telemetry / third-party calls of any kind.**
+- **Personal data** of any kind — the suite is built to be free,
+  account-less, and telemetry-free.
+- **A SPA, a router, or a build step.** Each sibling is plain static
+  files; if you find yourself reaching for a router, you are solving
+  the wrong problem.
 
 ---
 
-## ⚖️ Code of conduct
+## 📞 Communication
 
-All participants are expected to follow
-[`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
-
-## 🛡️ Security
-
-See [`SECURITY.md`](SECURITY.md) for how to report a suspected
-vulnerability privately.
+- **Issues** → main channel for proposals, bugs, questions.
+- **Pull Request reviews** → for review of specific changes.
 
 ---
 
-## 📄 License
+## 📜 Code of conduct
 
-By contributing, you agree that your contributions will be
-licensed under the [MIT License](LICENSE).
+This project follows [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
+Participating means accepting it.
+
+---
+
+## 🙏 Thanks
+
+Thanks for devoting time to a tool that helps people learn at their
+own pace.

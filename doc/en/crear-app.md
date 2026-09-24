@@ -22,6 +22,7 @@ as the file scaffolds.
 8. [Register the new sibling in apptonomia/](#8-register-the-new-sibling-in-apptonomia)
 9. [CI gates](#9-ci-gates)
 10. [First deploy](#10-first-deploy)
+11. [Maintenance scripts](#11-maintenance-scripts)
 
 ---
 
@@ -61,6 +62,7 @@ Before touching files, write these decisions down in a one-pager
 |---|---|---|
 | **Display name** (Spanish) | "Mi App" / "Calculia" / … | Each sibling's `README.es.md` heading |
 | **Display name** (English) | "My App" / "Calculia" / … | Each sibling's `README.md` heading |
+| **Third-party assets?** | Optional. Default: no (vanilla code, CC0 fonts). "Yes — CC BY-SA lexicon content" (`THIRD_PARTY_LICENSES.md` ships), or "Yes — deck images from Openverse / Wikimedia Commons" (TASL per card; `THIRD_PARTY_LICENSES.md` ships documenting the source). | See [`THIRD_PARTY_LICENSES.md`](../templates/THIRD_PARTY_LICENSES.md) |
 | **Slug** | `mi-app`, lowercase, hyphens, ASCII | The folder name; also used as `localStorage` prefix and JSON-LD id |
 | **Domain** | `<slug>.apptonomia.uk` | Other siblings' `wrangler.toml` |
 | **Shape** | multi-activity catalogue / single-purpose app / deck-driven | See §2.1 below |
@@ -112,9 +114,13 @@ cd <slug>
 cp -R ../apptonomia/doc/templates/. .
 
 # 4. Rename placeholders in the copied files.
-#    The templates use {{SLUG}}, {{DISPLAY_ES}}, {{DISPLAY_EN}},
-#    {{DOMAIN}}, {{SHAPE}} — replace each occurrence.
-#    A quick sed (or your editor's project-wide find/replace) does it.
+#    Across the suite the templates use {{SLUG}}, {{DISPLAY_ES}},
+#    {{DISPLAY_EN}}, {{DISPLAY_NAME}}, {{DOMAIN}}, {{SHAPE}},
+#    plus, in the SECURITY template, {{GIT_ORG}}, {{REPO}},
+#    {{DEFAULT_BRANCH}}, {{SUPPORT_EMAIL}}, and
+#    {{SUITE_SPECIFIC_THREAT_MODEL}} (and its `_ES` counterpart).
+#    Replace each occurrence. A quick sed (or your editor's
+#    project-wide find/replace) does it.
 ```
 
 The [`templates/`](../templates/) folder has a copy-paste scaffold
@@ -135,7 +141,14 @@ viable subset you must have **before** the first deploy:
 - `LICENSE` (MIT)
 - `CONTRIBUTING.md` + `CONTRIBUTING.es.md`
 - `CODE_OF_CONDUCT.md` + `CODE_OF_CONDUCT.es.md`
-- `SECURITY.md` + `SECURITY.es.md`
+- `SECURITY.md` + `SECURITY.es.md` (canonical template at
+  [`doc/templates/SECURITY.md`](../templates/SECURITY.md) ↔
+  [`doc/templates/SECURITY.es.md`](../templates/SECURITY.es.md);
+  see §11 below — these are *not* edited by hand, they're
+  rendered by `scripts/one-off/write-security-md.js`; the
+  channel `{{SUPPORT_EMAIL}}` resolves to each repo's
+  `app.config.json > supportEmail`, with a hard fallback in the
+  script)
 - `CLOUDFLARE.md` (deploy runbook)
 - `_headers`, `wrangler.toml`, `404.html`
 - `index.html` + `app.js` (or `tools/<slug>/app.js` for catalogues)
@@ -150,6 +163,16 @@ viable subset you must have **before** the first deploy:
 If the app is a one-shot tool (not revisited) and ships no
 progress data, you can skip PWA entirely: no `manifest.json`, no
 `sw.js`. The rest of the file anatomy still applies.
+
+### 4.2 Default branch convention
+
+New siblings must default to `main`. The seven current siblings
+are a mix of `main` (apptonomia, memofun, sinonimia) and
+`master` (calculia, okeymoney, teclatlon, routime); the SECURITY
+template is parametrized by `{{DEFAULT_BRANCH}}`, so each repo's
+file stays truthful today. Migration to `main` is a one-line edit
+in [`scripts/one-off/write-security-md.js`](../scripts/one-off/write-security-md.js)
+after the rename is pushed.
 
 ---
 
@@ -375,6 +398,38 @@ The HTML must also declare UTF-8. Any immutable CSS/JS asset changed by the
 new app requires a semantic cache version in the same change (`<slug>-vN`),
 and the final check must be made against the deployed URL in a fresh session,
 not only against a local preview.
+
+## 11. Maintenance scripts
+
+These are quality-of-life helpers run from
+`scripts/one-off/`, modeled on the suite's manual housekeeping
+pattern (build once, re-run when values change, never on every
+commit).
+
+### `write-security-md.js`
+
+Idempotent re-render of `SECURITY.{md,es.md}` for every sibling
+plus the two canonical templates at `doc/templates/`. Reads the
+`REPOS` table at the top of the script — that's the only place to
+edit when a value changes:
+
+| Field | When to edit |
+|---|---|
+| `gitOrg` / `repo` | Repo is renamed or moved across orgs. |
+| `branch` | Repo migrates from `master` to `main` (target convention). |
+| `supportEmail` | Hard fallback only. The real value comes from the repo's `app.config.json > supportEmail` (printed by the script). Edit there, not here. |
+| `extraThreat` / `extraThreatEs` | A new sibling has a project-specific threat-model addendum. |
+
+```bash
+# from apptonomia/ (any cwd):
+node scripts/one-off/write-security-md.js
+```
+
+It writes `wrote <path>` for every file it produces (14 concrete
++ 2 templates = 16 lines of output) and exits non-zero if any
+required token in the templates does not resolve. No side
+effects: doesn't touch `git`, doesn't `npm install`, doesn't open
+the browser.
 
 ## See also
 

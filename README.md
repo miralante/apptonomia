@@ -171,7 +171,8 @@ database, no telemetry, no third-party runtime. The threat model is
 essentially "what a hostile offline page could do to the same origin",
 which the browser already sandboxes. See [`SECURITY.md`](SECURITY.md)
 (or [`SECURITY.es.md`](SECURITY.es.md)) for how to report a suspected
-issue privately.
+issue privately (preferred channel:
+[`hello@apptonomia.uk`](mailto:hello@apptonomia.uk)).
 
 ---
 

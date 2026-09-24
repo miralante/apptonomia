@@ -1,11 +1,18 @@
 # Security policy
 
+{{DISPLAY_NAME}} is a fully client-side static site: no server of its own,
+no backend, no database, no telemetry, no third-party runtime calls, no
+accounts. The attack surface is essentially the browser sandbox on the
+same origin (the HTTP security headers in `_headers` are
+written to keep it that way — CSP locked to `'self'`, no inline scripts,
+no `connect-src` to third parties).
+
+{{SUITE_SPECIFIC_THREAT_MODEL}}
+
 ## Supported versions
 
-| Version | Supported |
-|---|---|
-| `{{SLUG}}-vN` (latest) | ✅ |
-| older `{{SLUG}}-v*` | ❌ |
+Only the `{{DEFAULT_BRANCH}}` branch receives security patches. We do not
+maintain old versions.
 
 The cache-bump rule (see `CLAUDE.md` §B.1) is what makes "supported"
 meaningful: a `VERSION` bump in `sw.js` is the only mechanism that
@@ -14,41 +21,34 @@ forces installed PWAs to pick up the new code. We support the
 
 ## Reporting a vulnerability
 
-Please **do not** file a public issue for suspected security
-problems. Email <maintainer-email> instead, with:
+Open a private advisory via
+[GitHub Security Advisories](https://github.com/{{GIT_ORG}}/{{REPO}}/security/advisories/new).
 
-- A short description of the issue
-- Steps to reproduce (browser, OS, URL)
-- A screenshot or console log if applicable
-- Whether you want public credit in the fix
+Please include:
 
-We will respond within **72 hours** with a triage note and a fix
-timeline. Critical issues (XSS, RCE, account compromise, anything
-that breaks the no-telemetry promise) are patched within 7 days;
-non-critical within 30 days.
+- A short description and reproduction steps.
+- Observed or expected impact.
+- The affected commit SHA or tag.
 
-## Threat model
+If you cannot use Security Advisories, open an issue clearly labelled
+as **security** and prepend `[SEC]` to the title. **Do not upload
+runnable proof-of-concept code** to a public issue — wait for a
+maintainer to coordinate.
 
-{{DISPLAY_EN}} is a fully client-side static site. There is no
-backend, no database, no telemetry, no third-party runtime, no
-accounts. The threat model is essentially:
+If neither channel is appropriate, email `{{SUPPORT_EMAIL}}` instead.
 
-- "What a malicious offline page on the same origin could do to
-  this app's `localStorage`."
-- "What a malicious page on a different origin could do via
-  shared APIs (the `Permissions-Policy` and CSP headers in
-  `_headers` are designed to limit this)."
-- "What a malicious actor could do by tampering with the deployed
-  files at the CDN edge."
+## What to expect
 
-The browser's same-origin policy, sandboxed iframes, the
-`Permissions-Policy` and the strict CSP mitigate (1) and (2). For
-(3), the Cloudflare Git connector enforces a single-source-of-truth
-deploy: only the `main` branch of `{{GIT_ORG}}/{{REPO}}` is
-deployed; deploy keys are rotated through the Cloudflare
-dashboard, not stored in the repo.
+- Acknowledgement within 5 business days.
+- First assessment (reproduction, severity, plan) within 15 business days.
+- If confirmed, a patch or mitigation as soon as feasible.
 
-## Out-of-scope
+## Coordinated disclosure
+
+We prefer to coordinate disclosure if the fix requires user-visible
+changes to the UI or the PWA shell.
+
+## Out of scope
 
 - Vulnerabilities in the user's browser (we ship plain HTML/CSS/JS;
   report to the browser vendor).

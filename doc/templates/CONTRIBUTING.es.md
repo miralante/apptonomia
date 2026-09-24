@@ -1,123 +1,182 @@
 # Contribuir a {{DISPLAY_ES}}
 
 > 🌐 **Otros idiomas:** [English](CONTRIBUTING.md)
+>
+> **Parte de la suite [Miralante](https://apptonomia.uk)** —
+> {{DISPLAY_ES}} es uno de los siete proyectos hermanos (Apptonomia,
+> Calculia, Memofun, Okeymoney, Routime, Sinonimia, Teclatlon) que
+> comparten el mismo flujo de trabajo, las mismas reglas de
+> accesibilidad y el mismo código de conducta. Este repo publica
+> **{{DISPLAY_ES}}** en sí.
 
-Gracias por tu interés en contribuir a {{DISPLAY_ES}}. Esta guía
-cubre el flujo de trabajo, los roles del proyecto y el pequeño
-conjunto de recetas que mantienen la app coherente con el resto de
-la suite Miralante.
+Gracias por tu interés en contribuir. Esta guía cubre el flujo de
+trabajo en GitHub que seguimos en toda la suite, los roles del
+proyecto y el pequeño conjunto de recetas que mantienen a cada
+hermano coherente.
 
 ---
 
-## 🔀 Flujo de GitHub
+## 🔀 Flujo de trabajo en GitHub
 
 ```text
-1. 🔍 Busca o crea una issue (en español o inglés)
-2. 💬 Comenta y acuerda el alcance
-3. 🌿 Crea una rama (haz fork si no tienes acceso de push)
-4. ✏️  Haz cambios siguiendo las recetas de abajo
-5. 📤 Abre un Pull Request (PR) referenciando la issue
-6. 👀 Espera la revisión
-7. ✅ Mergear cuando esté aprobado
+1. 🔍 Buscar o crear un issue (en español o inglés)
+2. 💬 Comentar y consensuar el alcance
+3. 🌿 Crear una rama (fork si no tienes acceso de push)
+4. ✏️  Hacer los cambios siguiendo las recetas de abajo
+5. 📤 Abrir un Pull Request (PR) referenciando el issue
+6. 👀 Esperar revisión (al menos 1 de un maintainer)
+7. ✅ Merge cuando hay aprobación
 ```
 
-**Etiquetas de issues** (se usan para clasificar el trabajo entrante):
+**Etiquetas de issues** (las usamos para clasificar):
 
 | Etiqueta | Significado |
 |---|---|
 | `UX` | Mejora de usabilidad o experiencia |
-| `content` | Textos, traducciones, copy de accesibilidad |
+| `contenido` | Textos, traducciones, copy de accesibilidad |
 | `bug` | Error reproducible en el comportamiento |
 | `tech` | Implementación técnica, refactor |
-| `docs` | Cambios solo de documentación |
+| `docs` | Cambios en la documentación |
 | `good first issue` | Apto para una primera contribución |
 
-### Convenciones de rama
+### Convenciones de ramas
 
-- `feat/<slug>` — funcionalidades nuevas
+- `feat/<slug>` — nuevas funcionalidades
 - `fix/<slug>` — corrección de bugs
-- `docs/<slug>` — cambios solo de documentación
-- `i18n/<codigo>` — traducción a un idioma (p. ej. `i18n/ca`, `i18n/gl`)
+- `docs/<slug>` — cambios solo en documentación
+- `content/<slug>` — cambios solo de contenido (barajas, tarjetas, definiciones)
+- `i18n/<código>` — traducción a un idioma (ej. `i18n/ca`, `i18n/gl`)
+
+### Commits
+
+- Mensaje en **inglés** (convención del repo), resumen en imperativo.
+- Una cosa por commit — commits grandes se pueden pedir trocear.
+- Si cierran un issue, incluir `Closes #123` al final.
 
 ---
 
-## 🤝 Roles en el proyecto
+## 👥 Roles del proyecto
 
-| Rol | Quién es | Cómo participa |
+La mayoría de proyectos Miralante comparten tres roles. La división
+exacta depende del hermano; consulta el `doc/es/roles.md` del
+hermano afectado para la descripción autorizada.
+
+| # | Rol | Lee primero |
 |---|---|---|
-| 👤 **Persona usuaria** | Usa la app | No lee ni escribe código; reporta issues |
-| ❤️ **Apoyo** | Familia, terapeuta, docente | Propone contenido, correcciones de redacción, niveles de dificultad |
-| 💻 **Construcción** | Desarrollador/a | Implementa código, mantiene arquitectura, revisa PRs, despliega |
+| 1 | 👤 **Persona usuaria** | La app — nunca este fichero. |
+| 2 | 🤝 **Apoyo** (familia / docente / terapeuta) | El `doc/es/roles.md` del hermano. |
+| 3 | 💻 **Persona constructora** (contenido o código) | Este fichero, más el `doc/es/SPEC.md`, el `doc/es/tecnico.md` y el `CLAUDE.md` del hermano. |
 
-Ver [`doc/es/roles.md`](doc/es/roles.md) para la descripción
-completa de cada rol.
+> Las decisiones puramente técnicas viven en el rol de persona
+> constructora, **no porque se ignore a la persona usuaria, sino
+> porque ese es el dominio de cada rol.** Las decisiones de
+> producto, contenido, idioma y diseño de UI **se prueban y validan
+> con la persona usuaria siempre que es posible**, y su feedback es
+> la fuente principal de mejora.
 
 ---
 
-## 📏 Qué esperamos de un PR
+## 📝 Qué puedes aportar
 
-Antes de abrir un PR:
+- **Correcciones de copy** — typos, redacción más clara, ajustes de
+  accesibilidad.
+- **Nuevo idioma** — consulta el `doc/es/I18N.md` del hermano para
+  la receta completa.
+- **Accesibilidad** — contraste, orden de foco, visibilidad de foco,
+  `prefers-reduced-motion`, etiquetas ARIA, copy en lectura fácil
+  (UNE 153101).
+- **Corrección de bugs** — cualquier cosa que se rompa en un
+  navegador soportado.
+- **Cabeceras de seguridad / CSP** — endurecer la política en
+  `_headers`.
+
+Cada una de estas es lo bastante pequeña como para que las recetas
+de abajo la cubran sin una revisión arquitectónica aparte.
+
+---
+
+## 🌐 Recetas
+
+### Corrección de copy
+
+1. Edita el fichero de strings fuente de verdad (`es` por defecto,
+   según la política de idiomas de la suite).
+2. Refleja el cambio en todos los demás ficheros de strings (`en`
+   como mínimo).
+3. Si el cambio toca estructura HTML visible, ejecuta
+   `node scripts/check.js` para verificar la paridad de claves.
+4. Abre un PR con una descripción de una línea.
+
+### Nuevo idioma
+
+Consulta el `doc/es/I18N.md` del hermano para el paso a paso
+completo. La arquitectura está lista para multi-idioma desde el
+inicio: cada página va a través de `App.i18n.t()` y atributos
+`data-i18n`, así que añadir un idioma **no requiere cambios** en el
+bootstrap ni en el código de la app.
+
+### Mejora de accesibilidad
+
+Lee primero el `doc/es/SPEC.md` §3 — las restricciones innegociables
+viven ahí (botones ≥ 64×64 px, contraste WCAG AA con AAA como
+objetivo de diseño, copy en lectura fácil, feedback sin presión).
+Cualquier cosa que las rompa será rechazada.
+
+### Añadir o endurecer una cabecera de seguridad
+
+Las cabeceras viven en `_headers`. La CSP es deliberadamente
+estricta (`script-src 'self'`, sin scripts inline; el bloque JSON-LD
+se interpreta como dato y no necesita `unsafe-inline`). Endurecerla
+es bienvenido; relajarla casi nunca lo es — abre un issue antes.
+
+---
+
+## ✅ Checklist antes de abrir PR
 
 - [ ] `node scripts/check.js` pasa en local.
-- [ ] Si es PWA: `node scripts/check-version-bump.js` pasa, y has
-      bumpeado `VERSION` en `sw.js` por cualquier cambio en un
-      archivo cacheado.
-- [ ] Si has tocado copy de UI, el cambio existe en **ambos**
-      `strings.es.js` y `strings.en.js`.
-- [ ] Has probado el cambio en un navegador real de escritorio (y
-      en móvil si la app es PWA).
-- [ ] No has introducido ningún runtime de terceros (Google Fonts,
-      analítica, IA remota).
-- [ ] No has editado otro hermano de la suite desde este PR.
-
-Si eres colaborador/a nuevo/a, comenta primero en la issue para
-que quien mantiene pueda acordar el alcance antes de que empieces
-a escribir código.
+- [ ] Si añadiste cadenas de UI, **todos los locales soportados**
+      están en sincronía (al menos `es` y `en`).
+- [ ] Probaste el flujo en al menos un navegador real de escritorio
+      (Chrome / Firefox / Safari).
+- [ ] No añadiste ninguna dependencia de runtime nueva — solo HTML /
+      CSS / JS vanilla en toda la suite.
+- [ ] No aflojaste la CSP en `_headers` sin abrir un issue.
+- [ ] Si este PR toca un fichero cacheado, bumpeaste `VERSION` en
+      `sw.js`.
 
 ---
 
-## 🌐 Traducciones
+## 🚫 Lo que este repositorio NO acepta
 
-Para añadir un nuevo idioma:
-
-1. Añade el locale a `strings.<locale>.js` con el mismo conjunto
-   de claves que `strings.es.js` + `strings.en.js`.
-2. Actualiza el selector de idioma en `index.html` y la lista
-   `SUPPORTED` en `js/i18n.js`.
-3. Añade una fila de badge al `README.md` (el badge `i18n`).
-4. Actualiza el `apptonomia/js/strings.<locale>.js` del
-   metaproyecto para añadir el nombre de tu app a la tarjeta del
-   portal.
-
-Receta completa: ver [`doc/es/i18n.md`](doc/es/i18n.md).
-
----
-
-## 🤖 Trabajar con agentes IA de código
-
-Si usas un agente IA de código para ayudarte, apúntalo al
-[`CLAUDE.md`](CLAUDE.md) del proyecto (o equivalente) antes de que
-empiece. El flujo de trabajo del agente está documentado allí:
-fuentes canónicas, chequeos obligatorios al iniciar sesión, regla
-del bump de caché, política de operaciones externas / destructivas,
-y políticas transversales de la suite (lectura fácil, WCAG AAA,
-lenguaje público, sin telemetría).
+- **Relajar la CSP** (`script-src 'self'` se queda estricto — no se
+  permiten scripts inline).
+- **Nuevas dependencias de runtime** — solo HTML / CSS / JS vanilla,
+  sin npm, sin CDNs, sin paso de build.
+- **Añadir analítica / telemetría / llamadas a terceros de cualquier
+  tipo.**
+- **Datos personales** de cualquier tipo — la suite está pensada
+  para ser gratuita, sin cuentas y sin telemetría.
+- **Una SPA, un router o un paso de build.** Cada hermano son
+  ficheros estáticos planos; si te ves alcanzando un router, estás
+  resolviendo el problema equivocado.
 
 ---
 
-## ⚖️ Código de conducta
+## 📞 Comunicación
 
-Todas las personas participantes deben seguir
-[`CODE_OF_CONDUCT.es.md`](CODE_OF_CONDUCT.es.md).
-
-## 🛡️ Seguridad
-
-Ver [`SECURITY.es.md`](SECURITY.es.md) para cómo reportar una
-posible vulnerabilidad de forma privada.
+- **Issues** → canal principal para propuestas, bugs, preguntas.
+- **Revisiones de Pull Request** → para revisar cambios concretos.
 
 ---
 
-## 📄 Licencia
+## 📜 Código de conducta
 
-Al contribuir, aceptas que tus contribuciones se licenciarán bajo
-la [Licencia MIT](LICENSE).
+Este proyecto sigue [`CODE_OF_CONDUCT.es.md`](CODE_OF_CONDUCT.es.md).
+Participar implica aceptarlo.
+
+---
+
+## 🙏 Gracias
+
+Gracias por dedicar tiempo a una herramienta que ayuda a las personas
+a aprender a su propio ritmo.

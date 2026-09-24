@@ -22,6 +22,7 @@ como andamios de archivos.
 8. [Registra el nuevo hermano en apptonomia/](#8-registra-el-nuevo-hermano-en-apptonomia)
 9. [Gates de CI](#9-gates-de-ci)
 10. [Primer despliegue](#10-primer-despliegue)
+11. [Scripts de mantenimiento](#11-scripts-de-mantenimiento)
 
 ---
 
@@ -114,9 +115,13 @@ cd <slug>
 cp -R ../apptonomia/doc/templates/. .
 
 # 4. Renombra los marcadores de posición en los archivos copiados.
-#    Las plantillas usan {{SLUG}}, {{DISPLAY_ES}}, {{DISPLAY_EN}},
-#    {{DOMAIN}}, {{SHAPE}} — reemplaza cada ocurrencia.
-#    Un sed rápido (o el buscar/reemplazar global de tu editor) lo hace.
+#    En la suite las plantillas usan {{SLUG}}, {{DISPLAY_ES}},
+#    {{DISPLAY_EN}}, {{DISPLAY_NAME}}, {{DOMAIN}}, {{SHAPE}},
+#    y, en la plantilla de SECURITY, también {{GIT_ORG}}, {{REPO}},
+#    {{DEFAULT_BRANCH}}, {{SUPPORT_EMAIL}} y
+#    {{SUITE_SPECIFIC_THREAT_MODEL}} (y su homólogo `_ES`).
+#    Reemplaza cada ocurrencia. Un sed rápido (o el
+#    buscar/reemplazar global de tu editor) lo hace.
 ```
 
 La carpeta [`templates/`](../templates/) tiene un andamio para
@@ -138,7 +143,14 @@ viable que debes tener **antes** del primer despliegue:
 - `LICENSE` (MIT)
 - `CONTRIBUTING.md` + `CONTRIBUTING.es.md`
 - `CODE_OF_CONDUCT.md` + `CODE_OF_CONDUCT.es.md`
-- `SECURITY.md` + `SECURITY.es.md`
+- `SECURITY.md` + `SECURITY.es.md` (plantilla canónica en
+  [`doc/templates/SECURITY.md`](../templates/SECURITY.md) ↔
+  [`doc/templates/SECURITY.es.md`](../templates/SECURITY.es.md);
+  ver §11 abajo: **no se editan a mano**, se renderizan con
+  `scripts/one-off/write-security-md.js`; el canal
+  `{{SUPPORT_EMAIL}}` se resuelve desde
+  `app.config.json > supportEmail` de cada repo, con fallback
+  duro en el script)
 - `CLOUDFLARE.md` (runbook de despliegue)
 - `_headers`, `wrangler.toml`, `404.html`
 - `index.html` + `app.js` (o `tools/<slug>/app.js` para catálogos)
@@ -154,6 +166,17 @@ Si la app es una herramienta de un solo uso (no se vuelve a
 visitar) y no envía datos de progreso, puedes saltarte la PWA
 por completo: sin `manifest.json`, sin `sw.js`. El resto de la
 anatomía de archivos sigue aplicando.
+
+### 4.2 Convención de rama por defecto
+
+Los hermanos nuevos deben usar `main` como rama por defecto. Los
+siete hermanos actuales son una mezcla de `main` (apptonomia,
+memofun, sinonimia) y `master` (calculia, okeymoney, teclatlon,
+routime); la plantilla de SECURITY se parametriza con
+`{{DEFAULT_BRANCH}}`, así que hoy cada archivo es fiel a su
+repo. Migrar a `main` es editar una sola línea en
+[`scripts/one-off/write-security-md.js`](../scripts/one-off/write-security-md.js)
+tras subir el rename.
 
 ---
 
@@ -392,6 +415,38 @@ El HTML también debe declarar UTF-8. Si se cambia un recurso CSS/JS inmutable,
 hay que actualizar en el mismo cambio su versión semántica de caché
 (`<slug>-vN`), y la comprobación final debe hacerse contra la URL publicada,
 en una sesión nueva, no solo en una previsualización local.
+
+## 11. Scripts de mantenimiento
+
+Son utilidades de housekeeping ejecutadas desde
+`scripts/one-off/`, modeladas según el patrón de la suite
+(construir una vez, re-ejecutar cuando cambian los valores,
+nunca en cada commit).
+
+### `write-security-md.js`
+
+Re-render idempotente de `SECURITY.{md,es.md}` para cada hermano
+más las dos plantillas canónicas en `doc/templates/`. Lee la
+tabla `REPOS` al inicio del script — ese es el único sitio a
+editar cuando un valor cambia:
+
+| Campo | Cuándo editar |
+|---|---|
+| `gitOrg` / `repo` | El repo se renombra o cambia de organización. |
+| `branch` | El repo migra de `master` a `main` (convención objetivo). |
+| `supportEmail` | Solo fallback duro. El valor real viene del `app.config.json > supportEmail` del repo (el script lo imprime). Edítalo allí, no aquí. |
+| `extraThreat` / `extraThreatEs` | Un hermano nuevo tiene un añadido específico al modelo de amenaza. |
+
+```bash
+# desde apptonomia/ (cualquier cwd):
+node scripts/one-off/write-security-md.js
+```
+
+Escribe `wrote <path>` por cada archivo que produce (14 concretos
++ 2 plantillas = 16 líneas de salida) y sale con código no cero
+si alguna variable requerida en las plantillas no resuelve. Sin
+efectos secundarios: no toca `git`, no hace `npm install`, no
+abre el navegador.
 
 ## Ver también
 

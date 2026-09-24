@@ -14,7 +14,10 @@
 
 Aplicación web gratuita y estática, sin dependencias, pensada para
 nuestras personas tipo: **<one-sentence description of what the
-app does>**.
+app does>**. Pertenece a la suite **Miralante**, formada por
+siete aplicaciones hermanas — la lista completa está en
+[🌐 La suite Miralante](#-la-suite-miralante--proyectos-del-grupo)
+más abajo.
 
 Sin cuentas, sin cookies, sin analítica: todo funciona en el
 navegador y el progreso se guarda solo en `localStorage`, en tu
@@ -25,6 +28,82 @@ propio dispositivo.
 - 💻 **Usar en tu propio ordenador**: abre `index.html`
   directamente en un navegador, o usa `npx serve .` /
   `python -m http.server 8080` para la experiencia PWA completa.
+
+---
+
+## 📖 Acerca de
+
+<Un párrafo (3–5 frases) que describa qué es {{DISPLAY_ES}},
+para quién es y qué la diferencia de otros enfoques para el
+mismo problema. Ancla la descripción en la experiencia concreta
+de uso, no en claims de marketing:
+
+- Explica el **propósito** en lenguaje llano — qué puede hacer la
+  persona usuaria con la app que antes no podía (o no podía tan
+  fácilmente).
+- Nombra la **forma** de la app — propósito único vs. catálogo,
+  una pantalla vs. varias, PWA vs. página suelta.
+- Menciona la **suite** a la que pertenece, con enlace a la tabla
+  [🌐 La suite Miralante](#-la-suite-miralante--proyectos-del-grupo)
+  más abajo.
+- Cierra con los **principios innegociables** que el proyecto
+  siempre honra (sin cuentas, sin telemetría, accesibilidad por
+  defecto, lenguaje llano, etc.).
+
+Usa [`doc/es/spec.md`](doc/es/spec.md) como fuente de verdad
+para las decisiones de producto — nunca las reformules en este
+README de forma que pueda divergir de la especificación.
+
+---
+
+## 🎯 Objetivos
+
+<Lista con 3–5 objetivos concretos que {{DISPLAY_ES}} busca
+cumplir. Cada objetivo debe ser:**
+
+- **Específico** — algo que la app hace o no hace, no una
+  aspiración vaga.
+- **Verificable** — se puede señalar una pantalla, un flujo o
+  un archivo del repo que lo demuestra.
+- **Orientado a la persona usuaria** — formulado desde su punto
+  de vista, no desde quien mantiene el código.
+
+Ejemplos de buena formulación:
+
+- "Una persona usuaria nueva puede completar su primera
+  actividad en menos de un minuto, sin tutorial."
+- "Todas las pantallas funcionan en un móvil de 320 px sin
+  scroll horizontal."
+- "El progreso sobrevive a un recarga, a una sesión sin
+  conexión y a cerrar la pestaña, sin cuenta."
+
+Compara cada objetivo con [`doc/es/spec.md`](doc/es/spec.md):
+si un objetivo no está en la especificación, añádelo allí o
+sácalo de la lista. Objetivos que se separan de la
+especificación se vuelven responsabilidades.
+
+---
+
+## 👥 Audiencia y roles
+
+{{DISPLAY_ES}} está pensada para una **persona tipo** —
+<una frase corta que describa a la audiencia en lenguaje no
+clínico y no técnico>. La especificación real del producto
+vive en [`doc/es/spec.md`](doc/es/spec.md); este README evita
+a propósito cualquier etiqueta clínica para que la descripción
+pública se mantenga genérica.
+
+El proyecto reconoce tres roles alrededor de la app, cada uno
+con su propio punto de entrada:
+
+| Rol | Quién es | Por dónde empieza |
+|---|---|---|
+| 👤 **Persona usuaria** | Usa la app en el día a día | La propia app |
+| ❤️ **Apoyo** | Familia, terapeuta, docente | [`doc/es/equipo.md`](doc/es/equipo.md) |
+| 💻 **Construcción** | Desarrollador/a o agente IA | [`doc/es/tecnico.md`](doc/es/tecnico.md) |
+
+Descripción completa de los roles:
+[`doc/es/roles.md`](doc/es/roles.md).
 
 ---
 
@@ -55,16 +134,7 @@ short bullet points about what it actually does>.
 
 ---
 
-## 👥 Roles en el proyecto
-
-{{DISPLAY_ES}} tiene tres roles claramente diferenciados — persona
-usuaria, apoyo y construcción — cada uno con su propio espacio y
-su propio punto de entrada. Ver
-[`doc/es/roles.md`](doc/es/roles.md) para la descripción completa.
-
----
-
-## 📚 Documentación
+##  Documentación
 
 Toda la documentación del proyecto está en la carpeta `doc/`:
 
@@ -257,6 +327,7 @@ accesibilidad sin backend, y la misma historia de despliegue.
 |---|---|---|
 | **Apptonomia** *(portal — landing only, no es app)* | Landing que presenta la suite Miralante | [github.com/{{GIT_ORG}}/apptonomia](https://github.com/{{GIT_ORG}}/apptonomia) |
 | Calculia | Matemáticas y razonamiento lógico | [github.com/{{GIT_ORG}}/calculia](https://github.com/{{GIT_ORG}}/calculia) |
+| Ludia | Juegos adaptados con reglas, ejercicios y partidas | [github.com/{{GIT_ORG}}/ludia](https://github.com/{{GIT_ORG}}/ludia) |
 | Memofun | Tarjetas de estudio para aprendizaje significativo | [github.com/{{GIT_ORG}}/memofun](https://github.com/{{GIT_ORG}}/memofun) |
 | Okeymoney | Finanzas personales y autonomía cotidiana | [github.com/{{GIT_ORG}}/okeymoney](https://github.com/{{GIT_ORG}}/okeymoney) |
 | Routime | Actividades para rutinas y habilidades de la vida diaria | [github.com/{{GIT_ORG}}/routime](https://github.com/{{GIT_ORG}}/routime) |

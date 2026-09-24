@@ -13,7 +13,10 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 **{{DISPLAY_EN}}** is a **free, static, dependency-free web app**
-that **<one-sentence description of what the app does>**.
+that **<one-sentence description of what the app does>**. It
+belongs to the **Miralante** suite of seven sibling apps — see
+[🌐 The Miralante suite](#-the-miralante-suite--projects-in-the-group)
+below for the full list.
 
 No accounts, no cookies, no analytics: everything runs in the
 browser and progress is saved only in `localStorage`, on your own
@@ -25,6 +28,81 @@ device.
   serve the folder with any static server (`npx serve .` /
   `python -m http.server 8080`) for the full offline-capable PWA
   experience.
+
+---
+
+## 📖 About
+
+<One paragraph (3–5 sentences) describing what {{DISPLAY_EN}}
+is, who it is for, and what makes it different from other
+approaches to the same problem. Anchor the description in the
+concrete experience of using the app, not in marketing claims:
+
+- State the **purpose** in plain language — what the app lets a
+  person do that they could not do (or could not do as easily)
+  before.
+- Name the **shape** of the app — single-purpose vs. catalogue,
+  one screen vs. many, PWA vs. plain page.
+- Mention the **suite** it belongs to, with a forward link to
+  the [🌐 Miralante suite](#-the-miralante-suite--projects-in-the-group)
+  table below.
+- Close with the **non-negotiable product principles** that the
+  project always honours (no accounts, no telemetry, accessible
+  by default, easy-read content, etc.).
+
+Use the project's own [`doc/en/spec.md`](doc/en/spec.md) as the
+source of truth for product decisions — never rephrase them in
+this README in a way that could drift from the spec.
+
+---
+
+## 🎯 Goals
+
+<Bulleted list of the 3–5 concrete goals {{DISPLAY_EN}} is built
+to achieve. Each goal must be:**
+
+- **Specific** — something the app either does or doesn't do,
+  not a vague aspiration.
+- **Verifiable** — you can point at a screen, a flow or a file
+  in this repo that proves it.
+- **User-facing** — phrased from the point of view of the
+  person using the app, not the developer maintaining it.
+
+Examples of good goal wording:
+
+- "A new user can complete their first activity in under one
+  minute, with no tutorial."
+- "Every screen works on a 320 px-wide phone with no horizontal
+  scroll."
+- "Progress survives a reload, an offline session and a tab
+  close, with no account."
+
+Cross-check each goal against [`doc/en/spec.md`](doc/en/spec.md) —
+if a goal is not in the spec, either add it to the spec or drop
+it from this list. Goals that drift from the spec become
+liabilities.
+
+---
+
+## 👥 Audience & roles
+
+{{DISPLAY_EN}} is designed for a **typical user profile** —
+<one short sentence describing the audience in non-clinical,
+non-technical language>. The real product specification lives
+in [`doc/en/spec.md`](doc/en/spec.md); this README deliberately
+avoids any clinical label so the public description stays
+generic.
+
+The project recognises three roles around the app, each with its
+own entry point:
+
+| Role | Who they are | Where they look first |
+|---|---|---|
+| 👤 **End user** | Uses the app day-to-day | The app itself |
+| ❤️ **Support** | Family, therapist, teacher | [`doc/en/team.md`](doc/en/team.md) |
+| 💻 **Build** | Developer or AI agent | [`doc/en/technical.md`](doc/en/technical.md) |
+
+Full role description: [`doc/en/roles.md`](doc/en/roles.md).
 
 ---
 
@@ -52,20 +130,7 @@ short bullet points about what it actually does>.
 
 ---
 
-## 👥 Roles in the project
-
-| Role | Who they are | How they participate | Where they look first |
-|---|---|---|---|
-| 👤 **End user** | Uses the app | Opens it in a browser; doesn't read or write code | The app |
-| ❤️ **Support** | Family, therapist, teacher | Accompanies, supervises, contributes content | [`CONTRIBUTING.md`](CONTRIBUTING.md) |
-| 💻 **Build** | Developer | Implements, maintains, reviews PRs, deploys | [`technical.md`](doc/en/technical.md) |
-
-See [`doc/en/roles.md`](doc/en/roles.md) for the full role
-description.
-
----
-
-## 📚 Project documentation (bilingual)
+##  Project documentation (bilingual)
 
 All project documentation lives in the `doc/` folder:
 
@@ -252,6 +317,7 @@ philosophy and the same deploy story.
 |---|---|---|
 | **Apptonomia** *(portal — landing only, no app)* | Landing page that introduces the Miralante suite | [github.com/{{GIT_ORG}}/apptonomia](https://github.com/{{GIT_ORG}}/apptonomia) |
 | Calculia | Math and logical reasoning | [github.com/{{GIT_ORG}}/calculia](https://github.com/{{GIT_ORG}}/calculia) |
+| Ludia | Adapted games with rules, exercises and matches | [github.com/{{GIT_ORG}}/ludia](https://github.com/{{GIT_ORG}}/ludia) |
 | Memofun | Flashcards built around meaningful learning | [github.com/{{GIT_ORG}}/memofun](https://github.com/{{GIT_ORG}}/memofun) |
 | Okeymoney | Personal finance and everyday autonomy | [github.com/{{GIT_ORG}}/okeymoney](https://github.com/{{GIT_ORG}}/okeymoney) |
 | Routime | Activities for routines and daily-life skills | [github.com/{{GIT_ORG}}/routime](https://github.com/{{GIT_ORG}}/routime) |

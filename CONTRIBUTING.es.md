@@ -1,10 +1,19 @@
 # Contribuir a Apptonomia
 
 > 🌐 **Otros idiomas:** [English](CONTRIBUTING.md)
+>
+> **Parte de la suite [Miralante](https://apptonomia.uk)** —
+> Apptonomia es uno de los siete proyectos hermanos (Apptonomia,
+> Calculia, Memofun, Okeymoney, Routime, Sinonimia, Teclatlon) que
+> comparten el mismo flujo de trabajo, las mismas reglas de
+> accesibilidad y el mismo código de conducta. Este repo aloja
+> **únicamente el portal de la suite**; el hermano que publica la
+> app de terapia ocupacional es **Apptonomia** (este mismo repo).
 
-Gracias por tu interés en contribuir a Apptonomia. Esta guía cubre
-el flujo de trabajo, los roles del proyecto y el pequeño conjunto de
-recetas que mantienen el portal coherente.
+Gracias por tu interés en contribuir. Esta guía cubre el flujo de
+trabajo en GitHub que seguimos en toda la suite, los roles del
+proyecto y el pequeño conjunto de recetas que mantienen a cada
+hermano coherente.
 
 ---
 
@@ -52,9 +61,30 @@ Ejemplos:
 
 ---
 
+## � Roles del proyecto
+
+La mayoría de proyectos Miralante comparten tres roles. La división
+exacta depende del hermano; consulta el `doc/es/roles.md` del
+hermano afectado para la descripción autorizada.
+
+| # | Rol | Lee primero |
+|---|---|---|
+| 1 | 👤 **Persona usuaria** | La app — nunca este fichero. |
+| 2 | 🤝 **Apoyo** (familia / docente / terapeuta) | El `doc/es/roles.md` del hermano afectado. |
+| 3 | 💻 **Persona constructora** (contenido o código) | Este fichero, más el `doc/es/SPEC.md`, el `doc/es/tecnico.md` y el `CLAUDE.md` del hermano. |
+
+> Las decisiones puramente técnicas viven en el rol de persona
+> constructora, **no porque se ignore a la persona usuaria, sino
+> porque ese es el dominio de cada rol.** Las decisiones de
+> producto, contenido, idioma y diseño de UI **se prueban y validan
+> con la persona usuaria siempre que es posible**, y su feedback es
+> la fuente principal de mejora.
+
+---
+
 ## 📝 Qué puedes aportar
 
-Este repositorio es el **portal de entrada** de la suite Apptonomia,
+Este repositorio es el **portal de entrada** de la suite Miralante,
 así que la mayoría de contribuciones serán una de estas:
 
 - **Correcciones de copy** — typos, redacción más clara, ajustes de
