@@ -265,6 +265,60 @@
       box-shadow: 0 6px 16px var(--color-shadow);
       text-decoration: none;
     }
+
+    /* ===== "Próximamente" cards =====.
+       Calculia / Routime / Okeymoney / Ludia are not yet shipped, so
+       they ship as <div role="link" aria-disabled="true"> with no
+       href. The visual treatment below makes it obvious that the card
+       is not a navigation target:
+         • cursor: not-allowed, no hover lift;
+         • softened colour and opacity so it sits behind the live
+           siblings in the visual hierarchy;
+         • a "Próximamente" badge replaces the suite-domain slot, so
+           the card does not advertise a URL the visitor cannot follow.
+       The CSS keeps the card the same shape as the live siblings so
+       the grid rhythm stays consistent. */
+    .suite-card--soon {
+      cursor: not-allowed;
+      background: var(--color-surface);
+      color: var(--color-text-soft);
+      /* Slightly desaturated so it visually recedes vs the live cards.
+         opacity also keeps the pictogram from competing with the ones
+         that are actually clickable. */
+      opacity: 0.72;
+      filter: saturate(0.55);
+    }
+    .suite-card--soon:hover {
+      transform: none;
+      box-shadow: var(--shadow);
+    }
+    .suite-card--soon:focus,
+    .suite-card--soon:focus-visible {
+      outline: none;
+    }
+    .suite-card--soon .suite-picto {
+      opacity: 0.85;
+    }
+    .suite-card--soon h3 {
+      color: var(--color-text-soft);
+    }
+    .suite-card--soon p {
+      /* Keep the description readable but not as loud as on a live card. */
+      color: var(--color-text-soft);
+      opacity: 0.85;
+    }
+    .suite-soon-badge {
+      margin-top: auto;
+      align-self: flex-start;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      background: var(--accent-soft);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
     .suite-card-head {
       display: flex;
       align-items: center;

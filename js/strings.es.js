@@ -13,7 +13,13 @@ if (window.App.i18n) {
     },
     home: {
       title: 'Apptonomia',
-      tagline: '¿Qué vas a hacer ahora?'
+      tagline: '¿Qué vas a hacer ahora?',
+      /* Badge for the four siblings that are not yet shipped (Calculia,
+         Routime, Okeymoney, Ludia). Replaces the clickable link with a
+         non-interactive card so the URL is no longer reachable from
+         the portal even though the domain still resolves. */
+      comingSoon: 'Próximamente',
+      comingSoonHelp: 'Esta aplicación aún no está disponible.'
     },
     tags: {
       math: 'Matemáticas',

@@ -263,7 +263,8 @@
        launches and across tab restores). Bump the `apptonomia-vN` suffix in the same
        commit that touches the stylesheet — same contract as the PWA
        siblings' sw.js VERSION. -->
-  <link rel="stylesheet" href="css/styles.css?v=apptonomia-v7">
+  <link rel="stylesheet" href="css/styles.css?v=apptonomia-v8">
+  <link rel="stylesheet" href="assets/css/locale-picker.css?v=apptonomia-v1">
 </head>
 <body>
 
@@ -275,10 +276,7 @@
     <div class="suite-brand-copy"><h1 data-i18n="home.title">Apptonomia</h1></div>
   </div>
   <div class="suite-controls">
-    <div class="lang-switch" role="group" aria-label="Elegir idioma">
-      <button type="button" class="btn-lang" id="lang-es" data-locale="es" aria-pressed="true" aria-label="Español"><span class="locale-full" aria-hidden="true">🇪🇸 Español</span><span class="locale-short" aria-hidden="true">ES</span></button>
-      <button type="button" class="btn-lang" id="lang-en" data-locale="en" aria-pressed="false" aria-label="English"><span class="locale-full" aria-hidden="true">🇬🇧 English</span><span class="locale-short" aria-hidden="true">EN</span></button>
-    </div>
+    <div id="locale-picker"></div>
   </div>
   <div class="suite-details"><p class="tagline" data-i18n="home.tagline">Aprende a tu ritmo, en el idioma que prefieras.</p></div>
 </header>
@@ -286,35 +284,42 @@
 <main id="contenido" class="container">
   <div class="suite" aria-label="Suite de proyectos">
 
-    <a class="suite-card" href="https://calculia.apptonomia.uk" target="_blank" rel="noreferrer">
+    <!-- Sibling cards: the four "coming soon" siblings are rendered as
+         non-interactive cards (div + role="link" + aria-disabled="true")
+         rather than anchors, so the destination URL is unreachable from
+         the portal even though the domain still resolves. The "Próximamente"
+         badge replaces the suite-domain slot so the card does not advertise
+         a URL the visitor cannot follow. Teclatlon, Sinonimia and Memofun
+         keep their anchor wrapper because they are the only shipped siblings. -->
+    <div class="suite-card suite-card--soon" role="link" aria-disabled="true" aria-label="Calculia — Próximamente">
       <div class="suite-card-head">
         <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/calculia.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.math">Matemáticas</span>
       </div>
       <h3>Calculia</h3>
       <p data-i18n="projects.calculia">Cálculo y razonamiento lógico con actividades cortas y visuales.</p>
-      <span class="suite-domain">calculia.apptonomia.uk</span>
-    </a>
+      <span class="suite-soon-badge" role="status" data-i18n="home.comingSoon">Próximamente</span>
+    </div>
 
-    <a class="suite-card" href="https://routime.apptonomia.uk" target="_blank" rel="noreferrer">
+    <div class="suite-card suite-card--soon" role="link" aria-disabled="true" aria-label="Routime — Próximamente">
       <div class="suite-card-head">
         <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/routime.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.activities">Actividades</span>
       </div>
       <h3>Routime</h3>
       <p data-i18n="projects.routime">Actividades cotidianas para entrenar mente y habilidades.</p>
-      <span class="suite-domain">routime.apptonomia.uk</span>
-    </a>
+      <span class="suite-soon-badge" role="status" data-i18n="home.comingSoon">Próximamente</span>
+    </div>
 
-    <a class="suite-card" href="https://okeymoney.apptonomia.uk" target="_blank" rel="noreferrer">
+    <div class="suite-card suite-card--soon" role="link" aria-disabled="true" aria-label="Okeymoney — Próximamente">
       <div class="suite-card-head">
         <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/okeymoney.svg?v=apptonomia-v3" alt=""></span>
         <span class="suite-tag" data-i18n="tags.life">Vida diaria</span>
       </div>
       <h3>Okeymoney</h3>
       <p data-i18n="projects.okeymoney">Dinero y autonomía cotidiana, paso a paso.</p>
-      <span class="suite-domain">okeymoney.apptonomia.uk</span>
-    </a>
+      <span class="suite-soon-badge" role="status" data-i18n="home.comingSoon">Próximamente</span>
+    </div>
 
     <a class="suite-card" href="https://sinonimia.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
@@ -346,15 +351,15 @@
       <span class="suite-domain">teclatlon.apptonomia.uk</span>
     </a>
 
-    <a class="suite-card" href="https://ludia.apptonomia.uk" target="_blank" rel="noreferrer">
+    <div class="suite-card suite-card--soon" role="link" aria-disabled="true" aria-label="Ludia — Próximamente">
       <div class="suite-card-head">
         <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/ludia.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.chess">Juegos adaptados</span>
       </div>
       <h3>Ludia</h3>
       <p data-i18n="projects.ludia">Juegos adaptados: aprende, practica y juega con ayuda.</p>
-      <span class="suite-domain">ludia.apptonomia.uk</span>
-    </a>
+      <span class="suite-soon-badge" role="status" data-i18n="home.comingSoon">Próximamente</span>
+    </div>
 
   </div>
 </main>
@@ -366,8 +371,9 @@
 </footer>
 
 <script src="js/script.js"></script>
-<script src="js/strings.es.js?v=apptonomia-v5"></script>
-<script src="js/strings.en.js?v=apptonomia-v5"></script>
+<script src="js/strings.es.js?v=apptonomia-v6"></script>
+<script src="js/strings.en.js?v=apptonomia-v6"></script>
 <script src="js/prepaint.js"></script>
+<script src="assets/js/locale-picker.js?v=apptonomia-v1" defer></script>
 </body>
 </html>
