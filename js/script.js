@@ -16,6 +16,36 @@
 
   window.App = window.App || {};
   var tables = {};
+  var activeLocale = (typeof window.__APPTONOMIA_LOCALE__ === 'string')
+    ? window.__APPTONOMIA_LOCALE__
+    : DEFAULT_LOCALE;
+
+  /* Locale-change applier. Exposed as App.i18n.set(locale) so the
+     dropdown picker in assets/js/locale-picker.js (and any other
+     caller) can switch language at runtime without going through
+     a static [data-locale] button. Reads from the existing
+     tables; no need to reload the page or re-fetch the strings. */
+  function applyLocale(locale) {
+    activeLocale = locale;
+    document.documentElement.lang = locale;
+    var t = App.i18n.t;
+    var meta = document.querySelector('meta[data-i18n-attr="meta.description"]');
+    if (meta) meta.setAttribute('content', t('meta.description'));
+    var nodes = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < nodes.length; i++) {
+      var key = nodes[i].getAttribute('data-i18n');
+      var value = t(key);
+      if (value) nodes[i].textContent = value;
+    }
+    var injected = document.querySelectorAll('footer[data-pie-app] [data-i18n]');
+    for (var n = 0; n < injected.length; n++) {
+      var k = injected[n].getAttribute('data-i18n');
+      var v = t(k);
+      if (v) injected[n].textContent = v;
+    }
+    try { localStorage.setItem('apptonomia:locale', locale); } catch (e) { /* ignore */ }
+  }
+
   App.i18n = {
     register: function (table, locale) {
       tables[locale] = table;
@@ -38,21 +68,24 @@
     /* Active locale is decided by the head bootstrap and stored on
        App.i18n so register() / t() can find it. The bootstrap picks
        it before any string file loads. */
-    locale: function () { return activeLocale; }
+    locale: function () { return activeLocale; },
+    /* Programmatic locale switch. The dropdown picker calls this
+       after the user picks a new language; the function walks the
+       DOM and re-applies every [data-i18n] node in the new locale
+       (no page reload required). */
+    set: applyLocale
   };
-  var activeLocale = (typeof window.__APPTONOMIA_LOCALE__ === 'string')
-    ? window.__APPTONOMIA_LOCALE__
-    : DEFAULT_LOCALE;
 
   /* ---------------------------------------------------------------
     * Shared footer injector (apptonomia is a static landing; the
     * core is intentionally minimal — no assets/js/utils.js — so
-    * injectFooter lives next to App.i18n rather than in a separate
+    * inyectarPie lives next to App.i18n rather than in a separate
     * utils module. Fills any <footer data-pie-app>...</footer>
     * marker with the canonical one-link "back to portal" footer
     * used by about/ and legal/. Idempotent: a footer that already
     * has children is skipped.
     * --------------------------------------------------------------- */
+
   function injectFooter() {
     var pies = document.querySelectorAll('footer[data-pie-app]');
     for (var i = 0; i < pies.length; i++) {
@@ -80,35 +113,10 @@
        click-to-switch behaviour. */
     injectFooter();
     var buttons = document.querySelectorAll('.btn-lang');
-    function setLocale(locale) {
-      activeLocale = locale;
-      document.documentElement.lang = locale;
-      var t = App.i18n.t;
-      var meta = document.querySelector('meta[data-i18n-attr="meta.description"]');
-      if (meta) meta.setAttribute('content', t('meta.description'));
-      var nodes = document.querySelectorAll('[data-i18n]');
-      for (var i = 0; i < nodes.length; i++) {
-        var key = nodes[i].getAttribute('data-i18n');
-        var value = t(key);
-        if (value) nodes[i].textContent = value;
-      }
-      /* Re-translate the freshly injected footer too. */
-      var injected = document.querySelectorAll('footer[data-pie-app] [data-i18n]');
-      for (var n = 0; n < injected.length; n++) {
-        var k = injected[n].getAttribute('data-i18n');
-        var v = t(k);
-        if (v) injected[n].textContent = v;
-      }
-      for (var j = 0; j < buttons.length; j++) {
-        var isActive = buttons[j].getAttribute('data-locale') === locale;
-        buttons[j].setAttribute('aria-pressed', isActive ? 'true' : 'false');
-      }
-      try { localStorage.setItem('apptonomia:locale', locale); } catch (e) { /* ignore */ }
-    }
     for (var k = 0; k < buttons.length; k++) {
       (function (btn) {
         btn.addEventListener('click', function () {
-          setLocale(btn.getAttribute('data-locale'));
+          App.i18n.set(btn.getAttribute('data-locale'));
         });
       })(buttons[k]);
     }
