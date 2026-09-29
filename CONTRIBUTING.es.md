@@ -89,6 +89,17 @@ así que la mayoría de contribuciones serán una de estas:
 
 - **Correcciones de copy** — typos, redacción más clara, ajustes de
   accesibilidad en `strings.es.js` / `strings.en.js`
+- **Añadir una nueva app a la suite** — este es el equivalente más
+  cercano a "nuevo contenido" aquí: cada tarjeta del portal apunta
+  a una app hermana completa, así que añadir una tarjeta significa
+  crear un nuevo proyecto hermano de extremo a extremo (repo
+  propio, su `index.html` / `app.js` / `sw.js`, strings, manifest,
+  árbol de docs, gates de CI) y **solo entonces** enlazarlo desde
+  este portal. Consulta [`doc/es/crear-app.md`](doc/es/crear-app.md)
+  para la receta completa y [`doc/templates/`](doc/templates/)
+  para los andamios de archivos. **No** es un cambio pequeño —
+  necesita un alcance explícito y revisión de un maintainer antes
+  de cualquier PR.
 - **Nuevo idioma** — consulta [`doc/es/I18N.md`](doc/es/I18N.md) §5
 - **Accesibilidad** — contraste, orden de foco, visibilidad de foco,
   `prefers-reduced-motion`, etiquetas ARIA
@@ -99,7 +110,9 @@ así que la mayoría de contribuciones serán una de estas:
   [`_headers`](_headers)
 
 Cada una de estas es lo bastante pequeña como para que las recetas de
-abajo la cubran sin una revisión arquitectónica aparte.
+abajo la cubran sin una revisión arquitectónica aparte, **excepto
+"Añadir una nueva app a la suite"**, que es el cambio más pesado de
+toda la suite y se merece su propio hilo.
 
 ---
 
@@ -138,6 +151,22 @@ deliberadamente estricta (`script-src 'self'`, sin scripts inline; el
 bloque JSON-LD se interpreta como dato y no necesita `unsafe-inline`).
 Endurecerla es bienvenido; relajarla casi nunca lo es — abre un issue
 antes.
+
+### Añadir una nueva app a la suite
+
+Esto **no** es una receta de 4 pasos — es el cambio más pesado de
+toda la suite. Antes de abrir un PR:
+
+1. Abre un issue con el alcance en una frase, el perfil de público
+   y qué hermano existente es tu referencia arquitectónica más
+   cercana. Espera la aprobación de un maintainer.
+2. Lee [`doc/es/crear-app.md`](doc/es/crear-app.md) de principio a
+   fin y [`doc/es/guia-de-cumplimiento.md`](doc/es/guia-de-cumplimiento.md)
+   para las reglas innegociables (lectura fácil, WCAG, sin
+   telemetría, sin datos personales, contrato de caché, GEO/AEO/LLMO).
+3. Crea el nuevo repo desde [`doc/templates/`](doc/templates/),
+   conéctalo, deja su CI en verde y **entonces** abre el PR que
+   añade su tarjeta a este portal.
 
 ---
 

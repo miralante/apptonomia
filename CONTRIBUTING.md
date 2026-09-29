@@ -87,6 +87,15 @@ contributions will be one of:
 
 - **Copy fixes** — typos, clearer wording, accessibility tweaks in
   `strings.es.js` / `strings.en.js`
+- **Add a new app to the suite** — this is the closest equivalent
+  to "new content" here: each card on the landing links to a full
+  sibling app, so adding a card means creating a new sibling project
+  end-to-end (own repo, own `index.html` / `app.js` / `sw.js`,
+  strings, manifest, doc tree, CI gates) and only **then** linking
+  it from this landing. See [`doc/en/crear-app.md`](doc/en/crear-app.md)
+  for the full recipe and [`doc/templates/`](doc/templates/) for
+  the file scaffolds. This is **not** a small change — it needs
+  an explicit scope and a maintainer review before any PR.
 - **New language** — see [`doc/en/I18N.md`](doc/en/I18N.md) §5
 - **Accessibility** — contrast, focus order, focus visibility, reduced
   motion, ARIA labels
@@ -95,7 +104,9 @@ contributions will be one of:
 - **Security headers / CSP** — tightening the policy in [`_headers`](_headers)
 
 Each of those is small enough that the recipes below should cover it
-without a separate architecture review.
+without a separate architecture review, **except "Add a new app to
+the suite"**, which is the heaviest change in the suite and
+deserves its own thread.
 
 ---
 
@@ -132,6 +143,22 @@ Headers live in [`_headers`](_headers). The CSP is intentionally tight
 (`script-src 'self'`, no inline scripts; the JSON-LD block is parsed
 as data and does not require `unsafe-inline`). Tightening is welcome;
 loosening almost never is — open an issue first.
+
+### Adding a new app to the suite
+
+This is **not** a 4-step recipe — it is the heaviest change in the
+whole suite. Before opening a PR:
+
+1. Open an issue with the one-sentence scope, the audience profile,
+   and which existing sibling is your closest architectural
+   reference. Wait for maintainer sign-off.
+2. Read [`doc/en/crear-app.md`](doc/en/crear-app.md) end-to-end and
+   [`doc/en/guia-de-cumplimiento.md`](doc/en/guia-de-cumplimiento.md)
+   for the non-negotiable rules (easy-read, WCAG, no telemetry,
+   no PII, cache contract, GEO/AEO/LLMO).
+3. Bootstrap the new repo from [`doc/templates/`](doc/templates/),
+   wire it, get its CI green, **then** open the PR that adds its
+   card to this landing.
 
 ---
 

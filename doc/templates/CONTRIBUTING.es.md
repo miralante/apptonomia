@@ -80,6 +80,12 @@ hermano afectado para la descripción autorizada.
 
 - **Correcciones de copy** — typos, redacción más clara, ajustes de
   accesibilidad.
+- **Nueva actividad / elemento** — consulta la
+  `doc/es/guia-crear-elementos.md` del hermano para la receta
+  completa (seis ficheros canónicos, paridad de catálogo, bump de
+  SW, reglas de didáctica y lectura fácil). Los hermanos con su
+  propia forma de contenido (ledger compartido, barajas, palabras,
+  lecciones) apuntan a su propia guía bajo `doc/es/`.
 - **Nuevo idioma** — consulta el `doc/es/I18N.md` del hermano para
   la receta completa.
 - **Accesibilidad** — contraste, orden de foco, visibilidad de foco,

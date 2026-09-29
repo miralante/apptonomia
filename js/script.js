@@ -12,7 +12,7 @@
 (function () {
   'use strict';
 
-  var DEFAULT_LOCALE = 'es';
+  var DEFAULT_LOCALE = 'en';
 
   window.App = window.App || {};
   var tables = {};

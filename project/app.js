@@ -5,7 +5,7 @@
    strings.es.js / strings.en.js. Sin dependencias, accesible por diseño.
 
    Convenciones de la suite heredadas:
-   - Detección de locale por navigator.languages con fallback a "es".
+   - Detección de locale por navigator.languages con fallback a "en".
    - data-i18n="key" -> reemplaza textContent.
    - data-i18n-aria="key" -> reemplaza aria-label.
    - data-i18n-aria-pressed="key" -> toggle aria-pressed según el texto
@@ -53,13 +53,13 @@
   }
 
   function pickInitialLocale() {
-    var nav = (navigator.languages || [navigator.language || 'es'])
+    var nav = (navigator.languages || [navigator.language || 'en'])
       .map(function (l) { return l.toLowerCase().split('-')[0]; });
     var supported = Object.keys(window.I18N || {});
     for (var i = 0; i < nav.length; i++) {
       if (supported.indexOf(nav[i]) !== -1) return nav[i];
     }
-    return supported[0] || 'es';
+    return supported.indexOf('en') !== -1 ? 'en' : (supported[0] || 'en');
   }
 
   // ---------------------------------------------------------------------

@@ -76,6 +76,11 @@ authoritative description.
 ## 📝 What you can contribute
 
 - **Copy fixes** — typos, clearer wording, accessibility tweaks.
+- **New activity / element** — see the sibling's
+  `doc/en/creating-elements-guide.md` for the full recipe (six
+  canonical files, catalog parity, SW bump, didactics + easy-read
+  rules). Siblings with their own content shape (a shared ledger,
+  decks, words, lessons) point at their own guide under `doc/en/`.
 - **New language** — see the sibling's `doc/en/I18N.md` for the
   full recipe.
 - **Accessibility** — contrast, focus order, focus visibility, reduced

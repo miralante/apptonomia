@@ -106,6 +106,7 @@ window.I18N.es = {
   'deck.techOfflineTitle': 'Funciona sin conexi\u00f3n',
   'deck.techAccTitle': 'Accesibilidad y lectura f\u00e1cil',
   'deck.techAccLFText': 'La lectura f\u00e1cil no es solo un estilo: es la condici\u00f3n que hace posible que el contenido sea comprensible y, por tanto, aprendible.',
+  'deck.techColorText': 'El color siempre se combina con texto, iconos o formas; nunca es la \u00fanica forma de transmitir informaci\u00f3n.',
   'deck.techSecurityTitle': 'Seguridad y privacidad',
 
   // --- Slide 8 · Normas ---

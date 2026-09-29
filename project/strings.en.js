@@ -105,6 +105,7 @@ window.I18N.en = {
   'deck.techOfflineTitle': 'Works offline',
   'deck.techAccTitle': 'Accessibility and easy read',
   'deck.techAccLFText': 'Easy read is not just a style: it is the condition that makes content understandable, and therefore learnable.',
+  'deck.techColorText': 'Colour is always combined with text, icons or shapes; it is never the only way to convey information.',
   'deck.techSecurityTitle': 'Security and privacy',
 
   // --- Slide 8 · Standards ---
