@@ -52,49 +52,44 @@
   var DEFAULT_LOCALE = cfg.defaultLocale || 'en';
   var ENABLE_SETTINGS = cfg.settings !== false;
   var SETTINGS_KEY = cfg.settingsStorageKey || (STORAGE_KEY + ':accessibility');
+  var SOUND_SETTINGS_KEY = cfg.soundStorageKey || 'miralante:sounds';
   var SETTINGS_HREF = cfg.settingsHref || '';
   var settingsState = null;
+  var soundState = null;
   var baseRootFontSize = null;
+  var textSizeIsExplicit = false;
 
   /* Mapa de etiquetas nativas (cómo se llama cada idioma en sí
      mismo). Si la app pasa su propio `localeLabels`, se usa ese;
-     si no, usamos este fallback para los locales comunes. */
+     si no, usamos este fallback para los idiomas soportados. */
   var NATIVE_LABELS = LOCALE_LABELS || {
     es: 'Español',
-    en: 'English',
-    ca: 'Català',
-    gl: 'Galego',
-    eu: 'Euskara',
-    pt: 'Português',
-    fr: 'Français',
-    de: 'Deutsch',
-    it: 'Italiano',
-    nl: 'Nederlands',
-    pl: 'Polski',
-    ru: 'Русский',
-    zh: '中文',
-    ja: '日本語',
-    ar: 'العربية',
+    en: 'English'
   };
 
   /* ============================================================
      Descubrimiento de locales disponibles.
-     Estrategia: hacer fetch en HEAD sobre archivos `strings.<locale>.js`
-     en la ruta STRINGS_PATH. Si el archivo existe (200), ese locale
-     está disponible. Si da 404, no.
+     Estrategia: comprobar en HEAD los archivos `strings.es.js` y
+     `strings.en.js` en STRINGS_PATH. Solo esos dos idiomas están
+     disponibles en la suite.
      Si STRINGS_PATH es null/falsy (modo "skip discovery"), usamos
      directamente NATIVE_LABELS sin hacer ningún fetch. Esto es lo que
      usan apps como sinonimia que guardan sus strings inline en
      js/i18n.js en vez de un archivo por locale.
      ============================================================ */
-  var COMMON_LOCALES = ['es', 'en', 'ca', 'gl', 'eu', 'pt', 'fr', 'de', 'it'];
+  var COMMON_LOCALES = ['es', 'en'];
+  var SUPPORTED_LOCALES = ['es', 'en'];
+
+  function filterSupportedLocales(locales) {
+    return SUPPORTED_LOCALES.filter(function (loc) { return locales.indexOf(loc) !== -1; });
+  }
 
   function discoverLocales(cb) {
     if (!STRINGS_PATH) {
       /* Modo "skip discovery": usamos la lista de locales que la app
          pasó explícitamente (requiredLocales), o caemos al
          fallback de NATIVE_LABELS. */
-      cb(cfg.requiredLocales || Object.keys(NATIVE_LABELS));
+      cb(filterSupportedLocales(cfg.requiredLocales || SUPPORTED_LOCALES));
       return;
     }
     var found = [];
@@ -114,8 +109,9 @@
      Render del dropdown.
      ============================================================ */
   function buildUI(locales, activeLocale) {
+    locales = filterSupportedLocales(locales);
     var root = document.getElementById('locale-picker');
-    if (!root) return;
+    if (!root || !locales.length) return;
 
     var active = locales.indexOf(activeLocale) !== -1 ? activeLocale
       : (locales.indexOf(DEFAULT_LOCALE) !== -1 ? DEFAULT_LOCALE : locales[0]);
@@ -185,12 +181,12 @@
     es: {
       title: 'Ajustes', close: 'Cerrar ajustes', textSize: 'Tamaño de letra',
       small: 'Pequeño', normal: 'Normal', large: 'Grande',
-      contrast: 'Alto contraste', more: 'Más ajustes', help: 'Se guarda en este dispositivo.'
+      contrast: 'Alto contraste', successSound: 'Sonido de acierto', errorSound: 'Sonido de error', more: 'Más ajustes', help: 'Se guarda en este dispositivo.'
     },
     en: {
       title: 'Settings', close: 'Close settings', textSize: 'Text size',
       small: 'Small', normal: 'Normal', large: 'Large',
-      contrast: 'High contrast', more: 'More settings', help: 'Saved on this device.'
+      contrast: 'High contrast', successSound: 'Correct answer sound', errorSound: 'Error sound', more: 'More settings', help: 'Saved on this device.'
     }
   };
 
@@ -207,14 +203,27 @@
     var saved = null;
     try { saved = JSON.parse(localStorage.getItem(SETTINGS_KEY) || 'null'); } catch (e) {}
     saved = saved && typeof saved === 'object' ? saved : {};
+    textSizeIsExplicit = saved.textSizeSet === true || saved.textSize === 'small' || saved.textSize === 'large';
     return {
       textSize: ['small', 'normal', 'large'].indexOf(saved.textSize) !== -1 ? saved.textSize : 'normal',
+      textSizeSet: textSizeIsExplicit,
       contrast: saved.contrast === true
     };
   }
 
   function saveSettings() {
     try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settingsState)); } catch (e) {}
+  }
+
+  function loadSoundSettings() {
+    var saved = null;
+    try { saved = JSON.parse(localStorage.getItem(SOUND_SETTINGS_KEY) || 'null'); } catch (e) {}
+    saved = saved && typeof saved === 'object' ? saved : {};
+    return { success: saved.success !== false, error: saved.error === true };
+  }
+
+  function saveSoundSettings() {
+    try { localStorage.setItem(SOUND_SETTINGS_KEY, JSON.stringify(soundState)); } catch (e) {}
   }
 
   function applySettings() {
@@ -225,6 +234,11 @@
     html.style.fontSize = settingsState.textSize === 'normal'
       ? ''
       : (baseRootFontSize * (settingsState.textSize === 'large' ? 1.15 : 0.9)) + 'px';
+    if (textSizeIsExplicit) {
+      var scale = settingsState.textSize === 'large' ? 1.15 : (settingsState.textSize === 'small' ? 0.9 : 1);
+      html.style.setProperty('--text-scale', scale);
+      html.style.setProperty('--escala-texto', scale);
+    }
     html.classList.toggle('high-contrast', settingsState.contrast && cfg.legacyContrastClass === true);
   }
 
@@ -237,6 +251,8 @@
     drawer.querySelector('[data-settings-size-normal]').textContent = copy.normal;
     drawer.querySelector('[data-settings-size-large]').textContent = copy.large;
     drawer.querySelector('[data-settings-contrast-label]').textContent = copy.contrast;
+    drawer.querySelector('[data-settings-success-label]').textContent = copy.successSound;
+    drawer.querySelector('[data-settings-error-label]').textContent = copy.errorSound;
     drawer.querySelector('[data-settings-help]').textContent = copy.help;
     var more = drawer.querySelector('[data-settings-more]');
     if (more) more.textContent = copy.more;
@@ -245,6 +261,8 @@
     });
     var contrast = drawer.querySelector('[data-settings-contrast]');
     contrast.checked = settingsState.contrast;
+    drawer.querySelector('[data-settings-success]').checked = soundState.success;
+    drawer.querySelector('[data-settings-error]').checked = soundState.error;
   }
 
   function closeSettings(trigger, backdrop, drawer) {
@@ -257,6 +275,8 @@
 
   function buildSettings(root) {
     settingsState = loadSettings();
+    soundState = loadSoundSettings();
+    saveSoundSettings();
     applySettings();
     var trigger = document.createElement('button');
     trigger.type = 'button';
@@ -293,6 +313,10 @@
         '</div>' +
         '<label class="locale-settings-row locale-settings-check"><span data-settings-contrast-label></span>' +
           '<input type="checkbox" data-settings-contrast></label>' +
+        '<label class="locale-settings-row locale-settings-check"><span data-settings-success-label></span>' +
+          '<input type="checkbox" data-settings-success></label>' +
+        '<label class="locale-settings-row locale-settings-check"><span data-settings-error-label></span>' +
+          '<input type="checkbox" data-settings-error></label>' +
         (SETTINGS_HREF ? '<a class="locale-settings-more" data-settings-more href="' + SETTINGS_HREF + '"></a>' : '') +
         '<p class="locale-settings-help" data-settings-help></p>' +
       '</div>';
@@ -319,12 +343,22 @@
     drawer.querySelectorAll('[data-settings-size]').forEach(function (button) {
       button.addEventListener('click', function () {
         settingsState.textSize = button.getAttribute('data-settings-size');
+        settingsState.textSizeSet = true;
+        textSizeIsExplicit = true;
         saveSettings(); applySettings(); renderSettings(drawer);
       });
     });
     drawer.querySelector('[data-settings-contrast]').addEventListener('change', function (event) {
       settingsState.contrast = event.target.checked;
       saveSettings(); applySettings(); renderSettings(drawer);
+    });
+    drawer.querySelector('[data-settings-success]').addEventListener('change', function (event) {
+      soundState.success = event.target.checked;
+      saveSoundSettings(); renderSettings(drawer);
+    });
+    drawer.querySelector('[data-settings-error]').addEventListener('change', function (event) {
+      soundState.error = event.target.checked;
+      saveSoundSettings(); renderSettings(drawer);
     });
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && !drawer.hidden) closeSettings(trigger, backdrop, drawer);
@@ -403,11 +437,11 @@
   function detectLocale() {
     try {
       var saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) return saved;
+      if (SUPPORTED_LOCALES.indexOf(saved) !== -1) return saved;
     } catch (e) {}
     var navLang = (navigator.languages && navigator.languages[0]) || navigator.language || '';
-    var prefix = navLang.slice(0, 2).toLowerCase();
-    return prefix || DEFAULT_LOCALE;
+    var prefix = navLang.split(/[-_]/)[0].toLowerCase();
+    return SUPPORTED_LOCALES.indexOf(prefix) !== -1 ? prefix : DEFAULT_LOCALE;
   }
 
   function init() {
@@ -416,10 +450,9 @@
       if (locales.length === 0) {
         /* Fallback: si el fetch HEAD falla (file:// sin servidor), usar
            SOLO los locales hardcodeados que la app pasó en cfg o el
-           fallback COMMON_LOCALES. Esto permite que el componente
+           fallback de idiomas soportados. Esto permite que el componente
            funcione también en previews locales. */
-        locales = Object.keys(NATIVE_LABELS);
-        if (cfg.requiredLocales) locales = cfg.requiredLocales;
+        locales = filterSupportedLocales(cfg.requiredLocales || SUPPORTED_LOCALES);
       }
       buildUI(locales, current);
     });

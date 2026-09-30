@@ -53,12 +53,10 @@
   }
 
   function pickInitialLocale() {
-    var nav = (navigator.languages || [navigator.language || 'en'])
-      .map(function (l) { return l.toLowerCase().split('-')[0]; });
+    var navLang = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+    var primary = navLang.toLowerCase().split(/[-_]/)[0];
     var supported = Object.keys(window.I18N || {});
-    for (var i = 0; i < nav.length; i++) {
-      if (supported.indexOf(nav[i]) !== -1) return nav[i];
-    }
+    if (supported.indexOf(primary) !== -1) return primary;
     return supported.indexOf('en') !== -1 ? 'en' : (supported[0] || 'en');
   }
 

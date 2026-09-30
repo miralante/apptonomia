@@ -1,5 +1,19 @@
 # CLAUDE.md — Miralante metaproject
 
+## Shared Playwright installation
+
+Playwright and its browsers are installed globally for the machine by
+`dev/setups/pc-playwright-first-setup.ps1` or
+`pc-playwright-next-setup.ps1`. Run the project's existing browser-test
+command (for example, `npm run test:ui`) or invoke the global CLI with
+`playwright test`.
+
+Do not add `playwright` or `@playwright/test` to project dependencies, install
+Playwright with `npm`/`npx`, or run `npx playwright install`. The setup scripts
+manage the shared browser cache under `{drive}\apps\playwright_browsers`.
+Always attempt the relevant browser test; if the global CLI or browsers are
+unavailable, report that blocker and continue with the other checks.
+
 ## About this project
 
 Apptonomia is the **metaproject root** of the Miralante suite: it hosts the public landing at `https://apptonomia.uk/` (one card per sibling app linking out to its own domain) and the cross-project plumbing that ties the seven siblings together — the meta-graph at `graphify-out-meta/`, the cross-repo sync scripts, and this operational handbook. It does not ship a product of its own; its scope is the suite as a whole.

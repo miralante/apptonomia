@@ -185,11 +185,52 @@ test.describe('apptonomia deck', () => {
     const context = await browser.newContext({ locale: 'fr-FR' });
     const page = await context.newPage();
     try {
-      await page.addInitScript(() => localStorage.clear());
       await page.goto(HOME);
       await expect(page.locator('#locale-picker')).toBeVisible();
       await expect(page.locator('.locale-picker-current')).toHaveText('EN');
       expect(await page.locator('html').getAttribute('lang')).toBe('en');
+    } finally {
+      await context.close();
+    }
+  });
+
+  test('Suite settings persist correct and error sound preferences', async ({ browser }) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    try {
+      await page.addInitScript(() => localStorage.clear());
+      await page.goto(HOME);
+      await page.locator('.locale-settings-trigger').click();
+      const success = page.locator('[data-settings-success]');
+      const error = page.locator('[data-settings-error]');
+      await expect(success).toBeChecked();
+      await expect(error).not.toBeChecked();
+      await success.uncheck();
+      await error.check();
+      await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('miralante:sounds'))))
+        .toEqual({ success: false, error: true });
+    } finally {
+      await context.close();
+    }
+  });
+
+  test('Suite text size setting changes app typography and persists after reload', async ({ browser }) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    try {
+      await page.goto(HOME);
+      await page.locator('.locale-settings-trigger').click();
+      await page.locator('[data-settings-size="large"]').click();
+      await expect(page.locator('[data-settings-size="large"]')).toHaveAttribute('aria-pressed', 'true');
+      await expect.poll(() => page.evaluate(() =>
+        parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--text-scale')))).toBe(1.15);
+      await expect.poll(() => page.evaluate(() =>
+        JSON.parse(localStorage.getItem('apptonomia:locale:accessibility')).textSize)).toBe('large');
+
+      await page.reload();
+      await expect(page.locator('html')).toHaveAttribute('data-a11y-text', 'large');
+      await expect.poll(() => page.evaluate(() =>
+        parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--text-scale')))).toBe(1.15);
     } finally {
       await context.close();
     }
