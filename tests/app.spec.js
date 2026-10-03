@@ -236,6 +236,51 @@ test.describe('apptonomia deck', () => {
     }
   });
 
+  test('Suite footer links to About the app, which shows unlocked achievements', async ({ browser }) => {
+    const context = await browser.newContext({ locale: 'es-ES' });
+    // Sibling cards open external domains in a new tab: keep the test offline.
+    await context.route(/^https:\/\/(?!127\.0\.0\.1)/, (route) => route.abort());
+    const page = await context.newPage();
+    try {
+      await page.addInitScript(() => {
+        if (!sessionStorage.getItem('seeded')) { localStorage.clear(); sessionStorage.setItem('seeded', '1'); }
+      });
+      await page.goto(HOME);
+      const footerLinks = page.locator('.app-footer a');
+      await expect(footerLinks.first()).toHaveAttribute('href', 'about-app/');
+      await expect(footerLinks.first()).toHaveText('Sobre la app');
+
+      // Opening an app from the portal unlocks "Primera app".
+      const popupPromise = context.waitForEvent('page');
+      await page.locator('a.suite-card[data-app="memofun"]').click();
+      await (await popupPromise).close();
+      await expect.poll(() => page.evaluate(() =>
+        Object.keys(JSON.parse(localStorage.getItem('apptonomia:achievements') || '{}')))).toContain('firstApp');
+
+      await footerLinks.first().click();
+      await expect(page).toHaveURL(/\/about-app\/$/);
+      await expect(page.locator('h1')).toHaveText('ℹ️ Sobre la app');
+      await expect(page.locator('.achievement-badge')).toHaveCount(6);
+      await expect(page.locator('#achievementsCount')).toHaveText('Tienes 1 de 6 logros.');
+      await expect(page.locator('[data-achievement="firstApp"]')).toHaveClass(/unlocked/);
+
+      // Switching language repaints the badges and unlocks "Dos idiomas".
+      await page.locator('.locale-picker-btn').click();
+      await page.locator('.locale-picker-panel li[data-locale="en"]').click();
+      await expect(page.locator('h1')).toHaveText('ℹ️ About the app');
+      await expect(page.locator('[data-achievement="firstApp"] .achievement-badge-name')).toHaveText('First app');
+      await expect(page.locator('[data-achievement="bothLanguages"]')).toHaveClass(/unlocked/);
+      await expect(page.locator('#achievementsCount')).toHaveText('You have 2 of 6 achievements.');
+
+      // Two-step reset clears everything.
+      await page.locator('#resetStart').click();
+      await page.locator('#resetConfirm').click();
+      await expect(page.locator('#achievementsCount')).toHaveText('You have 0 of 6 achievements.');
+    } finally {
+      await context.close();
+    }
+  });
+
   test('Language switch to Spanish updates texts', async ({ page }) => {
     await page.goto(BASE);
     await settle(page);

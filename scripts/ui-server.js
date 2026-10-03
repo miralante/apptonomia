@@ -16,7 +16,7 @@ const server = http.createServer((req, res) => {
   let url = req.url.split('?')[0].split('#')[0];
   // Serve index.html for bare project directory
   if (url === '/project' || url === '/project/') url = '/project/index.html';
-  if (url === '/') url = '/index.html';
+  if (url.endsWith('/')) url += 'index.html';
 
   const filePath = path.join(ROOT, url);
   const ext = path.extname(filePath);

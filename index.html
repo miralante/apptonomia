@@ -266,7 +266,7 @@
   <link rel="stylesheet" href="css/styles.css?v=apptonomia-v8">
   <link rel="stylesheet" href="assets/css/locale-picker.css?v=apptonomia-v1">
 </head>
-<body>
+<body data-achievements="portal">
 
 <a class="skip-link" href="#contenido" data-i18n="core.skipToContent">Ir al contenido</a>
 
@@ -321,7 +321,7 @@
       <span class="suite-soon-badge" role="status" data-i18n="home.comingSoon">Próximamente</span>
     </div>
 
-    <a class="suite-card" href="https://sinonimia.apptonomia.uk" target="_blank" rel="noreferrer">
+    <a class="suite-card" data-app="sinonimia" href="https://sinonimia.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
         <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/sinonimia.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.words">Palabras</span>
@@ -331,7 +331,7 @@
       <span class="suite-domain">sinonimia.apptonomia.uk</span>
     </a>
 
-    <a class="suite-card" href="https://memofun.apptonomia.uk" target="_blank" rel="noreferrer">
+    <a class="suite-card" data-app="memofun" href="https://memofun.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
         <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/memofun.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.study">Estudio</span>
@@ -341,7 +341,7 @@
       <span class="suite-domain">memofun.apptonomia.uk</span>
     </a>
 
-    <a class="suite-card" href="https://teclatlon.apptonomia.uk" target="_blank" rel="noreferrer">
+    <a class="suite-card" data-app="teclatlon" href="https://teclatlon.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
         <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/teclatlon.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.keyboard">Teclado</span>
@@ -366,13 +366,18 @@
 
 <footer class="app-footer">
   <div class="container">
+    <!-- "About the app" (achievements). The suite places it right before
+         the Settings link; here Settings is the gear in the header, so it
+         goes first in the footer. -->
+    <a href="about-app/" data-i18n="core.aboutApp">Sobre la app</a>
     <a href="mailto:hello@apptonomia.uk">hello@apptonomia.uk</a>
   </div>
 </footer>
 
 <script src="js/script.js"></script>
-<script src="js/strings.es.js?v=apptonomia-v6"></script>
-<script src="js/strings.en.js?v=apptonomia-v6"></script>
+<script src="js/strings.es.js?v=apptonomia-v7"></script>
+<script src="js/strings.en.js?v=apptonomia-v7"></script>
+<script src="js/achievements.js?v=apptonomia-v1"></script>
 <script src="js/prepaint.js"></script>
 <script src="assets/js/locale-picker.js?v=apptonomia-v2" defer></script>
 </body>
