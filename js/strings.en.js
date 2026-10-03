@@ -6,7 +6,8 @@ window.App = window.App || {};
 if (window.App.i18n) {
   App.i18n.register({
     core: {
-      skipToContent: 'Skip to content'
+      skipToContent: 'Skip to content',
+      aboutApp: 'About the app'
     },
     meta: {
       description: 'Gateway to the Apptonomia suite: Calculia, Memofun, Okeymoney, Sinonimia, Teclatlon, Routime and Ludia.'
@@ -176,6 +177,37 @@ if (window.App.i18n) {
       collaborateOutro1: 'All the documentation needed to get started is in the',
       collaborateOutro3: 'and',
       collaborateOutro4: 'files of each repository.',
+      footerPortal: 'Back to the portal'
+    },
+    /* about-app/ page: achievements. Linked from the portal footer
+       (core.aboutApp). */
+    aboutApp: {
+      pageTitle: 'Apptonomia — About the app',
+      title: 'ℹ️ About the app',
+      intro: 'Apptonomia brings together all the apps of the suite. Here you can see your achievements.',
+      achievementsTitle: '⭐ Achievements',
+      achievementsHint: 'You get achievements just by using the portal.',
+      achievementsCount: 'You have {n} of {total} achievements.',
+      achievementFirstApp: 'First app',
+      achievementFirstAppDesc: 'Open an app from the portal.',
+      achievementTenDays: 'Ten days',
+      achievementTenDaysDesc: 'Visit the portal on ten different days.',
+      achievementStreak3: 'Three days in a row',
+      achievementStreak3Desc: 'Visit the portal three days in a row.',
+      achievementAllApps: 'All the apps',
+      achievementAllAppsDesc: 'Open every app you can already use.',
+      achievementBothLanguages: 'Two languages',
+      achievementBothLanguagesDesc: 'See the portal in Spanish and in English.',
+      achievementCustomSettings: 'Your way',
+      achievementCustomSettingsDesc: 'Change a setting: text size, contrast or sound.',
+      achievementLocked: 'Not yet',
+      achievementUnlockedAt: 'Unlocked on {date}',
+      savedLocally: 'Your achievements are saved only on this device.',
+      resetButton: 'Delete my achievements',
+      resetConfirm: 'Yes, delete my achievements',
+      resetCancel: 'No, keep them',
+      resetQuestion: 'Are you sure? This cannot be undone.',
+      resetDone: 'Achievements deleted.',
       footerPortal: 'Back to the portal'
     }
   }, 'en');
