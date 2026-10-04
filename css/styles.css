@@ -48,16 +48,115 @@
 
       --font: 'Atkinson Hyperlegible', 'Nunito', system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --text-base: 18px;
-      --text-small: 15px;
-      --text-large: 26px;
-      --text-title: 38px;
-
       --space: 16px;
       --space-large: 24px;
       --space-xl: 40px;
       --radius: 16px;
       --button-min: 56px;
       --shadow: 0 2px 8px var(--color-shadow);
+
+      /* Texto legible ENCIMA de los acentos sólidos. En oscuro y
+         contraste el acento se aclara y el blanco fijo sería ilegible. */
+      --color-on-accent: #FFFFFF;
+      /* Superficie turquesa y teal de las paginas de hermanos. */
+      --accent-surface: #E0F0EE;
+      --color-gem: #00695C;
+
+      /* Tonos por tarjeta de la página about/. Antes iban como
+         style="--acento: #00695C" en el HTML, con el valor del tema
+         claro: en oscuro y contraste el titular de cada principio
+         quedaba ilegible sobre la tarjeta. Al ser texto, cada tono
+         necesita su propio valor por tema. */
+      --hue-verde: #00695C;
+      --hue-oro: #8A6208;
+      --hue-azul: #1B6CA8;
+      --hue-violeta: #6B4E8A;
+      --hue-lima: #2E7D32;
+      --hue-naranja: #B04A16;
+      --hue-pino: #214E40;
+    }
+
+    /* La escala se deriva de la base con calc() para que el conmutador
+       de tamaño de letra mueva los cuatro tamaños a la vez. Con valores
+       fijos, --text-small (15px) quedaba por debajo de --text-base
+       (18px) al agrandar: la jerarquía se invertía justo cuando la
+       persona que agranda la letra la necesita. */
+    :root {
+      --text-small: calc(var(--text-base) * 0.85);
+      --text-large: calc(var(--text-base) * 1.40);
+      --text-title: calc(var(--text-base) * 1.80);
+    }
+
+    /* -------- Tema oscuro --------
+       data-theme="dark", o solo por prefers-color-scheme cuando no hay
+       tema forzado (opción "Auto"). */
+    [data-theme="dark"] {
+      --color-bg: #14161E;
+      --color-surface: #1E2230;
+      --color-text: #F2F0EA;
+      --color-text-soft: #B3B0C8;
+      --color-border: #39405A;
+      --accent: #6BB4F2;
+      --accent-soft: #19354D;
+      --color-focus: #6BB4F2;
+      --color-shadow: rgba(0, 0, 0, 0.4);
+      --color-on-accent: #14161E;
+      --accent-surface: #16352F;
+      --color-gem: #6FD0C4;
+      --hue-verde: #4FD1C5;
+      --hue-oro: #E0B450;
+      --hue-azul: #7FBBEC;
+      --hue-violeta: #BFA5E6;
+      --hue-lima: #86CC89;
+      --hue-naranja: #F0A17B;
+      --hue-pino: #74D2B8;
+    }
+
+    /* -------- Alto contraste -------- */
+    [data-theme="contrast"] {
+      --color-bg: #000000;
+      --color-surface: #000000;
+      --color-text: #FFFFFF;
+      --color-text-soft: #FFFFFF;
+      --color-border: #FFFFFF;
+      --accent: #FFFF00;
+      --accent-soft: #000000;
+      --color-focus: #FFFF00;
+      --color-shadow: rgba(255, 255, 255, 0.5);
+      --color-on-accent: #000000;
+      --accent-surface: #000000;
+      --color-gem: #00FFFF;
+      --hue-verde: #00FFFF;
+      --hue-oro: #FFFF00;
+      --hue-azul: #66CCFF;
+      --hue-violeta: #FF99FF;
+      --hue-lima: #66FF66;
+      --hue-naranja: #FFAA66;
+      --hue-pino: #00FFAA;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+        --color-bg: #14161E;
+        --color-surface: #1E2230;
+        --color-text: #F2F0EA;
+        --color-text-soft: #B3B0C8;
+        --color-border: #39405A;
+        --accent: #6BB4F2;
+        --accent-soft: #19354D;
+        --color-focus: #6BB4F2;
+        --color-shadow: rgba(0, 0, 0, 0.4);
+        --color-on-accent: #14161E;
+      --accent-surface: #16352F;
+      --color-gem: #6FD0C4;
+      --hue-verde: #4FD1C5;
+      --hue-oro: #E0B450;
+      --hue-azul: #7FBBEC;
+      --hue-violeta: #BFA5E6;
+      --hue-lima: #86CC89;
+      --hue-naranja: #F0A17B;
+      --hue-pino: #74D2B8;
+      }
     }
 
     *, *::before, *::after {
@@ -95,7 +194,7 @@
 
     h1 { font-size: var(--text-title); line-height: 1.15; letter-spacing: -0.02em; }
     h2 { font-size: var(--text-large); line-height: 1.25; }
-    h3 { font-size: 22px; line-height: 1.3; }
+    h3 { font-size: calc(var(--text-scale, 1) * 22px); line-height: 1.3; }
     p  { max-width: 38em; color: var(--color-text-soft); }
 
     :focus-visible {
@@ -119,7 +218,7 @@
       left: -9999px;
       top: 0;
       background: var(--accent);
-      color: #fff;
+      color: var(--color-on-accent, #fff);
       padding: 12px 18px;
       border-radius: 0 0 var(--radius) var(--radius);
       z-index: 100;
@@ -170,11 +269,11 @@
       width: 40px; height: 40px;
       border-radius: 12px;
       background: var(--color-text);
-      color: #fff;
+      color: var(--color-on-accent);
       display: grid; place-items: center;
-      font-weight: 800; font-size: 22px;
+      font-weight: 800; font-size: calc(var(--text-scale, 1) * 22px);
     }
-    .brand-name { font-size: 22px; letter-spacing: -0.02em; }
+    .brand-name { font-size: calc(var(--text-scale, 1) * 22px); letter-spacing: -0.02em; }
 
     .lang-switch {
       display: inline-flex;
@@ -197,7 +296,7 @@
     }
     .btn-lang[aria-pressed="true"] {
       background: var(--accent);
-      color: #fff;
+      color: var(--color-on-accent, #fff);
     }
 
     .app-hero {
@@ -208,12 +307,12 @@
     .app-hero h1 {
       max-width: 18ch;
       margin: 0 auto var(--space);
-      font-size: 56px;
+      font-size: calc(var(--text-scale, 1) * 56px);
     }
     .app-hero .hero-tagline {
       margin: 0 auto;
       max-width: 38ch;
-      font-size: 24px;
+      font-size: calc(var(--text-scale, 1) * 24px);
       line-height: 1.45;
       color: var(--color-text-soft);
       letter-spacing: -0.01em;
@@ -310,7 +409,7 @@
     .suite-soon-badge {
       margin-top: auto;
       align-self: flex-start;
-      font-size: 12px;
+      font-size: calc(var(--text-scale, 1) * 12px);
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -328,12 +427,12 @@
       width: 44px; height: 44px;
       border-radius: 12px;
       display: grid; place-items: center;
-      font-size: 22px;
+      font-size: calc(var(--text-scale, 1) * 22px);
       background: var(--accent-soft);
     }
     /* When the pictogram is an <img> (sibling's own SVG icon, currently
        only Memofun ships one) instead of an emoji glyph, scale the
-       SVG down to leave breathing room inside the 44×44 accent-soft
+       SVG down to leave breathing room inside the 44Ã—44 accent-soft
        chip and let the SVG's own rounded corners do the rest. The
        `<img>` keeps the SVG's intrinsic aspect-ratio so it stays
        centered both horizontally and vertically via the grid above. */
@@ -343,24 +442,24 @@
       display: block;
     }
     .suite-tag {
-      font-size: 12px;
+      font-size: calc(var(--text-scale, 1) * 12px);
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--color-text-soft);
     }
     .suite-card h3 {
-      font-size: 22px;
+      font-size: calc(var(--text-scale, 1) * 22px);
       letter-spacing: -0.01em;
     }
     .suite-card p {
-      font-size: 15px;
+      font-size: calc(var(--text-scale, 1) * 15px);
       line-height: 1.5;
       color: var(--color-text-soft);
     }
     .suite-domain {
       margin-top: auto;
-      font-size: 13px;
+      font-size: calc(var(--text-scale, 1) * 13px);
       font-weight: 600;
       color: var(--color-text);
       opacity: 0.7;
@@ -379,7 +478,7 @@
     .app-footer {
       padding: var(--space-large) 0 var(--space);
       color: var(--color-text-soft);
-      font-size: 14px;
+      font-size: calc(var(--text-scale, 1) * 14px);
       flex-shrink: 0;
     }
     .app-footer .container {
@@ -394,8 +493,8 @@
       .container { padding: 0 16px; }
       .app-header { padding-bottom: 8px; }
       .app-hero { padding-top: 16px; }
-      .app-hero h1 { font-size: clamp(34px, 10vw, 46px); }
-      .app-hero .hero-tagline { font-size: 19px; }
+      .app-hero h1 { font-size: clamp(calc(34px * var(--text-scale, 1)), calc(10vw * var(--text-scale, 1)), calc(46px * var(--text-scale, 1))); }
+      .app-hero .hero-tagline { font-size: calc(var(--text-scale, 1) * 19px); }
       main { padding: 16px 0; }
       .suite { grid-template-columns: 1fr; gap: 14px; align-content: start; }
       .suite-card { min-height: 150px; padding: 18px; }
@@ -439,14 +538,14 @@ header.suite-header {
   font-family: 'Nunito', sans-serif;
   font-weight: 800;
   color: var(--accent);
-  font-size: 28px;
+  font-size: calc(var(--text-scale, 1) * 28px);
   line-height: 1.1;
   text-align: left;
 }
 .suite-header .suite-attribution {
   position: static;
   margin: 2px 0 0;
-  font-size: 12px;
+  font-size: calc(var(--text-scale, 1) * 12px);
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: normal;
@@ -460,7 +559,7 @@ header.suite-header {
   min-width: 44px;
   min-height: 44px;
   padding: 8px 10px;
-  font-size: 14px;
+  font-size: calc(var(--text-scale, 1) * 14px);
   line-height: 1.2;
   border-width: 2px;
   white-space: nowrap;
@@ -476,8 +575,8 @@ header.suite-header {
 }
 .suite-header .suite-details .fila { justify-content: flex-start; min-width: 0; flex: 1; margin: 0; gap: 8px; }
 .suite-header .saludo,
-.suite-header .tagline { font-weight: 400; color: var(--color-text-soft); margin: 0; max-width: none; font-size: 18px; line-height: 1.35; text-align: left; }
-.suite-header .stars { min-height: 0; background: var(--accent-2-soft, #F7EFDD); border-radius: 999px; flex: 0 0 auto; margin: 0; padding: 2px 8px; font-size: 18px; line-height: 1.3; white-space: nowrap; }
+.suite-header .tagline { font-weight: 400; color: var(--color-text-soft); margin: 0; max-width: none; font-size: calc(var(--text-scale, 1) * 18px); line-height: 1.35; text-align: left; }
+.suite-header .stars { min-height: 0; background: var(--accent-soft); border-radius: 999px; flex: 0 0 auto; margin: 0; padding: 2px 8px; font-size: calc(var(--text-scale, 1) * 18px); line-height: 1.3; white-space: nowrap; }
 @media (max-width: 650px) {
   header.suite-header { gap: 6px 8px; padding-block: 8px; margin-bottom: 0; }
   .suite-header .suite-brand { gap: 8px; }
@@ -485,12 +584,12 @@ header.suite-header {
   .suite-header .hero-mark { width: 32px; height: 32px; flex-basis: 32px; }
   .suite-header .suite-brand-copy h1,
   .suite-header .suite-brand-copy .logo,
-  .suite-header .brand { font-size: 22px; }
+  .suite-header .brand { font-size: calc(var(--text-scale, 1) * 22px); }
   .suite-header .locale-full { display: none; }
   .suite-header .locale-short { display: inline; }
   .suite-header .suite-controls button { padding-inline: 6px; }
   .suite-header .saludo,
-  .suite-header .tagline { font-size: 16px; }
+  .suite-header .tagline { font-size: calc(var(--text-scale, 1) * 16px); }
 }
 
 

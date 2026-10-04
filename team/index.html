@@ -6,10 +6,13 @@
   <title data-i18n="pageTitle">Apptonomia — Quiénes la hacen</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="description" data-i18n="pageDescription" content="Quién mantiene Apptonomia y cómo contribuir al proyecto.">
-  <link rel="stylesheet" href="assets/css/tokens.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/about.css">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <!-- Antes apuntan a assets/css/*.css, que no existen en team/: la pagina
+     salia sin una sola regla de estilo y la comprobacion de contraste la
+     daba por buena solo porque el texto sin estilo sale negro sobre blanco.
+     Usa la misma hoja que about/, que es la misma plantilla. -->
+  <link rel="stylesheet" href="../css/styles.css?v=apptonomia-v10bc">
+  <link rel="stylesheet" href="../about/styles.css?v=apptonomia-v10bc">
   <script src="strings.es.js"></script>
 </head>
 <body>
@@ -19,7 +22,7 @@
         <button type="button" class="btn-lang" data-locale-switch="es" aria-pressed="false">🇪🇸 Español</button>
         <button type="button" class="btn-lang" data-locale-switch="en" aria-pressed="false">🇬🇧 English</button>
       </div>
-      <img src="assets/img/icono.svg" alt="" width="80" height="80" class="logo-about">
+      <div class="logo-about">🌿</div>
       <h1>Apptonomia</h1>
       <p class="tagline" data-i18n="tagline">Apptonomia es el metaproyecto que une los siete hermanos de la suite. Software libre (MIT), mantenido por una red distribuida de personas. Aquí explicamos quién hay detrás y cómo ayudar.</p>
     </header>
@@ -42,50 +45,7 @@
       </section>
     </main>
   </div>
-  <script>
-    (function () {
-      var supported = ['es', 'en'];
-      var stored = null;
-      try { stored = localStorage.getItem('locale'); } catch (e) { stored = null; }
-      var browser = (navigator.language || navigator.userLanguage || 'en').slice(0, 2);
-      var locale = supported.indexOf(stored) >= 0 ? stored
-                 : supported.indexOf(browser) >= 0 ? browser
-                 : 'en';
-      if (locale !== 'es') {
-        var s = document.createElement('script');
-        s.src = 'strings.' + locale + '.js';
-        s.onload = function () { applyLocale(locale); };
-        document.head.appendChild(s);
-      } else {
-        applyLocale(locale);
-      }
-      function applyLocale(loc) {
-        var strings = (window.__i18n_strings__ || {})[loc] || {};
-        document.documentElement.lang = loc;
-        document.documentElement.dataset.locale = loc;
-        var nodes = document.querySelectorAll('[data-i18n]');
-        for (var i = 0; i < nodes.length; i++) {
-          var k = nodes[i].getAttribute('data-i18n');
-          if (typeof strings[k] !== 'undefined') nodes[i].textContent = strings[k];
-        }
-        var titleEl = document.querySelector('title[data-i18n]');
-        if (titleEl && typeof strings.pageTitle !== 'undefined') document.title = strings.pageTitle;
-        var desc = document.querySelector('meta[name="description"][data-i18n]');
-        if (desc && typeof strings.pageDescription !== 'undefined') desc.setAttribute('content', strings.pageDescription);
-        var btns = document.querySelectorAll('[data-locale-switch]');
-        for (var j = 0; j < btns.length; j++) {
-          btns[j].addEventListener('click', (function (b) {
-            return function () {
-              try { localStorage.setItem('locale', b); } catch (e) {}
-              location.reload();
-            };
-          })(btns[j].dataset.localeSwitch));
-        }
-        for (var k2 = 0; k2 < btns.length; k2++) {
-          btns[k2].setAttribute('aria-pressed', btns[k2].dataset.localeSwitch === loc ? 'true' : 'false');
-        }
-      }
-    })();
-  </script>
+
+  <script src="../assets/js/team-page-lang.js?v=1"></script>
 </body>
 </html>

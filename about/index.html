@@ -11,7 +11,7 @@
   <meta name="description" content="Apptonomia: una suite de aplicaciones web para que las personas con discapacidad intelectual aprendan a su ritmo.">
   <meta name="theme-color" content="#FAF7F2">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/styles.css?v=apptonomia-v10bc">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -63,37 +63,37 @@
           decisión las rompe, esa decisión está mal.</p>
 
         <div class="principios-grid">
-          <article class="card principio" style="--acento: #00695C;">
+          <article class="card principio" data-hue="verde">
             <h3 data-i18n="about.principleAutonomyTitle">🤲 Autonomía real</h3>
             <p data-i18n="about.principleAutonomyText">La persona usuaria puede usar las aplicaciones sin un profesional al lado.
               Si necesita ayuda constante, algo no está bien resuelto.</p>
           </article>
 
-          <article class="card principio" style="--acento: #B8860B;">
+          <article class="card principio" data-hue="oro">
             <h3 data-i18n="about.principleNoPressureTitle">🚫 Sin presión</h3>
             <p data-i18n="about.principleNoPressureText">Nada de cronómetros, ni "game over", ni puntuaciones negativas. El error se
               responde con ánimo y se puede reintentar sin límite.</p>
           </article>
 
-          <article class="card principio" style="--acento: #1B6CA8;">
+          <article class="card principio" data-hue="azul">
             <h3 data-i18n="about.principlePrivacyTitle">🔒 Privacidad por defecto</h3>
             <p data-i18n="about.principlePrivacyText">Sin registro, sin cookies, sin analítica, sin cuentas. Todo el progreso se
               guarda únicamente en el dispositivo de la persona.</p>
           </article>
 
-          <article class="card principio" style="--acento: #6B4E8A;">
+          <article class="card principio" data-hue="violeta">
             <h3 data-i18n="about.principleEasyReadTitle">📖 Lectura Fácil</h3>
             <p data-i18n="about.principleEasyReadText">Frases cortas, una idea por frase, vocabulario cotidiano. Cero tecnicismos en
               la interfaz que ve la persona usuaria.</p>
           </article>
 
-          <article class="card principio" style="--acento: #2E7D32;">
+          <article class="card principio" data-hue="lima">
             <h3 data-i18n="about.principleAccessibilityTitle">♿ Accesibilidad universal</h3>
             <p data-i18n="about.principleAccessibilityText">Botones grandes, alto contraste, audio solo cuando la gamificación o el diseño de la actividad lo requiera, navegación
               completa por teclado, y respeto al modo de pocas animaciones del sistema.</p>
           </article>
 
-          <article class="card principio" style="--acento: #C05621;">
+          <article class="card principio" data-hue="naranja">
             <h3 data-i18n="about.principleSoberTechTitle">🧱 Tecnología sobria</h3>
             <p data-i18n="about.principleSoberTechText">HTML, CSS y JavaScript sin frameworks. Funciona sin internet y se puede
               instalar como aplicación. Código abierto, en un repositorio público.</p>
@@ -133,7 +133,7 @@
         <p data-i18n="about.ludiaIntro">La última app de la suite enseña ajedrez con adaptaciones para que cada persona pueda avanzar a su propio ritmo. Sigue los mismos principios que el resto (autonomía, sin presión, accesibilidad cognitiva) y añade dos bloques específicos: lo que aporta el juego y las estrategias de adaptación para que sea jugable por todos los públicos.</p>
 
         <div class="principios-grid">
-          <article class="card principio" style="--acento: #214e40;">
+          <article class="card principio" data-hue="pino">
             <h3 data-i18n="about.ludiaBenefitsTitle">🧠 Beneficios principales</h3>
             <ul>
               <li data-i18n="about.ludiaBenefit1"><strong>Desarrollo cognitivo:</strong> mejora la memoria, la atención, el razonamiento lógico y la capacidad de resolver problemas.</li>
@@ -141,7 +141,7 @@
             </ul>
           </article>
 
-          <article class="card principio" style="--acento: #1B6CA8;">
+          <article class="card principio" data-hue="azul">
             <h3 data-i18n="about.ludiaAdaptationsTitle">♿ Estrategias de adaptación</h3>
             <ul>
               <li data-i18n="about.ludiaAdaptation1"><strong>Apoyos visuales:</strong> tableros con colores contrastados, fichas más intuitivas o esquemas gráficos que expliquen el movimiento de cada pieza.</li>
@@ -271,18 +271,6 @@
   <script src="../js/script.js"></script>
   <script src="../js/strings.es.js?v=apptonomia-v5"></script>
   <script src="../js/strings.en.js?v=apptonomia-v5"></script>
-  <script>
-    (function () {
-      'use strict';
-      function paintLanguageSelector() {
-        var active = App.i18n.locale();
-        document.getElementById('btnLangEs').setAttribute('aria-pressed', String(active === 'es'));
-        document.getElementById('btnLangEn').setAttribute('aria-pressed', String(active === 'en'));
-      }
-      document.getElementById('btnLangEs').addEventListener('click', function () { App.i18n.setLocale('es'); });
-      document.getElementById('btnLangEn').addEventListener('click', function () { App.i18n.setLocale('en'); });
-      paintLanguageSelector();
-    })();
-  </script>
+  <script src="../assets/js/subpage-lang.js?v=1"></script>
 </body>
 </html>

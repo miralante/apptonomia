@@ -1,7 +1,8 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect } = require('playwright/test');
 
-const BASE = 'http://127.0.0.1:4173/project/';
-const HOME = 'http://127.0.0.1:4173/';
+const ORIGIN = process.env.PLAYWRIGHT_BASE_URL || `http://127.0.0.1:${process.env.PORT || 4173}`;
+const BASE = `${ORIGIN}/project/`;
+const HOME = `${ORIGIN}/`;
 const SETTLE_MS = 400;
 const NAV_TIMEOUT = 15000;
 
@@ -194,21 +195,59 @@ test.describe('apptonomia deck', () => {
     }
   });
 
-  test('Suite settings persist correct and error sound preferences', async ({ browser }) => {
+  test('Landing settings apply appearance and omit controls with no effect here', async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
     try {
-      await page.addInitScript(() => localStorage.clear());
       await page.goto(HOME);
       await page.locator('.locale-settings-trigger').click();
-      const success = page.locator('[data-settings-success]');
-      const error = page.locator('[data-settings-error]');
-      await expect(success).toBeChecked();
-      await expect(error).not.toBeChecked();
-      await success.uncheck();
-      await error.check();
-      await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('miralante:sounds'))))
-        .toEqual({ success: false, error: true });
+      const drawer = page.locator('#accessibility-settings');
+      await expect(drawer).toBeVisible();
+      await expect(drawer.locator('[data-settings-success]')).toHaveCount(0);
+      await expect(drawer.locator('[data-settings-error]')).toHaveCount(0);
+      const bodyColors = () => page.evaluate(() => ({
+        background: getComputedStyle(document.body).backgroundColor,
+        color: getComputedStyle(document.body).color,
+      }));
+      await drawer.locator('[data-settings-theme="dark"]').click();
+      const dark = await bodyColors();
+      await drawer.locator('[data-settings-theme="light"]').click();
+      const light = await bodyColors();
+      expect(light).not.toEqual(dark);
+      await drawer.locator('[data-settings-contrast]').check();
+      await expect(page.locator('html')).toHaveAttribute('data-theme', 'contrast');
+      expect(await bodyColors()).not.toEqual(light);
+    } finally {
+      await context.close();
+    }
+  });
+
+  test('Landing settings language picker changes and persists the app language', async ({ browser }) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    try {
+      await page.goto(HOME);
+      await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+      const englishText = await page.locator('[data-i18n]').first().textContent();
+      await page.locator('.locale-settings-trigger').click();
+      const drawer = page.locator('#accessibility-settings');
+      await drawer.locator('.locale-picker-btn').click();
+      await drawer.locator('.locale-picker-panel li[data-locale="es"]').click();
+      await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+      expect(await page.evaluate(() => localStorage.getItem('apptonomia:locale'))).toBe('es');
+      const spanishText = await page.locator('[data-i18n]').first().textContent();
+      expect(spanishText).not.toBe(englishText);
+
+      await page.reload();
+      await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+      expect(await page.locator('[data-i18n]').first().textContent()).toBe(spanishText);
+
+      await page.locator('.locale-settings-trigger').click();
+      await page.locator('#accessibility-settings .locale-picker-btn').click();
+      await page.locator('#accessibility-settings .locale-picker-panel li[data-locale="en"]').click();
+      await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+      expect(await page.evaluate(() => localStorage.getItem('apptonomia:locale'))).toBe('en');
+      expect(await page.locator('[data-i18n]').first().textContent()).toBe(englishText);
     } finally {
       await context.close();
     }

@@ -17,14 +17,14 @@
 .header-about .tagline {
   font-size: 1.5em;
   font-weight: 700;
-  color: #4A4A68;
+  color: var(--color-text-soft);
   margin: 8px 0 0;
 }
 .header-about .lead {
   font-size: 1.1em;
   max-width: 640px;
   margin: 16px auto 0;
-  color: #1A1A2E;
+  color: var(--color-text);
 }
 .logo-about {
   margin-top: 8px;
@@ -34,8 +34,8 @@
 
 .aviso-ruta {
   display: inline-block; padding: 8px 16px;
-  background: #E0F0EE; color: #1A1A2E;
-  border: 2px solid #00695C; border-radius: 16px;
+  background: var(--accent-surface,#E0F0EE); color: var(--color-text);
+  border: 2px solid var(--hue-verde,#00695C); border-radius: 16px;
   font-size: 0.95em; font-weight: 700;
   margin-bottom: 16px;
 }
@@ -48,34 +48,48 @@
   min-height: 64px; min-width: 64px; padding: 0 16px;
   font-family: 'Atkinson Hyperlegible', 'Nunito', system-ui, sans-serif;
   font-size: 1.05em; font-weight: 700;
-  color: #1A1A2E; background: #FFFFFF;
-  border: 3px solid #D8D2C8; border-radius: 16px;
+  color: var(--color-text); background: var(--color-surface);
+  border: 3px solid var(--color-border); border-radius: 16px;
   cursor: pointer;
 }
-.btn-lang:hover { border-color: #1B6CA8; }
+.btn-lang:hover { border-color: var(--accent); }
 .btn-lang[aria-pressed="true"] {
-  border-color: #1B6CA8; background: #E0F0EE;
+  border-color: var(--accent); background: var(--accent-surface,#E0F0EE);
+  /* Sin esto manda `.btn-lang[aria-pressed="true"]` de css/styles.css,
+     que pone --color-on-accent (pensado para texto sobre el acento
+     sólido) sobre una superficie clara: blanco sobre #E0F0EE, 1.18:1. */
+  color: var(--color-text);
 }
+
+/* Tono por tarjeta. El valor sale de los tokens de css/styles.css, que
+   tienen una variante por tema; en el HTML solo va la intención. */
+.principio[data-hue="verde"] { --acento: var(--hue-verde); }
+.principio[data-hue="oro"] { --acento: var(--hue-oro); }
+.principio[data-hue="azul"] { --acento: var(--hue-azul); }
+.principio[data-hue="violeta"] { --acento: var(--hue-violeta); }
+.principio[data-hue="lima"] { --acento: var(--hue-lima); }
+.principio[data-hue="naranja"] { --acento: var(--hue-naranja); }
+.principio[data-hue="pino"] { --acento: var(--hue-pino); }
 
 /* Índice de la presentación ----------------------------------------------- */
 .indice { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
 .indice a {
   padding: 10px 16px; border-radius: 16px;
-  background: #FFFFFF; border: 2px solid #D8D2C8;
-  color: #1A1A2E; text-decoration: none;
+  background: var(--color-surface); border: 2px solid var(--color-border);
+  color: var(--color-text); text-decoration: none;
   font-size: 0.95em; font-weight: 700;
 }
-.indice a:hover, .indice a:focus { border-color: #1B6CA8; }
+.indice a:hover, .indice a:focus { border-color: var(--accent); }
 
 /* Secciones como cards --------------------------------------------------- */
 .about section { padding: 24px; margin-bottom: 24px; }
 .about section h2 { margin-bottom: 12px; }
 .about section ul { padding-left: 24px; }
 .about section li { margin-bottom: 8px; }
-.about section em { color: #4A4A68; }
+.about section em { color: var(--color-text-soft); }
 .about section code {
-  background: #FAF7F2; padding: 2px 6px; border-radius: 6px;
-  font-size: 0.95em; border: 1px solid #D8D2C8;
+  background: var(--color-bg); padding: 2px 6px; border-radius: 6px;
+  font-size: 0.95em; border: 1px solid var(--color-border);
   font-family: ui-monospace, "Cascadia Code", Menlo, monospace;
 }
 
@@ -88,14 +102,14 @@
 .principio {
   border-left: 8px solid var(--acento);
   padding: 20px;
-  background: #FFFFFF;
+  background: var(--color-surface);
   border-radius: 16px;
-  border-top: 1px solid #D8D2C8;
-  border-right: 1px solid #D8D2C8;
-  border-bottom: 1px solid #D8D2C8;
+  border-top: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 .principio h3 { color: var(--acento); margin-bottom: 8px; }
-.principio p { color: #1A1A2E; }
+.principio p { color: var(--color-text); }
 
 /* Grid de las seis apps (hermanos) --------------------------------------- */
 .siblings-grid {
@@ -109,22 +123,22 @@
   align-items: center;
   gap: 16px;
   padding: 16px;
-  background: #FFFFFF;
-  border: 3px solid #D8D2C8;
+  background: var(--color-surface);
+  border: 3px solid var(--color-border);
   border-radius: 16px;
   text-decoration: none;
-  color: #1A1A2E;
+  color: var(--color-text);
   transition: border-color 0.15s ease, transform 0.15s ease;
 }
 .sibling:hover, .sibling:focus-visible {
-  border-color: #00695C;
+  border-color: var(--color-gem,#00695C);
   transform: scale(1.02);
 }
 .sibling .picto { font-size: 36px; flex-shrink: 0; }
 .sibling-texto { display: flex; flex-direction: column; gap: 2px; flex: 1; }
-.sibling .nombre { font-weight: 800; color: #00695C; }
-.sibling .detalle { font-size: 0.95em; color: #4A4A68; }
-.sibling .flecha-externa { font-size: 1.2em; color: #4A4A68; flex-shrink: 0; }
+.sibling .nombre { font-weight: 800; color: var(--color-gem,#00695C); }
+.sibling .detalle { font-size: 0.95em; color: var(--color-text-soft); }
+.sibling .flecha-externa { font-size: 1.2em; color: var(--color-text-soft); flex-shrink: 0; }
 
 /* Footer -------------------------------------------------------------- */
 .pie-about {

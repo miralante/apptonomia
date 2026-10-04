@@ -16,14 +16,14 @@
 .header-legal .tagline {
   font-size: 1.5em;
   font-weight: 700;
-  color: #4A4A68;
+  color: var(--color-text-soft);
   margin: 8px 0 0;
 }
 .header-legal .lead {
   font-size: 1.1em;
   max-width: 640px;
   margin: 16px auto 0;
-  color: #1A1A2E;
+  color: var(--color-text);
 }
 .logo-legal {
   margin-top: 8px;
@@ -39,31 +39,34 @@
   min-height: 64px; min-width: 64px; padding: 0 16px;
   font-family: 'Atkinson Hyperlegible', 'Nunito', system-ui, sans-serif;
   font-size: 1.05em; font-weight: 700;
-  color: #1A1A2E; background: #FFFFFF;
-  border: 3px solid #D8D2C8; border-radius: 16px;
+  color: var(--color-text); background: var(--color-surface);
+  border: 3px solid var(--color-border); border-radius: 16px;
   cursor: pointer;
 }
-.btn-lang:hover { border-color: #1B6CA8; }
+.btn-lang:hover { border-color: var(--accent); }
 .btn-lang[aria-pressed="true"] {
-  border-color: #1B6CA8; background: #E0F0EE;
+  border-color: var(--accent); background: var(--accent-surface,#E0F0EE);
+  /* Igual que en about/: sin declarar el color, gana el
+     --color-on-accent de css/styles.css y el texto queda ilegible. */
+  color: var(--color-text);
 }
 
 .indice { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
 .indice a {
   padding: 10px 16px; border-radius: 16px;
-  background: #FFFFFF; border: 2px solid #D8D2C8;
-  color: #1A1A2E; text-decoration: none;
+  background: var(--color-surface); border: 2px solid var(--color-border);
+  color: var(--color-text); text-decoration: none;
   font-size: 0.95em; font-weight: 700;
 }
-.indice a:hover, .indice a:focus { border-color: #1B6CA8; }
+.indice a:hover, .indice a:focus { border-color: var(--accent); }
 
 .legal section { padding: 24px; margin-bottom: 24px; }
 .legal section h2 { margin-bottom: 12px; }
 .legal section ul { padding-left: 24px; }
 .legal section li { margin-bottom: 8px; }
 .legal section code {
-  background: #FAF7F2; padding: 2px 6px; border-radius: 6px;
-  font-size: 0.95em; border: 1px solid #D8D2C8;
+  background: var(--color-bg); padding: 2px 6px; border-radius: 6px;
+  font-size: 0.95em; border: 1px solid var(--color-border);
   font-family: ui-monospace, "Cascadia Code", Menlo, monospace;
 }
 

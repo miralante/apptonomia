@@ -76,6 +76,13 @@
     set: applyLocale
   };
 
+  /* Firefox can restore a page snapshot from its session history without
+     revalidating the HTML. On restoration, request the current document so
+     the portal's links and availability state match the published version. */
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) window.location.reload();
+  });
+
   /* ---------------------------------------------------------------
     * Shared footer injector (apptonomia is a static landing; the
     * core is intentionally minimal — no assets/js/utils.js — so

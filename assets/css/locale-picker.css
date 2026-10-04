@@ -24,6 +24,15 @@
   line-height: 1;
 }
 
+/* Cuando el locale picker vive en el drawer, la copia de la cabecera
+   queda vacía y no debe ocupar espacio. */
+#locale-picker[data-empty="true"] { display: none; }
+
+/* El selector se mueve al panel de ajustes; debe ser su propio bloque de
+   referencia para que la lista se abra junto al botón y no al pie del drawer. */
+.locale-picker-drawer { position: relative; width: max-content; }
+.locale-picker-drawer .locale-picker-panel { left: 0; right: auto; }
+
 /* Botón trigger */
 .locale-picker-btn {
   display: inline-flex;
@@ -194,9 +203,10 @@
   border-left: 2px solid var(--color-border, var(--line, #D8D2C8));
   box-shadow: -10px 0 28px rgba(26, 26, 46, 0.18);
   transform: translateX(100%);
+  visibility: hidden;
   transition: transform 0.16s ease;
 }
-.locale-settings-drawer.is-open { transform: translateX(0); }
+.locale-settings-drawer.is-open { transform: translateX(0); visibility: visible; }
 .locale-settings-drawer-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .locale-settings-drawer h2 { margin: 0; font-size: 1.35em; }
 .locale-settings-close { min-width: 44px; min-height: 44px; border: 2px solid currentColor; border-radius: 10px; background: transparent; color: inherit; cursor: pointer; }
@@ -210,9 +220,6 @@
 .locale-settings-more { color: inherit; font-weight: 700; text-underline-offset: 3px; }
 .locale-settings-help { margin: 0; color: var(--color-text-soft, var(--muted, #4A4A68)); font-size: 0.9em; }
 
-/* The attribute is deliberately generic so it works with every app's
-   token vocabulary. Rem-based app typography scales with the root size;
-   token-based apps also receive the common scale variable below. */
 html[data-a11y-text="small"] { --text-scale: 0.9; --escala-texto: 0.9; }
 html[data-a11y-text="normal"] { --text-scale: 1; --escala-texto: 1; }
 html[data-a11y-text="large"] { --text-scale: 1.15; --escala-texto: 1.15; }

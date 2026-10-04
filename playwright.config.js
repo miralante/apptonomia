@@ -1,4 +1,7 @@
-const { defineConfig } = require('@playwright/test');
+const { defineConfig } = require('playwright/test');
+
+const port = Number(process.env.PORT || 4173);
+const origin = process.env.PLAYWRIGHT_BASE_URL || `http://127.0.0.1:${port}`;
 
 module.exports = defineConfig({
   testDir: './tests',
@@ -7,13 +10,13 @@ module.exports = defineConfig({
   workers: 1,
   slowMo: 0,
   use: {
-    baseURL: 'http://127.0.0.1:4173/project/',
+    baseURL: `${origin}/project/`,
     headless: true,
   },
   webServer: {
     command: 'node scripts/ui-server.js',
-    port: 4173,
+    port,
     timeout: 30000,
-    reuseExistingServer: true,
+    reuseExistingServer: false,
   },
 });

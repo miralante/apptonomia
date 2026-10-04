@@ -1,5 +1,9 @@
 {
-    "devDependencies":  {
+  "scripts": {
+    "test:ui": "playwright test",
+    "test:contrast": "powershell -ExecutionPolicy Bypass -File ..\\contrast\\check-contrast.ps1"
+  },
+  "devDependencies":  {
 
                         }
 }
