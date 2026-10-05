@@ -29,3 +29,7 @@ scripts/.cache/
 
 # Logs de servidores de desarrollo locales
 *.log
+
+# Playwright run output (failure screenshots, traces, .last-run.json)
+test-results/
+playwright-report/

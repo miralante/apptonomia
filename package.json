@@ -3,7 +3,7 @@
     "test:ui": "playwright test",
     "test:contrast": "powershell -ExecutionPolicy Bypass -File ..\\contrast\\check-contrast.ps1"
   },
-  "devDependencies":  {
-
-                        }
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  }
 }

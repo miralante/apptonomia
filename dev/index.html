@@ -263,8 +263,8 @@
        launches and across tab restores). Bump the `apptonomia-vN` suffix in the same
        commit that touches the stylesheet — same contract as the PWA
        siblings' sw.js VERSION. -->
-  <link rel="stylesheet" href="../css/styles.css?v=apptonomia-v10bc">
-  <link rel="stylesheet" href="../assets/css/locale-picker.css?v=apptonomia-v2bc">
+  <link rel="stylesheet" href="../css/styles.css?v=apptonomia-v12">
+  <link rel="stylesheet" href="../assets/css/locale-picker.css?v=apptonomia-v2bcaa">
 </head>
 <body>
 
@@ -356,6 +356,42 @@
     </a>
 
   </div>
+
+  <!-- The siblings that ship a /dev/ mirror of their own. Its own block
+       after the grid rather than a link inside the card above: an <a>
+       inside an <a> is invalid HTML, and a screen reader would meet a
+       second link with no name inside the first one. -->
+  <section class="suite-dev" aria-labelledby="suite-dev-heading">
+    <h2 class="suite-dev-heading" id="suite-dev-heading">Páginas /dev de la suite</h2>
+    <div class="suite">
+      <a class="suite-card suite-card--dev" href="./">
+        <div class="suite-card-head">
+          <span class="suite-tag">Portal</span>
+        </div>
+        <h3>Apptonomia</h3>
+        <p>Este portal, con los siete hermanos como enlaces.</p>
+        <span class="suite-domain">apptonomia.uk/dev</span>
+      </a>
+
+      <a class="suite-card suite-card--dev" href="https://calculia.apptonomia.uk/dev/" target="_blank" rel="noreferrer">
+        <div class="suite-card-head">
+          <span class="suite-tag">Calculia</span>
+        </div>
+        <h3>Actividades completas</h3>
+        <p>El catálogo entero de actividades, sin puertas.</p>
+        <span class="suite-domain">calculia.apptonomia.uk/dev</span>
+      </a>
+
+      <a class="suite-card suite-card--dev" href="https://memofun.apptonomia.uk/dev/" target="_blank" rel="noreferrer">
+        <div class="suite-card-head">
+          <span class="suite-tag">Memofun</span>
+        </div>
+        <h3>Todos los cursos</h3>
+        <p>También los cursos que la portada pública muestra bloqueados.</p>
+        <span class="suite-domain">memofun.apptonomia.uk/dev</span>
+      </a>
+    </div>
+  </section>
 </main>
 
 <footer class="app-footer">
@@ -368,6 +404,12 @@
 <script src="../js/strings.es.js?v=apptonomia-v6"></script>
 <script src="../js/strings.en.js?v=apptonomia-v6"></script>
 <script src="../js/prepaint.js"></script>
-<script src="../assets/js/locale-picker.js?v=apptonomia-v5" defer></script>
+<!-- Locale picker config (must run BEFORE assets/js/locale-picker.js).
+     Without it the picker falls back to its defaults: the shared
+     apptonomia:locale key and a js/strings folder that does not exist one
+     level down, so discovery 404s and the text-size buttons stop scaling
+     the landing's --text-base. -->
+<script src="../assets/js/locale-picker-config.js?v=apptonomia-v1aa"></script>
+<script src="../assets/js/locale-picker.js?v=apptonomia-v6aa" defer></script>
 </body>
 </html>

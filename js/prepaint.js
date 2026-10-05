@@ -16,7 +16,6 @@
 (function () {
   'use strict';
 
-  var locale = window.__APPTONOMIA_LOCALE__ || 'es';
   var t = (window.App && App.i18n) ? App.i18n.t : function (k) { return k; };
 
   var meta = document.querySelector('meta[data-i18n-attr="meta.description"]');
@@ -27,11 +26,5 @@
     var key = nodes[i].getAttribute('data-i18n');
     var value = t(key);
     if (value) nodes[i].textContent = value;
-  }
-
-  var btns = document.querySelectorAll('.btn-lang');
-  for (var j = 0; j < btns.length; j++) {
-    btns[j].setAttribute('aria-pressed',
-      btns[j].getAttribute('data-locale') === locale ? 'true' : 'false');
   }
 })();

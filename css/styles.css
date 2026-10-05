@@ -283,21 +283,6 @@
       border-radius: 999px;
       padding: 4px;
     }
-    .btn-lang {
-      border: 0;
-      background: transparent;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font: inherit;
-      font-weight: 600;
-      color: var(--color-text-soft);
-      cursor: pointer;
-      min-height: 40px;
-    }
-    .btn-lang[aria-pressed="true"] {
-      background: var(--accent);
-      color: var(--color-on-accent, #fff);
-    }
 
     .app-hero {
       text-align: center;
@@ -335,6 +320,19 @@
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
       gap: 24px;
       align-content: start;
+    }
+
+    /* The /dev/ block: the sibling mirrors, under the main grid. Reuses
+       .suite/.suite-card verbatim, so this only has to open the section
+       up from the grid above it. h2 already carries the type scale. */
+    .suite-dev {
+      margin-top: 40px;
+      padding-top: 28px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .suite-dev-heading {
+      margin: 0 0 20px;
     }
 
     .suite-card {
@@ -432,7 +430,7 @@
     }
     /* When the pictogram is an <img> (sibling's own SVG icon, currently
        only Memofun ships one) instead of an emoji glyph, scale the
-       SVG down to leave breathing room inside the 44Ã—44 accent-soft
+       SVG down to leave breathing room inside the 44×44 accent-soft
        chip and let the SVG's own rounded corners do the rest. The
        `<img>` keeps the SVG's intrinsic aspect-ratio so it stays
        centered both horizontally and vertically via the grid above. */
@@ -594,8 +592,6 @@ header.suite-header {
 
 
 .suite-header .lang-switch { padding: 0; background: transparent; border: 0; border-radius: 0; }
-.suite-header .btn-lang { border: 2px solid var(--color-border); border-radius: var(--radius); background: var(--color-surface); color: var(--color-text); font-weight: 700; }
-.suite-header .btn-lang[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--color-text); }
 .suite-header .brand-mark { display: grid; place-items: center; }
 header.suite-header.container { padding-inline: 48px; }
 @media (max-width: 650px) {

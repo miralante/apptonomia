@@ -114,18 +114,11 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     /* The head bootstrap already did a pre-paint pass that translated
-       every [data-i18n] node and painted the lang switch. By the
-       time DOMContentLoaded fires, the visible text is already in
-       the active locale; this handler only needs to wire the
-       click-to-switch behaviour. */
+       every [data-i18n] node. By the time DOMContentLoaded fires the
+       visible text is already in the active locale, so all that is left
+       here is the footer. The language is no longer switched by a pair of
+       buttons on this page: it lives in the shared header dropdown, which
+       wires itself through App.i18n. */
     injectFooter();
-    var buttons = document.querySelectorAll('.btn-lang');
-    for (var k = 0; k < buttons.length; k++) {
-      (function (btn) {
-        btn.addEventListener('click', function () {
-          App.i18n.set(btn.getAttribute('data-locale'));
-        });
-      })(buttons[k]);
-    }
   });
 })();

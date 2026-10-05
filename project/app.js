@@ -152,15 +152,25 @@
     if (!window.I18N || !window.I18N[locale]) return;
     loadDictionary(locale);
     applyI18n();
-    var btns = document.querySelectorAll('[data-locale]');
-    for (var i = 0; i < btns.length; i++) {
-      var active = btns[i].getAttribute('data-locale') === locale;
-      btns[i].setAttribute('aria-pressed', String(active));
-    }
     try {
       window.localStorage.setItem('deck.locale', locale);
+      /* El desplegable compartido de la cabecera lee 'apptonomia:locale'
+         para saber que idioma marcar. El deck tenía su propia clave y
+         nadie se las sincronizaba, así que tras un cambio hecho desde el
+         desplegable el deck podía arrancar en un idioma y el desplegable
+         anunciar otro. Se escriben las dos en el mismo sitio. */
+      window.localStorage.setItem('apptonomia:locale', locale);
     } catch (e) { /* localStorage puede estar bloqueado en modo privado */ }
   }
+
+  /* Contrato que el desplegable compartido espera en toda la suite: llama
+     App.i18n.set(locale) para cambiar el idioma. Esta pagina trae su propio
+     cargador de diccionario, asi que setLocale es justo lo que necesita. */
+  window.App = window.App || {};
+  window.App.i18n = window.App.i18n || {};
+  window.App.i18n.locale = function () { return currentLocale; };
+  window.App.i18n.set = setLocale;
+  window.App.i18n.setLocale = setLocale;
 
   function bindLangButtons() {
     var btns = document.querySelectorAll('[data-locale]');

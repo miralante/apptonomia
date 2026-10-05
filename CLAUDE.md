@@ -73,7 +73,7 @@ The document is split in two blocks:
 - **Block A — Workflow** (§A.1 … §A.4): rules that govern *how* an
   agent edits the metaproject (canonical sources, mandatory workflow,
   external/destructive operations, scope of the file).
-- **Block B — Suite-wide policies** (§B.1 ÃƒÂ¢Ã¢â€šÂ¬¦ §B.6): rules that govern
+- **Block B — Suite-wide policies** (§B.1 … §B.6): rules that govern
   *what* the suite does (cache contract across siblings, accessibility
   & public-facing wording, meta-graph, settings/data-reset,
   GEO/AEO/LLMO).
@@ -99,13 +99,13 @@ location.
 | **Per-sibling product, audience, accessibility, architecture, i18n, catalogue, roadmap** | Each sibling's own `CLAUDE.md` (linked from §A.1.1 below) |
 | Metaproject plumbing (sync script, meta-graph, landing) | This file + `scripts/sync-graphify-skill.js` |
 | Public landing (SEO, Open Graph, JSON-LD `ItemList`, multilingual copy) | This repo's `index.html`, `js/strings.es.js`, `js/strings.en.js` |
-| **Suite compliance checklist** (UNE 153101, WCAG AAA, public-facing wording "usuario/a tipo", settings/data-reset, landing typography) | [`doc/en/guia-de-cumplimiento.md`](doc/en/guia-de-cumplimiento.md) Ã¢â€ â€ [`doc/es/guia-de-cumplimiento.md`](doc/es/guia-de-cumplimiento.md) |
-| **Creating a new sibling** (required files, scripts, doc tree, sw.js cache contract) | [`doc/en/crear-app.md`](doc/en/crear-app.md) Ã¢â€ â€ [`doc/es/crear-app.md`](doc/es/crear-app.md) |
+| **Suite compliance checklist** (UNE 153101, WCAG AAA, public-facing wording "usuario/a tipo", settings/data-reset, landing typography) | [`doc/en/guia-de-cumplimiento.md`](doc/en/guia-de-cumplimiento.md) → [`doc/es/guia-de-cumplimiento.md`](doc/es/guia-de-cumplimiento.md) |
+| **Creating a new sibling** (required files, scripts, doc tree, sw.js cache contract) | [`doc/en/crear-app.md`](doc/en/crear-app.md) → [`doc/es/crear-app.md`](doc/es/crear-app.md) |
 | **File templates for new siblings** (CLAUDE.md, README.md, sw.js, scripts/check.js, SECURITY, doc tree) | [`doc/templates/`](doc/templates/) |
-| Cross-project convention: settings/data-reset pattern | [`doc/en/guia-de-cumplimiento.md` §5](doc/en/guia-de-cumplimiento.md#5-settings--data-reset-pattern) â†” [`doc/es/guia-de-cumplimiento.md` §5](doc/es/guia-de-cumplimiento.md#5-settings--data-reset-pattern) â€” also §B.5.1 below for the canonical reference (`crear-app.md` + `doc/templates/`) |
-| Cross-project convention: landing typography | [`doc/en/guia-de-cumplimiento.md` §6](doc/en/guia-de-cumplimiento.md#6-landing-typography) Ã¢â€ â€ [`doc/es/guia-de-cumplimiento.md` §6](doc/es/guia-de-cumplimiento.md#6-tipografÃƒÂ­a-del-portal) |
-| Human contribution flow | [`CONTRIBUTING.md`](CONTRIBUTING.md) Ã¢â€ â€ [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) |
-| **Suite-wide security policy** (`SECURITY.md` / `SECURITY.es.md`) | [`doc/templates/SECURITY.md`](doc/templates/SECURITY.md) Ã¢â€ â€ [`doc/templates/SECURITY.es.md`](doc/templates/SECURITY.es.md); rendered into every sibling by [`scripts/one-off/write-security-md.js`](scripts/one-off/write-security-md.js) |
+| Cross-project convention: settings/data-reset pattern | [`doc/en/guia-de-cumplimiento.md` §5](doc/en/guia-de-cumplimiento.md#5-settings--data-reset-pattern) ↔ [`doc/es/guia-de-cumplimiento.md` §5](doc/es/guia-de-cumplimiento.md#5-settings--data-reset-pattern) — also §B.5.1 below for the canonical reference (`crear-app.md` + `doc/templates/`) |
+| Cross-project convention: landing typography | [`doc/en/guia-de-cumplimiento.md` §6](doc/en/guia-de-cumplimiento.md#6-landing-typography) → [`doc/es/guia-de-cumplimiento.md` §6](doc/es/guia-de-cumplimiento.md#6-tipografía-del-portal) |
+| Human contribution flow | [`CONTRIBUTING.md`](CONTRIBUTING.md) → [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) |
+| **Suite-wide security policy** (`SECURITY.md` / `SECURITY.es.md`) | [`doc/templates/SECURITY.md`](doc/templates/SECURITY.md) → [`doc/templates/SECURITY.es.md`](doc/templates/SECURITY.es.md); rendered into every sibling by [`scripts/one-off/write-security-md.js`](scripts/one-off/write-security-md.js) |
 | AI agent operational flow | `CLAUDE.md` (this file) |
 
 #### A.1.1 Sibling projects (the seven)
@@ -296,7 +296,7 @@ baseline, and the public-facing "usuario/a tipo" euphemism is
 `doc/en/guia-de-cumplimiento.md` §1 / §2 / §3 (mirror
 `doc/es/guia-de-cumplimiento.md`). Per `§A.1`, that guide is the
 authoritative document for the suite's accessibility and public-
-facing-wording rules â€” `CLAUDE.md` does not duplicate them here.
+facing-wording rules — `CLAUDE.md` does not duplicate them here.
 Per-sibling `CLAUDE.md` files expose the same pointer against their
 own `doc/en/spec.md` (which mirrors the suite-wide rules at the
 product level).
@@ -451,7 +451,7 @@ the metaproject's
 [`doc/en/crear-app.md`](doc/en/crear-app.md) (mirror
 [`doc/es/crear-app.md`](doc/es/crear-app.md)) plus the file
 scaffolds under
-[`doc/templates/`](doc/templates/) â€” `settings/index.html`,
+[`doc/templates/`](doc/templates/) — `settings/index.html`,
 `settings/app.js`, `settings/strings.<locale>.js`,
 `settings/styles.css`, the `localStorage`-prefix convention, the
 two-step confirmation, the no-analytics / no-network rule, the
@@ -461,19 +461,19 @@ to follow the recipe; existing siblings are expected to converge
 towards it.
 
 Two existing siblings ship the pattern today, as **implementation
-references** (not as the canon â€” the canon stays the
+references** (not as the canon — the canon stays the
 `crear-app.md` recipe and the templates):
 
-- [`routime/settings/`](../routime/settings/) â€” an *out-of-menu*
+- [`routime/settings/`](../routime/settings/) — an *out-of-menu*
   hidden route. The full rationale (two-step confirmation, no
   analytics, no network, JSON export/import backup) is documented
   in the comments at the top of
   [`routime/settings/app.js`](../routime/settings/app.js#L1-L40).
   Routime also ships the JSON export/import because its catalogue
   has 69 activities and the effort is justified there.
-- [`calculia/settings/`](../calculia/settings/) â€” a similar
+- [`calculia/settings/`](../calculia/settings/) — a similar
   hidden route, trimmed relative to Routime (no backup, no
-  font-size/sound preferences, no personal-data form â€” Calculia's
+  font-size/sound preferences, no personal-data form — Calculia's
   15 activities store no name or other personal field). When
   touching it, align it with the Routime reference **and** with
   `crear-app.md`, but do not duplicate either.
@@ -487,7 +487,7 @@ Card, hreflang, JSON-LD `SoftwareApplication` / `BreadcrumbList`,
 sitemap, robots.txt), the metaproject and the six siblings adopt
 three additional layers, all defined in
 [`doc/en/guia-de-cumplimiento.md` §7](doc/en/guia-de-cumplimiento.md#7-geo-aeo-and-llmo-search--answer-engine--and-llm-visibility)
-Ã¢â€ â€
+→
 [`doc/es/guia-de-cumplimiento.md` §7](doc/es/guia-de-cumplimiento.md#7-geo-aeo-y-llmo-presencia-en-buscadores-answer-engines-y-llms):
 
 - **GEO** — semantic / Dublin Core only. Six `<meta name="DC.*">`

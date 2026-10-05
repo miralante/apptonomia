@@ -41,10 +41,17 @@ async function waitForCounter(page, num, total) {
 
 test.describe('apptonomia deck', () => {
 
-  // Reset localStorage before each test to prevent state bleed
+  // Reset localStorage before each test to prevent state bleed.  BOTH keys
+  // have to go: the deck keeps 'deck.locale' and the shared header dropdown
+  // keeps 'apptonomia:locale'.  project/app.js writes them as a pair inside
+  // setLocale(), so leaving one behind hands the next test a combination the
+  // app can never actually be in.
   test.beforeEach(async ({ page }) => {
     await page.goto(BASE);
-    await page.evaluate(() => localStorage.removeItem('deck.locale'));
+    await page.evaluate(() => {
+      localStorage.removeItem('deck.locale');
+      localStorage.removeItem('apptonomia:locale');
+    });
     await page.reload();
     await settle(page);
   });
@@ -140,33 +147,6 @@ test.describe('apptonomia deck', () => {
     await waitForCounter(page, 1, 12);
   });
 
-  test('Language switch to English updates texts and persists in localStorage', async ({ page }) => {
-    await page.goto(BASE);
-    await settle(page);
-
-    // Capture Spanish text from a translatable element
-    const getFirstI18nText = async () => {
-      return page.evaluate(() => {
-        const el = document.querySelector('[data-i18n]');
-        return el ? el.textContent : '';
-      });
-    };
-    const spanishText = await getFirstI18nText();
-
-    // Switch to English
-    await page.locator('#btnLangEn').click();
-    await settle(page);
-
-    // Text should change (if there are translations)
-    const englishText = await getFirstI18nText();
-    // Just check that the locale is set and localStorage is updated
-    const locale = await page.evaluate(() => localStorage['deck.locale']);
-    expect(locale).toBe('en');
-
-    // btnLangEn should be aria-pressed
-    const ariaPressed = await page.locator('#btnLangEn').getAttribute('aria-pressed');
-    expect(ariaPressed).toBe('true');
-  });
 
   test('Unsupported browser language falls back to English', async ({ browser }) => {
     const context = await browser.newContext({ locale: 'fr-FR' });
@@ -229,10 +209,9 @@ test.describe('apptonomia deck', () => {
       await page.goto(HOME);
       await expect(page.locator('html')).toHaveAttribute('lang', 'en');
       const englishText = await page.locator('[data-i18n]').first().textContent();
-      await page.locator('.locale-settings-trigger').click();
-      const drawer = page.locator('#accessibility-settings');
-      await drawer.locator('.locale-picker-btn').click();
-      await drawer.locator('.locale-picker-panel li[data-locale="es"]').click();
+      // The header dropdown, without opening the settings drawer first.
+      await page.locator('#locale-picker .locale-picker-btn').click();
+      await page.locator('#locale-picker .locale-picker-panel li[data-locale="es"]').click();
       await expect(page.locator('html')).toHaveAttribute('lang', 'es');
       expect(await page.evaluate(() => localStorage.getItem('apptonomia:locale'))).toBe('es');
       const spanishText = await page.locator('[data-i18n]').first().textContent();
@@ -242,9 +221,8 @@ test.describe('apptonomia deck', () => {
       await expect(page.locator('html')).toHaveAttribute('lang', 'es');
       expect(await page.locator('[data-i18n]').first().textContent()).toBe(spanishText);
 
-      await page.locator('.locale-settings-trigger').click();
-      await page.locator('#accessibility-settings .locale-picker-btn').click();
-      await page.locator('#accessibility-settings .locale-picker-panel li[data-locale="en"]').click();
+      await page.locator('#locale-picker .locale-picker-btn').click();
+      await page.locator('#locale-picker .locale-picker-panel li[data-locale="en"]').click();
       await expect(page.locator('html')).toHaveAttribute('lang', 'en');
       expect(await page.evaluate(() => localStorage.getItem('apptonomia:locale'))).toBe('en');
       expect(await page.locator('[data-i18n]').first().textContent()).toBe(englishText);
@@ -279,25 +257,31 @@ test.describe('apptonomia deck', () => {
     await page.goto(BASE);
     await settle(page);
 
-    // Switch to English first, then back to Spanish
-    await page.locator('#btnLangEn').click();
+    // Switch to English first, then back to Spanish, from the header
+    // dropdown that replaced the deck's two buttons.
+    const picker = page.locator('#locale-picker .locale-picker-btn');
+    const options = page.locator('#locale-picker .locale-picker-panel');
+    await picker.click();
+    await options.locator('li[data-locale="en"]').click();
     await settle(page);
 
-    await page.locator('#btnLangEs').click();
+    await picker.click();
+    await options.locator('li[data-locale="es"]').click();
     await settle(page);
 
+    // The deck keeps its own key, and the dropdown's key is written in the
+    // same place, so both agree after a change from either control.
     const locale = await page.evaluate(() => localStorage['deck.locale']);
     expect(locale).toBe('es');
-
-    const ariaPressed = await page.locator('#btnLangEs').getAttribute('aria-pressed');
-    expect(ariaPressed).toBe('true');
+    expect(await page.evaluate(() => localStorage['apptonomia:locale'])).toBe('es');
   });
 
   test('Language preference persists after page reload', async ({ page }) => {
     await page.goto(BASE);
     await settle(page);
 
-    await page.locator('#btnLangEn').click();
+    await page.locator('#locale-picker .locale-picker-btn').click();
+    await page.locator('#locale-picker .locale-picker-panel li[data-locale="en"]').click();
     await settle(page);
 
     // Reload the page
@@ -306,35 +290,39 @@ test.describe('apptonomia deck', () => {
 
     const locale = await page.evaluate(() => localStorage['deck.locale']);
     expect(locale).toBe('en');
-
-    const ariaPressed = await page.locator('#btnLangEn').getAttribute('aria-pressed');
-    expect(ariaPressed).toBe('true');
+    await expect(page.locator('#locale-picker .locale-picker-current')).toHaveText('EN');
   });
 
-  test('Active language button has aria-pressed="true"', async ({ page }) => {
+  test('Active language button has aria-selected="true"', async ({ page }) => {
     // Pre-set Spanish locale to match the HTML default (the app reads
     // navigator.language as 'en' in Playwright, so we must force 'es').
+    // Both keys, because the deck and the header dropdown each read their
+    // own one and setLocale() only ever writes them together.
     await page.goto(BASE);
-    await page.evaluate(() => localStorage.setItem('deck.locale', 'es'));
+    await page.evaluate(() => {
+      localStorage.setItem('deck.locale', 'es');
+      localStorage.setItem('apptonomia:locale', 'es');
+    });
     await page.reload();
     await settle(page);
 
-    // Default Spanish button should be pressed
-    const esPressed = await page.locator('#btnLangEs').getAttribute('aria-pressed');
-    expect(esPressed).toBe('true');
+    // The deck's two buttons are gone: the header now carries the shared
+    // dropdown, which marks the active option with aria-selected.
+    const current = page.locator('#locale-picker .locale-picker-current');
+    await expect(current).toHaveText('ES');
+    await expect(page.locator('#locale-picker .locale-picker-panel li[data-locale="es"]'))
+      .toHaveAttribute('aria-selected', 'true');
+    await expect(page.locator('#locale-picker .locale-picker-panel li[data-locale="en"]'))
+      .not.toHaveAttribute('aria-selected', 'true');
 
-    const enPressed = await page.locator('#btnLangEn').getAttribute('aria-pressed');
-    expect(enPressed).not.toBe('true');
-
-    // Switch to English
-    await page.locator('#btnLangEn').click();
+    // Switch to English from the dropdown
+    await page.locator('#locale-picker .locale-picker-btn').click();
+    await page.locator('#locale-picker .locale-picker-panel li[data-locale="en"]').click();
     await settle(page);
 
-    const enPressedAfter = await page.locator('#btnLangEn').getAttribute('aria-pressed');
-    expect(enPressedAfter).toBe('true');
-
-    const esPressedAfter = await page.locator('#btnLangEs').getAttribute('aria-pressed');
-    expect(esPressedAfter).not.toBe('true');
+    await expect(current).toHaveText('EN');
+    await expect(page.locator('#locale-picker .locale-picker-panel li[data-locale="en"]'))
+      .toHaveAttribute('aria-selected', 'true');
   });
 
   test('Print button triggers window.print', async ({ page }) => {

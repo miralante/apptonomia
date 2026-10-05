@@ -13,6 +13,7 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="styles.css?v=apptonomia-project-v5bc">
+  <link rel="stylesheet" href="../assets/css/locale-picker.css?v=apptonomia-v5aa">
 </head>
 <body class="deck-body">
 
@@ -29,9 +30,8 @@
     <span class="deck-context" data-i18n="deck.contextLabel">Deck institucional</span>
   </div>
   <nav class="deck-toolbar" aria-label="Controles de la presentación">
-    <div class="deck-lang" role="group" aria-label="Elegir idioma">
-      <button type="button" class="deck-btn deck-btn-lang" id="btnLangEs" data-locale="es" aria-pressed="true">ES</button>
-      <button type="button" class="deck-btn deck-btn-lang" id="btnLangEn" data-locale="en" aria-pressed="false">EN</button>
+    <div class="suite-controls">
+      <div id="locale-picker"></div>
     </div>
     <button type="button" class="deck-btn deck-btn-ghost" id="btnPrev" aria-label="Diapositiva anterior">
       <span aria-hidden="true">←</span>
@@ -554,5 +554,10 @@
 <script src="app.js?v=2"></script>
 <script src="strings.es.js"></script>
 <script src="strings.en.js"></script>
+<!-- Controles compartidos con la pantalla principal: el desplegable de idioma
+     y el ⚙️ de la cabecera, con su cajón de accesibilidad. Mismo ?v= que la
+     portada, para que las dos páginas compartan la copia en caché. -->
+<script src="../assets/js/locale-picker-config.js?v=1"></script>
+<script src="../assets/js/locale-picker.js?v=apptonomia-v5aa" defer></script>
 </body>
 </html>
