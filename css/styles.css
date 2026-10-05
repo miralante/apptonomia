@@ -322,19 +322,6 @@
       align-content: start;
     }
 
-    /* The /dev/ block: the sibling mirrors, under the main grid. Reuses
-       .suite/.suite-card verbatim, so this only has to open the section
-       up from the grid above it. h2 already carries the type scale. */
-    .suite-dev {
-      margin-top: 40px;
-      padding-top: 28px;
-      border-top: 1px solid var(--color-border);
-    }
-
-    .suite-dev-heading {
-      margin: 0 0 20px;
-    }
-
     .suite-card {
       display: flex;
       flex-direction: column;

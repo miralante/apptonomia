@@ -1,6 +1,12 @@
 const { test, expect } = require('playwright/test');
 
-const ORIGIN = process.env.PLAYWRIGHT_BASE_URL || `http://127.0.0.1:${process.env.UI_PORT || 4173}`;
+/* Same origin as tests/app.spec.js and playwright.config.js: those read
+   PORT, this one read UI_PORT, so `PORT=4190 npx playwright test` started
+   the server on 4190 and left these tests knocking on 4173 — six
+   ERR_CONNECTION_REFUSED that had nothing to do with the pages.
+   With contrast/run-all.ps1 holding 4173 that is exactly the situation
+   you hit, so the name has to match. */
+const ORIGIN = process.env.PLAYWRIGHT_BASE_URL || `http://127.0.0.1:${process.env.PORT || 4173}`;
 const HOME = `${ORIGIN}/`;
 
 test.describe('Apptonomia landing settings', () => {
