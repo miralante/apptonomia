@@ -62,7 +62,10 @@ jobs:
         # job is kept as a no-op marker so the `Validate` workflow
         # name matches the rest of the suite; the substantive audit
         # lives in the `forbidden-terms` job below.
-        run: echo "apptonomia: no scripts/check.js by design; see forbidden-terms job"
+        # The whole scalar is quoted: an unquoted `echo "a: b"` makes
+        # YAML read the `: ` as a mapping separator and refuse to parse
+        # the file, which fails the run before any job starts.
+        run: 'echo "apptonomia: no scripts/check.js by design; see forbidden-terms job"'
 
   forbidden-terms:
     name: forbidden-terms scan
