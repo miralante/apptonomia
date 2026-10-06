@@ -1,0 +1,47 @@
+# wrangler assets exclusion list (Cloudflare Workers static assets).
+#
+# This portal is a plain static site: only the files a visitor loads may be
+# published. Without this file wrangler falls back to .gitignore, which does
+# NOT list .git/ (nobody gitignores it) and does not know that doc/,
+# scripts/, tests/ or the agent skill folders are internal. The result was
+# that apptonomia.uk served the whole repository: /.git/index, /CLAUDE.md,
+# /doc/en/spec.md and /scripts/*.js all answered 200.
+#
+# Calculia already had this file; the metaproject did not. Keep the two in
+# sync when a new top-level folder appears: the test is simple — would a
+# visitor ever need this file to use the portal? If not, it goes below.
+.wrangler/
+.git/
+.claude/
+.github/
+.agents/
+.codex/
+node_modules/
+graphify-out*/
+graphify-out-meta/
+.graphifyignore
+.dev/
+scripts/
+doc/
+tests/
+test-results/
+playwright-report/
+_mojibake_test/
+.assetsignore
+/*.md
+/*.log
+package.json
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+playwright.config.js
+/wrangler.toml
+/serve.js
+/_o.txt
+**/.env*
+**/*.pem
+**/*.p12
+**/*.pfx
+**/*.key
+**/credentials.json
+**/service-account*.json

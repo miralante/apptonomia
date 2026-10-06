@@ -161,10 +161,13 @@ test.describe('Apptonomia landing settings', () => {
       color: getComputedStyle(document.body).color,
     }));
 
-    await expect(page.locator('html')).not.toHaveAttribute('data-theme');
-    const autoLight = await bodyColors();
+    // El tema por defecto es "light" y se queda en "light": emular un
+    // sistema oscuro NO debe pintar la página de oscuro, porque ya no
+    // queda la opción "auto" que le entregaba la decisión al sistema.
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+    const defaultColors = await bodyColors();
     await page.emulateMedia({ colorScheme: 'dark' });
-    await expect.poll(() => bodyColors().then(colors => colors.background)).not.toBe(autoLight.background);
+    await expect.poll(() => bodyColors().then(colors => colors.background)).toBe(defaultColors.background);
 
     await drawer.locator('[data-settings-theme="light"]').click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');

@@ -88,8 +88,10 @@
     }
 
     /* -------- Tema oscuro --------
-       data-theme="dark", o solo por prefers-color-scheme cuando no hay
-       tema forzado (opción "Auto"). */
+       data-theme="dark", que es lo que pone el conmutador del engranaje.
+       El tema por defecto es "light": antes había un "auto" que dejaba el
+       atributo sin poner y delegaba en prefers-color-scheme, así que en un
+       equipo en oscuro el sitio salía oscuro sin haberlo pedido. */
     [data-theme="dark"] {
       --color-bg: #14161E;
       --color-surface: #1E2230;
@@ -135,31 +137,7 @@
       --hue-pino: #00FFAA;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme]) {
-        --color-bg: #14161E;
-        --color-surface: #1E2230;
-        --color-text: #F2F0EA;
-        --color-text-soft: #B3B0C8;
-        --color-border: #39405A;
-        --accent: #6BB4F2;
-        --accent-soft: #19354D;
-        --color-focus: #6BB4F2;
-        --color-shadow: rgba(0, 0, 0, 0.4);
-        --color-on-accent: #14161E;
-      --accent-surface: #16352F;
-      --color-gem: #6FD0C4;
-      --hue-verde: #4FD1C5;
-      --hue-oro: #E0B450;
-      --hue-azul: #7FBBEC;
-      --hue-violeta: #BFA5E6;
-      --hue-lima: #86CC89;
-      --hue-naranja: #F0A17B;
-      --hue-pino: #74D2B8;
-      }
-    }
-
-    *, *::before, *::after {
+        *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;

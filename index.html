@@ -263,7 +263,7 @@
        launches and across tab restores). Bump the `apptonomia-vN` suffix in the same
        commit that touches the stylesheet — same contract as the PWA
        siblings' sw.js VERSION. -->
-  <link rel="stylesheet" href="css/styles.css?v=apptonomia-v13">
+  <link rel="stylesheet" href="css/styles.css?v=apptonomia-v13a">
   <link rel="stylesheet" href="assets/css/locale-picker.css?v=apptonomia-v5ab">
 </head>
 <body>
@@ -284,22 +284,24 @@
 <main id="contenido" class="container">
   <div class="suite" aria-label="Suite de proyectos">
 
-    <!-- Sibling cards: the four "coming soon" siblings are rendered as
+    <!-- Sibling cards: the "coming soon" siblings are rendered as
          non-interactive cards (div + role="link" + aria-disabled="true")
          rather than anchors, so the destination URL is unreachable from
          the portal even though the domain still resolves. The "Próximamente"
          badge replaces the suite-domain slot so the card does not advertise
-         a URL the visitor cannot follow. Teclatlon, Sinonimia and Memofun
-         keep their anchor wrapper because they are the only shipped siblings. -->
-    <div class="suite-card suite-card--soon" role="link" aria-disabled="true" aria-label="Calculia — Próximamente">
+         a URL the visitor cannot follow. Calculia, Sinonimia, Memofun and
+         Teclatlon keep their anchor wrapper because they are the shipped
+         siblings; a card flips from the disabled form to the anchor when its
+         app goes live, keeping the position it already had in the grid. -->
+    <a class="suite-card" href="https://calculia.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
         <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="assets/img/sibling/calculia.svg?v=apptonomia-v2" alt=""></span>
         <span class="suite-tag" data-i18n="tags.math">Matemáticas</span>
       </div>
       <h3>Calculia</h3>
       <p data-i18n="projects.calculia">Cálculo y razonamiento lógico con actividades cortas y visuales.</p>
-      <span class="suite-soon-badge" role="status" data-i18n="home.comingSoon">Próximamente</span>
-    </div>
+      <span class="suite-domain">calculia.apptonomia.uk</span>
+    </a>
 
     <div class="suite-card suite-card--soon" role="link" aria-disabled="true" aria-label="Routime — Próximamente">
       <div class="suite-card-head">
@@ -375,6 +377,6 @@
 <script src="js/strings.en.js?v=apptonomia-v6"></script>
 <script src="js/prepaint.js"></script>
 <script src="assets/js/locale-picker-config.js?v=apptonomia-v1ab"></script>
-<script src="assets/js/locale-picker.js?v=apptonomia-v5ac" defer></script>
+<script src="assets/js/locale-picker.js?v=apptonomia-v5aca" defer></script>
 </body>
 </html>
