@@ -39,10 +39,25 @@ async function waitForCounter(page, num, total) {
   throw new Error(`Timed out waiting for counter ${num}/${total}`);
 }
 
+/** Open the ⚙️ drawer and return the language dropdown that lives in it.
+ *  On this portal the language is the drawer's first row
+ *  (locale-picker-config.js sets languageInDrawer), so every dropdown
+ *  click has to go through the gear — the drawer stays open afterwards,
+ *  which is what lets a test switch language twice in a row. */
+async function openLanguageDrawer(page) {
+  const gear = page.locator('.locale-settings-trigger');
+  const drawer = page.locator('#accessibility-settings');
+  if (await drawer.isHidden()) {
+    await gear.click();
+    await expect(drawer).toBeVisible();
+  }
+  return drawer;
+}
+
 test.describe('apptonomia deck', () => {
 
   // Reset localStorage before each test to prevent state bleed.  BOTH keys
-  // have to go: the deck keeps 'deck.locale' and the shared header dropdown
+  // have to go: the deck keeps 'deck.locale' and the shared dropdown
   // keeps 'apptonomia:locale'.  project/app.js writes them as a pair inside
   // setLocale(), so leaving one behind hands the next test a combination the
   // app can never actually be in.
@@ -167,6 +182,9 @@ test.describe('apptonomia deck', () => {
     const page = await context.newPage();
     try {
       await page.goto(HOME);
+      // The dropdown lives in the ⚙️ drawer, so the gear has to open it
+      // before the locale can be read.
+      await openLanguageDrawer(page);
       await expect(page.locator('#locale-picker')).toBeVisible();
       await expect(page.locator('.locale-picker-current')).toHaveText('EN');
       expect(await page.locator('html').getAttribute('lang')).toBe('en');
@@ -209,7 +227,8 @@ test.describe('apptonomia deck', () => {
       await page.goto(HOME);
       await expect(page.locator('html')).toHaveAttribute('lang', 'en');
       const englishText = await page.locator('[data-i18n]').first().textContent();
-      // The header dropdown, without opening the settings drawer first.
+      // The dropdown is the drawer's first row, so the gear opens it.
+      await openLanguageDrawer(page);
       await page.locator('#locale-picker .locale-picker-btn').click();
       await page.locator('#locale-picker .locale-picker-panel li[data-locale="es"]').click();
       await expect(page.locator('html')).toHaveAttribute('lang', 'es');
@@ -221,6 +240,8 @@ test.describe('apptonomia deck', () => {
       await expect(page.locator('html')).toHaveAttribute('lang', 'es');
       expect(await page.locator('[data-i18n]').first().textContent()).toBe(spanishText);
 
+      // The reload closed the drawer again: open it before switching back.
+      await openLanguageDrawer(page);
       await page.locator('#locale-picker .locale-picker-btn').click();
       await page.locator('#locale-picker .locale-picker-panel li[data-locale="en"]').click();
       await expect(page.locator('html')).toHaveAttribute('lang', 'en');
@@ -257,8 +278,10 @@ test.describe('apptonomia deck', () => {
     await page.goto(BASE);
     await settle(page);
 
-    // Switch to English first, then back to Spanish, from the header
-    // dropdown that replaced the deck's two buttons.
+    // Switch to English first, then back to Spanish, from the shared
+    // dropdown that replaced the deck's two buttons. It lives in the ⚙️
+    // drawer, so the gear opens it once and it stays open for both.
+    await openLanguageDrawer(page);
     const picker = page.locator('#locale-picker .locale-picker-btn');
     const options = page.locator('#locale-picker .locale-picker-panel');
     await picker.click();
@@ -280,6 +303,7 @@ test.describe('apptonomia deck', () => {
     await page.goto(BASE);
     await settle(page);
 
+    await openLanguageDrawer(page);
     await page.locator('#locale-picker .locale-picker-btn').click();
     await page.locator('#locale-picker .locale-picker-panel li[data-locale="en"]').click();
     await settle(page);
@@ -290,6 +314,9 @@ test.describe('apptonomia deck', () => {
 
     const locale = await page.evaluate(() => localStorage['deck.locale']);
     expect(locale).toBe('en');
+    // The reload closed the drawer: the current locale is asserted inside
+    // it, so it has to be opened again.
+    await openLanguageDrawer(page);
     await expect(page.locator('#locale-picker .locale-picker-current')).toHaveText('EN');
   });
 
@@ -306,8 +333,9 @@ test.describe('apptonomia deck', () => {
     await page.reload();
     await settle(page);
 
-    // The deck's two buttons are gone: the header now carries the shared
-    // dropdown, which marks the active option with aria-selected.
+    // The deck's two buttons are gone: the shared dropdown now lives in
+    // the ⚙️ drawer, and it marks the active option with aria-selected.
+    await openLanguageDrawer(page);
     const current = page.locator('#locale-picker .locale-picker-current');
     await expect(current).toHaveText('ES');
     await expect(page.locator('#locale-picker .locale-picker-panel li[data-locale="es"]'))

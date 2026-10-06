@@ -11,12 +11,22 @@
    document order but a classic script always beats them.
 
    The landing is the suite's public front door and has no settings route of
-   its own, so the shared ⚙️ IS its settings UI and stays enabled. The gear
-   sits top right, beside this dropdown; neither is inside the other.
+   its own, so the shared ⚙️ IS its settings UI and stays enabled. With
+   `languageInDrawer` the dropdown moves INTO that drawer, as its first
+   row, and the ⚙️ is left alone in the header: language and display
+   preferences in one place instead of two controls side by side. The
+   other seven apps keep the dropdown in the header, which is the
+   component's default.
    ========================================================================== */
 window.LocalePickerConfig = {
   storageKey: 'apptonomia:locale',
   settingsStorageKey: 'apptonomia:locale:accessibility',
+  /* El idioma vive DENTRO del cajón del ⚙️, no al lado en la cabecera. En
+     esta portada el ⚙️ es toda la configuración, así que el desplegable
+     fuera de él era un segundo sitio donde cambiar preferencias; dentro
+     del cajón queda con el tema, la letra y el contraste. Coste: un clic
+     más para llegar al idioma. */
+  languageInDrawer: true,
   /* Sin descubrimiento por HEAD. El componente solo admite es/en
      (SUPPORTED_LOCALES esta fijado en el codigo), asi que sondear
      js/strings.<locale>.js no puede descubrir un tercer idioma que

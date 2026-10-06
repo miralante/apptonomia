@@ -29,12 +29,21 @@ test.describe('Apptonomia landing settings', () => {
     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
     await expect(drawer.locator('[data-settings-title]')).toHaveText('Settings');
 
-    // The drawer is the accessibility panel only. The language picker is a
-    // first-level control in the header, not a sublevel of this drawer, and
-    // there is no "more settings" link duplicating the app's own settings.
-    await expect(drawer.locator('.locale-picker-btn')).toHaveCount(0);
+    // On this landing the gear IS the whole configuration, so the language
+    // is the drawer's first row (locale-picker-config.js sets
+    // languageInDrawer), and there is no "more settings" link duplicating
+    // the app's own settings.
+    await expect(drawer.locator('.locale-picker-btn')).toHaveCount(1);
+    await expect(drawer.locator('[data-settings-language-row]')).toHaveCount(1);
+    await expect(drawer.locator('[data-settings-language-label]')).toHaveText('🌐 Language');
     await expect(drawer.locator('[data-settings-success], [data-settings-error]')).toHaveCount(0);
     await expect(drawer.locator('[data-settings-more]')).toHaveCount(0);
+
+    // First row on purpose: the panel drops over the rows below instead of
+    // past the bottom edge of the drawer, where overflow would clip it.
+    const firstRow = await drawer.locator('.locale-settings-drawer-body > *').first()
+      .getAttribute('class');
+    expect(firstRow).toContain('locale-settings-language');
 
     await drawer.locator('[data-settings-close]').click();
     await expect(drawer).toBeHidden();
@@ -52,36 +61,51 @@ test.describe('Apptonomia landing settings', () => {
     await expect(trigger).toBeFocused();
   });
 
-  test('keeps the language dropdown and the gear side by side, gear on the right', async ({ page }) => {
-    // The gear is inserted as the next sibling of #locale-picker, so the two
-    // share one row and the gear is the rightmost control of the header.
-    const order = await page.evaluate(() => {
+  test('leaves the gear alone in the header and the language inside the drawer', async ({ page }) => {
+    const placement = await page.evaluate(() => {
       const picker = document.getElementById('locale-picker');
       const gear = document.querySelector('.locale-settings-trigger');
+      const drawer = document.getElementById('accessibility-settings');
       return {
-        sameRow: gear.parentNode === picker.parentNode,
-        gearAfterPicker: picker.nextElementSibling === gear,
-        parentAlignsEnd: getComputedStyle(picker.parentNode).justifyContent,
+        pickerInDrawer: drawer.contains(picker),
+        gearRowIsSuiteControls: gear.parentNode.classList.contains('suite-controls'),
+        gearRowChildren: gear.parentNode.children.length,
+        parentAlignsEnd: getComputedStyle(gear.parentNode).justifyContent,
       };
     });
-    expect(order.sameRow).toBe(true);
-    expect(order.gearAfterPicker).toBe(true);
-    expect(order.parentAlignsEnd).toBe('flex-end');
+    expect(placement.pickerInDrawer).toBe(true);
+    expect(placement.gearRowIsSuiteControls).toBe(true);
+    // Only the gear is left in that row: no empty gap where the dropdown
+    // used to sit.
+    expect(placement.gearRowChildren).toBe(1);
+    expect(placement.parentAlignsEnd).toBe('flex-end');
 
-    // Reachable in one click, without opening the drawer first.
-    const languageButton = page.locator('#locale-picker .locale-picker-btn');
-    const languageOptions = page.locator('#locale-picker .locale-picker-panel');
+    // Closed drawer: the dropdown is nowhere to be seen on the page.
+    await expect(page.locator('.locale-picker-btn')).toBeHidden();
+
+    await page.locator('.locale-settings-trigger').click();
+    const drawer = page.locator('#accessibility-settings');
+    const languageButton = drawer.locator('.locale-picker-btn');
+    const languageOptions = drawer.locator('.locale-picker-panel');
     await expect(languageButton).toBeVisible();
     await languageButton.click();
     await expect(languageOptions).toBeVisible();
     await expect(languageOptions).toBeInViewport();
+
+    // The panel must land fully INSIDE the drawer. Anchored to the right of
+    // a full-width row it overflowed the drawer and stopped taking clicks.
     const panelBox = await languageOptions.boundingBox();
-    const buttonBox = await languageButton.boundingBox();
-    expect(panelBox.x + panelBox.width).toBeLessThanOrEqual(buttonBox.x + buttonBox.width + 1);
+    const drawerBox = await drawer.boundingBox();
+    expect(panelBox.x).toBeGreaterThanOrEqual(drawerBox.x);
+    expect(panelBox.x + panelBox.width).toBeLessThanOrEqual(drawerBox.x + drawerBox.width + 1);
+
+    // One Escape closes the dropdown only; the drawer stays open, the way
+    // any nested dropdown behaves. The second one closes the drawer.
     await page.keyboard.press('Escape');
     await expect(languageOptions).toBeHidden();
-    // Opening the language menu must not open the settings drawer.
-    await expect(page.locator('#accessibility-settings')).toBeHidden();
+    await expect(drawer).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(drawer).toBeHidden();
   });
 
   test('cache-busts the mutable language runtime script', async ({ page }) => {
@@ -89,14 +113,16 @@ test.describe('Apptonomia landing settings', () => {
       .toHaveAttribute('src', /[?&]v=apptonomia-v\d+/);
   });
 
-  test('changes language from the header dropdown and persists after reload', async ({ page }) => {
+  test('changes language from inside the settings drawer and persists after reload', async ({ page }) => {
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     const tagline = page.locator('[data-i18n="home.tagline"]');
     const englishTagline = await tagline.textContent();
 
-    // The dropdown in the header, one click away: the drawer is never opened.
-    const languageButton = page.locator('#locale-picker .locale-picker-btn');
-    const languageOptions = page.locator('#locale-picker .locale-picker-panel');
+    // The dropdown is the drawer's first row, so the gear opens it.
+    await page.locator('.locale-settings-trigger').click();
+    const drawer = page.locator('#accessibility-settings');
+    const languageButton = drawer.locator('.locale-picker-btn');
+    const languageOptions = drawer.locator('.locale-picker-panel');
     await languageButton.click();
     await languageOptions.locator('[data-locale="es"]').click();
 
@@ -119,9 +145,11 @@ test.describe('Apptonomia landing settings', () => {
     await page.reload();
     await expect(page.locator('html')).toHaveAttribute('lang', 'es');
     await expect(tagline).not.toHaveText(englishTagline);
-    // The drawer's own labels follow the language too, once it is opened.
+    // The drawer's own labels follow the language too, once it is opened,
+    // including the new language row.
     await page.locator('.locale-settings-trigger').click();
     await expect(page.locator('#accessibility-settings [data-settings-title]')).toHaveText('Ajustes');
+    await expect(page.locator('#accessibility-settings [data-settings-language-label]')).toHaveText('🌐 Idioma');
   });
 
   test('applies theme and high contrast to the page and persists the selection', async ({ page }) => {
