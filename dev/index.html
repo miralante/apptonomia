@@ -254,7 +254,7 @@
   ]
 }
   </script>
-  <script src="../js/bootstrap.js?v=2"></script>
+  <script src="../js/bootstrap.js?v=apptonomia-v50ca6954"></script>
   <!-- Cache-bust query: bump whenever css/styles.css content changes. The
        /_headers file marks *.css as `Cache-Control: public, max-age=31536000,
        immutable` for fast repeat visits; without `?v=` that means a browser
@@ -263,8 +263,8 @@
        launches and across tab restores). Bump the `apptonomia-vN` suffix in the same
        commit that touches the stylesheet — same contract as the PWA
        siblings' sw.js VERSION. -->
-  <link rel="stylesheet" href="../css/styles.css?v=apptonomia-v13a">
-  <link rel="stylesheet" href="../assets/css/locale-picker.css?v=apptonomia-v5ab">
+  <link rel="stylesheet" href="../css/styles.css?v=apptonomia-v4f6b2b1f">
+  <link rel="stylesheet" href="../assets/css/locale-picker.css?v=apptonomia-v75403dc2">
 </head>
 <body>
 
@@ -285,13 +285,15 @@
   <div class="suite" aria-label="Suite de proyectos">
 
     <!-- Dev-only mirror of the public portal: all sibling cards are links here.
-         The two siblings that ship a /dev/ mirror of their own are linked to
-         THAT mirror, not to their public site — from here you want the full
-         catalogue, which is the whole point of this page. The other five have
-         no /dev/ page, so their card keeps pointing at the public site. -->
+         The siblings that ship a /dev/ mirror of their own (Calculia, Routime,
+         Memofun) are linked to THAT mirror. The rest (Okeymoney, Sinonimia,
+         Teclatlon, Ludia) don't have a /dev/ page yet, so the card points
+         directly to the project's own subdomain — bypassing ../index.html,
+         where these four still show as "próximamente". From here you want
+         the full catalogue, which is the whole point of this page. -->
     <a class="suite-card" href="https://calculia.apptonomia.uk/dev/" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/calculia.svg?v=apptonomia-v2" alt=""></span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/calculia.svg?v=apptonomia-vd17b4463" alt=""></span>
         <span class="suite-tag" data-i18n="tags.math">Matemáticas</span>
       </div>
       <h3>Calculia</h3>
@@ -299,19 +301,19 @@
       <span class="suite-domain">calculia.apptonomia.uk/dev</span>
     </a>
 
-    <a class="suite-card" href="https://routime.apptonomia.uk" target="_blank" rel="noreferrer">
+    <a class="suite-card" href="https://routime.apptonomia.uk/dev/" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/routime.svg?v=apptonomia-v2" alt=""></span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/routime.svg?v=apptonomia-vb2440e5d" alt=""></span>
         <span class="suite-tag" data-i18n="tags.activities">Actividades</span>
       </div>
       <h3>Routime</h3>
       <p data-i18n="projects.routime">Actividades cotidianas para entrenar mente y habilidades.</p>
-      <span class="suite-domain">routime.apptonomia.uk</span>
+      <span class="suite-domain">routime.apptonomia.uk/dev</span>
     </a>
 
     <a class="suite-card" href="https://okeymoney.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/okeymoney.svg?v=apptonomia-v3" alt=""></span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/okeymoney.svg?v=apptonomia-v582ff8f9" alt=""></span>
         <span class="suite-tag" data-i18n="tags.life">Vida diaria</span>
       </div>
       <h3>Okeymoney</h3>
@@ -321,7 +323,7 @@
 
     <a class="suite-card" href="https://sinonimia.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/sinonimia.svg?v=apptonomia-v2" alt=""></span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/sinonimia.svg?v=apptonomia-v170eaeb9" alt=""></span>
         <span class="suite-tag" data-i18n="tags.words">Palabras</span>
       </div>
       <h3>Sinonimia</h3>
@@ -331,7 +333,7 @@
 
     <a class="suite-card" href="https://memofun.apptonomia.uk/dev/" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/memofun.svg?v=apptonomia-v2" alt=""></span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/memofun.svg?v=apptonomia-v6258a263" alt=""></span>
         <span class="suite-tag" data-i18n="tags.study">Estudio</span>
       </div>
       <h3>Memofun</h3>
@@ -341,7 +343,7 @@
 
     <a class="suite-card" href="https://teclatlon.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/teclatlon.svg?v=apptonomia-v2" alt=""></span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/teclatlon.svg?v=apptonomia-vee7900b4" alt=""></span>
         <span class="suite-tag" data-i18n="tags.keyboard">Teclado</span>
       </div>
       <h3>Teclatlon</h3>
@@ -351,7 +353,7 @@
 
     <a class="suite-card" href="https://ludia.apptonomia.uk" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
-        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/ludia.svg?v=apptonomia-v2" alt=""></span>
+        <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/ludia.svg?v=apptonomia-va5329ade" alt=""></span>
         <span class="suite-tag" data-i18n="tags.chess">Juegos adaptados</span>
       </div>
       <h3>Ludia</h3>
@@ -368,16 +370,16 @@
   </div>
 </footer>
 
-<script src="../js/script.js"></script>
-<script src="../js/strings.es.js?v=apptonomia-v6"></script>
-<script src="../js/strings.en.js?v=apptonomia-v6"></script>
-<script src="../js/prepaint.js"></script>
+<script src="../js/script.js?v=apptonomia-vb7a8cf2c"></script>
+<script src="../js/strings.es.js?v=apptonomia-vf8042c33"></script>
+<script src="../js/strings.en.js?v=apptonomia-v470b6bd2"></script>
+<script src="../js/prepaint.js?v=apptonomia-vb0105b5e"></script>
 <!-- Locale picker config (must run BEFORE assets/js/locale-picker.js).
      Without it the picker falls back to its defaults: the shared
      apptonomia:locale key and a js/strings folder that does not exist one
      level down, so discovery 404s and the text-size buttons stop scaling
      the landing's --text-base. -->
-<script src="../assets/js/locale-picker-config.js?v=apptonomia-v1ab"></script>
-<script src="../assets/js/locale-picker.js?v=apptonomia-v5aca" defer></script>
+<script src="../assets/js/locale-picker-config.js?v=apptonomia-v0162df3c"></script>
+<script src="../assets/js/locale-picker.js?v=apptonomia-v8b6a4103" defer></script>
 </body>
 </html>
