@@ -31,7 +31,7 @@ if (window.App.i18n) {
       chess: 'Adapted games'
     },
     projects: {
-      calculia: 'Calculation and logical reasoning through short, visual activities.',
+      calculia: 'Calculation and logical reasoning through short, visual activities for everyday life.',
       memofun: 'Flashcards to learn at your own pace.',
       okeymoney: 'Money and everyday autonomy, step by step.',
       sinonimia: 'Easy-read dictionary with synonyms and pictograms.',
@@ -142,7 +142,7 @@ if (window.App.i18n) {
       siblingsTitle: 'The seven apps of the suite',
       siblingsIntro: 'Apptonomia is the gateway to six independent applications, each with its own domain and its own development pace. They all share the same accessibility-first philosophy and the same respect for privacy.',
       siblingCalculiaName: 'Calculia',
-      siblingCalculiaText: 'Math and logical reasoning.',
+      siblingCalculiaText: 'Math and logical reasoning for everyday life.',
       siblingMemofunName: 'Memofun',
       siblingMemofunText: 'Memory and attention.',
       siblingOkeymoneyName: 'Okeymoney',

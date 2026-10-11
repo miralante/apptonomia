@@ -18,7 +18,7 @@
 
 ## Resources
 
-- [Calculia](https://calculia.apptonomia.uk/) — Actividades cortas y visuales de cálculo y razonamiento lógico.
+- [Calculia](https://calculia.apptonomia.uk/) — Actividades cortas y visuales de cálculo y razonamiento lógico para el día a día.
 - [Routime](https://routime.apptonomia.uk/) — Actividades para entrenar mente y habilidades de la vida diaria.
 - [Okeymoney](https://okeymoney.apptonomia.uk/) — Saldo, gastos, metas de ahorro y decisiones antes de comprar.
 - [Sinonimia](https://sinonimia.apptonomia.uk/) — Diccionario en lectura fácil con sinónimos y pictogramas.
