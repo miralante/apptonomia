@@ -271,8 +271,8 @@ lives in Git; `CLAUDE.md` must stay brief, operational, and stable.
 
 The cache-bump rule is **not** owned here — it lives in each sibling's
 own `CLAUDE.md` §B.1 (see `calculia` / `memofun` / `okeymoney` /
-`routime` / `sinonimia` for the cache-first variant, and `teclatlon`
-for the network-first variant). Operative summary:
+`routime` / `sinonimia` / `teclatlon` for the network-first-with-cache-fallback
+variant, the one every sibling now uses). Operative summary:
 
 - Every PWA-shipping sibling exposes `sw.js` with a `VERSION` string
   (e.g. `routime-v3`, `calculia-v22`, `teclatlon-v30`, `sinonimia-v1`, …).
