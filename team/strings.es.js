@@ -7,7 +7,7 @@ window.__i18n_strings__.es = {
   techTeamTitle: 'Equipo técnico',
   techTeamText: 'Mantiene el código del portal apptonomia.uk, las integraciones entre los siete hermanos, la accesibilidad técnica y la integración continua. Suele trabajar vía pull requests y revisión en GitHub.',
   clinicTeamTitle: 'Equipo clínico y educativo',
-  clinicTeamText: 'Terapeutas ocupacionales, maestros de educación especial, psicopedagogos y logopedas que prueban las apps con su población y aportan criterios reales sobre cómo encajan en una sesión, una clase o un plan de apoyo.',
+  clinicTeamText: 'Profesionales de apoyo, maestros de educación especial, psicopedagogos y logopedas que prueban las apps con su población y aportan criterios reales sobre cómo encajan en una sesión, una clase o un plan de apoyo.',
   outreachTeamTitle: 'Equipo de divulgación y sostenibilidad',
   outreachTeamText: 'Comunicación, fundaciones y administraciones públicas que difunden la suite, financian su mantenimiento o coordinan forks comunitarios para colectivos con necesidades específicas.',
   howHelpTitle: 'Cómo ayudar',

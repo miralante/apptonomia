@@ -7,7 +7,7 @@ window.__i18n_strings__.en = {
   techTeamTitle: 'Technical team',
   techTeamText: 'Maintains the apptonomia.uk portal code, the integrations between the seven siblings, the technical accessibility and the continuous integration. Usually works through pull requests and review on GitHub.',
   clinicTeamTitle: 'Clinical and education team',
-  clinicTeamText: 'Occupational therapists, special-education teachers, school psychologists and speech therapists who test the apps with their population and bring real-world criteria about how they fit into a session, a class or a support plan.',
+  clinicTeamText: 'Support professionals, special-education teachers, school psychologists and speech therapists who test the apps with their population and bring real-world criteria about how they fit into a session, a class or a support plan.',
   outreachTeamTitle: 'Outreach and sustainability team',
   outreachTeamText: 'Communications, foundations and public administrations who spread the suite, fund its maintenance, or coordinate community forks for groups with specific needs.',
   howHelpTitle: 'How to help',

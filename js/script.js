@@ -90,7 +90,7 @@
     * utils module. Fills any <footer data-pie-app>...</footer>
     * marker with the canonical one-link "back to portal" footer
     * used by about/ and legal/. Idempotent: a footer that already
-    * has children is skipped.
+    * has child elements is skipped.
     * --------------------------------------------------------------- */
 
   function injectFooter() {
