@@ -274,6 +274,36 @@ test.describe('apptonomia deck', () => {
     }
   });
 
+  test('Landing cards: the demo siblings stay clickable and carry a badge', async ({ browser }) => {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    try {
+      await page.goto(HOME);
+
+      // Calculia and Routime are reachable but unfinished: the card keeps
+      // its anchor (the visitor can open the app and see the concept) and
+      // says so with the "Demo" badge.
+      for (const slug of ['calculia', 'routime']) {
+        const card = page.locator(`.suite-card[href*="${slug}.apptonomia.uk"]`);
+        await expect(card).toHaveCount(1);
+        await expect(card.locator('.suite-badge--demo')).toHaveText(/Demo/i);
+        await expect(card.locator('.suite-domain')).toBeVisible();
+        await expect(card.locator('.suite-soon-badge')).toHaveCount(0);
+      }
+
+      // Okeymoney and Ludia are not shipped yet: non-interactive card,
+      // "Próximamente" badge, no URL to follow.
+      for (const name of ['Okeymoney', 'Ludia']) {
+        const card = page.locator('.suite-card--soon').filter({ hasText: name });
+        await expect(card).toHaveCount(1);
+        await expect(card.locator('.suite-soon-badge')).toHaveText(/Coming soon/i);
+        await expect(card.locator('.suite-domain')).toHaveCount(0);
+      }
+    } finally {
+      await context.close();
+    }
+  });
+
   test('Language switch to Spanish updates texts', async ({ page }) => {
     await page.goto(BASE);
     await settle(page);

@@ -77,7 +77,7 @@ window.I18N.en = {
   'deck.productSin': 'Easy-read dictionary with synonyms and OpenSymbols pictograms.',
   'deck.productMemo': 'Study flashcards to revise at your own pace. One idea per card.',
   'deck.productTec': 'Touch typing on the physical computer keyboard, finger by finger.',
-  'deck.productLudia': 'Adapted games: learn, practice and play with help.',
+  'deck.productLudia': 'Adapted games: learn, practice and play at your own pace.',
   'deck.productMath': 'Math',
   'deck.productRoutine': 'Routines and daily life',
   'deck.productMoney': 'Financial education',

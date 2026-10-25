@@ -14,12 +14,18 @@ if (window.App.i18n) {
     home: {
       title: 'Apptonomia',
       tagline: 'What are you going to do now?',
-      /* Badge for the four siblings that are not yet shipped (Calculia,
-         Routime, Okeymoney, Ludia). Replaces the clickable link with a
-         non-interactive card so the URL is no longer reachable from
-         the portal even though the domain still resolves. */
+      /* Badge for the siblings that are not yet shipped (Okeymoney, Ludia).
+         Replaces the clickable link with a non-interactive card so the URL
+         is no longer reachable from the portal even though the domain
+         still resolves. */
       comingSoon: 'Coming soon',
-      comingSoonHelp: 'This app is not available yet.'
+      comingSoonHelp: 'This app is not available yet.',
+      /* Badge for the siblings that are reachable but still unfinished
+         (Calculia, Routime). Their card keeps the link and the domain, so
+         the visitor can open the app and see the concept; the badge says
+         out loud that it is a demo. */
+      demoBadge: 'Demo',
+      demoBadgeHelp: 'Demo: you can open it to see the concept, but the app is still a work in progress.'
     },
     tags: {
       math: 'Math',
@@ -37,7 +43,7 @@ if (window.App.i18n) {
       sinonimia: 'Easy-read dictionary with synonyms and pictograms.',
       teclatlon: 'Touch typing with a physical computer keyboard.',
       routime: 'Everyday activities to train mind and skills.',
-      ludia: 'Chess, step by step: learn, practice and play with help.'
+      ludia: 'Adapted games: learn, practice and play at your own pace.'
     },
     legal: {
       pageTitle: 'Data protection',
@@ -154,7 +160,7 @@ if (window.App.i18n) {
       siblingTeclatlonName: 'Teclatlon',
       siblingTeclatlonText: 'Touch-typing with a physical keyboard.',
       siblingLudiaName: 'Ludia',
-      siblingLudiaText: 'Chess lessons, exercises and supported play.',
+      siblingLudiaText: 'Adapted games: rules, exercises and play at your own pace.',
       siblingLinkHint: 'Opens in a new tab.',
       authorshipTitle: 'Who makes it',
       authorshipP1a: 'Apptonomia and the seven applications of the suite are an initiative by ',

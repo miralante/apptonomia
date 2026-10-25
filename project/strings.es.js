@@ -78,7 +78,7 @@ window.I18N.es = {
   'deck.productSin': 'Diccionario en lectura f\u00e1cil con sin\u00f3nimos y pictogramas OpenSymbols.',
   'deck.productMemo': 'Tarjetas de estudio para repasar a tu ritmo. Cada tarjeta, una idea.',
   'deck.productTec': 'Mecanograf\u00eda con el teclado f\u00edsico del ordenador, dedo a dedo.',
-  'deck.productLudia': 'Juegos adaptados: aprende, practica y juega con ayuda.',
+  'deck.productLudia': 'Juegos adaptados: aprende, practica y juega a tu ritmo.',
   'deck.productMath': 'Matem\u00e1ticas',
   'deck.productRoutine': 'Rutinas y vida diaria',
   'deck.productMoney': 'Educaci\u00f3n financiera',

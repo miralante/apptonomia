@@ -202,7 +202,7 @@
             "price": "0",
             "priceCurrency": "EUR"
           },
-          "description": "Juegos adaptados: aprende, practica y juega con ayuda."
+          "description": "Juegos adaptados: aprende, practica y juega a tu ritmo."
         }
       ]
     },
@@ -263,7 +263,7 @@
        launches and across tab restores). Bump the `apptonomia-vN` suffix in the same
        commit that touches the stylesheet — same contract as the PWA
        siblings' sw.js VERSION. -->
-  <link rel="stylesheet" href="../css/styles.css?v=apptonomia-v4f6b2b1f">
+  <link rel="stylesheet" href="../css/styles.css?v=apptonomia-vdbcb0996">
   <link rel="stylesheet" href="../assets/css/locale-picker.css?v=apptonomia-v75403dc2">
 </head>
 <body>
@@ -289,8 +289,10 @@
          Memofun) are linked to THAT mirror. The rest (Okeymoney, Sinonimia,
          Teclatlon, Ludia) don't have a /dev/ page yet, so the card points
          directly to the project's own subdomain — bypassing ../index.html,
-         where these four still show as "próximamente". From here you want
-         the full catalogue, which is the whole point of this page. -->
+         where Okeymoney and Ludia still show as "próximamente". From here
+         you want the full catalogue, which is the whole point of this page.
+         Calculia and Routime keep the "Demo" badge of the public portal:
+         they are reachable, but they are still being finished. -->
     <a class="suite-card" href="https://calculia.apptonomia.uk/dev/" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
         <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/calculia.svg?v=apptonomia-vd17b4463" alt=""></span>
@@ -298,7 +300,11 @@
       </div>
       <h3>Calculia</h3>
       <p data-i18n="projects.calculia">Cálculo y razonamiento lógico con actividades cortas y visuales para el día a día.</p>
-      <span class="suite-domain">calculia.apptonomia.uk/dev</span>
+      <div class="suite-card-foot">
+        <span class="suite-badge suite-badge--demo" data-i18n="home.demoBadge">Demo</span>
+        <span class="sr-only" data-i18n="home.demoBadgeHelp">Demo: puedes entrar a ver el concepto, pero la aplicación todavía está en pruebas.</span>
+        <span class="suite-domain">calculia.apptonomia.uk/dev</span>
+      </div>
     </a>
 
     <a class="suite-card" href="https://routime.apptonomia.uk/dev/" target="_blank" rel="noreferrer">
@@ -308,7 +314,11 @@
       </div>
       <h3>Routime</h3>
       <p data-i18n="projects.routime">Actividades cotidianas para entrenar mente y habilidades.</p>
-      <span class="suite-domain">routime.apptonomia.uk/dev</span>
+      <div class="suite-card-foot">
+        <span class="suite-badge suite-badge--demo" data-i18n="home.demoBadge">Demo</span>
+        <span class="sr-only" data-i18n="home.demoBadgeHelp">Demo: puedes entrar a ver el concepto, pero la aplicación todavía está en pruebas.</span>
+        <span class="suite-domain">routime.apptonomia.uk/dev</span>
+      </div>
     </a>
 
     <a class="suite-card" href="https://okeymoney.apptonomia.uk" target="_blank" rel="noreferrer">
@@ -357,7 +367,7 @@
         <span class="suite-tag" data-i18n="tags.chess">Juegos adaptados</span>
       </div>
       <h3>Ludia</h3>
-      <p data-i18n="projects.ludia">Juegos adaptados: aprende, practica y juega con ayuda.</p>
+      <p data-i18n="projects.ludia">Juegos adaptados: aprende, practica y juega a tu ritmo.</p>
       <span class="suite-domain">ludia.apptonomia.uk</span>
     </a>
 
@@ -371,8 +381,8 @@
 </footer>
 
 <script src="../js/script.js?v=apptonomia-vb7a8cf2c"></script>
-<script src="../js/strings.es.js?v=apptonomia-vf8042c33"></script>
-<script src="../js/strings.en.js?v=apptonomia-v470b6bd2"></script>
+<script src="../js/strings.es.js?v=apptonomia-va9cf6eb3"></script>
+<script src="../js/strings.en.js?v=apptonomia-vd0274e31"></script>
 <script src="../js/prepaint.js?v=apptonomia-vb0105b5e"></script>
 <!-- Locale picker config (must run BEFORE assets/js/locale-picker.js).
      Without it the picker falls back to its defaults: the shared

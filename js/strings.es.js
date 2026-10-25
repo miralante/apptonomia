@@ -14,12 +14,18 @@ if (window.App.i18n) {
     home: {
       title: 'Apptonomia',
       tagline: '¿Qué vas a hacer ahora?',
-      /* Badge for the four siblings that are not yet shipped (Calculia,
-         Routime, Okeymoney, Ludia). Replaces the clickable link with a
-         non-interactive card so the URL is no longer reachable from
-         the portal even though the domain still resolves. */
+      /* Badge for the siblings that are not yet shipped (Okeymoney, Ludia).
+         Replaces the clickable link with a non-interactive card so the URL
+         is no longer reachable from the portal even though the domain
+         still resolves. */
       comingSoon: 'Próximamente',
-      comingSoonHelp: 'Esta aplicación aún no está disponible.'
+      comingSoonHelp: 'Esta aplicación aún no está disponible.',
+      /* Badge for the siblings that are reachable but still unfinished
+         (Calculia, Routime). Their card keeps the link and the domain, so
+         the visitor can open the app and see the concept; the badge says
+         out loud that it is a demo. */
+      demoBadge: 'Demo',
+      demoBadgeHelp: 'Demo: puedes entrar a ver el concepto, pero la aplicación todavía está en pruebas.'
     },
     tags: {
       math: 'Matemáticas',
@@ -37,7 +43,7 @@ if (window.App.i18n) {
       sinonimia: 'Diccionario en lectura fácil con sinónimos y pictogramas.',
       teclatlon: 'Mecanografía con el teclado físico del ordenador.',
       routime: 'Actividades cotidianas para entrenar mente y habilidades.',
-      ludia: 'Juegos adaptados: aprende, practica y juega con ayuda.'
+      ludia: 'Juegos adaptados: aprende, practica y juega a tu ritmo.'
     },
     legal: {
       pageTitle: 'Protección de datos',
@@ -154,7 +160,7 @@ if (window.App.i18n) {
       siblingTeclatlonName: 'Teclatlon',
       siblingTeclatlonText: 'Mecanografía con el teclado físico.',
       siblingLudiaName: 'Ludia',
-      siblingLudiaText: 'Juegos adaptados: reglas, ejercicios y partidas con ayuda.',
+      siblingLudiaText: 'Juegos adaptados: reglas, ejercicios y partidas a tu ritmo.',
       siblingLinkHint: 'Se abre en una pestaña nueva.',
       authorshipTitle: 'Quiénes la hacen',
       authorshipP1a: 'Apptonomia y las siete aplicaciones de la suite son una iniciativa de ',

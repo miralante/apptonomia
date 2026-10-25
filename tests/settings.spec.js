@@ -109,8 +109,11 @@ test.describe('Apptonomia landing settings', () => {
   });
 
   test('cache-busts the mutable language runtime script', async ({ page }) => {
+    // The suite-wide asset contract (scripts/ASSET-TOKENS.md) replaced the
+    // hand-typed serial with sha256(file bytes)[0:8], so a real token looks
+    // like "apptonomia-vb7a8cf2c": eight lowercase hex characters, not digits.
     await expect(page.locator('script[src*="js/script.js"]'))
-      .toHaveAttribute('src', /[?&]v=apptonomia-v\d+/);
+      .toHaveAttribute('src', /[?&]v=apptonomia-v[0-9a-f]{8}/);
   });
 
   test('changes language from inside the settings drawer and persists after reload', async ({ page }) => {

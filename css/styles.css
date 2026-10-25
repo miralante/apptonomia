@@ -329,10 +329,10 @@
     }
 
     /* ===== "Próximamente" cards =====.
-       Calculia / Routime / Okeymoney / Ludia are not yet shipped, so
-       they ship as <div role="link" aria-disabled="true"> with no
-       href. The visual treatment below makes it obvious that the card
-       is not a navigation target:
+       Okeymoney and Ludia are not yet shipped, so they ship as
+       <div role="link" aria-disabled="true"> with no href. The visual
+       treatment below makes it obvious that the card is not a
+       navigation target:
          • cursor: not-allowed, no hover lift;
          • softened colour and opacity so it sits behind the live
            siblings in the visual hierarchy;
@@ -369,8 +369,18 @@
       color: var(--color-text-soft);
       opacity: 0.85;
     }
-    .suite-soon-badge {
-      margin-top: auto;
+    /* ===== Status badges =====
+       .suite-badge is the shared pill. The modifiers say what the card
+       is telling you:
+         • .suite-soon-badge — "Próximamente": the app is not there yet.
+           The card is not a navigation target, so the badge sits alone
+           in the domain slot.
+         • .suite-badge--demo — "Demo": the app IS reachable, but it is
+           still being finished. The card keeps its anchor and its
+           domain, so the visitor can open it and see the concept; the
+           dashed outline separates it from the solid "Próximamente"
+           pill. */
+    .suite-badge {
       align-self: flex-start;
       font-size: calc(var(--text-scale, 1) * 12px);
       font-weight: 700;
@@ -380,6 +390,31 @@
       background: var(--accent-soft);
       padding: 6px 12px;
       border-radius: 999px;
+      white-space: nowrap;
+    }
+    .suite-soon-badge {
+      margin-top: auto;
+    }
+    .suite-badge--demo {
+      border: 1px dashed var(--color-border);
+    }
+    /* Bottom row of a live card: badge on the left, domain on the right.
+       The row is what replaces the single .suite-domain line, so it has
+       to keep the margin-top: auto that pushed the domain to the bottom
+       of the card. */
+    .suite-card-foot {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 12px;
+      flex-wrap: wrap;
+    }
+    .suite-card-foot .suite-badge {
+      align-self: center;
+    }
+    .suite-card-foot .suite-domain {
+      margin-top: 0;
     }
     .suite-card-head {
       display: flex;
