@@ -280,10 +280,10 @@ test.describe('apptonomia deck', () => {
     try {
       await page.goto(HOME);
 
-      // Calculia and Routime are reachable but unfinished: the card keeps
-      // its anchor (the visitor can open the app and see the concept) and
-      // says so with the "Demo" badge.
-      for (const slug of ['calculia', 'routime']) {
+      // Calculia, Routime and Sinonimia are reachable but unfinished: the
+      // card keeps its anchor (the visitor can open the app and see the
+      // concept) and says so with the "Demo" badge.
+      for (const slug of ['calculia', 'routime', 'sinonimia']) {
         const card = page.locator(`.suite-card[href*="${slug}.apptonomia.uk"]`);
         await expect(card).toHaveCount(1);
         await expect(card.locator('.suite-badge--demo')).toHaveText(/Demo/i);
