@@ -315,3 +315,12 @@ and summarised in [`../apptonomia/CLAUDE.md` §B.6](../apptonomia/CLAUDE.md#b6-g
 `scripts/check.js` enforces the four gates (Dublin Core count,
 `FAQPage` node, `llms.txt` existence, AI-crawler UA list). The
 canonical source for the policy is the metaproject's guide §7.
+
+### B.6 Estrellas (motor común)
+
+Si la app muestra estrellas, usa `js/stars-engine.js` (`window.MiralanteStars`):
+logros cada 10 y el objetivo “a por” acaba en 5. No copies la lógica;
+el fichero es idéntico en todas las apps y lo mantiene el metaproyecto
+(`apptonomia/scripts/sync-stars-engine.js`). Pon las frases en `strings.<locale>.js`
+(`starsReached`, `starsGoal`) y muestra la línea con `MiralanteStars.goal(el, total, strings)`.
+Añade la clase `.stars-goal` (display block, un poco más pequeña) en la hoja compartida.

@@ -38,6 +38,7 @@ var ARCHIVOS = [
   './js/i18n.js',
   './js/storage.js',
   './js/feedback.js',
+  './js/stars-engine.js',
   './js/app.js',
   './strings.es.js',
   './strings.en.js'
