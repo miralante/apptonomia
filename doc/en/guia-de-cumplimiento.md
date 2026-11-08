@@ -630,6 +630,7 @@ points at the doc that explains the rule.
 | 12 | I added (or did not touch) the `FAQPage` node in the JSON-LD, with 3–5 `{question, answer}` pairs worded without clinical language (§3). | §7.2 above |
 | 13 | I generated (or did not touch) `/llms.txt` at the project root from `app.config.json`, and the head links to it via `<link rel="alternate" type="text/markdown">`. | §7.3 above |
 | 14 | The project's `robots.txt` (if it exists or I added it) allows the AI crawlers listed in §7.3 without blocking them. | §7.3 above |
+| 15 | A component that more than one page uses is defined once, in the app's shared stylesheet; I did not copy its rules into a page's own stylesheet. | metaproject `CLAUDE.md` (Shared components: one definition) |
 
 ---
 

@@ -650,6 +650,7 @@ fila apunta al doc que explica la regla.
 | 12 | He añadido (o no toqué) el nodo `FAQPage` en el JSON-LD, con 3–5 pares `{question, answer}` redactados sin lenguaje clínico (§3). | §7.2 arriba |
 | 13 | He generado (o no toqué) `/llms.txt` en la raíz del proyecto a partir de `app.config.json` y `/llms.txt` se enlaza con `<link rel="alternate" type="text/markdown">`. | §7.3 arriba |
 | 14 | El `robots.txt` del proyecto (si existe o lo he añadido) permite los crawlers de IA documentados en §7.3 sin bloquearlos. | §7.3 arriba |
+| 15 | Un componente que usa más de una página está definido una sola vez, en la hoja compartida de la app; no he copiado sus reglas en la hoja propia de una página. | `CLAUDE.md` del metaproyecto (Componentes compartidos: una sola definición) |
 
 ---
 
