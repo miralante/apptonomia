@@ -13,7 +13,6 @@
  *   - index.html                       (the portal itself)
  *   - js/*.js                          (bootstrap, prepaint, script, strings)
  *   - about/privacidad.html            (linked from the landing footer)
- *   - about-app/*.html, about-app/*.js ("About the app", linked from
  *                                        the landing footer)
  *
  * Out of scope (deliberately):
@@ -85,7 +84,7 @@ function listFiles(dir) {
 
 var targets = [path.join(ROOT, 'index.html')]
   .concat(listFiles(path.join(ROOT, 'js')))
-  .concat(listFiles(path.join(ROOT, 'about-app')));
+;
 var aboutPrivacidad = path.join(ROOT, 'about', 'privacidad.html');
 if (fs.existsSync(aboutPrivacidad)) targets.push(aboutPrivacidad);
 

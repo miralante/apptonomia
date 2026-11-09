@@ -18,7 +18,7 @@
 
    Portal tracking runs only on pages whose <body> carries
    data-achievements="portal" (index.html). Other pages that load this
-   file (about-app/) only render, plus count a language switch. Texts come from App.i18n under aboutApp.*
+   file (about-app/, now removed) only render, plus count a language switch. Texts come from App.i18n under aboutApp.*
    (achievement<Name>, achievement<Name>Desc, achievementLocked,
    achievementUnlockedAt). */
 (function () {

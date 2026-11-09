@@ -315,7 +315,7 @@ test.describe('apptonomia deck', () => {
       });
       await page.goto(HOME);
       const footerLinks = page.locator('.app-footer a');
-      await expect(footerLinks.first()).toHaveAttribute('href', 'about-app/');
+      await expect(footerLinks.first()).toHaveAttribute('href', 'about/');
       await expect(footerLinks.first()).toHaveText('Sobre la app');
 
       // Opening an app from the portal unlocks "Primera app".
@@ -326,24 +326,7 @@ test.describe('apptonomia deck', () => {
         Object.keys(JSON.parse(localStorage.getItem('apptonomia:achievements') || '{}')))).toContain('firstApp');
 
       await footerLinks.first().click();
-      await expect(page).toHaveURL(/\/about-app\/$/);
-      await expect(page.locator('h1')).toHaveText('ℹ️ Sobre la app');
-      await expect(page.locator('.achievement-badge')).toHaveCount(6);
-      await expect(page.locator('#achievementsCount')).toHaveText('Tienes 1 de 6 logros.');
-      await expect(page.locator('[data-achievement="firstApp"]')).toHaveClass(/unlocked/);
-
-      // Switching language repaints the badges and unlocks "Dos idiomas".
-      await page.locator('.locale-picker-btn').click();
-      await page.locator('.locale-picker-panel li[data-locale="en"]').click();
-      await expect(page.locator('h1')).toHaveText('ℹ️ About the app');
-      await expect(page.locator('[data-achievement="firstApp"] .achievement-badge-name')).toHaveText('First app');
-      await expect(page.locator('[data-achievement="bothLanguages"]')).toHaveClass(/unlocked/);
-      await expect(page.locator('#achievementsCount')).toHaveText('You have 2 of 6 achievements.');
-
-      // Two-step reset clears everything.
-      await page.locator('#resetStart').click();
-      await page.locator('#resetConfirm').click();
-      await expect(page.locator('#achievementsCount')).toHaveText('You have 0 of 6 achievements.');
+      await expect(page).toHaveURL(/\/about\/$/);
     } finally {
       await context.close();
     }
