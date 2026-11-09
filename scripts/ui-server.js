@@ -45,11 +45,7 @@ const server = http.createServer((req, res) => {
   let url = req.url.split('?')[0].split('#')[0];
   // Serve index.html for bare project directory
   if (url === '/project' || url === '/project/') url = '/project/index.html';
-  // Same for /dev/: production (Cloudflare) resolves a directory to its
-  // index.html, so /dev/ has to work here too or the page is only reachable
-  // by typing the full path.
-  if (url === '/dev' || url === '/dev/') url = '/dev/index.html';
-  if (url === '/') url = '/index.html';
+  if (url.endsWith('/')) url += 'index.html';
 
   const filePath = path.join(ROOT, url);
   const ext = path.extname(filePath);

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="aboutApp.pageTitle">Apptonomia — Sobre la app</title>
+  <!-- Linked from the portal footer ("Sobre la app"). Shows what this
+       device has unlocked, so it is not meant for search engines. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <script src="../js/bootstrap.js?v=2"></script>
+  <link rel="stylesheet" href="../css/styles.css?v=apptonomia-v8">
+  <link rel="stylesheet" href="../assets/css/locale-picker.css?v=apptonomia-v1">
+  <link rel="stylesheet" href="styles.css?v=apptonomia-v1">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido" data-i18n="core.skipToContent">Ir al contenido</a>
+
+<header class="app-header suite-header container">
+  <div class="suite-brand">
+    <a class="hero-mark brand-mark" href="../" aria-label="Apptonomia">A</a>
+    <div class="suite-brand-copy"><p class="brand">Apptonomia</p></div>
+  </div>
+  <div class="suite-controls">
+    <div id="locale-picker"></div>
+  </div>
+</header>
+
+<main id="contenido" class="container about-app">
+  <h1 data-i18n="aboutApp.title">ℹ️ Sobre la app</h1>
+  <p class="about-app-intro" data-i18n="aboutApp.intro">Apptonomia reúne todas las aplicaciones de la suite. Aquí ves tus logros.</p>
+
+  <section class="about-app-card" aria-labelledby="achievementsTitle">
+    <h2 id="achievementsTitle" data-i18n="aboutApp.achievementsTitle">⭐ Logros</h2>
+    <p data-i18n="aboutApp.achievementsHint">Los logros se consiguen solos al usar el portal.</p>
+    <p class="achievements-count" id="achievementsCount" aria-live="polite"></p>
+    <ul class="achievements-grid" id="achievementsGrid"></ul>
+  </section>
+
+  <div class="about-app-reset">
+    <p class="about-app-note" data-i18n="aboutApp.savedLocally">Tus logros se guardan solo en este dispositivo.</p>
+    <button type="button" class="about-app-btn" id="resetStart" data-i18n="aboutApp.resetButton">Borrar mis logros</button>
+    <div class="about-app-confirm" id="resetConfirmBox" hidden>
+      <p data-i18n="aboutApp.resetQuestion">¿Seguro? Esto no se puede deshacer.</p>
+      <button type="button" class="about-app-btn about-app-btn--danger" id="resetConfirm" data-i18n="aboutApp.resetConfirm">Sí, borrar mis logros</button>
+      <button type="button" class="about-app-btn" id="resetCancel" data-i18n="aboutApp.resetCancel">No, dejarlos</button>
+    </div>
+    <p class="about-app-status" id="resetStatus" role="status"></p>
+  </div>
+</main>
+
+<footer class="app-footer">
+  <div class="container">
+    <a href="../" data-i18n="aboutApp.footerPortal">Volver al portal</a>
+    <a href="mailto:hello@apptonomia.uk">hello@apptonomia.uk</a>
+  </div>
+</footer>
+
+<script src="../js/script.js"></script>
+<script src="../js/strings.es.js?v=apptonomia-v7"></script>
+<script src="../js/strings.en.js?v=apptonomia-v7"></script>
+<script src="../js/achievements.js?v=apptonomia-v1"></script>
+<script src="app.js?v=apptonomia-v1"></script>
+<script src="../js/prepaint.js"></script>
+<script src="../assets/js/locale-picker.js?v=apptonomia-v2" defer></script>
+</body>
+</html>
