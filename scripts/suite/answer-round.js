@@ -1,5 +1,5 @@
   /* suite:answer-round:begin
-     Miralante answer round. ONE definition for every suite app.
+     Apptonomia answer round. ONE definition for every suite app.
      Canonical source: apptonomia/scripts/suite/answer-round.js. The block between
      the begin/end markers is copied byte-for-byte into assets/js/feedback.js of
      each app by apptonomia/scripts/sync-answer-round.js. Never edit a copy by hand.

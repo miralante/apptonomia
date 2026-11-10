@@ -5,11 +5,11 @@
 //
 //   sync [options]    Keep the per-project copy of the graphify skill in sync
 //                    with a single canonical source, so every project in the
-//                    Miralante suite uses the same skill version.
+//                    Apptonomia suite uses the same skill version.
 //                    Canonical source (default): user-level installation at
 //                      ~/.claude/skills/graphify/   (resolved via os.homedir()).
 //                    Override with --from <dir>.
-//                    Targets (default): the seven Miralante suite projects,
+//                    Targets (default): the seven Apptonomia suite projects,
 //                      resolved as siblings of this script's parent dir.
 //                      Override with --target <dir> (repeatable) or
 //                      --targets-file <file>.

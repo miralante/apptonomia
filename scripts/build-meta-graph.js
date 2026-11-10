@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // scripts/build-meta-graph.js
 //
-// Build a thin cross-project meta-graph for the Miralante suite.
+// Build a thin cross-project meta-graph for the Apptonomia suite.
 // One node per sibling project (in apptonomia/, calculia/, memofun/,
 // okeymoney/, sinonimia/, teclatlon/, routime/), plus edges that connect
 // projects whose per-project GRAPH_REPORT.md share the same community-name
@@ -194,7 +194,7 @@ function htmlShell(meta, nodes, edges) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Miralante meta-graph</title>
+<title>Apptonomia meta-graph</title>
 <style>
   body { font: 13px/1.4 -apple-system, Segoe UI, system-ui, sans-serif; margin: 0; background: #fafafa; color: #222; }
   header { padding: 12px 18px; border-bottom: 1px solid #e5e5e5; background: #fff; }
@@ -230,7 +230,7 @@ function htmlShell(meta, nodes, edges) {
 </head>
 <body>
 <header>
-  <h1>Miralante meta-graph</h1>
+  <h1>Apptonomia meta-graph</h1>
   <p>One node per sibling project. Two edge kinds: grey undirected edges between siblings (weight = number of normalised community names shared between two per-project graphs) and orange directed edges from <code>apptonomia</code> to each sibling (the metaproject root that carries the cross-project plumbing). Built by <code>apptonomia/scripts/build-meta-graph.js</code>.</p>
 </header>
 <div id="chart"></div>

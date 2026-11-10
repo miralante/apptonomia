@@ -5,7 +5,7 @@
 // workers-best-practices, durable-objects, agents-sdk, web-perf, turnstile-spin,
 // sandbox-stable, sandbox-next, sandbox-migrate-to-next, cloudflare-email-service,
 // cloudflare-one, cloudflare-one-migrations) in sync with the single canonical
-// source at ~/.copilot/skills/<skill>/. So every project in the Miralante
+// source at ~/.copilot/skills/<skill>/. So every project in the Apptonomia
 // suite ships the same skill version, no matter which folder the agent opens.
 //
 // Why a separate script (vs. extending sync-graphify-skill.js):
@@ -88,7 +88,7 @@ function printHelp() {
   console.log('Usage: node scripts/sync-cloudflare-skills.js [(--check)|--apply] [--list] [--from <dir>] [--target <dir>...]');
   console.log('');
   console.log('Syncs the 13 Cloudflare skills from a single canonical source to every');
-  console.log('Miralante suite project\'s .claude/skills/ folder.');
+  console.log('Apptonomia suite project\'s .claude/skills/ folder.');
   console.log('');
   console.log('Defaults:');
   console.log('  Source   ~/.copilot/skills/   (override with --from <dir>)');

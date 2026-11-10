@@ -3,7 +3,7 @@
  * scripts/check.js — new-sibling structural check.
  *
  * Purpose: one plain-Node script (no dependencies) that every
- * sibling of the Miralante suite ships in `scripts/check.js` and
+ * sibling of the Apptonomia suite ships in `scripts/check.js` and
  * runs in CI. It enforces the file anatomy and i18n parity that
  * the metaproject requires for every sibling.
  *

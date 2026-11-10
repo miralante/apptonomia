@@ -324,7 +324,7 @@ function main() {
   });
 
   var here = __dirname;
-  // here is apptonomia/scripts by default. The Miralante suite root lives
+  // here is apptonomia/scripts by default. The Apptonomia suite root lives
   // one level above apptonomia (../.. from this file). All sibling paths
   // passed on the CLI are resolved against the suite root so that
   // `node scripts/build-head.js --check ../calculia` works from apptonomia/.

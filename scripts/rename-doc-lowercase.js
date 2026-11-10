@@ -2,7 +2,7 @@
 // scripts/rename-doc-lowercase.js
 //
 // One-time lowercasing pass for `doc/<lang>/*.md` filenames across the
-// Miralante suite. Designed for the cross-project plumbing in this
+// Apptonomia suite. Designed for the cross-project plumbing in this
 // metaproject: from `apptonomia/` you can target one sibling, several,
 // or all six PWA-shipping siblings at once.
 //

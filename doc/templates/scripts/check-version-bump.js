@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
  * scripts/check-version-bump.js — canonical cache-bump gate for the
- * Miralante suite.
+ * Apptonomia suite.
  *
  * Fails if a file listed in sw.js's cache manifest changed in this
  * diff without VERSION also being bumped in the same diff.

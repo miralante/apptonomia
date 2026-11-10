@@ -1,5 +1,5 @@
   /* suite:celebrate:begin
-     Miralante closing celebration. ONE definition for every suite app.
+     Apptonomia closing celebration. ONE definition for every suite app.
      Canonical source: apptonomia/scripts/suite/celebrate.js. The block between the
      begin/end markers is copied byte for byte into assets/js/feedback.js of each app
      (and into the new-app template) by apptonomia/scripts/sync-answer-round.js.

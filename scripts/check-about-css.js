@@ -6,7 +6,7 @@
    about/styles.css must be byte-identical to it, and every about/index.html
    must use the standard class names (no legacy names, no data-hue).
 
-   Usage (from the Miralante root or from apptonomia/):
+   Usage (from the Apptonomia root or from apptonomia/):
      node apptonomia/scripts/check-about-css.js          # report only
      node apptonomia/scripts/check-about-css.js --apply  # copy canonical to drifted apps
    Exit code 1 when drift is found in check mode.

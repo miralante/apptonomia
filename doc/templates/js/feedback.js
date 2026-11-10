@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Miralante feedback scaffold for new apps. Copy it to assets/js/feedback.js.
+   Apptonomia feedback scaffold for new apps. Copy it to assets/js/feedback.js.
 
    The blocks between the suite markers are the same in every app: they are copied
    from apptonomia/scripts/suite/ by apptonomia/scripts/sync-answer-round.js and
@@ -26,7 +26,7 @@
 
   /* suite:answer-round and suite:celebrate blocks are inserted below by the sync script. */
   /* suite:answer-round:begin
-     Miralante answer round. ONE definition for every suite app.
+     Apptonomia answer round. ONE definition for every suite app.
      Canonical source: apptonomia/scripts/suite/answer-round.js. The block between
      the begin/end markers is copied byte-for-byte into assets/js/feedback.js of
      each app by apptonomia/scripts/sync-answer-round.js. Never edit a copy by hand.
@@ -146,7 +146,7 @@
   /* suite:answer-round:end */
 
   /* suite:reward-screen:begin
-     Miralante closing screen of an activity. ONE definition for every suite app.
+     Apptonomia closing screen of an activity. ONE definition for every suite app.
      Canonical source: apptonomia/scripts/suite/reward-screen.js. The block between
      the begin/end markers is copied byte for byte into assets/js/feedback.js of each
      app by apptonomia/scripts/sync-answer-round.js. Never edit a copy by hand.
@@ -177,7 +177,7 @@
   /* suite:reward-screen:end */
 
   /* suite:celebrate:begin
-     Miralante closing celebration. ONE definition for every suite app.
+     Apptonomia closing celebration. ONE definition for every suite app.
      Canonical source: apptonomia/scripts/suite/celebrate.js. The block between the
      begin/end markers is copied byte for byte into assets/js/feedback.js of each app
      (and into the new-app template) by apptonomia/scripts/sync-answer-round.js.
