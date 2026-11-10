@@ -140,6 +140,9 @@ es bienvenido; relajarla casi nunca lo es — abre un issue antes.
 ## ✅ Checklist antes de abrir PR
 
 - [ ] `node scripts/check.js` pasa en local.
+- [ ] `npm run test:ui` pasa en local (smoke obligatorio de Playwright).
+- [ ] Si es PWA, pasan `node scripts/smoke-sw.js` y
+      `node scripts/check-version-bump.js`.
 - [ ] Si añadiste cadenas de UI, **todos los locales soportados**
       están en sincronía (al menos `es` y `en`).
 - [ ] Probaste el flujo en al menos un navegador real de escritorio

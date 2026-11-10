@@ -90,6 +90,34 @@ in one go.
 
 ---
 
+### 2.6 Rewards: one common policy, per-app particularities
+
+Every suite app that rewards progress follows **the same general
+policy**. Each app defines only its own particularities: what is
+rewarded and with which milestones. The policy does not change from
+one app to another.
+
+1. **Stars.** A star is earned for completing an activity, deck or
+   round. Stars are never subtracted. The progress text is computed by
+   the shared engine `js/stars-engine.js` (template, section B.6).
+2. **Achievements.** Milestones computed from saved progress. Each app
+   defines its own catalogue. An achievement is not a second currency
+   and does not require any extra work.
+3. **No pressure.** No reward uses timers, day streaks, deadlines,
+   lives or losses. There are no "broken streaks" and no achievements
+   that can be lost.
+4. **No comparison.** No rankings or scoreboards between people.
+5. **When they are shown.** A new achievement is announced once, when
+   the activity that earns it is finished, with a neutral notice (text
+   and icon; colour is never the only clue, and there is no error
+   sound). There is no page to chase them, and they do not appear on
+   informational pages such as "About the app".
+6. **Storage.** Only on the device (`localStorage`), keeping the date
+   of the first time. Recalculating progress does not change that date.
+7. **Shared achievements engine.** `scripts/suite/achievements-engine.js`
+   (canonical in this repository, identical copy in each app that uses
+   it). Each app's rules live in its own catalogue.
+
 ## 3. Landing structure
 
 ### 3.1 Visual shape

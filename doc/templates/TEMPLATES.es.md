@@ -48,7 +48,7 @@ cp -R ../apptonomia/doc/templates/. .
 #          {} +
 #
 #    En Windows (PowerShell):
-#      Get-ChildItem -Recurse -File -Include *.md,*.js,*.html,*.yml,*.toml,*.json |
+#      Get-ChildItem -Force -Recurse -File -Include *.md,*.js,*.html,*.yml,*.toml,*.json |
 #        ForEach-Object { (Get-Content $_ -Raw) `
 #          -replace '{{SLUG}}', 'mi-app' `
 #          -replace '{{DISPLAY_ES}}', 'Mi App' `
@@ -69,9 +69,14 @@ cp -R ../apptonomia/doc/templates/. .
 
 # 6. Ejecuta `node scripts/check.js` y `node scripts/check-version-
 #    bump.js` del hermano. Ambos deben pasar.
+# 7. Añade `package.json` con `test:ui` y una suite Playwright para
+#    los flujos principales. Ejecuta `npm run test:ui`; debe pasar
+#    antes de cada push.
 
-# 7. Abre el primer PR con título "feat: bootstrap <slug> from
-#    apptonomia/doc/templates". CI ejecutará los cuatro gates.
+# 8. Copia `.github/workflows/validate.yml` de esta plantilla y
+#    confirma que CI ejecuta `test:ui` en PR y push a `main`.
+# 9. Abre el primer PR con título "feat: bootstrap <slug> from
+#    apptonomia/doc/templates". No hagas push si falla un gate.
 ```
 
 ---
@@ -99,9 +104,13 @@ doc/templates/
 ├── 404.html
 ├── sw.js                         ← (solo si el hermano es PWA)
 ├── manifest.json                 ← (solo si el hermano es PWA)
+├── package.json                  ← test:ui/test:sw + Playwright (solo dev)
 ├── scripts/
 │   ├── check.js                  ← lint estructural + paridad i18n
-│   └── check-version-bump.js     ← (solo si el hermano es PWA)
+│   ├── check-version-bump.js     ← (solo si el hermano es PWA)
+│   └── smoke-sw.js               ← smoke del service worker
+├── .github/workflows/
+│   └── validate.yml              ← gates estructurales, SW y Playwright
 └── doc/
     └── en/
         └── readme.md             ← plantilla de intro en lectura fácil

@@ -184,37 +184,6 @@ if (window.App.i18n) {
       collaborateOutro3: 'y',
       collaborateOutro4: 'de cada repositorio.',
       footerPortal: 'Volver al portal'
-    },
-    /* about-app/ page: achievements ("logros"). Linked from the
-       portal footer (core.aboutApp). */
-    aboutApp: {
-      pageTitle: 'Apptonomia — Sobre la app',
-      title: 'ℹ️ Sobre la app',
-      intro: 'Apptonomia reúne todas las aplicaciones de la suite. Aquí ves tus logros.',
-      achievementsTitle: '⭐ Logros',
-      achievementsHint: 'Los logros se consiguen solos al usar el portal.',
-      achievementsCount: 'Tienes {n} de {total} logros.',
-      achievementFirstApp: 'Primera app',
-      achievementFirstAppDesc: 'Abre una aplicación desde el portal.',
-      achievementTenDays: 'Diez días',
-      achievementTenDaysDesc: 'Entra en el portal en diez días distintos.',
-      achievementStreak3: 'Tres días seguidos',
-      achievementStreak3Desc: 'Entra en el portal tres días seguidos.',
-      achievementAllApps: 'Todas las apps',
-      achievementAllAppsDesc: 'Abre todas las aplicaciones que ya puedes usar.',
-      achievementBothLanguages: 'Dos idiomas',
-      achievementBothLanguagesDesc: 'Mira el portal en español y en inglés.',
-      achievementCustomSettings: 'A tu manera',
-      achievementCustomSettingsDesc: 'Cambia un ajuste: tamaño de letra, contraste o sonido.',
-      achievementLocked: 'Todavía no',
-      achievementUnlockedAt: 'Conseguido el {date}',
-      savedLocally: 'Tus logros se guardan solo en este dispositivo.',
-      resetButton: 'Borrar mis logros',
-      resetConfirm: 'Sí, borrar mis logros',
-      resetCancel: 'No, dejarlos',
-      resetQuestion: '¿Seguro? Esto no se puede deshacer.',
-      resetDone: 'Logros borrados.',
-      footerPortal: 'Volver al portal'
     }
   }, 'es');
 }

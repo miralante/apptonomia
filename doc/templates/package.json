@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "test:ui": "playwright test",
+    "test:sw": "node scripts/smoke-sw.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  }
+}

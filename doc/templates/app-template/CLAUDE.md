@@ -8,11 +8,14 @@ Playwright and its browsers are installed globally for the machine by
 command (for example, `npm run test:ui`) or invoke the global CLI with
 `playwright test`.
 
-Do not add `playwright` or `@playwright/test` to project dependencies, install
-Playwright with `npm`/`npx`, or run `npx playwright install`. The setup scripts
-manage the shared browser cache under `{drive}\apps\playwright_browsers`.
+Do not add Playwright as a runtime dependency or install it locally with
+`npm`/`npx`; use the machine-wide installation for local runs. The setup
+scripts manage the shared browser cache under `{drive}\apps\playwright_browsers`.
+The generated app includes `@playwright/test` as a development dependency so
+CI can install a reproducible version and run the required browser gate.
 Always attempt the relevant browser test; if the global CLI or browsers are
-unavailable, report that blocker and continue with the other checks.
+unavailable, report that blocker and continue with the other checks, but do
+not push until the required browser test can be run and passes.
 
 ## About this project
 
@@ -102,20 +105,29 @@ it is the source of truth, not this file.
 
 #### Commands
 
-There is no build step, no package.json, and no test framework — it's
-plain HTML/CSS/JS served as static files.
+There is no build step or runtime dependency — it's plain HTML/CSS/JS served
+as static files. Each app must provide a `test:ui` command and a Playwright
+browser-smoke suite; the suite is a required pre-push check and a CI gate.
 
 - **Preview**: open `index.html` directly in a browser, or serve the
   folder with any static server (e.g. `npx serve .`). Everything runs
   client-side.
-- **Validate everything** (this repo's only "test" step, and what CI
-  runs on every PR via `.github/workflows/validate.yml`):
+- **Structural validation** (runs on every PR via
+  `.github/workflows/validate.yml`):
   ```
   node scripts/check.js
   ```
   It checks JS syntax, es/en key parity, `sw.js` ↔ disk parity, and
   the catalog-parity lock. Read the script before changing the file
   layout — it encodes the invariants that layout relies on.
+- The required Playwright browser smoke is a separate gate below.
+- **Browser smoke** (required before every push and by CI):
+  ```
+  npm run test:ui
+  ```
+  Each app must keep this command wired to its Playwright smoke suite.
+  Do not push if the suite fails, is missing, or cannot be run. CI installs
+  the browser needed by the suite.
 
 #### Architecture
 
@@ -164,20 +176,26 @@ belongs to the in-flight work before adding new changes.
 
 #### A.2.3 Before finishing
 
-1. Always run `node scripts/check.js`.
+1. Always run `node scripts/check.js` and `npm run test:ui`.
+   **Do not push if either required check fails, is missing, or could not be
+   run.** Fix the failure or report the blocker and leave the changes local.
 2. If this project ships a service worker (see §B.1): bump `VERSION`
    in `sw.js` whenever a cached file changes, and add any new file to
    `FILES`. Run `node scripts/check-version-bump.js` to verify the
    bump is consistent.
 3. **The CI gate `cache-bump` in `.github/workflows/validate.yml` will
    fail the PR if step 2 is missed** — so step 2 is enforced
-   automatically on every push. Do not treat the local
+   automatically in CI. Do not treat the local
    `node scripts/check-version-bump.js` run as optional: it is the
-   only check that runs *before* push and the only one that prints
-   the file list you'd be forgetting to bump.
-4. Report only verifications you actually ran; flag remaining manual
-   tests (e.g. a real browser walk through a wizard, or a WebKit
-   check).
+   pre-push check that prints the file list you'd be forgetting to bump.
+4. For a PWA, also run `node scripts/smoke-sw.js` before pushing; do not push
+   if it fails. The CI workflow must run this check too; local passes do not
+   replace the CI gate.
+5. Report only verifications you actually ran; flag remaining manual
+   tests (e.g. a real browser walk through a wizard, or a WebKit check).
+
+Do not push if any required check in this section fails, is missing, or could
+not be run.
 
 ### A.3 External and destructive operations
 

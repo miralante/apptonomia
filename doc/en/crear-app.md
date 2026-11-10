@@ -157,6 +157,9 @@ viable subset you must have **before** the first deploy:
 - `assets/fonts/*.woff2` (Atkinson Hyperlegible + Nunito)
 - `scripts/check.js` (port from `templates/scripts/check.js`)
 - If PWA: `manifest.json` + `sw.js` + `scripts/check-version-bump.js`
+  + `scripts/smoke-sw.js`
+- `package.json` with a `test:ui` command and a Playwright smoke suite
+  covering the app's main user flows.
 
 ### 4.1 What is the *minimum* minimum
 
@@ -347,14 +350,21 @@ A new sibling's first PR triggers:
 | Gate | What it checks | Where to fix |
 |---|---|---|
 | `validate.yml` runs `node scripts/check.js` | JS syntax, file anatomy, sw ↔ disk parity, es/en key parity | `scripts/check.js` output |
+| `ui-smoke` runs `npm run test:ui` | Main flows in Chromium through Playwright | The failing UI test |
 | `cache-bump.yml` runs `node scripts/check-version-bump.js` (PWA only) | A cached file changed but `VERSION` didn't | Bump `VERSION` in `sw.js` |
 | `i18n-smoke.yml` runs `node scripts/i18n-keys-smoke.js` (if shipped) | Every `data-i18n*` key is registered for every locale | Add the missing key to `strings.<locale>.js` |
 | `secrets-scan.yml` runs `node scripts/scan-secrets.js` (if shipped) | No API key / token / PEM in the working tree | Move the secret out of the repo, rotate it |
 
 A template for `.github/workflows/validate.yml` is in
 [`templates/.github/workflows/validate.yml`](../templates/.github/workflows/validate.yml).
-Copy it verbatim and adjust the `name:` field. Templates for the
+Copy it verbatim and adjust the `name:` field. Templates for other
 optional CI jobs are in the same `templates/` tree.
+
+The `ui-smoke` gate is required: every sibling must define `test:ui`,
+and CI must run it on each PR and push to `main`. Before pushing, run
+`node scripts/check.js` and `npm run test:ui`; for a PWA also run
+`node scripts/check-version-bump.js` and `node scripts/smoke-sw.js`.
+Do not push if a required test is missing, fails, or could not be run.
 
 ---
 

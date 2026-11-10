@@ -195,11 +195,14 @@ sección.>
 
 ## ✅ Validar cambios
 
+Antes de cada push, estas comprobaciones obligatorias deben pasar:
+
 ```bash
 node scripts/check.js
+npm run test:ui
 ```
 
-No hace falta `npm install` — el script usa solo la biblioteca
+Para este chequeo no hace falta `npm install` — el script usa solo la biblioteca
 estándar de Node. Comprueba sintaxis JS, anatomía canónica de
 archivos, paridad sw.js ↔ disco, paridad es/en de claves, y (si
 aplica) el lock de paridad de catálogo.
@@ -213,6 +216,11 @@ node scripts/check-version-bump.js
 para confirmar que cualquier cambio en un archivo cacheado vino
 acompañado de un bump de `VERSION` en `sw.js` (el gate del bump
 de caché).
+
+`npm run test:ui` debe ejecutar la suite smoke de Playwright de la
+aplicación y también es un gate obligatorio de CI. No subas los cambios
+si una comprobación obligatoria falla, falta o no se puede ejecutar.
+Para una PWA, ejecuta además `node scripts/smoke-sw.js` antes del push.
 
 ---
 

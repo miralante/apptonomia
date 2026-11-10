@@ -324,3 +324,18 @@ el fichero es idéntico en todas las apps y lo mantiene el metaproyecto
 (`apptonomia/scripts/sync-stars-engine.js`). Pon las frases en `strings.<locale>.js`
 (`starsReached`, `starsGoal`) y muestra la línea con `MiralanteStars.goal(el, total, strings)`.
 Añade la clase `.stars-goal` (display block, un poco más pequeña) en la hoja compartida.
+
+### B.7 Recompensas (política común)
+
+Toda app de la suite sigue la misma política general de recompensas;
+solo cambian sus particularidades (qué se premia y con qué hitos). La
+política completa está en `apptonomia/doc/es/spec.md` §2.6. En resumen:
+
+- Estrellas por actividad completada; nunca se restan (motor `js/stars-engine.js`, B.6).
+- Logros = hitos calculados del progreso guardado, con catálogo propio de la app.
+- Sin presión: nada de rachas de días, cronómetros, plazos, vidas ni pérdidas.
+- Sin comparación entre personas.
+- Un logro nuevo se anuncia una sola vez, al terminar la actividad, con un aviso neutro. No hay página para perseguirlos ni aparecen en "Sobre la app".
+- Se guardan solo en el dispositivo, con la fecha de la primera vez.
+- Motor común: `js/achievements-engine.js` (`window.MiralanteAchievements`), copia idéntica del canónico `apptonomia/scripts/suite/achievements-engine.js`. Las reglas van en `js/achievements-catalog.js`, y los textos en `strings.<locale>.js` (`achievementNew`, `achievement<Id>`, `achievement<Id>Desc`).
+- Mantén las copias con `node apptonomia/scripts/sync-achievements-engine.js --apply`.

@@ -13,7 +13,6 @@
  *   - index.html                       (the portal itself)
  *   - js/*.js                          (bootstrap, prepaint, script, strings)
  *   - about/privacidad.html            (linked from the landing footer)
- *                                        the landing footer)
  *
  * Out of scope (deliberately):
  *   - SPEC.md / CLAUDE.md / CONTRIBUTING.md / README*.md
@@ -83,8 +82,7 @@ function listFiles(dir) {
 }
 
 var targets = [path.join(ROOT, 'index.html')]
-  .concat(listFiles(path.join(ROOT, 'js')))
-;
+  .concat(listFiles(path.join(ROOT, 'js')));
 var aboutPrivacidad = path.join(ROOT, 'about', 'privacidad.html');
 if (fs.existsSync(aboutPrivacidad)) targets.push(aboutPrivacidad);
 

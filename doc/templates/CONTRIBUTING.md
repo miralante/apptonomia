@@ -129,6 +129,9 @@ loosening almost never is — open an issue first.
 ## ✅ Checklist before opening a PR
 
 - [ ] `node scripts/check.js` passes locally.
+- [ ] `npm run test:ui` passes locally (required Playwright smoke suite).
+- [ ] If this is a PWA, `node scripts/smoke-sw.js` and
+      `node scripts/check-version-bump.js` pass.
 - [ ] If you added UI strings, **every supported locale** is in sync
       (at minimum `es` and `en`).
 - [ ] You tested in at least one real desktop browser (Chrome /

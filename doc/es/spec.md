@@ -91,6 +91,34 @@ rompe cada hermano y el portal de golpe.
 
 ---
 
+### 2.6 Recompensas: una política común, particularidades por app
+
+Todas las apps de la suite que premian el progreso siguen **la misma
+política general**. Cada app define solo sus particularidades: qué
+se premia y con qué hitos. La política no cambia de una app a otra.
+
+1. **Estrellas.** Se gana una estrella al completar una actividad,
+   baraja o ronda. Nunca se restan. El texto de progreso lo calcula
+   el motor común `js/stars-engine.js` (plantilla, sección B.6).
+2. **Logros.** Son hitos calculados a partir del progreso guardado.
+   Cada app define su propio catálogo. Un logro no es una segunda
+   moneda ni obliga a hacer nada extra.
+3. **Sin presión.** Ninguna recompensa usa cronómetros, rachas de
+   días, plazos, vidas ni pérdidas. No existen "rachas rotas" ni
+   logros que se pierden.
+4. **Sin comparación.** No hay clasificaciones ni marcadores entre
+   personas.
+5. **Cuándo se muestran.** Un logro nuevo se anuncia una sola vez,
+   al terminar la actividad que lo consigue, con un aviso neutro
+   (texto e icono; el color nunca es la única pista, y no hay sonido
+   de error). No hay página para perseguirlos, y no aparecen en
+   páginas informativas como "Sobre la app".
+6. **Guardado.** Solo en el dispositivo (`localStorage`), con la fecha
+   de la primera vez. Recalcular el progreso no cambia esa fecha.
+7. **Motor común de logros.** `scripts/suite/achievements-engine.js`
+   (canónico en este repositorio, copia idéntica en cada app que lo
+   use). Las reglas de cada app viven en su propio catálogo.
+
 ## 3. Estructura del portal
 
 ### 3.1 Forma visual

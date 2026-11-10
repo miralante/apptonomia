@@ -159,6 +159,9 @@ viable que debes tener **antes** del primer despliegue:
 - `assets/fonts/*.woff2` (Atkinson Hyperlegible + Nunito)
 - `scripts/check.js` (portar de `templates/scripts/check.js`)
 - Si es PWA: `manifest.json` + `sw.js` + `scripts/check-version-bump.js`
+  + `scripts/smoke-sw.js`
+- `package.json` con el comando `test:ui` y una suite smoke de Playwright
+  específica para los flujos principales de la app.
 
 ### 4.1 Cuál es el mínimo de los mínimos
 
@@ -362,14 +365,21 @@ El primer PR de un nuevo hermano dispara:
 | Gate | Qué comprueba | Dónde arreglar |
 |---|---|---|
 | `validate.yml` ejecuta `node scripts/check.js` | Sintaxis JS, anatomía de archivos, paridad sw ↔ disco, paridad es/en de claves | Salida de `scripts/check.js` |
+| `ui-smoke` ejecuta `npm run test:ui` | Flujos principales en Chromium mediante Playwright | La prueba de UI que falla |
 | `cache-bump.yml` ejecuta `node scripts/check-version-bump.js` (solo PWA) | Un archivo en caché cambió pero `VERSION` no | Bumpea `VERSION` en `sw.js` |
 | `i18n-smoke.yml` ejecuta `node scripts/i18n-keys-smoke.js` (si se envía) | Cada clave `data-i18n*` está registrada para cada locale | Añade la clave que falta a `strings.<locale>.js` |
 | `secrets-scan.yml` ejecuta `node scripts/scan-secrets.js` (si se envía) | Ninguna API key / token / PEM en el árbol de trabajo | Mueve el secreto fuera del repo, rótalo |
 
 Una plantilla para `.github/workflows/validate.yml` está en
 [`templates/.github/workflows/validate.yml`](../templates/.github/workflows/validate.yml).
-Cópiala literal y ajusta el campo `name:`. Las plantillas para los
+Cópiala literal y ajusta el campo `name:`. Las plantillas para otros
 jobs de CI opcionales están en el mismo árbol `templates/`.
+
+El gate `ui-smoke` es obligatorio: cada hermano debe definir `test:ui`
+y la CI debe ejecutarlo en cada PR y push a `main`. Antes de hacer push,
+ejecuta `node scripts/check.js` y `npm run test:ui`; para una PWA ejecuta
+además `node scripts/check-version-bump.js` y `node scripts/smoke-sw.js`.
+No hagas push si una prueba obligatoria falta, falla o no se pudo ejecutar.
 
 ---
 

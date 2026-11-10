@@ -1,14 +1,14 @@
 # Canonical CI gate for the Miralante suite.
 #
-# Runs the project's structural, i18n, no-clinical-language and
-# service-worker cache-bump checks on every push to the default branch
+# Runs the project's structural, i18n, no-clinical-language,
+# service-worker cache-bump and required Playwright UI checks on every push to the default branch
 # and every pull request against it. Deploy is intentionally NOT in
 # this workflow: deploy to Cloudflare is handled by the Cloudflare
 # Git connector reading wrangler.toml and _headers from the repo root
 # — same model as the sibling projects (Apptonomia, Sinonimia,
-# Okeymoney, Calculia, Memofun, Teclatlon, Routime). No npm install
-# step: every script in scripts/ runs with plain node and only uses
-# stdlib modules (fs, path, vm, child_process).
+# Okeymoney, Calculia, Memofun, Teclatlon, Routime). Structural scripts
+# use plain Node and stdlib; the UI job installs the app's Playwright dev
+# dependency and Chromium.
 #
 # Job list, in order:
 #   1. check         — main gate. Runs scripts/check.js.
@@ -28,6 +28,8 @@
 #                      secrets (API keys, tokens, private keys);
 #                      pattern-based, not a substitute for GitHub's
 #                      native push protection. Runs scripts/scan-secrets.js.
+#   5. ui-smoke     — required browser test. Fails when test:ui or the
+#                      app's Playwright smoke suite is missing or fails.
 #
 # Production smoke testing against the live URL (when the project has
 # one) lives in a sibling .github/workflows/smoke-prod.yml scheduled
@@ -148,3 +150,27 @@ jobs:
         # present", but a dirty run means we just saved a PR from
         # committing an obvious paste.
         run: node scripts/scan-secrets.js
+
+  ui-smoke:
+    name: Playwright UI and service-worker smoke
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install UI test dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run required Playwright suite
+        run: npm run test:ui
+
+      - name: Run service-worker smoke
+        run: node scripts/smoke-sw.js

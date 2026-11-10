@@ -189,12 +189,15 @@ section entirely.>
 
 ## ✅ Validating changes
 
+Before every push, these required checks must pass:
+
 ```bash
 node scripts/check.js
+npm run test:ui
 ```
 
-No `npm install` needed — the script only uses Node's standard
-library. It checks JS syntax, canonical file anatomy, sw.js ↔
+No `npm install` is needed for this structural check — it only uses Node's
+standard library. It checks JS syntax, canonical file anatomy, sw.js ↔
 disk parity, es/en key parity, and (if applicable) the
 catalog-parity lock.
 
@@ -206,6 +209,10 @@ node scripts/check-version-bump.js
 
 to confirm any cached-file change came with a `VERSION` bump in
 `sw.js` (the cache-bump gate).
+
+`npm run test:ui` must run the app's Playwright smoke suite and is a required
+CI gate. Do not push if a required check fails, is missing, or cannot be run.
+For a PWA, also run `node scripts/smoke-sw.js` before pushing.
 
 ---
 
