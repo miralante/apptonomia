@@ -18,10 +18,11 @@ const crypto = require('crypto');
 const SUITE_ROOT = path.resolve(__dirname, '..', '..');
 const CANONICAL = path.join(__dirname, 'suite', 'achievements-engine.js');
 
-// Apps that give achievements. Apps without rewards (okeymoney, sinonimia)
+// Apps that give achievements. Apps without rewards (sinonimia)
 // have none; the template is the scaffold every new sibling starts from.
 const TARGETS = [
   { app: 'calculia', dest: 'assets/js/achievements-engine.js' },
+  { app: 'okeymoney', dest: 'assets/js/achievements-engine.js' },
   { app: 'memofun', dest: 'assets/js/achievements-engine.js' },
   { app: 'routime', dest: 'assets/js/achievements-engine.js' },
   { app: 'teclatlon', dest: 'assets/js/achievements-engine.js' },
