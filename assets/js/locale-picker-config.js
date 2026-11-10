@@ -15,8 +15,8 @@
    `languageInDrawer` the dropdown moves INTO that drawer, as its first
    row, and the ⚙️ is left alone in the header: language and display
    preferences in one place instead of two controls side by side. The
-   other seven apps keep the dropdown in the header, which is the
-   component's default.
+   other seven apps use the same model: the language is the first row of
+   the gear drawer. Teclatlon builds that drawer itself (settings: false).
    ========================================================================== */
 window.LocalePickerConfig = {
   storageKey: 'apptonomia:locale',
