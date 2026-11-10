@@ -1,0 +1,34 @@
+/* suite:celebrate:begin
+   Miralante closing celebration, styles. ONE definition for every suite app.
+   Canonical source: apptonomia/scripts/suite/celebrate.css. Copied byte for byte
+   into each app's shared stylesheet by apptonomia/scripts/sync-answer-round.js.
+   Never edit a copy by hand. */
+.celebration {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(250, 247, 242, 0.95);
+  z-index: 200;
+  text-align: center;
+}
+
+.celebration.hidden {
+  display: none;
+}
+
+.celebration .emoji {
+  font-size: 80px;
+  line-height: 1;
+}
+
+.celebration .message {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-acierto, var(--color-success, var(--exito, #1f6f43)));
+}
+/* suite:celebrate:end */
