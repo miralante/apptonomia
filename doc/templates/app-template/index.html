@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{DISPLAY_ES}}</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <!-- Shared header and footer of the suite. Behaviour and labels: js/suite-chrome.js.
+       Labels live in strings.<locale>.js under the chrome.* keys. -->
+  <header data-suite-header></header>
+
+  <main id="contenido" class="container">
+    <!-- The app's own content goes here. -->
+  </main>
+
+  <footer data-suite-footer
+          data-suite-base="./"
+          data-suite-portal="https://apptonomia.uk/"
+          data-suite-settings></footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="strings.es.js"></script>
+  <script src="strings.en.js"></script>
+  <script src="js/suite-chrome.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

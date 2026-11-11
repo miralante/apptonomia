@@ -113,6 +113,7 @@ location.
 |---|---|
 | **Per-sibling product, audience, accessibility, architecture, i18n, catalogue, roadmap** | Each sibling's own `CLAUDE.md` (linked from §A.1.1 below) |
 | Metaproject plumbing (sync script, meta-graph, landing) | This file + `scripts/sync-graphify-skill.js` |
+| Shared blocks copied into the apps (shared header and footer, answer round, reward screen, engines) | [`doc/en/shared-blocks.md`](doc/en/shared-blocks.md) ↔ [`doc/es/bloques-compartidos.md`](doc/es/bloques-compartidos.md) |
 | Public landing (SEO, Open Graph, JSON-LD `ItemList`, multilingual copy) | This repo's `index.html`, `js/strings.es.js`, `js/strings.en.js` |
 | **Suite compliance checklist** (UNE 153101, WCAG AAA, public-facing wording "usuario/a tipo", settings/data-reset, landing typography) | [`doc/en/guia-de-cumplimiento.md`](doc/en/guia-de-cumplimiento.md) → [`doc/es/guia-de-cumplimiento.md`](doc/es/guia-de-cumplimiento.md) |
 | **Creating a new sibling** (required files, scripts, doc tree, sw.js cache contract) | [`doc/en/crear-app.md`](doc/en/crear-app.md) → [`doc/es/crear-app.md`](doc/es/crear-app.md) |

@@ -25,7 +25,7 @@
  * files listed below.
  */
 
-var VERSION = '{{SLUG}}-v1';
+var VERSION = '{{SLUG}}-v2';
 var ARCHIVOS = [
   './',
   './index.html',
@@ -38,6 +38,7 @@ var ARCHIVOS = [
   './js/i18n.js',
   './js/storage.js',
   './js/feedback.js',
+  './js/suite-chrome.js',
   './js/stars-engine.js',
   './js/app.js',
   './strings.es.js',

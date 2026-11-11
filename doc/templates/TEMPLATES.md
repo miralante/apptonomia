@@ -100,6 +100,10 @@ doc/templates/
 ├── _headers                      ← Cloudflare cache headers
 ├── wrangler.toml                 ← Cloudflare Workers config
 ├── 404.html
+├── app-template/
+│   └── index.html                ← app skeleton with the shared header and footer mounts
+├── assets/css/styles.css         ← app stylesheet; holds the synced suite-chrome block
+├── js/suite-chrome.js            ← shared header and footer (synced, never edit here)
 ├── sw.js                         ← (only if the sibling is a PWA)
 ├── manifest.json                 ← (only if the sibling is a PWA)
 ├── package.json                  ← test:ui/test:sw + Playwright (dev only)

@@ -102,6 +102,10 @@ doc/templates/
 ├── _headers                      ← cabeceras de caché de Cloudflare
 ├── wrangler.toml                 ← config de Cloudflare Workers
 ├── 404.html
+├── app-template/
+│   └── index.html                ← esqueleto de la app con los huecos de cabecera y pie compartidos
+├── assets/css/styles.css         ← hoja de la app; contiene el bloque suite-chrome sincronizado
+├── js/suite-chrome.js            ← cabecera y pie compartidos (sincronizado, no editar aquí)
 ├── sw.js                         ← (solo si el hermano es PWA)
 ├── manifest.json                 ← (solo si el hermano es PWA)
 ├── package.json                  ← test:ui/test:sw + Playwright (solo dev)
