@@ -73,8 +73,7 @@ escritos):
 ### 2.1 Forma
 
 - **Catálogo multi-actividad** — un portal que lista N actividades,
-  cada una con su propia carpeta (`tools/<slug>/` o
-  `site/tools/<slug>/`). Ejemplo: Routime (69 actividades),
+  cada una con su propia carpeta (`tools/<slug>/`). Ejemplo: Routime (69 actividades),
   Calculia (15), Apptonomia (variable).
 - **App de propósito único** — una app, una pantalla, pero varios
   modos de práctica declarados en `data.js`. Ejemplo: Teclatlon.
@@ -91,7 +90,7 @@ escritos):
 ### 2.2 Disposición
 
 - **Tres niveles**: `assets/` (núcleo compartido) + `tools/<slug>/`
-  (una carpeta por actividad) + `site/` o `index.html` raíz (portal).
+  (una carpeta por actividad) + `index.html` raíz (portal).
 - **Fichero único**: `index.html` + `app.js` + `data.js` +
   `strings.<locale>.js` + `styles.css` en la raíz del repo.
 

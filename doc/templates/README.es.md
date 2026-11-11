@@ -169,15 +169,15 @@ Según tu rol y perfil, te interesa una u otra documentación:
 
 <If the sibling has a catalogue: describe the catalogue parity
 rule that ties tools/<slug>/ on disk, the cards in
-site/index.html, the rows in settings/index.html, and the
+index.html, the rows in settings/index.html, and the
 ARCHIVOS list in sw.js.>
 
 Para añadir una actividad nueva:
 
 1. Crea `tools/<slug>/` con los seis archivos canónicos (usa una
    actividad existente como plantilla).
-2. Registra la actividad: añade su tarjeta a `site/index.html` (+
-   las claves en `site/strings.<locale>.js`), su fila de progreso
+2. Registra la actividad: añade su tarjeta a `index.html` (+
+   las claves en `strings.<locale>.js`), su fila de progreso
    a `config/index.html` (+ las claves en
    `config/strings.<locale>.js`), y sus seis archivos a
    `ARCHIVOS` en `sw.js`.

@@ -106,6 +106,14 @@ contract. The full usage comment is at the top of `scripts/suite/suite-chrome.js
   star counter are functions of the activity, not of the suite.
 - **The scaffold's `doc/templates/app-template/index.html`** is an example of the
   markup. Its i18n core is the app's own.
+- **`404.html` and `offline.html` pages** are standalone: their texts are written
+  by hand and they load neither i18n nor the suite scripts, so they do not mount
+  the footer. The 404 pages of calculia, routime, okeymoney and teclatlon redirect
+  to the home page with `meta refresh`, so the footer would never be seen.
+- **The apptonomia portal** (`index.html`, `about/`, `legal/`, `project/`, `dev/`)
+  does not mount the shared footer: it is the suite's front page, not a sibling app,
+  and the shared footer's "back to the portal" link would point at the page itself.
+  `team/index.html` has no footer.
 
 ## Related
 

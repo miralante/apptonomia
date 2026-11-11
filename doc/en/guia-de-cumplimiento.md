@@ -477,7 +477,7 @@ The LLMO layer covers two things:
 
 | Layer | Who emits it | Where it lives | Who verifies it |
 |---|---|---|---|
-| Classic SEO | `scripts/build-head.js` from `app.config.json` | `index.html` / `site/index.html` | `scripts/check.js` + browser |
+| Classic SEO | `scripts/build-head.js` from `app.config.json` | `index.html` | `scripts/check.js` + browser |
 | GEO (Dublin Core) | `scripts/build-head.js` from `app.config.json` | `index.html` | `scripts/check.js` (asserts the 7 `<meta name="DC.*">` tags exist) |
 | AEO (`FAQPage`) | `scripts/build-head.js` from `app.config.json` | JSON-LD block in `index.html` | `scripts/check.js` (validates `@type FAQPage` + Q/A count ≥ 3) |
 | LLMO (`/llms.txt`) | `scripts/build-llms-txt.js` from `app.config.json` | `llms.txt` at the root | `scripts/check.js` (existence + parse + section count) |

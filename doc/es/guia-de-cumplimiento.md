@@ -493,7 +493,7 @@ La capa LLMO cubre dos cosas:
 
 | Capa | Quién lo emite | Dónde vive | Quién lo verifica |
 |---|---|---|---|
-| SEO clásico | `scripts/build-head.js` a partir de `app.config.json` | `index.html` / `site/index.html` | `scripts/check.js` + navegador |
+| SEO clásico | `scripts/build-head.js` a partir de `app.config.json` | `index.html` | `scripts/check.js` + navegador |
 | GEO (Dublin Core) | `scripts/build-head.js` a partir de `app.config.json` | `index.html` | `scripts/check.js` (comprueba que los 7 `<meta name="DC.*">` existen) |
 | AEO (`FAQPage`) | `scripts/build-head.js` a partir de `app.config.json` | bloque JSON-LD en `index.html` | `scripts/check.js` (valida @type FAQPage + count de Q/A ≥ 3) |
 | LLMO (`/llms.txt`) | `scripts/build-llms-txt.js` a partir de `app.config.json` | `llms.txt` en la raíz | `scripts/check.js` (existencia + parseo + nº de secciones) |

@@ -73,7 +73,7 @@ Before touching files, write these decisions down in a one-pager
 ### 2.1 Shape
 
 - **Multi-activity catalogue** — a landing that lists N activities,
-  each with its own folder (`tools/<slug>/` or `site/tools/<slug>/`).
+  each with its own folder (`tools/<slug>/`).
   Example: Routime (69 activities), Calculia (15), Apptonomia
   (variable).
 - **Single-purpose app** — one app, one screen, but several practice
@@ -90,7 +90,7 @@ Before touching files, write these decisions down in a one-pager
 ### 2.2 Layout
 
 - **Three-level**: `assets/` (shared core) + `tools/<slug>/` (one
-  folder per activity) + `site/` or root `index.html` (landing).
+  folder per activity) + root `index.html` (landing).
 - **Single-file**: `index.html` + `app.js` + `data.js` +
   `strings.<locale>.js` + `styles.css` at the repo root.
 

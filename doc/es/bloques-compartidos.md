@@ -104,6 +104,13 @@ El comentario de uso completo está al principio de `scripts/suite/suite-chrome.
   volver y el contador de estrellas dependen de la actividad, no de la suite.
 - **`doc/templates/app-template/index.html`** de la plantilla es un ejemplo del
   marcado. Su núcleo de i18n es el de la propia app.
+- **Páginas `404.html` y `offline.html`** son autónomas: tienen sus textos escritos a
+  mano y no cargan i18n ni los scripts de la suite, así que no montan el pie. Las 404
+  de calculia, routime, okeymoney y teclatlon redirigen a la portada con
+  `meta refresh`, de modo que el pie nunca llegaría a verse.
+- **El portal de apptonomia** (`index.html`, `about/`, `legal/`, `project/`, `dev/`)
+  no monta el pie compartido: es la portada de la suite, no una app, y su pie propio
+  diría "volver al portal" en la propia portada. `team/index.html` no tiene pie.
 
 ## Relacionado
 

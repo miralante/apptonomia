@@ -9,8 +9,7 @@
 
    Usage:
      node scripts/build-head.js                         # builds the landing (apptonomia itself)
-     node scripts/build-head.js ../calculia             # builds calculia/site/index.html
-     node scripts/build-head.js ../calculia --entry site/index.html
+     node scripts/build-head.js ../calculia             # builds calculia/index.html
      node scripts/build-head.js ../teclatlon --check    # dry-run: prints diff, exits 0 if no diff
 
    Why this exists:
@@ -308,9 +307,7 @@ function main() {
   var checkOnly = argv.indexOf('--check') !== -1;
   var initMode = argv.indexOf('--init') !== -1;
   var entryIdx = argv.indexOf('--entry');
-  // Default entry is site/index.html (multi-activity siblings); apptonomia
-  // (the suite gateway) and single-activity siblings use index.html. We try
-  // site/index.html first and fall back to index.html when --entry is not set.
+  // Default entry is the app's root index.html: every suite app keeps its home there.
   var entryRel = entryIdx !== -1 ? argv[entryIdx + 1] : null;
   // Resolve siblingArg robustly: any positional that is not the entry's
   // value nor a recognised flag. entryIdx can be -1 (no --entry), in which
@@ -335,8 +332,7 @@ function main() {
   if (entryRel) {
     targetPath = path.join(siblingDir, entryRel);
   } else {
-    var siteCandidate = path.join(siblingDir, 'site', 'index.html');
-    targetPath = fs.existsSync(siteCandidate) ? siteCandidate : path.join(siblingDir, 'index.html');
+    targetPath = path.join(siblingDir, 'index.html');
   }
 
   if (!fs.existsSync(configPath)) fail('config not found: ' + configPath);
