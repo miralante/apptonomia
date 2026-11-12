@@ -64,25 +64,35 @@ Never type a `?v=` value by hand (see [`../../scripts/ASSET-TOKENS.md`](../../sc
 The header and footer block is the one most often changed, so it has its own
 contract. The full usage comment is at the top of `scripts/suite/suite-chrome.js`.
 
-- **Mounts.** A page declares `<header data-suite-header>` and/or
-  `<footer data-suite-footer>`. A mount that already has children is skipped.
-- **Header.** Draws the locale picker, and the brand (`core.chrome.appName`)
-  unless the mount has `data-suite-brand="off"`. Pages whose own title already
-  names the app use the picker-only form, so the existing control block is
-  replaced in place.
+- **Mounts.** Every page mounts the shared header with `data-suite-header` and the
+  shared footer with `data-suite-footer`. A mount that already has children is
+  skipped. The page's own content is not part of the block: it sits next to the
+  mount, inside the same `<header>` or `<footer>` (the tool's back link, title and
+  stars; teclatlon's "clear my progress" button; sinonimia's ARASAAC credits).
+- **Header.** Draws the brand (`core.chrome.appName`) and the locale picker, which
+  is the ⚙️ drawer with language, theme, text size and high contrast. Pages whose own
+  markup already names the app use `data-suite-brand="off"`, so the mount draws only
+  the picker in the control block the page already had.
 - **Footer.** Links to the portal, `about/`, `legal/` and, with
   `data-suite-settings`, `config/`. `data-suite-base` sets the relative path to
   the app root; `data-suite-contact` adds a mailto link.
-- **Labels.** Written with `data-i18n` keys `core.chrome.appName`,
-  `core.chrome.portal`, `core.chrome.about`, `core.chrome.legal` and
-  `core.chrome.settings`. They live in the `core` namespace of each app's core
-  dictionary (`assets/js/i18n.js`, es and en). An app whose `strings.<locale>.js`
-  redefines `core` must repeat the `chrome` block there too, because the later
-  `register()` replaces the whole namespace.
+- **Labels.** The header needs one string, `core.chrome.appName`, in the app's
+  locale files. The footer labels (`core.chrome.portal`, `about`, `legal`,
+  `settings`) have built-in es and en defaults, so an app needs no strings for them.
+  An app may still word them itself; its value wins over the default. The footer
+  labels carry `data-suite-label`, not `data-i18n`: an app's own translation pass
+  rewrites every `data-i18n` node it has no key for (calculia does), so the labels
+  are drawn by the block and redrawn when `<html lang>` or `data-lang` changes.
+- **Order.** `suite-chrome.js` must run before `locale-picker.js`. Both are usually
+  deferred, so the block goes first in the document: the picker looks for
+  `#locale-picker` when it runs, and the header mount draws it.
 - **Timing.** The script renders as soon as it runs, which must happen after the
   mounts it fills. It also renders again on `DOMContentLoaded`, so it works from
-  `<head>` too. The locale picker is deferred, so it finds its container
-  already drawn.
+  `<head>` too.
+- **Markup audit.** `scripts/sync-suite-chrome.js` checks every HTML page of the
+  suite for both mounts and for both scripts (`suite-chrome.js`, `locale-picker.js`),
+  and fails on the old `data-pie-app` marker. A page that cannot carry them is listed
+  in `AUDIT_EXEMPT` with its reason.
 
 ## Adding an app
 
@@ -97,23 +107,21 @@ contract. The full usage comment is at the top of `scripts/suite/suite-chrome.js
 
 ## Known exceptions
 
-- **sinonimia** takes the stars and achievements engines, but not suite-chrome.
-  Its footer carries the ARASAAC credits and the offline controls, and its i18n
-  is not `App.i18n`.
-- **teclatlon `index.html`** keeps its own footer: it holds the "clear my
-  progress" button, which the shared footer does not provide.
-- **Activity pages** (`tools/`) keep their own header. The back link and the
-  star counter are functions of the activity, not of the suite.
-- **The scaffold's `doc/templates/app-template/index.html`** is an example of the
-  markup. Its i18n core is the app's own.
-- **`404.html` and `offline.html` pages** are standalone: their texts are written
-  by hand and they load neither i18n nor the suite scripts, so they do not mount
-  the footer. The 404 pages of calculia, routime, okeymoney and teclatlon redirect
-  to the home page with `meta refresh`, so the footer would never be seen.
-- **The apptonomia portal** (`index.html`, `about/`, `legal/`, `project/`, `dev/`)
-  does not mount the shared footer: it is the suite's front page, not a sibling app,
-  and the shared footer's "back to the portal" link would point at the page itself.
-  `team/index.html` has no footer.
+- **sinonimia** keeps its own i18n (not `App.i18n`). Its footer carries the ARASAAC
+  credits and the offline controls, next to the footer mount.
+- **teclatlon `index.html`** keeps its "clear my progress" button next to the footer
+  mount, and its header mount sits in its own tool header.
+- **Tool pages** (`tools/`): the shared header mount comes first; the back link,
+  the title and the star counter stay in the tool's own `tool-header`, which is a
+  function of the activity.
+- **`doc/templates/app-template/index.html`** is an example of the markup. Its i18n
+  core is the app's own.
+- **Stubs**: `apptonomia/project/index.html` (the slide deck, with its own footer)
+  and `ludia/refresh.html` and `ludia/legal/index.html` (redirect stubs) are not
+  audited.
+- **404 pages** mount the header and the footer like any page. Some of them, for
+  example calculia's, also redirect to the home page with `meta refresh`, so the
+  visitor may not see them for long.
 
 ## Related
 

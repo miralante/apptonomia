@@ -263,7 +263,7 @@
        launches and across tab restores). Bump the `apptonomia-vN` suffix in the same
        commit that touches the stylesheet — same contract as the PWA
        siblings' sw.js VERSION. -->
-  <link rel="stylesheet" href="css/styles.css?v=apptonomia-v23724cb0">
+  <link rel="stylesheet" href="css/styles.css?v=apptonomia-vb5a756e3">
   <link rel="stylesheet" href="assets/css/locale-picker.css?v=apptonomia-vcdcf216d">
 </head>
 <body>
@@ -275,9 +275,7 @@
     <span class="hero-mark brand-mark" aria-hidden="true">A</span>
     <div class="suite-brand-copy"><h1 data-i18n="home.title">Apptonomia</h1></div>
   </div>
-  <div class="suite-controls">
-    <div id="locale-picker"></div>
-  </div>
+  <div class="suite-controls" data-suite-header data-suite-brand="off"></div>
   <div class="suite-details"><p class="tagline" data-i18n="home.tagline">Aprende a tu ritmo, en el idioma que prefieras.</p></div>
 </header>
 
@@ -384,17 +382,13 @@
   </div>
 </main>
 
-<footer class="app-footer">
-  <div class="container">
-    <a href="about/" data-i18n="core.aboutApp">Sobre la app</a>
-    · <a href="mailto:hello@apptonomia.uk">hello@apptonomia.uk</a>
-  </div>
-</footer>
+<footer class="app-footer" data-suite-footer data-suite-base="./" data-suite-portal="https://apptonomia.uk/" data-suite-contact="hello@apptonomia.uk"></footer>
 
 <script src="js/script.js?v=apptonomia-v31f82b6f"></script>
 <script src="js/strings.es.js?v=apptonomia-v1b2ba721"></script>
 <script src="js/strings.en.js?v=apptonomia-vc2eb0214"></script>
 <script src="js/prepaint.js?v=apptonomia-v0b7e3e0c"></script>
+<script src="js/suite-chrome.js?v=apptonomia-v40aa8123" defer></script>
 <script src="assets/js/locale-picker-config.js?v=apptonomia-vfe532973"></script>
 <script src="assets/js/locale-picker.js?v=apptonomia-v8851c7df" defer></script>
 </body>

@@ -65,23 +65,37 @@ Nunca escribas un valor `?v=` a mano (ver [`../../scripts/ASSET-TOKENS.md`](../.
 El bloque de cabecera y pie es el que más cambia, así que tiene su propio contrato.
 El comentario de uso completo está al principio de `scripts/suite/suite-chrome.js`.
 
-- **Montajes.** Una página declara `<header data-suite-header>` y/o
-  `<footer data-suite-footer>`. Un montaje que ya tiene hijos se salta.
-- **Cabecera.** Dibuja el selector de idioma, y la marca (`core.chrome.appName`) salvo
-  que el montaje tenga `data-suite-brand="off"`. Las páginas cuyo propio título ya
-  nombra la app usan la forma solo con selector, que sustituye en su sitio el bloque de
-  controles de antes.
+- **Montajes.** Cada página monta la cabecera compartida con `data-suite-header` y el
+  pie compartido con `data-suite-footer`. Un montaje que ya tiene hijos se salta. El
+  contenido propio de la página no forma parte del bloque: va junto al montaje, dentro
+  del mismo `<header>` o `<footer>` (el enlace de volver, el título y las estrellas de
+  una herramienta; el botón "borrar mi progreso" de teclatlon; los créditos de ARASAAC
+  de sinonimia).
+- **Cabecera.** Dibuja la marca (`core.chrome.appName`) y el selector de idioma, que es
+  el ⚙️ con su cajón de idioma, tema, tamaño de letra y alto contraste. Las páginas cuyo
+  propio marcado ya nombra la app usan `data-suite-brand="off"`, de modo que el montaje
+  solo dibuja el selector en el bloque de controles que ya tenía la página.
 - **Pie.** Enlaza al portal, a `about/`, a `legal/` y, con `data-suite-settings`, a
   `config/`. `data-suite-base` indica la ruta relativa a la raíz de la app;
   `data-suite-contact` añade un enlace mailto.
-- **Textos.** Se escriben con las claves `data-i18n` `core.chrome.appName`,
-  `core.chrome.portal`, `core.chrome.about`, `core.chrome.legal` y `core.chrome.settings`.
-  Viven en el espacio `core` del diccionario base de cada app (`assets/js/i18n.js`, es y
-  en). Si el `strings.<locale>.js` de una app redefine `core`, hay que repetir ahí el
-  bloque `chrome`, porque el `register()` posterior sustituye todo el espacio.
+- **Textos.** La cabecera necesita una sola cadena, `core.chrome.appName`, en los
+  ficheros de idioma de la app. Las etiquetas del pie (`core.chrome.portal`, `about`,
+  `legal`, `settings`) tienen textos base en es y en, así que una app no necesita
+  cadenas para ellas. La app puede redactarlas por su cuenta; su valor gana al base.
+  Las etiquetas del pie llevan `data-suite-label`, no `data-i18n`: la pasada de
+  traducción de cada app reescribe todo nodo `data-i18n` para el que no tiene clave
+  (calculia lo hace), así que las etiquetas las dibuja el bloque y se vuelven a dibujar
+  cuando cambian `<html lang>` o `data-lang`.
+- **Orden.** `suite-chrome.js` debe ejecutarse antes que `locale-picker.js`. Los dos
+  suelen ir diferidos, así que el bloque va primero en el documento: el selector busca
+  `#locale-picker` al ejecutarse, y el montaje de cabecera es quien lo dibuja.
 - **Momento.** El script pinta en cuanto se ejecuta, lo que debe ocurrir después de los
   montajes que rellena. También vuelve a pintar en `DOMContentLoaded`, así que funciona
-  desde `<head>`. El selector de idioma va diferido, y encuentra su contenedor ya pintado.
+  desde `<head>`.
+- **Auditoría de marcado.** `scripts/sync-suite-chrome.js` comprueba en cada página HTML
+  de la suite que están los dos montajes y los dos scripts (`suite-chrome.js`,
+  `locale-picker.js`), y falla si queda la marca antigua `data-pie-app`. Una página que
+  no puede llevarlos se lista en `AUDIT_EXEMPT` con su motivo.
 
 ## Añadir una app
 
@@ -96,21 +110,20 @@ El comentario de uso completo está al principio de `scripts/suite/suite-chrome.
 
 ## Excepciones conocidas
 
-- **sinonimia** toma los motores de estrellas y de logros, pero no suite-chrome. Su pie
-  lleva los créditos de ARASAAC y los controles offline, y su i18n no es `App.i18n`.
-- **teclatlon `index.html`** conserva su propio pie: tiene el botón de borrar el
-  progreso, que el pie compartido no ofrece.
-- **Las páginas de actividad** (`tools/`) conservan su propia cabecera. El enlace de
-  volver y el contador de estrellas dependen de la actividad, no de la suite.
-- **`doc/templates/app-template/index.html`** de la plantilla es un ejemplo del
-  marcado. Su núcleo de i18n es el de la propia app.
-- **Páginas `404.html` y `offline.html`** son autónomas: tienen sus textos escritos a
-  mano y no cargan i18n ni los scripts de la suite, así que no montan el pie. Las 404
-  de calculia, routime, okeymoney y teclatlon redirigen a la portada con
-  `meta refresh`, de modo que el pie nunca llegaría a verse.
-- **El portal de apptonomia** (`index.html`, `about/`, `legal/`, `project/`, `dev/`)
-  no monta el pie compartido: es la portada de la suite, no una app, y su pie propio
-  diría "volver al portal" en la propia portada. `team/index.html` no tiene pie.
+- **sinonimia** mantiene su propio i18n (no `App.i18n`). Su pie lleva los créditos de
+  ARASAAC y los controles offline, junto al montaje del pie.
+- **teclatlon `index.html`** conserva el botón "borrar mi progreso" junto al montaje del
+  pie, y su montaje de cabecera va dentro de su propia cabecera de herramienta.
+- **Páginas de herramienta** (`tools/`): el montaje de cabecera compartida va primero; el
+  enlace de volver, el título y el contador de estrellas siguen en el `tool-header` de la
+  propia herramienta, que depende de la actividad.
+- **`doc/templates/app-template/index.html`** es un ejemplo del marcado. Su núcleo de
+  i18n es el de la propia app.
+- **Stubs**: `apptonomia/project/index.html` (la presentación, con su pie propio) y
+  `ludia/refresh.html` y `ludia/legal/index.html` (stubs de redirección) no se auditan.
+- **Páginas 404** montan la cabecera y el pie como cualquier página. Algunas, como la de
+  calculia, redirigen además a la portada con `meta refresh`, así que quien llega a ellas
+  puede no verlas durante mucho tiempo.
 
 ## Relacionado
 

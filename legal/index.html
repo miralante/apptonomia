@@ -7,16 +7,14 @@
   <meta name="description" content="Apptonomia: qué datos guarda, dónde y por qué. Sin registro, sin cookies, sin analítica.">
   <meta name="theme-color" content="#FAF7F2">
   <link rel="icon" href="../favicon.svg?v=apptonomia-v549999c2" type="image/svg+xml">
-  <link rel="stylesheet" href="../css/styles.css?v=apptonomia-v23724cb0">
+  <link rel="stylesheet" href="../css/styles.css?v=apptonomia-vb5a756e3">
   <link rel="stylesheet" href="styles.css?v=apptonomia-v877fd086">
   <link rel="stylesheet" href="../assets/css/locale-picker.css?v=apptonomia-vcdcf216d">
 </head>
 <body>
   <div class="container legal">
     <header class="header-legal">
-      <div class="suite-controls">
-        <div id="locale-picker"></div>
-      </div>
+      <div class="suite-controls" data-suite-header data-suite-brand="off"></div>
       <div class="logo-legal">🌿</div>
       <h1 data-i18n="legal.pageTitle">Protección de datos</h1>
       <p class="tagline" data-i18n="legal.tagline">Sin registro. Sin cookies. Sin analítica.</p>
@@ -68,7 +66,7 @@
 
     </main>
 
-    <footer data-pie-app data-pie-class="pie-legal" data-pie-key="legal.footerPortal"></footer>
+    <footer class="pie-legal" data-suite-footer data-suite-base="../" data-suite-portal="https://apptonomia.uk/"></footer>
   </div>
 
   <script src="../js/bootstrap.js?v=apptonomia-veaa89609"></script>
@@ -78,6 +76,7 @@
 <!-- Controles compartidos con la pantalla principal: el desplegable de idioma
      y el ⚙️ de la cabecera, con su cajón de accesibilidad. Mismo ?v= que la
      portada, para que las dos páginas compartan la copia en caché. -->
+<script src="../js/suite-chrome.js?v=apptonomia-v40aa8123" defer></script>
 <script src="../assets/js/locale-picker-config.js?v=apptonomia-vfe532973"></script>
 <script src="../assets/js/locale-picker.js?v=apptonomia-v8851c7df" defer></script>
 </body>

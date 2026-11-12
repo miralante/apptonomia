@@ -17,10 +17,10 @@
 //
 // Node only, no dependencies. Exit code 1 when any copy differs (check mode).
 //
-// Scope: the scaffold and the five siblings that take the footer (approved).
-// sinonimia is not listed: its footer carries the ARASAAC credits and its own
-// offline controls, and its i18n is not App.i18n. Add a sibling here (one line in
-// TARGETS) only after the maintainer approves that app's rollout.
+// Scope: every suite app takes the shared footer. Each page keeps its own extra
+// elements (teclatlon's clear-progress button, sinonimia's ARASAAC credits) inside
+// the footer, next to the shared mount. The mount is the element that carries
+// data-suite-footer; it is filled only while empty.
 
 'use strict';
 
@@ -37,7 +37,10 @@ const TARGETS = [
   { app: 'routime', js: 'assets/js/suite-chrome.js', css: 'assets/css/components.css' },
   { app: 'memofun', js: 'assets/js/suite-chrome.js', css: 'assets/css/componentes.css' },
   { app: 'okeymoney', js: 'assets/js/suite-chrome.js', css: 'assets/css/componentes.css' },
-  { app: 'teclatlon', js: 'assets/js/suite-chrome.js', css: 'assets/css/components.css' }
+  { app: 'teclatlon', js: 'assets/js/suite-chrome.js', css: 'assets/css/components.css' },
+  { app: 'ludia', js: 'assets/js/suite-chrome.js', css: 'assets/css/styles.css' },
+  { app: 'apptonomia', js: 'js/suite-chrome.js', css: 'css/styles.css' },
+  { app: 'sinonimia', js: 'js/suite-chrome.js', css: 'css/styles.css' }
 ];
 
 function beginMarker() { return '/* suite:' + NAME + ':begin'; }
@@ -127,6 +130,63 @@ function main() {
     console.log(`\n${drift} copy(ies) differ from scripts/suite/. Run with --apply.`);
     process.exitCode = 1;
   }
+
+  const markupProblems = auditMarkup();
+  if (markupProblems > 0) process.exitCode = 1;
+}
+
+/* Every HTML page of every app must mount the shared footer and load its script.
+   Pages that cannot carry the footer are listed here, with the reason. */
+const AUDIT_APPS = ['apptonomia', 'calculia', 'ludia', 'memofun', 'okeymoney', 'routime', 'sinonimia', 'teclatlon'];
+const AUDIT_EXEMPT = {
+  'apptonomia/project/index.html': 'slide deck: its footer is the slide footer',
+  'ludia/refresh.html': 'redirect stub',
+  'ludia/legal/index.html': 'redirect stub to ../#privacy',
+};
+const AUDIT_SKIP_DIRS = new Set(['node_modules', '.git', '.wrangler', '.claude', '.github', 'test-results', 'graphify-out', 'graphify-out-meta', 'doc', 'tests', 'scripts']);
+
+function htmlPages(dir, out = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (AUDIT_SKIP_DIRS.has(entry.name)) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) htmlPages(full, out);
+    else if (entry.name.endsWith('.html')) out.push(full);
+  }
+  return out;
+}
+
+// Returns the number of problems. Prints one line per page that fails.
+function auditMarkup() {
+  let problems = 0;
+  let pages = 0;
+  for (const app of AUDIT_APPS) {
+    for (const file of htmlPages(path.join(SUITE_ROOT, app))) {
+      const rel = path.relative(SUITE_ROOT, file).split(path.sep).join('/');
+      if (AUDIT_EXEMPT[rel]) continue;
+      pages += 1;
+      const html = fs.readFileSync(file, 'utf8');
+      const footerMount = /<[a-z]+\b[^>]*\bdata-suite-footer\b/.test(html);
+      const headerMount = /<[a-z]+\b[^>]*\bdata-suite-header\b/.test(html);
+      const loads = /<script\b[^>]*\bsuite-chrome\.js/.test(html);
+      const picker = /<script\b[^>]*\blocale-picker\.js/.test(html);
+      const oldPie = /\bdata-pie-app\b/.test(html);
+      if (!footerMount || !headerMount || !loads || !picker || oldPie) {
+        problems += 1;
+        const why = [
+          !headerMount && 'no data-suite-header mount',
+          !footerMount && 'no data-suite-footer mount',
+          !loads && 'no suite-chrome.js script',
+          !picker && 'no locale-picker.js script',
+          oldPie && 'still uses data-pie-app',
+        ].filter(Boolean).join(', ');
+        console.log(`✗ ${rel}: ${why}`);
+      }
+    }
+  }
+  console.log(problems === 0
+    ? `ok       markup: ${pages} page(s) mount the shared header and footer and load their scripts`
+    : `\n${problems} page(s) without the shared header/footer. Fix the page or add it to AUDIT_EXEMPT with a reason.`);
+  return problems;
 }
 
 main();
