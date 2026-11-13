@@ -283,15 +283,17 @@
   <div class="suite" aria-label="Suite de proyectos">
 
     <!-- Dev-only mirror of the public portal: all sibling cards are links here.
-         The siblings that ship a /dev/ mirror of their own (Calculia, Routime,
-         Memofun) are linked to THAT mirror. The rest (Okeymoney, Sinonimia,
-         Teclatlon, Ludia) don't have a /dev/ page yet, so the card points
-         directly to the project's own subdomain — bypassing ../index.html,
-         where Okeymoney and Ludia still show as "próximamente". From here
-         you want the full catalogue, which is the whole point of this page.
+         Memofun ships a /dev/ mirror of its own, so its card is linked to
+         THAT mirror. Calculia and Routime dropped their /dev/ pages (their
+         landings now show the whole catalogue), so their cards point to the
+         project root. The rest (Okeymoney, Sinonimia, Teclatlon, Ludia) have
+         no /dev/ page either, so the card points directly to the project's
+         own subdomain — bypassing ../index.html, where Okeymoney and Ludia
+         still show as "próximamente". From here you want the full catalogue,
+         which is the whole point of this page.
          Calculia, Routime and Sinonimia keep the "Demo" badge of the public
          portal: they are reachable, but they are still being finished. -->
-    <a class="suite-card" href="https://calculia.apptonomia.uk/dev/" target="_blank" rel="noreferrer">
+    <a class="suite-card" href="https://calculia.apptonomia.uk/" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
         <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/calculia.svg?v=apptonomia-v8587a7e0" alt=""></span>
         <span class="suite-tag" data-i18n="tags.math">Matemáticas</span>
@@ -301,11 +303,11 @@
       <div class="suite-card-foot">
         <span class="suite-badge suite-badge--demo" data-i18n="home.demoBadge">Demo</span>
         <span class="sr-only" data-i18n="home.demoBadgeHelp">Demo: puedes entrar a ver el concepto, pero la aplicación todavía está en pruebas.</span>
-        <span class="suite-domain">calculia.apptonomia.uk/dev</span>
+        <span class="suite-domain">calculia.apptonomia.uk</span>
       </div>
     </a>
 
-    <a class="suite-card" href="https://routime.apptonomia.uk/dev/" target="_blank" rel="noreferrer">
+    <a class="suite-card" href="https://routime.apptonomia.uk/" target="_blank" rel="noreferrer">
       <div class="suite-card-head">
         <span class="suite-picto suite-picto--svg" aria-hidden="true"><img src="../assets/img/sibling/routime.svg?v=apptonomia-va8882152" alt=""></span>
         <span class="suite-tag" data-i18n="tags.activities">Actividades</span>
@@ -315,7 +317,7 @@
       <div class="suite-card-foot">
         <span class="suite-badge suite-badge--demo" data-i18n="home.demoBadge">Demo</span>
         <span class="sr-only" data-i18n="home.demoBadgeHelp">Demo: puedes entrar a ver el concepto, pero la aplicación todavía está en pruebas.</span>
-        <span class="suite-domain">routime.apptonomia.uk/dev</span>
+        <span class="suite-domain">routime.apptonomia.uk</span>
       </div>
     </a>
 
@@ -379,8 +381,8 @@
 <footer class="app-footer" data-suite-footer data-suite-base="../" data-suite-portal="https://apptonomia.uk/" data-suite-contact="hello@apptonomia.uk"></footer>
 
 <script src="../js/script.js?v=apptonomia-v31f82b6f"></script>
-<script src="../js/strings.es.js?v=apptonomia-v1b2ba721"></script>
-<script src="../js/strings.en.js?v=apptonomia-vc2eb0214"></script>
+<script src="../js/strings.es.js?v=apptonomia-vf85770c0"></script>
+<script src="../js/strings.en.js?v=apptonomia-vd3334cb2"></script>
 <script src="../js/prepaint.js?v=apptonomia-v0b7e3e0c"></script>
 <!-- Locale picker config (must run BEFORE assets/js/locale-picker.js).
      Without it the picker falls back to its defaults: the shared

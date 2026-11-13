@@ -68,7 +68,9 @@ test.describe('Apptonomia landing settings', () => {
       const drawer = document.getElementById('accessibility-settings');
       return {
         pickerInDrawer: drawer.contains(picker),
-        gearRowIsSuiteControls: gear.parentNode.classList.contains('suite-controls'),
+        // The gear sits in the suite chrome's controls row, which lives in the header mount.
+        gearRowIsSuiteControls: gear.parentNode.classList.contains('suite-chrome-controls')
+          && gear.parentNode.parentNode.classList.contains('suite-controls'),
         gearRowChildren: gear.parentNode.children.length,
         parentAlignsEnd: getComputedStyle(gear.parentNode).justifyContent,
       };
