@@ -80,6 +80,7 @@ if (window.App.i18n) {
       footerPortal: "Volver al portal"
     },
     about: {
+      pageTitle: 'Presentación de la suite',
       backToCover: '← Volver',
       routeNotice: 'Esta página no se enlaza desde el portal. Solo se llega escribiendo la dirección.',
       tagline: 'Una suite de aplicaciones para aprender a tu ritmo.',

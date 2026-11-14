@@ -80,6 +80,7 @@ if (window.App.i18n) {
       footerPortal: "Back to the portal"
     },
     about: {
+      pageTitle: 'Suite presentation',
       backToCover: '← Back',
       routeNotice: 'This page is not linked from the portal. The only way here is typing the address.',
       tagline: 'A suite of applications to learn at your own pace.',
