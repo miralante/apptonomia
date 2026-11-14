@@ -597,6 +597,12 @@ header.suite-header.container { padding-inline: 48px; }
 @media (max-width: 650px) {
   header.suite-header.container { padding-inline: 12px; }
 }
+/* The shared footer mount sits outside the padded .container, so it takes the
+   same side gutter as the header. */
+body > footer[data-suite-footer] { padding-inline: 48px; }
+@media (max-width: 650px) {
+  body > footer[data-suite-footer] { padding-inline: 12px; }
+}
 
 /* suite:suite-chrome:begin
    Shared header and footer of every suite app, styles. ONE definition for the

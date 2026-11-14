@@ -10,6 +10,9 @@
 <body>
   <!-- Shared header and footer of the suite. Behaviour and labels: js/suite-chrome.js.
        Labels live in strings.<locale>.js under the chrome.* keys. -->
+  <!-- The app's star counter, if it has one. data-suite-stars lets the shared
+       script move it into the header row, left of the settings gear. -->
+  <span class="stars" data-suite-stars id="stars">⭐ 0</span>
   <header data-suite-header></header>
 
   <main id="contenido" class="container">
