@@ -155,6 +155,19 @@ function htmlPages(dir, out = []) {
   return out;
 }
 
+/* A subpage's back link belongs inside its [data-suite-activity] block: the shared
+   header moves that block into the centre of the header row. A back link written
+   anywhere else (before the mount, or in <main>) stays where the page put it, so the
+   button lands above the header. True when the page breaks that rule. */
+function backLinkOutsideActivity(html) {
+  const back = html.search(/<a\b[^>]*\bclass="[^"]*\bback-link\b/);
+  if (back === -1) return false;
+  const open = html.search(/<[a-z]+\b[^>]*\bdata-suite-activity\b/);
+  if (open === -1 || open > back) return true;
+  const close = html.indexOf('</div>', open);
+  return close === -1 || back > close;
+}
+
 // Returns the number of problems. Prints one line per page that fails.
 function auditMarkup() {
   let problems = 0;
@@ -170,7 +183,8 @@ function auditMarkup() {
       const loads = /<script\b[^>]*\bsuite-chrome\.js/.test(html);
       const picker = /<script\b[^>]*\blocale-picker\.js/.test(html);
       const oldPie = /\bdata-pie-app\b/.test(html);
-      if (!footerMount || !headerMount || !loads || !picker || oldPie) {
+      const backOutside = backLinkOutsideActivity(html);
+      if (!footerMount || !headerMount || !loads || !picker || oldPie || backOutside) {
         problems += 1;
         const why = [
           !headerMount && 'no data-suite-header mount',
@@ -178,6 +192,7 @@ function auditMarkup() {
           !loads && 'no suite-chrome.js script',
           !picker && 'no locale-picker.js script',
           oldPie && 'still uses data-pie-app',
+          backOutside && 'back link outside its data-suite-activity block',
         ].filter(Boolean).join(', ');
         console.log(`✗ ${rel}: ${why}`);
       }
