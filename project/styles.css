@@ -987,7 +987,12 @@
 @media (max-width: 640px) {
   .deck-topbar { padding: 10px 14px; gap: 8px; }
   .deck-context { display: none; }
-  .deck-stage { padding: 24px 14px 60px; }
+  .deck-stage { padding: 24px 14px 60px; max-width: 100%; }
+  .deck-footer { max-width: 100%; }
+  .slide-org { grid-template-columns: minmax(0, 1fr); }
+  .slide-org > * { min-width: 0; }
+  .slide-org-children { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .slide-org-children li { min-width: 0; overflow-wrap: anywhere; }
   .slide { padding: 28px 22px; border-radius: 16px; margin-bottom: 32px; }
   .slide-cover { padding: 36px 22px; }
   .slide-cover .slide-cover-title { font-size: 2.4rem; }

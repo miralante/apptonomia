@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#0E1B3A">
   <link rel="icon" href="../favicon.svg?v=apptonomia-v549999c2" type="image/svg+xml">
   <link rel="stylesheet" href="../css/styles.css?v=apptonomia-vc18632e6">
-  <link rel="stylesheet" href="styles.css?v=apptonomia-v9d906919">
+  <link rel="stylesheet" href="styles.css?v=apptonomia-v3206715d">
   <link rel="stylesheet" href="../assets/css/locale-picker.css?v=apptonomia-v29c29c27">
 </head>
 <body class="deck-body">
@@ -30,9 +30,7 @@
     <span class="deck-context" data-i18n="deck.contextLabel">Deck institucional</span>
   </div>
   <nav class="deck-toolbar" aria-label="Controles de la presentación">
-    <div class="suite-controls">
-      <div id="locale-picker"></div>
-    </div>
+    <div class="suite-controls" data-suite-header data-suite-brand="off"></div>
     <button type="button" class="deck-btn deck-btn-ghost" id="btnPrev" aria-label="Diapositiva anterior">
       <span aria-hidden="true">⇐</span>
     </button>
@@ -551,12 +549,15 @@
   </div>
 </footer>
 
+<footer class="app-footer" data-suite-footer data-suite-base="../" data-suite-portal="https://apptonomia.uk/" data-suite-contact="hello@apptonomia.uk"></footer>
+
 <script src="app.js?v=apptonomia-vd1f0b83b"></script>
 <script src="strings.es.js?v=apptonomia-v229be344"></script>
 <script src="strings.en.js?v=apptonomia-v9e294be3"></script>
 <!-- Controles compartidos con la pantalla principal: el desplegable de idioma
      y el ⚙️ de la cabecera, con su cajón de accesibilidad. Mismo ?v= que la
      portada, para que las dos páginas compartan la copia en caché. -->
+<script src="../js/suite-chrome.js?v=apptonomia-v231fe1de" defer></script>
 <script src="../assets/js/locale-picker-config.js?v=apptonomia-vfe532973"></script>
 <script src="../assets/js/locale-picker.js?v=apptonomia-v8851c7df" defer></script>
 </body>
