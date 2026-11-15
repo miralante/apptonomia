@@ -94,6 +94,14 @@ contract. The full usage comment is at the top of `scripts/suite/suite-chrome.js
   and fails on the old `data-pie-app` marker. A page that cannot carry them is listed
   in `AUDIT_EXEMPT` with its reason.
 
+- **Back link.** A subpage's `.back-link` returns to the previous level: when the reader
+  came from another page of the same app (same-origin referrer and a history entry), it
+  goes back to that screen with `history.back()`. Otherwise it follows its `href`, the
+  parent level. The `href` stays, so a middle click or a missing script still works.
+- **Progress bar.** An activity's progress bar carries `data-suite-progress` and is moved
+  right under the header, before `<main>`. It follows the screen it sat in (its
+  `<section>`): hidden and shown with that screen. It is moved, not copied.
+
 ## Adding an app
 
 1. Get the maintainer's approval for the rollout. The rule for cross-project
