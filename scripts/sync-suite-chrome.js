@@ -126,6 +126,7 @@ function main() {
     }
   }
 
+  drift += syncMarkupCheck(doApply);
   if (!doApply && drift > 0) {
     console.log(`\n${drift} copy(ies) differ from scripts/suite/. Run with --apply.`);
     process.exitCode = 1;
@@ -135,72 +136,53 @@ function main() {
   if (markupProblems > 0) process.exitCode = 1;
 }
 
-/* Every HTML page of every app must mount the shared footer and load its script.
-   Pages that cannot carry the footer are listed here, with the reason. */
+/* Every HTML page of every app must mount the shared header and footer as the component
+   expects. The rules live in scripts/suite/suite-markup.js. Each app carries a copy of
+   that file at scripts/checks/suite-markup.js, kept identical by this script, so the app's
+   own CI runs the same check on every push and PR. */
 const AUDIT_APPS = ['apptonomia', 'calculia', 'ludia', 'memofun', 'okeymoney', 'routime', 'sinonimia', 'teclatlon'];
-const AUDIT_EXEMPT = {
-  'apptonomia/project/index.html': 'slide deck: its footer is the slide footer',
-  'ludia/refresh.html': 'redirect stub',
-  'ludia/legal/index.html': 'redirect stub to ../#privacy',
-};
-const AUDIT_SKIP_DIRS = new Set(['node_modules', '.git', '.wrangler', '.claude', '.github', 'test-results', 'graphify-out', 'graphify-out-meta', 'doc', 'tests', 'scripts']);
+const { auditApp } = require('./suite/suite-markup.js');
+const MARKUP_CHECK = path.join('scripts', 'checks', 'suite-markup.js');
 
-function htmlPages(dir, out = []) {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (AUDIT_SKIP_DIRS.has(entry.name)) continue;
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) htmlPages(full, out);
-    else if (entry.name.endsWith('.html')) out.push(full);
+// Each app's copy of the markup check must equal the canonical file. Returns the drifted copies.
+function syncMarkupCheck(doApply) {
+  const expected = fs.readFileSync(path.join(SUITE_DIR, 'suite-markup.js'), 'utf8');
+  let drift = 0;
+  for (const app of AUDIT_APPS) {
+    const rel = path.join(app, MARKUP_CHECK);
+    const dest = path.join(SUITE_ROOT, rel);
+    const current = readOr(dest);
+    if (current === expected) {
+      console.log(`ok       ${rel}  [suite-markup (check)]`);
+      continue;
+    }
+    drift += 1;
+    if (doApply) {
+      fs.mkdirSync(path.dirname(dest), { recursive: true });
+      fs.writeFileSync(dest, expected, 'utf8');
+      console.log(`${current === null ? 'created ' : 'updated '} ${rel}  [suite-markup (check)]`);
+    } else {
+      console.log(`${current === null ? 'missing ' : 'drift   '} ${rel}  [suite-markup (check)]`);
+    }
   }
-  return out;
+  return drift;
 }
 
-/* A subpage's back link belongs inside its [data-suite-activity] block: the shared
-   header moves that block into the centre of the header row. A back link written
-   anywhere else (before the mount, or in <main>) stays where the page put it, so the
-   button lands above the header. True when the page breaks that rule. */
-function backLinkOutsideActivity(html) {
-  const back = html.search(/<a\b[^>]*\bclass="[^"]*\bback-link\b/);
-  if (back === -1) return false;
-  const open = html.search(/<[a-z]+\b[^>]*\bdata-suite-activity\b/);
-  if (open === -1 || open > back) return true;
-  const close = html.indexOf('</div>', open);
-  return close === -1 || back > close;
-}
-
-// Returns the number of problems. Prints one line per page that fails.
+// Returns the number of problems across the suite. Prints one line per page that fails.
 function auditMarkup() {
   let problems = 0;
   let pages = 0;
   for (const app of AUDIT_APPS) {
-    for (const file of htmlPages(path.join(SUITE_ROOT, app))) {
-      const rel = path.relative(SUITE_ROOT, file).split(path.sep).join('/');
-      if (AUDIT_EXEMPT[rel]) continue;
-      pages += 1;
-      const html = fs.readFileSync(file, 'utf8');
-      const footerMount = /<[a-z]+\b[^>]*\bdata-suite-footer\b/.test(html);
-      const headerMount = /<[a-z]+\b[^>]*\bdata-suite-header\b/.test(html);
-      const loads = /<script\b[^>]*\bsuite-chrome\.js/.test(html);
-      const picker = /<script\b[^>]*\blocale-picker\.js/.test(html);
-      const oldPie = /\bdata-pie-app\b/.test(html);
-      const backOutside = backLinkOutsideActivity(html);
-      if (!footerMount || !headerMount || !loads || !picker || oldPie || backOutside) {
-        problems += 1;
-        const why = [
-          !headerMount && 'no data-suite-header mount',
-          !footerMount && 'no data-suite-footer mount',
-          !loads && 'no suite-chrome.js script',
-          !picker && 'no locale-picker.js script',
-          oldPie && 'still uses data-pie-app',
-          backOutside && 'back link outside its data-suite-activity block',
-        ].filter(Boolean).join(', ');
-        console.log(`✗ ${rel}: ${why}`);
-      }
+    const result = auditApp(path.join(SUITE_ROOT, app), app);
+    pages += result.pages;
+    for (const p of result.problems) {
+      problems += 1;
+      console.log(`✗ ${app}/${p.rel}: ${p.why}`);
     }
   }
   console.log(problems === 0
-    ? `ok       markup: ${pages} page(s) mount the shared header and footer and load their scripts`
-    : `\n${problems} page(s) without the shared header/footer. Fix the page or add it to AUDIT_EXEMPT with a reason.`);
+    ? `ok       markup: ${pages} page(s) mount the shared header and footer as the component expects`
+    : `\n${problems} page(s) without the shared header/footer rules. Fix the page, or add it to EXEMPT in scripts/suite/suite-markup.js with a reason.`);
   return problems;
 }
 

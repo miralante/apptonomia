@@ -91,6 +91,9 @@ jobs:
       - name: Scan landing for disability/OT/minors mentions
         run: node scripts/check-forbidden-terms.js
 
+      - name: Suite header and footer markup
+        run: node scripts/checks/suite-markup.js
+
   cache-bump:
     name: sw.js VERSION bump check (skipped — portal has no sw.js)
     runs-on: ubuntu-latest
