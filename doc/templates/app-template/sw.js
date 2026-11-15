@@ -25,7 +25,7 @@
  * files listed below.
  */
 
-var VERSION = '{{SLUG}}-v2';
+var VERSION = '{{SLUG}}-v3';
 var ARCHIVOS = [
   './',
   './index.html',
