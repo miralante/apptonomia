@@ -97,10 +97,10 @@ El comentario de uso completo está al principio de `scripts/suite/suite-chrome.
   `locale-picker.js`), y falla si queda la marca antigua `data-pie-app`. Una página que
   no puede llevarlos se lista en `AUDIT_EXEMPT` con su motivo.
 
-- **Enlace de volver.** El enlace `.back-link` de una subpágina lleva al nivel anterior:
-  si el lector llega desde otra página de la misma app (referrer del mismo origen y
-  entrada en el historial), vuelve a esa pantalla con `history.back()`. Si no, sigue su
-  `href`, que es el nivel padre. El `href` se mantiene para el clic central y sin script.
+- **Enlace de volver.** El enlace `.back-link` de una subpágina es un enlace normal a su
+  nivel padre, su `href`. Nunca vuelve por el historial del navegador: siempre lleva un
+  nivel arriba, aunque la página se abriera en una pestaña nueva. `suite-markup.js`
+  comprueba que el destino existe y que lista la actividad.
 - **Barra de progreso.** Una barra de progreso de actividad lleva `data-suite-progress` y
   se mueve justo debajo de la cabecera, antes de `<main>`. Sigue a la pantalla en la que
   estaba (su `<section>`): se oculta y se muestra con ella. Se mueve, no se copia.
