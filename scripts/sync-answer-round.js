@@ -34,8 +34,10 @@ const APPS = [
   { app: 'okeymoney', js: 'assets/js/feedback.js', css: 'assets/css/componentes.css' },
   { app: 'routime', js: 'assets/js/feedback.js', css: 'assets/css/components.css' },
   { app: 'teclatlon', js: 'assets/js/feedback.js', css: 'assets/css/components.css' },
-  // The scaffold for new apps: JS only (it has no stylesheet of its own).
-  { app: 'apptonomia/doc/templates', js: 'js/feedback.js', css: null }
+  // The scaffold for new apps: its JS carries every block; its stylesheet only the
+  // achievement screen (celebrate), the one component a new app starts with.
+  { app: 'apptonomia/doc/templates', js: 'js/feedback.js', css: null },
+  { app: 'apptonomia/doc/templates/app-template', js: null, css: 'assets/css/suite-base.css', only: ['celebrate'] }
 ];
 
 // Canonical block files and the kind of file they are copied into.
@@ -93,6 +95,7 @@ function main() {
     for (const block of BLOCKS) {
       const target = targetFor(app, block);
       if (!target) continue; // this target has no file of that kind
+      if (app.only && !app.only.includes(block.name)) continue;
       const rel = path.join(app.app, target);
       const dest = path.join(SUITE_ROOT, app.app, target);
       const label = `${block.name} (${block.kind})`;
