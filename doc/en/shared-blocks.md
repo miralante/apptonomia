@@ -134,6 +134,8 @@ contract. The full usage comment is at the top of `scripts/suite/suite-chrome.js
 ## Related
 
 - [`../../scripts/suite/`](../../scripts/suite/) — the canonical sources.
+- [`navigation-flow.md`](navigation-flow.md) — the navigation flow the achievement
+  screen uses (the `App.navigation` object lives in the **celebrate** block).
 - [`crear-app.md`](crear-app.md) — the recipe for a new sibling, which runs the
   sync scripts as part of the bootstrap.
 - [`guia-de-cumplimiento.md`](guia-de-cumplimiento.md) — the suite compliance

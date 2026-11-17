@@ -6,6 +6,9 @@
   <title>{{DISPLAY_ES}}</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="manifest" href="manifest.json">
+  <!-- Navigation flow (doc/en/navigation-flow.md). An activity page names the next
+       point of the flow here; without it, the achievement screen goes to the back link.
+       <link rel="next" href="../next-activity/"> -->
 </head>
 <body>
   <!-- Shared header and footer of the suite. Behaviour and labels: js/suite-chrome.js.
@@ -16,7 +19,9 @@
   <header data-suite-header></header>
 
   <main id="contenido" class="suite-body">
-    <!-- The app's own content goes here. -->
+    <!-- The app's own content goes here. An activity page links up with the back link
+         in its header (<a class="back-link" href="../">), which is where the achievement
+         screen goes when the activity has no next point. -->
   </main>
 
   <footer data-suite-footer

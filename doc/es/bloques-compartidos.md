@@ -136,6 +136,8 @@ El comentario de uso completo está al principio de `scripts/suite/suite-chrome.
 ## Relacionado
 
 - [`../../scripts/suite/`](../../scripts/suite/) — las fuentes canónicas.
+- [`flujo-navegacion.md`](flujo-navegacion.md) — el flujo de navegación que usa la
+  pantalla de logros (el objeto `App.navigation` vive en el bloque **celebrate**).
 - [`crear-app.md`](crear-app.md) — la receta para una hermana nueva, que ejecuta los
   scripts de sincronización como parte del arranque.
 - [`guia-de-cumplimiento.md`](guia-de-cumplimiento.md) — la lista de cumplimiento de la
