@@ -34,6 +34,9 @@ const APPS = [
   { app: 'okeymoney', js: 'assets/js/feedback.js', css: 'assets/css/componentes.css' },
   { app: 'routime', js: 'assets/js/feedback.js', css: 'assets/css/components.css' },
   { app: 'teclatlon', js: 'assets/js/feedback.js', css: 'assets/css/components.css' },
+  // sinonimia has no answer round or reward screen: it carries only the achievement
+  // screen (celebrate), for the sentence star. Its own i18n, so no other block.
+  { app: 'sinonimia', js: 'js/feedback.js', css: 'css/styles.css', only: ['celebrate'] },
   // The scaffold for new apps: its JS carries every block; its stylesheet only the
   // achievement screen (celebrate), the one component a new app starts with.
   { app: 'apptonomia/doc/templates', js: 'js/feedback.js', css: null },
