@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "lint": "node scripts/check.js",
+    "lint:markup": "node scripts/checks/suite-markup.js",
     "test:ui": "playwright test",
     "test:contrast": "powershell -ExecutionPolicy Bypass -File ..\\contrast\\check-contrast.ps1"
   },

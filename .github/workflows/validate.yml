@@ -45,7 +45,7 @@ concurrency:
 
 jobs:
   check:
-    name: node scripts/check.js
+    name: npm run lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -57,15 +57,17 @@ jobs:
           node-version: "20"
 
       - name: Run structural and i18n checks
-        # NOTE: this repo intentionally has no scripts/check.js —
-        # the landing is a single static page (see README.md). The
-        # job is kept as a no-op marker so the `Validate` workflow
-        # name matches the rest of the suite; the substantive audit
-        # lives in the `forbidden-terms` job below.
-        # The whole scalar is quoted: an unquoted `echo "a: b"` makes
-        # YAML read the `: ` as a mapping separator and refuse to parse
-        # the file, which fails the run before any job starts.
-        run: 'echo "apptonomia: no scripts/check.js by design; see forbidden-terms job"'
+        # The landing ships its own scripts/check.js — added so that every
+        # sibling in the suite exposes the same `node scripts/check.js`
+        # entry point (JS syntax, Cloudflare per-file limits, CSP inline
+        # scripts, file-size budget).
+        #
+        # It was never wired into this workflow: the job below stayed a
+        # no-op from the days when the repo genuinely had no checker, so
+        # the portal's own structural gate ran nowhere but on a
+        # developer's machine. `npm run lint` is the same command the
+        # other seven siblings run in their own `check` job.
+        run: npm run lint
 
   forbidden-terms:
     name: forbidden-terms scan
@@ -131,12 +133,60 @@ jobs:
       - name: Scan for accidentally committed secrets
         run: node scripts/scan-secrets.js
 
+  template:
+    name: new-app template produces a passing app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Playwright (CI only, not a project dependency)
+        run: |
+          npm install -g playwright@1.63.0
+          npx playwright install --with-deps chromium
+
+      - name: Generate an app from doc/templates and run its gates
+        # scripts/new-app.js into a temp folder, then its check.js, smoke-sw.js,
+        # suite-markup.js, scan-secrets.js and Playwright smoke suite.
+        run: node scripts/check-template.js --ui
+
+  playwright:
+    name: Playwright UI suite
+    # The portal's own browser regression suite (tests/*.spec.js): slides,
+    # keyboard navigation and the settings drawer (theme, contrast, text
+    # size, language inside the drawer). It was never wired into this
+    # workflow, so a stale expectation about the shared chrome could stay
+    # red in the repo for a week with every job green.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install UI test dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright UI suite
+        run: npm run test:ui
+
   deploy:
     name: deploy to Cloudflare Workers
     # Only deploy on push to main (not on pull requests).
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: [check, forbidden-terms, cache-bump, secrets-scan]
+    needs: [check, forbidden-terms, cache-bump, secrets-scan, playwright]
     environment: production
     steps:
       - name: Checkout

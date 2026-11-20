@@ -6,7 +6,7 @@
 
 ## Comprobaciones
 
-- [ ] `node scripts/check.js` pasa en local (si existe).
+- [ ] `npm run lint` pasa en local.
 - [ ] Si has modificado el shell del portal, has actualizado la
       documentación canónica correspondiente (`doc/es/`).
 - [ ] Si has cambiado contenido de producto, los strings `es`/`en`

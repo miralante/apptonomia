@@ -202,16 +202,34 @@ ships plain HTML/CSS/JS.
   [graphify-out-meta/](graphify-out-meta/). This is the cross-project
   index (one node per project + similarity edges); the deep graphs
   live inside each project's own `graphify-out/`.
-- **Per-project validation** (each project has its own
-  `node scripts/check.js`):
+- **Per-project validation** (each project ships its own structural
+  gate; every app exposes it under the same npm script name, so the
+  command never depends on remembering which folder you are in):
   ```
-  cd ../calculia && node scripts/check.js
-  cd ../memofun   && node scripts/check.js
-  cd ../okeymoney && node scripts/check.js
-  cd ../sinonimia && node scripts/check.js
-  cd ../teclatlon && node scripts/check.js
-  cd ../routime   && node scripts/check.js
+  cd ../apptonomia && npm run lint
+  cd ../calculia   && npm run lint
+  cd ../ludia      && npm run lint
+  cd ../memofun    && npm run lint
+  cd ../okeymoney  && npm run lint
+  cd ../routime    && npm run lint
+  cd ../sinonimia  && npm run lint
+  cd ../teclatlon  && npm run lint
   ```
+  `npm run lint` is `node scripts/check.js`; `npm run lint:markup` is
+  `node scripts/checks/suite-markup.js` (the shared header/footer
+  component check). Both run in each app's own CI
+  (`.github/workflows/validate.yml`).
+- **Whole-suite validation** (from the metaproject root, one command
+  for all eight apps, with a summary and a non-zero exit code):
+  ```
+  node scripts/lint-suite.js
+  node scripts/lint-suite.js --only calculia,memofun
+  ```
+  This is the local, cross-repo view; it does not replace the
+  per-app CI, because every app is its own git repository.
+  Note: `sinonimia` is by far the slowest app — it syntax-checks
+  ~3,000 dictionary shards and then loads them all into memory, which
+  takes far longer on a OneDrive-synced folder than in CI on Linux.
 
 ### A.2 Mandatory workflow
 
@@ -252,7 +270,7 @@ git log --oneline -3
 
 #### A.2.3 Before finishing
 
-1. Run any relevant per-sibling `node scripts/check.js` (each
+1. Run any relevant per-sibling `npm run lint` (each
    sibling's only "test" step).
 2. Report only verifications you actually ran; clearly flag any
    remaining manual tests.
@@ -466,9 +484,10 @@ the metaproject's
 [`doc/en/crear-app.md`](doc/en/crear-app.md) (mirror
 [`doc/es/crear-app.md`](doc/es/crear-app.md)) plus the file
 scaffolds under
-[`doc/templates/`](doc/templates/) — `settings/index.html`,
-`settings/app.js`, `settings/strings.<locale>.js`,
-`settings/styles.css`, the `localStorage`-prefix convention, the
+[`doc/templates/`](doc/templates/) — `config/index.html` and
+`config/app.js` (the route the shared footer links to as "Ajustes",
+`<base>config/`; its strings live under `config.*` in the app's
+`strings.<locale>.js`), the `localStorage`-prefix convention, the
 two-step confirmation, the no-analytics / no-network rule, the
 "never `localStorage.clear()`" rule, and the i18n parity rule all
 live in the canonical documentation. New siblings are expected

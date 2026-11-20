@@ -6,7 +6,7 @@
 
 ## Checks
 
-- [ ] `node scripts/check.js` passes locally (if present).
+- [ ] `npm run lint` passes locally.
 - [ ] If you modified portal shell files, you updated the relevant
       canonical documentation in `doc/en/`.
 - [ ] If you changed product content, the `es`/`en` strings are in
