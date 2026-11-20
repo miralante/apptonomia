@@ -69,6 +69,15 @@ jobs:
         # other seven siblings run in their own `check` job.
         run: npm run lint
 
+      - name: Shared header/footer markup
+        run: npm run lint:markup
+
+      - name: Template: the new app must pass its own gates
+        # Creates a throw-away app from doc/templates/ and runs its
+        # structural gates inside it. Without this step the template
+        # could break and only the next new sibling would find out.
+        run: node scripts/check-template.js
+
   forbidden-terms:
     name: forbidden-terms scan
     # Enforces SPEC.md §4 ("Mandatory rule: zero mentions in the
@@ -92,9 +101,6 @@ jobs:
 
       - name: Scan landing for disability/OT/minors mentions
         run: node scripts/check-forbidden-terms.js
-
-      - name: Suite header and footer markup
-        run: node scripts/checks/suite-markup.js
 
   cache-bump:
     name: sw.js VERSION bump check (skipped — portal has no sw.js)
