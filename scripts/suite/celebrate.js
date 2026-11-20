@@ -27,8 +27,21 @@
      navigation-flow.md). "A por más" goes back there: to the hub, restored where the card
      was when it was pressed (history back), when the hub is the page the person came from;
      otherwise to the hub's link. */
+  /* The path of a URL, with a trailing "index.html" dropped: the shared header writes a
+     folder link ("../") as "../index.html", while the referrer of a hub reached by its
+     folder is "/hub/". Both name the same page and must compare equal. */
   function urlPath(u) {
-    try { return u ? new URL(u, window.location.href).pathname : null; } catch (e) { return null; }
+    try {
+      return u ? new URL(u, window.location.href).pathname.replace(/\/index\.html$/, '/') : null;
+    } catch (e) { return null; }
+  }
+
+  /* The app's text for `key`, or `fallback` when the app has no such string. An i18n core
+     returns '' or the key itself for a missing string; neither must reach the screen. */
+  function textOf(key, fallback) {
+    var i18n = window.App.i18n;
+    var value = i18n && typeof i18n.t === 'function' ? i18n.t(key) : '';
+    return value && value !== key ? value : fallback;
   }
 
   function pageHref(selector) {
@@ -76,16 +89,15 @@
        message ("¡Has terminado!", "¡Ronda completada!") is replaced by it, because the star
        already says the round is done; an app's own message is kept after it. */
     if (window.ApptonomiaStars && window.ApptonomiaStars.takeNewStar && window.ApptonomiaStars.takeNewStar()) {
-      var i18n = window.App.i18n;
-      var star = i18n ? i18n.t('core.starEarned') : '';
-      if (star && star !== 'core.starEarned') {
-        var generic = i18n ? [i18n.t('core.roundComplete'), i18n.t('endTitle')] : [];
+      var star = textOf('core.starEarned', '');
+      if (star) {
+        var generic = [textOf('core.roundComplete', ''), textOf('endTitle', '')].filter(Boolean);
         message = (!message || generic.indexOf(message) !== -1) ? star : (star + ' ' + message).trim();
       }
     }
     if (restDue()) {
-      var rest = window.App.i18n ? window.App.i18n.t('core.rest') : '';
-      if (rest) message = message + ' ' + rest;
+      var rest = textOf('core.rest', '');
+      if (rest) message = (message + ' ' + rest).trim();
       restDone();
     }
     var stage = document.querySelector('main') || document.body;
@@ -107,7 +119,7 @@
     goalEl.textContent = goal || '';
     goalEl.classList.toggle('hidden', !goal);
     var button = layer.querySelector('.celebration-more');
-    button.textContent = window.App.i18n ? window.App.i18n.t('core.moreGoal') : 'A por más';
+    button.textContent = textOf('core.moreGoal', 'A por más');
     button.onclick = function () {
       releaseBackStep();
       if (after) {

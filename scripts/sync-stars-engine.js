@@ -33,12 +33,23 @@ function sha256(file) {
   return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 }
 
+// --only <app>[,<app>...] limits the run to those targets (e.g. --only apptonomia/doc/templates),
+// so the canonical source can reach the template without touching the sibling repos.
+function onlyFilter() {
+  const at = process.argv.indexOf('--only');
+  if (at === -1) return () => true;
+  const names = String(process.argv[at + 1] || '').split(',').filter(Boolean);
+  return (app) => names.includes(app);
+}
+
 function main() {
   const apply = process.argv.includes('--apply');
+  const wanted = onlyFilter();
   const canonicalHash = sha256(CANONICAL);
   let drift = 0;
 
   for (const t of TARGETS) {
+    if (!wanted(t.app)) continue;
     const dest = path.join(SUITE_ROOT, t.app, t.dest);
     const rel = path.join(t.app, t.dest);
     const exists = fs.existsSync(dest);

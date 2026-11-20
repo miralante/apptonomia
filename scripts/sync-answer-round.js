@@ -40,7 +40,7 @@ const APPS = [
   // The scaffold for new apps: its JS carries every block; its stylesheet only the
   // achievement screen (celebrate), the one component a new app starts with.
   { app: 'apptonomia/doc/templates', js: 'js/feedback.js', css: null },
-  { app: 'apptonomia/doc/templates/app-template', js: null, css: 'assets/css/suite-base.css', only: ['celebrate'] }
+  { app: 'apptonomia/doc/templates', js: null, css: 'assets/css/suite-base.css', only: ['celebrate'] }
 ];
 
 // Canonical block files and the kind of file they are copied into.
@@ -90,11 +90,22 @@ function targetFor(app, block) {
   return block.kind === 'js' ? app.js : app.css;
 }
 
+// --only <app>[,<app>...] limits the run to those targets (e.g. --only apptonomia/doc/templates),
+// so the canonical source can reach the template without touching the sibling repos.
+function onlyFilter() {
+  const at = process.argv.indexOf('--only');
+  if (at === -1) return () => true;
+  const names = String(process.argv[at + 1] || '').split(',').filter(Boolean);
+  return (app) => names.includes(app);
+}
+
 function main() {
   const doApply = process.argv.includes('--apply');
+  const wanted = onlyFilter();
   let drift = 0;
 
   for (const app of APPS) {
+    if (!wanted(app.app)) continue;
     for (const block of BLOCKS) {
       const target = targetFor(app, block);
       if (!target) continue; // this target has no file of that kind

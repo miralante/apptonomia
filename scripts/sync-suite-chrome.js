@@ -78,13 +78,24 @@ function readOr(file) {
   return fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null;
 }
 
+// --only <app>[,<app>...] limits the run to those targets (e.g. --only apptonomia/doc/templates),
+// so the canonical source can reach the template without touching the sibling repos.
+function onlyFilter() {
+  const at = process.argv.indexOf('--only');
+  if (at === -1) return () => true;
+  const names = String(process.argv[at + 1] || '').split(',').filter(Boolean);
+  return (app) => names.includes(app);
+}
+
 function main() {
   const doApply = process.argv.includes('--apply');
+  const wanted = onlyFilter();
   const expectedJs = canonicalJs();
   const expectedCss = canonicalCssBlock();
   let drift = 0;
 
   for (const t of TARGETS) {
+    if (!wanted(t.app)) continue;
     // JS: the whole file is the block.
     const jsRel = path.join(t.app, t.js);
     const jsDest = path.join(SUITE_ROOT, t.app, t.js);
@@ -140,7 +151,8 @@ function main() {
    expects. The rules live in scripts/suite/suite-markup.js. Each app carries a copy of
    that file at scripts/checks/suite-markup.js, kept identical by this script, so the app's
    own CI runs the same check on every push and PR. */
-const AUDIT_APPS = ['apptonomia', 'calculia', 'ludia', 'memofun', 'okeymoney', 'routime', 'sinonimia', 'teclatlon'];
+// apptonomia/doc/templates is the scaffold of every new app: its pages must pass too.
+const AUDIT_APPS = ['apptonomia', 'apptonomia/doc/templates', 'calculia', 'ludia', 'memofun', 'okeymoney', 'routime', 'sinonimia', 'teclatlon'];
 const { auditApp } = require('./suite/suite-markup.js');
 const MARKUP_CHECK = path.join('scripts', 'checks', 'suite-markup.js');
 
@@ -148,7 +160,9 @@ const MARKUP_CHECK = path.join('scripts', 'checks', 'suite-markup.js');
 function syncMarkupCheck(doApply) {
   const expected = fs.readFileSync(path.join(SUITE_DIR, 'suite-markup.js'), 'utf8');
   let drift = 0;
+  const wanted = onlyFilter();
   for (const app of AUDIT_APPS) {
+    if (!wanted(app)) continue;
     const rel = path.join(app, MARKUP_CHECK);
     const dest = path.join(SUITE_ROOT, rel);
     const current = readOr(dest);
@@ -172,7 +186,9 @@ function syncMarkupCheck(doApply) {
 function auditMarkup() {
   let problems = 0;
   let pages = 0;
+  const wanted = onlyFilter();
   for (const app of AUDIT_APPS) {
+    if (!wanted(app)) continue;
     const result = auditApp(path.join(SUITE_ROOT, app), app);
     pages += result.pages;
     for (const p of result.problems) {

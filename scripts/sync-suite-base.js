@@ -4,7 +4,7 @@
 // Keeps the suite base stylesheet identical in every app that adopts it.
 // The canonical source is the app template:
 //
-//   doc/templates/app-template/assets/css/suite-base.css
+//   doc/templates/assets/css/suite-base.css
 //     -> <app>/assets/css/suite-base.css   (whole file, copied byte for byte)
 //
 // Each app's brand (assets/css/brand.css) is NOT touched: it is owned by the app.
@@ -21,7 +21,7 @@ const fs = require('fs');
 const path = require('path');
 
 const SUITE_ROOT = path.resolve(__dirname, '..', '..');
-const CANONICAL = path.join(SUITE_ROOT, 'apptonomia', 'doc', 'templates', 'app-template', 'assets', 'css', 'suite-base.css');
+const CANONICAL = path.join(SUITE_ROOT, 'apptonomia', 'doc', 'templates', 'assets', 'css', 'suite-base.css');
 const DEST = 'assets/css/suite-base.css';
 
 // Apps that have adopted the template. Add an app here when it adopts it.
@@ -31,12 +31,23 @@ function readOr(file) {
   return fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null;
 }
 
+// --only <app>[,<app>...] limits the run to those targets (e.g. --only apptonomia/doc/templates),
+// so the canonical source can reach the template without touching the sibling repos.
+function onlyFilter() {
+  const at = process.argv.indexOf('--only');
+  if (at === -1) return () => true;
+  const names = String(process.argv[at + 1] || '').split(',').filter(Boolean);
+  return (app) => names.includes(app);
+}
+
 function main() {
   const doApply = process.argv.includes('--apply');
+  const wanted = onlyFilter();
   const expected = fs.readFileSync(CANONICAL, 'utf8');
   let drift = 0;
 
   for (const app of TARGETS) {
+    if (!wanted(app)) continue;
     const rel = path.join(app, DEST);
     const dest = path.join(SUITE_ROOT, app, DEST);
     const current = readOr(dest);

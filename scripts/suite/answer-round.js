@@ -13,7 +13,8 @@
 
   /* The label of the acknowledgement button, in the active language. */
   function textoEntendido() {
-    return window.App.i18n ? App.i18n.t('core.understood') : 'Entendido';
+    var value = window.App.i18n ? App.i18n.t('core.understood') : '';
+    return value && value !== 'core.understood' ? value : 'Entendido';
   }
 
   /* Keeps the reading pause in a stable place, before the option group.
@@ -43,6 +44,13 @@
    * @param {function} [alConfirmar] - called after the person taps «Entendido»
    */
   function lockUntilAck(buttons, zona, alConfirmar) {
+    /* Without a zone there is no «Entendido» to bring the answers back, so nothing is
+       locked: locking here would leave the round with no answer to press. */
+    if (!zona) return;
+    /* A pause already waiting in this zone (two wrong answers before «Entendido») is
+       released first, so its buttons and listeners are not lost; the new pause then
+       locks them again. */
+    if (typeof zona.__suiteRelease === 'function') zona.__suiteRelease();
     var opciones = buttons && typeof buttons.length === 'number' ? buttons : (buttons ? [buttons] : []);
     var pendientes = Array.prototype.filter.call(opciones, function (b) {
       return b && !b.disabled && b.getAttribute('aria-disabled') !== 'true';
@@ -61,8 +69,9 @@
       b.addEventListener('click', bloquearEvento, true);
       b.addEventListener('keydown', bloquearEvento, true);
     });
-    if (!zona) return;
     colocarZonaAntesDeOpciones(opciones, zona);
+    /* The zone holds the hint: it must show, also after an earlier «Entendido» hid it. */
+    zona.classList.remove('hidden');
     /* The answers are hidden while the hint shows, not only disabled. */
     var ocultas = Array.prototype.filter.call(opciones, function (b) {
       return b && !b.classList.contains('hidden');
@@ -77,7 +86,8 @@
     }
     boton.textContent = textoEntendido();
     boton.classList.remove('hidden');
-    boton.onclick = function () {
+    function release() {
+      zona.__suiteRelease = null;
       pendientes.forEach(function (b) {
         b.removeEventListener('click', bloquearEvento, true);
         b.removeEventListener('keydown', bloquearEvento, true);
@@ -86,6 +96,10 @@
         b.classList.remove('bloqueada');
       });
       ocultas.forEach(function (b) { b.classList.remove('hidden'); });
+    }
+    zona.__suiteRelease = release;
+    boton.onclick = function () {
+      release();
       boton.classList.add('hidden');
       zona.classList.add('hidden');
       if (alConfirmar) alConfirmar();

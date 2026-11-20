@@ -50,6 +50,7 @@ const PATTERN_RE = new RegExp(PATTERNS.join('|'), 'i');
 const PRUNED_DIRS = ['.git', 'node_modules', '.claude', '.wrangler', 'graphify-out', 'test-results'];
 const EXEMPT_FILES = [
   'scripts/scan-secrets.js',          // defines PATTERNS as a Node array
+  'doc/templates/scripts/scan-secrets.js', // the new-app copy of this file
   '.github/workflows/validate.yml'    // names the secrets it injects
 ].map((p) => p.toLowerCase());
 
