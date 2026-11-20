@@ -68,9 +68,16 @@ test.describe('Apptonomia landing settings', () => {
       const drawer = document.getElementById('accessibility-settings');
       return {
         pickerInDrawer: drawer.contains(picker),
-        // The gear sits in the suite chrome's controls row, which lives in the header mount.
+        /* The gear sits in the suite chrome's controls row, which lives in the
+           header mount. The mount is the node carrying `data-suite-header`, so
+           the invariant is checked by that attribute and not by a class name:
+           the shared chrome (18/11) added `suite-chrome-header` to the mount
+           and the landing's own mount keeps `suite-controls`, and both put the
+           controls row right under it. A class check here broke on the day
+           the chrome changed, with every gate green — the suite's CI ran the
+           crawler, not this spec. */
         gearRowIsSuiteControls: gear.parentNode.classList.contains('suite-chrome-controls')
-          && gear.parentNode.parentNode.classList.contains('suite-controls'),
+          && gear.parentNode.parentNode.hasAttribute('data-suite-header'),
         gearRowChildren: gear.parentNode.children.length,
         parentAlignsEnd: getComputedStyle(gear.parentNode).justifyContent,
       };
