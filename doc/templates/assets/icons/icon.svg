@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="{{DISPLAY_EN}}">
+  <!-- Placeholder logo: replace with the app's own. Kept inside the maskable
+       safe zone (central 80%) so the PWA icon is not cropped. -->
+  <rect width="512" height="512" fill="#005A9C"/>
+  <circle cx="256" cy="256" r="150" fill="#FFFFFF"/>
+  <circle cx="256" cy="256" r="70" fill="#005A9C"/>
+</svg>

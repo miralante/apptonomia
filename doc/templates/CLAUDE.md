@@ -102,19 +102,25 @@ it is the source of truth, not this file.
 
 #### Commands
 
-There is no build step, no package.json, and no test framework — it's
-plain HTML/CSS/JS served as static files.
+There is no build step and no runtime dependency — it's plain
+HTML/CSS/JS served as static files. `package.json` only names the
+commands; it has no dependencies (Playwright is the machine-wide
+install).
 
-- **Preview**: open `index.html` directly in a browser, or serve the
-  folder with any static server (e.g. `npx serve .`). Everything runs
-  client-side.
+- **Preview**: `npm run serve` (or `node scripts/serve.js`), then open
+  http://127.0.0.1:8080/. It serves `404.html` for unknown paths, like
+  Cloudflare does.
+- **Service-worker smoke**: `node scripts/smoke-sw.js` — every `FILES`
+  entry of `sw.js` must load, or the install fails for every reader.
+- **Browser tests**: `npm run test:ui` (`tests/smoke.spec.js`).
 - **Validate everything** (this repo's only "test" step, and what CI
   runs on every PR via `.github/workflows/validate.yml`):
   ```
   node scripts/check.js
   ```
-  It checks JS syntax, es/en key parity, `sw.js` ↔ disk parity, and
-  the catalog-parity lock. Read the script before changing the file
+  It checks JS syntax, es/en key parity, the `data-i18n` keys of
+  every page, `sw.js` ↔ disk parity both ways, `.assetsignore`, and
+  leftover bootstrap placeholders. Read the script before changing the file
   layout — it encodes the invariants that layout relies on.
 
 #### Architecture
@@ -211,19 +217,18 @@ and stable.
 ### B.1 Service worker cache
 
 This project ships a service worker. **Behavior**: `sw.js` is
-**cache-first** *(or "network-first, cache-fallback" — pick one and
-document it here)* — every file in `FILES` is served from the
-cache; the network is only consulted when the request is not in the
-cache.
+**network-first for page navigations** (a deploy reaches readers on
+their next visit) and **cache-first for every other file in
+`FILES`** (fast, and it works offline).
 
 **The cache is silent and persistent**. The developer sees a
 change on a hard refresh, but users with the PWA installed keep
 seeing the old version until either the SW itself is refreshed or
 the cache is purged. The only reliable way to refresh the
-deployed app after a new deploy is to bump `VERSION` in `sw.js`,
-because the SW's `install` handler compares its `VERSION` against
-the active cache name and only re-fetches + activates when they
-differ.
+deployed app after a new deploy is to bump `VERSION` in `sw.js`:
+the browser installs a new worker only when `sw.js` changes, the
+new `VERSION` is a new cache filled from the network
+(`cache: 'reload'`), and `activate` deletes the old caches.
 
 **Rule — bump `VERSION` on every commit that touches any cached
 file** (i.e. anything in `FILES` / `ARCHIVOS`, or a new file that
@@ -312,17 +317,21 @@ and summarised in [`../apptonomia/CLAUDE.md` §B.6](../apptonomia/CLAUDE.md#b6-g
   Applebot-Extended, PerplexityBot, anthropic-ai, cohere-ai, Claude-Web)
   in `robots.txt`.
 
-`scripts/check.js` enforces the four gates (Dublin Core count,
-`FAQPage` node, `llms.txt` existence, AI-crawler UA list). The
+When the app adopts `app.config.json` + `scripts/build-head.js`, add
+the four gates (Dublin Core count, `FAQPage` node, `llms.txt`
+existence, AI-crawler UA list) to `scripts/check.js`: the scaffold's
+check.js does not carry them yet, because a new app has no SEO head. The
 canonical source for the policy is the metaproject's guide §7.
 
 ### B.6 Estrellas (motor común)
 
-Si la app muestra estrellas, usa `js/stars-engine.js` (`window.MiralanteStars`):
-logros cada 10 y el objetivo “a por” acaba en 5. No copies la lógica;
+Si la app muestra estrellas, usa `js/stars-engine.js` (`window.ApptonomiaStars`):
+logros cada 10 y el objetivo “a por” es el siguiente múltiplo de 5. No copies la lógica;
 el fichero es idéntico en todas las apps y lo mantiene el metaproyecto
 (`apptonomia/scripts/sync-stars-engine.js`). Pon las frases en `strings.<locale>.js`
-(`starsReached`, `starsGoal`) y muestra la línea con `MiralanteStars.goal(el, total, strings)`.
+(`stars.reached`, `stars.goal`) y muestra la línea con `ApptonomiaStars.goal(el, total, strings)`.
+`js/app.js` llama a `ApptonomiaStars.useStorageKey('{{SLUG}}:stars:last')` para que
+config/ borre también ese dato.
 Añade la clase `.stars-goal` (display block, un poco más pequeña) en la hoja compartida.
 
 ### B.7 Recompensas (política común)

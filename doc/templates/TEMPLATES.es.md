@@ -1,174 +1,113 @@
-# Plantillas de archivo para nuevos hermanos
+# Plantilla de app nueva
 
-Esta carpeta es la **fuente canónica** de los andamios de archivo
-que cada nuevo hermano de la suite Miralante envía desde el día
-uno. Cópialos en la raíz del nuevo repo, y luego ejecuta un
-buscar/reemplazar global sobre los marcadores de posición.
+Esta carpeta es el **andamiaje canónico** de toda app nueva de la
+suite Miralante. Es un único árbol: lo que ves aquí es lo que recibe
+el repositorio nuevo, salvo este archivo y su versión en inglés.
 
-> 🌐 **Other language:** [English](README.md)
+> 🌐 **Otro idioma:** [English](TEMPLATES.md)
 
 ---
 
-## Cómo usarlas
+## Cómo se usa
+
+No la copies a mano. Desde el metaproyecto:
 
 ```bash
-# 1. Crea el nuevo repo en GitHub bajo miralante/<slug>.
-# 2. Clónalo en local.
-git clone git@github.com:miralante/<slug>.git
-cd <slug>
-
-# 3. Copia cada archivo de esta carpeta a la raíz del nuevo repo.
-cp -R ../apptonomia/doc/templates/. .
-
-# 4. Reemplaza los marcadores. Cada archivo de esta carpeta
-#    usa los mismos pocos marcadores:
-#      {{SLUG}}        — minúsculas, guiones, ASCII, p. ej. "mi-app"
-#      {{DISPLAY_ES}}  — nombre a mostrar en español, p. ej. "Mi App"
-#      {{DISPLAY_EN}}  — nombre a mostrar en inglés, p. ej. "My App"
-#      {{DOMAIN}}      — dominio completo, p. ej. "mi-app.apptonomia.uk"
-#      {{SHAPE}}       — multi-activity / single-purpose / deck-driven / shared-state / single-page
-#      {{GIT_ORG}}     — "miralante"
-#      {{REPO}}        — mismo que {{SLUG}} por defecto
-#      {{YEAR}}        — año en curso (p. ej. 2026)
-#      {{AUTHOR}}      — nombre a mostrar de quien mantiene (por defecto: la org de GitHub)
-#
-#    Un sed rápido funciona en macOS / Linux:
-#      find . -type f \( -name '*.md' -o -name '*.js' -o -name '*.html' \
-#                          -o -name '*.yml' -o -name '*.toml' -o -name '*.json' \) \
-#        -exec sed -i '' \
-#          -e 's/{{SLUG}}/mi-app/g' \
-#          -e 's/{{DISPLAY_ES}}/Mi App/g' \
-#          -e 's/{{DISPLAY_EN}}/My App/g' \
-#          -e 's/{{DOMAIN}}/mi-app.apptonomia.uk/g' \
-#          -e 's/{{SHAPE}}/single-purpose/g' \
-#          -e 's/{{GIT_ORG}}/miralante/g' \
-#          -e 's/{{REPO}}/mi-app/g' \
-#          -e 's/{{YEAR}}/2026/g' \
-#          -e 's/{{AUTHOR}}/miralante/g' \
-#          {} +
-#
-#    En Windows (PowerShell):
-#      Get-ChildItem -Force -Recurse -File -Include *.md,*.js,*.html,*.yml,*.toml,*.json |
-#        ForEach-Object { (Get-Content $_ -Raw) `
-#          -replace '{{SLUG}}', 'mi-app' `
-#          -replace '{{DISPLAY_ES}}', 'Mi App' `
-#          -replace '{{DISPLAY_EN}}', 'My App' `
-#          -replace '{{DOMAIN}}', 'mi-app.apptonomia.uk' `
-#          -replace '{{SHAPE}}', 'single-purpose' `
-#          -replace '{{GIT_ORG}}', 'miralante' `
-#          -replace '{{REPO}}', 'mi-app' `
-#          -replace '{{YEAR}}', '2026' `
-#          -replace '{{AUTHOR}}', 'miralante' `
-#          | Set-Content $_ -NoNewline }
-
-# 5. Recorta CLAUDE.md al alcance del hermano (borra comandos de
-#    Block A.2 que no apliquen, borra las secciones de Block B
-#    exclusivas del metaproyecto, etc.). La plantilla envía los
-#    valores por defecto completos de la suite; recórtala a lo
-#    que tu hermano necesita.
-
-# 6. Ejecuta `node scripts/check.js` y `node scripts/check-version-
-#    bump.js` del hermano. Ambos deben pasar.
-# 7. Añade `package.json` con `test:ui` y una suite Playwright para
-#    los flujos principales. Ejecuta `npm run test:ui`; debe pasar
-#    antes de cada push.
-
-# 8. Copia `.github/workflows/validate.yml` de esta plantilla y
-#    confirma que CI ejecuta `test:ui` en PR y push a `main`.
-# 9. Abre el primer PR con título "feat: bootstrap <slug> from
-#    apptonomia/doc/templates". No hagas push si falla un gate.
+cd apptonomia
+node scripts/new-app.js --slug mi-app --es "Mi App" --en "My App"
 ```
+
+[`scripts/new-app.js`](../../scripts/new-app.js) copia esta carpeta a
+`../mi-app`, rellena todos los marcadores (lee y escribe en UTF-8, así
+que tildes y emojis llegan intactos), resuelve las secciones opcionales
+`{{#FLAG}}…{{/FLAG}}` y se detiene —borrando lo que había escrito— si
+algún marcador queda sin valor. No ejecuta git, no hace push ni
+despliega. Después sigue [`../es/crear-app.md`](../es/crear-app.md) §3.
+
+| Opción | Por defecto | Marcador(es) |
+|---|---|---|
+| `--slug` (obligatoria) | — | `SLUG`, `REPO` |
+| `--es` (obligatoria) | — | `DISPLAY_ES` |
+| `--en` | el valor de `--es` | `DISPLAY_EN`, `DISPLAY`, `DISPLAY_NAME` |
+| `--domain` | `<slug>.apptonomia.uk` | `DOMAIN` |
+| `--email` | `hello@apptonomia.uk` | `SUPPORT_EMAIL` |
+| `--shape` | `single-purpose` | `SHAPE` |
+| `--branch` | `main` | `PRODUCTION_BRANCH`, `DEFAULT_BRANCH` |
+| `--with A,B` | ninguna | conserva las secciones `{{#A}}…{{/A}}` (`HAS_CONTENT_CC_BY_SA`, `HAS_THIRD_PARTY_IMAGES`) |
+| `--set CLAVE=valor` | — | cualquier marcador; el resto de los de CLOUDFLARE.md / SECURITY.md tienen valores neutros en `new-app.js` |
+
+**La plantilla está probada.** `node scripts/check-template.js --ui`
+genera una app desechable y ejecuta su `check.js`, `smoke-sw.js`,
+`suite-markup.js`, `scan-secrets.js` y la batería de Playwright. La CI
+del metaproyecto lo ejecuta en cada push: un cambio aquí que rompa una
+app nueva rompe la build.
 
 ---
 
-## Qué hay en esta carpeta
+## Qué contiene
 
 ```
 doc/templates/
-├── README.md                     ← este archivo (inglés)
-├── README.es.md                  ← este archivo (español)
-├── CLAUDE.md                     ← plantilla de manual operativo para agentes IA
-├── README.md                     ← (sobrescribe el de arriba, intencional)
-├── README.es.md
-├── CONTRIBUTING.md
-├── CONTRIBUTING.es.md
-├── CODE_OF_CONDUCT.md
-├── CODE_OF_CONDUCT.es.md
-├── SECURITY.md
-├── SECURITY.es.md
-├── CLOUDFLARE.md
-├── LICENSE                       ← MIT, línea de copyright dice "Miralante {{DISPLAY_ES}} contributors" (forma inglesa {{DISPLAY_EN}})
-├── THIRD_PARTY_LICENSES.md       ← (solo si el hermano publica activos de terceros bajo una licencia distinta de MIT)
-├── _headers                      ← cabeceras de caché de Cloudflare
-├── wrangler.toml                 ← config de Cloudflare Workers
-├── 404.html
-├── app-template/
-│   └── index.html                ← esqueleto de la app con los huecos de cabecera y pie compartidos
-├── assets/css/styles.css         ← hoja de la app; contiene el bloque suite-chrome sincronizado
-├── js/suite-chrome.js            ← cabecera y pie compartidos (sincronizado, no editar aquí)
-├── sw.js                         ← (solo si el hermano es PWA)
-├── manifest.json                 ← (solo si el hermano es PWA)
-├── package.json                  ← test:ui/test:sw + Playwright (solo dev)
+├── TEMPLATES.md / .es.md      ← este archivo (no se copia)
+├── index.html                 ← inicio: montajes de cabecera/pie, contador de estrellas
+├── 404.html                   ← enlaces absolutos desde la raíz (se sirve en la URL pedida)
+├── about/ legal/ config/      ← las tres páginas que enlaza el pie compartido
+│                                 (config/ = ajustes y borrado de datos, §B.5)
+├── strings.es.js / .en.js     ← textos; es es la fuente de verdad
+├── js/
+│   ├── i18n.js                ← núcleo App.i18n (de la app)
+│   ├── app.js                 ← lógica del inicio (de la app)
+│   ├── sw-register.js         ← registra sw.js desde cualquier profundidad
+│   ├── locale-picker*.js      ← cajón de idioma y ajustes (mismo archivo que los hermanos)
+│   ├── suite-chrome.js        ← sincronizado: cabecera y pie compartidos
+│   ├── stars-engine.js        ← sincronizado: objetivos de estrellas
+│   ├── achievements-engine.js ← sincronizado: logros
+│   └── feedback.js            ← bloques sincronizados (ronda, recompensa, celebración) + ganchos de la app
+├── assets/
+│   ├── css/suite-base.css     ← sincronizado: tokens de diseño (la copia canónica vive aquí)
+│   ├── css/brand.css          ← colores de acento de la app
+│   ├── css/styles.css         ← bloque suite-chrome sincronizado + reglas propias
+│   ├── css/locale-picker.css
+│   ├── fonts/                 ← Atkinson Hyperlegible, Nunito (OFL)
+│   └── icons/icon.svg         ← logo / icono PWA provisional
+├── sw.js / manifest.json      ← PWA: páginas network-first, archivos cache-first
+├── _headers / wrangler.toml / .assetsignore   ← Cloudflare
+├── package.json               ← solo comandos, sin dependencias
+├── playwright.config.js / tests/   ← batería de humo (Playwright de la máquina)
 ├── scripts/
-│   ├── check.js                  ← lint estructural + paridad i18n
-│   ├── check-version-bump.js     ← (solo si el hermano es PWA)
-│   └── smoke-sw.js               ← smoke del service worker
-├── .github/workflows/
-│   └── validate.yml              ← gates estructurales, SW y Playwright
-└── doc/
-    └── en/
-        └── readme.md             ← plantilla de intro en lectura fácil
+│   ├── check.js               ← estructura, i18n, sw.js ↔ disco, marcadores
+│   ├── smoke-sw.js            ← cada entrada del precache carga; comportamiento del 404
+│   ├── check-version-bump.js  ← control de subida de VERSION
+│   ├── sw-files.js            ← el único lector de sw.js, compartido por los tres anteriores
+│   ├── serve.js               ← servidor local que se comporta como Cloudflare
+│   ├── scan-secrets.js
+│   └── checks/suite-markup.js ← sincronizado: auditoría de cabecera/pie
+├── .github/                   ← workflow de CI y plantillas de issues
+└── CLAUDE.md, README*, CONTRIBUTING*, CODE_OF_CONDUCT*, SECURITY*,
+    CLOUDFLARE.md, LICENSE, THIRD_PARTY_LICENSES.md, doc/
 ```
 
-Cada archivo debajo de este tiene su propio `README` y es un
-andamio para copiar y pegar.
+Los **archivos sincronizados** son copias de `apptonomia/scripts/suite/`.
+No los edites aquí: edita la fuente canónica y ejecuta su script de
+sincronización; con `--only apptonomia/doc/templates` llega a esta
+carpeta sin tocar los repos hermanos.
 
 ---
 
-## Convenciones que sigue cada plantilla
+## Convenciones
 
-- **Código técnico en inglés** — variables, nombres de funciones,
-  identificadores, comentarios, mensajes de commit. Ver el
-  `CLAUDE.md` §B.2 de cada hermano para la política de idiomas
-  completa.
-- **UI / docs bilingües** — cada cadena de UI y cada doc vive en
-  **ambos** `es` y `en`. El contenido técnico en inglés
-  (changelog, mensajes de commit, identificadores) sigue en inglés.
-- **Ningún marcador en archivos commiteados** — el marcador es una
-  herramienta del paso de *bootstrap*; el archivo commiteado debe
-  tener todas las ocurrencias de `{{...}}` resueltas.
-- **Sin runtime de terceros** — sin Google Fonts, sin analítica,
-  sin IA remota. Ver [`../doc/es/guia-de-cumplimiento.md` §4](../es/guia-de-cumplimiento.md#4-sin-telemetría-sin-cuentas-sin-almacenamiento-remoto).
-- **Solo tipografías auto-alojadas** — Atkinson Hyperlegible
-  (400/700) + Nunito (variable 400–900), empaquetadas bajo
-  `assets/fonts/`.
-- **Sin paso de build** — HTML/CSS/JS plano servido como static
-  assets de Cloudflare. Sin webpack, vite, parcel, esbuild, rollup.
-
----
-
-## Lo que esta carpeta **no es**
-
-- **No es un starter one-size-fits-all.** Cada hermano sigue
-  recortando su `CLAUDE.md` y `scripts/check.js` a su alcance. Las
-  plantillas envían los valores por defecto completos de la suite;
-  recorta, no expandas.
-- **No es un fork.** Los nuevos hermanos copian desde esta carpeta;
-  no hacen `git submodule` ni enlazan con `pnpm workspace`. La
-  regla del metaproyecto es: sin dependencias entre proyectos.
-- **No es la fuente de verdad para decisiones de producto.** Esta
-  carpeta envía andamios. Las decisiones de producto (público,
-  alcance, actividades) las toma quien mantiene y se escriben en
-  `doc/<lang>/spec.md` §1.
+- **Código técnico en inglés**; interfaz y documentación bilingües (es/en).
+- **Toda clave de localStorage empieza por `<slug>:`**, para que
+  `config/` borre los datos de la app sin `localStorage.clear()`.
+- **Sin dependencias de terceros en ejecución** — ni CDN, ni analítica, ni IA remota.
+- **Sin paso de build** — HTML/CSS/JS servidos como assets estáticos de Cloudflare.
+- **Sin marcadores en archivos commiteados** — `check.js` falla si queda alguno.
 
 ---
 
 ## Ver también
 
-- [`../doc/es/crear-app.md`](../es/crear-app.md) — receta completa
-  para añadir un nuevo hermano.
-- [`../doc/es/guia-de-cumplimiento.md`](../es/guia-de-cumplimiento.md) —
-  checklist de cumplimiento de la suite que cada nuevo hermano debe
-  pasar.
-- El `CLAUDE.md` de cada hermano existente — la referencia
-  canónica de cómo se organiza un hermano maduro.
+- [`../es/crear-app.md`](../es/crear-app.md) — la receta completa.
+- [`../es/bloques-compartidos.md`](../es/bloques-compartidos.md) — los bloques sincronizados.
+- [`../es/guia-de-cumplimiento.md`](../es/guia-de-cumplimiento.md) —
+  la lista de cumplimiento que toda app nueva debe pasar.

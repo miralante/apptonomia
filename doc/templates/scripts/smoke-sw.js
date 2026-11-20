@@ -1,66 +1,57 @@
+#!/usr/bin/env node
+/*
+ * scripts/smoke-sw.js — service-worker precache smoke.
+ *
+ *   node scripts/smoke-sw.js
+ *
+ * The service worker installs with cache.addAll(FILES), which is atomic: ONE
+ * entry that does not answer 200 makes the whole install fail, and then no
+ * update ever reaches the readers. This smoke serves the app the way
+ * Cloudflare does (scripts/serve.js) and requests every FILES entry, exactly
+ * as the install would. It also checks that an unknown deep path answers 404
+ * with 404.html, and that 404.html does not redirect or use relative links
+ * (Cloudflare serves it at the requested URL, so "./" would be another 404).
+ *
+ * It does not run the worker itself: tests/smoke.spec.js does that in a browser.
+ */
 'use strict';
 
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
-const http = require('node:http');
 const path = require('node:path');
-
-const ROOT = path.resolve(__dirname, '..');
-const SW_PATH = path.join(ROOT, 'sw.js');
-
-function startServer() {
-  const server = http.createServer((req, res) => {
-    const requestPath = decodeURIComponent((req.url || '/').split('?')[0]);
-    const relative = requestPath === '/' ? 'index.html' : requestPath.replace(/^\/+/, '');
-    const filePath = path.resolve(ROOT, relative);
-    if (!filePath.startsWith(ROOT + path.sep) || !fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
-      res.writeHead(404); res.end('Not found'); return;
-    }
-    res.writeHead(200);
-    fs.createReadStream(filePath).pipe(res);
-  });
-  return new Promise((resolve, reject) => {
-    server.once('error', reject);
-    server.listen(0, '127.0.0.1', () => resolve(server));
-  });
-}
+const { startServer, ROOT } = require('./serve.js');
+const { readSwFiles, entryToFile } = require('./sw-files.js');
 
 async function main() {
-  const sw = fs.readFileSync(SW_PATH, 'utf8');
-  const version = sw.match(/VERSION\s*=\s*['"]([^'"]+)['"]/);
-  assert.ok(version, 'sw.js debe declarar VERSION');
-  const filesBlock = sw.match(/(?:FILES|ARCHIVOS)\s*=\s*\[([\s\S]*?)\]/);
-  assert.ok(filesBlock, 'sw.js debe declarar FILES o ARCHIVOS');
-  /* Comments live inside the array too, and one of them quotes the CSP
-     keyword `script-src 'self'`. Reading every quoted string as a path
-     made the gate fail on a file that was never cached, so comments are
-     dropped before the entries are collected. */
-  const files = [...filesBlock[1].replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/['"]([^'"]+)['"]/g)]
-    .map(match => match[1]);
-  assert.ok(files.length > 0, 'La lista de caché no puede estar vacía');
-  for (const relative of files) {
-    const local = path.join(ROOT, relative.replace(/^\.\//, ''));
-    assert.ok(fs.existsSync(local), `Falta en disco: ${relative}`);
-    // A directory entry is served as its index.html; without one the precache
-    // 404s and the whole install fails, so no update would ever reach users.
-    if (relative.endsWith('/')) assert.ok(fs.existsSync(path.join(local, 'index.html')), `Directorio sin index.html en la caché: ${relative}`);
+  const sw = readSwFiles(ROOT);
+  assert.ok(sw, 'sw.js must declare VERSION and a FILES (or ARCHIVOS) list');
+  assert.ok(sw.files.length > 0, 'the FILES list of sw.js is empty');
+  for (const entry of sw.files) {
+    assert.ok(fs.existsSync(entryToFile(ROOT, entry)), `FILES lists ${entry}, which is not on disk`);
   }
 
-  const server = await startServer();
-  const address = server.address();
+  const html404 = fs.readFileSync(path.join(ROOT, '404.html'), 'utf8');
+  assert.ok(!/http-equiv=["']refresh/i.test(html404), '404.html must not redirect with meta refresh');
+  const relative = html404.match(/\b(?:href|src)="(?!\/|https?:|mailto:|#)[^"]*"/);
+  assert.ok(!relative, `404.html uses a relative URL (${relative && relative[0]}); use a root-absolute one`);
+
+  const server = await startServer(0);
+  const base = `http://127.0.0.1:${server.address().port}/`;
   try {
-    for (const route of ['/', '/index.html']) {
-      const response = await fetch(`http://127.0.0.1:${address.port}${route}`);
-      assert.equal(response.status, 200, `La ruta ${route} no responde 200`);
+    for (const entry of sw.files) {
+      const response = await fetch(new URL(entry, base));
+      assert.equal(response.status, 200, `precache entry ${entry} answers ${response.status}; the SW install would fail`);
     }
-    console.log(`SW smoke PASS (${version[1]})`);
+    const missing = await fetch(new URL('/no/such/page', base));
+    assert.equal(missing.status, 404, 'an unknown path must answer 404');
+    assert.match(await missing.text(), /<html/i, 'an unknown path must serve 404.html');
+    console.log(`SW smoke PASS (${sw.version}, ${sw.files.length} precache entries)`);
   } finally {
-    await new Promise(resolve => server.close(resolve));
+    await new Promise((resolve) => server.close(resolve));
   }
 }
 
-main().catch(error => {
-  console.error(`SW smoke FAIL: ${error.stack || error.message}`);
+main().catch((error) => {
+  console.error(`SW smoke FAIL: ${error.message}`);
   process.exitCode = 1;
 });
-

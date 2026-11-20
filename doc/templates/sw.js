@@ -1,58 +1,71 @@
 /*
  * {{DISPLAY_EN}} — sw.js (service worker)
  *
- * Cache-first strategy: every file in ARCHIVOS is served from
- * the cache; the network is only consulted when the request is
- * not in the cache.
+ * Strategy: network-first for page navigations (a deploy reaches readers on the
+ * next visit), cache-first for every other file in FILES (fast, works offline).
  *
- * === Why cache-first ===
- * The app is fully client-side; once the visitor has loaded it
- * once, every subsequent visit is faster offline. The cache
- * makes the SW's `install` handler compare its `VERSION` against
- * the active cache name and only re-fetch + activate when they
- * differ. That is why **any change to a file in ARCHIVOS MUST
- * bump VERSION in the same commit** — see CLAUDE.md §B.1.
+ * === Updating ===
+ * The browser installs a new worker when this file's bytes change. That is why
+ * **any change to a file in FILES must bump VERSION in the same commit** (see
+ * CLAUDE.md §B.1): the new VERSION is a new cache, and `activate` deletes the old
+ * ones. `scripts/check-version-bump.js` fails CI when the bump is missing.
+ *
+ * Precache requests use `cache: 'reload'`, so the install never copies a stale
+ * file from the browser's HTTP cache into the new cache.
  *
  * === Bumping VERSION ===
- * Edit the `var VERSION = '{{SLUG}}-vN'` line below; increment N.
- * Add any new file to ARCHIVOS. Run `node scripts/check.js` and
- * `node scripts/check-version-bump.js`; both must pass.
+ * Increment N in `var VERSION = '{{SLUG}}-vN'`. Add any new shipped file to FILES.
+ * Run `node scripts/check.js` and `node scripts/smoke-sw.js`; both must pass.
  *
- * === Why no third-party runtime ===
- * The whole app is plain HTML/CSS/JS. No remote calls at runtime.
- * No analytics, no telemetry, no remote AI. The only network
- * egress this SW does is the cache-revalidation fetch for the
- * files listed below.
+ * === No third-party runtime ===
+ * Plain HTML/CSS/JS. No analytics, no telemetry, no remote AI. The only network
+ * traffic is the app's own files.
  */
 
-var VERSION = '{{SLUG}}-v3';
-var ARCHIVOS = [
+var VERSION = '{{SLUG}}-v1';
+var FILES = [
   './',
   './index.html',
+  './404.html',
   './manifest.json',
+  './strings.es.js',
+  './strings.en.js',
+  './assets/css/suite-base.css',
+  './assets/css/brand.css',
   './assets/css/styles.css',
+  './assets/css/locale-picker.css',
   './assets/fonts/atkinson-hyperlegible-400.woff2',
   './assets/fonts/atkinson-hyperlegible-700.woff2',
   './assets/fonts/nunito-variable.woff2',
-  './js/utils.js',
+  './assets/icons/icon.svg',
   './js/i18n.js',
-  './js/storage.js',
-  './js/feedback.js',
   './js/suite-chrome.js',
   './js/stars-engine.js',
+  './js/achievements-engine.js',
+  './js/feedback.js',
+  './js/locale-picker-config.js',
+  './js/locale-picker.js',
+  './js/sw-register.js',
   './js/app.js',
-  './strings.es.js',
-  './strings.en.js'
-  // Add every shipped file the visitor sees on first load.
-  // Each tool under tools/<slug>/ also needs its six canonical
-  // files (index.html, app.js, data.js, strings.es.js,
-  // strings.en.js, styles.css) listed here.
+  './about/',
+  './about/index.html',
+  './about/styles.css',
+  './legal/',
+  './legal/index.html',
+  './legal/styles.css',
+  './config/',
+  './config/index.html',
+  './config/app.js'
+  // Add every shipped file here. scripts/check.js fails when a shipped file is
+  // missing from this list or a listed file is missing on disk.
 ];
 
 self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open(VERSION).then(function (cache) {
-      return cache.addAll(ARCHIVOS);
+      return cache.addAll(FILES.map(function (url) {
+        return new Request(url, { cache: 'reload' });
+      }));
     })
   );
 });
@@ -60,36 +73,56 @@ self.addEventListener('install', function (event) {
 self.addEventListener('activate', function (event) {
   event.waitUntil(
     caches.keys().then(function (keys) {
-      return Promise.all(keys.filter(function (k) {
-        return k !== VERSION;
-      }).map(function (k) {
-        return caches.delete(k);
+      return Promise.all(keys.filter(function (key) {
+        return key.indexOf('{{SLUG}}-') === 0 && key !== VERSION;
+      }).map(function (key) {
+        return caches.delete(key);
       }));
     })
   );
 });
 
+function sameOrigin(request) {
+  return new URL(request.url).origin === self.location.origin;
+}
+
+/* Stores a fresh same-origin response for later offline use. */
+function remember(request, response) {
+  if (!response || !response.ok || response.type !== 'basic') return;
+  var copy = response.clone();
+  caches.open(VERSION).then(function (cache) { cache.put(request, copy); });
+}
+
 self.addEventListener('fetch', function (event) {
-  // Cache-first: serve from cache, fall back to network.
-  event.respondWith(
-    caches.match(event.request).then(function (cached) {
-      return cached || fetch(event.request).then(function (response) {
-        // Only cache same-origin GETs.
-        if (response.ok &&
-            event.request.method === 'GET' &&
-            new URL(event.request.url).origin === self.location.origin) {
-          var clone = response.clone();
-          caches.open(VERSION).then(function (cache) {
-            cache.put(event.request, clone);
-          });
-        }
+  var request = event.request;
+  if (request.method !== 'GET' || !sameOrigin(request)) return; // the browser handles it
+
+  if (request.mode === 'navigate') {
+    // Network-first: the reader gets the deployed page when online.
+    event.respondWith(
+      fetch(request).then(function (response) {
+        remember(request, response);
         return response;
       }).catch(function () {
-        // Offline and not in cache: serve a minimal offline fallback.
-        if (event.request.mode === 'navigate') {
-          return caches.match('./');
-        }
-        return new Response('', { status: 504, statusText: 'Offline' });
+        return caches.match(request, { ignoreSearch: true }).then(function (cached) {
+          return cached || caches.match('./index.html');
+        }).then(function (fallback) {
+          return fallback || new Response('Offline', {
+            status: 503,
+            headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+          });
+        });
+      })
+    );
+    return;
+  }
+
+  // Cache-first for the app's files.
+  event.respondWith(
+    caches.match(request).then(function (cached) {
+      return cached || fetch(request).then(function (response) {
+        remember(request, response);
+        return response;
       });
     })
   );

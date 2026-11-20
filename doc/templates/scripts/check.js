@@ -1,281 +1,217 @@
 #!/usr/bin/env node
 /*
- * scripts/check.js — new-sibling structural check.
+ * scripts/check.js — structural check of {{DISPLAY_EN}}.
  *
- * Purpose: one plain-Node script (no dependencies) that every
- * sibling of the Apptonomia suite ships in `scripts/check.js` and
- * runs in CI. It enforces the file anatomy and i18n parity that
- * the metaproject requires for every sibling.
- *
- * Usage:
  *   node scripts/check.js
  *
- * The script intentionally has zero npm dependencies. Run it
- * directly with Node — no `npm install` needed.
+ * Plain Node, no dependencies, no `npm install`. CI runs it on every push/PR.
  *
- * === What this template checks (the "minimum viable" set) ===
+ * Checks:
+ *   1. Every .js file parses (node --check).
+ *   2. The required files exist (REQUIRED below).
+ *   3. strings.es.js and strings.en.js register the same keys (App.i18n.register).
+ *   4. Every data-i18n* key used in an HTML page exists in strings.es.js.
+ *   5. sw.js ↔ disk, both ways: every FILES entry exists, and every shipped
+ *      file (SHIPPED_EXT, outside the internal folders) is in FILES.
+ *   6. .assetsignore keeps the internal folders out of the deploy.
+ *   7. _headers stays within Cloudflare's 100-rule limit.
+ *   8. No shipped file exceeds Cloudflare's 25 MiB per-file limit.
+ *   9. No bootstrap placeholder (an upper-case name in double braces) is left.
  *
- * 1. JS syntax: every .js file in the shipped tree parses.
- *    Catches a syntax regression before it lands.
+ * Add the app's own checks at the end (catalogue anatomy, forbidden terms,
+ * etc.; see Routime's and Apptonomia's check.js for examples).
  *
- * 2. Required files exist at the repo root:
- *    - CLAUDE.md, README.md, README.es.md, LICENSE
- *    - CONTRIBUTING.md, CONTRIBUTING.es.md
- *    - CODE_OF_CONDUCT.md, CODE_OF_CONDUCT.es.md
- *    - SECURITY.md, SECURITY.es.md
- *    - CLOUDFLARE.md, _headers, wrangler.toml, 404.html
- *    - index.html, app.js (or tools/<slug>/app.js for catalogues)
- *    - strings.es.js, strings.en.js
- *    - scripts/check.js, scripts/check-version-bump.js (PWA only)
- *    - sw.js, manifest.json (PWA only)
- *    - doc/en/index.md, doc/es/indice.md
- *    - .claude/skills/graphify/SKILL.md, .graphifyignore
- *
- * 3. es/en key parity between strings.es.js and strings.en.js.
- *    Every key registered in es must also be registered in en and
- *    vice versa. (If the sibling uses data-i18n* attributes instead
- *    of an App.i18n.t() lookup, port this check to walk the
- *    HTML pages — see Apptonomia's check.js for the HTML walker.)
- *
- * 4. sw.js ↔ disk parity (PWA only): every file listed in sw.js's
- *    ARCHIVOS exists on disk, and every shipped file the SW
- *    pre-caches is in ARCHIVOS.
- *
- * 5. _headers stays within Cloudflare's per-file limit of 100
- *    header rules per file.
- *
- * 6. No shipped file exceeds Cloudflare's 25 MB per-file limit.
- *
- * === What to add per-sibling ===
- *
- * - **Activity catalogue**: if the sibling has activities under
- *   tools/<slug>/, add a check that every tools/<slug>/ has the
- *   six canonical files (index.html, app.js, data.js,
- *   strings.es.js, strings.en.js, styles.css). See Routime's
- *   check.js for the canonical version.
- *
- * - **i18n HTML walker**: if the sibling uses data-i18n*
- *   attributes in HTML, port the walker from Apptonomia's
- *   check.js — it walks every HTML page and reports
- *   data-i18n keys missing from strings.<locale>.js.
- *
- * - **Forbidden terms**: if the sibling ships user-facing copy,
- *   port the forbidden-terms check from Apptonomia's
- *   check-forbidden-terms.js — it fails the build when
- *   "discapacidad" / "occupational therapy" / "minor" appears in
- *   the user-facing tree (see B.5 above).
- *
- * Output: list of failures with the exact file. Exit code 1 if
- * there are any, "OK (N checks)" otherwise.
+ * Output: one line per failure. Exit 1 when there is any, "OK (N checks)" otherwise.
  */
-
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-var execFileSync = require('child_process').execFileSync;
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const { execFileSync } = require('node:child_process');
+const { readSwFiles, entryToFile } = require('./sw-files.js');
 
-var ROOT = path.join(__dirname, '..');
-var failures = [];
-var checks = 0;
+const ROOT = path.join(__dirname, '..');
+const failures = [];
+const warnings = [];
+let checks = 0;
 
-function rel(p) {
-  return path.relative(ROOT, p).split(path.sep).join('/');
+/* Folders that are never part of the deployed app. */
+const INTERNAL_DIRS = new Set(['.git', '.github', '.claude', '.wrangler', '.dev', 'node_modules',
+  'graphify-out', 'doc', 'scripts', 'tests', 'test-results', 'playwright-report']);
+
+function rel(file) {
+  return path.relative(ROOT, file).split(path.sep).join('/');
 }
 
-/* -------------------------------------------------------------------------
- * 1. JS syntax: every .js file in the shipped tree parses.
- * ----------------------------------------------------------------------- */
-
-function listJsFiles(dir) {
-  var out = [];
-  (function walk(current) {
-    var entries;
-    try {
-      entries = fs.readdirSync(current, { withFileTypes: true });
-    } catch (e) { return; }
-    entries.forEach(function (entry) {
-      var full = path.join(current, entry.name);
-      if (entry.isDirectory()) {
-        // Skip build / dependency / metadata dirs.
-        if (['node_modules', '.git', 'graphify-out', 'graphify-out-meta',
-             '.claude', 'dist', 'build'].indexOf(entry.name) !== -1) return;
-        walk(full);
-      } else if (entry.isFile() && entry.name.endsWith('.js')) {
-        out.push(full);
-      }
-    });
-  }(dir));
+function walk(dir, skipDir, out = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (!skipDir(entry.name)) walk(full, skipDir, out);
+    } else if (entry.isFile()) {
+      out.push(full);
+    }
+  }
   return out;
 }
 
-listJsFiles(ROOT).forEach(function (file) {
+const allFiles = walk(ROOT, (name) => ['.git', 'node_modules', 'graphify-out', 'test-results', 'playwright-report', '.wrangler'].includes(name));
+const shippedFiles = walk(ROOT, (name) => INTERNAL_DIRS.has(name));
+
+/* 1. JS syntax ------------------------------------------------------------ */
+for (const file of allFiles.filter((f) => f.endsWith('.js') && !rel(f).startsWith('.claude/'))) {
   checks++;
   try {
     execFileSync(process.execPath, ['--check', file], { stdio: 'pipe' });
   } catch (e) {
-    failures.push(rel(file) + ': node --check failed — ' + e.stderr.toString().trim());
+    failures.push(`${rel(file)}: node --check failed — ${String(e.stderr).trim()}`);
   }
-});
+}
 
-/* -------------------------------------------------------------------------
- * 2. Required files exist.
- * ----------------------------------------------------------------------- */
-
-var REQUIRED_FILES = [
-  'CLAUDE.md',
-  'README.md', 'README.es.md',
-  'LICENSE',
-  'CONTRIBUTING.md', 'CONTRIBUTING.es.md',
-  'CODE_OF_CONDUCT.md', 'CODE_OF_CONDUCT.es.md',
-  'SECURITY.md', 'SECURITY.es.md',
-  'CLOUDFLARE.md',
-  '_headers', 'wrangler.toml', '404.html',
-  'index.html',
-  'strings.es.js', 'strings.en.js',
-  'scripts/check.js',
-  'doc/en/index.md', 'doc/es/indice.md',
-  '.claude/skills/graphify/SKILL.md',
-  '.graphifyignore'
+/* 2. Required files ------------------------------------------------------- */
+const REQUIRED = [
+  'CLAUDE.md', 'README.md', 'README.es.md', 'LICENSE',
+  'CONTRIBUTING.md', 'CONTRIBUTING.es.md', 'CODE_OF_CONDUCT.md', 'CODE_OF_CONDUCT.es.md',
+  'SECURITY.md', 'SECURITY.es.md', 'CLOUDFLARE.md',
+  '_headers', '.assetsignore', 'wrangler.toml', '404.html', 'index.html',
+  'strings.es.js', 'strings.en.js', 'js/i18n.js', 'js/suite-chrome.js',
+  'about/index.html', 'legal/index.html', 'config/index.html',
+  'doc/en/index.md', 'doc/es/indice.md', '.graphifyignore'
 ];
-
-// The sibling might be a PWA — those files are required for PWAs.
-var IS_PWA = fs.existsSync(path.join(ROOT, 'manifest.json'));
-if (IS_PWA) {
-  Array.prototype.push.apply(REQUIRED_FILES, [
-    'sw.js', 'manifest.json',
-    'scripts/check-version-bump.js'
-  ]);
+const IS_PWA = fs.existsSync(path.join(ROOT, 'manifest.json'));
+if (IS_PWA) REQUIRED.push('sw.js', 'manifest.json', 'scripts/check-version-bump.js', 'scripts/smoke-sw.js');
+for (const file of REQUIRED) {
+  checks++;
+  if (!fs.existsSync(path.join(ROOT, file))) failures.push(`missing required file: ${file}`);
+}
+/* The graphify skill is copied in by apptonomia/scripts/sync-graphify-skill.js
+   after the repo exists, so its absence is a reminder, not a failure. */
+if (!fs.existsSync(path.join(ROOT, '.claude/skills/graphify/SKILL.md'))) {
+  warnings.push('no .claude/skills/graphify/SKILL.md: run `node ../apptonomia/scripts/sync-graphify-skill.js sync --apply`');
 }
 
-REQUIRED_FILES.forEach(function (f) {
-  checks++;
-  if (!fs.existsSync(path.join(ROOT, f))) {
-    failures.push('missing required file: ' + f);
-  }
-});
-
-/* -------------------------------------------------------------------------
- * 3. es/en key parity between strings.es.js and strings.en.js.
- *    Assumes the canonical `App.i18n.register()` shape used by
- *    every sibling of the suite: a top-level I18N object per file
- *    with locale-tagged keys. Adjust to the sibling's shape if it
- *    differs.
- * ----------------------------------------------------------------------- */
-
-function extractKeys(file) {
+/* 3. es/en key parity ----------------------------------------------------- */
+/* Runs a strings file in a sandbox with a fake App.i18n and returns the dotted
+   keys it registers for `locale`. */
+function registeredKeys(file, locale) {
+  const tables = [];
+  const sandbox = { console };
+  sandbox.window = sandbox;
+  sandbox.App = { i18n: { register(table, loc) { if (loc === locale) tables.push(table); } } };
+  vm.createContext(sandbox);
   try {
-    var src = fs.readFileSync(file, 'utf8');
-    var sandbox = { I18N: {}, window: {}, console: console };
-    vm.runInContext(src + '\nthis.__EXTRACTED__ = I18N;', sandbox, { filename: file });
-    var dict = sandbox.__EXTRACTED__;
-    var out = [];
-    Object.keys(dict).forEach(function (locale) {
-      Object.keys(dict[locale]).forEach(function (key) {
-        out.push(locale + ':' + key);
-      });
-    });
-    return out;
+    vm.runInContext(fs.readFileSync(file, 'utf8'), sandbox, { filename: file });
   } catch (e) {
-    failures.push(rel(file) + ': could not extract I18N keys — ' + e.message);
-    return [];
+    failures.push(`${rel(file)}: could not run it to read its keys — ${e.message}`);
+    return null;
+  }
+  if (!tables.length) {
+    failures.push(`${rel(file)}: registers no '${locale}' strings (App.i18n.register(table, '${locale}'))`);
+    return null;
+  }
+  const keys = new Set();
+  (function flatten(node, prefix) {
+    for (const [key, value] of Object.entries(node)) {
+      const name = prefix ? `${prefix}.${key}` : key;
+      if (value && typeof value === 'object' && !Array.isArray(value)) flatten(value, name);
+      else keys.add(name);
+    }
+  })(Object.assign({}, ...tables), '');
+  return keys;
+}
+
+checks++;
+const esKeys = registeredKeys(path.join(ROOT, 'strings.es.js'), 'es');
+const enKeys = registeredKeys(path.join(ROOT, 'strings.en.js'), 'en');
+if (esKeys && enKeys) {
+  const onlyEs = [...esKeys].filter((k) => !enKeys.has(k));
+  const onlyEn = [...enKeys].filter((k) => !esKeys.has(k));
+  if (onlyEs.length) failures.push(`i18n parity: only in es: ${onlyEs.join(', ')}`);
+  if (onlyEn.length) failures.push(`i18n parity: only in en: ${onlyEn.join(', ')}`);
+}
+
+/* 4. Keys used in the pages exist ------------------------------------------ */
+if (esKeys) {
+  for (const page of shippedFiles.filter((f) => f.endsWith('.html'))) {
+    const html = fs.readFileSync(page, 'utf8');
+    for (const m of html.matchAll(/\bdata-i18n(?:-aria|-meta|-title)?="([^"]+)"/g)) {
+      checks++;
+      if (!esKeys.has(m[1])) failures.push(`${rel(page)}: data-i18n key "${m[1]}" is not in strings.es.js`);
+    }
   }
 }
 
-var vm = require('vm');
-var esKeys = extractKeys(path.join(ROOT, 'strings.es.js'));
-var enKeys = extractKeys(path.join(ROOT, 'strings.en.js'));
-checks++;
-var soloEs = esKeys.filter(function (k) { return enKeys.indexOf(k) === -1; });
-var soloEn = enKeys.filter(function (k) { return esKeys.indexOf(k) === -1; });
-if (soloEs.length || soloEn.length) {
-  var detail = [];
-  if (soloEs.length) detail.push('only in es: ' + soloEs.join(', '));
-  if (soloEn.length) detail.push('only in en: ' + soloEn.join(', '));
-  failures.push('i18n key parity: ' + detail.join(' | '));
-}
-
-/* -------------------------------------------------------------------------
- * 4. sw.js ↔ disk parity (PWA only).
- * ----------------------------------------------------------------------- */
-
+/* 5. sw.js ↔ disk, both ways ---------------------------------------------- */
+const SHIPPED_EXT = /\.(html|css|js|json|svg|png|webp|jpg|woff2|mp3|ogg)$/i;
+const NOT_PRECACHED = new Set(['sw.js', 'package.json', 'package-lock.json', 'playwright.config.js']);
 if (IS_PWA) {
   checks++;
-  var swPath = path.join(ROOT, 'sw.js');
-  var swSrc = fs.readFileSync(swPath, 'utf8');
-  var versionMatch = swSrc.match(/VERSION\s*=\s*['"]([^'"]+)['"]/);
-  var listMatch = swSrc.match(/var\s+(?:ARCHIVOS|FILES)\s*=\s*\[([\s\S]*?)\];/);
-  var archivos = listMatch
-    ? Array.from(listMatch[1].matchAll(/['"]\.\/([^'"]+)['"]/g)).map(function (m) { return m[1]; })
-    : [];
-  if (!versionMatch || !archivos.length) {
-    failures.push('sw.js: could not parse VERSION or ARCHIVOS');
+  const sw = readSwFiles(ROOT);
+  if (!sw) {
+    failures.push('sw.js: could not read VERSION and FILES');
   } else {
-    archivos.forEach(function (a) {
+    const listed = new Set();
+    for (const entry of sw.files) {
       checks++;
-      if (!fs.existsSync(path.join(ROOT, a))) {
-        failures.push('sw.js: ARCHIVOS lists ' + a + ' but it does not exist on disk');
-      }
-    });
+      const file = entryToFile(ROOT, entry);
+      listed.add(rel(file));
+      if (!fs.existsSync(file)) failures.push(`sw.js: FILES lists ${entry}, which is not on disk`);
+    }
+    for (const file of shippedFiles) {
+      const name = rel(file);
+      if (!SHIPPED_EXT.test(name) || NOT_PRECACHED.has(name)) continue;
+      checks++;
+      if (!listed.has(name)) failures.push(`sw.js: ${name} is shipped but not in FILES (offline it would be missing)`);
+    }
   }
 }
 
-/* -------------------------------------------------------------------------
- * 5. _headers stays within Cloudflare's per-file limit.
- * ----------------------------------------------------------------------- */
-
-var HEADERS_FILE = path.join(ROOT, '_headers');
-if (fs.existsSync(HEADERS_FILE)) {
+/* 6. .assetsignore -------------------------------------------------------- */
+const ASSETSIGNORE = path.join(ROOT, '.assetsignore');
+if (fs.existsSync(ASSETSIGNORE)) {
+  const ignored = fs.readFileSync(ASSETSIGNORE, 'utf8').split(/\r?\n/).map((l) => l.trim());
+  for (const needed of ['.git/', 'doc/', 'scripts/', 'tests/', '/*.md']) {
+    checks++;
+    if (!ignored.includes(needed)) failures.push(`.assetsignore must list ${needed} (otherwise Cloudflare publishes it)`);
+  }
   checks++;
-  var headerLines = fs.readFileSync(HEADERS_FILE, 'utf8')
-    .split('\n').filter(function (l) { return l.trim() !== ''; }).length;
-  if (headerLines > 100) {
-    failures.push('_headers has ' + headerLines + ' non-blank lines; Cloudflare\'s per-file limit is 100');
-  }
+  if (ignored.includes('_headers')) failures.push('.assetsignore must NOT list _headers (wrangler would skip it)');
 }
 
-/* -------------------------------------------------------------------------
- * 6. No shipped file exceeds 25 MB (Cloudflare's per-file limit).
- * ----------------------------------------------------------------------- */
-
-function walkForSize(dir) {
-  var out = [];
-  (function walk(current) {
-    var entries;
-    try {
-      entries = fs.readdirSync(current, { withFileTypes: true });
-    } catch (e) { return; }
-    entries.forEach(function (entry) {
-      var full = path.join(current, entry.name);
-      if (entry.isDirectory()) {
-        if (['.git', 'node_modules', 'graphify-out', 'graphify-out-meta',
-             '.claude'].indexOf(entry.name) !== -1) return;
-        walk(full);
-      } else if (entry.isFile()) {
-        out.push(full);
-      }
-    });
-  }(dir));
-  return out;
-}
-
-walkForSize(ROOT).forEach(function (file) {
+/* 7. _headers rule count -------------------------------------------------- */
+const HEADERS = path.join(ROOT, '_headers');
+if (fs.existsSync(HEADERS)) {
   checks++;
-  var stat = fs.statSync(file);
-  if (stat.size > 25 * 1024 * 1024) {
-    failures.push(rel(file) + ' is ' + (stat.size / 1024 / 1024).toFixed(2) +
-                 ' MB; Cloudflare Pages rejects files over 25 MB');
+  const rules = fs.readFileSync(HEADERS, 'utf8').split(/\r?\n/)
+    .filter((l) => l.trim() !== '' && !l.trim().startsWith('#')).length;
+  if (rules > 100) failures.push(`_headers has ${rules} rule lines; Cloudflare's limit is 100`);
+}
+
+/* 8. File size ------------------------------------------------------------ */
+for (const file of shippedFiles) {
+  checks++;
+  const size = fs.statSync(file).size;
+  if (size > 25 * 1024 * 1024) {
+    failures.push(`${rel(file)} is ${(size / 1048576).toFixed(2)} MiB; Cloudflare rejects files over 25 MiB`);
   }
-});
+}
 
-/* -------------------------------------------------------------------------
- * Output.
- * ----------------------------------------------------------------------- */
+/* 9. Leftover placeholders ------------------------------------------------ */
+const TEXT_EXT = /\.(md|html|css|js|json|toml|yml|yaml|txt|svg)$|^(_headers|\.assetsignore|\.graphifyignore|LICENSE)$/;
+for (const file of allFiles) {
+  const name = rel(file);
+  if (name.startsWith('.claude/') || !TEXT_EXT.test(path.basename(name))) continue;
+  checks++;
+  const left = fs.readFileSync(file, 'utf8').match(/\{\{[#/]?[A-Z][A-Z0-9_]*\}\}/);
+  if (left) failures.push(`${name}: bootstrap placeholder ${left[0]} left unresolved`);
+}
 
+/* Output ------------------------------------------------------------------ */
+for (const w of warnings) console.warn(`  ! ${w}`);
 if (failures.length) {
-  console.error('check.js: ' + failures.length + ' problem(s) found');
-  failures.forEach(function (f) { console.error('  ✗ ' + f); });
+  console.error(`check.js: ${failures.length} problem(s) found`);
+  for (const f of failures) console.error(`  ✗ ${f}`);
   process.exit(1);
-} else {
-  console.log('OK (' + checks + ' checks)');
 }
+console.log(`OK (${checks} checks)`);

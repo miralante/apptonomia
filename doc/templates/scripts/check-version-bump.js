@@ -30,12 +30,13 @@
  *
  * Wired into the `cache-bump` job in .github/workflows/validate.yml
  * so every push and PR is checked with the exact same logic. Same
- * script (verbatim) lives in calculia/memofun/okeymoney/teclatlon/
- * routime; sinonimia is being migrated.
+ * script lives in the other siblings; this copy reads sw.js through
+ * scripts/sw-files.js, the same parser as check.js and smoke-sw.js.
  */
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
+const { parseSw, entryToRel } = require('./sw-files.js');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -51,18 +52,10 @@ function readSw(ref) {
   const src = ref
     ? git(['show', ref + ':sw.js'])
     : fs.readFileSync(swPath, 'utf8');
-  const versionMatch = src.match(/VERSION\s*=\s*['"]([^'"]+)['"]/);
-  const listMatch = src.match(
-    /var\s+(?:ARCHIVOS|FILES)\s*=\s*\[([\s\S]*?)\];/
-  );
-  const files = listMatch
-    ? Array.from(listMatch[1].matchAll(/['"]\.\/([^'"]+)['"]/g)).map(function (m) {
-        return m[1];
-      })
-    : [];
+  const parsed = parseSw(src) || { version: null, files: [] };
   return {
-    version: versionMatch ? versionMatch[1] : null,
-    files: files,
+    version: parsed.version,
+    files: parsed.files.map(entryToRel),
     exists: true,
   };
 }

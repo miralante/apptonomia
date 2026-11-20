@@ -105,23 +105,26 @@ dictionaries or Teclatlon-style trainers.
 ```
 # 1. Create the repo on GitHub under miralante/<slug> (do it via
 #    the web UI; org membership may be required).
-# 2. Clone it locally.
-git clone git@github.com:miralante/<slug>.git
-cd <slug>
+# 2. Generate the app from the metaproject template. new-app.js copies
+#    doc/templates/, fills every placeholder in UTF-8 and refuses to
+#    finish if one is left without a value. It never touches git.
+cd apptonomia
+node scripts/new-app.js --slug <slug> --es "<Nombre>" --en "<Name>"   [--email <support address>] [--shape single-purpose]   [--with HAS_CONTENT_CC_BY_SA] [--set KEY=value]
+cd ../<slug>
+git init -b main
+git remote add origin git@github.com:miralante/<slug>.git
 
-# 3. Copy the file templates from the metaproject.
-#    They live in doc/templates/ relative to the metaproject root.
-cp -R ../apptonomia/doc/templates/. .
-
-# 4. Rename placeholders in the copied files.
-#    Across the suite the templates use {{SLUG}}, {{DISPLAY_ES}},
-#    {{DISPLAY_EN}}, {{DISPLAY_NAME}}, {{DOMAIN}}, {{SHAPE}},
-#    plus, in the SECURITY template, {{GIT_ORG}}, {{REPO}},
-#    {{DEFAULT_BRANCH}}, {{SUPPORT_EMAIL}}, and
-#    {{SUITE_SPECIFIC_THREAT_MODEL}} (and its `_ES` counterpart).
-#    Replace each occurrence. A quick sed (or your editor's
-#    project-wide find/replace) does it.
+# 3. Add the graphify skill and check the new app.
+node ../apptonomia/scripts/sync-graphify-skill.js sync --apply
+npm run lint && node scripts/smoke-sw.js && npm run test:ui
 ```
+
+Do not copy the folder by hand and replace placeholders with `sed`
+or PowerShell: `sed -i ''` only works on macOS, and Windows
+PowerShell 5.1 `Get-Content`/`Set-Content` without `-Encoding UTF8`
+mangle accents and emoji. `node scripts/check-template.js --ui`
+(run in the metaproject's CI) proves the template still produces an
+app that passes its own gates.
 
 The [`templates/`](../templates/) folder has a copy-paste scaffold
 for every required file. After renaming placeholders, you'll have

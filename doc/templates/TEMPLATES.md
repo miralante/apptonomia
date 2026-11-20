@@ -1,81 +1,47 @@
-# New-sibling file templates
+# New-app template
 
-This folder is the **canonical source** for the file scaffolds that
-every new sibling of the Miralante suite ships on day one. Copy
-them into the new repo's root, then run a project-wide find /
-replace on the placeholders.
+This folder is the **canonical scaffold** of every new app of the
+Miralante suite. It is one tree: what you see here is what the new
+repository gets, minus this file and its Spanish mirror.
 
-> 🌐 **Other language:** [Español](README.es.md)
+> 🌐 **Other language:** [Español](TEMPLATES.es.md)
 
 ---
 
 ## How to use
 
+Do not copy it by hand. From the metaproject:
+
 ```bash
-# 1. Create the new repo on GitHub under miralante/<slug>.
-# 2. Clone it locally.
-git clone git@github.com:miralante/<slug>.git
-cd <slug>
-
-# 3. Copy every file from this folder into the new repo's root.
-cp -R ../apptonomia/doc/templates/. .
-
-# 4. Replace placeholders. Every file in this folder uses the
-#    same handful of placeholders:
-#      {{SLUG}}        — lowercase, hyphens, ASCII, e.g. "mi-app"
-#      {{DISPLAY_ES}}  — display name in Spanish, e.g. "Mi App"
-#      {{DISPLAY_EN}}  — display name in English, e.g. "My App"
-#      {{DOMAIN}}      — full domain, e.g. "mi-app.apptonomia.uk"
-#      {{SHAPE}}       — multi-activity / single-purpose / deck-driven / shared-state / single-page
-#      {{GIT_ORG}}     — "miralante"
-#      {{REPO}}        — same as {{SLUG}} by default
-#      {{YEAR}}        — current year (e.g. 2026)
-#      {{AUTHOR}}      — maintainer's display name (default: the GitHub org)
-#
-#    A quick sed works on macOS / Linux:
-#      find . -type f \( -name '*.md' -o -name '*.js' -o -name '*.html' \
-#                          -o -name '*.yml' -o -name '*.toml' -o -name '*.json' \) \
-#        -exec sed -i '' \
-#          -e 's/{{SLUG}}/mi-app/g' \
-#          -e 's/{{DISPLAY_ES}}/Mi App/g' \
-#          -e 's/{{DISPLAY_EN}}/My App/g' \
-#          -e 's/{{DOMAIN}}/mi-app.apptonomia.uk/g' \
-#          -e 's/{{SHAPE}}/single-purpose/g' \
-#          -e 's/{{GIT_ORG}}/miralante/g' \
-#          -e 's/{{REPO}}/mi-app/g' \
-#          -e 's/{{YEAR}}/2026/g' \
-#          -e 's/{{AUTHOR}}/miralante/g' \
-#          {} +
-#
-#    On Windows (PowerShell):
-#      Get-ChildItem -Force -Recurse -File -Include *.md,*.js,*.html,*.yml,*.toml,*.json |
-#        ForEach-Object { (Get-Content $_ -Raw) `
-#          -replace '{{SLUG}}', 'mi-app' `
-#          -replace '{{DISPLAY_ES}}', 'Mi App' `
-#          -replace '{{DISPLAY_EN}}', 'My App' `
-#          -replace '{{DOMAIN}}', 'mi-app.apptonomia.uk' `
-#          -replace '{{SHAPE}}', 'single-purpose' `
-#          -replace '{{GIT_ORG}}', 'miralante' `
-#          -replace '{{REPO}}', 'mi-app' `
-#          -replace '{{YEAR}}', '2026' `
-#          -replace '{{AUTHOR}}', 'miralante' `
-#          | Set-Content $_ -NoNewline }
-
-# 5. Trim CLAUDE.md to the sibling's scope (delete Block A.2
-#    commands that don't apply, delete Block B's metaproject-only
-#    sections, etc.). The template ships with the full suite-
-#    wide defaults; you trim down to what your sibling needs.
-
-# 6. Run the sibling's `node scripts/check.js` and `node scripts/
-#    check-version-bump.js`. Both should pass.
-# 7. Add `package.json` with `test:ui` and a Playwright suite for
-#    the main flows. Run `npm run test:ui`; it must pass before every push.
-
-# 8. Copy `.github/workflows/validate.yml` from this template and
-#    make sure CI runs `test:ui` on every PR and push to `main`.
-# 9. Open the first PR titled "feat: bootstrap <slug> from
-#    apptonomia/doc/templates". Do not push if any required gate fails.
+cd apptonomia
+node scripts/new-app.js --slug mi-app --es "Mi App" --en "My App"
 ```
+
+[`scripts/new-app.js`](../../scripts/new-app.js) copies this folder to
+`../mi-app`, fills every placeholder (reading and writing UTF-8, so
+accents and emoji survive), resolves the optional
+`{{#FLAG}}…{{/FLAG}}` sections, and stops — removing what it wrote —
+if any placeholder is left without a value. It never runs git, never
+pushes and never deploys. Then follow
+[`../en/crear-app.md`](../en/crear-app.md) §3.
+
+| Option | Default | Placeholder(s) |
+|---|---|---|
+| `--slug` (required) | — | `SLUG`, `REPO` |
+| `--es` (required) | — | `DISPLAY_ES` |
+| `--en` | the `--es` value | `DISPLAY_EN`, `DISPLAY`, `DISPLAY_NAME` |
+| `--domain` | `<slug>.apptonomia.uk` | `DOMAIN` |
+| `--email` | `hello@apptonomia.uk` | `SUPPORT_EMAIL` |
+| `--shape` | `single-purpose` | `SHAPE` |
+| `--branch` | `main` | `PRODUCTION_BRANCH`, `DEFAULT_BRANCH` |
+| `--with A,B` | none | keeps the `{{#A}}…{{/A}}` sections (`HAS_CONTENT_CC_BY_SA`, `HAS_THIRD_PARTY_IMAGES`) |
+| `--set KEY=value` | — | any placeholder; the rest of the CLOUDFLARE.md / SECURITY.md ones have neutral defaults in `new-app.js` |
+
+**The template is tested.** `node scripts/check-template.js --ui`
+generates a throw-away app and runs its `check.js`, `smoke-sw.js`,
+`suite-markup.js`, `scan-secrets.js` and Playwright suite. The
+metaproject CI runs it on every push, so a change here that breaks a
+new app fails the build.
 
 ---
 
@@ -83,86 +49,67 @@ cp -R ../apptonomia/doc/templates/. .
 
 ```
 doc/templates/
-├── README.md                     ← this file (English)
-├── README.es.md                  ← this file (Spanish)
-├── CLAUDE.md                     ← AI agent handbook template
-├── README.md                     ← (overwrites the one above, intentional)
-├── README.es.md
-├── CONTRIBUTING.md
-├── CONTRIBUTING.es.md
-├── CODE_OF_CONDUCT.md
-├── CODE_OF_CONDUCT.es.md
-├── SECURITY.md
-├── SECURITY.es.md
-├── CLOUDFLARE.md
-├── LICENSE                       ← MIT, copyright line reads "Miralante {{DISPLAY_EN}} contributors"
-├── THIRD_PARTY_LICENSES.md       ← (only if the sibling ships third-party assets under a non-MIT license)
-├── _headers                      ← Cloudflare cache headers
-├── wrangler.toml                 ← Cloudflare Workers config
-├── 404.html
-├── app-template/
-│   └── index.html                ← app skeleton with the shared header and footer mounts
-├── assets/css/styles.css         ← app stylesheet; holds the synced suite-chrome block
-├── js/suite-chrome.js            ← shared header and footer (synced, never edit here)
-├── sw.js                         ← (only if the sibling is a PWA)
-├── manifest.json                 ← (only if the sibling is a PWA)
-├── package.json                  ← test:ui/test:sw + Playwright (dev only)
+├── TEMPLATES.md / .es.md      ← this file (not copied)
+├── index.html                 ← home: shared header/footer mounts, stars counter
+├── 404.html                   ← root-absolute links (served at the asked URL)
+├── about/ legal/ config/      ← the three pages the shared footer links to
+│                                 (config/ = settings and data reset, §B.5)
+├── strings.es.js / .en.js     ← UI strings; es is the source of truth
+├── js/
+│   ├── i18n.js                ← App.i18n core (the app owns it)
+│   ├── app.js                 ← home page logic (the app owns it)
+│   ├── sw-register.js         ← registers sw.js from any page depth
+│   ├── locale-picker*.js      ← language/settings drawer (same file as the siblings)
+│   ├── suite-chrome.js        ← synced: shared header and footer
+│   ├── stars-engine.js        ← synced: star goals
+│   ├── achievements-engine.js ← synced: achievements board
+│   └── feedback.js            ← synced blocks (answer round, reward, celebration) + app hooks
+├── assets/
+│   ├── css/suite-base.css     ← synced: design tokens (canonical copy lives here)
+│   ├── css/brand.css          ← the app's accent colours
+│   ├── css/styles.css         ← synced suite-chrome block + the app's own rules
+│   ├── css/locale-picker.css
+│   ├── fonts/                 ← Atkinson Hyperlegible, Nunito (OFL)
+│   └── icons/icon.svg         ← placeholder logo / PWA icon
+├── sw.js / manifest.json      ← PWA: network-first pages, cache-first files
+├── _headers / wrangler.toml / .assetsignore   ← Cloudflare
+├── package.json               ← commands only, no dependencies
+├── playwright.config.js / tests/   ← smoke suite (machine-wide Playwright)
 ├── scripts/
-│   ├── check.js                  ← structural lint + i18n parity
-│   ├── check-version-bump.js     ← (only if the sibling is a PWA)
-│   └── smoke-sw.js               ← service-worker smoke
-├── .github/workflows/
-│   └── validate.yml              ← structural, SW and Playwright gates
-└── doc/
-    └── en/
-        └── readme.md             ← easy-read intro template
+│   ├── check.js               ← structure, i18n, sw.js ↔ disk, placeholders
+│   ├── smoke-sw.js            ← every precache entry loads; 404 behaviour
+│   ├── check-version-bump.js  ← VERSION bump gate
+│   ├── sw-files.js            ← the one sw.js parser the three above share
+│   ├── serve.js               ← local server that behaves like Cloudflare
+│   ├── scan-secrets.js
+│   └── checks/suite-markup.js ← synced: shared header/footer audit
+├── .github/                   ← CI workflow and issue templates
+└── CLAUDE.md, README*, CONTRIBUTING*, CODE_OF_CONDUCT*, SECURITY*,
+    CLOUDFLARE.md, LICENSE, THIRD_PARTY_LICENSES.md, doc/
 ```
 
-Each file below this one has its own `README` and is a
-copy-paste scaffold.
+**Synced files** are copies of `apptonomia/scripts/suite/`. Never edit
+them here: edit the canonical source and run its sync script; with
+`--only apptonomia/doc/templates` the sync reaches this folder without
+touching the sibling repos.
 
 ---
 
 ## Conventions every template follows
 
-- **English technical code** — variables, function names,
-  identifiers, comments, commit messages. See each sibling's
-  `CLAUDE.md` §B.2 for the full language policy.
-- **Bilingual UI / docs** — every UI string and every doc lives
-  in **both** `es` and `en`. The English technical content
-  (changelog, commit messages, identifiers) stays English.
-- **No placeholders in committed files** — the placeholder is a
-  tool for the *bootstrap* step; the committed file must have all
-  `{{...}}` occurrences resolved.
-- **No third-party runtime** — no Google Fonts, no analytics, no
-  remote AI. See [`../doc/en/guia-de-cumplimiento.md` §4](../en/guia-de-cumplimiento.md#4-no-telemetry-no-accounts-no-remote-storage).
-- **Self-hosted typefaces only** — Atkinson Hyperlegible (400/700)
-  + Nunito (variable 400–900), bundled under `assets/fonts/`.
-- **No build step** — plain HTML/CSS/JS served as Cloudflare
-  static assets. No webpack, vite, parcel, esbuild, rollup.
-
----
-
-## What this folder is **not**
-
-- **Not a one-size-fits-all starter.** Each sibling still trims
-  `CLAUDE.md` and `scripts/check.js` to its scope. The templates
-  ship the full suite-wide defaults; trim, don't expand.
-- **Not a fork.** New siblings copy from this folder; they do not
-  `git submodule` or `pnpm workspace` link to it. The metaproject
-  rule is: no cross-project dependencies.
-- **Not the source of truth for product decisions.** This folder
-  ships scaffolds. The product decisions (audience, scope,
-  activities) come from the maintainer, written into
-  `doc/<lang>/spec.md` §1.
+- **English technical code**; bilingual (es/en) UI and docs.
+- **Every localStorage key starts with `<slug>:`**, so `config/` can
+  clear the app's data without `localStorage.clear()`.
+- **No third-party runtime** — no CDN, no analytics, no remote AI.
+- **No build step** — plain HTML/CSS/JS served as Cloudflare static
+  assets.
+- **No placeholders in committed files** — `check.js` fails on any.
 
 ---
 
 ## See also
 
-- [`../doc/en/crear-app.md`](../en/crear-app.md) — full recipe for
-  adding a new sibling.
-- [`../doc/en/guia-de-cumplimiento.md`](../en/guia-de-cumplimiento.md) —
-  suite compliance checklist that every new sibling must pass.
-- Each existing sibling's `CLAUDE.md` — the canonical reference
-  for how a mature sibling organises itself.
+- [`../en/crear-app.md`](../en/crear-app.md) — the full recipe.
+- [`../en/shared-blocks.md`](../en/shared-blocks.md) — the synced blocks.
+- [`../en/guia-de-cumplimiento.md`](../en/guia-de-cumplimiento.md) —
+  the compliance checklist every new app must pass.

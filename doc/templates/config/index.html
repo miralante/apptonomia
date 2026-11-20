@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es" data-i18n-title="config.title">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{DISPLAY_ES}}</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/suite-base.css">
+  <link rel="stylesheet" href="../assets/css/brand.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/locale-picker.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido" data-i18n="core.skipToContent">Ir al contenido</a>
+  <header data-suite-header
+          data-suite-logo="../assets/icons/icon.svg"
+          data-suite-byline></header>
+  <div class="suite-chrome-activity" data-suite-activity>
+    <a class="back-link" href="../">←</a>
+    <h1 data-i18n="config.title"></h1>
+  </div>
+
+  <main id="contenido" class="suite-body">
+    <section class="page-card">
+      <p data-i18n="config.intro"></p>
+      <p id="config-status" aria-live="polite"></p>
+      <div class="actions" id="config-start">
+        <button type="button" class="btn" id="config-clear" data-i18n="config.clear"></button>
+      </div>
+      <div class="hidden" id="config-confirm" role="group" aria-labelledby="config-confirm-text">
+        <p id="config-confirm-text" data-i18n="config.confirm"></p>
+        <div class="actions">
+          <button type="button" class="btn" id="config-yes" data-i18n="config.confirmYes"></button>
+          <button type="button" class="btn btn-secondary" id="config-no" data-i18n="config.confirmNo"></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer data-suite-footer
+          data-suite-base="../"
+          data-suite-settings
+          data-suite-contact="{{SUPPORT_EMAIL}}"></footer>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../strings.es.js"></script>
+  <script src="../strings.en.js"></script>
+  <script src="../js/suite-chrome.js"></script>
+  <script src="app.js"></script>
+  <script src="../js/locale-picker-config.js" defer></script>
+  <script src="../js/locale-picker.js" defer></script>
+  <script src="../js/sw-register.js"></script>
+</body>
+</html>

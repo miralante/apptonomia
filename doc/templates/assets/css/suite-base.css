@@ -13,8 +13,10 @@
      2. assets/css/brand.css        (the app's own brand: accent colours)
      3. the app's own tokens and components (refine, never redefine brand)
 
-   Only variables live here, no selectors that paint elements, so adopting
-   this file cannot change how an app looks by itself.
+   The vocabulary part holds only variables. The one block that paints
+   elements is the achievement screen (suite:celebrate), synced from
+   scripts/suite/celebrate.css: adopting this file adds that screen and
+   changes nothing else in how an app looks.
    ========================================================================== */
 
 :root {

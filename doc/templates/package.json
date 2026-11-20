@@ -1,10 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "test:ui": "playwright test",
-    "test:sw": "node scripts/smoke-sw.js"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.63.0"
+    "lint": "node scripts/check.js",
+    "lint:markup": "node scripts/checks/suite-markup.js",
+    "serve": "node scripts/serve.js",
+    "test:sw": "node scripts/smoke-sw.js",
+    "test:ui": "playwright test"
   }
 }

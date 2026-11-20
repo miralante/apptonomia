@@ -69,22 +69,31 @@
   font-weight: 700;
 }
 
-/* The subpage's activity block: centred between the brand and the controls. It takes
-   the room left over (flex-basis 0), so the stars and the gear keep the first row;
-   a long title wraps inside its own space instead of pushing the controls down. */
+/* The subpage's activity block: the back link and the title stay on one row, the title
+   starting right after the back link (the same x on every subpage). It takes the room
+   left over (flex-basis 0), so the stars and the gear keep the first row; a long title
+   wraps inside its own space instead of dropping under the back link. */
 .suite-chrome-activity {
   display: flex;
   flex: 1 1 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px 12px;
   min-width: 0;
-  text-align: center;
+  text-align: start;
 }
+
+.suite-chrome-activity .back-link { flex: none; }
+
+/* An activity icon sits inside the title, before the text, so every title starts at the same x. */
+.suite-chrome-activity h1 .activity-icon { display: inline-block; width: 1.4em; height: 1.4em; vertical-align: -0.25em; margin-inline-end: 0.2em; }
 
 .suite-chrome-activity h1 {
   margin: 0;
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: start;
   font-size: var(--texto-grande, 1.5rem);
   line-height: 1.2;
   color: var(--accent, var(--acento, inherit));
@@ -154,10 +163,14 @@
   .suite-chrome-header { padding-block: 2px; }
   .suite-chrome-name { font-size: 1rem; }
   .suite-chrome-activity h1 { font-size: 1.25rem; }
-  /* Phones: brand and controls share the first row; the activity block (back link,
-     title) takes a full row under them, so the title never gets a sliver of width. */
+  /* Phones: the brand gives up width (its byline wraps) so the stars and the gear keep
+     the first row. The activity block takes the row below: the back link keeps its
+     size and the title text wraps inside the space that is left beside it. */
+  .suite-chrome-brand { flex: 1 1 0; }
   .suite-chrome-controls { margin-inline-start: auto; order: 1; }
-  .suite-chrome-activity { flex: 1 0 100%; order: 2; }
+  .suite-chrome-activity { flex: 1 0 100%; order: 2; flex-wrap: nowrap; justify-content: flex-start; }
+  .suite-chrome-activity .back-link { flex: none; }
+  .suite-chrome-activity h1 { flex: 1 1 0; min-width: 0; text-align: start; }
 }
 
 /* The body: the page's content region, between the header and the footer.
@@ -207,3 +220,115 @@
   height: 100%;
 }
 /* suite:suite-chrome:end */
+
+/* ==========================================================================
+   App rules. Everything below belongs to {{DISPLAY_EN}}: change it freely.
+   Colours come from suite-base.css (vocabulary) and brand.css (accents).
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('../fonts/atkinson-hyperlegible-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('../fonts/atkinson-hyperlegible-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('../fonts/nunito-variable.woff2') format('woff2');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root { --suite-body-max: 960px; }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+h1, h2, h3 { font-family: 'Nunito', 'Atkinson Hyperlegible', system-ui, sans-serif; line-height: 1.2; }
+
+main { flex: 1 0 auto; }
+
+a { color: var(--accent); }
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.hidden { display: none !important; }
+
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -64px;
+  padding: 8px 16px;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  z-index: 10;
+}
+.skip-link:focus { top: 8px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--button-min);
+  padding: 8px 20px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--color-on-accent);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-secondary {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.stars-goal {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--color-text-soft);
+}
+
+.page-card {
+  margin-block: 24px;
+  padding: clamp(16px, 4vw, 32px);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}

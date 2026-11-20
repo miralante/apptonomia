@@ -1,0 +1,28 @@
+# Files Cloudflare must NOT publish (wrangler static assets). Without this file
+# wrangler publishes the whole repo root: .git/, CLAUDE.md, doc/, scripts/...
+# Rule of thumb: would a visitor ever need this file to use the app? If not,
+# it goes below. scripts/check.js fails if one of these paths is missing here.
+.assetsignore
+.git/
+.github/
+.claude/
+.wrangler/
+.dev/
+node_modules/
+graphify-out*/
+.graphifyignore
+doc/
+scripts/
+tests/
+test-results/
+playwright-report/
+/*.md
+/*.log
+package.json
+package-lock.json
+playwright.config.js
+/wrangler.toml
+**/.env*
+**/*.pem
+**/*.key
+**/credentials.json

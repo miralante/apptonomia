@@ -1,20 +1,33 @@
 # Third-party licenses
 
-> Optional. Delete this file in a new sibling that ships **no**
-> third-party content (default — vanilla code, fonts, and CC0 audio
-> or video only). Keep it when the sibling ships user-facing content
-> or images under a non-MIT license.
-
 The main code in this repository is licensed under the
 [MIT License](LICENSE) of the Miralante {{DISPLAY_EN}} project. This
 file documents the licenses of the third-party assets shipped in the
 deployed site.
 
+> The optional sections below are wrapped in `{{#FLAG}} … {{/FLAG}}`
+> markers. `apptonomia/scripts/new-app.js` keeps a section when its
+> flag is passed (`--with HAS_CONTENT_CC_BY_SA,HAS_THIRD_PARTY_IMAGES`)
+> and removes it otherwise, so the committed file never carries a
+> marker.
+
 ---
 
-## Content under {{#HAS_CONTENT_CC_BY_SA}}CC BY-SA 4.0
+## Fonts — SIL Open Font License 1.1
 
-(This section is required if the sibling ships user-authored lexicon,
+The app bundles two self-hosted typefaces under `assets/fonts/`:
+
+- **Atkinson Hyperlegible** (400, 700) — © Braille Institute of America.
+- **Nunito** (variable) — © The Nunito Project Authors.
+
+Both are licensed under the **SIL Open Font License, Version 1.1**:
+<https://openfontlicense.org/>. The fonts may be used, bundled and
+redistributed with this app; they may not be sold on their own.
+
+{{#HAS_CONTENT_CC_BY_SA}}
+## Content under CC BY-SA 4.0
+
+(Keep this section if the sibling ships user-authored lexicon,
 illustrative examples, or similar content intended to be reusable.)
 
 The content under `js/data.<lang>.js` (or the per-language shard
@@ -33,11 +46,12 @@ Recommended attribution when reusing:
 
 Each entry also carries its own context (e.g. `fuente`) under the
 same license when the entry is not fully original to this project.
+{{/HAS_CONTENT_CC_BY_SA}}
+{{#HAS_THIRD_PARTY_IMAGES}}
+## Images under permissive licenses
 
-## Content under {{/HAS_CONTENT_CC_BY_SA}}{{#HAS_THIRD_PARTY_IMAGES}}permissive licenses
-
-(This section is required if any card / entry carries an `imagen`
-field sourced from a third-party bank.)
+(Keep this section if any card / entry carries an `imagen` field
+sourced from a third-party bank.)
 
 Card images are sourced from a **permissively-licensed image bank**
 (see the per-sibling image-sourcing recipe in that sibling's
@@ -64,8 +78,7 @@ that block intact.
 - **Openverse** — <https://openverse.org>, per-result license.
 - **Wikimedia Commons** — <https://commons.wikimedia.org>,
   per-file license.
-
-## Bank used{{/HAS_THIRD_PARTY_IMAGES}}
+{{/HAS_THIRD_PARTY_IMAGES}}
 
 ---
 

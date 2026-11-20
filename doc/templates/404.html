@@ -1,40 +1,40 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es" data-i18n-title="notFound.title">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>404 — {{DISPLAY_ES}}</title>
-  <meta http-equiv="refresh" content="0; url=./">
-  <link rel="stylesheet" href="./css/styles.css" />
-  <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />
-  <style>
-    body { font-family: var(--font, system-ui, sans-serif); margin: 0; }
-    .contenedor-404 {
-      max-width: 480px;
-      margin: 8vh auto;
-      padding: 2rem;
-      text-align: center;
-    }
-    .contenedor-404 h1 { font-size: 4rem; margin: 0 0 0.5rem; }
-    .contenedor-404 p { font-size: 1.125rem; line-height: 1.5; }
-    .contenedor-404 a {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.75rem 1.25rem;
-      border-radius: 0.5rem;
-      background: var(--color-primario, #161A21);
-      color: var(--color-texto-claro, #F2F4F8);
-      text-decoration: none;
-      font-weight: 600;
-    }
-  </style>
+  <meta name="robots" content="noindex">
+  <!-- Cloudflare serves this page at the URL that was asked for (/a/b/c), so every
+       path here is ROOT-ABSOLUTE. A relative "./" would resolve to /a/b/, which is
+       another 404. No meta refresh: the reader sees the page and chooses. -->
+  <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/suite-base.css">
+  <link rel="stylesheet" href="/assets/css/brand.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/locale-picker.css">
 </head>
 <body>
-  <main class="contenedor-404" lang="es">
-    <h1>404</h1>
-    <p>Esta página no existe.</p>
-    <p>Vuelve a la página principal para seguir usando {{DISPLAY_ES}}.</p>
-    <a href="./">Volver a {{DISPLAY_ES}}</a>
+  <header data-suite-header
+          data-suite-logo="/assets/icons/icon.svg"
+          data-suite-byline
+          data-suite-name="{{DISPLAY_ES}}"></header>
+
+  <main id="contenido" class="suite-body">
+    <section class="page-card">
+      <h1 data-i18n="notFound.title">Página no encontrada</h1>
+      <p data-i18n="notFound.body">Esta página no existe. La página principal sigue disponible.</p>
+      <p><a class="btn" href="/" data-i18n="notFound.home">Ir a la página principal</a></p>
+    </section>
   </main>
+
+  <footer data-suite-footer data-suite-base="/"></footer>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/strings.es.js"></script>
+  <script src="/strings.en.js"></script>
+  <script src="/js/suite-chrome.js"></script>
+  <script src="/js/locale-picker-config.js" defer></script>
+  <script src="/js/locale-picker.js" defer></script>
 </body>
 </html>

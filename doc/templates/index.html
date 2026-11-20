@@ -1,37 +1,55 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-i18n-title="home.title">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{DISPLAY_ES}}</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <meta name="description" content="{{DISPLAY_ES}}: app web gratuita de la suite Apptonomia.">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.json">
+  <!-- Load order: suite vocabulary, the app's brand, the app's components. -->
+  <link rel="stylesheet" href="assets/css/suite-base.css">
+  <link rel="stylesheet" href="assets/css/brand.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/locale-picker.css">
   <!-- Navigation tree (doc/en/navigation-flow.md): home, hub, activity. The achievement
        screen is a state of the activity's page, and «A por más» returns to its entry point. -->
 </head>
 <body>
-  <!-- Shared header and footer of the suite. Behaviour and labels: js/suite-chrome.js.
-       Labels live in strings.<locale>.js under the chrome.* keys. -->
-  <!-- The app's star counter, if it has one. data-suite-stars lets the shared
-       script move it into the header row, left of the settings gear. -->
+  <a class="skip-link" href="#contenido" data-i18n="core.skipToContent">Ir al contenido</a>
+
+  <!-- Shared header and footer of the suite (js/suite-chrome.js). The star counter
+       (data-suite-stars) is moved into the header row, left of the settings gear. -->
+  <header data-suite-header
+          data-suite-heading
+          data-suite-logo="assets/icons/icon.svg"
+          data-suite-byline
+          data-suite-portal="https://apptonomia.uk/"></header>
   <span class="stars" data-suite-stars id="stars">⭐ 0</span>
-  <header data-suite-header></header>
 
   <main id="contenido" class="suite-body">
-    <!-- The app's own content goes here. An activity page links up with the back link
-         in its header (<a class="back-link" href="../">) to its hub. The achievement
-         screen replaces this content inside <main>. -->
+    <!-- The app's own content goes here. An activity page links up to its hub with
+         the back link inside its data-suite-activity block. The achievement screen
+         replaces this content inside <main>. -->
+    <p data-i18n="home.intro"></p>
   </main>
 
   <footer data-suite-footer
           data-suite-base="./"
-          data-suite-portal="https://apptonomia.uk/"
-          data-suite-settings></footer>
+          data-suite-settings
+          data-suite-contact="{{SUPPORT_EMAIL}}"></footer>
 
   <script src="js/i18n.js"></script>
   <script src="strings.es.js"></script>
   <script src="strings.en.js"></script>
   <script src="js/suite-chrome.js"></script>
+  <script src="js/stars-engine.js"></script>
+  <script src="js/achievements-engine.js"></script>
+  <script src="js/feedback.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/locale-picker-config.js" defer></script>
+  <script src="js/locale-picker.js" defer></script>
+  <script src="js/sw-register.js"></script>
 </body>
 </html>

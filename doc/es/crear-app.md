@@ -105,23 +105,26 @@ diccionarios estilo Sinonimia o entrenadores estilo Teclatlon.
 ```
 # 1. Crea el repo en GitHub bajo miralante/<slug> (hazlo desde la
 #    UI web; puede requerir membresía de la org).
-# 2. Clónalo en local.
-git clone git@github.com:miralante/<slug>.git
-cd <slug>
+# 2. Genera la app desde la plantilla del metaproyecto. new-app.js copia
+#    doc/templates/, rellena todos los marcadores en UTF-8 y se niega a
+#    terminar si alguno queda sin valor. No toca git.
+cd apptonomia
+node scripts/new-app.js --slug <slug> --es "<Nombre>" --en "<Name>"   [--email <correo de soporte>] [--shape single-purpose]   [--with HAS_CONTENT_CC_BY_SA] [--set CLAVE=valor]
+cd ../<slug>
+git init -b main
+git remote add origin git@github.com:miralante/<slug>.git
 
-# 3. Copia las plantillas de archivo del metaproyecto.
-#    Viven en doc/templates/ relativas a la raíz del metaproyecto.
-cp -R ../apptonomia/doc/templates/. .
-
-# 4. Renombra los marcadores de posición en los archivos copiados.
-#    En la suite las plantillas usan {{SLUG}}, {{DISPLAY_ES}},
-#    {{DISPLAY_EN}}, {{DISPLAY_NAME}}, {{DOMAIN}}, {{SHAPE}},
-#    y, en la plantilla de SECURITY, también {{GIT_ORG}}, {{REPO}},
-#    {{DEFAULT_BRANCH}}, {{SUPPORT_EMAIL}} y
-#    {{SUITE_SPECIFIC_THREAT_MODEL}} (y su homólogo `_ES`).
-#    Reemplaza cada ocurrencia. Un sed rápido (o el
-#    buscar/reemplazar global de tu editor) lo hace.
+# 3. Añade la skill de graphify y comprueba la app nueva.
+node ../apptonomia/scripts/sync-graphify-skill.js sync --apply
+npm run lint && node scripts/smoke-sw.js && npm run test:ui
 ```
+
+No copies la carpeta a mano ni sustituyas los marcadores con `sed`
+o PowerShell: `sed -i ''` solo funciona en macOS, y en Windows
+PowerShell 5.1 `Get-Content`/`Set-Content` sin `-Encoding UTF8`
+estropean tildes y emojis. `node scripts/check-template.js --ui`
+(en la CI del metaproyecto) demuestra que la plantilla sigue
+generando una app que pasa sus propias comprobaciones.
 
 La carpeta [`templates/`](../templates/) tiene un andamio para
 copiar y pegar de cada archivo obligatorio. Tras renombrar los

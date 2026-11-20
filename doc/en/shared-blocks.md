@@ -122,7 +122,7 @@ contract. The full usage comment is at the top of `scripts/suite/suite-chrome.js
 - **Tool pages** (`tools/`): the shared header mount comes first; the back link,
   the title and the star counter stay in the tool's own `tool-header`, which is a
   function of the activity.
-- **`doc/templates/app-template/index.html`** is an example of the markup. Its i18n
+- **`doc/templates/index.html`** is an example of the markup. Its i18n
   core is the app's own.
 - **Stubs**: `apptonomia/project/index.html` (the slide deck, with its own footer)
   and `ludia/refresh.html` and `ludia/legal/index.html` (redirect stubs) are not

@@ -1,16 +1,16 @@
+# {{DISPLAY_EN}} — Cloudflare Workers with static assets (no `main` script).
+# The site is plain HTML/CSS/JS with no build step. What is published is the
+# repo root MINUS what .assetsignore lists (docs, scripts, tests, .git, ...).
+# See CLOUDFLARE.md and https://developers.cloudflare.com/workers/static-assets/
+
 name = "{{SLUG}}"
-compatibility_date = "2025-09-01"
-pages_build_output_dir = "."
+compatibility_date = "2026-07-27"
 
 [assets]
 directory = "."
+# Unknown paths get 404.html with a 404 status. 404.html uses root-absolute
+# links because it is served at the URL that was asked for.
 not_found_handling = "404-page"
-# binding = "ASSETS"  # uncomment when the sibling grows a Worker
-#                       # entrypoint that needs to read its own
-#                       # static assets programmatically.
 
 [observability]
 enabled = true
-
-[placement]
-mode = "smart"

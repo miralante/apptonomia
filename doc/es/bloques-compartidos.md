@@ -125,7 +125,7 @@ El comentario de uso completo está al principio de `scripts/suite/suite-chrome.
 - **Páginas de herramienta** (`tools/`): el montaje de cabecera compartida va primero; el
   enlace de volver, el título y el contador de estrellas siguen en el `tool-header` de la
   propia herramienta, que depende de la actividad.
-- **`doc/templates/app-template/index.html`** es un ejemplo del marcado. Su núcleo de
+- **`doc/templates/index.html`** es un ejemplo del marcado. Su núcleo de
   i18n es el de la propia app.
 - **Stubs**: `apptonomia/project/index.html` (la presentación, con su pie propio) y
   `ludia/refresh.html` y `ludia/legal/index.html` (stubs de redirección) no se auditan.

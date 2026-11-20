@@ -1,0 +1,16 @@
+/* {{DISPLAY_EN}} — brand colours. Loads AFTER suite-base.css and only fills its
+   brand slots. Check every pair with ../contrast/check-contrast.ps1 (WCAG AAA
+   for body text) before changing them. */
+:root {
+  --accent: #005A9C;
+  --accent-soft: #E6F0FF;
+  --accent-2: #8A5A00;
+  --accent-2-soft: #F7EFDD;
+}
+
+[data-theme="dark"] {
+  --accent: #8CC4F2;
+  --accent-soft: #1C2A3D;
+  --accent-2: #F0C277;
+  --accent-2-soft: #3A2E17;
+}
