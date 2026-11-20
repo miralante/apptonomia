@@ -72,7 +72,7 @@ jobs:
       - name: Shared header/footer markup
         run: npm run lint:markup
 
-      - name: Template: the new app must pass its own gates
+      - name: The new app from the template must pass its own gates
         # Creates a throw-away app from doc/templates/ and runs its
         # structural gates inside it. Without this step the template
         # could break and only the next new sibling would find out.
