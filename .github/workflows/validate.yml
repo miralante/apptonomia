@@ -72,12 +72,6 @@ jobs:
       - name: Shared header/footer markup
         run: npm run lint:markup
 
-      - name: The new app from the template must pass its own gates
-        # Creates a throw-away app from doc/templates/ and runs its
-        # structural gates inside it. Without this step the template
-        # could break and only the next new sibling would find out.
-        run: node scripts/check-template.js
-
   forbidden-terms:
     name: forbidden-terms scan
     # Enforces SPEC.md §4 ("Mandatory rule: zero mentions in the

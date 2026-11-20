@@ -1,0 +1,7 @@
+# graphify: folders that are not part of the app's own code.
+node_modules/
+graphify-out/
+test-results/
+playwright-report/
+assets/fonts/
+.wrangler/

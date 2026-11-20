@@ -23,6 +23,10 @@ npm-debug.log*
 graphify-out/
 graphify-out-meta/
 .graphifyignore
+# …pero la copia de la plantilla sí se versiona: el checker de una app
+# nueva la exige, y sin ella en el repo la plantilla genera una app que
+# falla sus propias puertas en CI (donde el fichero no existe en disco).
+!doc/templates/.graphifyignore
 
 # Cachés que generan los scripts de mantenimiento
 scripts/.cache/
