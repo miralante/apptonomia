@@ -169,11 +169,11 @@ Run before any modification:
 ```bash
 git status --short
 git log --oneline -3
-node scripts/check.js
+npm run lint
 ```
 
 Keep uncommitted changes that are not yours (A.3 covers destructive
-ops). If `check.js` already fails, find out whether the failure
+ops). If `npm run lint` already fails, find out whether the failure
 belongs to the in-flight work before adding new changes.
 
 #### A.2.2 Before editing
@@ -187,7 +187,7 @@ belongs to the in-flight work before adding new changes.
 
 #### A.2.3 Before finishing
 
-1. Always run `node scripts/check.js`.
+1. Always run `npm run lint` (and `npm run lint:markup`).
 2. If this project ships a service worker (see §B.1): bump `VERSION`
    in `sw.js` whenever a cached file changes, and add any new file to
    `FILES`. Run `node scripts/check-version-bump.js` to verify the

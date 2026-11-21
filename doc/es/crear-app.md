@@ -217,9 +217,11 @@ Reglas que no se rompen:
   apptonomia, que es un portal de aterrizaje, no. Una app que **no**
   trae `scripts/ui-smoke.js` **no declara** `test:crawl`: una puerta que
   apunta a un fichero inexistente es peor que no tenerla.
-- **Playwright no es una dependencia del proyecto**: ni `dependencies`
-  ni `devDependencies`. En local es la instalación de la máquina; en CI
-  se instala al vuelo con
+- **Playwright nunca es una dependencia de ejecución.** Las apps que
+  traen specs declaran `@playwright/test` en `devDependencies` (y `playwright`
+  también cuando además llevan crawler), para que `npm ci` dé un runner
+  reproducible. La plantilla de app nueva **no** declara ninguno: la app lo
+  decide al nacer, y la CI los instala al vuelo con
   `npm install --no-save --no-audit --no-fund @playwright/test@1.63.0`
   (y `playwright` si la app además lo necesita para el crawler). El
   shim `tests/playwright.js` carga la API desde la copia que el propio
@@ -258,8 +260,9 @@ Para nacer con el contrato de test completo, la app nueva trae:
 - [ ] Ninguna puerta del workflow sin su comando en `package.json`, y
       ninguna puerta de test en `package.json` que el workflow no
       invoque (salvo `serve`, que es de uso manual).
-- [ ] Playwright **no** en `devDependencies`: se instala en el entorno
-      o al vuelo en CI.
+- [ ] Playwright **no** en `dependencies`. En `devDependencies` solo si la
+      app quiere un runner reproducible (`@playwright/test`, más `playwright`
+      si además lleva crawler); la plantilla no declara ninguno.
 
 La plantilla de [`doc/templates/`](../templates/) ya trae todo esto: se
 genera con `node scripts/new-app.js` y se verifica con

@@ -74,7 +74,9 @@ doc/templates/
 ├── sw.js / manifest.json      ← PWA: network-first pages, cache-first files
 ├── _headers / wrangler.toml / .assetsignore   ← Cloudflare
 ├── package.json               ← commands only, no dependencies
-├── playwright.config.js / tests/   ← smoke suite (machine-wide Playwright)
+│                                 (lint, lint:markup, serve, test:sw, test:ui)
+├── playwright.config.js / tests/   ← canonical suite (machine-wide
+│                                 Playwright): canonical smoke + app specs
 ├── scripts/
 │   ├── check.js               ← structure, i18n, sw.js ↔ disk, placeholders
 │   ├── smoke-sw.js            ← every precache entry loads; 404 behaviour
@@ -92,6 +94,17 @@ doc/templates/
 them here: edit the canonical source and run its sync script; with
 `--only apptonomia/doc/templates` the sync reaches this folder without
 touching the sibling repos.
+
+**The gates of the test contract.** The template is born with
+`npm run lint`, `npm run lint:markup`, `npm run test:ui` (the Playwright
+specs in `tests/`) and `npm run test:sw`, plus `npm run serve` (the
+canonical server, for manual use). The template ships **no** crawler
+(`scripts/ui-smoke.js`), so it does **not** declare `test:crawl`: a gate
+pointing at a missing file is worse than no gate at all. If the app
+adopts the canonical crawler, the gate is `node scripts/ui-smoke.js`.
+Playwright is not a project dependency: it never goes into
+`devDependencies`; locally it comes from the machine-wide install and in
+CI it is installed on the fly.
 
 ---
 

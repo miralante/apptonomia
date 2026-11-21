@@ -4,15 +4,16 @@
 > **automatically on every push to `main`** via the **Cloudflare
 > Git connector**. The GitHub Actions workflow
 > [`.github/workflows/validate.yml`](.github/workflows/validate.yml)
-> runs `node scripts/check.js` on every push and PR but does **not**
+> runs the test gates (`npm run lint`, `npm run lint:markup`,
+> `npm run test:ui`) on every push and PR but does **not**
 > deploy. The Cloudflare dashboard is the source of truth for
 > project settings.
 >
 > **This project is deployed as a Cloudflare Worker (static assets),
 > not classic Cloudflare Pages.**
 >
-> **Part of the Miralante suite.** Apptonomia is **one of the seven
-> siblings** (Apptonomia, Calculia, Memofun, Okeymoney, Routime,
+> **Part of the Miralante suite.** Apptonomia is **one of the eight
+> apps** (Apptonomia, Calculia, Ludia, Memofun, Okeymoney, Routime,
 > Sinonimia, Teclatlon) that share the same author, the same
 > accessibility-first / no-backend philosophy, and the same Cloudflare
 > deploy story. The canonical group-wide guide lives in
@@ -56,9 +57,10 @@ own `404.html` for an unmatched path instead of a bare empty 404.
 |---|---|
 | `_headers` | Cache and security headers |
 | `wrangler.toml` | Pins the project name + the `[assets]` binding + `not_found_handling = "404-page"` |
-| `.github/workflows/validate.yml` | `node scripts/check.js` and friends on every push/PR (does **not** deploy) |
+| `package.json` | The gate contract of the suite: `lint`, `lint:markup`, `test:ui` (plus `test:sw` when the app is a PWA and `test:crawl` when it adopts the crawler) |
+| `.github/workflows/validate.yml` | The test gates on every push/PR (does **not** deploy) |
 
-No `_redirects`, no `functions/`, no `package.json`, no Cloudflare
+No `_redirects`, no `functions/`, no Cloudflare
 service-account keys.
 
 ## Configuration in Cloudflare

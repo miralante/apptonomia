@@ -1,10 +1,11 @@
 // tests/smoke.spec.js — the shared smoke of every app of the suite.
 //
 // It checks the contract that the shared components promise, and nothing that
-// belongs to a single app: the chrome renders, the settings drawer opens and
-// closes, the language row lives inside it, and the page does not scroll
-// sideways on a narrow screen. The flows of the app itself live in the app's
-// own spec (tests/app.spec.js).
+// belongs to a single app: the page loads, the settings drawer opens and
+// closes, the language row lives inside it, the page does not scroll sideways
+// on a narrow screen, and the 404 page answers with the error and the way
+// back. The flows of the app itself live in the app's own spec
+// (tests/app.spec.js).
 //
 // Canonical source: apptonomia/scripts/suite/smoke.spec.js. Copied byte for
 // byte to <app>/tests/smoke.spec.js by
@@ -21,15 +22,13 @@ function watchErrors(page) {
   return errors;
 }
 
-test('the home renders the shared header and footer, with no errors', async ({ page }) => {
-  const errors = watchErrors(page);
-  await page.goto('./');
-  await expect(page.locator('.suite-chrome-header')).toBeVisible();
-  await expect(page.locator('.suite-chrome-footer')).toBeVisible();
-  expect(errors).toEqual([]);
-});
+/* The browser logs the 404 of the page itself as a console error. On the 404
+   page that answer is the expected one, not a defect. */
+function without404(errors) {
+  return errors.filter((text) => !/Failed to load resource.*404/.test(text));
+}
 
-test('the settings drawer opens, holds the language row and closes', async ({ page }) => {
+test('the home loads, with the settings drawer and no errors', async ({ page }) => {
   const errors = watchErrors(page);
   await page.goto('./');
 
@@ -72,5 +71,5 @@ test('the 404 page shows the error, with the shared chrome and the way back', as
   // The way back is root-absolute: Cloudflare serves this page at the URL
   // that was asked for, so a relative link would resolve to another 404.
   await expect(page.locator('main a')).toHaveAttribute('href', '/');
-  expect(errors).toEqual([]);
+  expect(without404(errors)).toEqual([]);
 });

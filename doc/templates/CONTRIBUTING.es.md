@@ -110,7 +110,7 @@ de abajo la cubran sin una revisión arquitectónica aparte.
 2. Refleja el cambio en todos los demás ficheros de strings (`en`
    como mínimo).
 3. Si el cambio toca estructura HTML visible, ejecuta
-   `node scripts/check.js` para verificar la paridad de claves.
+   `npm run lint` para verificar la paridad de claves.
 4. Abre un PR con una descripción de una línea.
 
 ### Nuevo idioma

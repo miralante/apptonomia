@@ -73,7 +73,9 @@ doc/templates/
 ├── sw.js / manifest.json      ← PWA: páginas network-first, archivos cache-first
 ├── _headers / wrangler.toml / .assetsignore   ← Cloudflare
 ├── package.json               ← solo comandos, sin dependencias
-├── playwright.config.js / tests/   ← batería de humo (Playwright de la máquina)
+│                                 (lint, lint:markup, serve, test:sw, test:ui)
+├── playwright.config.js / tests/   ← batería canónica (Playwright de la
+│                                 máquina): smoke canónico + specs de la app
 ├── scripts/
 │   ├── check.js               ← estructura, i18n, sw.js ↔ disco, marcadores
 │   ├── smoke-sw.js            ← cada entrada del precache carga; comportamiento del 404
@@ -91,6 +93,17 @@ Los **archivos sincronizados** son copias de `apptonomia/scripts/suite/`.
 No los edites aquí: edita la fuente canónica y ejecuta su script de
 sincronización; con `--only apptonomia/doc/templates` llega a esta
 carpeta sin tocar los repos hermanos.
+
+**Las puertas del contrato de test.** La plantilla nace con
+`npm run lint`, `npm run lint:markup`, `npm run test:ui` (las specs de
+Playwright de `tests/`) y `npm run test:sw`, más `npm run serve` (el
+servidor canónico, de uso manual). La plantilla **no** trae crawler
+(`scripts/ui-smoke.js`), así que **no** declara `test:crawl`: una puerta
+que apunta a un fichero inexistente es peor que no tenerla. Si la app
+adopta el crawler canónico, la puerta es `node scripts/ui-smoke.js`.
+Playwright no es una dependencia del proyecto: no va en
+`devDependencies`; en local viene de la instalación de la máquina y en
+CI se instala al vuelo.
 
 ---
 

@@ -1,4 +1,6 @@
 const { test, expect } = require('playwright/test');
+const fs = require('node:fs');
+const path = require('node:path');
 
 /* Same origin as tests/app.spec.js and playwright.config.js: those read
    PORT, this one read UI_PORT, so `PORT=4190 npx playwright test` started
@@ -117,12 +119,19 @@ test.describe('Apptonomia landing settings', () => {
     await expect(drawer).toBeHidden();
   });
 
-  test('cache-busts the mutable language runtime script', async ({ page }) => {
-    // The suite-wide asset contract (scripts/ASSET-TOKENS.md) replaced the
-    // hand-typed serial with sha256(file bytes)[0:8], so a real token looks
-    // like "apptonomia-vb7a8cf2c": eight lowercase hex characters, not digits.
-    await expect(page.locator('script[src*="js/script.js"]'))
-      .toHaveAttribute('src', /[?&]v=apptonomia-v[0-9a-f]{8}/);
+  test('the mutable language runtime script is revalidated, not tokenised', async ({ page }) => {
+    /* The suite dropped the hand-typed "?v=apptonomia-vXXXXXXXX" serial (and
+       scripts/ASSET-TOKENS.md with it): every asset is revalidated on each
+       request, so a deploy reaches the browser at once and there is no token
+       to keep in sync. The guarantee now lives in _headers, and this test
+       checks both halves of the new contract: the runtime is loaded without
+       a token, and the header revalidates it. */
+    const script = page.locator('script[src*="js/script.js"]');
+    await expect(script).toHaveCount(1);
+    await expect(script).not.toHaveAttribute('src', /[?&]v=/);
+
+    const headers = fs.readFileSync(path.join(__dirname, '..', '_headers'), 'utf8');
+    expect(headers).toMatch(/Cache-Control:\s*no-cache/i);
   });
 
   test('changes language from inside the settings drawer and persists after reload', async ({ page }) => {

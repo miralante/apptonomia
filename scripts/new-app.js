@@ -171,7 +171,7 @@ if (require.main === module) {
     console.log(`  cd ${path.relative(process.cwd(), result.dest) || '.'}`);
     console.log('  git init -b main');
     console.log('  node ../apptonomia/scripts/sync-graphify-skill.js sync --apply   (adds the graphify skill)');
-    console.log('  node scripts/check.js && node scripts/smoke-sw.js && npm run test:ui');
+    console.log('  npm run lint && npm run lint:markup && npm run test:sw && npm run test:ui');
     console.log('Then add the app to the TARGETS of the apptonomia sync scripts (doc/en/crear-app.md).');
   } catch (e) {
     console.error(`new-app: ${e.message}`);

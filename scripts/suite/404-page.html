@@ -1,0 +1,45 @@
+<!--
+  404 page — canonical source: apptonomia/scripts/suite/404-page.html.
+  Rendered into every app by apptonomia/scripts/sync-suite-test-kit.js. Never
+  edit a copy by hand: the placeholders below are filled with each app's own
+  paths, name and scripts.
+
+  This comment is NOT part of the rendered page: the renderer keeps only what
+  comes after the doctype. It explains the three rules that make the page work
+  in production, and all three were broken before:
+
+  1. EVERY path is root-absolute. Cloudflare serves this page at the URL that
+     was asked for (/a/b/c), so a relative "./" resolves to /a/b/ — another
+     404 — and a relative "assets/..." points to a file that does not exist
+     there. The page arrives with no styles and no scripts.
+  2. NO meta refresh and NO redirect script. The reader sees the page and
+     chooses where to go from it: the page IS the error, the link is the way
+     out. A redirect hides the error and drops the shared chrome (the gear,
+     the language) that the rest of the app offers.
+  3. NO inline styles and no app-specific classes. The page wears the app's
+     own stylesheets, so it respects the theme, the contrast and the font
+     size the reader chose. It only uses the shared chrome's markup, so every
+     app's 404 looks the same.
+-->
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 — {{APP_NAME}}</title>
+  <meta name="robots" content="noindex">
+{{CSS_LINKS}}
+</head>
+<body>
+  <header data-suite-header{{HEADER_ATTRS}}></header>
+
+  <main id="contenido" class="suite-body">
+    <h1>{{HEADING}}</h1>
+    <p>{{MESSAGE}}</p>
+    <p><a href="{{HOME}}">{{BACK_LABEL}}</a></p>
+  </main>
+
+  <footer data-suite-footer{{FOOTER_ATTRS}}></footer>
+{{SCRIPTS}}
+</body>
+</html>

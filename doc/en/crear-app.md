@@ -215,9 +215,11 @@ Rules that don't get broken:
   apptonomia, which is a landing portal, does not. An app that does
   **not** ship `scripts/ui-smoke.js` **does not declare** `test:crawl`:
   a gate pointing at a missing file is worse than no gate at all.
-- **Playwright is not a project dependency**: neither `dependencies` nor
-  `devDependencies`. Locally it is the machine-wide install; in CI it is
-  installed on the fly with
+- **Playwright is never a runtime dependency.** The apps that ship specs
+  declare `@playwright/test` in `devDependencies` (and `playwright` too when
+  they also run the crawler), so `npm ci` gives a reproducible runner. The
+  new-app template declares neither: the app decides at birth, and the CI
+  installs them on the fly with
   `npm install --no-save --no-audit --no-fund @playwright/test@1.63.0`
   (plus `playwright` if the app also needs it for the crawler). The
   `tests/playwright.js` shim loads the API from the copy the runner has
@@ -256,8 +258,9 @@ To be born with the full test contract, the new app brings:
 - [ ] No gate in the workflow without its command in `package.json`, and
       no test gate in `package.json` that the workflow never calls
       (except `serve`, which is for manual use).
-- [ ] Playwright **not** in `devDependencies`: it comes from the
-      environment or from the CI install step.
+- [ ] Playwright **not** in `dependencies`. In `devDependencies` only if the
+      app wants a reproducible runner (`@playwright/test`, plus `playwright`
+      when it ships the crawler); the template declares neither.
 
 The [`doc/templates/`](../templates/) scaffold already carries all of
 this: it is generated with `node scripts/new-app.js` and verified with

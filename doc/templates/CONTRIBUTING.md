@@ -100,7 +100,7 @@ without a separate architecture review.
 1. Edit the source-of-truth strings file (`es` by default per the
    suite's language policy).
 2. Mirror the change in every other locale file (`en` minimum).
-3. Run `node scripts/check.js` to verify key parity.
+3. Run `npm run lint` to verify key parity.
 4. Open a PR with a one-line description.
 
 ### New language

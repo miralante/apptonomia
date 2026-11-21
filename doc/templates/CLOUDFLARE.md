@@ -4,15 +4,16 @@
 > **automatically on every push to `{{PRODUCTION_BRANCH}}`** via the
 > **Cloudflare Git connector**. The GitHub Actions workflow
 > [`.github/workflows/{{WORKFLOW}}`](.github/workflows/{{WORKFLOW}})
-> runs `node scripts/check.js` on every push and PR but does **not**
-> deploy. The Cloudflare dashboard is the source of truth for
+> runs the test gates (`npm run lint`, `npm run lint:markup`,
+> `npm run test:sw`, `npm run test:ui`) on every push and PR but does
+> **not** deploy. The Cloudflare dashboard is the source of truth for
 > project settings.
 >
 > **This project is deployed as a Cloudflare Worker (static assets),
 > not classic Cloudflare Pages.**{{LIVE_URL_NOTE}}
 >
-> **Part of the Miralante suite.** {{DISPLAY}} is **one of the seven
-> siblings** (Apptonomia, Calculia, Memofun, Okeymoney, Routime,
+> **Part of the Miralante suite.** {{DISPLAY}} joins the Miralante apps
+> (Apptonomia, Calculia, Ludia, Memofun, Okeymoney, Routime,
 > Sinonimia, Teclatlon) that share the same author, the same
 > accessibility-first / no-backend philosophy, and the same Cloudflare
 > deploy story. The canonical group-wide guide lives in
@@ -56,8 +57,9 @@ own `404.html` for an unmatched path instead of a bare empty 404.
 |---|---|
 | `_headers` | Cache and security headers |
 | `wrangler.toml` | Pins the project name + the `[assets]` binding + `not_found_handling = "404-page"` |
-| `.github/workflows/{{WORKFLOW}}` | `node scripts/check.js` and friends on every push/PR (does **not** deploy) |{{EXTRA_FILES_ROWS}}
-{{REDIRECTS_ROW}}No `_redirects`, no `functions/`, no `package.json`, no Cloudflare
+| `package.json` | The gate contract of the suite: `lint`, `lint:markup`, `test:sw`, `test:ui` (plus `test:crawl` if the app adopts the crawler) |
+| `.github/workflows/{{WORKFLOW}}` | The test gates on every push/PR (does **not** deploy) |{{EXTRA_FILES_ROWS}}
+{{REDIRECTS_ROW}}No `_redirects`, no `functions/`, no Cloudflare
 service-account keys.{{REPO_NARRATIVE}}
 
 ## Configuration in Cloudflare
