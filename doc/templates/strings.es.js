@@ -35,6 +35,7 @@ if (window.App.i18n) {
     legal: {
       title: 'Protección de datos',
       body: '{{DISPLAY_ES}} no envía tus datos a ningún servidor. Lo que haces se guarda solo en este navegador. No hay cuentas, ni analítica, ni publicidad.',
+      rights: 'Puedes ver, cambiar o borrar lo guardado en cualquier momento, sin pedírnoslo a nosotros. Puedes hacerlo desde el icono de engranaje de la cabecera.',
       contact: 'Para cualquier duda, escribe a {{SUPPORT_EMAIL}}.'
     },
     config: {

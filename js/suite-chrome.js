@@ -215,9 +215,6 @@
     var list = make('ul', 'suite-chrome-links');
     list.appendChild(linkItem(base + 'about/', 'core.chrome.about'));
     list.appendChild(linkItem(base + 'legal/', 'core.chrome.legal'));
-    if (mount.hasAttribute('data-suite-settings')) {
-      list.appendChild(linkItem(base + 'config/', 'core.chrome.settings'));
-    }
     if (contact) {
       var mail = make('li');
       mail.appendChild(make('a', null, { href: 'mailto:' + contact }));

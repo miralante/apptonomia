@@ -34,6 +34,7 @@ if (window.App.i18n) {
     legal: {
       title: 'Data protection',
       body: '{{DISPLAY_EN}} does not send your data to any server. What you do is saved only in this browser. There are no accounts, no analytics and no ads.',
+      rights: 'You can view, change or delete what is saved at any time, without asking us. You can do this from the gear icon in the header.',
       contact: 'If you have any question, write to {{SUPPORT_EMAIL}}.'
     },
     config: {

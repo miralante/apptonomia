@@ -9,6 +9,7 @@
 window.LocalePickerConfig = {
   languageInDrawer: true,
   storageKey: '{{SLUG}}:locale',
+  storagePrefix: '{{SLUG}}:',
   soundStorageKey: '{{SLUG}}:sounds',
   path: null,
   requiredLocales: ['es', 'en'],
