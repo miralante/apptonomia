@@ -116,7 +116,7 @@ git remote add origin git@github.com:miralante/<slug>.git
 
 # 3. Añade la skill de graphify y comprueba la app nueva.
 node ../apptonomia/scripts/sync-graphify-skill.js sync --apply
-npm run lint && node scripts/smoke-sw.js && npm run test:ui
+npm run lint && npm run lint:markup && npm run test:sw && npm run test:ui
 ```
 
 No copies la carpeta a mano ni sustituyas los marcadores con `sed`
@@ -162,8 +162,15 @@ viable que debes tener **antes** del primer despliegue:
 - `scripts/check.js` (portar de `templates/scripts/check.js`)
 - Si es PWA: `manifest.json` + `sw.js` + `scripts/check-version-bump.js`
   + `scripts/smoke-sw.js`
-- `package.json` con el comando `test:ui` y una suite smoke de Playwright
-  específica para los flujos principales de la app.
+- `package.json` con las puertas canónicas (`lint`, `lint:markup`,
+  `test:ui`, y `test:sw` / `test:crawl` si la app las trae) — ver §4.3
+- `playwright.config.js` + `tests/playwright.js` (el shim) +
+  `tests/smoke.spec.js` (el smoke canónico) + las specs propias de la
+  app en `tests/`
+- `scripts/serve.js` (el servidor de test canónico)
+- `404.html` (la página 404 canónica, sin redirección)
+- `.github/workflows/validate.yml` con el job de CI que ejecuta las
+  puertas (ver §9)
 
 ### 4.1 Cuál es el mínimo de los mínimos
 
@@ -182,6 +189,81 @@ routime); la plantilla de SECURITY se parametriza con
 repo. Migrar a `main` es editar una sola línea en
 [`scripts/one-off/write-security-md.js`](../scripts/one-off/write-security-md.js)
 tras subir el rename.
+
+### 4.3 El contrato de test
+
+Las 8 apps de la suite comparten los **mismos nombres de puerta** y el
+mismo significado. El nombre de la puerta describe el contrato, no la
+tecnología que hay detrás:
+
+| Puerta | Qué hace | Fichero que la implementa | Obligatoria |
+|---|---|---|---|
+| `npm run lint` | Checks estructurales: sintaxis JS, anatomía de archivos, paridad `sw.js` ↔ disco, paridad de claves es/en, marcadores pendientes | `scripts/check.js` | Sí |
+| `npm run lint:markup` | Auditoría del chrome compartido (cabecera y pie) en todas las páginas | `scripts/checks/suite-markup.js` | Sí |
+| `npm run test:ui` | La suite de specs de Playwright (`tests/*.spec.js`) en Chromium real; incluye el smoke canónico | `tests/smoke.spec.js` + las specs de la app | Sí |
+| `npm run test:crawl` | El crawler: recorre todas las rutas públicas y pulsa todos los controles | `scripts/ui-smoke.js` | Opcional — solo si la app lo trae |
+| `npm run test:sw` | Smoke del service worker: cada entrada del precache carga y el 404 no redirige | `scripts/smoke-sw.js` | Sí si la app es PWA |
+| `npm run test:sw-redirects` | Redirecciones 307 del service worker | `scripts/check-sw-redirects.js` | No — solo si la app lo trae |
+| `npm run serve` | El servidor de test canónico: replica Cloudflare Pages (CSP de `_headers`, carpeta → `index.html`, `404.html` con estado 404) | `scripts/serve.js` | De uso manual — la CI no la invoca |
+
+Reglas que no se rompen:
+
+- **`test:ui` es SIEMPRE la suite de specs de Playwright** y
+  **`test:crawl` es SIEMPRE el crawler**. Antes esas dos puertas
+  intercambiaban nombres según la app; ya no. El nombre viejo
+  `test:playwright` no existe en ninguna app.
+- **El crawler es opcional.** Hoy lo traen 7 de las 8 apps (calculia,
+  ludia, memofun, okeymoney, routime, sinonimia, teclatlon);
+  apptonomia, que es un portal de aterrizaje, no. Una app que **no**
+  trae `scripts/ui-smoke.js` **no declara** `test:crawl`: una puerta que
+  apunta a un fichero inexistente es peor que no tenerla.
+- **Playwright no es una dependencia del proyecto**: ni `dependencies`
+  ni `devDependencies`. En local es la instalación de la máquina; en CI
+  se instala al vuelo con
+  `npm install --no-save --no-audit --no-fund @playwright/test@1.63.0`
+  (y `playwright` si la app además lo necesita para el crawler). El
+  shim `tests/playwright.js` carga la API desde la copia que el propio
+  runner ya tiene cargada, para que el test y el runner usen la MISMA
+  copia.
+- **El 404 no redirige.** Cloudflare lo sirve en la URL pedida, así que
+  la página es todo root-absoluto, sin meta refresh ni redirect JS. Si
+  en algún doc aparece un 404 que "redirige a la home", está mal.
+- **El servidor de test canónico es `scripts/serve.js`** (copia byte a
+  byte de `apptonomia/scripts/suite/serve.js`, repartida por
+  `apptonomia/scripts/sync-suite-test-kit.js`). Replica el
+  comportamiento de Cloudflare Pages, y `playwright.config.js` lo
+  levanta como `webServer`.
+- **El smoke canónico es `tests/smoke.spec.js`** (3 tests: home + cajón
+  de ajustes con la fila de idioma, sin scroll horizontal a 320 px, y
+  el 404 con estado 404). Está sincronizado; los flujos propios de la
+  app van en `tests/app.spec.js`.
+
+### 4.4 Checklist de una app nueva
+
+Para nacer con el contrato de test completo, la app nueva trae:
+
+- [ ] `package.json` con las puertas `lint`, `lint:markup` y `test:ui`;
+      además `test:sw` si es PWA y `test:crawl` **solo** si trae
+      `scripts/ui-smoke.js`.
+- [ ] `playwright.config.js` + `tests/playwright.js` (el shim) +
+      `tests/smoke.spec.js` (el smoke canónico) + `tests/app.spec.js` (los
+      flujos de la app).
+- [ ] `scripts/serve.js` (el servidor canónico), que es también el
+      `webServer` de `playwright.config.js`.
+- [ ] `404.html` (la página canónica): todo root-absoluto, sin
+      redirección, con la cabecera y el pie compartidos.
+- [ ] El job de CI que ejecuta las puertas
+      (`.github/workflows/validate.yml`): `npm run lint`,
+      `npm run lint:markup`, `npm run test:sw` y `npm run test:ui`.
+- [ ] Ninguna puerta del workflow sin su comando en `package.json`, y
+      ninguna puerta de test en `package.json` que el workflow no
+      invoque (salvo `serve`, que es de uso manual).
+- [ ] Playwright **no** en `devDependencies`: se instala en el entorno
+      o al vuelo en CI.
+
+La plantilla de [`doc/templates/`](../templates/) ya trae todo esto: se
+genera con `node scripts/new-app.js` y se verifica con
+`node scripts/check-template.js`.
 
 ---
 
@@ -362,25 +444,42 @@ registro ES transversal por diseño).
 
 ## 9. Gates de CI
 
-El primer PR de un nuevo hermano dispara:
+El primer PR de un nuevo hermano dispara los jobs de
+`.github/workflows/validate.yml` (la plantilla de ese workflow está en
+[`templates/.github/workflows/validate.yml`](../templates/.github/workflows/validate.yml)):
+cópiala literal y ajusta el campo `name:`.
 
-| Gate | Qué comprueba | Dónde arreglar |
-|---|---|---|
-| `validate.yml` ejecuta `node scripts/check.js` | Sintaxis JS, anatomía de archivos, paridad sw ↔ disco, paridad es/en de claves | Salida de `scripts/check.js` |
-| `ui-smoke` ejecuta `npm run test:ui` | Flujos principales en Chromium mediante Playwright | La prueba de UI que falla |
-| `cache-bump.yml` ejecuta `node scripts/check-version-bump.js` (solo PWA) | Un archivo en caché cambió pero `VERSION` no | Bumpea `VERSION` en `sw.js` |
-| `i18n-smoke.yml` ejecuta `node scripts/i18n-keys-smoke.js` (si se envía) | Cada clave `data-i18n*` está registrada para cada locale | Añade la clave que falta a `strings.<locale>.js` |
-| `secrets-scan.yml` ejecuta `node scripts/scan-secrets.js` (si se envía) | Ninguna API key / token / PEM en el árbol de trabajo | Mueve el secreto fuera del repo, rótalo |
+| Job | Puerta que invoca | Qué comprueba | Dónde arreglar |
+|---|---|---|---|
+| `check` | `npm run lint` | Sintaxis JS, anatomía de archivos, paridad sw ↔ disco, paridad es/en de claves | Salida de `scripts/check.js` |
+| `check` | `npm run lint:markup` | Chrome compartido: cabecera y pie en todas las páginas | Salida de `scripts/checks/suite-markup.js` |
+| `cache-bump` | `node scripts/check-version-bump.js` (solo PWA) | Un archivo en caché cambió pero `VERSION` no | Bumpea `VERSION` en `sw.js` |
+| `secrets-scan` | `node scripts/scan-secrets.js` | Ninguna API key / token / PEM en el árbol de trabajo | Mueve el secreto fuera del repo, rótalo |
+| `ui` | `npm run test:sw` (solo PWA) | Cada entrada del precache carga; el 404 no redirige | Salida de `scripts/smoke-sw.js` |
+| `ui` | `npm run test:ui` | Smoke canónico + specs de la app en Chromium | La spec que falla |
+| `ui` | `npm run test:crawl` (opcional) | El crawler: recorre las rutas públicas y pulsa todos los controles | La ruta o el control que falla |
+| `i18n-smoke` (opcional, no viene en la plantilla) | `node scripts/i18n-keys-smoke.js` | Cada clave `data-i18n*` está registrada para cada locale | Añade la clave que falta a `strings.<locale>.js` |
 
-Una plantilla para `.github/workflows/validate.yml` está en
-[`templates/.github/workflows/validate.yml`](../templates/.github/workflows/validate.yml).
-Cópiala literal y ajusta el campo `name:`. Las plantillas para otros
-jobs de CI opcionales están en el mismo árbol `templates/`.
+Reglas de este job:
 
-El gate `ui-smoke` es obligatorio: cada hermano debe definir `test:ui`
-y la CI debe ejecutarlo en cada PR y push a `main`. Antes de hacer push,
-ejecuta `node scripts/check.js` y `npm run test:ui`; para una PWA ejecuta
-además `node scripts/check-version-bump.js` y `node scripts/smoke-sw.js`.
+- **Una puerta, un nombre.** El workflow invoca `npm run test:ui`
+  (nunca `npx playwright test` ni `playwright test` a pelo): si el
+  nombre de la puerta cambia, el workflow se actualiza en el mismo
+  cambio. Y al revés: una puerta que el workflow invoca pero que
+  `package.json` no define es un fallo silencioso de CI.
+- **Toda puerta de test de `package.json` la invoca el workflow**
+  (salvo `serve`, que es de uso manual). `npm run test:crawl` solo
+  aparece si la app trae `scripts/ui-smoke.js`.
+- **Playwright se instala al vuelo en CI**
+  (`npm install --no-save --no-audit --no-fund @playwright/test@1.63.0`
+  y `npx playwright install --with-deps chromium`), nunca como
+  dependencia del proyecto.
+
+Los gates `lint`, `lint:markup` y `test:ui` son obligatorios: cada
+hermano debe definirlos y la CI debe ejecutarlos en cada PR y push a
+la rama de producción. Antes de hacer push, ejecuta `npm run lint`,
+`npm run lint:markup` y `npm run test:ui`; para una PWA ejecuta además
+`npm run test:sw` y `node scripts/check-version-bump.js`.
 No hagas push si una prueba obligatoria falta, falla o no se pudo ejecutar.
 
 ---

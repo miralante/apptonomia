@@ -4,12 +4,9 @@
 # .assetsignore: wrangler would then skip it and no header would apply. Cloudflare
 # allows at most 100 rules per file; scripts/check.js counts them.
 #
-# Cache policy:
-# - Fonts never change in place (a new font is a new file name): immutable.
-# - Everything else revalidates on every request (cheap 304s). Offline speed
-#   comes from the service worker, whose VERSION bump (CLAUDE.md §B.1) is what
-#   ships a change. A one-year `immutable` on CSS/JS would keep stale files
-#   alive in the HTTP cache unless every reference carries a ?v= token.
+# Cache policy: every asset is revalidated on each request (no-cache).
+# Offline speed comes from the service worker, whose VERSION bump (CLAUDE.md
+# §B.1) is what ships a change. No ?v= tokens are needed.
 #
 # HSTS has no `preload`: preloading is a one-way commitment for the whole
 # domain; add it only on purpose, from the apex domain's own config.
@@ -21,10 +18,10 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   Cross-Origin-Opener-Policy: same-origin
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-cache, must-revalidate
 
 /assets/fonts/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: no-cache, must-revalidate
 
 /404.html
   X-Robots-Tag: noindex

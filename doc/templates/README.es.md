@@ -198,29 +198,44 @@ sección.>
 Antes de cada push, estas comprobaciones obligatorias deben pasar:
 
 ```bash
-node scripts/check.js
+npm run lint
+npm run lint:markup
 npm run test:ui
 ```
 
-Para este chequeo no hace falta `npm install` — el script usa solo la biblioteca
-estándar de Node. Comprueba sintaxis JS, anatomía canónica de
-archivos, paridad sw.js ↔ disco, paridad es/en de claves, y (si
-aplica) el lock de paridad de catálogo.
+| Comando | Qué comprueba |
+|---|---|
+| `npm run lint` | Checks estructurales (`scripts/check.js`): sintaxis JS, anatomía canónica de archivos, paridad `sw.js` ↔ disco, paridad es/en de claves, lock de paridad de catálogo |
+| `npm run lint:markup` | La cabecera y el pie compartidos de todas las páginas (`scripts/checks/suite-markup.js`) |
+| `npm run test:ui` | Las specs de Playwright de `tests/`, en Chromium real |
+
+Para los checks estructurales no hace falta `npm install` — el script usa solo la biblioteca
+estándar de Node.
 
 Si el hermano es PWA, ejecuta también:
 
 ```bash
+npm run test:sw
 node scripts/check-version-bump.js
 ```
 
-para confirmar que cualquier cambio en un archivo cacheado vino
-acompañado de un bump de `VERSION` en `sw.js` (el gate del bump
-de caché).
+`npm run test:sw` comprueba que cada archivo precacheado carga y que la
+página 404 no redirige; `check-version-bump.js` confirma que cualquier
+cambio en un archivo cacheado vino acompañado de un bump de `VERSION` en
+`sw.js` (el gate del bump de caché).
 
-`npm run test:ui` debe ejecutar la suite smoke de Playwright de la
-aplicación y también es un gate obligatorio de CI. No subas los cambios
-si una comprobación obligatoria falla, falta o no se puede ejecutar.
-Para una PWA, ejecuta además `node scripts/smoke-sw.js` antes del push.
+`npm run test:ui` debe ejecutar la suite de Playwright de la aplicación y
+también es un gate obligatorio de CI. No subas los cambios si una
+comprobación obligatoria falla, falta o no se puede ejecutar.
+
+Para servir la app como lo hace Cloudflare — y como lo hacen las pruebas —
+ejecuta `npm run serve` y abre http://127.0.0.1:8080/. La página 404 se
+sirve en la URL que se pidió y nunca redirige.
+
+Playwright **no** es una dependencia del proyecto: en local viene de la
+instalación de la máquina, y en CI se instala al vuelo. La puerta del
+crawler (`test:crawl`, `node scripts/ui-smoke.js`) solo existe en las apps
+que traen ese fichero.
 
 ---
 

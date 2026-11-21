@@ -14,7 +14,7 @@ module.exports = defineConfig({
     headless: true,
   },
   webServer: {
-    command: 'node scripts/ui-server.js',
+    command: `node scripts/serve.js ${port}`,
     port,
     timeout: 30000,
     reuseExistingServer: false,

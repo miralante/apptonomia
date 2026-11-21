@@ -54,11 +54,10 @@ Tras `--apply` en una app:
 
 ```bash
 cd ../calculia                              # cualquier hermana; la plantilla es apptonomia/doc/templates
-node ../scripts/asset-tokens.js calculia    # regenera los tokens ?v= de los ficheros cambiados
 node scripts/check.js                       # la puerta estructural de la app
 ```
 
-Nunca escribas un valor `?v=` a mano (ver [`../../scripts/ASSET-TOKENS.md`](../../scripts/ASSET-TOKENS.md)).
+No hace falta ningún `?v=`: los recursos se sirven con `no-cache`.
 
 ## suite-chrome en detalle
 

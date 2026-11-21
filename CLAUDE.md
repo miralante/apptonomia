@@ -61,11 +61,10 @@ primary content appears without excessive scrolling. Validate at 320px,
 375px, 768px and desktop widths, checking both overflow and wasted empty
 space. Teclatlon may keep its explicit physical-keyboard mobile gate.
 
-When changing an immutable CSS or JS asset, update its cache identity in the
-same change. Apptonomia CSS uses a semantic suffix such as
-`?v=apptonomia-vN` (never a date); sibling PWAs use their `<slug>-vN`
-service-worker version. After deployment, verify the published asset URL and
-hard-reload or use a fresh private session before judging the visual result.
+Assets are served `no-cache`, so no `?v=` token is needed. When a cached CSS or JS file
+changes in a sibling PWA, bump its service-worker version (`<slug>-vN`) in the same change.
+After deployment, verify the published asset URL and hard-reload or use a fresh private
+session before judging the visual result.
 Do not consider a local-only check sufficient.
 
 The document is split in two blocks:
@@ -545,25 +544,10 @@ existence, AI-crawler UA list) are enforced by `scripts/check.js`
 in the metaproject and in every sibling that adopts them — see
 the cross-project table in §7.4 of either guide.
 
-## Asset version tokens (`?v=`) — never hand-edit these
+## Asset cache policy (no `?v=` tokens)
 
-This project's `_headers` serves some assets as
-`Cache-Control: public, max-age=31536000, immutable`: one year, no
-revalidation. A changed asset only reaches a returning visitor if the
-URL referencing it changes, which is what `?v=` is for. The tokens used
-to be a hand-typed serial, so the same asset ended up with different
-tokens on different pages and a missed reference failed silently.
+Every asset is served `Cache-Control: no-cache, must-revalidate` (see `_headers`), so
+browsers revalidate on each request and a deploy is visible at once. Do not add
+`?v=` query strings to asset references. A changed cached file still needs the
+service worker `VERSION` bump (sw.js).
 
-The token is now a hash of the file's own bytes. Do not type one by hand:
-
-```bash
-node ../scripts/asset-tokens.js apptonomia           # rewrite
-node ../scripts/asset-tokens.js --check apptonomia   # verify
-```
-
-`scripts/check-version-bump.js` runs the check, so a stale token fails
-the pre-push gate with the exact value it expects. Which files are
-tokenised is read from this project's own `_headers` — see
-[../scripts/ASSET-TOKENS.md](../scripts/ASSET-TOKENS.md) for the
-per-project table and for why `*.js` also matches nested paths and why
-fonts are tokenised from CSS rather than from HTML.

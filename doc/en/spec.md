@@ -209,11 +209,8 @@ HTTP security headers live in `_headers`; project metadata in
 for the full runbook.
 
 > Apptonomia does not ship a `sw.js` (no service worker, no
-> install-to-home-screen). The `?v=` content-hash on the i18n /
-> strings bundles is enough to bust the immutable cache when
-> their content changes; see `scripts/build-head.js` and the
-> per-locale `?<hash>` query strings on the `<script src="...">`
-> tags in `index.html`.
+> install-to-home-screen). Every file is served `no-cache`, so a changed i18n /
+> strings bundle is picked up on the next visit; no `?v=` tokens are used.
 
 ---
 

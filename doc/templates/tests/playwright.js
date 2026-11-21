@@ -7,6 +7,10 @@
  * runner has already loaded its own modules, and their path names its package
  * (the machine-wide `playwright` locally, a local `@playwright/test` in CI).
  * Plain `require` is only the fallback.
+ *
+ * Canonical source: apptonomia/scripts/suite/tests-playwright.js. Copied byte
+ * for byte to <app>/tests/playwright.js by
+ * apptonomia/scripts/sync-suite-test-kit.js. Never edit a copy by hand.
  */
 'use strict';
 

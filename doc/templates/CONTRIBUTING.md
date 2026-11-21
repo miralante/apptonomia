@@ -124,13 +124,35 @@ Headers live in `_headers`. The CSP is intentionally tight
 as data and does not require `unsafe-inline`). Tightening is welcome;
 loosening almost never is — open an issue first.
 
+### Running the tests
+
+Every gate has one name and one meaning, the same in every app of the
+suite:
+
+| Command | What it runs |
+|---|---|
+| `npm run lint` | Structural checks (`scripts/check.js`): syntax, file anatomy, `sw.js` ↔ disk, es/en key parity |
+| `npm run lint:markup` | The shared header/footer audit (`scripts/checks/suite-markup.js`) |
+| `npm run test:ui` | The Playwright specs in `tests/`, in real Chromium |
+| `npm run test:sw` | The service-worker smoke (`scripts/smoke-sw.js`), PWA only |
+| `npm run serve` | The canonical test server on http://127.0.0.1:8080/ — it behaves like Cloudflare |
+
+`test:ui` is always the Playwright suite; `test:crawl` is always the
+crawler (`node scripts/ui-smoke.js`), and only the apps that ship it
+declare that gate. Playwright is **not** a project dependency: locally it
+comes from the machine-wide install, in CI it is installed on the fly.
+The 404 page never redirects — Cloudflare serves it at the URL that was
+asked for.
+
 ---
 
 ## ✅ Checklist before opening a PR
 
-- [ ] `node scripts/check.js` passes locally.
-- [ ] `npm run test:ui` passes locally (required Playwright smoke suite).
-- [ ] If this is a PWA, `node scripts/smoke-sw.js` and
+- [ ] `npm run lint` passes locally.
+- [ ] `npm run lint:markup` passes locally.
+- [ ] `npm run test:ui` passes locally (required Playwright suite: the
+      canonical smoke plus the app's own specs).
+- [ ] If this is a PWA, `npm run test:sw` and
       `node scripts/check-version-bump.js` pass.
 - [ ] If you added UI strings, **every supported locale** is in sync
       (at minimum `es` and `en`).

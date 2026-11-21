@@ -4,9 +4,8 @@
 
 Playwright and its browsers are installed globally for the machine by
 `dev/setups/pc-playwright-first-setup.ps1` or
-`pc-playwright-next-setup.ps1`. Run the project's existing browser-test
-command (for example, `npm run test:ui`) or invoke the global CLI with
-`playwright test`.
+`pc-playwright-next-setup.ps1`. Run the project's browser-test gate
+(`npm run test:ui`) or invoke the global CLI with `playwright test`.
 
 Do not add `playwright` or `@playwright/test` to project dependencies, install
 Playwright with `npm`/`npx`, or run `npx playwright install`. The setup scripts
@@ -105,23 +104,41 @@ it is the source of truth, not this file.
 There is no build step and no runtime dependency — it's plain
 HTML/CSS/JS served as static files. `package.json` only names the
 commands; it has no dependencies (Playwright is the machine-wide
-install).
+install, never a project dependency).
 
 - **Preview**: `npm run serve` (or `node scripts/serve.js`), then open
-  http://127.0.0.1:8080/. It serves `404.html` for unknown paths, like
-  Cloudflare does.
-- **Service-worker smoke**: `node scripts/smoke-sw.js` — every `FILES`
-  entry of `sw.js` must load, or the install fails for every reader.
-- **Browser tests**: `npm run test:ui` (`tests/smoke.spec.js`).
-- **Validate everything** (this repo's only "test" step, and what CI
-  runs on every PR via `.github/workflows/validate.yml`):
-  ```
-  node scripts/check.js
-  ```
-  It checks JS syntax, es/en key parity, the `data-i18n` keys of
-  every page, `sw.js` ↔ disk parity both ways, `.assetsignore`, and
-  leftover bootstrap placeholders. Read the script before changing the file
-  layout — it encodes the invariants that layout relies on.
+  http://127.0.0.1:8080/. This is the canonical test server of the suite:
+  it replicates Cloudflare Pages (CSP from `_headers`, folder → index.html,
+  `404.html` with a 404 status). The 404 page is served at the URL that
+  was asked for and never redirects — its links are root-absolute.
+- **Structural checks**: `npm run lint` (`scripts/check.js`) — JS syntax,
+  es/en key parity, the `data-i18n` keys of every page, `sw.js` ↔ disk
+  parity both ways, `.assetsignore`, and leftover bootstrap placeholders.
+  Read the script before changing the file layout — it encodes the
+  invariants that layout relies on.
+- **Shared markup**: `npm run lint:markup`
+  (`scripts/checks/suite-markup.js`) — the header/footer of every page.
+- **Browser tests**: `npm run test:ui` — the Playwright specs in `tests/`,
+  in real Chromium. `tests/smoke.spec.js` is the canonical smoke (home +
+  settings drawer with the language row, no horizontal scroll at 320 px,
+  404 with its status); the app's own flows go in `tests/app.spec.js`.
+- **Service-worker smoke**: `npm run test:sw` (`scripts/smoke-sw.js`) —
+  every `FILES` entry of `sw.js` must load, or the install fails for
+  every reader; it also checks that `404.html` does not redirect.
+- **Crawler** (optional): if the app adopts the suite crawler
+  (`scripts/ui-smoke.js`), declare the gate
+  `"test:crawl": "node scripts/ui-smoke.js"`. Until the app ships that
+  file there is no `test:crawl` gate — a gate pointing at a missing
+  file is worse than no gate.
+
+**The gate names are the contract of the suite, not the technology
+behind them.** `test:ui` is always the Playwright suite and `test:crawl`
+is always the crawler; the old name `test:playwright` does not exist.
+
+CI (`.github/workflows/validate.yml`) runs exactly these gates:
+`npm run lint`, `npm run lint:markup`, `npm run test:sw` and
+`npm run test:ui`. Do not push if one of them fails, is missing, or
+could not be run.
 
 #### Architecture
 

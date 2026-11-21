@@ -135,13 +135,34 @@ estricta (`script-src 'self'`, sin scripts inline; el bloque JSON-LD
 se interpreta como dato y no necesita `unsafe-inline`). Endurecerla
 es bienvenido; relajarla casi nunca lo es — abre un issue antes.
 
+### Ejecutar las pruebas
+
+Cada puerta tiene un nombre y un significado, los mismos en todas las
+apps de la suite:
+
+| Comando | Qué ejecuta |
+|---|---|
+| `npm run lint` | Checks estructurales (`scripts/check.js`): sintaxis, anatomía de archivos, `sw.js` ↔ disco, paridad de claves es/en |
+| `npm run lint:markup` | Auditoría de la cabecera y el pie compartidos (`scripts/checks/suite-markup.js`) |
+| `npm run test:ui` | Las specs de Playwright de `tests/`, en Chromium real |
+| `npm run test:sw` | El smoke del service worker (`scripts/smoke-sw.js`), solo PWA |
+| `npm run serve` | El servidor de test canónico en http://127.0.0.1:8080/ — se comporta como Cloudflare |
+
+`test:ui` es siempre la suite de Playwright; `test:crawl` es siempre el
+crawler (`node scripts/ui-smoke.js`), y solo lo declaran las apps que lo
+traen. Playwright **no** es una dependencia del proyecto: en local viene
+de la instalación de la máquina, y en CI se instala al vuelo. La página
+404 nunca redirige — Cloudflare la sirve en la URL que se pidió.
+
 ---
 
 ## ✅ Checklist antes de abrir PR
 
-- [ ] `node scripts/check.js` pasa en local.
-- [ ] `npm run test:ui` pasa en local (smoke obligatorio de Playwright).
-- [ ] Si es PWA, pasan `node scripts/smoke-sw.js` y
+- [ ] `npm run lint` pasa en local.
+- [ ] `npm run lint:markup` pasa en local.
+- [ ] `npm run test:ui` pasa en local (suite de Playwright obligatoria:
+      el smoke canónico más las specs propias de la app).
+- [ ] Si es PWA, pasan `npm run test:sw` y
       `node scripts/check-version-bump.js`.
 - [ ] Si añadiste cadenas de UI, **todos los locales soportados**
       están en sincronía (al menos `es` y `en`).

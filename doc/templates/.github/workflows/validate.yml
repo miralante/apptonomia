@@ -9,9 +9,15 @@
 #                clone the PR base is missing and the script would silently fall
 #                back to HEAD~1, checking only the last commit.
 #   secrets-scan scripts/scan-secrets.js — best-effort pattern scan.
-#   ui           scripts/smoke-sw.js and the Playwright smoke suite (tests/).
-#                Locally Playwright is the machine-wide install (CLAUDE.md);
-#                here it is installed on the fly, never added to package.json.
+#   ui           npm run test:sw (service-worker smoke) and npm run test:ui
+#                (the Playwright specs in tests/). Locally Playwright is the
+#                machine-wide install (CLAUDE.md); here it is installed on the
+#                fly, never added to package.json.
+#
+# The gate names are the contract of the suite, not the technology behind
+# them: `test:ui` is always the Playwright suite and `test:crawl` is always
+# the crawler (only in the apps that ship scripts/ui-smoke.js). Every gate
+# invoked here must exist in package.json, or the step fails silently.
 name: Validate
 
 on:
@@ -82,10 +88,10 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Service-worker precache smoke
-        run: node scripts/smoke-sw.js
+        run: npm run test:sw
       - name: Install Playwright (CI only, not a project dependency)
         run: |
           npm install --no-save --no-audit --no-fund @playwright/test@${{ env.PLAYWRIGHT_VERSION }}
           npx playwright install --with-deps chromium
       - name: Playwright smoke suite
-        run: npx playwright test
+        run: npm run test:ui

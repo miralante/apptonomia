@@ -93,9 +93,7 @@ de la suite. Las superficies del plumbing son:
 - **Sin datos de usuario.** Sin `localStorage`, sin IndexedDB,
   sin cookies. Apptonomia no guarda nada en el dispositivo de
   quien visita.
-- **Sin PWA / service worker.** El portal no es instalable; el
-  `?v=` content-hash en los bundles de i18n es suficiente para
-  romper la caché inmutable cuando cambia su contenido.
+- **Sin PWA / service worker.** El portal no es instalable; los recursos se sirven con `no-cache`, así que un bundle cambiado se ve en la siguiente visita.
 - **Sin catálogo de actividades por app.** Los catálogos de
   actividades viven en el `doc/<lang>/activities.md` propio de
   cada hermano. El "catálogo" de Apptonomia es la rejilla de

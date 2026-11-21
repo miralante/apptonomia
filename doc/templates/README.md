@@ -192,27 +192,44 @@ section entirely.>
 Before every push, these required checks must pass:
 
 ```bash
-node scripts/check.js
+npm run lint
+npm run lint:markup
 npm run test:ui
 ```
 
-No `npm install` is needed for this structural check — it only uses Node's standard
-library. It checks JS syntax, canonical file anatomy, sw.js ↔
-disk parity, es/en key parity, and (if applicable) the
-catalog-parity lock.
+| Command | What it checks |
+|---|---|
+| `npm run lint` | Structural checks (`scripts/check.js`): JS syntax, canonical file anatomy, `sw.js` ↔ disk parity, es/en key parity, catalog-parity lock |
+| `npm run lint:markup` | The shared header/footer of every page (`scripts/checks/suite-markup.js`) |
+| `npm run test:ui` | The Playwright specs in `tests/`, in real Chromium |
+
+No `npm install` is needed for the structural checks — they only use Node's
+standard library.
 
 If the sibling is a PWA, also run:
 
 ```bash
+npm run test:sw
 node scripts/check-version-bump.js
 ```
 
-to confirm any cached-file change came with a `VERSION` bump in
-`sw.js` (the cache-bump gate).
+`npm run test:sw` checks that every precached file loads and that the 404
+page does not redirect; `check-version-bump.js` confirms that any
+cached-file change came with a `VERSION` bump in `sw.js` (the cache-bump
+gate).
 
-`npm run test:ui` must run the app's Playwright smoke suite and is also a
+`npm run test:ui` must run the app's Playwright suite and is also a
 required CI gate. Do not push if a required check fails, is missing, or cannot
-be run. For a PWA, also run `node scripts/smoke-sw.js` before pushing.
+be run.
+
+To serve the app the way Cloudflare does — and the way the tests do — run
+`npm run serve` and open http://127.0.0.1:8080/. The 404 page is served at
+the URL that was asked for and never redirects.
+
+Playwright is **not** a project dependency: locally it comes from the
+machine-wide install, in CI it is installed on the fly. The crawler gate
+(`test:crawl`, `node scripts/ui-smoke.js`) exists only in the apps that ship
+that file.
 
 ---
 

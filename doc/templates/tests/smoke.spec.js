@@ -1,4 +1,14 @@
-// Smoke suite of the scaffold. Keep these tests and add the app's own flows.
+// tests/smoke.spec.js — the shared smoke of every app of the suite.
+//
+// It checks the contract that the shared components promise, and nothing that
+// belongs to a single app: the chrome renders, the settings drawer opens and
+// closes, the language row lives inside it, and the page does not scroll
+// sideways on a narrow screen. The flows of the app itself live in the app's
+// own spec (tests/app.spec.js).
+//
+// Canonical source: apptonomia/scripts/suite/smoke.spec.js. Copied byte for
+// byte to <app>/tests/smoke.spec.js by
+// apptonomia/scripts/sync-suite-test-kit.js. Never edit a copy by hand.
 'use strict';
 
 const { test, expect } = require('./playwright.js');
@@ -11,13 +21,34 @@ function watchErrors(page) {
   return errors;
 }
 
-test('home renders the shared header and footer, with no errors', async ({ page }) => {
+test('the home renders the shared header and footer, with no errors', async ({ page }) => {
   const errors = watchErrors(page);
   await page.goto('./');
-  await expect(page.locator('.suite-chrome-header .suite-chrome-name')).not.toBeEmpty();
-  await expect(page.locator('.suite-chrome-footer a[href$="about/"]')).toBeVisible();
-  await expect(page.locator('.suite-chrome-footer a[href$="config/"]')).toBeVisible();
-  await expect(page.locator('[data-suite-stars]')).toBeVisible();
+  await expect(page.locator('.suite-chrome-header')).toBeVisible();
+  await expect(page.locator('.suite-chrome-footer')).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test('the settings drawer opens, holds the language row and closes', async ({ page }) => {
+  const errors = watchErrors(page);
+  await page.goto('./');
+
+  const gear = page.locator('.locale-settings-trigger');
+  await expect(gear).toBeVisible();
+  await expect(gear).toHaveAttribute('aria-expanded', 'false');
+
+  const drawer = page.locator('#accessibility-settings');
+  await expect(drawer).toBeHidden();
+
+  await gear.click();
+  await expect(drawer).toBeVisible();
+  await expect(drawer).toHaveAttribute('role', 'dialog');
+  await expect(drawer).toHaveAttribute('aria-modal', 'true');
+  // The language picker lives inside the drawer, as the first row.
+  await expect(drawer.locator('.locale-picker-btn')).toHaveCount(1);
+
+  await drawer.locator('[data-settings-close]').click();
+  await expect(drawer).toBeHidden();
   expect(errors).toEqual([]);
 });
 
@@ -28,52 +59,18 @@ test('no horizontal scroll at 320px', async ({ page }) => {
   expect(overflow).toBeLessThanOrEqual(0);
 });
 
-for (const route of ['about/', 'legal/', 'config/']) {
-  test(`${route} loads and its back link goes home`, async ({ page }) => {
-    const errors = watchErrors(page);
-    await page.goto(route);
-    await expect(page.locator('h1')).not.toBeEmpty();
-    await page.locator('.back-link').click();
-    await expect(page).toHaveURL(/\/(index\.html)?$/);
-    expect(errors).toEqual([]);
-  });
-}
-
-test('an unknown deep path shows the 404 page and stays there', async ({ page }) => {
-  const response = await page.goto('no/such/page');
+test('the 404 page shows the error, with the shared chrome and the way back', async ({ page }) => {
+  const errors = watchErrors(page);
+  /* A path that does not exist, the way a reader reaches the 404 page: the
+     server answers with the 404 page and the 404 status. */
+  const response = await page.goto('/esta-pagina-no-existe/');
   expect(response.status()).toBe(404);
-  await expect(page.locator('main h1')).not.toBeEmpty();
-  await page.waitForTimeout(500);
-  expect(new URL(page.url()).pathname).toBe('/no/such/page');
-  await page.locator('main a.btn').click();
-  await expect(page).toHaveURL(/\/$/);
-});
 
-test('config/ clears only this app\'s data, after two steps', async ({ page }) => {
-  await page.goto('config/');
-  await page.evaluate(() => {
-    localStorage.setItem('{{SLUG}}:stars', '7');
-    localStorage.setItem('other-app:stars', '3');
-  });
-  await page.reload();
-  await page.locator('#config-clear').click();
-  await expect(page.locator('#config-confirm')).toBeVisible();
-  await page.locator('#config-yes').click();
-  const left = await page.evaluate(() => [localStorage.getItem('{{SLUG}}:stars'), localStorage.getItem('other-app:stars')]);
-  expect(left).toEqual([null, '3']);
-});
-
-test('the service worker installs (every precache entry loads)', async ({ page }) => {
-  await page.goto('./');
-  /* ready resolves while the worker may still be "activating"; wait for the end. */
-  await page.waitForFunction(async () => {
-    const registration = await navigator.serviceWorker.ready;
-    return registration.active && registration.active.state === 'activated';
-  }, null, { timeout: 15000 });
-  const cached = await page.evaluate(async () => {
-    const names = await caches.keys();
-    const cache = await caches.open(names.find((n) => n.indexOf('{{SLUG}}-') === 0));
-    return (await cache.keys()).length;
-  });
-  expect(cached).toBeGreaterThan(10);
+  await expect(page.locator('.suite-chrome-header')).toBeVisible();
+  await expect(page.locator('.suite-chrome-footer')).toBeVisible();
+  await expect(page.locator('main h1')).toHaveText('Página no encontrada');
+  // The way back is root-absolute: Cloudflare serves this page at the URL
+  // that was asked for, so a relative link would resolve to another 404.
+  await expect(page.locator('main a')).toHaveAttribute('href', '/');
+  expect(errors).toEqual([]);
 });

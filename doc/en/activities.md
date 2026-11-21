@@ -90,8 +90,7 @@ suite. The plumbing surfaces are:
 - **No user data.** No `localStorage`, no IndexedDB, no cookies.
   Apptonomia doesn't store anything on the visitor's device.
 - **No PWA / service worker.** The landing is not installable;
-  the `?v=` content-hash on the i18n bundles is enough to bust
-  the immutable cache when their content changes.
+  assets are served `no-cache`, so a changed bundle is picked up on the next visit.
 - **No per-activity catalogue.** Activity catalogues live in
   each sibling's own `doc/<lang>/activities.md`. Apptonomia's
   "catalogue" is the six-card grid on the landing, listed in

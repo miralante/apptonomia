@@ -277,8 +277,8 @@ the suite — **Atkinson Hyperlegible** (weights 400 and 700) and
 `css/styles.css`. No CDN, no `@import` from `fonts.googleapis.com`.
 
 Apptonomia does not ship a `sw.js`, so there is no `VERSION` to
-bump when these files change; the immutable Cloudflare cache
-(`_headers`) is what controls freshness for the landing assets.
+bump when these files change; the Cloudflare cache policy
+(`_headers`, `no-cache`) controls freshness for the landing assets.
 
 ### 6.1 Implementation detail
 

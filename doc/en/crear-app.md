@@ -116,7 +116,7 @@ git remote add origin git@github.com:miralante/<slug>.git
 
 # 3. Add the graphify skill and check the new app.
 node ../apptonomia/scripts/sync-graphify-skill.js sync --apply
-npm run lint && node scripts/smoke-sw.js && npm run test:ui
+npm run lint && npm run lint:markup && npm run test:sw && npm run test:ui
 ```
 
 Do not copy the folder by hand and replace placeholders with `sed`
@@ -161,8 +161,16 @@ viable subset you must have **before** the first deploy:
 - `scripts/check.js` (port from `templates/scripts/check.js`)
 - If PWA: `manifest.json` + `sw.js` + `scripts/check-version-bump.js`
   + `scripts/smoke-sw.js`
-- `package.json` with a `test:ui` command and a Playwright smoke suite
-  covering the app's main user flows.
+- `package.json` with the canonical gates (`lint`, `lint:markup`,
+  `test:ui`, and `test:sw` / `test:crawl` when the app ships them) — see
+  §4.3
+- `playwright.config.js` + `tests/playwright.js` (the shim) +
+  `tests/smoke.spec.js` (the canonical smoke) + the app's own specs in
+  `tests/`
+- `scripts/serve.js` (the canonical test server)
+- `404.html` (the canonical 404 page, no redirect)
+- `.github/workflows/validate.yml` with the CI job that runs the gates
+  (see §9)
 
 ### 4.1 What is the *minimum* minimum
 
@@ -179,6 +187,81 @@ template is parametrized by `{{DEFAULT_BRANCH}}`, so each repo's
 file stays truthful today. Migration to `main` is a one-line edit
 in [`scripts/one-off/write-security-md.js`](../scripts/one-off/write-security-md.js)
 after the rename is pushed.
+
+### 4.3 The test contract
+
+The 8 apps of the suite share the **same gate names** and the same
+meaning. The gate name describes the contract, not the technology behind
+it:
+
+| Gate | What it does | File that implements it | Mandatory |
+|---|---|---|---|
+| `npm run lint` | Structural checks: JS syntax, file anatomy, `sw.js` ↔ disk parity, es/en key parity, leftover placeholders | `scripts/check.js` | Yes |
+| `npm run lint:markup` | The shared chrome audit (header and footer) across every page | `scripts/checks/suite-markup.js` | Yes |
+| `npm run test:ui` | The Playwright spec suite (`tests/*.spec.js`) in real Chromium; includes the canonical smoke | `tests/smoke.spec.js` + the app's specs | Yes |
+| `npm run test:crawl` | The crawler: it walks every public route and presses every control | `scripts/ui-smoke.js` | Optional — only if the app ships it |
+| `npm run test:sw` | Service-worker smoke: every precache entry loads and the 404 does not redirect | `scripts/smoke-sw.js` | Yes if the app is a PWA |
+| `npm run test:sw-redirects` | The service worker's 307 redirects | `scripts/check-sw-redirects.js` | No — only if the app ships it |
+| `npm run serve` | The canonical test server: it replicates Cloudflare Pages (CSP from `_headers`, folder → `index.html`, `404.html` with a 404 status) | `scripts/serve.js` | Manual use — CI never calls it |
+
+Rules that don't get broken:
+
+- **`test:ui` is ALWAYS the Playwright spec suite** and **`test:crawl`
+  is ALWAYS the crawler**. Those two gates used to swap names depending
+  on the app; not any more. The old name `test:playwright` exists in no
+  app.
+- **The crawler is optional.** Seven of the eight apps ship it today
+  (calculia, ludia, memofun, okeymoney, routime, sinonimia, teclatlon);
+  apptonomia, which is a landing portal, does not. An app that does
+  **not** ship `scripts/ui-smoke.js` **does not declare** `test:crawl`:
+  a gate pointing at a missing file is worse than no gate at all.
+- **Playwright is not a project dependency**: neither `dependencies` nor
+  `devDependencies`. Locally it is the machine-wide install; in CI it is
+  installed on the fly with
+  `npm install --no-save --no-audit --no-fund @playwright/test@1.63.0`
+  (plus `playwright` if the app also needs it for the crawler). The
+  `tests/playwright.js` shim loads the API from the copy the runner has
+  already loaded, so the test and the runner use the SAME copy.
+- **The 404 does not redirect.** Cloudflare serves it at the requested
+  URL, so the page is all root-absolute, with no meta refresh and no
+  redirect JS. If a doc anywhere says a 404 "redirects to the home", it
+  is wrong.
+- **The canonical test server is `scripts/serve.js`** (a byte-for-byte
+  copy of `apptonomia/scripts/suite/serve.js`, distributed by
+  `apptonomia/scripts/sync-suite-test-kit.js`). It replicates the
+  Cloudflare Pages behaviour, and `playwright.config.js` runs it as the
+  `webServer`.
+- **The canonical smoke is `tests/smoke.spec.js`** (3 tests: home +
+  settings drawer with the language row, no horizontal scroll at 320 px,
+  and the 404 with its status). It is synced; the app's own flows go in
+  `tests/app.spec.js`.
+
+### 4.4 New-app checklist
+
+To be born with the full test contract, the new app brings:
+
+- [ ] `package.json` with the `lint`, `lint:markup` and `test:ui` gates;
+      plus `test:sw` if it is a PWA and `test:crawl` **only** if it ships
+      `scripts/ui-smoke.js`.
+- [ ] `playwright.config.js` + `tests/playwright.js` (the shim) +
+      `tests/smoke.spec.js` (the canonical smoke) + `tests/app.spec.js` (the
+      app's flows).
+- [ ] `scripts/serve.js` (the canonical server), which is also the
+      `webServer` of `playwright.config.js`.
+- [ ] `404.html` (the canonical page): all root-absolute, no redirect,
+      with the shared header and footer.
+- [ ] The CI job that runs the gates
+      (`.github/workflows/validate.yml`): `npm run lint`,
+      `npm run lint:markup`, `npm run test:sw` and `npm run test:ui`.
+- [ ] No gate in the workflow without its command in `package.json`, and
+      no test gate in `package.json` that the workflow never calls
+      (except `serve`, which is for manual use).
+- [ ] Playwright **not** in `devDependencies`: it comes from the
+      environment or from the CI install step.
+
+The [`doc/templates/`](../templates/) scaffold already carries all of
+this: it is generated with `node scripts/new-app.js` and verified with
+`node scripts/check-template.js`.
 
 ---
 
@@ -348,25 +431,42 @@ cross-cutting by design).
 
 ## 9. CI gates
 
-A new sibling's first PR triggers:
+A new sibling's first PR triggers the jobs of
+`.github/workflows/validate.yml` (the workflow template lives in
+[`templates/.github/workflows/validate.yml`](../templates/.github/workflows/validate.yml)):
+copy it verbatim and adjust the `name:` field.
 
-| Gate | What it checks | Where to fix |
-|---|---|---|
-| `validate.yml` runs `node scripts/check.js` | JS syntax, file anatomy, sw ↔ disk parity, es/en key parity | `scripts/check.js` output |
-| `ui-smoke` runs `npm run test:ui` | Main flows in Chromium through Playwright | The failing UI test |
-| `cache-bump.yml` runs `node scripts/check-version-bump.js` (PWA only) | A cached file changed but `VERSION` didn't | Bump `VERSION` in `sw.js` |
-| `i18n-smoke.yml` runs `node scripts/i18n-keys-smoke.js` (if shipped) | Every `data-i18n*` key is registered for every locale | Add the missing key to `strings.<locale>.js` |
-| `secrets-scan.yml` runs `node scripts/scan-secrets.js` (if shipped) | No API key / token / PEM in the working tree | Move the secret out of the repo, rotate it |
+| Job | Gate it calls | What it checks | Where to fix |
+|---|---|---|---|
+| `check` | `npm run lint` | JS syntax, file anatomy, sw ↔ disk parity, es/en key parity | `scripts/check.js` output |
+| `check` | `npm run lint:markup` | Shared chrome: header and footer on every page | `scripts/checks/suite-markup.js` output |
+| `cache-bump` | `node scripts/check-version-bump.js` (PWA only) | A cached file changed but `VERSION` didn't | Bump `VERSION` in `sw.js` |
+| `secrets-scan` | `node scripts/scan-secrets.js` | No API key / token / PEM in the working tree | Move the secret out of the repo, rotate it |
+| `ui` | `npm run test:sw` (PWA only) | Every precache entry loads; the 404 does not redirect | `scripts/smoke-sw.js` output |
+| `ui` | `npm run test:ui` | Canonical smoke + the app's specs in Chromium | The failing spec |
+| `ui` | `npm run test:crawl` (optional) | The crawler: it walks every public route and presses every control | The failing route or control |
+| `i18n-smoke` (optional, not in the template) | `node scripts/i18n-keys-smoke.js` | Every `data-i18n*` key is registered for every locale | Add the missing key to `strings.<locale>.js` |
 
-A template for `.github/workflows/validate.yml` is in
-[`templates/.github/workflows/validate.yml`](../templates/.github/workflows/validate.yml).
-Copy it verbatim and adjust the `name:` field. Templates for other
-optional CI jobs are in the same `templates/` tree.
+Rules of that job:
 
-The `ui-smoke` gate is required: every sibling must define `test:ui`,
-and CI must run it on each PR and push to `main`. Before pushing, run
-`node scripts/check.js` and `npm run test:ui`; for a PWA also run
-`node scripts/check-version-bump.js` and `node scripts/smoke-sw.js`.
+- **One gate, one name.** The workflow calls `npm run test:ui` (never
+  `npx playwright test` or a bare `playwright test`): when a gate is
+  renamed, the workflow changes in the same commit. And the other way
+  round: a gate the workflow calls but `package.json` doesn't define is a
+  silent CI failure.
+- **Every test gate in `package.json` is called by the workflow** (except
+  `serve`, which is for manual use). `npm run test:crawl` only shows up
+  if the app ships `scripts/ui-smoke.js`.
+- **Playwright is installed on the fly in CI**
+  (`npm install --no-save --no-audit --no-fund @playwright/test@1.63.0`
+  and `npx playwright install --with-deps chromium`), never as a project
+  dependency.
+
+The `lint`, `lint:markup` and `test:ui` gates are mandatory: every
+sibling must define them, and CI must run them on each PR and push to the
+production branch. Before pushing, run `npm run lint`,
+`npm run lint:markup` and `npm run test:ui`; for a PWA also run
+`npm run test:sw` and `node scripts/check-version-bump.js`.
 Do not push if a required test is missing, fails, or could not be run.
 
 ---
@@ -407,8 +507,8 @@ usable touch targets, and avoid fixed heights or decorative gaps that create
 excessive scrolling. Verify the layout at 320px, 375px, 768px and desktop,
 checking both overflow and unused space.
 
-The HTML must also declare UTF-8. Any immutable CSS/JS asset changed by the
-new app requires a semantic cache version in the same change (`<slug>-vN`),
+The HTML must also declare UTF-8. Assets are served `no-cache`, so no cache token is needed. When a cached CSS/JS file of the
+new app changes, bump its `sw.js` `VERSION` (`<slug>-vN`) in the same change,
 and the final check must be made against the deployed URL in a fresh session,
 not only against a local preview.
 

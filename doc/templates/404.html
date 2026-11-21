@@ -1,40 +1,30 @@
 <!doctype html>
-<html lang="es" data-i18n-title="notFound.title">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>404 — {{DISPLAY_ES}}</title>
   <meta name="robots" content="noindex">
-  <!-- Cloudflare serves this page at the URL that was asked for (/a/b/c), so every
-       path here is ROOT-ABSOLUTE. A relative "./" would resolve to /a/b/, which is
-       another 404. No meta refresh: the reader sees the page and chooses. -->
-  <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/suite-base.css">
   <link rel="stylesheet" href="/assets/css/brand.css">
   <link rel="stylesheet" href="/assets/css/styles.css">
   <link rel="stylesheet" href="/assets/css/locale-picker.css">
 </head>
 <body>
-  <header data-suite-header
-          data-suite-logo="/assets/icons/icon.svg"
-          data-suite-byline
-          data-suite-name="{{DISPLAY_ES}}"></header>
+  <header data-suite-header data-suite-logo="/assets/icons/icon.svg" data-suite-byline data-suite-name="{{DISPLAY_ES}}"></header>
 
   <main id="contenido" class="suite-body">
-    <section class="page-card">
-      <h1 data-i18n="notFound.title">Página no encontrada</h1>
-      <p data-i18n="notFound.body">Esta página no existe. La página principal sigue disponible.</p>
-      <p><a class="btn" href="/" data-i18n="notFound.home">Ir a la página principal</a></p>
-    </section>
+    <h1>Página no encontrada</h1>
+    <p>La ruta que has visitado no existe. La página principal de {{DISPLAY_ES}} sigue disponible.</p>
+    <p><a href="/">Ir a la página principal</a></p>
   </main>
 
   <footer data-suite-footer data-suite-base="/"></footer>
-
   <script src="/js/i18n.js"></script>
-  <script src="/strings.es.js"></script>
-  <script src="/strings.en.js"></script>
-  <script src="/js/suite-chrome.js"></script>
-  <script src="/js/locale-picker-config.js" defer></script>
+  <script src="/js/strings.es.js"></script>
+  <script src="/js/strings.en.js"></script>
+  <script src="/js/suite-chrome.js" defer></script>
+  <script src="/js/locale-picker-config.js"></script>
   <script src="/js/locale-picker.js" defer></script>
 </body>
 </html>

@@ -218,12 +218,8 @@ los metadatos del proyecto en `wrangler.toml`. Ver
 completo.
 
 > Apptonomia no envía un `sw.js` (sin service worker, sin
-> instalar en pantalla de inicio). El `?v=` content-hash en
-> los bundles de i18n / strings es suficiente para romper la
-> caché inmutable cuando cambia su contenido; ver
-> `scripts/build-head.js` y las query strings `?<hash>` por
-> locale en las etiquetas `<script src="...">` de
-> `index.html`.
+> instalar en pantalla de inicio). Todos los ficheros se sirven con `no-cache`, así que un
+> bundle de i18n / strings cambiado se ve en la siguiente visita; no se usan tokens `?v=`.
 
 ---
 

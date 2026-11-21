@@ -53,11 +53,10 @@ After `--apply` on an app:
 
 ```bash
 cd ../calculia                              # any sibling; the scaffold is apptonomia/doc/templates
-node ../scripts/asset-tokens.js calculia    # refresh ?v= tokens of the changed files
 node scripts/check.js                       # the app's structural gate
 ```
 
-Never type a `?v=` value by hand (see [`../../scripts/ASSET-TOKENS.md`](../../scripts/ASSET-TOKENS.md)).
+No `?v=` token is needed: assets are served `no-cache`.
 
 ## suite-chrome in detail
 

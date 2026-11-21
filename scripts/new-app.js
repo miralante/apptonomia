@@ -88,7 +88,7 @@ function valuesFor(opts) {
     BUILD_COMMAND: '*(empty — no build step)*',
     SW_STRATEGY: 'network-first for page navigations and cache-first for every other file in `FILES`',
     SW_STRATEGY_LABEL: 'network-first / cache-first',
-    CACHE_POLICY: 'fonts are `immutable` for a year; every other file revalidates on each request (`max-age=0, must-revalidate`), and the service worker serves them offline.\n',
+    CACHE_POLICY: 'every file is served `no-cache, must-revalidate`, so browsers revalidate on each request; the service worker serves them offline.\n',
     CUSTOM_DOMAIN_BODY: `The production domain is \`${opts.domain || `${slug}.apptonomia.uk`}\`, set up in the Cloudflare dashboard (see "How to add a custom domain" below).`,
     SUITE_SPECIFIC_THREAT_MODEL: '',
     SUITE_SPECIFIC_THREAT_MODEL_ES: '',

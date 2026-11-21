@@ -79,8 +79,8 @@ fully client-side too.
 
 The site uses a [`_headers`](_headers) file at the repo root to set
 security headers (CSP, X-Frame-Options, Referrer-Policy,
-Permissions-Policy) and a cache policy: a one-year immutable
-cache for JS/CSS/SVG/PNG assets. Cloudflare reads this file on
+Permissions-Policy) and a cache policy: every asset is served
+`no-cache, must-revalidate`, so a deploy is visible at once. Cloudflare reads this file on
 every deploy and applies the rules automatically — no dashboard
 configuration needed.
 

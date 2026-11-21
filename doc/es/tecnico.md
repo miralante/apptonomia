@@ -224,22 +224,9 @@ están permitidos.
 
 ### 5.3 Control de caché
 
-Apptonomia no envía un `sw.js`. La frescura de la caché se
-controla puramente por cabeceras HTTP + `?v=` content-hash en
-las etiquetas `<script src="js/...">`:
-
-- `js/strings.<locale>.js`, `js/bootstrap.js`, `js/script.js` —
-  `?v=<sha256>` en la etiqueta `<script>` de `index.html`. El
-  hash se regenera con `scripts/build-head.js` después de un
-  cambio de contenido.
-- `assets/fonts/*`, `assets/icons/*` — `Cache-Control:
-  public, max-age=31536000, immutable`. Estos archivos solo
-  cambian cuando quien mantiene cambia las tipografías o
-  iconos; la caché inmutable sobrevive un despliegue.
-- `index.html`, `404.html` — `Cache-Control: public,
-  max-age=0, must-revalidate`. Siempre re-fetcheados; el
-  `?v=` en los scripts dentro es lo que invalida el JS
-  empaquetado.
+Apptonomia no envía un `sw.js`. Todos los ficheros se sirven con
+`Cache-Control: no-cache, must-revalidate` (ver `_headers`), así que el navegador revalida
+en cada petición y un despliegue se ve de inmediato. No se usan tokens `?v=`.
 
 ### 5.4 Primer despliegue
 

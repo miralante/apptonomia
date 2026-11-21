@@ -91,40 +91,6 @@ if (!isGitRepo) {
   process.exit(0);
 }
 
-/* --- Asset version tokens (?v=) ---------------------------------------
-   Runs BEFORE the sw.js checks below, because this is a portal-only
-   project: there is no sw.js here, so every VERSION path below exits 0
-   early and a check appended at the end would never execute.
-
-   _headers serves this project's immutable assets for a year, so a
-   changed file only reaches a returning visitor if the URL that
-   references it changes. The token is a hash of the file's own bytes,
-   computed by the suite-wide tool, so it cannot drift silently the way
-   a hand-typed serial did: the same asset used to be referenced with
-   different tokens from different pages (locale-picker.js carried
-   apptonomia-v5aca while locale-picker.css carried apptonomia-v5ab).
-
-   Run `node ../scripts/asset-tokens.js apptonomia` to fix.
-   ------------------------------------------------------------------- */
-(function () {
-  const suiteTool = require('path').join(__dirname, '..', '..', 'scripts', 'asset-tokens.js');
-  if (!require('fs').existsSync(suiteTool)) {
-    console.log('~ skipping asset-token check: ' + suiteTool + ' not found');
-    return;
-  }
-  try {
-    require('node:child_process').execFileSync(
-      process.execPath, [suiteTool, '--check', 'apptonomia'],
-      { cwd: require('path').join(__dirname, '..'), encoding: 'utf8', stdio: 'pipe' }
-    );
-    console.log('✓ asset-token check passed (apptonomia)');
-  } catch (e) {
-    console.error('✗ asset version tokens (?v=) are stale:\n' + String(e.stdout || e.message).trim());
-    console.error('  Fix: node ../scripts/asset-tokens.js apptonomia');
-    process.exit(1);
-  }
-})();
-
 /* --- Redirect-free links, sanitised service-worker caches -------------
    Third cache-layer check, same slot as the one above. Cloudflare answers
    EVERY "/x.html" URL with a 307 to its extensionless form (verified on all
