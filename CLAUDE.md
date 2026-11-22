@@ -483,10 +483,9 @@ the metaproject's
 [`doc/en/crear-app.md`](doc/en/crear-app.md) (mirror
 [`doc/es/crear-app.md`](doc/es/crear-app.md)) plus the file
 scaffolds under
-[`doc/templates/`](doc/templates/) — `config/index.html` and
-`config/app.js` (the route the shared footer links to as "Ajustes",
-`<base>config/`; its strings live under `config.*` in the app's
-`strings.<locale>.js`), the `localStorage`-prefix convention, the
+[`doc/templates/`](doc/templates/) — the gear drawer (`js/locale-picker.js`:
+theme, text size, sounds, reset and person reset, the same in every app),
+the `localStorage`-prefix convention, the
 two-step confirmation, the no-analytics / no-network rule, the
 "never `localStorage.clear()`" rule, and the i18n parity rule all
 live in the canonical documentation. New siblings are expected

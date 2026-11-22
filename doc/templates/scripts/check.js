@@ -76,7 +76,7 @@ const REQUIRED = [
   'SECURITY.md', 'SECURITY.es.md', 'CLOUDFLARE.md',
   '_headers', '.assetsignore', 'wrangler.toml', '404.html', 'index.html',
   'strings.es.js', 'strings.en.js', 'js/i18n.js', 'js/suite-chrome.js',
-  'about/index.html', 'legal/index.html', 'config/index.html',
+  'about/index.html', 'legal/index.html',
   'doc/en/index.md', 'doc/es/indice.md', '.graphifyignore'
 ];
 const IS_PWA = fs.existsSync(path.join(ROOT, 'manifest.json'));

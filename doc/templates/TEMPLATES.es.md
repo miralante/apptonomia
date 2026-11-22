@@ -51,8 +51,8 @@ doc/templates/
 ├── TEMPLATES.md / .es.md      ← este archivo (no se copia)
 ├── index.html                 ← inicio: montajes de cabecera/pie, contador de estrellas
 ├── 404.html                   ← enlaces absolutos desde la raíz (se sirve en la URL pedida)
-├── about/ legal/ config/      ← las tres páginas que enlaza el pie compartido
-│                                 (config/ = ajustes y borrado de datos, §B.5)
+├── about/ legal/             ← las páginas que enlaza el pie compartido
+│                                 (ajustes y borrado de datos: cajón del ⚙️, §B.5)
 ├── strings.es.js / .en.js     ← textos; es es la fuente de verdad
 ├── js/
 │   ├── i18n.js                ← núcleo App.i18n (de la app)
@@ -111,7 +111,7 @@ CI se instala al vuelo.
 
 - **Código técnico en inglés**; interfaz y documentación bilingües (es/en).
 - **Toda clave de localStorage empieza por `<slug>:`**, para que
-  `config/` borre los datos de la app sin `localStorage.clear()`.
+  el cajón del ⚙️ borre los datos de la app sin `localStorage.clear()`.
 - **Sin dependencias de terceros en ejecución** — ni CDN, ni analítica, ni IA remota.
 - **Sin paso de build** — HTML/CSS/JS servidos como assets estáticos de Cloudflare.
 - **Sin marcadores en archivos commiteados** — `check.js` falla si queda alguno.

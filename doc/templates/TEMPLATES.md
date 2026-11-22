@@ -52,8 +52,8 @@ doc/templates/
 ├── TEMPLATES.md / .es.md      ← this file (not copied)
 ├── index.html                 ← home: shared header/footer mounts, stars counter
 ├── 404.html                   ← root-absolute links (served at the asked URL)
-├── about/ legal/ config/      ← the three pages the shared footer links to
-│                                 (config/ = settings and data reset, §B.5)
+├── about/ legal/             ← the pages the shared footer links to
+│                                 (settings and data reset live in the gear drawer, §B.5)
 ├── strings.es.js / .en.js     ← UI strings; es is the source of truth
 ├── js/
 │   ├── i18n.js                ← App.i18n core (the app owns it)
@@ -111,7 +111,7 @@ CI it is installed on the fly.
 ## Conventions every template follows
 
 - **English technical code**; bilingual (es/en) UI and docs.
-- **Every localStorage key starts with `<slug>:`**, so `config/` can
+- **Every localStorage key starts with `<slug>:`**, so the gear drawer's reset can
   clear the app's data without `localStorage.clear()`.
 - **No third-party runtime** — no CDN, no analytics, no remote AI.
 - **No build step** — plain HTML/CSS/JS served as Cloudflare static

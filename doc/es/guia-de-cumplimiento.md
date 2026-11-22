@@ -196,19 +196,12 @@ contribuye no lo reinvente por app.
 
 ### 5.1 Referencia canónica
 
-- **Routime** es la implementación canónica. Lee
-  [`../../../routime/settings/`](../../../routime/settings/) (una
-  ruta oculta *fuera del menú*: `index.html` + `app.js` +
-  `strings.<locale>.js` + `styles.css`) y los comentarios en
-  [`../../../routime/settings/app.js`](../../../routime/settings/app.js)
-  para ver el razonamiento completo: confirmación en dos pasos, sin
-  analítica, sin red. Routime también envía una exportación /
-  importación en JSON porque su catálogo tiene 69 actividades y
-  el esfuerzo se justifica ahí.
-- **Calculia** tiene su propia carpeta `settings/`
-  ([`../../../calculia/settings/app.js`](../../../calculia/settings/app.js)).
-  Cuando la toques, alineala con la referencia de Routime, no la
-  dupliques.
+- **El cajón del ⚙️** (`templates/js/locale-picker.js`, una copia por app) es
+  el único sitio de ajustes: tamaño de letra, sonidos, tema, idioma, borrado
+  de los datos de la persona y borrado total. Confirmación en dos pasos, sin
+  analítica, sin red. Las herramientas de datos que solo tiene una app
+  (una copia de seguridad, importar un mazo) viven en una página oculta de
+  esa app, con el mismo nombre de ruta donde se usen (`datos/`).
 
 ### 5.2 Convención que sigue cada hermano que envía una PWA
 
@@ -238,7 +231,7 @@ contribuye no lo reinvente por app.
 2. **Una forma de borrar todas las claves bajo ese prefijo**,
    accesible por la persona de apoyo (no por la persona usuaria
    final). Dos formas aceptables:
-   - Una ruta oculta dedicada `settings/` (Routime, Calculia).
+   - El cajón del ⚙️, compartido por todas las apps (ver §5.1).
    - Un botón "Borrar mis datos" en el menú principal, con
      confirmación en dos pasos (mismo patrón que
      [`routime/tools/piano-keys/`](../../../routime/tools/piano-keys/)'s

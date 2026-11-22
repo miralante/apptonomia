@@ -74,8 +74,7 @@ El comentario de uso completo está al principio de `scripts/suite/suite-chrome.
   el ⚙️ con su cajón de idioma, tema, tamaño de letra y alto contraste. Las páginas cuyo
   propio marcado ya nombra la app usan `data-suite-brand="off"`, de modo que el montaje
   solo dibuja el selector en el bloque de controles que ya tenía la página.
-- **Pie.** Enlaza al portal, a `about/`, a `legal/` y, con `data-suite-settings`, a
-  `config/`. `data-suite-base` indica la ruta relativa a la raíz de la app;
+- **Pie.** Enlaza al portal, a `about/` y a `legal/`. `data-suite-base` indica la ruta relativa a la raíz de la app;
   `data-suite-contact` añade un enlace mailto.
 - **Textos.** La cabecera necesita una sola cadena, `core.chrome.appName`, en los
   ficheros de idioma de la app. Las etiquetas del pie (`core.chrome.portal`, `about`,

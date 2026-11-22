@@ -189,19 +189,12 @@ per app.
 
 ### 5.1 Canonical reference
 
-- **Routime** is the canonical implementation. Read
-  [`../../../routime/settings/`](../../../routime/settings/) (an
-  *out-of-menu* hidden route: `index.html` + `app.js` +
-  `strings.<locale>.js` + `styles.css`) and the comments in
-  [`../../../routime/settings/app.js`](../../../routime/settings/app.js)
-  for the full rationale: two-step confirmation, no analytics, no
-  network. Routime also ships a JSON export/import backup because
-  its catalogue has 69 activities and the effort is justified
-  there.
-- **Calculia** has its own `settings/` folder
-  ([`../../../calculia/settings/app.js`](../../../calculia/settings/app.js)).
-  When touching it, align it with the Routime reference, do not
-  duplicate it.
+- **The gear drawer** (`templates/js/locale-picker.js`, one copy per app) is
+  the one place for settings: text size, sounds, theme, language, the reset
+  of the person's data and the reset of everything. Two-step confirmation,
+  no analytics, no network. Data tools that only one app has (a backup, a
+  deck import) live in a hidden page of that app, with the same route name
+  wherever they are used (`datos/`).
 
 ### 5.2 Convention every PWA-shipping sibling follows
 
@@ -229,7 +222,7 @@ per app.
 
 2. **A way to clear all keys under that prefix**, reachable by the
    support person (not the end user). Two acceptable shapes:
-   - A dedicated `settings/` hidden route (Routime, Calculia).
+   - The gear drawer, shared by every app (see §5.1).
    - A "Borrar mis datos" button on the main menu, with a two-step
      confirmation (same pattern as
      [`routime/tools/piano-keys/`](../../../routime/tools/piano-keys/)'s

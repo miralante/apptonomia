@@ -6,7 +6,7 @@
      ApptonomiaAchievements (js/achievements-engine.js) achievements board
 
    Storage rule: every localStorage key starts with STORAGE_PREFIX, so the
-   config/ page can clear the app's data and nothing else. */
+   gear drawer's reset can clear the app's data and nothing else. */
 (function () {
   'use strict';
 

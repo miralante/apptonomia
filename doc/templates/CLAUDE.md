@@ -348,7 +348,7 @@ el fichero es idéntico en todas las apps y lo mantiene el metaproyecto
 (`apptonomia/scripts/sync-stars-engine.js`). Pon las frases en `strings.<locale>.js`
 (`stars.reached`, `stars.goal`) y muestra la línea con `ApptonomiaStars.goal(el, total, strings)`.
 `js/app.js` llama a `ApptonomiaStars.useStorageKey('{{SLUG}}:stars:last')` para que
-config/ borre también ese dato.
+el cajón del ⚙️ borre también ese dato.
 Añade la clase `.stars-goal` (display block, un poco más pequeña) en la hoja compartida.
 
 ### B.7 Recompensas (política común)

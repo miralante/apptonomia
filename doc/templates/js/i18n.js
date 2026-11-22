@@ -15,7 +15,7 @@
    "home.title" in the page) and warns in the console.
 
    Every key this app stores in localStorage starts with '{{SLUG}}:' so the
-   config/ page can clear them without touching anything else (never
+   gear drawer's reset can clear them without touching anything else (never
    localStorage.clear()).
    ========================================================================== */
 

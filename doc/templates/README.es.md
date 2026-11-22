@@ -177,9 +177,7 @@ Para añadir una actividad nueva:
 1. Crea `tools/<slug>/` con los seis archivos canónicos (usa una
    actividad existente como plantilla).
 2. Registra la actividad: añade su tarjeta a `index.html` (+
-   las claves en `strings.<locale>.js`), su fila de progreso
-   a `config/index.html` (+ las claves en
-   `config/strings.<locale>.js`), y sus seis archivos a
+   las claves en `strings.<locale>.js`), y sus seis archivos a
    `ARCHIVOS` en `sw.js`.
 3. Bumpea `VERSION` en `sw.js` (p. ej. `{{SLUG}}-vN` →
    `{{SLUG}}-vN+1`).

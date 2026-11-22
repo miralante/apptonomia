@@ -72,8 +72,7 @@ contract. The full usage comment is at the top of `scripts/suite/suite-chrome.js
   is the ⚙️ drawer with language, theme, text size and high contrast. Pages whose own
   markup already names the app use `data-suite-brand="off"`, so the mount draws only
   the picker in the control block the page already had.
-- **Footer.** Links to the portal, `about/`, `legal/` and, with
-  `data-suite-settings`, `config/`. `data-suite-base` sets the relative path to
+- **Footer.** Links to the portal, `about/` and `legal/`. `data-suite-base` sets the relative path to
   the app root; `data-suite-contact` adds a mailto link.
 - **Labels.** The header needs one string, `core.chrome.appName`, in the app's
   locale files. The footer labels (`core.chrome.portal`, `about`, `legal`,

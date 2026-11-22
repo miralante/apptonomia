@@ -173,9 +173,7 @@ To add a new activity:
 1. Create `tools/<slug>/` with the six canonical files (use an
    existing activity as a template).
 2. Register the activity: add its card to `index.html` (+
-   both `strings.<locale>.js` keys), its progress row to
-   `config/index.html` (+ both `config/strings.<locale>.js`
-   keys), and its six files to `sw.js`'s `ARCHIVOS`.
+   both `strings.<locale>.js` keys), and its six files to `sw.js`'s `ARCHIVOS`.
 3. Bump `VERSION` in `sw.js` (e.g. `{{SLUG}}-vN` → `{{SLUG}}-vN+1`).
 4. Read `doc/en/creating-elements-guide.md` first — didactic,
    gamification, persuasion and neuromarketing techniques for our

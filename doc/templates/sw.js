@@ -53,9 +53,6 @@ var FILES = [
   './legal/',
   './legal/index.html',
   './legal/styles.css',
-  './config/',
-  './config/index.html',
-  './config/app.js'
   // Add every shipped file here. scripts/check.js fails when a shipped file is
   // missing from this list or a listed file is missing on disk.
 ];
