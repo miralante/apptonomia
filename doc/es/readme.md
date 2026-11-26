@@ -89,6 +89,6 @@ Imagina que hoy quieres practicar cálculo mental. Abres **[apptonomia.uk](https
 
 ## Créditos y licencia
 
-Apptonomia es un proyecto de código abierto, distribuido bajo la licencia MIT.
+Apptonomia es un proyecto de código abierto, distribuido bajo la licencia GNU AGPL v3.0.
 
-Cada una de las seis apps de la suite tiene su propio repositorio, sus propios maintainers (o compartidos) y su propia licencia MIT. Comparten la misma filosofía de accesibilidad sin backend, pero no comparten código.
+Cada una de las seis apps de la suite tiene su propio repositorio, sus propios maintainers (o compartidos) y su propia licencia GNU AGPL v3.0. Comparten la misma filosofía de accesibilidad sin backend, pero no comparten código.

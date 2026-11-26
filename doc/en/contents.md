@@ -51,7 +51,7 @@ These live at the repo root, not under `doc/`:
 | [`../../CODE_OF_CONDUCT.es.md`](../../CODE_OF_CONDUCT.es.md) | Contributor Covenant (Spanish) |
 | [`../../SECURITY.md`](../../SECURITY.md) | How to report a vulnerability |
 | [`../../SECURITY.es.md`](../../SECURITY.es.md) | Cómo reportar una vulnerabilidad |
-| [`../../LICENSE`](../../LICENSE) | MIT licence |
+| [`../../LICENSE`](../../LICENSE) | GNU AGPL v3.0 licence |
 
 Each sibling of the suite (Calculia, Memofun, Okeymoney, Sinonimia,
 Teclatlon, Routime) has its own `doc/<lang>/` tree with the same

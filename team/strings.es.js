@@ -5,7 +5,7 @@ window.__i18n_strings__.es = {
   pageDescription: 'Quién mantiene Apptonomia y cómo contribuir al proyecto.',
   backToCover: '← Volver',
   teamTitle: 'Quiénes la hacen',
-  tagline: 'Apptonomia es el metaproyecto que une los siete hermanos de la suite. Software libre (MIT), mantenido por una red distribuida de personas. Aquí explicamos quién hay detrás y cómo ayudar.',
+  tagline: 'Apptonomia es el metaproyecto que une los siete hermanos de la suite. Software libre (GNU AGPL v3.0), mantenido por una red distribuida de personas. Aquí explicamos quién hay detrás y cómo ayudar.',
   techTeamTitle: 'Equipo técnico',
   techTeamText: 'Mantiene el código del portal apptonomia.uk, las integraciones entre los siete hermanos, la accesibilidad técnica y la integración continua. Suele trabajar vía pull requests y revisión en GitHub.',
   clinicTeamTitle: 'Equipo clínico y educativo',

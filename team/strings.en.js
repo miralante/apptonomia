@@ -5,7 +5,7 @@ window.__i18n_strings__.en = {
   pageDescription: 'Who maintains Apptonomia and how to contribute to the project.',
   backToCover: '← Back',
   teamTitle: 'Who builds it',
-  tagline: 'Apptonomia is the metaproject that ties together the seven siblings of the suite. Open-source software (MIT), maintained by a distributed network of people. Here is who is behind it and how to help.',
+  tagline: 'Apptonomia is the metaproject that ties together the seven siblings of the suite. Open-source software (GNU AGPL v3.0), maintained by a distributed network of people. Here is who is behind it and how to help.',
   techTeamTitle: 'Technical team',
   techTeamText: 'Maintains the apptonomia.uk portal code, the integrations between the seven siblings, the technical accessibility and the continuous integration. Usually works through pull requests and review on GitHub.',
   clinicTeamTitle: 'Clinical and education team',

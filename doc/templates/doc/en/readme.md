@@ -90,7 +90,7 @@ decks: a table of <deck, what it covers>.>
 
 ## Credits and licence
 
-{{DISPLAY_EN}} is an open source project, distributed under the MIT
+{{DISPLAY_EN}} is an open source project, distributed under the GNU AGPL v3.0
 licence. <If the app uses ARASAAC pictograms: "Pictograms are from
 ARASAAC (Gobierno de Aragón / Sergio Palao), licensed CC BY-NC-SA.
 The attribution is kept in the footer.">

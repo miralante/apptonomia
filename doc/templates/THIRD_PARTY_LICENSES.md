@@ -1,7 +1,7 @@
 # Third-party licenses
 
 The main code in this repository is licensed under the
-[MIT License](LICENSE) of the Miralante {{DISPLAY_EN}} project. This
+[GNU AGPL v3.0 License](LICENSE) of the Miralante {{DISPLAY_EN}} project. This
 file documents the licenses of the third-party assets shipped in the
 deployed site.
 
@@ -33,7 +33,7 @@ illustrative examples, or similar content intended to be reusable.)
 The content under `js/data.<lang>.js` (or the per-language shard
 files listed in the manifest, when the dataset is sharded) is licensed
 under the **Creative Commons Attribution-ShareAlike 4.0 license
-(CC BY-SA 4.0)**, separate from the MIT license above.
+(CC BY-SA 4.0)**, separate from the GNU AGPL v3.0 license above.
 
 - Full license text:
   <https://creativecommons.org/licenses/by-sa/4.0/>

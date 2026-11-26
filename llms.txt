@@ -28,4 +28,4 @@
 
 ## License
 
-MIT (código). El contenido editorial de cada aplicación (entradas de diccionario, barajas de Memofun, etc.) tiene su propia licencia, indicada en la página de cada proyecto.
+GNU AGPL v3.0 (código). El contenido editorial de cada aplicación (entradas de diccionario, barajas de Memofun, etc.) tiene su propia licencia, indicada en la página de cada proyecto.

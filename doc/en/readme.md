@@ -89,6 +89,6 @@ Imagine you want to practise mental arithmetic today. You open **[apptonomia.uk]
 
 ## Credits and licence
 
-Apptonomia is an open source project, distributed under the MIT licence.
+Apptonomia is an open source project, distributed under the GNU AGPL v3.0 licence.
 
-Each of the six apps in the suite has its own repository, its own maintainers (or shared ones) and its own MIT licence. They share the same accessibility-first / no-backend philosophy but no code.
+Each of the six apps in the suite has its own repository, its own maintainers (or shared ones) and its own GNU AGPL v3.0 licence. They share the same accessibility-first / no-backend philosophy but no code.

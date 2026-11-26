@@ -94,7 +94,7 @@ window.I18N.en = {
   'deck.orgP2': 'Independent deploys. Each app ships on its own through Cloudflare Workers.',
   'deck.orgP3': 'Shared conventions. Structure, accessibility, i18n and offline mode are common.',
   'deck.orgP4': 'Lightweight governance. Documented roles and CLAUDE.md as the operational contract.',
-  'deck.orgP5': 'Open source by design. The full suite — code, content, product decisions and roadmaps — lives in public repositories under the MIT licence. Public issues and pull requests, open continuous integration, no telemetry and no backend to hide.',
+  'deck.orgP5': 'Open source by design. The suite code lives in public repositories under GNU AGPL v3.0; editorial content keeps the licence listed by each project. Public issues and pull requests, open continuous integration, no telemetry and no backend to hide.',
   'deck.orgP6': 'Adaptations welcome. An administration, NGO or school can adapt and maintain a version for its community without asking for permission.',
   'deck.orgReposTitle': 'GitHub repositories',
 
@@ -115,8 +115,8 @@ window.I18N.en = {
   'deck.stdUneText': 'Short sentences, one idea per sentence, everyday vocabulary, no jargon or clinical language in what users read. Applied across the whole suite — interfaces, messages, examples and microcopy — because easy read is the condition that makes content understandable, and therefore learnable.',
   'deck.stdWcagTitle': 'WCAG 2.1 — AA minimum, AAA where applicable',
   'deck.stdWcagText': 'Reinforced contrast (AAA 1.4.6), accessible reading level (AAA 3.1.5) and colour never used as the sole channel (AAA 1.4.1).',
-  'deck.stdMitTitle': 'MIT licence across the codebase',
-  'deck.stdMitText': 'Any organisation can reuse, adapt or fork the suite for its community at no licence cost.',
+  'deck.stdAgplTitle': 'GNU AGPL v3.0 for the code',
+  'deck.stdAgplText': 'If a modified version is offered as a web service, its users can obtain the corresponding source code.',
   'deck.stdCiTitle': 'Public continuous integration',
   'deck.stdCiText': 'Every change goes through a set of automatic checks (i18n parity, syntax, catalog, accessibility, forbidden terms). CI is the contract.',
 
@@ -133,7 +133,7 @@ window.I18N.en = {
   'deck.use3Title': '\ud83c\udfe0  Families',
   'deck.use3Text': 'Direct access from the living-room browser, with nothing to install. Families can see progress on the device itself and erase it when they want.',
   'deck.use4Title': '\ud83c\udfe2  Public entities',
-  'deck.use4Text': 'Community deployment or a customised fork under the MIT licence. The suite is reusable for local projects with specific needs.',
+  'deck.use4Text': 'Community deployment or a customised fork under the GNU AGPL v3.0 licence. The suite is reusable for local projects with specific needs.',
 
   // --- Slide 11 · Collaboration ---
   'deck.collabEyebrow': 'How to collaborate',

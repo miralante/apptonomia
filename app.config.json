@@ -20,7 +20,7 @@
   "hasItemList": true,
   "dcCreator": "Apptonomia",
   "dcSubject": "Suite de siete aplicaciones web gratuitas para aprender a tu ritmo: matemáticas, razonamiento lógico, actividades cotidianas, dinero del día a día, diccionario en lectura fácil, tarjetas de estudio, mecanografía con el teclado del ordenador y ajedrez.",
-  "dcRights": "MIT (código) — ver LICENSE. Sin contenido editorial propio: el portal agrega las páginas de los siete hermanos, cada una con su propia licencia de contenido.",
+  "dcRights": "GNU AGPL v3.0 (código) — ver LICENSE. Sin contenido editorial propio: el portal agrega las páginas de los siete hermanos, cada una con su propia licencia de contenido.",
   "dcType": "Collection",
   "supportEmail": "hello@apptonomia.uk",
   "faq": [
@@ -96,5 +96,5 @@
       "description": "Ocho juegos adaptados: reglas, ejercicios y partidas a tu ritmo."
     }
   ],
-  "llmsLicense": "MIT (código). El contenido editorial de cada aplicación (entradas de diccionario, barajas de Memofun, etc.) tiene su propia licencia, indicada en la página de cada proyecto."
+  "llmsLicense": "GNU AGPL v3.0 (código). El contenido editorial de cada aplicación (entradas de diccionario, barajas de Memofun, etc.) tiene su propia licencia, indicada en la página de cada proyecto."
 }

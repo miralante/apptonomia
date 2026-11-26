@@ -52,7 +52,7 @@ apptonomia/
 ├── CONTRIBUTING.md, .es.md          ← Contribution workflow
 ├── CODE_OF_CONDUCT.md, .es.md       ← Contributor Covenant
 ├── SECURITY.md, .es.md              ← Vulnerability disclosure
-├── LICENSE                          ← MIT
+├── LICENSE                          ← GNU AGPL v3.0
 └── og-image.svg                     ← Open Graph image
 ```
 

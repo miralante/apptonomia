@@ -141,7 +141,7 @@ viable subset you must have **before** the first deploy:
 
 - `CLAUDE.md` (copied from `templates/CLAUDE.md`, then trimmed)
 - `README.md` + `README.es.md`
-- `LICENSE` (MIT)
+- `LICENSE` (GNU AGPL v3.0)
 - `CONTRIBUTING.md` + `CONTRIBUTING.es.md`
 - `CODE_OF_CONDUCT.md` + `CODE_OF_CONDUCT.es.md`
 - `SECURITY.md` + `SECURITY.es.md` (canonical template at

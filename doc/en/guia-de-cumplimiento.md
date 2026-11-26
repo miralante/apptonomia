@@ -345,7 +345,7 @@ a coordinate:
 - **`DC.type`** = `InteractiveResource` for a sibling app, or
   `Collection` for the portal (which aggregates the six siblings).
 - **`DC.rights`** = a short note about content licensing (e.g.
-  "MIT — content CC BY 4.0, see LICENSE").
+  "GNU AGPL v3.0 — content CC BY 4.0, see LICENSE").
 
 They are rendered as `<meta name="DC.*">` in the block that
 `scripts/build-head.js` inserts between the
@@ -413,7 +413,7 @@ The LLMO layer covers two things:
    - ...
 
    ## License
-   MIT — code. CC BY 4.0 — content (dictionary entries, decks,
+   GNU AGPL v3.0 — code. CC BY 4.0 — content (dictionary entries, decks,
      etc., where applicable).
    ```
 
@@ -535,7 +535,7 @@ copy-paste file scaffolds.
 |---|---|---|
 | `CLAUDE.md` | yes | Operational handbook for AI agents + canonical-source table. |
 | `README.md` + `README.es.md` | yes | Public-facing intro (es + en), badges, quickstart. |
-| `LICENSE` | yes | MIT. |
+| `LICENSE` | yes | GNU AGPL v3.0. |
 | `CONTRIBUTING.md` + `CONTRIBUTING.es.md` | yes | Contribution workflow (es + en). |
 | `CODE_OF_CONDUCT.md` + `CODE_OF_CONDUCT.es.md` | yes | Contributor covenant (es + en). |
 | `SECURITY.md` + `SECURITY.es.md` | yes | How to report a vulnerability privately. |
@@ -597,7 +597,7 @@ third-party licence: at minimum the source's name, author, and
 licence; for CC licences, the canonical licence URL; for
 ARASAAC, an explicit statement that commercial use requires
 ARASAAC's permission. The `## 📄 License` section is the right
-place for the project's own licence (MIT, or CC BY-SA for some
+place for the project's own licence (GNU AGPL v3.0, or CC BY-SA for some
 sibling content); `## 🙏 Credits` is for the third-party bits.
 
 ---

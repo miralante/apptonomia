@@ -361,7 +361,7 @@ fijar una coordenada:
 - **`DC.type`** = `InteractiveResource` (recurso interactivo) o
   `Collection` para el portal (que agrega a los seis hermanos).
 - **`DC.rights`** = una nota corta sobre la licencia del contenido
-  (p. ej. "MIT — contenido CC BY 4.0, ver LICENSE").
+  (p. ej. "GNU AGPL v3.0 — contenido CC BY 4.0, ver LICENSE").
 
 Se renderizan como `<meta name="DC.*">` en el bloque que
 `scripts/build-head.js` inserta entre los marcadores
@@ -429,7 +429,7 @@ La capa LLMO cubre dos cosas:
    - ...
 
    ## Licencia
-   MIT — código. CC BY 4.0 — contenido (entradas de diccionario,
+   GNU AGPL v3.0 — código. CC BY 4.0 — contenido (entradas de diccionario,
    barajas, etc., donde aplique).
    ```
 
@@ -554,7 +554,7 @@ para andamios de archivo para copiar y pegar.
 |---|---|---|
 | `CLAUDE.md` | sí | Manual operativo para agentes IA + tabla de fuentes canónicas. |
 | `README.md` + `README.es.md` | sí | Introducción pública (es + en), badges, arranque rápido. |
-| `LICENSE` | sí | MIT. |
+| `LICENSE` | sí | GNU AGPL v3.0. |
 | `CONTRIBUTING.md` + `CONTRIBUTING.es.md` | sí | Flujo de contribución (es + en). |
 | `CODE_OF_CONDUCT.md` + `CODE_OF_CONDUCT.es.md` | sí | Pacto del colaborador (es + en). |
 | `SECURITY.md` + `SECURITY.es.md` | sí | Cómo reportar una vulnerabilidad de forma privada. |
@@ -616,7 +616,7 @@ la licencia de terceros: como mínimo el nombre de la fuente, su
 autor y su licencia; para licencias CC, la URL canónica de la
 licencia; para ARASAAC, una mención explícita de que el uso
 comercial requiere su permiso. La sección `## 📄 Licencia` es el
-lugar para la licencia propia del proyecto (MIT, o CC BY-SA para
+lugar para la licencia propia del proyecto (GNU AGPL v3.0, o CC BY-SA para
 contenido de algunos hermanos); `## 🙏 Créditos` es para las
 piezas de terceros.
 

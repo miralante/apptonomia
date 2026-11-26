@@ -52,7 +52,7 @@ Viven en la raíz del repo, no bajo `doc/`:
 | [`../../CODE_OF_CONDUCT.md`](../../CODE_OF_CONDUCT.md) | Contributor Covenant (inglés) |
 | [`../../SECURITY.es.md`](../../SECURITY.es.md) | Cómo reportar una vulnerabilidad |
 | [`../../SECURITY.md`](../../SECURITY.md) | How to report a vulnerability |
-| [`../../LICENSE`](../../LICENSE) | Licencia MIT |
+| [`../../LICENSE`](../../LICENSE) | Licencia GNU AGPL v3.0 |
 
 Cada hermano de la suite (Calculia, Memofun, Okeymoney, Sinonimia,
 Teclatlon, Routime) tiene su propio árbol `doc/<lang>/` con la

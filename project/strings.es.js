@@ -95,7 +95,7 @@ window.I18N.es = {
   'deck.orgP2': 'Despliegues independientes. Cada app se publica por separado en Cloudflare Workers.',
   'deck.orgP3': 'Convenciones comunes. Estructura, accesibilidad, i18n y modo offline compartidos.',
   'deck.orgP4': 'Gobernanza ligera. Roles documentados y CLAUDE.md como contrato operativo.',
-  'deck.orgP5': 'C\u00f3digo abierto por dise\u00f1o. La suite completa \u2014 c\u00f3digo, contenidos, decisiones de producto y hojas de ruta \u2014 vive en repositorios p\u00fablicos bajo licencia MIT. Issues y pull requests p\u00fablicos, integraci\u00f3n continua abierta, sin telemetr\u00eda ni backend que ocultar.',
+  'deck.orgP5': 'C\u00f3digo abierto por dise\u00f1o. El c\u00f3digo de la suite vive en repositorios p\u00fablicos bajo GNU AGPL v3.0; los contenidos editoriales conservan la licencia indicada en cada proyecto. Issues y pull requests p\u00fablicos, integraci\u00f3n continua abierta, sin telemetr\u00eda ni backend que ocultar.',
   'deck.orgP6': 'Adaptaciones permitidas. Una administraci\u00f3n, una ONG o un centro educativo puede adaptar y mantener una variante para su comunidad sin pedir permiso.',
   'deck.orgReposTitle': 'Repositorios de GitHub',
 
@@ -116,8 +116,8 @@ window.I18N.es = {
   'deck.stdUneText': 'Oraciones cortas, una idea por frase, vocabulario cotidiano, sin tecnicismos ni jerga cl\u00ednica en lo que la persona lee. Aplicado a toda la suite — interfaces, mensajes, ejemplos y microcopy — porque la lectura f\u00e1cil es la condici\u00f3n que hace posible que el contenido sea comprensible y, por tanto, aprendible.',
   'deck.stdWcagTitle': 'WCAG 2.1 — AA m\u00ednimo, AAA cuando aplica',
   'deck.stdWcagText': 'Contraste reforzado (AAA 1.4.6), nivel de lectura accesible (AAA 3.1.5) y uso del color nunca como \u00fanico canal (AAA 1.4.1).',
-  'deck.stdMitTitle': 'Licencia MIT en todo el c\u00f3digo',
-  'deck.stdMitText': 'Cualquier entidad puede reutilizar, adaptar o forkear la suite para su comunidad, sin coste de licencia.',
+  'deck.stdAgplTitle': 'GNU AGPL v3.0 para el c\u00f3digo',
+  'deck.stdAgplText': 'Si una versi\u00f3n modificada se ofrece como servicio web, quienes la usan pueden obtener el c\u00f3digo fuente correspondiente.',
   'deck.stdCiTitle': 'Integraci\u00f3n continua p\u00fablica',
   'deck.stdCiText': 'Cada cambio pasa por un conjunto de comprobaciones autom\u00e1ticas (paridad i18n, sintaxis, cat\u00e1logo, accesibilidad, t\u00e9rminos prohibidos). El CI es el contrato.',
 
@@ -134,7 +134,7 @@ window.I18N.es = {
   'deck.use3Title': '\ud83c\udfe0  Familias',
   'deck.use3Text': 'Acceso directo desde el navegador del sal\u00f3n, sin instalar nada. Las familias pueden ver el progreso en el propio dispositivo y borrarlo cuando quieran.',
   'deck.use4Title': '\ud83c\udfe2  Entidades p\u00fablicas',
-  'deck.use4Text': 'Despliegue en comunidad o fork personalizado bajo licencia MIT. La suite es reutilizable para proyectos locales con necesidades espec\u00edficas.',
+  'deck.use4Text': 'Despliegue en comunidad o fork personalizado bajo licencia GNU AGPL v3.0. La suite es reutilizable para proyectos locales con necesidades espec\u00edficas.',
 
   // --- Slide 11 · Colaboraci\u00f3n ---
   'deck.collabEyebrow': 'C\u00f3mo colaborar',

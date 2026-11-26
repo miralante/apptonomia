@@ -142,7 +142,7 @@ viable que debes tener **antes** del primer despliegue:
 
 - `CLAUDE.md` (copiado de `templates/CLAUDE.md`, luego recortado)
 - `README.md` + `README.es.md`
-- `LICENSE` (MIT)
+- `LICENSE` (GNU AGPL v3.0)
 - `CONTRIBUTING.md` + `CONTRIBUTING.es.md`
 - `CODE_OF_CONDUCT.md` + `CODE_OF_CONDUCT.es.md`
 - `SECURITY.md` + `SECURITY.es.md` (plantilla canónica en
