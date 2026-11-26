@@ -155,7 +155,7 @@ By role and profile, the most relevant docs are:
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Anyone who wants to contribute |
 | [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) | Contributor covenant (Contributor Covenant 2.1) |
 | `CLAUDE.md` | AI agents: operational workflow, coordination and approvals |
-| [`CLOUDFLARE.md`](CLOUDFLARE.md) | Canonical Cloudflare Workers deploy guide |
+| [`CI-CD.md`](CI-CD.md) | Canonical Cloudflare Workers deploy guide |
 | Project history | Lives in `git log`; no external roadmap is maintained |
 | `doc/en/i18n.md` / `doc/es/i18n.md` | Details of the ES/EN multilanguage system |
 
@@ -239,7 +239,7 @@ assets)](https://developers.cloudflare.com/workers/static-assets/)**
 through its built-in GitHub integration. The HTTP security
 headers live in [`_headers`](_headers), and the project metadata
 in [`wrangler.toml`](wrangler.toml). See
-[`CLOUDFLARE.md`](CLOUDFLARE.md) for the full runbook (rebuild,
+[`CI-CD.md`](CI-CD.md) for the full runbook (rebuild,
 rollback, custom domain, credential rotation).
 
 Pull requests automatically get a preview URL on
@@ -347,6 +347,5 @@ philosophy and the same deploy story.
 | Teclatlon | Touch-typing with a physical keyboard | [github.com/{{GIT_ORG}}/teclatlon](https://github.com/{{GIT_ORG}}/teclatlon) |
 | **{{DISPLAY_EN}}** *(this project)* | **<one-sentence description>** | [github.com/{{GIT_ORG}}/{{REPO}}](https://github.com/{{GIT_ORG}}/{{REPO}}) |
 
-The metaproject's `apptonomia/CLOUDFLARE.md` is the canonical
-deploy guide for the whole suite; each sibling has its own
-project-specific doc that links back there.
+The metaproject CI/CD guide contains the suite-wide matrix; each
+sibling has its own `CI-CD.md` deployment runbook and links back here.

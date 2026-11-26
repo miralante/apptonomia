@@ -205,7 +205,7 @@ cross-project comparison).
 The landing deploys to **Cloudflare Workers + static assets** via
 the Cloudflare Git connector — automatic on every push to `main`.
 HTTP security headers live in `_headers`; project metadata in
-`wrangler.toml`. See [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md)
+`wrangler.toml`. See [`../../CI-CD.md`](../../CI-CD.md)
 for the full runbook.
 
 > Apptonomia does not ship a `sw.js` (no service worker, no

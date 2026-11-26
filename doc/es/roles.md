@@ -24,7 +24,7 @@ diferenciados**. Cada uno tiene su propio espacio en el repo:
 | 👤 Visitante del portal | [`index.html`](../../index.html) — el propio portal | La app que abriste en una pestaña nueva |
 | ❤️ Apoyo / familia | El `README.md` de la app (enlazado desde cada tarjeta) | El `doc/es/equipo.md` de esa app |
 | 🤔 Solo quiero entender qué es Apptonomia | [`README.es.md`](../../README.es.md) — intro pública | [`CLAUDE.md`](../../CLAUDE.md) §A — manual operativo |
-| 💻 Desarrollador/a del metaproyecto (portal + plumbing) | [`CLAUDE.md`](../../CLAUDE.md) | [`CLOUDFLARE.md`](../../CLOUDFLARE.md) — runbook de despliegue |
+| 💻 Desarrollador/a del metaproyecto (portal + plumbing) | [`CLAUDE.md`](../../CLAUDE.md) | [`CI-CD.md`](../../CI-CD.md) — runbook de despliegue |
 | 🌐 Traductor/a del copy del portal | [`i18n.md`](i18n.md) — cómo funciona la UI es/en | [`CONTRIBUTING.es.md`](../../CONTRIBUTING.es.md) |
 | 🌐 Colaborador/a de una nueva app | [`crear-app.md`](crear-app.md) — receta + [`templates/`](../templates/) | [`guia-de-cumplimiento.md`](guia-de-cumplimiento.md) — cumplimiento de la suite |
 

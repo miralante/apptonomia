@@ -152,7 +152,7 @@ viable subset you must have **before** the first deploy:
   channel `{{SUPPORT_EMAIL}}` resolves to each repo's
   `app.config.json > supportEmail`, with a hard fallback in the
   script)
-- `CLOUDFLARE.md` (deploy runbook)
+- `CI-CD.md` (deploy runbook)
 - `_headers`, `wrangler.toml`, `404.html`
 - `index.html` + `app.js` (or `tools/<slug>/app.js` for catalogues)
 - `strings.es.js` + `strings.en.js`
@@ -477,8 +477,8 @@ Do not push if a required test is missing, fails, or could not be run.
 ## 10. First deploy
 
 The suite deploys to **Cloudflare Workers + static assets** via the
-Cloudflare Git connector — see each sibling's `CLOUDFLARE.md` for
-the per-app contract, and the metaproject's `CLOUDFLARE.md` for the
+Cloudflare Git connector — see each sibling's `CI-CD.md` for
+the per-app contract, and the metaproject's `CI-CD.md` for the
 shared runbook (rebuild, rollback, custom domain, credential
 rotation).
 

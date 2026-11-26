@@ -24,7 +24,7 @@ has its own space in the repo:
 | 👤 Visitor of the landing | [`index.html`](../../index.html) — the landing itself | The app you opened in a new tab |
 | ❤️ Support / family | The app's own `README.md` (linked from each card) | That app's `doc/en/team.md` |
 | 🤔 I just want to understand what Apptonomia is | [`README.md`](../../README.md) — public intro | [`CLAUDE.md`](../../CLAUDE.md) §A — operational handbook |
-| 💻 Developer of the metaproject (landing + plumbing) | [`CLAUDE.md`](../../CLAUDE.md) | [`CLOUDFLARE.md`](../../CLOUDFLARE.md) — deploy runbook |
+| 💻 Developer of the metaproject (landing + plumbing) | [`CLAUDE.md`](../../CLAUDE.md) | [`CI-CD.md`](../../CI-CD.md) — deploy runbook |
 | 🌐 Translator of the landing copy | [`i18n.md`](i18n.md) — how the es/en UI works | [`CONTRIBUTING.md`](../../CONTRIBUTING.md) |
 | 🌐 Contributor of a new app | [`crear-app.md`](crear-app.md) — recipe + [`templates/`](../templates/) | [`guia-de-cumplimiento.md`](guia-de-cumplimiento.md) — suite compliance |
 

@@ -1,18 +1,10 @@
 # CLAUDE.md — Miralante metaproject
 
-## Shared Playwright installation
+## CI/CD and browser tests
 
-Playwright and its browsers are installed globally for the machine by
-`dev/setups/pc-playwright-first-setup.ps1` or
-`pc-playwright-next-setup.ps1`. Run the project's existing browser-test
-command (for example, `npm run test:ui`) or invoke the global CLI with
-`playwright test`.
-
-Do not add `playwright` or `@playwright/test` to project dependencies, install
-Playwright with `npm`/`npx`, or run `npx playwright install`. The setup scripts
-manage the shared browser cache under `{drive}\apps\playwright_browsers`.
-Always attempt the relevant browser test; if the global CLI or browsers are
-unavailable, report that blocker and continue with the other checks.
+Use this repository's configured test commands. See the
+[CI/CD guide for Miralante](CI-CD.md)
+for the full test matrix, release steps, and Cloudflare deployment process.
 
 ## About this project
 
@@ -115,6 +107,7 @@ location.
 | Shared blocks copied into the apps (shared header and footer, answer round, reward screen, engines) | [`doc/en/shared-blocks.md`](doc/en/shared-blocks.md) ↔ [`doc/es/bloques-compartidos.md`](doc/es/bloques-compartidos.md) |
 | Public landing (SEO, Open Graph, JSON-LD `ItemList`, multilingual copy) | This repo's `index.html`, `js/strings.es.js`, `js/strings.en.js` |
 | **Suite compliance checklist** (UNE 153101, WCAG AAA, public-facing wording "usuario/a tipo", settings/data-reset, landing typography) | [`doc/en/guia-de-cumplimiento.md`](doc/en/guia-de-cumplimiento.md) → [`doc/es/guia-de-cumplimiento.md`](doc/es/guia-de-cumplimiento.md) |
+| **Pedagogical guide for creating learning elements across the suite** | [`doc/en/creating-elements-guide.md`](doc/en/creating-elements-guide.md) ↔ [`doc/es/guia-crear-elementos.md`](doc/es/guia-crear-elementos.md) |
 | **Creating a new sibling** (required files, scripts, doc tree, sw.js cache contract) | [`doc/en/crear-app.md`](doc/en/crear-app.md) → [`doc/es/crear-app.md`](doc/es/crear-app.md) |
 | **File templates for new siblings** (CLAUDE.md, README.md, sw.js, scripts/check.js, SECURITY, doc tree) | [`doc/templates/`](doc/templates/) |
 | Cross-project convention: settings/data-reset pattern | [`doc/en/guia-de-cumplimiento.md` §5](doc/en/guia-de-cumplimiento.md#5-settings--data-reset-pattern) ↔ [`doc/es/guia-de-cumplimiento.md` §5](doc/es/guia-de-cumplimiento.md#5-settings--data-reset-pattern) — also §B.5.1 below for the canonical reference (`crear-app.md` + `doc/templates/`) |
@@ -255,7 +248,7 @@ git log --oneline -3
    check.
 4. **Cache contract**: each PWA-shipping project has a `sw.js` whose
    `VERSION` must be bumped on any change to a cached file. Read the
-     project's own doc/en/technical.md (mirror doc/es/tecnico.md) §PWA and service worker (or §'Cache contract' in CLOUDFLARE.md) before editing.
+     project's own doc/en/technical.md (mirror doc/es/tecnico.md) §PWA and service worker (or §'Cache contract' in CI-CD.md) before editing.
 5. **Deploys are network operations**: a Cloudflare deploy (even to
    a preview channel) is never automatic. Ask before running.
 6. **Do not introduce cross-project dependencies.** Each sibling

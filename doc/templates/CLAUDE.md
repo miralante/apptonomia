@@ -1,17 +1,10 @@
 # CLAUDE.md — AI agent workflow
 
-## Shared Playwright installation
+## CI/CD and browser tests
 
-Playwright and its browsers are installed globally for the machine by
-`dev/setups/pc-playwright-first-setup.ps1` or
-`pc-playwright-next-setup.ps1`. Run the project's browser-test gate
-(`npm run test:ui`) or invoke the global CLI with `playwright test`.
-
-Do not add `playwright` or `@playwright/test` to project dependencies, install
-Playwright with `npm`/`npx`, or run `npx playwright install`. The setup scripts
-manage the shared browser cache under `{drive}\apps\playwright_browsers`.
-Always attempt the relevant browser test; if the global CLI or browsers are
-unavailable, report that blocker and continue with the other checks.
+Use this repository's configured test commands. See the
+[project CI/CD guide](CI-CD.md)
+for the full test matrix, release steps, and Cloudflare deployment process.
 
 ## About this project
 
@@ -75,7 +68,7 @@ location.
 | Roadmap and closed product decisions | Git only: every PR leaves a message; reconstruct with `git log`. |
 | Human contribution flow | [`CONTRIBUTING.md`](CONTRIBUTING.md) ↔ [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) |
 | AI agent operational flow | `CLAUDE.md` (this file) |
-| Cloudflare deploy / cache contract (network-first vs cache-first SW) | [`CLOUDFLARE.md`](CLOUDFLARE.md) |
+| Cloudflare deploy / cache contract (network-first vs cache-first SW) | [`CI-CD.md`](CI-CD.md) |
 | Contents / TOC | [`doc/en/contents.md`](doc/en/contents.md) ↔ [`doc/es/contenidos.md`](doc/es/contenidos.md) |
 | Doc index | [`doc/en/index.md`](doc/en/index.md) ↔ [`doc/es/indice.md`](doc/es/indice.md) |
 | Quick guide | [`doc/en/quick-guide.md`](doc/en/quick-guide.md) ↔ [`doc/es/guia-rapida.md`](doc/es/guia-rapida.md) |
@@ -260,7 +253,7 @@ should be cached):
 Bump liberally rather than conservatively. The cost of bumping is
 one integer; the cost of not bumping is "the deployed app keeps
 serving the old version after a deploy". Full contract:
-[`CLOUDFLARE.md`](CLOUDFLARE.md) § "Cache contract".
+[`CI-CD.md`](CI-CD.md) § "Cache contract".
 
 ### B.2 Language policy
 

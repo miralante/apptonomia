@@ -159,7 +159,7 @@ Según tu rol y perfil, te interesa una u otra documentación:
 | [`CONTRIBUTING.es.md`](CONTRIBUTING.es.md) | Familias, terapeutas y desarrolladores que quieran contribuir |
 | [`CODE_OF_CONDUCT.es.md`](CODE_OF_CONDUCT.es.md) | Pacto del colaborador (Contributor Covenant 2.1) |
 | `CLAUDE.md` | Agentes IA: reglas obligatorias y estado del proyecto |
-| [`CLOUDFLARE.md`](CLOUDFLARE.md) | Guía canónica de despliegue en Cloudflare Workers |
+| [`CI-CD.md`](CI-CD.md) | Guía canónica de despliegue en Cloudflare Workers |
 | Historial del proyecto | En `git log`; no se mantiene una hoja de ruta externa |
 | `doc/es/i18n.md` / `doc/en/i18n.md` | Detalles del sistema multiidioma ES/EN |
 
@@ -246,7 +246,7 @@ assets)](https://developers.cloudflare.com/workers/static-assets/)**
 a través de su integración integrada con GitHub. Las cabeceras de
 seguridad HTTP viven en [`_headers`](_headers), y los metadatos
 del proyecto en [`wrangler.toml`](wrangler.toml). Ver
-[`CLOUDFLARE.md`](CLOUDFLARE.md) para el runbook completo
+[`CI-CD.md`](CI-CD.md) para el runbook completo
 (rebuild, rollback, dominio personalizado, rotación de
 credenciales).
 
@@ -356,6 +356,6 @@ accesibilidad sin backend, y la misma historia de despliegue.
 | Teclatlon | Mecanografía táctil con el teclado físico | [github.com/{{GIT_ORG}}/teclatlon](https://github.com/{{GIT_ORG}}/teclatlon) |
 | **{{DISPLAY_ES}}** *(este proyecto)* | **<one-sentence description>** | [github.com/{{GIT_ORG}}/{{REPO}}](https://github.com/{{GIT_ORG}}/{{REPO}}) |
 
-El `apptonomia/CLOUDFLARE.md` del metaproyecto es la guía canónica
+El `apptonomia/CI-CD.md` del metaproyecto es la guía canónica
 de despliegue para toda la suite; cada hermano tiene su propio
 doc específico de proyecto que enlaza de vuelta allí.

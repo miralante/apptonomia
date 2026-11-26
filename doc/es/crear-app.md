@@ -153,7 +153,7 @@ viable que debes tener **antes** del primer despliegue:
   `{{SUPPORT_EMAIL}}` se resuelve desde
   `app.config.json > supportEmail` de cada repo, con fallback
   duro en el script)
-- `CLOUDFLARE.md` (runbook de despliegue)
+- `CI-CD.md` (runbook de despliegue)
 - `_headers`, `wrangler.toml`, `404.html`
 - `index.html` + `app.js` (o `tools/<slug>/app.js` para catálogos)
 - `strings.es.js` + `strings.en.js`
@@ -490,8 +490,8 @@ No hagas push si una prueba obligatoria falta, falla o no se pudo ejecutar.
 ## 10. Primer despliegue
 
 La suite se despliega a **Cloudflare Workers + static assets** vía
-el conector Git de Cloudflare — ver el `CLOUDFLARE.md` de cada
-hermano para el contrato por app, y el `CLOUDFLARE.md` del
+el conector Git de Cloudflare — ver el `CI-CD.md` de cada
+hermano para el contrato por app, y el `CI-CD.md` del
 metaproyecto para el runbook compartido (rebuild, rollback,
 dominio personalizado, rotación de credenciales).
 

@@ -82,7 +82,7 @@ at the repository root:
 | Product, audience, accessibility rules | [`doc/en/SPEC.md`](doc/en/SPEC.md) · [`doc/es/SPEC.md`](doc/es/SPEC.md) |
 | Architecture and technical reference | [`doc/en/technical.md`](doc/en/technical.md) · [`doc/es/tecnico.md`](doc/es/tecnico.md) |
 | Internationalization (add a language) | [`doc/en/I18N.md`](doc/en/I18N.md) · [`doc/es/I18N.md`](doc/es/I18N.md) |
-| Deploy runbook (Cloudflare Workers) | [`CLOUDFLARE.md`](CLOUDFLARE.md) |
+| Deploy runbook (Cloudflare Workers) | [`CI-CD.md`](CI-CD.md) |
 | AI agent operational workflow | [`CLAUDE.md`](CLAUDE.md) |
 
 ### 📄 Other repo documents
@@ -92,7 +92,7 @@ at the repository root:
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Anyone who wants to contribute (family, therapists, devs) |
 | [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) | Contributor covenant (Contributor Covenant 2.1) |
 | `CLAUDE.md` | AI agents: operational workflow, coordination and approvals |
-| [`CLOUDFLARE.md`](CLOUDFLARE.md) | Canonical Cloudflare Workers deploy guide for the suite (Apptonomia + Calculia, Memofun, Okeymoney, Sinonimia, Teclatlon) |
+| [`CI-CD.md`](CI-CD.md) | Canonical Cloudflare Workers deploy guide for the suite (Apptonomia + Calculia, Memofun, Okeymoney, Sinonimia, Teclatlon) |
 | Project history | Lives in `git log`; no external roadmap is maintained |
 | `doc/en/I18N.md` / `doc/es/I18N.md` | Details of the ES/EN multilanguage system |
 
@@ -118,7 +118,7 @@ To add a new app to the suite:
 
 1. Create a new suite repo following the same conventions
    (`index.html`, `app.js`, `strings.<locale>.js`, `sw.js` with a
-   cache-first `VERSION`, `CLOUDFLARE.md`, `CLAUDE.md`, the
+   cache-first `VERSION`, `CI-CD.md`, `CLAUDE.md`, the
    `persona tipo` euphemism directive).
 2. Add the app here, in `index.html`, and in every suite repo's
    `README.md` "The Miralante suite" table.
@@ -152,15 +152,16 @@ occupational therapy / minors) — see the `forbidden-terms` job in
 
 Apptonomia is a fully static site (HTML/CSS/JS, no build step), so it
 ships directly to **[Cloudflare Workers (static assets)](https://developers.cloudflare.com/workers/static-assets/)**
-through its built-in GitHub integration. The HTTP security headers
+through the GitHub Actions workflow, which deploys with Wrangler after the
+required checks pass. The HTTP security headers
 live in [`_headers`](_headers), and the project metadata in
-[`wrangler.toml`](wrangler.toml). See [`CLOUDFLARE.md`](CLOUDFLARE.md)
+[`wrangler.toml`](wrangler.toml). See [`CI-CD.md`](CI-CD.md)
 for the full runbook (rebuild, rollback, custom domain, credential
 rotation).
 
-Pull requests automatically get a preview URL on
-`apptonomia-<branch>.<account-subdomain>.workers.dev` — no extra
-workflow is needed.
+Cloudflare provides pull-request preview URLs on
+`apptonomia-<branch>.<account-subdomain>.workers.dev`; this preview integration
+is separate from the GitHub Actions production deployment.
 
 ---
 
@@ -225,7 +226,7 @@ The actual apps live in their own repositories:
 | [Teclatlon](https://teclatlon.apptonomia.uk/) | Touch-typing with a physical keyboard | [github.com/miralante/teclatlon](https://github.com/miralante/teclatlon) |
 | [Ludia](https://ludia.apptonomia.uk/) | Chess lessons, exercises and supported play | [github.com/miralante/ludia](https://github.com/miralante/ludia) |
 
-This repo's [`CLOUDFLARE.md`](CLOUDFLARE.md) is the canonical deploy
+This repo's [`CI-CD.md`](CI-CD.md) is the canonical deploy
 guide for the whole suite; each suite repo has its own
 project-specific doc that links back here.
 

@@ -44,7 +44,7 @@ These live at the repo root, not under `doc/`:
 | [`../../README.md`](../../README.md) | Public intro (English) — what the landing is |
 | [`../../README.es.md`](../../README.es.md) | Public intro (Spanish) |
 | [`../../CLAUDE.md`](../../CLAUDE.md) | Operational handbook for AI agents + canonical-source table |
-| [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md) | Cloudflare deploy runbook |
+| [`../../CI-CD.md`](../../CI-CD.md) | Cloudflare deploy runbook |
 | [`../../CONTRIBUTING.md`](../../CONTRIBUTING.md) | Contribution workflow |
 | [`../../CONTRIBUTING.es.md`](../../CONTRIBUTING.es.md) | Contribution workflow (Spanish) |
 | [`../../CODE_OF_CONDUCT.md`](../../CODE_OF_CONDUCT.md) | Contributor Covenant |

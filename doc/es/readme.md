@@ -83,7 +83,7 @@ Imagina que hoy quieres practicar cálculo mental. Abres **[apptonomia.uk](https
 
 - [`../README.es.md`](../../README.es.md) — Visión general del repositorio, build, despliegue
 - [`../../CLAUDE.md`](../../CLAUDE.md) — Cómo se gestiona el metaproyecto, y el script de sincronización entre proyectos
-- [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md) — Guía canónica de despliegue en Cloudflare Workers para toda la suite
+- [`../../CI-CD.md`](../../CI-CD.md) — Guía canónica de despliegue en Cloudflare Workers para toda la suite
 
 ---
 

@@ -73,7 +73,7 @@ for (const file of allFiles.filter((f) => f.endsWith('.js') && !rel(f).startsWit
 const REQUIRED = [
   'CLAUDE.md', 'README.md', 'README.es.md', 'LICENSE',
   'CONTRIBUTING.md', 'CONTRIBUTING.es.md', 'CODE_OF_CONDUCT.md', 'CODE_OF_CONDUCT.es.md',
-  'SECURITY.md', 'SECURITY.es.md', 'CLOUDFLARE.md',
+  'SECURITY.md', 'SECURITY.es.md', 'CI-CD.md',
   '_headers', '.assetsignore', 'wrangler.toml', '404.html', 'index.html',
   'strings.es.js', 'strings.en.js', 'js/i18n.js', 'js/suite-chrome.js',
   'about/index.html', 'legal/index.html',

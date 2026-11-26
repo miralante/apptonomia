@@ -146,7 +146,7 @@ The Miralante suite is built around a single privacy promise:
 
 The full threat model is in
 [`../../CLAUDE.md`](../../CLAUDE.md) §A.2.2 and the per-sibling
-`CLOUDFLARE.md`.
+`CI-CD.md`.
 
 ### 5.1 When the support person should consider wiping
 

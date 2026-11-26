@@ -34,7 +34,7 @@ despliega. Después sigue [`../es/crear-app.md`](../es/crear-app.md) §3.
 | `--shape` | `single-purpose` | `SHAPE` |
 | `--branch` | `main` | `PRODUCTION_BRANCH`, `DEFAULT_BRANCH` |
 | `--with A,B` | ninguna | conserva las secciones `{{#A}}…{{/A}}` (`HAS_CONTENT_CC_BY_SA`, `HAS_THIRD_PARTY_IMAGES`) |
-| `--set CLAVE=valor` | — | cualquier marcador; el resto de los de CLOUDFLARE.md / SECURITY.md tienen valores neutros en `new-app.js` |
+| `--set CLAVE=valor` | — | cualquier marcador; el resto de los de CI-CD.md / SECURITY.md tienen valores neutros en `new-app.js` |
 
 **La plantilla está probada.** `node scripts/check-template.js --ui`
 genera una app desechable y ejecuta su `check.js`, `smoke-sw.js`,
@@ -86,7 +86,7 @@ doc/templates/
 │   └── checks/suite-markup.js ← sincronizado: auditoría de cabecera/pie
 ├── .github/                   ← workflow de CI y plantillas de issues
 └── CLAUDE.md, README*, CONTRIBUTING*, CODE_OF_CONDUCT*, SECURITY*,
-    CLOUDFLARE.md, LICENSE, THIRD_PARTY_LICENSES.md, doc/
+    CI-CD.md, LICENSE, THIRD_PARTY_LICENSES.md, doc/
 ```
 
 Los **archivos sincronizados** son copias de `apptonomia/scripts/suite/`.

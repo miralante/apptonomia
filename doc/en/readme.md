@@ -83,7 +83,7 @@ Imagine you want to practise mental arithmetic today. You open **[apptonomia.uk]
 
 - [`../README.md`](../../README.md) — Repository overview, build, deploy
 - [`../../CLAUDE.md`](../../CLAUDE.md) — How the metaproject is run, and the cross-project sync script
-- [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md) — Canonical Cloudflare Workers deploy guide for the whole suite
+- [`../../CI-CD.md`](../../CI-CD.md) — Canonical Cloudflare Workers deploy guide for the whole suite
 
 ---
 

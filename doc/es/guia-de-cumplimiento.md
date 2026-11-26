@@ -526,7 +526,7 @@ que el SW se desregistra.
 
 El coste de bumpear es un entero; el coste de no bumpear es "la
 persona usuaria piensa que el arreglo no llegó". Bumpea con
-generosidad, no con保守. Ver el `CLOUDFLARE.md` de cada hermano
+generosidad, no con保守. Ver el `CI-CD.md` de cada hermano
 para el contrato de despliegue por app.
 
 ### 7.2 La regla, en una línea
@@ -558,7 +558,7 @@ para andamios de archivo para copiar y pegar.
 | `CONTRIBUTING.md` + `CONTRIBUTING.es.md` | sí | Flujo de contribución (es + en). |
 | `CODE_OF_CONDUCT.md` + `CODE_OF_CONDUCT.es.md` | sí | Pacto del colaborador (es + en). |
 | `SECURITY.md` + `SECURITY.es.md` | sí | Cómo reportar una vulnerabilidad de forma privada. |
-| `CLOUDFLARE.md` | sí | Runbook canónico de despliegue (Cloudflare Workers + static assets). |
+| `CI-CD.md` | sí | Runbook canónico de despliegue (Cloudflare Workers + static assets). |
 | `_headers`, `wrangler.toml`, `404.html` | sí | Configuración del host Cloudflare static-asset. |
 | `manifest.json` (PWA) | sí (si PWA) | Metadata de instalación PWA. |
 | `sw.js` (PWA) | sí (si PWA) | Service worker con `VERSION` + `ARCHIVOS`. |

@@ -146,7 +146,7 @@ changes to the UI or the PWA shell.
 
 ## See also
 
-- [\`CLOUDFLARE.md\`](CLOUDFLARE.md) — the deploy runbook.
+- [\`CI-CD.md\`](CI-CD.md) — the deploy runbook.
 - [\`_headers\`](_headers) — the HTTP security headers in effect.
 - \`CLAUDE.md\` §B — the suite-wide policies (no telemetry, WCAG
   AAA, public-facing wording).
@@ -216,7 +216,7 @@ visibles en la UI o en el shell de la PWA.
 
 ## Ver también
 
-- [\`CLOUDFLARE.md\`](CLOUDFLARE.md) — el runbook de despliegue.
+- [\`CI-CD.md\`](CI-CD.md) — el runbook de despliegue.
 - [\`_headers\`](_headers) — las cabeceras HTTP de seguridad en
   vigor.
 - \`CLAUDE.md\` §B — las políticas transversales de la suite (sin

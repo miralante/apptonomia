@@ -507,7 +507,7 @@ seeing the old cached files until the SW unregisters.
 
 The cost of bumping is one integer; the cost of not bumping is
 "the user thinks the fix didn't land". Bump liberally rather than
-conservatively. See each sibling's own `CLOUDFLARE.md` for the
+conservatively. See each sibling's own `CI-CD.md` for the
 per-app deploy contract.
 
 ### 7.2 The rule, in one line
@@ -539,7 +539,7 @@ copy-paste file scaffolds.
 | `CONTRIBUTING.md` + `CONTRIBUTING.es.md` | yes | Contribution workflow (es + en). |
 | `CODE_OF_CONDUCT.md` + `CODE_OF_CONDUCT.es.md` | yes | Contributor covenant (es + en). |
 | `SECURITY.md` + `SECURITY.es.md` | yes | How to report a vulnerability privately. |
-| `CLOUDFLARE.md` | yes | Canonical deploy runbook (Cloudflare Workers + static assets). |
+| `CI-CD.md` | yes | Canonical deploy runbook (Cloudflare Workers + static assets). |
 | `_headers`, `wrangler.toml`, `404.html` | yes | Cloudflare static-asset host config. |
 | `manifest.json` (PWA) | yes (if PWA) | PWA install metadata. |
 | `sw.js` (PWA) | yes (if PWA) | Service worker with `VERSION` + `ARCHIVOS`. |

@@ -1,7 +1,7 @@
 # {{DISPLAY_EN}} — Cloudflare Workers with static assets (no `main` script).
 # The site is plain HTML/CSS/JS with no build step. What is published is the
 # repo root MINUS what .assetsignore lists (docs, scripts, tests, .git, ...).
-# See CLOUDFLARE.md and https://developers.cloudflare.com/workers/static-assets/
+# See CI-CD.md and https://developers.cloudflare.com/workers/static-assets/
 
 name = "{{SLUG}}"
 compatibility_date = "2026-07-27"

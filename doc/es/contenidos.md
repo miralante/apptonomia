@@ -45,7 +45,7 @@ Viven en la raíz del repo, no bajo `doc/`:
 | [`../../README.es.md`](../../README.es.md) | Intro pública (español) — qué es el portal |
 | [`../../README.md`](../../README.md) | Intro pública (inglés) |
 | [`../../CLAUDE.md`](../../CLAUDE.md) | Manual operativo para agentes IA + tabla de fuentes canónicas |
-| [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md) | Runbook de despliegue en Cloudflare |
+| [`../../CI-CD.md`](../../CI-CD.md) | Runbook de despliegue en Cloudflare |
 | [`../../CONTRIBUTING.es.md`](../../CONTRIBUTING.es.md) | Flujo de contribución (español) |
 | [`../../CONTRIBUTING.md`](../../CONTRIBUTING.md) | Contribution workflow (inglés) |
 | [`../../CODE_OF_CONDUCT.es.md`](../../CODE_OF_CONDUCT.es.md) | Pacto del colaborador (español) |

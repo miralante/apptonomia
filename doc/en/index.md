@@ -4,7 +4,7 @@
 > whole**, the cross-project plumbing and the AI agent workflow, see
 > [`../../CLAUDE.md`](../../CLAUDE.md); for the canonical Cloudflare
 > Workers deploy guide that covers all seven apps of the suite, see
-> [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md).
+> [`../../CI-CD.md`](../../CI-CD.md).
 >
 > **Landing**: [apptonomia.uk](https://apptonomia.uk) · **Other language**: [Español](../es/indice.md)
 
@@ -32,6 +32,7 @@ doc/
 │   ├── activities.md             ← What the metaproject ships
 │   ├── guia-rapida.md            ← Step-by-step how to use Apptonomia
 │   ├── guia-de-cumplimiento.md   ← Suite compliance checklist
+│   ├── creating-elements-guide.md ← Canonical suite pedagogical guide
 │   └── crear-app.md              ← Recipe for adding a new sibling
 └── es/
     ├── indice.md                 ← Entry point (ES)
@@ -59,7 +60,7 @@ doc/
     ├── CONTRIBUTING.md / CONTRIBUTING.es.md
     ├── CODE_OF_CONDUCT.md / CODE_OF_CONDUCT.es.md
     ├── SECURITY.md / SECURITY.es.md
-    ├── CLOUDFLARE.md
+    ├── CI-CD.md
     ├── LICENSE
     ├── _headers
     ├── wrangler.toml
@@ -97,8 +98,9 @@ How to contribute and other repository-root documents (`CLAUDE.md`,
 | See what the metaproject ships (seven cards + plumbing + templates) | [`activities.md`](activities.md) |
 | Step-by-step how to use Apptonomia | [`guia-rapida.md`](guia-rapida.md) |
 | **Suite compliance checklist** (UNE 153101, WCAG AAA, public-facing wording, no telemetry, settings/data-reset, landing typography, cache contract) | [`guia-de-cumplimiento.md`](guia-de-cumplimiento.md) |
+| **Canonical suite pedagogical guide** (learning design, hints, reinforcement and responsible gamification) | [`creating-elements-guide.md`](creating-elements-guide.md) |
 | **Add a new sibling to the suite** (recipe + file templates) | [`crear-app.md`](crear-app.md) + [`templates/`](templates/) |
-| Deploy the landing or any of the seven apps of the suite | [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md) |
+| Deploy the landing or any of the seven apps of the suite | [`../../CI-CD.md`](../../CI-CD.md) |
 | Contribute to this repo | [`../../CONTRIBUTING.md`](../../CONTRIBUTING.md) |
 | Browse the metaproject landing | [apptonomia.uk](https://apptonomia.uk) |
 

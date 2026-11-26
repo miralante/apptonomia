@@ -47,7 +47,7 @@ apptonomia/
 │   ├── sync-cloudflare-skills.js     ← Sync Cloudflare-related skills into a sibling
 │   └── rename-doc-lowercase.js      ← One-off doc filename lowercaser
 ├── CLAUDE.md                        ← Operational handbook + suite policies
-├── CLOUDFLARE.md                    ← Deploy runbook (the canonical one)
+├── CI-CD.md                    ← Deploy runbook (the canonical one)
 ├── README.md, README.es.md          ← Public intro (es + en)
 ├── CONTRIBUTING.md, .es.md          ← Contribution workflow
 ├── CODE_OF_CONDUCT.md, .es.md       ← Contributor Covenant
@@ -225,9 +225,9 @@ request and a deploy is visible at once. No `?v=` tokens are used.
 ### 5.4 First deploy
 
 The first deploy of a brand-new project follows
-[`../../CLOUDFLARE.md`](../../CLOUDFLARE.md). The metaproject's
-`CLOUDFLARE.md` is the canonical runbook for the whole suite;
-per-sibling `CLOUDFLARE.md` files describe per-app specifics.
+[`../../CI-CD.md`](../../CI-CD.md). The metaproject's
+`CI-CD.md` is the canonical runbook for the whole suite;
+per-sibling `CI-CD.md` files describe per-app specifics.
 
 ---
 
@@ -274,7 +274,7 @@ explicit.
 - [`i18n.md`](i18n.md) — how the es/en landing UI works.
 - [`guia-de-cumplimiento.md`](guia-de-cumplimiento.md) — suite
   compliance checklist.
-- [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md) — canonical
+- [`../../CI-CD.md`](../../CI-CD.md) — canonical
   deploy runbook for the whole suite.
 - [`../../CLAUDE.md`](../../CLAUDE.md) §A — operational
   handbook.

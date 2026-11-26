@@ -214,7 +214,7 @@ El portal se despliega a **Cloudflare Workers + static assets**
 vía el conector Git de Cloudflare — automático en cada push a
 `main`. Las cabeceras HTTP de seguridad viven en `_headers`;
 los metadatos del proyecto en `wrangler.toml`. Ver
-[`../../CLOUDFLARE.md`](../../CLOUDFLARE.md) para el runbook
+[`../../CI-CD.md`](../../CI-CD.md) para el runbook
 completo.
 
 > Apptonomia no envía un `sw.js` (sin service worker, sin

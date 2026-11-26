@@ -75,7 +75,7 @@ For each repo, in order:
 1. Cloudflare dashboard → Workers & Pages → project `<slug>`.
 2. **Settings → Builds → Production branch** — change from `master` to `main`.
 3. If the repo uses the Cloudflare Git connector (the README and
-   `CLOUDFLARE.md` tell you), open the **connected Git repo** panel
+   `CI-CD.md` tell you), open the **connected Git repo** panel
    and re-select the production source branch as `main`. The
    connector's "Production branch" is a separate setting from the
    GitHub default branch — both have to agree.
@@ -97,14 +97,14 @@ cd <repo> && git commit --allow-empty -m "chore: smoke after rename to main" && 
 
 For each repo:
 
-- Edit `<slug>/CLOUDFLARE.md`:
+- Edit `<slug>/CI-CD.md`:
   - Replace `master` → `main` in:
     - L4 (`automatically on every push to \`master\``)
     - L29 (`Every push to \`master\` triggers`)
     - L84/L79/L87/L90 (`Production branch | \`master\``)
     - L152/L146/L155/L161 (`Every push to \`master\` and every PR`)
     - L169/L163/L178/L179 (`Push to \`master\` and Cloudflare`)
-  - Leave the L20 link to `apptonomia/blob/master/CLOUDFLARE.md` alone
+  - Leave the L20 link to `apptonomia/blob/master/CI-CD.md` alone
     for now (apptonomia is already on `main`, but the cross-link is
     cosmetic; it gets cleaned up the next time we sweep `master` across
     the suite in plain text).
@@ -152,7 +152,7 @@ dry-run reports) — start with the cleanest, finish with the messiest:
 4. **routime** — no remote configured locally, has a Pages-deploy
    conditional, and 3 tags. Touch this one last.
 
-After all four are done, the CLOUDFLARE.md and README cross-links that
+After all four are done, the CI-CD.md and README cross-links that
 still say `master` in `apptonomia/` (the metaproject) can be cleaned
 up — they don't block anything.
 

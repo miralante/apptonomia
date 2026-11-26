@@ -256,7 +256,7 @@ function buildChecklist(opts) {
     '## 4. After both are done', '',
     '- Update `apptonomia/scripts/one-off/write-security-md.js`: change this repo\'s',
     '  `branch: \'master\'` (or whatever it is today) to `branch: \'main\'`, then re-run the script.',
-    '- Update `' + SLUG + '/CLOUDFLARE.md` "Production branch" cell.',
+    '- Update `' + SLUG + '/CI-CD.md` "Production branch" cell.',
     '- Run `node scripts/check.js` (per-sibling validator) -- make sure it still passes.',
     '',
   );

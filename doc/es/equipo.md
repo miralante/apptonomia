@@ -156,7 +156,7 @@ de privacidad: **nada sale del dispositivo**. Concretamente:
 
 El modelo de amenaza completo está en la
 [`../../CLAUDE.md`](../../CLAUDE.md) §A.2.2 y en cada
-`CLOUDFLARE.md` por hermano.
+`CI-CD.md` por hermano.
 
 ### 5.1 Cuándo la persona de apoyo debería plantearse borrar
 

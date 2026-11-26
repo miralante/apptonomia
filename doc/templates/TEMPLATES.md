@@ -35,7 +35,7 @@ pushes and never deploys. Then follow
 | `--shape` | `single-purpose` | `SHAPE` |
 | `--branch` | `main` | `PRODUCTION_BRANCH`, `DEFAULT_BRANCH` |
 | `--with A,B` | none | keeps the `{{#A}}…{{/A}}` sections (`HAS_CONTENT_CC_BY_SA`, `HAS_THIRD_PARTY_IMAGES`) |
-| `--set KEY=value` | — | any placeholder; the rest of the CLOUDFLARE.md / SECURITY.md ones have neutral defaults in `new-app.js` |
+| `--set KEY=value` | — | any placeholder; the rest of the CI-CD.md / SECURITY.md ones have neutral defaults in `new-app.js` |
 
 **The template is tested.** `node scripts/check-template.js --ui`
 generates a throw-away app and runs its `check.js`, `smoke-sw.js`,
@@ -87,7 +87,7 @@ doc/templates/
 │   └── checks/suite-markup.js ← synced: shared header/footer audit
 ├── .github/                   ← CI workflow and issue templates
 └── CLAUDE.md, README*, CONTRIBUTING*, CODE_OF_CONDUCT*, SECURITY*,
-    CLOUDFLARE.md, LICENSE, THIRD_PARTY_LICENSES.md, doc/
+    CI-CD.md, LICENSE, THIRD_PARTY_LICENSES.md, doc/
 ```
 
 **Synced files** are copies of `apptonomia/scripts/suite/`. Never edit

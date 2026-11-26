@@ -5,7 +5,7 @@
 > de trabajo de los agentes IA, mira [`../../CLAUDE.md`](../../CLAUDE.md);
 > para la guía canónica de despliegue en Cloudflare Workers que cubre
 > las siete apps de la suite, mira
-> [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md).
+> [`../../CI-CD.md`](../../CI-CD.md).
 >
 > **Página**: [apptonomia.uk](https://apptonomia.uk) · **Otro idioma**: [English](../en/index.md)
 
@@ -34,6 +34,7 @@ doc/
 │   ├── activities.md
 │   ├── guia-rapida.md
 │   ├── guia-de-cumplimiento.md
+│   ├── creating-elements-guide.md ← guía pedagógica canónica de la suite
 │   └── crear-app.md
 └── es/
     ├── indice.md              ← Este archivo (punto de entrada, ES)
@@ -47,6 +48,7 @@ doc/
     ├── actividades.md
     ├── guia-rapida.md
     ├── guia-de-cumplimiento.md
+    ├── guia-crear-elementos.md ← guía pedagógica canónica de la suite
     └── crear-app.md
 ```
 
@@ -61,7 +63,7 @@ doc/
     ├── CONTRIBUTING.md / CONTRIBUTING.es.md
     ├── CODE_OF_CONDUCT.md / CODE_OF_CONDUCT.es.md
     ├── SECURITY.md / SECURITY.es.md
-    ├── CLOUDFLARE.md
+    ├── CI-CD.md
     ├── LICENSE
     ├── _headers
     ├── wrangler.toml
@@ -99,8 +101,9 @@ Cómo contribuir y otros documentos de la raíz del repositorio
 | Ver qué envía el metaproyecto (siete tarjetas + plumbing + plantillas) | [`actividades.md`](actividades.md) |
 | Paso a paso de cómo usar Apptonomia | [`guia-rapida.md`](guia-rapida.md) |
 | **Checklist de cumplimiento de la suite** (UNE 153101, WCAG AAA, lenguaje público, sin telemetría, ajustes/borrado de datos, tipografía del portal, contrato de caché) | [`guia-de-cumplimiento.md`](guia-de-cumplimiento.md) |
+| **Guía pedagógica canónica de la suite** (diseño de actividades, pistas, refuerzo y gamificación responsable) | [`guia-crear-elementos.md`](guia-crear-elementos.md) |
 | **Añadir un nuevo hermano a la suite** (receta + plantillas de archivos) | [`crear-app.md`](crear-app.md) + [`templates/`](templates/) |
-| Desplegar la página o cualquiera de las siete apps de la suite | [`../../CLOUDFLARE.md`](../../CLOUDFLARE.md) |
+| Desplegar la página o cualquiera de las siete apps de la suite | [`../../CI-CD.md`](../../CI-CD.md) |
 | Contribuir a este repositorio | [`../../CONTRIBUTING.es.md`](../../CONTRIBUTING.es.md) |
 | Visitar la página del metaproyecto | [apptonomia.uk](https://apptonomia.uk) |
 
