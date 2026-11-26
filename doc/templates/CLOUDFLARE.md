@@ -1,195 +1,48 @@
 # Cloudflare Workers (static assets) — {{DISPLAY}}
 
-> **Production branch & automatic deploy.** {{DISPLAY}} deploys
-> **automatically on every push to `{{PRODUCTION_BRANCH}}`** via the
-> **Cloudflare Git connector**. The GitHub Actions workflow
-> [`.github/workflows/{{WORKFLOW}}`](.github/workflows/{{WORKFLOW}})
-> runs the test gates (`npm run lint`, `npm run lint:markup`,
-> `npm run test:sw`, `npm run test:ui`) on every push and PR but does
-> **not** deploy. The Cloudflare dashboard is the source of truth for
-> project settings.
->
-> **This project is deployed as a Cloudflare Worker (static assets),
-> not classic Cloudflare Pages.**{{LIVE_URL_NOTE}}
->
-> **Part of the Miralante suite.** {{DISPLAY}} joins the Miralante apps
-> (Apptonomia, Calculia, Ludia, Memofun, Okeymoney, Routime,
-> Sinonimia, Teclatlon) that share the same author, the same
-> accessibility-first / no-backend philosophy, and the same Cloudflare
-> deploy story. The canonical group-wide guide lives in
-> [Apptonomia's `CLOUDFLARE.md`](https://github.com/miralante/apptonomia/blob/main/CLOUDFLARE.md)
-> (the metaproject root, this very file); the per-sibling
-> `CLOUDFLARE.md` documents only the project-specific bits
-> (custom domain, build command, CI workflow name).
+> **Deploy:** {{DEPLOY_MODE}}. The Cloudflare dashboard is the source of truth for project settings. This is a Worker with static assets, not classic Pages. {{LIVE_URL_NOTE}}
 
-## How it works
-
-1. The repo is connected to a Cloudflare Workers project named
-   `{{SLUG}}` (Workers & Pages → Connect to Git).
-2. Every push to `{{PRODUCTION_BRANCH}}` triggers a build in
-   Cloudflare's infrastructure via Workers Builds, which reads
-   [`wrangler.toml`](wrangler.toml) to deploy the repo root as a
-   static-assets Worker (no `main` script).{{BUILD_COMMAND_NOTE}}
-3. The build is otherwise a no-op: no `output directory` other than
-   `.`, so the static files are served as-is.
-4. The `{{WORKFLOW}}` GitHub Action still runs on every push and PR
-   to gate content, but it does not deploy.
-
-[`wrangler.toml`](wrangler.toml) is the actual deploy configuration
-Workers Builds reads — not just a convenience for local CLI use. It
-pins the project name (`name = "{{SLUG}}"`) and declares
-`[assets] directory = "."` (no `main` script), plus
-`not_found_handling = "404-page"` so Cloudflare serves this repo's
-own `404.html` for an unmatched path instead of a bare empty 404.
-
-> **Do not "fix" by deleting `wrangler.toml`{{REDIRECTS_NOTE}}** or
-> by switching to the legacy `pages_build_output_dir` Pages shape.
-> {{DISPLAY}}'s Cloudflare dashboard project is already a Worker
-> with "Workers Builds", and Cloudflare's own current guidance is to
-> prefer Workers + static assets over classic Pages for new static
-> sites. `wrangler pages deploy` and the Pages shape do not apply
-> here — use `wrangler deploy` if you ever need to push from a dev
-> machine.
-
-## Files in this repository
-
-| File | Purpose |
-|---|---|
-| `_headers` | Cache and security headers |
-| `wrangler.toml` | Pins the project name + the `[assets]` binding + `not_found_handling = "404-page"` |
-| `package.json` | The gate contract of the suite: `lint`, `lint:markup`, `test:sw`, `test:ui` (plus `test:crawl` if the app adopts the crawler) |
-| `.github/workflows/{{WORKFLOW}}` | The test gates on every push/PR (does **not** deploy) |{{EXTRA_FILES_ROWS}}
-{{REDIRECTS_ROW}}No `_redirects`, no `functions/`, no Cloudflare
-service-account keys.{{REPO_NARRATIVE}}
-
-## Configuration in Cloudflare
+## Configuration
 
 | Setting | Value |
 |---|---|
+| Worker | `{{SLUG}}` |
+| Production branch | `{{PRODUCTION_BRANCH}}` |
 | Framework preset | None |
 | Build command | {{BUILD_COMMAND}} |
-| Build output directory | `.` |
-| Production branch | `{{PRODUCTION_BRANCH}}` |
-| Root directory | *(empty — repo root)* |
+| Output / root | `.` / repository root |
+| GitHub workflow | [`{{WORKFLOW}}`]({{WORKFLOW}}) — {{CHECKS}} |
 
-{{NO_ENV_NARRATIVE}}
+`wrangler.toml` is the deploy configuration: it pins the Worker name, serves `[assets] directory = "."` without a `main` script, and sets `not_found_handling = "404-page"`. Keep it; do not convert this project to classic Pages (`pages_build_output_dir` or `wrangler pages deploy`). Workers Builds reads it directly. {{BUILD_DETAIL}}
 
-## Required Cloudflare headers
+`_headers` applies security and cache headers at deploy time; no dashboard rules are needed. No environment variables or Cloudflare service-account keys are required. {{FILES_DETAIL}}
 
-The site uses a [`_headers`](_headers) file at the repo root to set
-security headers (CSP, X-Frame-Options, Referrer-Policy,
-Permissions-Policy{{EXTRA_HEADER_LIST}}) and a cache policy:
-{{CACHE_POLICY}}Cloudflare reads this file on every deploy and applies
-the rules automatically — no dashboard configuration needed.
+## Routing and Workers.dev
 
-## `*.workers.dev` subdomain — Triggers
+Cloudflare serves static Worker assets through an active `workers.dev` subdomain or custom domain. A deployment can succeed yet serve nothing without an active route. If a Worker shows **No active routes**, enable its Workers.dev subdomain under **Workers & Pages → `{{SLUG}}` → Settings → Triggers**. If only a route table is available, add `*/*` on the account's `workers.dev` zone for Worker `{{SLUG}}`. Routes are dashboard settings, not `wrangler.toml`; enabling one needs no rebuild. If a deployment is not active afterward, retry or promote the latest successful deployment.
 
-For a static-assets Worker, Cloudflare only serves requests over a
-**route** (a `*.workers.dev` subdomain or a custom domain). Without
-one, the project deploys fine — the build succeeds, files are
-uploaded, "Deployments" lists the commit — but the dashboard shows
-**"No active routes"** and every URL returns empty.
+{{ROUTING_DETAIL}}
 
-**Fix — one click in the dashboard:**
+## Cache and service worker
 
-1. Workers & Pages → `{{SLUG}}` → **Settings** → **Triggers** (or
-   **Routes**, depending on the dashboard version).
-2. Under **Workers.dev subdomain**, click **Enable** (or **Add**).
-   Cloudflare assigns the URL immediately; no rebuild needed.
-3. If the dashboard only shows a routes table, add a route
-   manually:
-   - **Route pattern**: `*/*`
-   - **Zone**: `workers.dev` (the account's free `*.workers.dev` zone)
-   - **Worker**: `{{SLUG}}`
-4. Once the route is active, if the latest commit isn't already
-   showing as the **Active** deployment, go to **Deployments** →
-   click the most recent successful build → **Retry deployment** (or
-   **Promote to deploy**).
+{{CACHE_DETAIL}}
 
-> **Cannot be set in `wrangler.toml`.** The `workers.dev` binding is
-> a per-project dashboard setting; it is not declared anywhere in
-> the repo. `wrangler deploy` from the CLI does not apply here
-> either — Workers Builds owns the deploy, and the dashboard owns
-> the routes.
+## Deploy, rollback, and domains
 
-## Service worker cache
+{{OPS_DETAIL}}
 
-`sw.js` is {{SW_STRATEGY}} — the {{SW_STRATEGY_LABEL}} strategy used
-by every PWA sibling of the suite.
+To add a custom domain, use **Workers & Pages → `{{SLUG}}` → Custom domains → Set up a custom domain**. Cloudflare configures DNS for a zone in the account; otherwise follow the wizard's DNS instructions. Current setup: {{DOMAIN_DETAIL}}
 
-- `sw.js` declares a `VERSION` string (e.g. `{{SLUG}}-vN`).
-- `sw.js` declares a `FILES` (or `ARCHIVOS`) array listing every file
-  the SW pre-caches on install.
-- A change to any file in `FILES` requires bumping `VERSION` in the
-  same commit.
-- `scripts/check-version-bump.js` is the CI gate that fails the
-  build when a cached file changed but `VERSION` didn't.
+There are no API tokens or secrets to rotate. The GitHub integration uses OAuth; revoke access at [github.com/settings/applications](https://github.com/settings/applications).
 
-The cost of bumping is one integer; the cost of not bumping is
-"the user thinks the fix didn't land". Bump liberally rather than
-conservatively. See `CLAUDE.md` §B.1 for the canonical rule.
+## Project-specific notes
 
-## CI — pre-deploy gate
+{{PROJECT_NOTES}}
 
-Every push to `{{PRODUCTION_BRANCH}}` and every PR against
-`{{PRODUCTION_BRANCH}}` runs
-[`.github/workflows/{{WORKFLOW}}`](.github/workflows/{{WORKFLOW}}){{CI_EXTRA}},
-which gates content before the Cloudflare Git connector ever sees
-the commit. The CI workflow does **not** deploy — deploy is
-exclusively the Cloudflare dashboard reading `wrangler.toml` and
-`_headers`. No GitHub secret is required, no `wrangler login` is
-needed locally.
+## References
 
-## Custom domain
-
-{{CUSTOM_DOMAIN_BODY}}
-
-## How to redeploy
-
-Nothing to do. Push to `{{PRODUCTION_BRANCH}}` and Cloudflare
-rebuilds.
-
-For a manual rebuild (e.g. after Cloudflare itself had an
-incident), go to the Cloudflare dashboard → Workers & Pages →
-`{{SLUG}}` → **Create deployment** → choose a branch or upload a
-directory.
-
-For a one-off preview outside the Git connector (e.g. to test a
-dirty worktree without pushing):
-
-```bash
-npx wrangler deploy
-```
-
-## How to roll back
-
-Cloudflare dashboard → Workers & Pages → `{{SLUG}}` →
-**Deployments**. Each successful build is listed with a timestamp.
-Click any of them and select **"Retry deployment"** or **"Rollback
-to this deployment"**.
-
-## How to add a custom domain
-
-Cloudflare dashboard → Workers & Pages → `{{SLUG}}` → **Custom
-domains** → **Set up a custom domain** → follow the wizard. DNS is
-configured automatically if the domain is already on Cloudflare, or
-by CNAME if it is on another provider. {{CUSTOM_DOMAIN_NOTE}}
-
-## Rotating credentials
-
-There are no API tokens or secrets to rotate. The GitHub
-integration is a one-time OAuth authorisation; revoking it is a
-matter of removing the app's access on
-[github.com/settings/applications](https://github.com/settings/applications).
-
-## See also
-
-- [`CLAUDE.md`](CLAUDE.md) — the per-sibling AI agent workflow; the
-  cache contract in §B.1 is the source of truth for the SW
-  `VERSION` rule.
-- `wrangler.toml` — the actual deploy configuration Workers Builds
-  reads.
-- [`CONTRIBUTING.md`](CONTRIBUTING.md) — the human contribution
-  flow that produces the commits that Git connector picks up.
-- Apptonomia's `CLOUDFLARE.md` — the metaproject root, this very
-  template, but with `{{DISPLAY}} = Apptonomia`.
+- [`wrangler.toml`](wrangler.toml) — Worker and asset configuration.
+- [`_headers`](_headers) — security and cache policy.
+- [`{{WORKFLOW}}`]({{WORKFLOW}}) — validation; it does not deploy unless stated above.
+- [`CLAUDE.md`](CLAUDE.md) — agent workflow and, where applicable, the canonical service-worker cache contract (§B.1).
+- [Miralante's shared Cloudflare runbook](https://github.com/miralante/apptonomia/blob/main/CLOUDFLARE.md) — common setup and recovery steps.
