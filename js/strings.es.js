@@ -81,7 +81,7 @@ if (window.App.i18n) {
     },
     about: {
       pageTitle: 'Presentación de la suite',
-      backToCover: '← Volver',
+      backToCover: 'Menú de Teclatlon',
       routeNotice: 'Esta página no se enlaza desde el portal. Solo se llega escribiendo la dirección.',
       tagline: 'Una suite de aplicaciones para aprender a tu ritmo.',
       lead1: 'Apptonomia es la ',

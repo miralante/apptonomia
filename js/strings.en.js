@@ -81,7 +81,7 @@ if (window.App.i18n) {
     },
     about: {
       pageTitle: 'Suite presentation',
-      backToCover: '← Back',
+      backToCover: 'Teclatlon menu',
       routeNotice: 'This page is not linked from the portal. The only way here is typing the address.',
       tagline: 'A suite of applications to learn at your own pace.',
       lead1: 'Apptonomia is a ',

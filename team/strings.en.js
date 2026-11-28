@@ -3,7 +3,7 @@ window.__i18n_strings__ = window.__i18n_strings__ || {};
 window.__i18n_strings__.en = {
   pageTitle: 'Apptonomia — Who builds it',
   pageDescription: 'Who maintains Apptonomia and how to contribute to the project.',
-  backToCover: '← Back',
+  backToCover: 'Teclatlon menu',
   teamTitle: 'Who builds it',
   tagline: 'Apptonomia is the metaproject that ties together the seven siblings of the suite. Open-source software (GNU AGPL v3.0), maintained by a distributed network of people. Here is who is behind it and how to help.',
   techTeamTitle: 'Technical team',

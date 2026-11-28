@@ -3,7 +3,7 @@ window.__i18n_strings__ = window.__i18n_strings__ || {};
 window.__i18n_strings__.es = {
   pageTitle: 'Apptonomia — Quiénes la hacen',
   pageDescription: 'Quién mantiene Apptonomia y cómo contribuir al proyecto.',
-  backToCover: '← Volver',
+  backToCover: 'Menú de Teclatlon',
   teamTitle: 'Quiénes la hacen',
   tagline: 'Apptonomia es el metaproyecto que une los siete hermanos de la suite. Software libre (GNU AGPL v3.0), mantenido por una red distribuida de personas. Aquí explicamos quién hay detrás y cómo ayudar.',
   techTeamTitle: 'Equipo técnico',
